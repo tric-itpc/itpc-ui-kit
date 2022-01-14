@@ -11,5 +11,11 @@
     "declaration": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "./src/stories", ".storybook", ".idea"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "./src/stories",
+    ".storybook",
+    ".idea"
+  ]
 }

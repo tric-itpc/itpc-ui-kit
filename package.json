@@ -1,13 +1,11 @@
 {
   "name": "itpc-ui-kit",
-  "version": "1.0.0",
+  "version": "1.0.14",
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
     "build": "webpack",
-    "publish-patch": "npm run build && npm version patch && npm publish",
-    "publish-minor": "npm run build && npm version minor && npm publish",
-    "publish-major": "npm run build && npm version major && npm publish",
+    "publish": "npm run build && npm publish",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -40,6 +38,7 @@
     "eslint-plugin-react": "^7.28.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-number-format": "^4.9.1",
     "storybook": "^6.4.12",
     "style-loader": "^3.3.1",
     "styled-components": "^5.3.3",

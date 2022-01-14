@@ -95,7 +95,7 @@ rules:
       skipBlankLines: true
       skipComments: true
   max-lines-per-function:
-    - error
+    - off
     - max: 120
   max-nested-callbacks: error
   max-params:
@@ -133,7 +133,7 @@ rules:
   no-extra-parens: 0
   "@typescript-eslint/no-extra-parens": off
   no-floating-decimal: error
-  no-implicit-coercion: error
+  no-implicit-coercion: off
   no-implicit-globals: error
   no-implied-eval: error
   no-inline-comments: error
@@ -147,7 +147,7 @@ rules:
   no-loss-of-precision: error
   no-magic-numbers: 0
   "@typescript-eslint/no-magic-numbers":
-    - error
+    - off
     - ignoreArrayIndexes: true
       ignoreEnums: true
       ignoreReadonlyClassProperties: true
@@ -169,7 +169,7 @@ rules:
   no-nonoctal-decimal-escape: error
   no-octal-escape: error
   no-param-reassign: error
-  no-plusplus: error
+  no-plusplus: off
   no-promise-executor-return: error
   no-proto: error
   no-restricted-exports: error
@@ -190,7 +190,7 @@ rules:
   no-throw-literal: error
   no-trailing-spaces: error
   no-undef-init: error
-  no-undefined: error
+  no-undefined: off
   no-underscore-dangle: error
   no-unmodified-loop-condition: error
   no-unneeded-ternary: error
