@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   mode: 'production',
-  entry: "./src/constants.ts",
+  entry: "./src/index.ts",
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, 'dist'),
@@ -10,7 +10,7 @@ module.exports = {
     clean: true
   },
   resolve: {
-    extensions: ['.ts', '.tsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   externals: {
     react: 'react'
