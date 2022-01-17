@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { InputType } from "../types"
 import { Preloader } from "../Preloader"
@@ -34,6 +34,8 @@ export const InputField: React.FC<InputFieldProps> = ({
 }) => {
   const [focused, onHandleFocused] = React.useState(false)
   const [valueInput, onChangeValue] = React.useState(value)
+
+  useEffect(() => onChangeValue(value), [value])
 
   const onBlurInput = (): void => {
     onHandleFocused(false)
