@@ -1,7 +1,7 @@
 import React from "react"
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Button, ButtonProps } from '../Button'
+import { Button, ButtonProps } from '../components/Button'
 
 export default {
   title: 'Components/Button',
@@ -12,7 +12,7 @@ const Template: ComponentStory<React.FC<ButtonProps>> = (args) => <Button {...ar
 
 export const Basic = Template.bind({})
 Basic.args = {
-  variant: 'primary',
+  variant: 'purple',
   disabled: false,
   children: 'Button'
 }

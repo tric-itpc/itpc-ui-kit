@@ -1,7 +1,7 @@
 import React from "react"
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Preloader, PreloaderProps } from '../Preloader'
+import { Preloader, PreloaderProps } from '../components/Preloader'
 
 export default {
   title: 'Components/Preloader',
