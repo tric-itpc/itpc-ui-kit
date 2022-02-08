@@ -3,13 +3,15 @@ import styled from "styled-components"
 import { Colors } from "../../constants"
 import { ValidationState } from "../../types"
 
-interface InputWrapProps {
+export interface InputWrapProps {
+  height?: number
+  maxHeight?: number
   validationState: ValidationState
   focused: boolean
   disabled: boolean
 }
 
-interface InputProps {
+export interface InputProps {
   focused: boolean
   valueLength: number
 }
@@ -26,6 +28,8 @@ export const InputWrap = styled.div<InputWrapProps>`
   box-shadow: none;
   box-sizing: border-box;
   
+  ${({ height }) => height && `height: ${height}px;`}
+  ${({ maxHeight }) => maxHeight && `max-height: ${maxHeight}px;`}
   ${({ focused }) => focused && `border-color: ${Colors.purple};`}
   ${({ disabled }) => disabled && `background-color: ${Colors.greyLight};`}
   ${({ validationState }) => validationState === 'invalid' && `border-color: ${Colors.red};`}

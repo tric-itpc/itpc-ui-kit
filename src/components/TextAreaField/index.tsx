@@ -1,28 +1,31 @@
-import React, { useState } from "react"
-import NumberFormat, { NumberFormatValues } from 'react-number-format'
+import React, { useRef, useState } from "react"
 
-import { Input, InputWrap, Placeholder } from "../_elements"
+import { Placeholder } from "../_elements"
 
-import { FormattedValues, ValidationState } from "../types"
+import { ValidationState } from "../types"
 import { ErrorMessage } from "../ErrorMessage"
 
-export interface PhoneFieldProps {
+import * as Styled from './styled'
+
+export interface TextAreaFieldProps {
   id: string
   name: string
   value?: string
+  maxHeight?: number
   disabled?: boolean
   placeholder?: string
   validationState?: ValidationState
   errorMessage?: string
   onBlur?: () => void
   onFocus?: () => void
-  onChange?: (values: FormattedValues) => void
+  onChange?: (value: string) => void
 }
 
-export const PhoneField: React.FC<PhoneFieldProps> = ({
-  id,
-  name,
+export const TextAreaField: React.FC<TextAreaFieldProps> = ({
+  id = 'itpc-input',
+  name = 'itpc-input',
   value = '',
+  maxHeight,
   disabled = false,
   placeholder = '',
   validationState = 'valid',
@@ -32,8 +35,11 @@ export const PhoneField: React.FC<PhoneFieldProps> = ({
   onChange
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
+  const [height, setHeight] = useState<number>(40)
 
-  const onBlurInput = (): void => {
+  const ref = useRef<HTMLTextAreaElement>(null)
+
+  const onBlurTextArea = (): void => {
     onHandleFocused(false)
 
     if (onBlur) {
@@ -41,29 +47,36 @@ export const PhoneField: React.FC<PhoneFieldProps> = ({
     }
   }
 
-  const onFocusInput = (): void => {
+  const onFocusTextArea = (): void => {
     onHandleFocused(true)
+    ref.current?.focus()
 
     if (onFocus) {
       onFocus()
     }
   }
 
-  const onChangeInput = (values: NumberFormatValues): void => {
+  const onChangeTextArea = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    setHeight(40)
+
+    if (ref.current?.scrollHeight && ref.current.scrollHeight > 40) {
+      setHeight(ref.current.scrollHeight)
+    }
+
     if (onChange) {
-      onChange({
-        value: values.value,
-        formattedValue: values.formattedValue
-      })
+      onChange(event.currentTarget.value)
     }
   }
 
   return (
     <>
-      <InputWrap
+      <Styled.TextAreaWrap
+        height={height}
+        maxHeight={maxHeight}
         focused={focused}
         disabled={disabled}
         validationState={validationState}
+        onClick={onFocusTextArea}
       >
         <Placeholder
           htmlFor={id}
@@ -74,24 +87,19 @@ export const PhoneField: React.FC<PhoneFieldProps> = ({
           {placeholder}
         </Placeholder>
 
-        <NumberFormat
+        <Styled.TextArea
+          ref={ref}
           id={id}
           name={name}
-          type="text"
           value={value}
           disabled={disabled}
-          onFocus={onFocusInput}
-          onBlur={onBlurInput}
-          onValueChange={onChangeInput}
+          onFocus={onFocusTextArea}
+          onBlur={onBlurTextArea}
+          onChange={onChangeTextArea}
           focused={focused}
           valueLength={value.length}
-          customInput={Input}
-          isNumericString
-          allowEmptyFormatting
-          format="+7(###)###-##-##"
-          mask="_"
         />
-      </InputWrap>
+      </Styled.TextAreaWrap>
 
       {validationState === 'invalid' && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </>
