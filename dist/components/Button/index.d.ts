@@ -1,8 +1,8 @@
 import React from 'react';
-import { ButtonType, Variant } from '../types';
+import { ButtonType, ButtonVariant } from '../types';
 export interface ButtonProps {
     type?: ButtonType;
-    variant?: Variant;
+    variant?: ButtonVariant;
     disabled?: boolean;
     onPress?: () => void;
 }

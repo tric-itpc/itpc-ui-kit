@@ -1,16 +1,18 @@
 import React from 'react';
-import { InputType } from "../types";
-export interface InputFieldProps {
+import { InputState, InputType, ValidationState } from "../types";
+export interface TextFieldProps {
     id: string;
     name: string;
     type?: InputType;
     value?: string;
-    loading?: boolean;
     disabled?: boolean;
     maxLength?: number;
     placeholder?: string;
+    state?: InputState;
+    validationState?: ValidationState;
+    errorMessage?: string;
     onBlur?: () => void;
     onFocus?: () => void;
     onChange?: (value: string) => void;
 }
-export declare const InputField: React.FC<InputFieldProps>;
+export declare const TextField: React.FC<TextFieldProps>;

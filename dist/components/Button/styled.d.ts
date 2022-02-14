@@ -1,6 +1,6 @@
-import { Variant } from "../types";
+import { ButtonVariant } from "../types";
 interface Props {
-    variant: Variant;
+    variant: ButtonVariant;
 }
 export declare const Button: import("styled-components").StyledComponent<"button", any, Props, never>;
 export {};
