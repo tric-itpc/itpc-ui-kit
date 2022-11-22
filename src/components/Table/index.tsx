@@ -1,82 +1,112 @@
 import React from 'react'
+import cn from 'classnames'
 
-import {
-  CellStyles,
-  ColumnStyles,
-  RowStyles,
-  TableHeaderStyles,
-  TableStyles
-} from '../styles'
-
-import * as Styled from './styled'
-
-export interface TableProps {
-  title?: string
-  styles?: TableStyles
-}
+import './styles.css'
 
 export interface TableHeaderProps {
-  styles?: TableHeaderStyles
+  id?: string
+  children?: React.ReactNode
 }
+
+export const TableHeader: React.FC<TableHeaderProps> = ({
+  id = '',
+  children
+}) => (
+  <thead id={id} className="itpc-table__head">{children}</thead>
+)
+
+export interface TableBodyProps {
+  children?: React.ReactNode
+}
+
+export const TableBody: React.FC<TableBodyProps> = ({ children }) => (
+  <tbody className="itpc-table__body">{children}</tbody>
+)
+
+export interface TableFooterProps {
+  children?: React.ReactNode
+}
+
+export const TableFooter: React.FC<TableFooterProps> = ({ children }) => (
+  <tfoot className="itpc-table__footer">{children}</tfoot>
+)
 
 export interface RowProps {
-  onPressRow?: () => void
-  styles?: RowStyles
+  id?: string
+  children?: React.ReactNode
+  onPressRow?: (event?: React.MouseEvent<HTMLTableRowElement>) => void
 }
-
-export interface ColumnProps {
-  styles?: ColumnStyles
-  onPressColumn?: () => void
-}
-
-export interface CellProps {
-  styles?: CellStyles
-  onPressCell?: () => void
-}
-
-export const TableHeader: React.FC<TableHeaderProps> = ({ styles, children }) => (
-  <Styled.TableHeader {...styles}>{children}</Styled.TableHeader>
-)
-
-export const TableBody: React.FC = ({ children }) => (
-  <Styled.TableBody>{children}</Styled.TableBody>
-)
-
-export const TableFooter: React.FC = ({ children }) => (
-  <Styled.TableFooter>{children}</Styled.TableFooter>
-)
 
 export const Row: React.FC<RowProps> = ({
+  id = '',
   onPressRow,
-  styles,
   children
 }) => (
-  <Styled.Row onClick={onPressRow && onPressRow} {...styles}>{children}</Styled.Row>
+  <tr
+    id={id}
+    className={cn('itpc-table__row', onPressRow && 'itpc-table__row_clickable')}
+    onClick={onPressRow && onPressRow}
+  >
+    {children}
+  </tr>
 )
+
+export interface ColumnProps {
+  id?: string
+  children?: React.ReactNode
+  onPressColumn?: (event?: React.MouseEvent<HTMLTableCellElement>) => void
+}
 
 export const Column: React.FC<ColumnProps> = ({
+  id = '',
   onPressColumn,
-  styles,
   children
 }) => (
-  <Styled.Column onClick={onPressColumn && onPressColumn} {...styles}>{children}</Styled.Column>
+  <th
+    id={id}
+    className={cn('itpc-table__column', onPressColumn && 'itpc-table__column_clickable')}
+    onClick={onPressColumn && onPressColumn}
+  >
+    {children}
+  </th>
 )
+
+export interface CellProps {
+  id?: string
+  children?: React.ReactNode
+  onPressCell?: (event?: React.MouseEvent<HTMLTableCellElement>) => void
+}
 
 export const Cell: React.FC<CellProps> = ({
+  id = '',
   onPressCell,
-  styles,
   children
 }) => (
-  <Styled.Cell onClick={onPressCell && onPressCell} {...styles}>{children}</Styled.Cell>
+  <td
+    id={id}
+    className={cn('itpc-table__cell', onPressCell && 'itpc-table__cell_clickable')}
+    onClick={onPressCell && onPressCell}
+  >
+    {children}
+  </td>
 )
 
+export interface TableProps {
+  id?: string
+  title?: string
+  className?: string
+  children?: React.ReactNode
+}
+
+
 export const Table: React.FC<TableProps> = ({
+  id = '',
   title,
-  styles,
+  className = '',
   children
 }) => (
-  <Styled.Table {...styles}>
-    {title && <Styled.Caption {...styles}>{title}</Styled.Caption>}
+  <table id={id} className={cn('itpc-table', className)}>
+    {title && <caption className="itpc-table__caption">{title}</caption>}
     {children}
-  </Styled.Table>
+  </table>
 )

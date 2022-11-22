@@ -1,0 +1,38 @@
+.itpc-tabs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itpc-tabs__buttons {
+  display: flex;
+}
+
+.itpc-tabs__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.itpc-tabs__button {
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #B2B7C7;
+  cursor: pointer;
+  transition: all ease-in-out .3s;
+}
+
+.itpc-tabs__button:hover {
+  border-color: #6F65CB;
+}
+
+.itpc-tabs__button_active {
+  border-color: #5C53AC;
+}
+
+.itpc-tabs__button_active:hover {
+  border-color: #5C53AC;
+}

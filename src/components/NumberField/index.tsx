@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import NumberFormat, { NumberFormatValues } from 'react-number-format'
+import cn from 'classnames'
 
-import { FieldWrap, Input, InputWrap, Placeholder } from '../_elements'
+import { Field, InputWrap, Placeholder } from '../_elements'
 
 import { FormattedValues, ValidationState } from '../types'
-import { ErrorMessage } from '../ErrorMessage'
 
-export interface NumberFieldProps {
+export interface Props {
   id: string
   name: string
   value?: string
@@ -16,12 +17,18 @@ export interface NumberFieldProps {
   errorMessage?: string
   format?: string
   mask?: string
+  prefix?: string
+  suffix?: string
+  allowEmptyFormatting?: boolean
+  allowNegative?: boolean
   onBlur?: () => void
   onFocus?: () => void
   onChange?: (values: FormattedValues) => void
+  getInputRef?: ((el: HTMLInputElement) => void) | React.Ref<any>
+  className?: string
 }
 
-export const NumberField: React.FC<NumberFieldProps> = ({
+export const NumberField: React.FC<Props> = ({
   id,
   name,
   value = '',
@@ -31,9 +38,15 @@ export const NumberField: React.FC<NumberFieldProps> = ({
   errorMessage = '',
   format = '',
   mask = '_',
+  prefix = "",
+  suffix = "",
+  allowEmptyFormatting = true,
+  allowNegative = false,
   onBlur,
   onFocus,
-  onChange
+  onChange,
+  getInputRef,
+  className = ''
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
 
@@ -63,9 +76,9 @@ export const NumberField: React.FC<NumberFieldProps> = ({
   }
 
   return (
-    <FieldWrap>
-      <InputWrap focused={focused} disabled={disabled} validationState={validationState}>
-        <Placeholder htmlFor={id} disabled={disabled} focused={focused || value.length > 0} validationState={validationState}>
+    <Field className={className}>
+      <InputWrap focused={focused} validationState={validationState}>
+        <Placeholder htmlFor={id} focused={focused || !!value.length} validationState={validationState}>
           {placeholder}
         </Placeholder>
 
@@ -78,17 +91,19 @@ export const NumberField: React.FC<NumberFieldProps> = ({
           onFocus={onFocusInput}
           onBlur={onBlurInput}
           onValueChange={onChangeInput}
-          focused={focused}
-          valueLength={value.length}
-          customInput={Input}
+          className={cn('itpc-input', (focused || !!value.length) && 'itpc-input_focused')}
           isNumericString
-          allowEmptyFormatting
+          allowNegative={allowNegative}
+          allowEmptyFormatting={allowEmptyFormatting}
           format={format}
           mask={mask}
+          prefix={prefix}
+          suffix={suffix}
+          getInputRef={getInputRef}
         />
       </InputWrap>
 
-      {validationState === 'invalid' && <ErrorMessage>{errorMessage}</ErrorMessage>}
-    </FieldWrap>
+      {validationState === 'invalid' && <p className="itpc-field__error-message">{errorMessage}</p>}
+    </Field>
   )
 }

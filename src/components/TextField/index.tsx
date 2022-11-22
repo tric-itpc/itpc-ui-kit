@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import cn from 'classnames'
 
 import {
-  FieldWrap,
-  Icons,
-  Input,
+  Field,
+  IconCancel,
+  IconLoading,
+  IconOk,
+  IconWarning,
   InputWrap,
   Placeholder
 } from '../_elements'
@@ -13,9 +16,8 @@ import {
   InputType,
   ValidationState
 } from "../types"
-import { ErrorMessage } from "../ErrorMessage"
 
-export interface TextFieldProps {
+export interface Props {
   id: string
   name: string
   type?: InputType
@@ -26,12 +28,14 @@ export interface TextFieldProps {
   state?: InputState
   validationState?: ValidationState
   errorMessage?: string
+  className?: string
   onBlur?: () => void
   onFocus?: () => void
   onChange?: (value: string) => void
+  onClickIcon?: () => void
 }
 
-export const TextField: React.FC<TextFieldProps> = ({
+export const TextField: React.FC<Props> = ({
   id = 'itpc-input',
   name = 'itpc-input',
   type = 'text',
@@ -42,9 +46,11 @@ export const TextField: React.FC<TextFieldProps> = ({
   state = 'default',
   validationState = 'valid',
   errorMessage = '',
+  className = '',
   onBlur,
   onFocus,
-  onChange
+  onChange,
+  onClickIcon
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
 
@@ -71,42 +77,39 @@ export const TextField: React.FC<TextFieldProps> = ({
   }
 
   return (
-    <FieldWrap>
+    <Field className={className}>
       <InputWrap
         focused={focused}
-        disabled={disabled}
         validationState={validationState}
       >
         <Placeholder
           htmlFor={id}
-          disabled={disabled}
           focused={focused || value.length > 0}
           validationState={validationState}
         >
           {placeholder}
         </Placeholder>
 
-        <Input
+        <input
           id={id}
           name={name}
           type={type}
           value={value}
           disabled={disabled}
-          maxLength={maxLength}
           onFocus={onFocusInput}
           onBlur={onBlurInput}
           onChange={onChangeInput}
-          focused={focused}
-          valueLength={value.length}
+          className={cn('itpc-input', (focused || !!value.length) && 'itpc-input_focused')}
+          maxLength={maxLength}
         />
 
-        {state === 'cancel' && <Icons.Cancel />}
-        {state === 'success' && <Icons.Ok />}
-        {state === 'loading' && <Icons.Loading />}
-        {state === 'warning' && <Icons.Warning />}
+        {state === 'cancel' && <IconCancel onClick={onClickIcon} />}
+        {state === 'success' && <IconOk />}
+        {state === 'loading' && <IconLoading />}
+        {state === 'warning' && <IconWarning />}
       </InputWrap>
 
-      {validationState === 'invalid' && <ErrorMessage>{errorMessage}</ErrorMessage>}
-    </FieldWrap>
+      {validationState === 'invalid' && <p className="itpc-field__error-message">{errorMessage}</p>}
+    </Field>
   )
 }

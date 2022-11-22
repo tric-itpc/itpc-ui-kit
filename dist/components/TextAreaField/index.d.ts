@@ -1,6 +1,6 @@
 import React from "react";
 import { ValidationState } from "../types";
-export interface TextAreaFieldProps {
+export interface Props {
     id: string;
     name: string;
     value?: string;
@@ -9,8 +9,9 @@ export interface TextAreaFieldProps {
     placeholder?: string;
     validationState?: ValidationState;
     errorMessage?: string;
+    className?: string;
     onBlur?: () => void;
     onFocus?: () => void;
     onChange?: (value: string) => void;
 }
-export declare const TextAreaField: React.FC<TextAreaFieldProps>;
+export declare const TextAreaField: React.FC<Props>;

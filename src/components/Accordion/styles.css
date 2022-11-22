@@ -1,0 +1,49 @@
+.itpc-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itpc-accordion-item {
+  border-radius: 0;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.25);
+}
+
+.itpc-accordion-header {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all linear .3s;
+}
+
+.itpc-accordion-header:hover {
+  background-color: #B2B7C7;
+}
+
+.itpc-accordion-header_opened {
+  background-color: #B2B7C7;
+}
+
+.itpc-accordion-header_active {
+  background-color: #4DB04D;
+}
+
+.itpc-accordion-body {
+  max-height: 0;
+  padding: 0 10px;
+  overflow: hidden;
+  transition: max-height linear .3s, padding-top linear .3s, padding-bottom linear .3s;
+}
+
+.itpc-accordion-body_opened {
+  max-height: 550px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow-y: auto;
+}
+
+.itpc-accordion-arrow > .itpc-icon__arrow {
+  padding: 0;
+}

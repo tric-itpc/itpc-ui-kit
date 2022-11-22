@@ -1,1 +1,7 @@
-export declare const Popover: import("styled-components").StyledComponent<"div", any, {}, never>;
+import React from "react";
+import './styles.css';
+interface Props {
+    children?: React.ReactNode;
+}
+export declare const Popover: React.FC<Props>;
+export {};

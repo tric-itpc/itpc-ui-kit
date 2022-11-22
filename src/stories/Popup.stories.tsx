@@ -2,14 +2,14 @@ import React, { useState } from "react"
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { Button } from "../components"
-import { Popup, PopupProps } from '../components/Popup'
+import { Popup, Props } from '../components/Popup'
 
 export default {
   title: 'Components/Popup',
   component: Popup
-} as ComponentMeta<React.FC<PopupProps>>
+} as ComponentMeta<React.FC<Props>>
 
-const Template: ComponentStory<React.FC<PopupProps>> = (args) => {
+const Template: ComponentStory<React.FC<Props>> = (args) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (

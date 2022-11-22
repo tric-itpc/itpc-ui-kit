@@ -1,0 +1,25 @@
+.itpc-icon__arrow {
+  height: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: all ease-in-out .3s;
+}
+
+.itpc-icon__arrow_orientation_top {
+  transform: rotate(180deg);
+}
+
+.itpc-icon__arrow_orientation_bottom {
+  transform: rotate(0);
+}
+
+.itpc-icon__arrow_orientation_left {
+  transform: rotate(90deg);
+}
+
+.itpc-icon__arrow_orientation_right {
+  transform: rotate(-90deg);
+}

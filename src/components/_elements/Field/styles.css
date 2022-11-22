@@ -1,0 +1,11 @@
+.itpc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itpc-field__error-message {
+  margin: 0px 10px;
+  font-size: 12px;
+  color: rgb(212, 37, 100);
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputState, InputType, ValidationState } from "../types";
-export interface TextFieldProps {
+export interface Props {
     id: string;
     name: string;
     type?: InputType;
@@ -11,8 +11,10 @@ export interface TextFieldProps {
     state?: InputState;
     validationState?: ValidationState;
     errorMessage?: string;
+    className?: string;
     onBlur?: () => void;
     onFocus?: () => void;
     onChange?: (value: string) => void;
+    onClickIcon?: () => void;
 }
-export declare const TextField: React.FC<TextFieldProps>;
+export declare const TextField: React.FC<Props>;

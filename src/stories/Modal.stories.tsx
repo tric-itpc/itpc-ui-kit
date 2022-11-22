@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Button, TextField } from "../components"
+import { Button } from "../components"
 import { Modal, ModalContent, ModalFooter, ModalProps } from '../components/Modal'
 
 export default {
@@ -15,21 +15,14 @@ const Template: ComponentStory<React.FC<ModalProps>> = (args) => {
   return (
     <>
       <Button onPress={() => setIsOpenModal(true)}>Open modal</Button>
-      <Modal {...args} title="Modal window" isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
-        <>
-          <ModalContent>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            <TextField placeholder="Modal input" id="1" name="2" />
-            <TextField placeholder="Modal input" id="2" name="2" />
-            <TextField placeholder="Modal input" id="3" name="2" />
-            <TextField placeholder="Modal input" id="4" name="2" />
-            <TextField placeholder="Modal input" id="5" name="2" />
-          </ModalContent>
-          <ModalFooter>
-            <Button variant="white" onPress={() => setIsOpenModal(false)}>Cancel</Button>
-            <Button onPress={() => setIsOpenModal(false)}>Ok</Button>
-          </ModalFooter>
-        </>
+      <Modal {...args} isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
+        <ModalContent>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </ModalContent>
+        <ModalFooter>
+          <Button variant="white" onPress={() => setIsOpenModal(false)}>Cancel</Button>
+          <Button onPress={() => setIsOpenModal(false)}>Ok</Button>
+        </ModalFooter>
       </Modal>
     </>
   )
@@ -37,5 +30,6 @@ const Template: ComponentStory<React.FC<ModalProps>> = (args) => {
 
 export const Basic = Template.bind({})
 Basic.args = {
+  title: "Modal window",
   isOverlayClickable: true
 }

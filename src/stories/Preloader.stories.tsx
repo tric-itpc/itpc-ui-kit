@@ -11,7 +11,6 @@ export default {
 const Template: ComponentStory<React.FC<PreloaderProps>> = (args) => <Preloader {...args} />
 
 export const Basic = Template.bind({})
-Basic.args = {
-}
+Basic.args = {}
 
 

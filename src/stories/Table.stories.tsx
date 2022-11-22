@@ -9,10 +9,10 @@ export default {
 } as ComponentMeta<React.FC<TableProps>>
 
 const Template: ComponentStory<React.FC<TableProps>> = (args) => (
-  <Table {...args} styles={{ tableLayout: 'unset' }}>
+  <Table {...args}>
     <TableHeader>
       <Row>
-        <Column>1</Column>
+        <Column>#</Column>
         <Column>Head 2</Column>
         <Column>Head 3</Column>
       </Row>
@@ -24,12 +24,12 @@ const Template: ComponentStory<React.FC<TableProps>> = (args) => (
         <Cell>Column 3</Cell>
       </Row>
       <Row>
-        <Cell>1</Cell>
+        <Cell>2</Cell>
         <Cell>Column 2</Cell>
         <Cell>Column 3</Cell>
       </Row>
       <Row>
-        <Cell>1</Cell>
+        <Cell>3</Cell>
         <Cell>Column 2</Cell>
         <Cell>Column 3</Cell>
       </Row>

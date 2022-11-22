@@ -1,17 +1,14 @@
 import React from "react"
+import cn from 'classnames'
 
-import { DefaultValues } from "../constants"
-
-import * as Styled from './styled'
+import './styles.css'
 
 export interface PreloaderProps {
-  size?: number
-  borderWidth?: number
+  className?: string
 }
 
 export const Preloader: React.FC<PreloaderProps> = ({
-  size = DefaultValues.preloaderSize,
-  borderWidth = DefaultValues.preloaderBorderWidth
+  className = ''
 }) => (
-  <Styled.Preloader size={size} borderWidth={borderWidth} />
+  <span className={cn('itpc-preloader', className)} />
 )

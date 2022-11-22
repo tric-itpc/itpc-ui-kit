@@ -1,0 +1,13 @@
+.itpc-icon__calendar {
+  height: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: all ease-in-out .3s;
+}
+
+.itpc-icon__calendar_clicabled {
+  cursor: pointer;
+}

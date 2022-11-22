@@ -1,0 +1,65 @@
+.itpc-datepicker {
+     position: relative;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     box-sizing: border-box;
+}
+
+.itpc-datepicker__input-wrap {
+     position: relative;
+     width: 100%;
+     height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     border: 1px solid rgb(178, 183, 199);
+     box-sizing: border-box;
+}
+
+.itpc-datepicker__input-wrap:hover {
+     border-color: rgb(92, 83, 172);
+}
+
+.itpc-datepicker__input-wrap_error {
+     border: 1px solid rgb(212, 37, 100);
+}
+
+.itpc-datepicker__input {
+     padding: 7px 10px;
+     width: 100%;
+     height: 100%;
+     border: none;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     outline: none;
+     box-sizing: border-box;
+     color: #fff;
+}
+
+.itpc-datepicker__input_focused {
+     color: #000;
+}
+
+.itpc-datepicker__icon {
+     width: 40px;
+     height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+}
+
+.itpc-datepicker__calendar-wrap {
+     position: fixed;
+     z-index: 999999;
+     background-color: #fff;
+}
+
+.itpc-datepicker__error-message {
+     margin: 0px 10px;
+     font-size: 12px;
+     color: rgb(212, 37, 100);
+}

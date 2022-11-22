@@ -1,24 +1,37 @@
 import React, { useEffect, useRef, useState } from "react"
-import NumberFormat, { NumberFormatValues } from 'react-number-format'
+import NumberFormat, { NumberFormatValues } from "react-number-format"
+import cn from 'classnames'
 
 import { Calendar } from "../../lab"
 
+import { ValidationState } from "../types"
+import { IconCalendar, Placeholder } from "../_elements"
+
 import {
-  Icons,
-  Input,
-  InputWrap,
-  Placeholder
-} from "../_elements"
+  parseISODate,
+  parseISODateTime,
+  parseISODateToNumericString,
+  parseISODateTimeToNumericString,
+  parseNumericStringToISODate,
+  parseNumericStringToISODateTime
+} from "./utils"
+import {
+  formatMaskDate,
+  formatMaskDateTime,
+  maskDate,
+  maskDateTime
+} from "./constants"
 
-import { FormattedValues, ValidationState } from "../types"
-import { parseISODate, parseISODateToNumericString, parseNumericStringToISODate } from "../utils"
-import { ErrorMessage } from "../ErrorMessage"
+import './styles.css'
 
-import * as Styled from './styled'
+export interface FormattedValues {
+  value: string
+  formattedValue: string
+}
 
-export interface DatePickerProps {
-  id: string
-  name: string
+export interface Props {
+  id?: string
+  name?: string
   value?: string
   disabled?: boolean
   placeholder?: string
@@ -27,24 +40,28 @@ export interface DatePickerProps {
   onBlur?: () => void
   onFocus?: () => void
   onChange?: (values: FormattedValues) => void
-  isIconClicable?: boolean
+  isIconClickable?: boolean
   offsetYear?: number
+  withTime?: boolean
+  className?: string
 }
 
-export const DatePicker: React.FC<DatePickerProps> = ({
-  id = 'itpc-input',
-  name = 'itpc-input',
-  value = '',
+export const DatePicker: React.FC<Props> = ({
+  id = "itpc-datepicker",
+  name = "itpc-datepicker",
+  value = "",
   disabled = false,
-  placeholder = '',
-  validationState = 'valid',
-  errorMessage = '',
+  placeholder = "",
+  validationState = "valid",
+  errorMessage = "",
   onBlur,
   onFocus,
   onChange,
-  isIconClicable = false,
-  offsetYear
-}) => {
+  isIconClickable = false,
+  offsetYear = 10,
+  withTime = false,
+  className = ''
+}: Props) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
   const [isShowCalendar, setIsShowCalendar] = useState<boolean>(false)
   const [calendarPosition, setCalendarPosition] = useState<number>(0)
@@ -69,7 +86,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
   const onFocusPicker = (): void => {
     onHandleFocused(true)
-    if (!isIconClicable) {
+    if (!isIconClickable) {
       onOpenCalendar()
     }
     if (onFocus) {
@@ -78,7 +95,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   }
 
   const onClickIcon = (): void => {
-    if (isIconClicable) {
+    if (isIconClickable) {
       onHandleFocused(true)
       onOpenCalendar()
     }
@@ -87,8 +104,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   const onChangeDate = (date: string): void => {
     if (onChange) {
       onChange({
-        value: parseISODateToNumericString(date),
-        formattedValue: parseISODate(date)
+        value: withTime
+          ? parseISODateTimeToNumericString(date)
+          : parseISODateToNumericString(date),
+        formattedValue: withTime ? parseISODateTime(date) : parseISODate(date)
       })
     }
   }
@@ -102,43 +121,50 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     }
   }
 
-  useEffect(() => {
+  const handleCalendarPosition = (): void => {
     const documentHeight = document.documentElement.clientHeight
     const inputSize = inputWrapRef.current?.getBoundingClientRect() as DOMRect
-    const calendarHeight = (calendarWrapRef.current?.getBoundingClientRect() as DOMRect).height
+    const calendarHeight = (calendarWrapRef.current?.getBoundingClientRect() as DOMRect)?.
+      height
     const underInputSize = documentHeight - inputSize.bottom
 
-    if (calendarHeight > inputSize.bottom && calendarHeight > inputSize.top) {
-      setCalendarPosition(inputSize.height + 10)
+    if (underInputSize < calendarHeight) {
+      setCalendarPosition(inputSize.top - calendarHeight - 10)
       return
     }
 
-    if (calendarHeight < underInputSize) {
-      setCalendarPosition(inputSize.height + 10)
-      return
+    if (underInputSize >= calendarHeight) {
+      setCalendarPosition(inputSize.bottom + 10)
     }
+  }
 
-    if (calendarHeight > underInputSize && calendarHeight < inputSize.top) {
-      setCalendarPosition(0 - calendarHeight - 10)
-    }
+  useEffect(() => {
+    handleCalendarPosition()
   }, [isShowCalendar])
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleCalendarPosition)
+    return () => window.removeEventListener("scroll", handleCalendarPosition)
+  }, [])
+
   return (
-    <Styled.DatePicker>
-      <InputWrap
-        validationState={validationState}
-        focused={focused}
-        disabled={disabled}
+    <div className={cn('itpc-datepicker', className)}>
+      <div
+        className={cn(
+          'itpc-datepicker__input-wrap',
+          validationState === 'invalid' && 'itpc-datepicker__input-wrap_error'
+        )}
         ref={inputWrapRef}
       >
-        <Placeholder
-          htmlFor={id}
-          disabled={disabled}
-          focused={focused || value.length > 0}
-          validationState={validationState}
-        >
-          {placeholder}
-        </Placeholder>
+        {placeholder && (
+          <Placeholder
+            htmlFor={name}
+            focused={focused || !!value.length}
+            validationState={validationState}
+          >
+            {placeholder}
+          </Placeholder>
+        )}
         <NumberFormat
           id={id}
           name={name}
@@ -148,31 +174,40 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           onFocus={onFocusPicker}
           onBlur={onBlurPicker}
           onValueChange={onChangePicker}
-          focused={focused}
-          valueLength={value.length}
-          customInput={Input}
+          className={cn(
+            'itpc-datepicker__input',
+            (focused || value.length) && 'itpc-datepicker__input_focused'
+          )}
           isNumericString
           allowEmptyFormatting
-          format="##.##.####"
-          mask={['Д', 'Д', 'М', 'М', 'Г', 'Г', 'Г', 'Г']}
+          format={withTime ? formatMaskDateTime : formatMaskDate}
+          mask={withTime ? maskDateTime : maskDate}
         />
-        <Icons.Calendar onClick={onClickIcon} />
-      </InputWrap>
+        <IconCalendar isClickable={isIconClickable} onClick={onClickIcon} />
+      </div>
 
-      {validationState === 'invalid' && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {validationState === "invalid" && (
+        <span className="itpc-datepicker__error-message">{errorMessage}</span>
+      )}
 
-      <Styled.CalendarWrap
+      <div
+        className="itpc-datepicker__calendar-wrap"
         ref={calendarWrapRef}
-        position={calendarPosition}
+        style={{ top: `${calendarPosition}px` }}
       >
         <Calendar
-          currentValue={parseNumericStringToISODate(value)}
+          currentValue={
+            withTime
+              ? parseNumericStringToISODateTime(value)
+              : parseNumericStringToISODate(value)
+          }
           show={isShowCalendar}
           handleShow={onCloseCalendar}
-          onChangeDate={onChangeDate}
+          onChange={onChangeDate}
           offsetYear={offsetYear}
+          withTime={withTime}
         />
-      </Styled.CalendarWrap>
-    </Styled.DatePicker>
+      </div>
+    </div>
   )
 }

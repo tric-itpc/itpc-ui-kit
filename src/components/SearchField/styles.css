@@ -1,0 +1,25 @@
+.itpc-search-field {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #B2B7C7;
+  box-shadow: none;
+  box-sizing: border-box;
+  z-index: 999999;
+}
+
+.itpc-search-field:hover {
+  border-color: #5C53AC;
+}
+
+.itpc-search-field > .itpc-field {
+  width: 100%;
+  height: 100%;
+}
+
+.itpc-search-field > .itpc-field > .itpc-input-wrap {
+  border: none;
+}

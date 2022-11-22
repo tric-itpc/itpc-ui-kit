@@ -1,0 +1,47 @@
+.itpc-button-round {
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  color: #5C53AC;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all ease-in-out .3s;
+  outline: 0;
+  user-select: none;
+}
+
+.itpc-button-round:hover {
+  background-color: #E5E5E5;
+  color: #5C53AC;
+}
+
+.itpc-button-round:hover>.itpc-tooltip {
+  visibility: visible;
+}
+
+.itpc-button-round:disabled {
+  opacity: .5;
+}
+
+.itpc-tooltip {
+  padding: 10px;
+  width: max-content;
+  position: absolute;
+  top: 120%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 0;
+  font-size: 12px;
+  color: #fff;
+  transition: all ease-in-out .15s;
+  visibility: hidden;
+  z-index: 100;
+}

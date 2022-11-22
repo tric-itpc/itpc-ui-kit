@@ -1,11 +1,12 @@
 import React from 'react';
-import { ButtonStyles } from '../styles';
 import { ButtonType, ButtonVariant } from '../types';
-export interface ButtonProps {
+import './styles.css';
+export interface Props {
     type?: ButtonType;
     variant?: ButtonVariant;
     disabled?: boolean;
-    styles?: ButtonStyles;
-    onPress?: () => void;
+    onPress?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+    className?: string;
+    children?: React.ReactNode;
 }
-export declare const Button: React.FC<ButtonProps>;
+export declare const Button: React.FC<Props>;

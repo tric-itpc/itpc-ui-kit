@@ -1,41 +1,48 @@
 import React from 'react'
-import { ButtonStyles } from '../styles'
+import cn from 'classnames'
 
 import { ButtonType, ButtonVariant } from '../types'
 
-import * as Styled from './styled'
+import './styles.css'
 
-export interface ButtonProps {
+export interface Props {
   type?: ButtonType
   variant?: ButtonVariant
   disabled?: boolean
-  styles?: ButtonStyles
-  onPress?: () => void
+  onPress?: (e?: React.MouseEvent<HTMLButtonElement>) => void
+  className?: string
+  children?: React.ReactNode
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<Props> = ({
   type = 'button',
-  disabled = false,
   variant,
-  styles,
+  disabled = false,
   onPress,
+  className = '',
   children
-}) => {
-  const onClick = (): void => {
+}: Props) => {
+  const onClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (onPress) {
-      onPress()
+      onPress(event)
     }
   }
 
   return (
-    <Styled.Button
+    <button
       type={type}
       disabled={disabled}
-      variant={variant}
       onClick={onClick}
-      {...styles}
+      className={cn(
+        'itpc-button',
+        {
+          'itpc-button__color_white': variant === 'white',
+          'itpc-button__color_red': variant === 'red'
+        },
+        className
+      )}
     >
       {children}
-    </Styled.Button>
+    </button>
   )
 }

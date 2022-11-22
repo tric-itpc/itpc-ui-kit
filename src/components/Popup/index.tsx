@@ -1,44 +1,32 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useRef, useState } from "react"
+import cn from 'classnames'
 
-import { Icons } from "../_elements"
-
+import { IconClose } from "../_elements"
 import { PopupPosition, PopupSize, PopupVariant } from "../types"
-import { Colors } from "../constants"
 
-import * as Styled from './styled'
+import { getColor, getPosition } from "./utils"
 
-export interface PopupProps {
+import './styles.css'
+
+export interface Props {
   title: string
   isOpen: boolean
   size?: PopupSize
   variant?: PopupVariant
   position?: PopupPosition
+  className?: string
+  children?: React.ReactNode
   onClose(): void
 }
 
-const getColor = (variant: PopupVariant): Colors => {
-  if (variant === 'error') {
-    return Colors.red
-  }
-
-  if (variant === 'warning') {
-    return Colors.yellow
-  }
-
-  if (variant === 'success') {
-    return Colors.green
-  }
-
-  return Colors.grey
-}
-
-export const Popup: React.FC<PopupProps> = ({
+export const Popup: React.FC<Props> = ({
   title,
   isOpen,
   size = 'normal',
   variant = 'default',
   position = 'center-center',
+  className = '',
   onClose,
   children
 }) => {
@@ -50,25 +38,27 @@ export const Popup: React.FC<PopupProps> = ({
   useEffect(() => {
     setHeight(ref.current?.clientHeight ?? 0)
     setWidth(ref.current?.clientWidth ?? 0)
-  })
+  }, [])
 
   return (
-    <Styled.Popup
-      width={width}
-      height={height}
-      isOpen={isOpen}
-      size={size}
-      color={getColor(variant)}
-      position={position}
-      onClick={onClose}
+    <div
       ref={ref}
+      style={getPosition(position, width, height)}
+      className={cn(
+        'itpc-popup',
+        isOpen && 'itpc-popup_opened',
+        variant === 'error' && 'itpc-popup_color_error',
+        variant === 'warning' && 'itpc-popup_color_warning',
+        variant === 'success' && 'itpc-popup_color_success',
+        className
+      )}
     >
-      <Styled.PopupHeader size={size}>
-        {title}
-        <Icons.Close color={getColor(variant)} onPress={onClose} />
-      </Styled.PopupHeader>
+      <div className="itpc-popup__header">
+        <p className="itpc-popup__title">{title}</p>
+        <IconClose color={getColor(variant)} onPress={onClose} />
+      </div>
 
       {size === 'normal' && children}
-    </Styled.Popup>
+    </div>
   )
 }

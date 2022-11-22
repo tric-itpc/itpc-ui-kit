@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { NumberField, NumberFieldProps } from '../components/NumberField'
+import { NumberField, Props } from '../components/NumberField'
 import { FormattedValues } from "../components"
 
 export default {
   title: 'Components/NumberField',
   component: NumberField
-} as ComponentMeta<React.FC<NumberFieldProps>>
+} as ComponentMeta<React.FC<Props>>
 
-const Template: ComponentStory<React.FC<NumberFieldProps>> = (args) => {
+const Template: ComponentStory<React.FC<Props>> = (args) => {
   const [date, setDate] = useState<FormattedValues>({ value: '', formattedValue: '' })
 
   const onChange = (inputValue: FormattedValues): void => {
@@ -18,7 +18,7 @@ const Template: ComponentStory<React.FC<NumberFieldProps>> = (args) => {
 
   return (
     <div>
-      <NumberField {...args} value={date.value} onChange={onChange} />
+      <NumberField {...args} id="itpc-number-field-id" name="itpc-number-field-name" value={date.value} onChange={onChange} />
       <p>Value: {date.value}</p>
       <p>Formatted value: {date.formattedValue}</p>
     </div>

@@ -1,19 +1,16 @@
 import React from "react"
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { ErrorMessage, ErrorMessageProps } from '../components/ErrorMessage'
+import { ErrorMessage, Props } from '../components/ErrorMessage'
 
 export default {
   title: 'Components/ErrorMessage',
   component: ErrorMessage
-} as ComponentMeta<React.FC<ErrorMessageProps>>
+} as ComponentMeta<React.FC<Props>>
 
-const Template: ComponentStory<React.FC<ErrorMessageProps>> = (args) => <ErrorMessage {...args} />
+const Template: ComponentStory<React.FC<Props>> = (args) => <ErrorMessage {...args} />
 
 export const Basic = Template.bind({})
 Basic.args = {
-  marginY: 10,
-  marginX: 10,
-  fontSize: 14,
   children: 'Error text'
 }

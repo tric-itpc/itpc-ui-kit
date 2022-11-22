@@ -1,11 +1,14 @@
 import React from "react";
 import { PopupPosition, PopupSize, PopupVariant } from "../types";
-export interface PopupProps {
+import './styles.css';
+export interface Props {
     title: string;
     isOpen: boolean;
     size?: PopupSize;
     variant?: PopupVariant;
     position?: PopupPosition;
+    className?: string;
+    children?: React.ReactNode;
     onClose(): void;
 }
-export declare const Popup: React.FC<PopupProps>;
+export declare const Popup: React.FC<Props>;

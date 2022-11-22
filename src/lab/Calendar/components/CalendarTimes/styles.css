@@ -1,0 +1,12 @@
+.itpc-calendar__times {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.itpc-calendar____time {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

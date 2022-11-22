@@ -4,7 +4,7 @@ import { Day } from "../../types"
 
 import { CalendarCell } from "../CalendarCell"
 
-import * as Styled from './styled'
+import './styles.css'
 
 const getRows = (days: Day[]): Day[][] => {
   const step = 7,
@@ -24,24 +24,22 @@ const getRows = (days: Day[]): Day[][] => {
 }
 
 interface Props {
-  currentValue: string
-  currentDate: string
-  days: Day[]
-  onChange(date: string): void
+  currentDate: string;
+  days: Day[];
+  onChange(date: string): void;
 }
 
 export const CalendarTable: React.FC<Props> = ({
-  currentValue,
   currentDate,
   days,
   onChange
-}) => {
+}: Props) => {
   const rows = getRows(days)
 
   return (
-    <Styled.CalendarTable>
-      <Styled.CalendarTableHead>
-        <Styled.CalendarTableRow>
+    <table className="itpc-calendar__table">
+      <thead>
+        <tr>
           {days.slice(0, 7).map((day) => (
             <CalendarCell
               key={day.date}
@@ -49,26 +47,26 @@ export const CalendarTable: React.FC<Props> = ({
               currentDate={currentDate}
               dayOfTheWeek={day.dayOfTheWeek}
               isHeader
-              isChanged={currentValue === day.date}
+              isChanged={currentDate === day.date}
             />
           ))}
-        </Styled.CalendarTableRow>
-      </Styled.CalendarTableHead>
-      <Styled.CalendarTableBody>
+        </tr>
+      </thead>
+      <tbody>
         {rows.map((row, key) => (
-          <Styled.CalendarTableRow key={key}>
+          <tr key={key}>
             {row.map((day) => (
               <CalendarCell
                 key={day.date}
                 date={day.date}
                 currentDate={currentDate}
-                isChanged={currentValue === day.date}
+                isChanged={currentDate === day.date}
                 onChange={onChange}
               />
             ))}
-          </Styled.CalendarTableRow>
+          </tr>
         ))}
-      </Styled.CalendarTableBody>
-    </Styled.CalendarTable>
+      </tbody>
+    </table>
   )
 }

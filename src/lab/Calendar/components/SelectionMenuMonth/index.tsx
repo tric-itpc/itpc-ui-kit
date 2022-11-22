@@ -1,19 +1,16 @@
 import React from "react"
 
-import { Button, SelectPeriod } from "../../_elements"
 import { months } from "../../constants"
 
 interface Props {
-  controlHeight: number
-  currentDate: string
-  changeCurrentDate(date: string): void
+  currentDate: string;
+  changeCurrentDate(date: string): void;
 }
 
 export const SelectionMenuMonth: React.FC<Props> = ({
-  controlHeight,
   currentDate,
   changeCurrentDate
-}) => {
+}: Props) => {
   const onClick = (month: number): void => {
     const date = new Date(currentDate)
     date.setMonth(month)
@@ -21,15 +18,16 @@ export const SelectionMenuMonth: React.FC<Props> = ({
   }
 
   return (
-    <SelectPeriod controlHeight={controlHeight}>
+    <div className="itpc-calendar__select-period">
       {months.map((month, index) => (
-        <Button
+        <button
           key={month}
+          className="itpc-calendar__button"
           onClick={() => onClick(index)}
         >
           {month}
-        </Button>
+        </button>
       ))}
-    </SelectPeriod>
+    </div>
   )
 }

@@ -1,14 +1,18 @@
 import React from "react"
+import cn from 'classnames'
 
-import { Icons } from '../_elements'
+import { IconClose } from '../_elements'
 
-import * as Styled from './styled'
+import './styles.css'
 
 export interface ModalProps {
   title: string
   isOpen: boolean
   isOverlayClickable?: boolean
+  className?: string
   onClose(): void
+  iconClose?: React.ReactNode
+  children?: React.ReactNode
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -16,6 +20,8 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   isOverlayClickable = false,
   onClose,
+  className = '',
+  iconClose,
   children
 }) => {
   const onCloseOverlay = (): void => {
@@ -25,35 +31,52 @@ export const Modal: React.FC<ModalProps> = ({
   }
 
   return (
-    <Styled.ModalOverlay
-      isOpen={isOpen}
-      isOverlayClickable={isOverlayClickable}
+    <div
+      className={cn(
+        'itpc-modal-overlay',
+        isOpen && 'itpc-modal-overlay_opened',
+        isOverlayClickable && 'itpc-modal-overlay_clickabled',
+        className
+      )}
       onClick={onCloseOverlay}
     >
-      <Styled.Modal onClick={(event) => event.stopPropagation()}>
-        <Styled.ModalHeader>
+      <div className="itpc-modal" onClick={(event) => event.stopPropagation()}>
+        <div className="itpc-modal__header">
           {title}
-          <Icons.Close onPress={onCloseOverlay} />
-        </Styled.ModalHeader>
+          {iconClose && iconClose}
+          {!iconClose && <IconClose onPress={() => onClose()} />}
+        </div>
 
         {children}
-      </Styled.Modal>
-    </Styled.ModalOverlay>
+      </div>
+    </div>
   )
 }
 
-export const ModalContent: React.FC = ({
+interface ModalContentProps {
+  className?: string
+  children?: React.ReactNode
+}
+
+export const ModalContent: React.FC<ModalContentProps> = ({
+  className = '',
   children
-}) => (
-  <Styled.ModalContent>
+}: ModalContentProps) => (
+  <div className={cn('itpc-modal__content', className)}>
     {children}
-  </Styled.ModalContent>
+  </div>
 )
 
-export const ModalFooter: React.FC = ({
+interface ModalFooterProps {
+  className?: string
+  children?: React.ReactNode
+}
+
+export const ModalFooter: React.FC<ModalFooterProps> = ({
+  className = '',
   children
-}) => (
-  <Styled.ModalFooter>
+}: ModalFooterProps) => (
+  <div className={cn('itpc-modal__footer', className)}>
     {children}
-  </Styled.ModalFooter>
+  </div>
 )

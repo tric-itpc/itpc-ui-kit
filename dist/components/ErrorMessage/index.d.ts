@@ -1,7 +1,7 @@
 import React from "react";
-export interface ErrorMessageProps {
-    marginY?: number;
-    marginX?: number;
-    fontSize?: number;
+import './styles.css';
+export interface Props {
+    className?: string;
+    children?: React.ReactNode;
 }
-export declare const ErrorMessage: React.FC<ErrorMessageProps>;
+export declare const ErrorMessage: React.FC<Props>;

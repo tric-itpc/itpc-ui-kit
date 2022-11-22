@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { TextField, TextFieldProps } from '../components/TextField'
+import { TextField, Props } from '../components/TextField'
 
 export default {
   title: 'Components/TextField',
   component: TextField
-} as ComponentMeta<React.FC<TextFieldProps>>
+} as ComponentMeta<React.FC<Props>>
 
-const Template: ComponentStory<React.FC<TextFieldProps>> = (args) => {
+const Template: ComponentStory<React.FC<Props>> = (args) => {
   const [value, setValue] = useState<string>('')
 
   const onChange = (valueInput: string): void => {

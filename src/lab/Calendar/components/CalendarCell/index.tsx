@@ -1,18 +1,17 @@
 import React from "react"
-
-import { Text } from '../../_elements'
+import cn from 'classnames'
 
 import { daysOfTheWeekShort } from "../../constants"
 
-import * as Styled from './styled'
+import './styles.css'
 
 interface Props {
-  date: string
-  currentDate: string
-  dayOfTheWeek?: number
-  isHeader?: boolean
-  isChanged: boolean
-  onChange?: (date: string) => void
+  date: string;
+  currentDate: string;
+  dayOfTheWeek?: number;
+  isHeader?: boolean;
+  isChanged: boolean;
+  onChange?: (date: string) => void;
 }
 
 export const CalendarCell: React.FC<Props> = ({
@@ -22,17 +21,24 @@ export const CalendarCell: React.FC<Props> = ({
   isHeader = false,
   isChanged,
   onChange
-}) => {
-  const isCurrentMonth = parseInt(currentDate.split('-')[1], 10) === parseInt(date.split('-')[1], 10)
+}: Props) => {
+  const isCurrentMonth = parseInt(currentDate.split("-")[1], 10) === parseInt(date.split("-")[1], 10)
 
   return (
-    <Styled.CalendarCell
-      isHeader={isHeader}
-      isChanged={!isHeader && isChanged}
-      isCurrentMonth={isCurrentMonth}
+    <td
+      className={cn(
+        'itpc-calendar__cell',
+        isHeader && 'itpc-calendar__cell_header',
+        (!isHeader && isChanged) && 'itpc-calendar__cell_changed',
+        !isCurrentMonth && 'itpc-calendar__cell_not_current'
+      )}
       onClick={() => onChange && onChange(date)}
     >
-      <Text>{isHeader && dayOfTheWeek !== undefined ? daysOfTheWeekShort[dayOfTheWeek] : new Date(date).getDate()}</Text>
-    </Styled.CalendarCell>
+      <p className="itpc-calendar__text">
+        {isHeader && dayOfTheWeek !== undefined
+          ? daysOfTheWeekShort[dayOfTheWeek]
+          : new Date(date).getDate()}
+      </p>
+    </td>
   )
 }

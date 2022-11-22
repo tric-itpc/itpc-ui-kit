@@ -1,26 +1,18 @@
 import React from "react"
+import cn from 'classnames'
 
-import { DefaultValues } from "../constants"
+import './styles.css'
 
-import * as Styled from './styled'
-
-export interface ErrorMessageProps {
-  marginY?: number
-  marginX?: number
-  fontSize?: number
+export interface Props {
+  className?: string
+  children?: React.ReactNode
 }
 
-export const ErrorMessage: React.FC<ErrorMessageProps> = ({
-  marginY = 0,
-  marginX = DefaultValues.gap,
-  fontSize = DefaultValues.fontSizeS,
+export const ErrorMessage: React.FC<Props> = ({
+  className = '',
   children
-}) => (
-  <Styled.ErrorMessage
-    marginY={marginY}
-    marginX={marginX}
-    fontSize={fontSize}
-  >
+}: Props) => (
+  <span className={cn('itpc-error_message', className)}>
     {children}
-  </Styled.ErrorMessage>
+  </span>
 )

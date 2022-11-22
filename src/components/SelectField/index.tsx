@@ -1,43 +1,49 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
+import cn from 'classnames'
 
-import { useClickOutside } from "../../_hooks"
+import { useOnClickOutside } from "../../_hooks"
 
 import {
-  Icons,
+  IconArrow,
   Placeholder,
   Popover,
-  SelectButton,
-  SelectItem,
-  SelectItemFlag,
-  SelectWrap
+  SelectItem
 } from "../_elements"
 
 import { Item } from "../types"
 
-export interface SelectFieldProps {
+import './styles.css'
+
+export interface Props {
   items: Item[]
   defaultItemId?: string
   placeholder: string
   disabled?: boolean
+  className?: boolean
   onChange(value: string): void
 }
 
-export const SelectField: React.FC<SelectFieldProps> = ({
+export const SelectField: React.FC<Props> = ({
   items,
   defaultItemId = null,
   placeholder,
   disabled = false,
+  className = '',
   onChange
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  const ref = useClickOutside<HTMLDivElement>(() => setIsOpen(false))
+  const ref = useRef<HTMLDivElement>(null)
 
-  const onHandleOpen = (): void => {
+  const close = (): void => {
+    setIsOpen(false)
+  }
+
+  const handleOpen = (): void => {
     setIsOpen(!isOpen)
   }
 
-  const onChangeValue = (value: string) => {
+  const changeValue = (value: string) => {
     if (typeof onChange === 'function') {
       onChange(value)
     }
@@ -45,33 +51,40 @@ export const SelectField: React.FC<SelectFieldProps> = ({
     setIsOpen(false)
   }
 
+  useOnClickOutside(ref, close)
+
   return (
-    <SelectWrap ref={ref}>
-      <SelectButton
+    <div className={cn('itpc-select', className)} ref={ref}>
+      <button
+        className={cn(
+          'itpc-select__button',
+          isOpen && 'itpc-select__button_focused'
+        )}
         disabled={disabled}
-        focused={isOpen}
-        onClick={onHandleOpen}
+        onClick={handleOpen}
       >
-        <Placeholder disabled={disabled} focused={isOpen || !!defaultItemId} >
+        <Placeholder focused={isOpen || !!defaultItemId}>
           {placeholder}
         </Placeholder>
         {defaultItemId && items.find((item) => item.id === defaultItemId)?.value}
-      </SelectButton>
-      <Icons.Arrow orientation={isOpen ? 'top' : 'bottom'} />
+      </button>
+      <IconArrow orientation={isOpen ? 'top' : 'bottom'} onClick={handleOpen} />
+
 
       {isOpen && (
         <Popover>
           {items.map((item) => (
             <SelectItem
               key={item.id}
-              onClick={() => onChangeValue(item.id)}
+              id={item.id}
+              isActive={defaultItemId === item.id}
+              onChange={changeValue}
             >
-              <SelectItemFlag isShow={defaultItemId === item.id} />
               {item.value}
             </SelectItem>
           ))}
         </Popover>
       )}
-    </SelectWrap>
+    </div>
   )
 }

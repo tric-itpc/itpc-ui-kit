@@ -1,24 +1,33 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
+import cn from 'classnames'
 
-import { useClickOutside } from "../../_hooks"
+import { useOnClickOutside } from "../../_hooks"
 
+import { Day } from "./types"
+import {
+  getCalendarDays,
+  getTodayMonthYear,
+  initCurrentDate,
+  initCurrentTime,
+  initDays
+} from "./utils"
 import {
   CalendarControl,
   CalendarTable,
+  CalendarTimes,
   SelectionMenuMonth,
   SelectionMenuYear
 } from "./components"
-import { Day } from "./types"
-import { getCalendarDays, getTodayMonthYear } from "./utils"
 
-import * as Styled from './styled'
+import './styles.css'
 
 export interface Props {
   currentValue?: string
   offsetYear?: number
   show: boolean
   handleShow: () => void
-  onChangeDate?: (date: string) => void
+  onChange?: (date: string) => void
+  withTime?: boolean
 }
 
 export const Calendar: React.FC<Props> = ({
@@ -26,19 +35,18 @@ export const Calendar: React.FC<Props> = ({
   offsetYear = 10,
   show,
   handleShow,
-  onChangeDate
-}) => {
-  const [currentDate, setCurrentDate] = useState<string>(currentValue?.includes('-') ? currentValue : getTodayMonthYear())
-  const [days, setDays] = useState<Day[]>(getCalendarDays(currentValue?.includes('-') ? currentValue : getTodayMonthYear()))
+  onChange,
+  withTime = false
+}: Props) => {
+  const [currentDate, setCurrentDate] = useState<string>(initCurrentDate(currentValue, withTime))
+  const [hours, setHours] = useState<string>(initCurrentTime(currentValue, withTime)[0])
+  const [minutes, setMinutes] = useState<string>(initCurrentTime(currentValue, withTime)[1])
+  const [seconds, setSeconds] = useState<string>(initCurrentTime(currentValue, withTime)[2])
+  const [days, setDays] = useState<Day[]>(initDays(currentValue, withTime))
   const [isShowSelectMonth, setIsShowSelectMonth] = useState<boolean>(false)
   const [isShowSelectYear, setIsShowSelectYear] = useState<boolean>(false)
 
-  const calendarRef = useClickOutside<HTMLDivElement>(handleShow)
-
-  useEffect(() => {
-    setCurrentDate(currentValue?.includes('-') ? currentValue : getTodayMonthYear())
-    setDays(getCalendarDays(currentValue?.includes('-') ? currentValue : getTodayMonthYear()))
-  }, [currentValue])
+  const calendarRef = useRef<HTMLDivElement>(null)
 
   const changeCurrentDate = (date: string): void => {
     setCurrentDate(date)
@@ -47,11 +55,31 @@ export const Calendar: React.FC<Props> = ({
     setIsShowSelectYear(false)
   }
 
-  const onChange = (date: string): void => {
-    if (onChangeDate && typeof onChangeDate === 'function') {
-      onChangeDate(date)
+  const changeCurrentTime = (time: string): void => {
+    const [currentHours, currentMinutes, currentSeconds] = time.split(':')
+    setHours(currentHours)
+    setMinutes(currentMinutes)
+    setSeconds(currentSeconds)
+
+    if (onChange) {
+      onChange(`${currentDate}T${time}`)
     }
-    handleShow()
+  }
+
+  const onChangeDate = (date: string): void => {
+    if (onChange) {
+      if (!withTime) {
+        onChange(date)
+      }
+
+      if (withTime) {
+        onChange(`${date}T${hours}:${minutes}:${seconds}`)
+      }
+    }
+
+    if (!withTime) {
+      handleShow()
+    }
   }
 
   const handleShowSelectMonth = (): void => {
@@ -64,8 +92,26 @@ export const Calendar: React.FC<Props> = ({
     setIsShowSelectMonth(false)
   }
 
+  useOnClickOutside(calendarRef, handleShow)
+
+  useEffect(() => {
+    if (currentValue !== `${currentDate}T${hours}:${minutes}:${seconds}`) {
+      setCurrentDate(initCurrentDate(currentValue, withTime))
+      setHours(initCurrentTime(currentValue, withTime)[0])
+      setMinutes(initCurrentTime(currentValue, withTime)[1])
+      setSeconds(initCurrentTime(currentValue, withTime)[2])
+      setDays(initDays(currentValue, withTime))
+    }
+  }, [currentValue, withTime])
+
   return (
-    <Styled.Calendar show={show} ref={calendarRef}>
+    <div
+      className={cn(
+        'itpc-calendar',
+        show && 'itpc-calendar_opened'
+      )}
+      ref={calendarRef}
+    >
       <CalendarControl
         currentDate={currentDate}
         changeCurrentDate={changeCurrentDate}
@@ -75,20 +121,29 @@ export const Calendar: React.FC<Props> = ({
       <CalendarTable
         days={days}
         currentDate={currentDate}
-        currentValue={currentValue}
-        onChange={onChange}
+        onChange={onChangeDate}
       />
-      {isShowSelectMonth && <SelectionMenuMonth
-        controlHeight={(calendarRef.current?.firstChild as HTMLDivElement)?.offsetHeight}
-        currentDate={currentDate}
-        changeCurrentDate={changeCurrentDate}
-      />}
-      {isShowSelectYear && <SelectionMenuYear
-        controlHeight={(calendarRef.current?.firstChild as HTMLDivElement)?.offsetHeight}
-        currentDate={currentDate}
-        offsetYear={offsetYear}
-        changeCurrentDate={changeCurrentDate}
-      />}
-    </Styled.Calendar>
+      {withTime && (
+        <CalendarTimes
+          hours={hours}
+          minutes={minutes}
+          seconds={seconds}
+          onChange={changeCurrentTime}
+        />
+      )}
+      {isShowSelectMonth && (
+        <SelectionMenuMonth
+          currentDate={currentDate}
+          changeCurrentDate={changeCurrentDate}
+        />
+      )}
+      {isShowSelectYear && (
+        <SelectionMenuYear
+          currentDate={currentDate}
+          offsetYear={offsetYear}
+          changeCurrentDate={changeCurrentDate}
+        />
+      )}
+    </div>
   )
 }

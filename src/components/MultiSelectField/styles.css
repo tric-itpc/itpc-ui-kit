@@ -1,0 +1,41 @@
+.itpc-multi-select {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #B2B7C7;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+.itpc-multi-select:hover {
+  border-color: #5C53AC;
+}
+
+.itpc-multi-select__button {
+  padding: 7px 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.itpc-multi-select__button:hover {
+  border-color: #5C53AC;
+}
+
+.itpc-multi-select__button:disabled {
+  opacity: 0.65;
+}
+
+.itpc-multi-select__button_focused {
+  border-color: #6F65CB;
+}

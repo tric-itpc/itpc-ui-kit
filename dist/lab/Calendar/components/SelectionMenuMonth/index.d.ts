@@ -1,6 +1,5 @@
 import React from "react";
 interface Props {
-    controlHeight: number;
     currentDate: string;
     changeCurrentDate(date: string): void;
 }

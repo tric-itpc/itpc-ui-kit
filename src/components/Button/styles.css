@@ -1,0 +1,65 @@
+.itpc-button {
+  padding: 6px 20px;
+  min-width: 40px;
+  min-height: 40px;
+  background-color: #5C53AC;
+  border: 1px solid #5C53AC;
+  border-radius: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  transition: all .3s ease-in-out;
+  user-select: none;
+}
+
+.itpc-button:hover {
+  background-color: #6F65CB;
+  border-color: #6F65CB;
+  color: #fff;
+}
+
+.itpc-button:disabled {
+  background-color: #B2B7C7;
+  border-color: #B2B7C7;
+  color: #fff;
+  cursor: disabled;
+}
+
+.itpc-button__color_white {
+  background-color: #fff;
+  border-color: #5C53AC;
+  color: #5C53AC;
+}
+
+.itpc-button__color_white:hover {
+  background-color: #6F65CB;
+  border-color: #6F65CB;
+  color: #fff;
+}
+
+.itpc-button__color_white:disabled {
+  background-color: #B2B7C7;
+  border-color: #B2B7C7;
+  color: #fff;
+  cursor: disabled;
+}
+
+.itpc-button__color_red {
+  background-color: #D42564;
+  border-color: #D42564;
+  color: #fff;
+}
+
+.itpc-button__color_red:hover {
+  background-color: #C9184A;
+  border-color: #C9184A;
+  color: #fff;
+}
+
+.itpc-button__color_red:disabled {
+  background-color: #B2B7C7;
+  border-color: #B2B7C7;
+  color: #fff;
+  cursor: disabled;
+}

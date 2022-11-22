@@ -1,7 +1,7 @@
 import React from "react";
 import { Day } from "../../types";
+import './styles.css';
 interface Props {
-    currentValue: string;
     currentDate: string;
     days: Day[];
     onChange(date: string): void;

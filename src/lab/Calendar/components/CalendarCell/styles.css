@@ -1,0 +1,27 @@
+.itpc-calendar__cell {
+  padding: 0.5rem;
+  color: #000;
+  cursor: pointer;
+}
+
+.itpc-calendar__cell:hover {
+  color: #000;
+  background-color: #f0f0f0;
+}
+
+.itpc-calendar__cell_header {
+  cursor: default;
+}
+
+.itpc-calendar__cell_header:hover {
+  background-color: transparent;
+}
+
+.itpc-calendar__cell_changed {
+  color: #fff;
+  background-color: #4c43a1;
+}
+
+.itpc-calendar__cell_not_current {
+  color: #ccc;
+}

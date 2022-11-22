@@ -1,21 +1,18 @@
 import React from "react"
 
-import { Button, SelectPeriod } from "../../_elements"
 import { getAllYears } from "../../utils"
 
 interface Props {
-  controlHeight: number
   currentDate: string
   offsetYear: number
   changeCurrentDate(date: string): void
 }
 
 export const SelectionMenuYear: React.FC<Props> = ({
-  controlHeight,
   currentDate,
   offsetYear,
   changeCurrentDate
-}) => {
+}: Props) => {
   const onClick = (year: number): void => {
     const date = new Date(currentDate)
     date.setFullYear(year)
@@ -23,16 +20,18 @@ export const SelectionMenuYear: React.FC<Props> = ({
   }
 
   return (
-    <SelectPeriod controlHeight={controlHeight}>
-      {getAllYears(offsetYear).reverse().
+    <div className="itpc-calendar__select-period">
+      {getAllYears(offsetYear).
+        reverse().
         map((year) => (
-          <Button
+          <button
             key={year}
+            className="itpc-calendar__button"
             onClick={() => onClick(parseInt(year, 10))}
           >
             {year}
-          </Button>
+          </button>
         ))}
-    </SelectPeriod>
+    </div>
   )
 }

@@ -1,0 +1,8 @@
+.itpc-text {
+  margin: 0px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  transition: all .3s ease-in-out;
+}

@@ -1,15 +1,14 @@
 import React from "react"
 
-import { Arrow, Button, ButtonGroup } from "../../_elements"
 import { getMonthToString, getYearToString } from "../../utils"
 
-import * as Styled from './styled'
+import './styles.css'
 
 interface Props {
-  currentDate: string
-  handleShowSelectYear(): void
-  handleShowSelectMonth(): void
-  changeCurrentDate(date: string): void
+  currentDate: string;
+  handleShowSelectYear(): void;
+  handleShowSelectMonth(): void;
+  changeCurrentDate(date: string): void;
 }
 
 export const CalendarControl: React.FC<Props> = ({
@@ -17,7 +16,7 @@ export const CalendarControl: React.FC<Props> = ({
   changeCurrentDate,
   handleShowSelectYear,
   handleShowSelectMonth
-}) => {
+}: Props) => {
   const decreaseCurrentDateMonth = (): void => {
     const date = new Date(currentDate)
     date.setMonth(date.getMonth() - 1)
@@ -43,25 +42,53 @@ export const CalendarControl: React.FC<Props> = ({
   }
 
   return (
-    <Styled.CalendarControl>
-      <Button type="button" onClick={decreaseCurrentDateYear}>
-        <Arrow isBold orientation="left" />
-      </Button>
-      <Button type="button" onClick={decreaseCurrentDateMonth}>
-        <Arrow orientation="left" />
-      </Button>
+    <div className="itpc-calendar__control">
+      <button
+        className="itpc-calendar__button"
+        type="button"
+        onClick={decreaseCurrentDateYear}
+      >
+        <i className="itpc-calendar__arrow itpc-calendar__arrow_bold itpc-calendar__arrow_left" />
+      </button>
+      <button
+        className="itpc-calendar__button"
+        type="button"
+        onClick={decreaseCurrentDateMonth}
+      >
+        <i className="itpc-calendar__arrow itpc-calendar__arrow_left" />
+      </button>
 
-      <ButtonGroup>
-        <Button type="button" onClick={handleShowSelectMonth}>{getMonthToString(currentDate)}</Button>
-        <Button type="button" onClick={handleShowSelectYear}>{getYearToString(currentDate)}</Button>
-      </ButtonGroup>
+      <div className="itpc-calendar__button-group">
+        <button
+          className="itpc-calendar__button"
+          type="button"
+          onClick={handleShowSelectMonth}
+        >
+          {getMonthToString(currentDate)}
+        </button>
+        <button
+          className="itpc-calendar__button"
+          type="button"
+          onClick={handleShowSelectYear}
+        >
+          {getYearToString(currentDate)}
+        </button>
+      </div>
 
-      <Button type="button" onClick={increaseCurrentDateMonth}>
-        <Arrow orientation="right" />
-      </Button>
-      <Button type="button" onClick={increaseCurrentDateYear}>
-        <Arrow isBold orientation="right" />
-      </Button>
-    </Styled.CalendarControl>
+      <button
+        className="itpc-calendar__button"
+        type="button"
+        onClick={increaseCurrentDateMonth}
+      >
+        <i className="itpc-calendar__arrow itpc-calendar__arrow_right" />
+      </button>
+      <button
+        className="itpc-calendar__button"
+        type="button"
+        onClick={increaseCurrentDateYear}
+      >
+        <i className="itpc-calendar__arrow itpc-calendar__arrow_bold itpc-calendar__arrow_right" />
+      </button>
+    </div>
   )
 }

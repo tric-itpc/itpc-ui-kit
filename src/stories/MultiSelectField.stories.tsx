@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { MultiSelectField, MultiSelectFieldProps } from '../components/MultiSelectField'
+import { MultiSelectField, Props } from '../components/MultiSelectField'
 import { Item } from "../components/types"
 
 export default {
   title: 'Components/MultiSelectField',
   component: MultiSelectField
-} as ComponentMeta<React.FC<MultiSelectFieldProps>>
+} as ComponentMeta<React.FC<Props>>
 
 const mockItems: Item[] = [
   {
@@ -22,10 +22,19 @@ const mockItems: Item[] = [
   }, {
     id: '4',
     value: 'Bear'
+  }, {
+    id: '5',
+    value: 'Mouse'
+  }, {
+    id: '6',
+    value: 'Tiger'
+  }, {
+    id: '7',
+    value: 'Lion'
   }
 ]
 
-const Template: ComponentStory<React.FC<MultiSelectFieldProps>> = (args) => {
+const Template: ComponentStory<React.FC<Props>> = (args) => {
   const [selectedItems, setSelectedItems] = useState<Item[] | []>([
     {
       id: '1',

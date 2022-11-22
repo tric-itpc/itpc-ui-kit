@@ -1,0 +1,9 @@
+.itpc-icon__ok {
+  height: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: all ease-in-out .3s;
+}

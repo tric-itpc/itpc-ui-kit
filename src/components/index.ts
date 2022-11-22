@@ -1,37 +1,54 @@
-import { Popup } from './Popup'
+import { Accordion, AccordionBody, AccordionHeader, AccordionItem, AccordionArrow } from './Accordion'
 import { Button } from './Button'
-import { Preloader } from './Preloader'
-import { TextField } from './TextField'
-import { PhoneField } from './PhoneField'
-import { NumberField } from './NumberField'
-import { SelectField } from './SelectField'
-import { ErrorMessage } from './ErrorMessage'
-import { MultiSelectField } from './MultiSelectField'
-import { Modal, ModalContent, ModalFooter } from './Modal'
+import { ButtonRound } from './ButtonRound'
+import { Card } from './Card'
+import { Checkbox } from './Checkbox'
 import { DatePicker } from './DatePicker'
+import { ErrorMessage } from './ErrorMessage'
+import { Modal, ModalContent, ModalFooter } from './Modal'
+import { MultiSelectField } from './MultiSelectField'
+import { NumberField } from './NumberField'
+import { Pagination } from './Pagination'
+import { Popup } from './Popup'
+import { Preloader } from './Preloader'
+import { SearchField } from './SearchField'
+import { SelectField } from './SelectField'
+import { Text } from './Text'
+import { TextField } from './TextField'
 import { Cell, Column, Row, Table, TableBody, TableFooter, TableHeader } from './Table'
 
 export {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+  AccordionArrow,
   Button,
+  ButtonRound,
+  Card,
   Cell,
+  Checkbox,
   Column,
   DatePicker,
   ErrorMessage,
-  TextField,
   Modal,
   ModalContent,
   ModalFooter,
   MultiSelectField,
   NumberField,
-  PhoneField,
+  Pagination,
   Popup,
   Preloader,
   Row,
   SelectField,
+  SearchField,
   Table,
   TableBody,
   TableFooter,
-  TableHeader
+  TableHeader,
+  Text,
+  TextField
 }
 
-export { FormattedValues } from './types'
+export { UIKitColors } from './constants'
+export { FormattedValues, Item, PaginationResult, TabsItem } from './types'

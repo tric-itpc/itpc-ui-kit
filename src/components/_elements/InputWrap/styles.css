@@ -1,0 +1,42 @@
+.itpc-input-wrap {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #B2B7C7;
+  box-shadow: none;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.itpc-input-wrap_focused {
+  border-color: #5C53AC;
+}
+
+.itpc-input-wrap_error {
+  border-color: #D42564;
+}
+
+.itpc-input {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+  outline: none;
+  font-size: 14px;
+  color: transparent;
+  appearance: none;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.itpc-input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.itpc-input_focused {
+  color: #000;
+}

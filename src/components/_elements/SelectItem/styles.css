@@ -1,0 +1,42 @@
+.itpc-select-item {
+  min-height: 40px;
+  max-height: 40px;
+  position: relative;
+  padding: .75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.itpc-select-item:hover {
+  background-color: #E5E5E5;
+}
+
+.itpc-select-item__stick {
+  position: absolute;
+  top: 6px;
+  left: -4px;
+  width: 4px;
+  height: 30px;
+  background-color: #393185;
+  border-radius: 0 3px 3px 0;
+}
+
+.itpc-select-item__stick_showed {
+  animation: stick_position 100ms ease-in-out 0s 1 normal forwards;
+}
+
+@keyframes stick_position {
+  from {
+    left: -4px;
+  }
+
+  to {
+    left: 0;
+  }
+}

@@ -1,13 +1,11 @@
 import React, { useRef, useState } from "react"
+import cn from 'classnames'
 
-import { FieldWrap, Placeholder } from "../_elements"
+import { Field, InputWrap, Placeholder } from "../_elements"
 
 import { ValidationState } from "../types"
-import { ErrorMessage } from "../ErrorMessage"
 
-import * as Styled from './styled'
-
-export interface TextAreaFieldProps {
+export interface Props {
   id: string
   name: string
   value?: string
@@ -16,12 +14,13 @@ export interface TextAreaFieldProps {
   placeholder?: string
   validationState?: ValidationState
   errorMessage?: string
+  className?: string
   onBlur?: () => void
   onFocus?: () => void
   onChange?: (value: string) => void
 }
 
-export const TextAreaField: React.FC<TextAreaFieldProps> = ({
+export const TextAreaField: React.FC<Props> = ({
   id = 'itpc-input',
   name = 'itpc-input',
   value = '',
@@ -30,6 +29,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
   placeholder = '',
   validationState = 'valid',
   errorMessage = '',
+  className = '',
   onBlur,
   onFocus,
   onChange
@@ -69,25 +69,22 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
   }
 
   return (
-    <FieldWrap>
-      <Styled.TextAreaWrap
+    <Field className={className}>
+      <InputWrap
+        focused={focused}
+        validationState={validationState}
         height={height}
         maxHeight={maxHeight}
-        focused={focused}
-        disabled={disabled}
-        validationState={validationState}
-        onClick={onFocusTextArea}
       >
         <Placeholder
           htmlFor={id}
-          disabled={disabled}
           focused={focused || value.length > 0}
           validationState={validationState}
         >
           {placeholder}
         </Placeholder>
 
-        <Styled.TextArea
+        <textarea
           ref={ref}
           id={id}
           name={name}
@@ -96,12 +93,11 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
           onFocus={onFocusTextArea}
           onBlur={onBlurTextArea}
           onChange={onChangeTextArea}
-          focused={focused}
-          valueLength={value.length}
+          className={cn('itpc-input', (focused || !!value.length) && 'itpc-input_focused')}
         />
-      </Styled.TextAreaWrap>
+      </InputWrap>
 
-      {validationState === 'invalid' && <ErrorMessage>{errorMessage}</ErrorMessage>}
-    </FieldWrap>
+      {validationState === 'invalid' && <p className="itpc-field__error-message">{errorMessage}</p>}
+    </Field>
   )
 }

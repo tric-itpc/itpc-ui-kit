@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   mode: 'production',
-  entry: "./src/index.ts",
+  entry: path.resolve(__dirname, 'src', 'index.ts'),
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, 'dist'),
@@ -18,8 +18,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css/,
-        use: ['style-loader', 'css-loader']
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ],
       },
       {
         test: /\.(ts|tsx)?$/,
