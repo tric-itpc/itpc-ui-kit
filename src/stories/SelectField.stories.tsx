@@ -12,7 +12,8 @@ export default {
 const mockItems: Item[] = [
   {
     id: '1',
-    value: 'Cat'
+    value: 'Cat',
+    disabled: true
   }, {
     id: '2',
     value: 'Dog'

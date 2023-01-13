@@ -34,6 +34,7 @@ export interface PaginationResult {
 export interface Item {
   id: string
   value: string
+  disabled?: boolean
 }
 
 export interface FormattedValues {

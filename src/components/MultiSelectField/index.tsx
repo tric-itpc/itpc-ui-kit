@@ -36,7 +36,9 @@ export const MultiSelectField: React.FC<Props> = ({
   const ref = useRef<HTMLDivElement>(null)
 
   const handleOpen = (): void => {
-    setIsOpen(!isOpen)
+    if (!disabled) {
+      setIsOpen(!isOpen)
+    }
   }
 
   const onClose = (): void => {
@@ -93,6 +95,7 @@ export const MultiSelectField: React.FC<Props> = ({
             <SelectItem
               key={item.id}
               id={item.id}
+              disabled={item.disabled}
               isActive={selectedItems?.includes(item.id) ?? false}
               onChange={onChangeValue}
             >

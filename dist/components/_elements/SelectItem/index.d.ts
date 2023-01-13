@@ -3,6 +3,7 @@ import './styles.css';
 interface Props {
     id: string;
     isActive?: boolean;
+    disabled?: boolean;
     onChange(id: string): void;
     children?: React.ReactNode;
 }

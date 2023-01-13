@@ -17,6 +17,10 @@
   background-color: #E5E5E5;
 }
 
+.itpc-select-item_disabled {
+  opacity: 0.65;
+}
+
 .itpc-select-item__stick {
   position: absolute;
   top: 6px;

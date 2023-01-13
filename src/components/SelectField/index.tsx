@@ -40,7 +40,9 @@ export const SelectField: React.FC<Props> = ({
   }
 
   const handleOpen = (): void => {
-    setIsOpen(!isOpen)
+    if (!disabled) {
+      setIsOpen(!isOpen)
+    }
   }
 
   const changeValue = (value: string) => {
@@ -70,13 +72,13 @@ export const SelectField: React.FC<Props> = ({
       </button>
       <IconArrow orientation={isOpen ? 'top' : 'bottom'} onClick={handleOpen} />
 
-
       {isOpen && (
         <Popover>
           {items.map((item) => (
             <SelectItem
               key={item.id}
               id={item.id}
+              disabled={item.disabled}
               isActive={defaultItemId === item.id}
               onChange={changeValue}
             >
