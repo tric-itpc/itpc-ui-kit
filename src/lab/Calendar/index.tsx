@@ -24,6 +24,8 @@ import './styles.css'
 export interface Props {
   currentValue?: string
   offsetYear?: number
+  activeDates?: string[]
+  disabledDates?: string[]
   show: boolean
   handleShow: () => void
   onChange?: (date: string) => void
@@ -33,6 +35,8 @@ export interface Props {
 export const Calendar: React.FC<Props> = ({
   currentValue = getTodayMonthYear(),
   offsetYear = 10,
+  activeDates,
+  disabledDates,
   show,
   handleShow,
   onChange,
@@ -121,6 +125,8 @@ export const Calendar: React.FC<Props> = ({
       <CalendarTable
         days={days}
         currentDate={currentDate}
+        activeDates={activeDates}
+        disabledDates={disabledDates}
         onChange={onChangeDate}
       />
       {withTime && (

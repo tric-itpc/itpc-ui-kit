@@ -9,6 +9,8 @@ export interface Props {
     id?: string;
     name?: string;
     value?: string;
+    activeDates?: string[];
+    disabledDates?: string[];
     disabled?: boolean;
     placeholder?: string;
     validationState?: ValidationState;

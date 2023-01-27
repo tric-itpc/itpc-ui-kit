@@ -30,5 +30,6 @@ Basic.args = {
   placeholder: 'Enter date',
   validationState: 'valid',
   errorMessage: 'Error message',
-  withTime: false
+  withTime: false,
+  disabledDates: ['2023-01-25']
 }

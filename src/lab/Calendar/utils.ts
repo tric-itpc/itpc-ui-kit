@@ -124,3 +124,19 @@ export function initCurrentTime(currentValue: string, withTime: boolean): string
 
   return currentValue.split("T")[1].split(':')
 }
+
+export function isDisabledDate(date: string, activeDates?: string[], disabledDates?: string[]): boolean {
+  if (activeDates && disabledDates) {
+    return false
+  }
+
+  if (activeDates && !activeDates.includes(date)) {
+    return true
+  }
+
+  if (disabledDates && disabledDates.includes(date)) {
+    return true
+  }
+
+  return false
+}

@@ -6,6 +6,7 @@ interface Props {
     dayOfTheWeek?: number;
     isHeader?: boolean;
     isChanged: boolean;
+    disabled?: boolean;
     onChange?: (date: string) => void;
 }
 export declare const CalendarCell: React.FC<Props>;

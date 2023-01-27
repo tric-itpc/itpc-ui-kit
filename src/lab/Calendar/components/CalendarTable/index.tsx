@@ -5,6 +5,7 @@ import { Day } from "../../types"
 import { CalendarCell } from "../CalendarCell"
 
 import './styles.css'
+import { isDisabledDate } from "../../utils"
 
 const getRows = (days: Day[]): Day[][] => {
   const step = 7,
@@ -26,12 +27,16 @@ const getRows = (days: Day[]): Day[][] => {
 interface Props {
   currentDate: string;
   days: Day[];
+  activeDates?: string[]
+  disabledDates?: string[]
   onChange(date: string): void;
 }
 
 export const CalendarTable: React.FC<Props> = ({
   currentDate,
   days,
+  activeDates,
+  disabledDates,
   onChange
 }: Props) => {
   const rows = getRows(days)
@@ -62,6 +67,7 @@ export const CalendarTable: React.FC<Props> = ({
                 currentDate={currentDate}
                 isChanged={currentDate === day.date}
                 onChange={onChange}
+                disabled={isDisabledDate(day.date, activeDates, disabledDates)}
               />
             ))}
           </tr>

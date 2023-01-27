@@ -25,3 +25,9 @@
 .itpc-calendar__cell_not_current {
   color: #ccc;
 }
+
+.itpc-calendar__cell_disabled {
+  cursor: default;
+  color: #8f8f8f;
+  /*opacity: .5;*/
+}

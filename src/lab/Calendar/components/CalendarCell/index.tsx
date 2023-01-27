@@ -11,6 +11,7 @@ interface Props {
   dayOfTheWeek?: number;
   isHeader?: boolean;
   isChanged: boolean;
+  disabled?: boolean;
   onChange?: (date: string) => void;
 }
 
@@ -20,9 +21,18 @@ export const CalendarCell: React.FC<Props> = ({
   dayOfTheWeek,
   isHeader = false,
   isChanged,
+  disabled,
   onChange
 }: Props) => {
   const isCurrentMonth = parseInt(currentDate.split("-")[1], 10) === parseInt(date.split("-")[1], 10)
+
+  console.log('date', date)
+
+  const click = (): void => {
+    if (onChange && !disabled) {
+      onChange(date)
+    }
+  }
 
   return (
     <td
@@ -30,14 +40,17 @@ export const CalendarCell: React.FC<Props> = ({
         'itpc-calendar__cell',
         isHeader && 'itpc-calendar__cell_header',
         (!isHeader && isChanged) && 'itpc-calendar__cell_changed',
-        !isCurrentMonth && 'itpc-calendar__cell_not_current'
+        !isCurrentMonth && 'itpc-calendar__cell_not_current',
+        disabled && 'itpc-calendar__cell_disabled'
       )}
-      onClick={() => onChange && onChange(date)}
+      onClick={click}
     >
       <p className="itpc-calendar__text">
-        {isHeader && dayOfTheWeek !== undefined
-          ? daysOfTheWeekShort[dayOfTheWeek]
-          : new Date(date).getDate()}
+        {
+          isHeader && dayOfTheWeek !== undefined
+            ? daysOfTheWeekShort[dayOfTheWeek]
+            : new Date(date).getDate()
+        }
       </p>
     </td>
   )

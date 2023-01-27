@@ -33,6 +33,8 @@ export interface Props {
   id?: string
   name?: string
   value?: string
+  activeDates?: string[]
+  disabledDates?: string[]
   disabled?: boolean
   placeholder?: string
   validationState?: ValidationState
@@ -50,6 +52,8 @@ export const DatePicker: React.FC<Props> = ({
   id = "itpc-datepicker",
   name = "itpc-datepicker",
   value = "",
+  activeDates,
+  disabledDates,
   disabled = false,
   placeholder = "",
   validationState = "valid",
@@ -201,6 +205,8 @@ export const DatePicker: React.FC<Props> = ({
               ? parseNumericStringToISODateTime(value)
               : parseNumericStringToISODate(value)
           }
+          activeDates={activeDates}
+          disabledDates={disabledDates}
           show={isShowCalendar}
           handleShow={onCloseCalendar}
           onChange={onChangeDate}
