@@ -12,7 +12,7 @@ interface Props {
   isHeader?: boolean;
   isChanged: boolean;
   disabled?: boolean;
-  onChange?: (date: string) => void;
+  onChange?: (date: string, event: React.MouseEvent<HTMLTableDataCellElement>) => void;
 }
 
 export const CalendarCell: React.FC<Props> = ({
@@ -26,11 +26,9 @@ export const CalendarCell: React.FC<Props> = ({
 }: Props) => {
   const isCurrentMonth = parseInt(currentDate.split("-")[1], 10) === parseInt(date.split("-")[1], 10)
 
-  console.log('date', date)
-
-  const click = (): void => {
+  const click = (event: React.MouseEvent<HTMLTableDataCellElement>): void => {
     if (onChange && !disabled) {
-      onChange(date)
+      onChange(date, event)
     }
   }
 

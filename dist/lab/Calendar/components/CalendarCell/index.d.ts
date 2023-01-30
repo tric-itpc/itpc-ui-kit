@@ -7,7 +7,7 @@ interface Props {
     isHeader?: boolean;
     isChanged: boolean;
     disabled?: boolean;
-    onChange?: (date: string) => void;
+    onChange?: (date: string, event: React.MouseEvent<HTMLTableDataCellElement>) => void;
 }
 export declare const CalendarCell: React.FC<Props>;
 export {};

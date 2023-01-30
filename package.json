@@ -1,11 +1,11 @@
 {
   "name": "itpc-ui-kit",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
     "build": "webpack",
-    "publish": "npm run build && npm publish",
+    "publish-package": "npm run build && npm publish",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

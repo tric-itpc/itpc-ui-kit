@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import NumberFormat, { NumberFormatValues } from "react-number-format"
+import NumberFormat, { NumberFormatValues, SourceInfo } from "react-number-format"
 import cn from 'classnames'
 
 import { Calendar } from "../../lab"
@@ -41,7 +41,10 @@ export interface Props {
   errorMessage?: string
   onBlur?: () => void
   onFocus?: () => void
-  onChange?: (values: FormattedValues) => void
+  onChange?: (
+    values: FormattedValues,
+    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>
+  ) => void
   isIconClickable?: boolean
   offsetYear?: number
   withTime?: boolean
@@ -105,23 +108,26 @@ export const DatePicker: React.FC<Props> = ({
     }
   }
 
-  const onChangeDate = (date: string): void => {
+  const onChangeDate = (
+    date: string,
+    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>
+  ): void => {
     if (onChange) {
       onChange({
         value: withTime
           ? parseISODateTimeToNumericString(date)
           : parseISODateToNumericString(date),
         formattedValue: withTime ? parseISODateTime(date) : parseISODate(date)
-      })
+      }, event)
     }
   }
 
-  const onChangePicker = (values: NumberFormatValues): void => {
+  const onChangePicker = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
     if (onChange) {
       onChange({
         value: values.value,
         formattedValue: values.formattedValue
-      })
+      }, sourceInfo.event)
     }
   }
 

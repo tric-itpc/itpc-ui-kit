@@ -28,7 +28,10 @@ export interface Props {
   disabledDates?: string[]
   show: boolean
   handleShow: () => void
-  onChange?: (date: string) => void
+  onChange?: (
+    date: string,
+    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>
+  ) => void
   withTime?: boolean
 }
 
@@ -59,25 +62,25 @@ export const Calendar: React.FC<Props> = ({
     setIsShowSelectYear(false)
   }
 
-  const changeCurrentTime = (time: string): void => {
+  const changeCurrentTime = (time: string, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>): void => {
     const [currentHours, currentMinutes, currentSeconds] = time.split(':')
     setHours(currentHours)
     setMinutes(currentMinutes)
     setSeconds(currentSeconds)
 
     if (onChange) {
-      onChange(`${currentDate}T${time}`)
+      onChange(`${currentDate}T${time}`, event)
     }
   }
 
-  const onChangeDate = (date: string): void => {
+  const onChangeDate = (date: string, event: React.MouseEvent<HTMLTableDataCellElement>): void => {
     if (onChange) {
       if (!withTime) {
-        onChange(date)
+        onChange(date, event)
       }
 
       if (withTime) {
-        onChange(`${date}T${hours}:${minutes}:${seconds}`)
+        onChange(`${date}T${hours}:${minutes}:${seconds}`, event)
       }
     }
 

@@ -16,7 +16,7 @@ export interface Props {
     allowNegative?: boolean;
     onBlur?: () => void;
     onFocus?: () => void;
-    onChange?: (values: FormattedValues) => void;
+    onChange?: (values: FormattedValues, event: React.ChangeEvent<HTMLInputElement>) => void;
     getInputRef?: ((el: HTMLInputElement) => void) | React.Ref<any>;
     className?: string;
 }

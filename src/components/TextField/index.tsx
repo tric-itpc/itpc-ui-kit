@@ -31,7 +31,7 @@ export interface Props {
   className?: string
   onBlur?: () => void
   onFocus?: () => void
-  onChange?: (value: string) => void
+  onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void
   onClickIcon?: () => void
 }
 
@@ -72,7 +72,7 @@ export const TextField: React.FC<Props> = ({
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (onChange) {
-      onChange(event.currentTarget.value)
+      onChange(event.currentTarget.value, event)
     }
   }
 

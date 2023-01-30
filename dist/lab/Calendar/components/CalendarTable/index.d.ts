@@ -6,7 +6,7 @@ interface Props {
     days: Day[];
     activeDates?: string[];
     disabledDates?: string[];
-    onChange(date: string): void;
+    onChange(date: string, event: React.MouseEvent<HTMLTableDataCellElement>): void;
 }
 export declare const CalendarTable: React.FC<Props>;
 export {};

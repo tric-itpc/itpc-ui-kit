@@ -7,7 +7,7 @@ export interface Props {
     disabledDates?: string[];
     show: boolean;
     handleShow: () => void;
-    onChange?: (date: string) => void;
+    onChange?: (date: string, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>) => void;
     withTime?: boolean;
 }
 export declare const Calendar: React.FC<Props>;

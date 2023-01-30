@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
-import NumberFormat, { NumberFormatValues } from 'react-number-format'
+import NumberFormat, { NumberFormatValues, SourceInfo } from 'react-number-format'
 import cn from 'classnames'
 
 import { Field, InputWrap, Placeholder } from '../_elements'
@@ -23,7 +23,7 @@ export interface Props {
   allowNegative?: boolean
   onBlur?: () => void
   onFocus?: () => void
-  onChange?: (values: FormattedValues) => void
+  onChange?: (values: FormattedValues, event: React.ChangeEvent<HTMLInputElement>) => void
   getInputRef?: ((el: HTMLInputElement) => void) | React.Ref<any>
   className?: string
 }
@@ -66,12 +66,12 @@ export const NumberField: React.FC<Props> = ({
     }
   }
 
-  const onChangeInput = (values: NumberFormatValues): void => {
+  const onChangeInput = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
     if (onChange) {
       onChange({
         value: values.value,
         formattedValue: values.formattedValue
-      })
+      }, sourceInfo.event)
     }
   }
 

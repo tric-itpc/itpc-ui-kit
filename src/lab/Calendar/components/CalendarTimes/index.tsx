@@ -1,5 +1,5 @@
 import React from "react"
-import NumberFormat, { NumberFormatValues } from "react-number-format"
+import NumberFormat, { NumberFormatValues, SourceInfo } from "react-number-format"
 
 import './styles.css'
 
@@ -7,7 +7,7 @@ interface Props {
   hours: string;
   minutes: string;
   seconds: string;
-  onChange(time: string): void;
+  onChange(time: string, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export const CalendarTimes: React.FC<Props> = ({
@@ -16,86 +16,86 @@ export const CalendarTimes: React.FC<Props> = ({
   seconds,
   onChange
 }: Props) => {
-  const changeHours = (values: NumberFormatValues): void => {
+  const changeHours = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
     if (parseInt(values.value, 10) > 23) {
-      onChange(`23:${minutes}:${seconds}`)
+      onChange(`23:${minutes}:${seconds}`, sourceInfo.event)
 
       return
     }
 
-    onChange(`${values.value.length ? values.value : "00"}:${minutes}:${seconds}`)
+    onChange(`${values.value.length ? values.value : "00"}:${minutes}:${seconds}`, sourceInfo.event)
   }
 
-  const changeMinutes = (values: NumberFormatValues): void => {
+  const changeMinutes = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
     if (parseInt(values.value, 10) > 59) {
-      onChange(`${hours}:59:${seconds}`)
+      onChange(`${hours}:59:${seconds}`, sourceInfo.event)
 
       return
     }
 
-    onChange(`${hours}:${values.value.length ? values.value : "00"}:${seconds}`)
+    onChange(`${hours}:${values.value.length ? values.value : "00"}:${seconds}`, sourceInfo.event)
   }
 
-  const changeSeconds = (values: NumberFormatValues): void => {
+  const changeSeconds = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
     if (parseInt(values.value, 10) > 59) {
-      onChange(`${hours}:${minutes}:59`)
+      onChange(`${hours}:${minutes}:59`, sourceInfo.event)
 
       return
     }
 
     if (values.value.length) {
       if (values.value.length < 2) {
-        onChange(`${hours}:${minutes}:${`${values.value}0`}`)
+        onChange(`${hours}:${minutes}:${`${values.value}0`}`, sourceInfo.event)
         return
       }
 
-      onChange(`${hours}:${minutes}:${values.value}`)
+      onChange(`${hours}:${minutes}:${values.value}`, sourceInfo.event)
       return
     }
 
-    onChange(`${hours}:${minutes}:00`)
+    onChange(`${hours}:${minutes}:00`, sourceInfo.event)
   }
 
-  const decreaseHours = (): void => {
+  const decreaseHours = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const hoursInt = parseInt(hours, 10) - 1
     const hoursStr = hoursInt > 9 ? hoursInt.toString() : `0${hoursInt}`
 
-    onChange(`${hoursStr}:${minutes}:${seconds}`)
+    onChange(`${hoursStr}:${minutes}:${seconds}`, e)
   }
 
-  const increaseHours = (): void => {
+  const increaseHours = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const hoursInt = parseInt(hours, 10) + 1
     const hoursStr = hoursInt > 9 ? hoursInt.toString() : `0${hoursInt}`
 
-    onChange(`${hoursStr}:${minutes}:${seconds}`)
+    onChange(`${hoursStr}:${minutes}:${seconds}`, e)
   }
 
-  const decreaseMinutes = (): void => {
+  const decreaseMinutes = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const minutesInt = parseInt(minutes, 10) - 1
     const minutesStr = minutesInt > 9 ? minutesInt.toString() : `0${minutesInt}`
 
-    onChange(`${hours}:${minutesStr}:${seconds}`)
+    onChange(`${hours}:${minutesStr}:${seconds}`, e)
   }
 
-  const increaseMinutes = (): void => {
+  const increaseMinutes = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const minutesInt = parseInt(minutes, 10) + 1
     const minutesStr = minutesInt > 9 ? minutesInt.toString() : `0${minutesInt}`
 
-    onChange(`${hours}:${minutesStr}:${seconds}`)
+    onChange(`${hours}:${minutesStr}:${seconds}`, e)
   }
 
-  const decreaseSeconds = (): void => {
+  const decreaseSeconds = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const secondsInt = parseInt(seconds, 10) - 1
     const secondsStr = secondsInt > 9 ? secondsInt.toString() : `0${secondsInt}`
 
-    onChange(`${hours}:${minutes}:${secondsStr}`)
+    onChange(`${hours}:${minutes}:${secondsStr}`, e)
   }
 
-  const increaseSeconds = (): void => {
+  const increaseSeconds = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const secondsInt = parseInt(seconds, 10) + 1
     const secondsStr = secondsInt > 9 ? secondsInt.toString() : `0${secondsInt}`
 
-    onChange(`${hours}:${minutes}:${secondsStr}`)
+    onChange(`${hours}:${minutes}:${secondsStr}`, e)
   }
 
   return (

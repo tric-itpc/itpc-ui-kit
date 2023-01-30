@@ -17,7 +17,7 @@ export interface Props {
   className?: string
   onBlur?: () => void
   onFocus?: () => void
-  onChange?: (value: string) => void
+  onChange?: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export const TextAreaField: React.FC<Props> = ({
@@ -64,7 +64,7 @@ export const TextAreaField: React.FC<Props> = ({
     }
 
     if (onChange) {
-      onChange(event.currentTarget.value)
+      onChange(event.currentTarget.value, event)
     }
   }
 

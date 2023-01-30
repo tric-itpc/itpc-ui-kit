@@ -4,7 +4,7 @@ interface Props {
     hours: string;
     minutes: string;
     seconds: string;
-    onChange(time: string): void;
+    onChange(time: string, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>): void;
 }
 export declare const CalendarTimes: React.FC<Props>;
 export {};

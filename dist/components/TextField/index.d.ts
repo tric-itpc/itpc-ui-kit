@@ -14,7 +14,7 @@ export interface Props {
     className?: string;
     onBlur?: () => void;
     onFocus?: () => void;
-    onChange?: (value: string) => void;
+    onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
     onClickIcon?: () => void;
 }
 export declare const TextField: React.FC<Props>;
