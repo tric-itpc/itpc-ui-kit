@@ -11,6 +11,10 @@
   font-size: 14px;
 }
 
+.itpc-input-wrap:hover {
+  border-color: rgb(92, 83, 172);
+}
+
 .itpc-input-wrap_focused {
   border-color: #5C53AC;
 }
