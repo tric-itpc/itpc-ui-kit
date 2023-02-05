@@ -11,6 +11,8 @@ export interface Props {
     value?: string;
     activeDates?: string[];
     disabledDates?: string[];
+    disabledAfterDate?: string;
+    disabledBeforeDate?: string;
     disabled?: boolean;
     placeholder?: string;
     validationState?: ValidationState;

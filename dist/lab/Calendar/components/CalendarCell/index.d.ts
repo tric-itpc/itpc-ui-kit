@@ -1,6 +1,7 @@
 import React from "react";
 import './styles.css';
 interface Props {
+    id: string;
     date: string;
     currentDate: string;
     dayOfTheWeek?: number;

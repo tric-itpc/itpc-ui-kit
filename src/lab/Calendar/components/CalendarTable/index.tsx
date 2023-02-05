@@ -1,11 +1,11 @@
 import React from "react"
 
 import { Day } from "../../types"
+import { isDisabledDate } from "../../utils"
 
 import { CalendarCell } from "../CalendarCell"
 
 import './styles.css'
-import { isDisabledDate } from "../../utils"
 
 const getRows = (days: Day[]): Day[][] => {
   const step = 7,
@@ -25,18 +25,24 @@ const getRows = (days: Day[]): Day[][] => {
 }
 
 interface Props {
+  id: string
   currentDate: string;
   days: Day[];
   activeDates?: string[]
   disabledDates?: string[]
+  disabledAfterDate?: string
+  disabledBeforeDate?: string
   onChange(date: string, event: React.MouseEvent<HTMLTableDataCellElement>): void;
 }
 
 export const CalendarTable: React.FC<Props> = ({
+  id,
   currentDate,
   days,
   activeDates,
   disabledDates,
+  disabledAfterDate,
+  disabledBeforeDate,
   onChange
 }: Props) => {
   const rows = getRows(days)
@@ -47,6 +53,7 @@ export const CalendarTable: React.FC<Props> = ({
         <tr>
           {days.slice(0, 7).map((day) => (
             <CalendarCell
+              id={id}
               key={day.date}
               date={day.date}
               currentDate={currentDate}
@@ -62,12 +69,13 @@ export const CalendarTable: React.FC<Props> = ({
           <tr key={key}>
             {row.map((day) => (
               <CalendarCell
+                id={id}
                 key={day.date}
                 date={day.date}
                 currentDate={currentDate}
                 isChanged={currentDate === day.date}
                 onChange={onChange}
-                disabled={isDisabledDate(day.date, activeDates, disabledDates)}
+                disabled={isDisabledDate(day.date, activeDates, disabledDates, disabledAfterDate, disabledBeforeDate)}
               />
             ))}
           </tr>

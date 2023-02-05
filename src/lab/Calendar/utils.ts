@@ -1,4 +1,6 @@
 /* eslint-disable max-len */
+import moment from "moment"
+
 import { daysNumeric, monthNumerical, monthPlural, months } from './constants'
 import { Day } from './types'
 
@@ -125,7 +127,13 @@ export function initCurrentTime(currentValue: string, withTime: boolean): string
   return currentValue.split("T")[1].split(':')
 }
 
-export function isDisabledDate(date: string, activeDates?: string[], disabledDates?: string[]): boolean {
+export function isDisabledDate(
+  date: string,
+  activeDates?: string[],
+  disabledDates?: string[],
+  disabledAfterDate?: string,
+  disabledBeforeDate?: string
+): boolean {
   if (activeDates && disabledDates) {
     return false
   }
@@ -135,6 +143,14 @@ export function isDisabledDate(date: string, activeDates?: string[], disabledDat
   }
 
   if (disabledDates && disabledDates.includes(date)) {
+    return true
+  }
+
+  if (disabledAfterDate && moment(date).isAfter(disabledAfterDate)) {
+    return true
+  }
+
+  if (disabledBeforeDate && moment(date).isBefore(disabledBeforeDate)) {
     return true
   }
 

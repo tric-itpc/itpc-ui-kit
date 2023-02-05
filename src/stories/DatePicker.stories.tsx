@@ -12,13 +12,16 @@ export default {
 const Template: ComponentStory<React.FC<Props>> = (args) => {
   const [date, setDate] = useState<FormattedValues>({ value: '', formattedValue: '' })
 
-  const onChange = (inputValue: FormattedValues): void => {
+  const onChange = (
+    inputValue: FormattedValues,
+    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>
+  ): void => {
     setDate(inputValue)
   }
 
   return (
     <>
-      <DatePicker {...args} value={date.value} onChange={onChange} offsetYear={100} />
+      <DatePicker {...args} value={date.value} onChange={onChange} />
       <p>Value: {date.value}</p>
       <p>Formatted value: {date.formattedValue}</p>
     </>
@@ -31,5 +34,6 @@ Basic.args = {
   validationState: 'valid',
   errorMessage: 'Error message',
   withTime: false,
-  disabledDates: ['2023-01-25']
+  // disabledDates: ['2023-01-25'],
+  disabledAfterDate: '2023-02-05'
 }

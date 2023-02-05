@@ -35,6 +35,8 @@ export interface Props {
   value?: string
   activeDates?: string[]
   disabledDates?: string[]
+  disabledAfterDate?: string
+  disabledBeforeDate?: string
   disabled?: boolean
   placeholder?: string
   validationState?: ValidationState
@@ -57,6 +59,8 @@ export const DatePicker: React.FC<Props> = ({
   value = "",
   activeDates,
   disabledDates,
+  disabledAfterDate,
+  disabledBeforeDate,
   disabled = false,
   placeholder = "",
   validationState = "valid",
@@ -123,7 +127,7 @@ export const DatePicker: React.FC<Props> = ({
   }
 
   const onChangePicker = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
-    if (onChange) {
+    if (onChange && sourceInfo.event) {
       onChange({
         value: values.value,
         formattedValue: values.formattedValue
@@ -206,6 +210,7 @@ export const DatePicker: React.FC<Props> = ({
         style={{ top: `${calendarPosition}px` }}
       >
         <Calendar
+          id={id}
           currentValue={
             withTime
               ? parseNumericStringToISODateTime(value)
@@ -213,6 +218,8 @@ export const DatePicker: React.FC<Props> = ({
           }
           activeDates={activeDates}
           disabledDates={disabledDates}
+          disabledAfterDate={disabledAfterDate}
+          disabledBeforeDate={disabledBeforeDate}
           show={isShowCalendar}
           handleShow={onCloseCalendar}
           onChange={onChangeDate}

@@ -6,6 +6,7 @@ import { daysOfTheWeekShort } from "../../constants"
 import './styles.css'
 
 interface Props {
+  id: string
   date: string;
   currentDate: string;
   dayOfTheWeek?: number;
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export const CalendarCell: React.FC<Props> = ({
+  id,
   date,
   currentDate,
   dayOfTheWeek,
@@ -34,11 +36,12 @@ export const CalendarCell: React.FC<Props> = ({
 
   return (
     <td
+      id={id}
       className={cn(
         'itpc-calendar__cell',
         isHeader && 'itpc-calendar__cell_header',
-        (!isHeader && isChanged) && 'itpc-calendar__cell_changed',
-        !isCurrentMonth && 'itpc-calendar__cell_not_current',
+        !isHeader && isChanged && 'itpc-calendar__cell_changed',
+        !isHeader && !isCurrentMonth && 'itpc-calendar__cell_not_current',
         disabled && 'itpc-calendar__cell_disabled'
       )}
       onClick={click}
