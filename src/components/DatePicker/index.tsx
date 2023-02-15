@@ -106,7 +106,7 @@ export const DatePicker: React.FC<Props> = ({
   }
 
   const onClickIcon = (): void => {
-    if (isIconClickable) {
+    if (isIconClickable && !disabled) {
       onHandleFocused(true)
       onOpenCalendar()
     }
