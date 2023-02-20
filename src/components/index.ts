@@ -14,6 +14,7 @@ import { Preloader } from './Preloader'
 import { SearchField } from './SearchField'
 import { SelectField } from './SelectField'
 import { Text } from './Text'
+import { Tabs, TabButton } from './Tabs'
 import { TextField } from './TextField'
 import { Cell, Column, Row, Table, TableBody, TableFooter, TableHeader } from './Table'
 
@@ -46,6 +47,8 @@ export {
   TableBody,
   TableFooter,
   TableHeader,
+  Tabs,
+  TabButton,
   Text,
   TextField
 }
