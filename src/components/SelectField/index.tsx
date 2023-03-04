@@ -58,6 +58,7 @@ export const SelectField: React.FC<Props> = ({
   return (
     <div className={cn('itpc-select', className)} ref={ref}>
       <button
+        type="button"
         className={cn(
           'itpc-select__button',
           isOpen && 'itpc-select__button_focused'

@@ -77,6 +77,7 @@ export const MultiSelectField: React.FC<Props> = ({
   return (
     <div ref={ref} className={cn('itpc-multi-select', className)}>
       <button
+        type="button"
         className={cn(
           'itpc-multi-select__button',
           isOpen && 'itpc-multi-select__button_focused'
