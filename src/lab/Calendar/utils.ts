@@ -26,7 +26,9 @@ export function getMonthYearToString(date: string): string {
 
 export function getTodayMonthYear(): string {
   const today = new Date()
-  return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+  const month = today.getMonth() + 1
+  const day = today.getDate()
+  return `${today.getFullYear()}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : today.getDate()}`
 }
 
 export function getAllYears(offset: number): string[] {

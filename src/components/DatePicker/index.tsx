@@ -116,7 +116,7 @@ export const DatePicker: React.FC<Props> = ({
     date: string,
     event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>
   ): void => {
-    if (onChange) {
+    if (onChange && value.length) {
       onChange({
         value: withTime
           ? parseISODateTimeToNumericString(date)
