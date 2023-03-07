@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import cn from 'classnames'
 
+import { IInfo } from "../../components/types"
 import { useOnClickOutside } from "../../_hooks"
 
 import { Day } from "./types"
@@ -23,6 +24,7 @@ import './styles.css'
 
 export interface Props {
   id: string
+  name: string
   currentValue?: string
   offsetYear?: number
   activeDates?: string[]
@@ -33,13 +35,15 @@ export interface Props {
   handleShow: () => void
   onChange?: (
     date: string,
-    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>
+    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableCellElement>,
+    info: IInfo
   ) => void
   withTime?: boolean
 }
 
 export const Calendar: React.FC<Props> = ({
   id,
+  name,
   currentValue = getTodayMonthYear(),
   offsetYear = 10,
   activeDates,
@@ -75,18 +79,18 @@ export const Calendar: React.FC<Props> = ({
     setSeconds(currentSeconds)
 
     if (onChange) {
-      onChange(`${currentDate}T${time}`, event)
+      onChange(`${currentDate}T${time}`, event, { id, name })
     }
   }
 
   const onChangeDate = (date: string, event: React.MouseEvent<HTMLTableDataCellElement>): void => {
     if (onChange) {
       if (!withTime) {
-        onChange(date, event)
+        onChange(date, event, { id, name })
       }
 
       if (withTime) {
-        onChange(`${date}T${hours}:${minutes}:${seconds}`, event)
+        onChange(`${date}T${hours}:${minutes}:${seconds}`, event, { id, name })
       }
     }
 

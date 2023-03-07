@@ -54,4 +54,4 @@ export {
 }
 
 export { UIKitColors } from './constants'
-export { FormattedValues, Item, PaginationResult, TabsItem } from './types'
+export { FormattedValues, IInfo, Item, PaginationResult, TabsItem } from './types'

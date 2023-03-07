@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import { Calendar } from "../../lab"
 
-import { ValidationState } from "../types"
+import { IInfo, ValidationState } from "../types"
 import { IconCalendar, Placeholder } from "../_elements"
 
 import {
@@ -45,7 +45,8 @@ export interface Props {
   onFocus?: () => void
   onChange?: (
     values: FormattedValues,
-    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>
+    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>,
+    info: IInfo
   ) => void
   isIconClickable?: boolean
   offsetYear?: number
@@ -122,7 +123,7 @@ export const DatePicker: React.FC<Props> = ({
           ? parseISODateTimeToNumericString(date)
           : parseISODateToNumericString(date),
         formattedValue: withTime ? parseISODateTime(date) : parseISODate(date)
-      }, event)
+      }, event, { id, name })
     }
   }
 
@@ -131,7 +132,7 @@ export const DatePicker: React.FC<Props> = ({
       onChange({
         value: values.value,
         formattedValue: values.formattedValue
-      }, sourceInfo.event)
+      }, sourceInfo.event, { id, name })
     }
   }
 
@@ -211,6 +212,7 @@ export const DatePicker: React.FC<Props> = ({
       >
         <Calendar
           id={id}
+          name={name}
           currentValue={
             withTime
               ? parseNumericStringToISODateTime(value)

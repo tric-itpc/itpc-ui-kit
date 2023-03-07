@@ -19,4 +19,4 @@ import { TextField } from './TextField';
 import { Cell, Column, Row, Table, TableBody, TableFooter, TableHeader } from './Table';
 export { Accordion, AccordionBody, AccordionHeader, AccordionItem, AccordionArrow, Button, ButtonRound, Card, Cell, Checkbox, Column, DatePicker, ErrorMessage, Modal, ModalContent, ModalFooter, MultiSelectField, NumberField, Pagination, Popup, Preloader, Row, SelectField, SearchField, Table, TableBody, TableFooter, TableHeader, Tabs, TabButton, Text, TextField };
 export { UIKitColors } from './constants';
-export { FormattedValues, Item, PaginationResult, TabsItem } from './types';
+export { FormattedValues, IInfo, Item, PaginationResult, TabsItem } from './types';

@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { DatePicker, Props } from '../components/DatePicker'
 import { FormattedValues } from "../components"
+import { IInfo } from '../components/types'
 
 export default {
   title: 'Components/DatePicker',
@@ -14,7 +15,8 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
   const onChange = (
     inputValue: FormattedValues,
-    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>
+    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableCellElement>,
+    info: IInfo
   ): void => {
     setDate(inputValue)
   }
@@ -34,6 +36,6 @@ Basic.args = {
   validationState: 'valid',
   errorMessage: 'Error message',
   withTime: false,
-  // disabledDates: ['2023-01-25'],
+  disabledDates: ['2023-01-25'],
   disabledAfterDate: '2023-02-05'
 }

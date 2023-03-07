@@ -41,3 +41,8 @@ export interface FormattedValues {
   value: string,
   formattedValue: string
 }
+
+export interface IInfo {
+  id: string
+  name: string
+}

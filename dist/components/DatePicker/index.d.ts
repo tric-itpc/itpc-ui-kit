@@ -1,5 +1,5 @@
 import React from "react";
-import { ValidationState } from "../types";
+import { IInfo, ValidationState } from "../types";
 import './styles.css';
 export interface FormattedValues {
     value: string;
@@ -19,7 +19,7 @@ export interface Props {
     errorMessage?: string;
     onBlur?: () => void;
     onFocus?: () => void;
-    onChange?: (values: FormattedValues, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>) => void;
+    onChange?: (values: FormattedValues, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>, info: IInfo) => void;
     isIconClickable?: boolean;
     offsetYear?: number;
     withTime?: boolean;
