@@ -127,13 +127,6 @@ export const Pagination: FC<Props> = ({
     }
 
     setPages(countPages)
-    setStartPagination(0)
-    setEndPagination(step)
-    callback({
-      currentPage: endPagination / step,
-      start: 0,
-      end: step
-    })
   }, [dataLength])
 
   return (

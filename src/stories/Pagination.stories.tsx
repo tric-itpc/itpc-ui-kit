@@ -245,8 +245,17 @@ export default {
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
+  const [items, setItems] = useState(mockItems)
   const [start, setStart] = useState<number>(0)
   const [end, setEnd] = useState<number>(0)
+
+  const addItem = (): void => {
+    setItems([...items, { id: '123', value: 'asd' }])
+  }
+
+  const deleteItem = (): void => {
+    setItems([...items.slice(0, items.length - 1)])
+  }
 
   const paginationResult = (pagination: PaginationResult): void => {
     setStart(pagination.start)
@@ -257,11 +266,13 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
     <>
       <Pagination
         step={10}
-        dataLength={mockItems.length}
+        dataLength={items.length}
         callback={paginationResult}
       />
       <p>start: {start}</p>
       <p>end: {end}</p>
+      <button onClick={addItem}>ADD</button>
+      <button onClick={deleteItem}>DELETE</button>
     </>
   )
 }
