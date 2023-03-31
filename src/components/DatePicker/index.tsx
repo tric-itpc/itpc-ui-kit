@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import NumberFormat, { NumberFormatValues, SourceInfo } from "react-number-format"
+import { NumberFormatValues, PatternFormat, SourceInfo } from "react-number-format"
 import cn from 'classnames'
 
 import { Calendar } from "../../lab"
@@ -45,7 +45,9 @@ export interface Props {
   onFocus?: () => void
   onChange?: (
     values: FormattedValues,
-    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>,
+    event: React.SyntheticEvent<HTMLInputElement>
+      | React.SyntheticEvent<HTMLButtonElement>
+      | React.SyntheticEvent<HTMLTableDataCellElement>,
     info: IInfo
   ) => void
   isIconClickable?: boolean
@@ -180,7 +182,7 @@ export const DatePicker: React.FC<Props> = ({
             {placeholder}
           </Placeholder>
         )}
-        <NumberFormat
+        <PatternFormat
           id={id}
           name={name}
           type="text"
@@ -193,7 +195,7 @@ export const DatePicker: React.FC<Props> = ({
             'itpc-datepicker__input',
             (focused || value.length) && 'itpc-datepicker__input_focused'
           )}
-          isNumericString
+          valueIsNumericString
           allowEmptyFormatting
           format={withTime ? formatMaskDateTime : formatMaskDate}
           mask={withTime ? maskDateTime : maskDate}

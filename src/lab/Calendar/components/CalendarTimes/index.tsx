@@ -1,5 +1,5 @@
 import React from "react"
-import NumberFormat, { NumberFormatValues, SourceInfo } from "react-number-format"
+import { NumberFormatValues, PatternFormat, SourceInfo } from "react-number-format"
 
 import './styles.css'
 
@@ -7,7 +7,7 @@ interface Props {
   hours: string;
   minutes: string;
   seconds: string;
-  onChange(time: string, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>): void;
+  onChange(time: string, event?: React.SyntheticEvent<HTMLInputElement> | React.SyntheticEvent<HTMLButtonElement>): void;
 }
 
 export const CalendarTimes: React.FC<Props> = ({
@@ -110,9 +110,9 @@ export const CalendarTimes: React.FC<Props> = ({
         >
           <i className="itpc-calendar__arrow itpc-calendar__arrow_top" />
         </button>
-        <NumberFormat
+        <PatternFormat
           className="itpc-calendar__input"
-          isNumericString
+          valueIsNumericString
           allowEmptyFormatting
           format="##"
           mask={["Ч", "Ч"]}
@@ -142,9 +142,9 @@ export const CalendarTimes: React.FC<Props> = ({
         >
           <i className="itpc-calendar__arrow itpc-calendar__arrow_top" />
         </button>
-        <NumberFormat
+        <PatternFormat
           className="itpc-calendar__input"
-          isNumericString
+          valueIsNumericString
           allowEmptyFormatting
           format="##"
           mask={["М", "М"]}
@@ -174,9 +174,9 @@ export const CalendarTimes: React.FC<Props> = ({
         >
           <i className="itpc-calendar__arrow itpc-calendar__arrow_top" />
         </button>
-        <NumberFormat
+        <PatternFormat
           className="itpc-calendar__input"
-          isNumericString
+          valueIsNumericString
           allowEmptyFormatting
           format="##"
           mask={["С", "С"]}

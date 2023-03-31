@@ -19,7 +19,7 @@ export interface Props {
     errorMessage?: string;
     onBlur?: () => void;
     onFocus?: () => void;
-    onChange?: (values: FormattedValues, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>, info: IInfo) => void;
+    onChange?: (values: FormattedValues, event: React.SyntheticEvent<HTMLInputElement> | React.SyntheticEvent<HTMLButtonElement> | React.SyntheticEvent<HTMLTableDataCellElement>, info: IInfo) => void;
     isIconClickable?: boolean;
     offsetYear?: number;
     withTime?: boolean;

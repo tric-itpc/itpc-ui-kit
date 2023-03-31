@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
-import NumberFormat, { NumberFormatValues, SourceInfo } from 'react-number-format'
+import { NumberFormatValues, PatternFormat, SourceInfo } from 'react-number-format'
 import cn from 'classnames'
 
 import { Field, InputWrap, Placeholder } from '../_elements'
@@ -23,7 +23,7 @@ export interface Props {
   allowNegative?: boolean
   onBlur?: () => void
   onFocus?: () => void
-  onChange?: (values: FormattedValues, event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (values: FormattedValues, event?: React.SyntheticEvent<HTMLInputElement>) => void
   getInputRef?: ((el: HTMLInputElement) => void) | React.Ref<any>
   className?: string
 }
@@ -39,9 +39,7 @@ export const NumberField: React.FC<Props> = ({
   format = '',
   mask = '_',
   prefix = "",
-  suffix = "",
   allowEmptyFormatting = true,
-  allowNegative = false,
   onBlur,
   onFocus,
   onChange,
@@ -82,7 +80,7 @@ export const NumberField: React.FC<Props> = ({
           {placeholder}
         </Placeholder>
 
-        <NumberFormat
+        <PatternFormat
           id={id}
           name={name}
           type="text"
@@ -92,13 +90,11 @@ export const NumberField: React.FC<Props> = ({
           onBlur={onBlurInput}
           onValueChange={onChangeInput}
           className={cn('itpc-input', (focused || !!value.length) && 'itpc-input_focused')}
-          isNumericString
-          allowNegative={allowNegative}
+          valueIsNumericString
           allowEmptyFormatting={allowEmptyFormatting}
           format={format}
           mask={mask}
           prefix={prefix}
-          suffix={suffix}
           getInputRef={getInputRef}
         />
       </InputWrap>
