@@ -1,5 +1,5 @@
 import React from "react";
-import { IInfo } from "../../components/types";
+import { IInfo } from "../../components";
 import './styles.css';
 export interface Props {
     id: string;
