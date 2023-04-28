@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { Calendar } from "../../lab"
 
 import { IInfo, ValidationState } from "../types"
-import { IconCalendar, Placeholder } from "../_elements"
+import { IconCalendar, InputError, Placeholder } from "../_elements"
 
 import {
   parseISODate,
@@ -37,7 +37,10 @@ export interface Props {
   disabledDates?: string[]
   disabledAfterDate?: string
   disabledBeforeDate?: string
+  disabledDaysOfWeek?: number[]
   disabled?: boolean
+  disabledSelectMonth?: boolean
+  disabledSelectYear?: boolean
   placeholder?: string
   validationState?: ValidationState
   errorMessage?: string
@@ -64,7 +67,10 @@ export const DatePicker: React.FC<Props> = ({
   disabledDates,
   disabledAfterDate,
   disabledBeforeDate,
+  disabledDaysOfWeek,
   disabled = false,
+  disabledSelectMonth = false,
+  disabledSelectYear = false,
   placeholder = "",
   validationState = "valid",
   errorMessage = "",
@@ -201,11 +207,8 @@ export const DatePicker: React.FC<Props> = ({
           mask={withTime ? maskDateTime : maskDate}
         />
         <IconCalendar isClickable={isIconClickable} onClick={onClickIcon} />
+        <InputError errorMessage={errorMessage} show={validationState === 'invalid'} />
       </div>
-
-      {validationState === "invalid" && (
-        <span className="itpc-datepicker__error-message">{errorMessage}</span>
-      )}
 
       <div
         className="itpc-datepicker__calendar-wrap"
@@ -224,6 +227,9 @@ export const DatePicker: React.FC<Props> = ({
           disabledDates={disabledDates}
           disabledAfterDate={disabledAfterDate}
           disabledBeforeDate={disabledBeforeDate}
+          disabledDaysOfWeek={disabledDaysOfWeek}
+          disabledSelectMonth={disabledSelectMonth}
+          disabledSelectYear={disabledSelectYear}
           show={isShowCalendar}
           handleShow={onCloseCalendar}
           onChange={onChangeDate}

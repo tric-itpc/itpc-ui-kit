@@ -32,6 +32,7 @@ interface Props {
   disabledDates?: string[]
   disabledAfterDate?: string
   disabledBeforeDate?: string
+  disabledDaysOfWeek?: number[]
   onChange(date: string, event: React.MouseEvent<HTMLTableDataCellElement>): void;
 }
 
@@ -43,6 +44,7 @@ export const CalendarTable: React.FC<Props> = ({
   disabledDates,
   disabledAfterDate,
   disabledBeforeDate,
+  disabledDaysOfWeek,
   onChange
 }: Props) => {
   const rows = getRows(days)
@@ -75,7 +77,9 @@ export const CalendarTable: React.FC<Props> = ({
                 currentDate={currentDate}
                 isChanged={currentDate === day.date}
                 onChange={onChange}
-                disabled={isDisabledDate(day.date, activeDates, disabledDates, disabledAfterDate, disabledBeforeDate)}
+                disabled={isDisabledDate(
+                  day.date, activeDates, disabledDates, disabledAfterDate, disabledBeforeDate, disabledDaysOfWeek
+                )}
               />
             ))}
           </tr>

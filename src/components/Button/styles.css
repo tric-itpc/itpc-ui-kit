@@ -4,7 +4,7 @@
   min-height: 40px;
   background-color: #5C53AC;
   border: 1px solid #5C53AC;
-  border-radius: 0;
+  border-radius: 4px;
   color: #fff;
   cursor: pointer;
   font-size: 14px;
@@ -23,7 +23,7 @@
   background-color: #B2B7C7;
   border-color: #B2B7C7;
   color: #fff;
-  cursor: disabled;
+  cursor: default;
 }
 
 .itpc-button__color_white {
@@ -42,7 +42,7 @@
   background-color: #B2B7C7;
   border-color: #B2B7C7;
   color: #fff;
-  cursor: disabled;
+  cursor: default;
 }
 
 .itpc-button__color_red {
@@ -61,5 +61,5 @@
   background-color: #B2B7C7;
   border-color: #B2B7C7;
   color: #fff;
-  cursor: disabled;
+  cursor: default;
 }

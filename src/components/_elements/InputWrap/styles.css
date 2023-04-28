@@ -6,6 +6,7 @@
   align-items: center;
   gap: 10px;
   border: 1px solid #B2B7C7;
+  border-radius: 4px;
   box-shadow: none;
   box-sizing: border-box;
   font-size: 14px;
@@ -29,6 +30,7 @@
   height: 100%;
   border: none;
   background-color: #fff;
+  border-radius: 4px;
   outline: none;
   font-size: 14px;
   color: transparent;

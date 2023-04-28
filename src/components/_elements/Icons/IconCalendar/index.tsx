@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const IconCalendar: React.FC<Props> = ({ isClickable, onClick }) => (
-  <i className={cn('itpc-icon__calendar', isClickable && 'itpc-icon__calendar_clicabled')} onClick={onClick}>
+  <i className={cn('itpc-icon__calendar', isClickable && 'itpc-icon__calendar_clickable')} onClick={onClick}>
     <svg width="20" height="20" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_94_50)">
         <path

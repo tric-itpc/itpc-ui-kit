@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react"
 import cn from 'classnames'
 
-import { Field, InputWrap, Placeholder } from "../_elements"
+import { Field, InputError, InputWrap, Placeholder } from "../_elements"
 
 import { ValidationState } from "../types"
 
@@ -95,9 +95,9 @@ export const TextAreaField: React.FC<Props> = ({
           onChange={onChangeTextArea}
           className={cn('itpc-input', (focused || !!value.length) && 'itpc-input_focused')}
         />
-      </InputWrap>
 
-      {validationState === 'invalid' && <p className="itpc-field__error-message">{errorMessage}</p>}
+        <InputError errorMessage={errorMessage} show={validationState === 'invalid'} />
+      </InputWrap>
     </Field>
   )
 }

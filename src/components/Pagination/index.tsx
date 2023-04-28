@@ -4,7 +4,7 @@ import cn from 'classnames'
 import { PaginationResult } from "../types"
 
 import './styles.css'
-import { IconArrow } from "../_elements"
+import { IconArrow, IconDoubleArrow } from "../_elements"
 
 export interface Props {
   step?: number,
@@ -137,15 +137,15 @@ export const Pagination: FC<Props> = ({
         disabled={!startPagination || !dataLength}
         onClick={start}
       >
-        <IconArrow orientation="left" />
+        <IconDoubleArrow orientation="left" />
       </button>
       <button
         type="button"
-        className="itpc-pagination__btn itpc-pagination__btn_back"
+        className="itpc-pagination__btn itpc-pagination__btn_left"
         disabled={!startPagination || !dataLength}
         onClick={prev}
       >
-        Назад
+        <IconArrow orientation="left" />
       </button>
       <div className="itpc-pagination__pages">
         {pages.slice(startSlicePagesCount(), endSlicePagesCount()).map((page) => (
@@ -180,11 +180,11 @@ export const Pagination: FC<Props> = ({
       </div>
       <button
         type="button"
-        className="itpc-pagination__btn itpc-pagination__btn_forward"
+        className="itpc-pagination__btn itpc-pagination__btn_right"
         disabled={currentPage === pages[pages.length - 1] || !dataLength}
         onClick={next}
       >
-        Вперед
+        <IconArrow orientation="right" />
       </button>
       <button
         type="button"
@@ -192,7 +192,7 @@ export const Pagination: FC<Props> = ({
         disabled={currentPage === pages[pages.length - 1] || !dataLength}
         onClick={end}
       >
-        <IconArrow orientation="right" />
+        <IconDoubleArrow orientation="right" />
       </button>
     </div>
   )

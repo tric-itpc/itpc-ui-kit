@@ -1,0 +1,22 @@
+.itpc-error {
+  padding: 0 5px;
+  max-width: 50%;
+  position: absolute;
+  bottom: calc(-7px);
+  right: 10px;
+  background-color: rgb(255, 255, 255);
+  cursor: text;
+  font-size: 12px;
+  line-height: 14px;
+  color: #D42564;
+  box-sizing: border-box;
+  opacity: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.itpc-error_show {
+  opacity: 1;
+}

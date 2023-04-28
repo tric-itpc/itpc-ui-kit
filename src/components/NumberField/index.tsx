@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { NumberFormatValues, PatternFormat, SourceInfo } from 'react-number-format'
 import cn from 'classnames'
 
-import { Field, InputWrap, Placeholder } from '../_elements'
+import { Field, InputError, InputWrap, Placeholder } from '../_elements'
 
 import { FormattedValues, ValidationState } from '../types'
 
@@ -97,9 +97,9 @@ export const NumberField: React.FC<Props> = ({
           prefix={prefix}
           getInputRef={getInputRef}
         />
-      </InputWrap>
 
-      {validationState === 'invalid' && <p className="itpc-field__error-message">{errorMessage}</p>}
+        <InputError errorMessage={errorMessage} show={validationState === "invalid"} />
+      </InputWrap>
     </Field>
   )
 }

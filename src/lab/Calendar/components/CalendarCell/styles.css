@@ -1,5 +1,6 @@
 .itpc-calendar__cell {
   padding: 0.5rem;
+  border-radius: 4px;
   color: #000;
   cursor: pointer;
 }

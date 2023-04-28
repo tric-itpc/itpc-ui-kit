@@ -16,6 +16,7 @@ export interface Props {
   variant?: PopupVariant
   position?: PopupPosition
   className?: string
+  iconClose?: React.ReactNode
   children?: React.ReactNode
   onClose(): void
 }
@@ -27,6 +28,7 @@ export const Popup: React.FC<Props> = ({
   variant = 'default',
   position = 'center-center',
   className = '',
+  iconClose,
   onClose,
   children
 }) => {
@@ -55,7 +57,8 @@ export const Popup: React.FC<Props> = ({
     >
       <div className="itpc-popup__header">
         <p className="itpc-popup__title">{title}</p>
-        <IconClose color={getColor(variant)} onPress={onClose} />
+        {iconClose && iconClose}
+        {!iconClose && <IconClose color={getColor(variant)} onPress={onClose} />}
       </div>
 
       {size === 'normal' && children}

@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { DatePicker, Props } from '../components/DatePicker'
-import { FormattedValues } from "../components"
-import { IInfo } from '../components/types'
+import { FormattedValues, IInfo } from "../components"
 
 export default {
   title: 'Components/DatePicker',
@@ -15,7 +14,9 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
   const onChange = (
     inputValue: FormattedValues,
-    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableCellElement>,
+    event: React.SyntheticEvent<HTMLInputElement>
+      | React.SyntheticEvent<HTMLButtonElement>
+      | React.SyntheticEvent<HTMLTableDataCellElement>,
     info: IInfo
   ): void => {
     setDate(inputValue)
@@ -35,7 +36,5 @@ Basic.args = {
   placeholder: 'Enter date',
   validationState: 'valid',
   errorMessage: 'Error message',
-  withTime: false,
-  disabledDates: ['2023-01-25'],
-  disabledAfterDate: '2023-02-05'
+  withTime: false
 }

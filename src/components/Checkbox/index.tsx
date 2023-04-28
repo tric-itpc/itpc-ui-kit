@@ -1,7 +1,7 @@
 import React from "react"
 import cn from 'classnames'
 
-import { InputCheckboxType } from "../types"
+import { InputCheckboxLabelPosition, InputCheckboxType, InputCheckboxVariant } from "../types"
 
 import './styles.css'
 
@@ -9,6 +9,8 @@ export interface Props {
   id: string
   name: string
   type?: InputCheckboxType
+  variant?: InputCheckboxVariant
+  labelPosition?: InputCheckboxLabelPosition
   disabled?: boolean
   label?: string
   className?: string
@@ -20,6 +22,8 @@ export const Checkbox: React.FC<Props> = ({
   id,
   name,
   type = 'checkbox',
+  variant = 'android',
+  labelPosition = 'right',
   disabled = false,
   label = '',
   className = '',
@@ -27,6 +31,7 @@ export const Checkbox: React.FC<Props> = ({
   onClick
 }) => (
   <label className={cn('itpc-checkbox', className)}>
+    {labelPosition === "left" && <span className="itpc-checkbox__label itpc-checkbox__label_left">{label}</span>}
     <input
       id={id}
       name={name}
@@ -36,7 +41,7 @@ export const Checkbox: React.FC<Props> = ({
       className="itpc-checkbox__input"
       onChange={onClick}
     />
-    <div className="itpc-checkbox__fake" />
-    <span className="itpc-checkbox__label">{label}</span>
+    <div className={cn('itpc-checkbox__fake', `itpc-checkbox__fake_${variant}`)} />
+    {labelPosition === "right" && <span className="itpc-checkbox__label">{label}</span>}
   </label>
 )

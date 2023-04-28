@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { Pagination, Props } from '../components/Pagination'
-import { Item, PaginationResult } from "../components"
+import { Button, Item, PaginationResult } from "../components"
 
 const mockItems: Item[] = [
   {
@@ -265,14 +265,20 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
   return (
     <>
       <Pagination
-        step={10}
+        {...args}
         dataLength={items.length}
         callback={paginationResult}
       />
-      <p>start: {start}</p>
-      <p>end: {end}</p>
-      <button onClick={addItem}>ADD</button>
-      <button onClick={deleteItem}>DELETE</button>
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <p>Start: {start}</p>
+        <p>End: {end}</p>
+        <p>Step: {args.step ?? 10}</p>
+        <p>Items count: {items.length}</p>
+      </div>
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <Button variant="white" onPress={deleteItem}>Delete item</Button>
+        <Button onPress={addItem}>Add item</Button>
+      </div>
     </>
   )
 }

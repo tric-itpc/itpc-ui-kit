@@ -1,6 +1,7 @@
 import React from "react"
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
+import { IconWarning } from "../components/_elements"
 import { ButtonRound, Props } from '../components/ButtonRound'
 
 export default {
@@ -9,16 +10,14 @@ export default {
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = ({
-  disabled,
-  children
+  disabled
 }: Props) => (
   <ButtonRound disabled={disabled}>
-    {children}
+    <IconWarning />
   </ButtonRound>
 )
 
 export const Basic = Template.bind({})
 Basic.args = {
-  disabled: false,
-  children: 'B'
+  disabled: false
 }

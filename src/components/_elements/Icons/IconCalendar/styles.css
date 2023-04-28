@@ -8,6 +8,6 @@
   transition: all ease-in-out .3s;
 }
 
-.itpc-icon__calendar_clicabled {
+.itpc-icon__calendar_clickable {
   cursor: pointer;
 }

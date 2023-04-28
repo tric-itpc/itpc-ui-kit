@@ -19,7 +19,7 @@
   opacity: 1;
 }
 
-.itpc-modal-overlay_clickabled {
+.itpc-modal-overlay_clickable {
   cursor: pointer;
 }
 
@@ -29,6 +29,7 @@
   max-width: 80%;
   max-height: 80%;
   background-color: #fff;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 30px;

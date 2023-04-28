@@ -129,12 +129,14 @@ export function initCurrentTime(currentValue: string, withTime: boolean): string
   return currentValue.split("T")[1].split(':')
 }
 
+// eslint-disable-next-line max-params
 export function isDisabledDate(
   date: string,
   activeDates?: string[],
   disabledDates?: string[],
   disabledAfterDate?: string,
-  disabledBeforeDate?: string
+  disabledBeforeDate?: string,
+  disabledDaysOfWeek?: number[]
 ): boolean {
   if (activeDates && disabledDates) {
     return false
@@ -153,6 +155,13 @@ export function isDisabledDate(
   }
 
   if (disabledBeforeDate && moment(date).isBefore(disabledBeforeDate)) {
+    return true
+  }
+
+  if (
+    disabledDaysOfWeek && disabledDaysOfWeek.includes(moment(date).locale("ru").
+      weekday() + 1)
+  ) {
     return true
   }
 

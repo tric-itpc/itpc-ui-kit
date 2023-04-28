@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import cn from 'classnames'
 
-import { IInfo } from "../../components/types"
+import { IInfo } from "../../components"
 import { useOnClickOutside } from "../../_hooks"
 
 import { Day } from "./types"
@@ -31,6 +31,9 @@ export interface Props {
   disabledDates?: string[]
   disabledAfterDate?: string
   disabledBeforeDate?: string
+  disabledDaysOfWeek?: number[]
+  disabledSelectMonth?: boolean
+  disabledSelectYear?: boolean
   show: boolean
   handleShow: () => void
   onChange?: (
@@ -50,6 +53,9 @@ export const Calendar: React.FC<Props> = ({
   disabledDates,
   disabledAfterDate,
   disabledBeforeDate,
+  disabledDaysOfWeek,
+  disabledSelectMonth,
+  disabledSelectYear,
   show,
   handleShow,
   onChange,
@@ -131,6 +137,8 @@ export const Calendar: React.FC<Props> = ({
     >
       <CalendarControl
         currentDate={currentDate}
+        disabledSelectMonth={disabledSelectMonth}
+        disabledSelectYear={disabledSelectYear}
         changeCurrentDate={changeCurrentDate}
         handleShowSelectYear={handleShowSelectYear}
         handleShowSelectMonth={handleShowSelectMonth}
@@ -143,6 +151,7 @@ export const Calendar: React.FC<Props> = ({
         disabledDates={disabledDates}
         disabledAfterDate={disabledAfterDate}
         disabledBeforeDate={disabledBeforeDate}
+        disabledDaysOfWeek={disabledDaysOfWeek}
         onChange={onChangeDate}
       />
       {withTime && (

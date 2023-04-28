@@ -8,6 +8,7 @@ export interface Props {
     variant?: PopupVariant;
     position?: PopupPosition;
     className?: string;
+    iconClose?: React.ReactNode;
     children?: React.ReactNode;
     onClose(): void;
 }

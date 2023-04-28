@@ -6,6 +6,8 @@ import './styles.css'
 
 interface Props {
   currentDate: string;
+  disabledSelectMonth?: boolean
+  disabledSelectYear?: boolean
   handleShowSelectYear(): void;
   handleShowSelectMonth(): void;
   changeCurrentDate(date: string): void;
@@ -13,6 +15,8 @@ interface Props {
 
 export const CalendarControl: React.FC<Props> = ({
   currentDate,
+  disabledSelectMonth,
+  disabledSelectYear,
   changeCurrentDate,
   handleShowSelectYear,
   handleShowSelectMonth
@@ -46,6 +50,7 @@ export const CalendarControl: React.FC<Props> = ({
       <button
         className="itpc-calendar__button"
         type="button"
+        disabled={disabledSelectYear}
         onClick={decreaseCurrentDateYear}
       >
         <i className="itpc-calendar__arrow itpc-calendar__arrow_bold itpc-calendar__arrow_left" />
@@ -53,6 +58,7 @@ export const CalendarControl: React.FC<Props> = ({
       <button
         className="itpc-calendar__button"
         type="button"
+        disabled={disabledSelectMonth}
         onClick={decreaseCurrentDateMonth}
       >
         <i className="itpc-calendar__arrow itpc-calendar__arrow_left" />
@@ -62,6 +68,7 @@ export const CalendarControl: React.FC<Props> = ({
         <button
           className="itpc-calendar__button"
           type="button"
+          disabled={disabledSelectMonth}
           onClick={handleShowSelectMonth}
         >
           {getMonthToString(currentDate)}
@@ -69,6 +76,7 @@ export const CalendarControl: React.FC<Props> = ({
         <button
           className="itpc-calendar__button"
           type="button"
+          disabled={disabledSelectYear}
           onClick={handleShowSelectYear}
         >
           {getYearToString(currentDate)}
@@ -78,6 +86,7 @@ export const CalendarControl: React.FC<Props> = ({
       <button
         className="itpc-calendar__button"
         type="button"
+        disabled={disabledSelectMonth}
         onClick={increaseCurrentDateMonth}
       >
         <i className="itpc-calendar__arrow itpc-calendar__arrow_right" />
@@ -85,6 +94,7 @@ export const CalendarControl: React.FC<Props> = ({
       <button
         className="itpc-calendar__button"
         type="button"
+        disabled={disabledSelectYear}
         onClick={increaseCurrentDateYear}
       >
         <i className="itpc-calendar__arrow itpc-calendar__arrow_bold itpc-calendar__arrow_right" />

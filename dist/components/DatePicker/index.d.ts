@@ -13,7 +13,10 @@ export interface Props {
     disabledDates?: string[];
     disabledAfterDate?: string;
     disabledBeforeDate?: string;
+    disabledDaysOfWeek?: number[];
     disabled?: boolean;
+    disabledSelectMonth?: boolean;
+    disabledSelectYear?: boolean;
     placeholder?: string;
     validationState?: ValidationState;
     errorMessage?: string;

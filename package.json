@@ -1,13 +1,16 @@
 {
   "name": "itpc-ui-kit",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "",
   "main": "./dist/index.js",
+  "homepage": "https://tric-itpc.github.io/itpc-ui-kit",
   "scripts": {
     "build": "webpack",
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static",
+    "predeploy": "npm run build-storybook",
     "publish-package": "npm run build && npm publish",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6006"
   },
   "repository": {
     "type": "git",
@@ -18,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/tric-itpc/itpc-ui-kit/issues"
   },
-  "homepage": "https://github.com/tric-itpc/itpc-ui-kit#readme",
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@storybook/addon-actions": "^6.4.12",
@@ -35,6 +37,7 @@
     "eslint": "^8.6.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-react": "^7.28.0",
+    "gh-pages": "^5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-number-format": "^5.1.4",

@@ -35,7 +35,7 @@ export const Modal: React.FC<ModalProps> = ({
       className={cn(
         'itpc-modal-overlay',
         isOpen && 'itpc-modal-overlay_opened',
-        isOverlayClickable && 'itpc-modal-overlay_clickabled',
+        isOverlayClickable && 'itpc-modal-overlay_clickable',
         className
       )}
       onClick={onCloseOverlay}
@@ -44,7 +44,7 @@ export const Modal: React.FC<ModalProps> = ({
         <div className="itpc-modal__header">
           {title}
           {iconClose && iconClose}
-          {!iconClose && <IconClose onPress={() => onClose()} />}
+          {!iconClose && <IconClose onPress={onClose} />}
         </div>
 
         {children}

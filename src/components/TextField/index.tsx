@@ -6,7 +6,7 @@ import {
   IconCancel,
   IconLoading,
   IconOk,
-  IconWarning,
+  IconWarning, InputError,
   InputWrap,
   Placeholder
 } from '../_elements'
@@ -103,13 +103,13 @@ export const TextField: React.FC<Props> = ({
           maxLength={maxLength}
         />
 
+        <InputError errorMessage={errorMessage} show={validationState === "invalid"} />
+
         {state === 'cancel' && <IconCancel onClick={onClickIcon} />}
         {state === 'success' && <IconOk />}
         {state === 'loading' && <IconLoading />}
         {state === 'warning' && <IconWarning />}
       </InputWrap>
-
-      {validationState === 'invalid' && <p className="itpc-field__error-message">{errorMessage}</p>}
     </Field>
   )
 }
