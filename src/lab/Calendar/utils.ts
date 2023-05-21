@@ -4,6 +4,10 @@ import moment from "moment"
 import { daysNumeric, monthNumerical, monthPlural, months } from './constants'
 import { Day } from './types'
 
+export function getMonth(month: number): string {
+  return month < 10 ? `0${month}` : month.toString()
+}
+
 export function dateToString(date: string): string {
   const parseDate = date.split('-')
   return `${parseDate[2]} ${monthPlural[parseInt(parseDate[1], 10) - 1]}`
@@ -158,12 +162,7 @@ export function isDisabledDate(
     return true
   }
 
-  if (
-    disabledDaysOfWeek && disabledDaysOfWeek.includes(moment(date).locale("ru").
-      weekday() + 1)
-  ) {
-    return true
-  }
-
-  return false
+  return !!(disabledDaysOfWeek && disabledDaysOfWeek.includes(moment(date).
+    locale("ru").
+    weekday() + 1))
 }

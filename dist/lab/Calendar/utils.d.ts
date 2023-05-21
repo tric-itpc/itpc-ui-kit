@@ -1,4 +1,5 @@
 import { Day } from './types';
+export declare function getMonth(month: number): string;
 export declare function dateToString(date: string): string;
 export declare function getMonthToString(date: string): string;
 export declare function getYearToString(date: string): string;

@@ -1,6 +1,6 @@
 import React from "react"
 
-import { getMonthToString, getYearToString } from "../../utils"
+import { getMonth, getMonthToString, getYearToString } from "../../utils"
 
 import './styles.css'
 
@@ -24,25 +24,25 @@ export const CalendarControl: React.FC<Props> = ({
   const decreaseCurrentDateMonth = (): void => {
     const date = new Date(currentDate)
     date.setMonth(date.getMonth() - 1)
-    changeCurrentDate(`${date.getFullYear()}-${date.getMonth() + 1}`)
+    changeCurrentDate(`${date.getFullYear()}-${getMonth(date.getMonth() + 1)}`)
   }
 
   const increaseCurrentDateMonth = (): void => {
     const date = new Date(currentDate)
     date.setMonth(date.getMonth() + 1)
-    changeCurrentDate(`${date.getFullYear()}-${date.getMonth() + 1}`)
+    changeCurrentDate(`${date.getFullYear()}-${getMonth(date.getMonth() + 1)}`)
   }
 
   const decreaseCurrentDateYear = (): void => {
     const date = new Date(currentDate)
     date.setFullYear(date.getFullYear() - 1)
-    changeCurrentDate(`${date.getFullYear()}-${date.getMonth() + 1}`)
+    changeCurrentDate(`${date.getFullYear()}-${getMonth(date.getMonth() + 1)}`)
   }
 
   const increaseCurrentDateYear = (): void => {
     const date = new Date(currentDate)
     date.setFullYear(date.getFullYear() + 1)
-    changeCurrentDate(`${date.getFullYear()}-${date.getMonth() + 1}`)
+    changeCurrentDate(`${date.getFullYear()}-${getMonth(date.getMonth() + 1)}`)
   }
 
   return (

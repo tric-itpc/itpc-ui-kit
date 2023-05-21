@@ -9,10 +9,8 @@ export default {
   component: ButtonRound
 } as ComponentMeta<React.FC<Props>>
 
-const Template: ComponentStory<React.FC<Props>> = ({
-  disabled
-}: Props) => (
-  <ButtonRound disabled={disabled}>
+const Template: ComponentStory<React.FC<Props>> = (args) => (
+  <ButtonRound {...args}>
     <IconWarning />
   </ButtonRound>
 )

@@ -1,6 +1,7 @@
 import React from "react"
 
 import { months } from "../../constants"
+import { getMonth } from "../../utils"
 
 interface Props {
   currentDate: string;
@@ -14,7 +15,7 @@ export const SelectionMenuMonth: React.FC<Props> = ({
   const onClick = (month: number): void => {
     const date = new Date(currentDate)
     date.setMonth(month)
-    changeCurrentDate(`${date.getFullYear()}-${date.getMonth() + 1}`)
+    changeCurrentDate(`${date.getFullYear()}-${getMonth(date.getMonth() + 1)}`)
   }
 
   return (
