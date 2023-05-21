@@ -125,7 +125,6 @@ export const DatePicker: React.FC<Props> = ({
     date: string,
     event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>
   ): void => {
-    console.log('onChangeDate')
     if (onChange) {
       onChange({
         value: withTime
@@ -137,7 +136,6 @@ export const DatePicker: React.FC<Props> = ({
   }
 
   const onChangePicker = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
-    console.log('onChangePicker')
     if (onChange && sourceInfo.event) {
       onChange({
         value: values.value,
