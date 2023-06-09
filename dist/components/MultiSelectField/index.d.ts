@@ -1,6 +1,6 @@
 import React from "react";
 import { Item } from "../types";
-import './styles.css';
+import "./styles.css";
 export interface Props {
     items: Item[];
     selectedItems?: string[];

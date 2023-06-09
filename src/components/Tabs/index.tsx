@@ -3,7 +3,7 @@ import cn from "classnames"
 
 import { TabsItem } from "../types"
 
-import './styles.css'
+import "./styles.css"
 
 interface TabButtonProps {
   id: number
@@ -16,7 +16,7 @@ export const TabButton: React.FC<TabButtonProps> = ({
   id,
   title,
   isActive,
-  onClick
+  onClick,
 }) => {
   const click = (): void => {
     onClick(id)
@@ -25,7 +25,10 @@ export const TabButton: React.FC<TabButtonProps> = ({
   return (
     <button
       type="button"
-      className={cn('itpc-tabs__button', isActive && 'itpc-tabs__button_active')}
+      className={cn(
+        "itpc-tabs__button",
+        isActive && "itpc-tabs__button_active"
+      )}
       onClick={click}
     >
       {title}
@@ -45,7 +48,7 @@ export const Tabs: React.FC<TabsProps> = ({
   items,
   disabled = false,
   changeActiveTab,
-  className = '',
+  className = "",
   ...props
 }) => {
   const [activeTab, setActiveTab] = useState<number>(0)
@@ -59,10 +62,11 @@ export const Tabs: React.FC<TabsProps> = ({
     }
   }
 
-  const renderChildren = () => React.cloneElement(items[activeTab].content, { ...props })
+  const renderChildren = () =>
+    React.cloneElement(items[activeTab].content, { ...props })
 
   return (
-    <div className={cn('itpc-tabs', className)}>
+    <div className={cn("itpc-tabs", className)}>
       <div className="itpc-tabs__buttons">
         {items.map((item, i) => (
           <TabButton

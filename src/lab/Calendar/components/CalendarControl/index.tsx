@@ -2,15 +2,15 @@ import React from "react"
 
 import { getMonth, getMonthToString, getYearToString } from "../../utils"
 
-import './styles.css'
+import "./styles.css"
 
 interface Props {
-  currentDate: string;
+  currentDate: string
   disabledSelectMonth?: boolean
   disabledSelectYear?: boolean
-  handleShowSelectYear(): void;
-  handleShowSelectMonth(): void;
-  changeCurrentDate(date: string): void;
+  handleShowSelectYear(): void
+  handleShowSelectMonth(): void
+  changeCurrentDate(date: string): void
 }
 
 export const CalendarControl: React.FC<Props> = ({
@@ -19,7 +19,7 @@ export const CalendarControl: React.FC<Props> = ({
   disabledSelectYear,
   changeCurrentDate,
   handleShowSelectYear,
-  handleShowSelectMonth
+  handleShowSelectMonth,
 }: Props) => {
   const decreaseCurrentDateMonth = (): void => {
     const date = new Date(currentDate)

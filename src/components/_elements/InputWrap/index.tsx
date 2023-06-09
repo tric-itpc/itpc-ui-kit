@@ -1,9 +1,9 @@
 import React from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
 import { ValidationState } from "../../types"
 
-import './styles.css'
+import "./styles.css"
 
 interface InputWrapProps {
   focused?: boolean
@@ -18,13 +18,13 @@ export const InputWrap: React.FC<InputWrapProps> = ({
   validationState,
   height = 40,
   maxHeight = 200,
-  children
+  children,
 }) => (
   <div
     className={cn(
-      'itpc-input-wrap',
-      focused && 'itpc-input-wrap_focused',
-      validationState === 'invalid' && 'itpc-input-wrap_error'
+      "itpc-input-wrap",
+      focused && "itpc-input-wrap_focused",
+      validationState === "invalid" && "itpc-input-wrap_error"
     )}
     style={{ height, maxHeight }}
   >

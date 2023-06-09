@@ -1,6 +1,6 @@
 import React from "react";
 import { TabsItem } from "../types";
-import './styles.css';
+import "./styles.css";
 interface TabButtonProps {
     id: number;
     title: string;

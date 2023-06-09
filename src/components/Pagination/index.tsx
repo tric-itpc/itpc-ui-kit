@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState } from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
 import { PaginationResult } from "../types"
 
-import './styles.css'
+import "./styles.css"
 import { IconArrow, IconDoubleArrow } from "../_elements"
 
 export interface Props {
-  step?: number,
+  step?: number
   dataLength: number
   className?: string
   callback: (pagination: PaginationResult) => void
@@ -16,8 +16,8 @@ export interface Props {
 export const Pagination: FC<Props> = ({
   step = 10,
   dataLength,
-  className = '',
-  callback
+  className = "",
+  callback,
 }) => {
   const [startPagination, setStartPagination] = useState<number>(0)
   const [endPagination, setEndPagination] = useState<number>(step)
@@ -31,7 +31,7 @@ export const Pagination: FC<Props> = ({
     callback({
       currentPage: (endPagination - step) / step,
       start: startPagination - step,
-      end: endPagination - step
+      end: endPagination - step,
     })
   }
 
@@ -42,7 +42,7 @@ export const Pagination: FC<Props> = ({
     callback({
       currentPage: (endPagination + step) / step,
       start: startPagination + step,
-      end: endPagination + step
+      end: endPagination + step,
     })
   }
 
@@ -53,30 +53,30 @@ export const Pagination: FC<Props> = ({
     callback({
       currentPage: 1,
       start: 0,
-      end: step
+      end: step,
     })
   }
 
   /** В конец */
   const end = (): void => {
-    setStartPagination((pages[pages.length - 1] * step) - step)
+    setStartPagination(pages[pages.length - 1] * step - step)
     setEndPagination(pages[pages.length - 1] * step)
     callback({
       currentPage: pages[pages.length - 1],
-      start: (pages[pages.length - 1] * step) - step,
-      end: pages[pages.length - 1] * step
+      start: pages[pages.length - 1] * step - step,
+      end: pages[pages.length - 1] * step,
     })
   }
 
   /** На текущую страницу */
   const openPage = (page?: number): void => {
     if (page) {
-      setStartPagination((step * page) - step)
+      setStartPagination(step * page - step)
       setEndPagination(step * page)
       callback({
         currentPage: page,
-        start: (step * page) - step,
-        end: step * page
+        start: step * page - step,
+        end: step * page,
       })
     }
   }
@@ -148,35 +148,39 @@ export const Pagination: FC<Props> = ({
         <IconArrow orientation="left" />
       </button>
       <div className="itpc-pagination__pages">
-        {pages.slice(startSlicePagesCount(), endSlicePagesCount()).map((page) => (
-          <button
-            key={page}
-            type="button"
-            onClick={() => openPage(page)}
-            className={cn(
-              'itpc-pagination__btn',
-              'itpc-pagination__btn_page',
-              currentPage === page && 'itpc-pagination__btn_page_active'
-            )}
-          >
-            {page}
-          </button>
-        ))}
-        {currentPage < pages.length - 3 && pages.length > 4 && <p className="itpc-pagination__text">...</p>}
+        {pages
+          .slice(startSlicePagesCount(), endSlicePagesCount())
+          .map((page) => (
+            <button
+              key={page}
+              type="button"
+              onClick={() => openPage(page)}
+              className={cn(
+                "itpc-pagination__btn",
+                "itpc-pagination__btn_page",
+                currentPage === page && "itpc-pagination__btn_page_active"
+              )}
+            >
+              {page}
+            </button>
+          ))}
+        {currentPage < pages.length - 3 && pages.length > 4 && (
+          <p className="itpc-pagination__text">...</p>
+        )}
         {currentPage < pages.length && pages.length > 5 && (
           <button
             type="button"
             onClick={() => openPage(pages[pages.length - 1])}
             className={cn(
-              'itpc-pagination__btn',
-              'itpc-pagination__btn_page',
-              currentPage === pages[pages.length - 1] && 'itpc-pagination__btn_page_active'
+              "itpc-pagination__btn",
+              "itpc-pagination__btn_page",
+              currentPage === pages[pages.length - 1] &&
+                "itpc-pagination__btn_page_active"
             )}
           >
             {pages[pages.length - 1]}
           </button>
-        )
-        }
+        )}
       </div>
       <button
         type="button"

@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import React, { useState } from "react"
+import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { NumberField, Props } from '../components/NumberField'
+import { NumberField, Props } from "../components/NumberField"
 import { FormattedValues } from "../components"
 
 export default {
-  title: 'Components/NumberField',
-  component: NumberField
+  title: "Components/NumberField",
+  component: NumberField,
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
-  const [date, setDate] = useState<FormattedValues>({ value: '', formattedValue: '' })
+  const [date, setDate] = useState<FormattedValues>({
+    value: "",
+    formattedValue: "",
+  })
 
   const onChange = (inputValue: FormattedValues): void => {
     setDate(inputValue)
@@ -18,7 +21,13 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
   return (
     <div>
-      <NumberField {...args} id="itpc-number-field-id" name="itpc-number-field-name" value={date.value} onChange={onChange} />
+      <NumberField
+        {...args}
+        id="itpc-number-field-id"
+        name="itpc-number-field-name"
+        value={date.value}
+        onChange={onChange}
+      />
       <p>Value: {date.value}</p>
       <p>Formatted value: {date.formattedValue}</p>
     </div>
@@ -27,9 +36,9 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
 export const Basic = Template.bind({})
 Basic.args = {
-  placeholder: 'Enter snils',
-  validationState: 'valid',
-  errorMessage: 'Phone number is invalid',
-  format: '###-###-### ##',
-  mask: '_'
+  placeholder: "Enter snils",
+  validationState: "valid",
+  errorMessage: "Phone number is invalid",
+  format: "###-###-### ##",
+  mask: "_",
 }

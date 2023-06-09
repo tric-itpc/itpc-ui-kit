@@ -1,7 +1,7 @@
-import React from 'react'
-import cn from 'classnames'
+import React from "react"
+import cn from "classnames"
 
-import './styles.css'
+import "./styles.css"
 
 export interface TableHeaderProps {
   id?: string
@@ -9,10 +9,12 @@ export interface TableHeaderProps {
 }
 
 export const TableHeader: React.FC<TableHeaderProps> = ({
-  id = '',
-  children
+  id = "",
+  children,
 }) => (
-  <thead id={id} className="itpc-table__head">{children}</thead>
+  <thead id={id} className="itpc-table__head">
+    {children}
+  </thead>
 )
 
 export interface TableBodyProps {
@@ -37,14 +39,10 @@ export interface RowProps {
   onPressRow?: (event?: React.MouseEvent<HTMLTableRowElement>) => void
 }
 
-export const Row: React.FC<RowProps> = ({
-  id = '',
-  onPressRow,
-  children
-}) => (
+export const Row: React.FC<RowProps> = ({ id = "", onPressRow, children }) => (
   <tr
     id={id}
-    className={cn('itpc-table__row', onPressRow && 'itpc-table__row_clickable')}
+    className={cn("itpc-table__row", onPressRow && "itpc-table__row_clickable")}
     onClick={onPressRow && onPressRow}
   >
     {children}
@@ -58,13 +56,16 @@ export interface ColumnProps {
 }
 
 export const Column: React.FC<ColumnProps> = ({
-  id = '',
+  id = "",
   onPressColumn,
-  children
+  children,
 }) => (
   <th
     id={id}
-    className={cn('itpc-table__column', onPressColumn && 'itpc-table__column_clickable')}
+    className={cn(
+      "itpc-table__column",
+      onPressColumn && "itpc-table__column_clickable"
+    )}
     onClick={onPressColumn && onPressColumn}
   >
     {children}
@@ -78,13 +79,16 @@ export interface CellProps {
 }
 
 export const Cell: React.FC<CellProps> = ({
-  id = '',
+  id = "",
   onPressCell,
-  children
+  children,
 }) => (
   <td
     id={id}
-    className={cn('itpc-table__cell', onPressCell && 'itpc-table__cell_clickable')}
+    className={cn(
+      "itpc-table__cell",
+      onPressCell && "itpc-table__cell_clickable"
+    )}
     onClick={onPressCell && onPressCell}
   >
     {children}
@@ -98,14 +102,13 @@ export interface TableProps {
   children?: React.ReactNode
 }
 
-
 export const Table: React.FC<TableProps> = ({
-  id = '',
+  id = "",
   title,
-  className = '',
-  children
+  className = "",
+  children,
 }) => (
-  <table id={id} className={cn('itpc-table', className)}>
+  <table id={id} className={cn("itpc-table", className)}>
     {title && <caption className="itpc-table__caption">{title}</caption>}
     {children}
   </table>

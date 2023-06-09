@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import React, { useState } from "react"
+import { ComponentStory, ComponentMeta } from "@storybook/react"
 
 import { Button } from "../components"
-import { Modal, ModalContent, ModalFooter, ModalProps } from '../components/Modal'
+import {
+  Modal,
+  ModalContent,
+  ModalFooter,
+  ModalProps,
+} from "../components/Modal"
 
 export default {
-  title: 'Components/Modal',
-  component: Modal
+  title: "Components/Modal",
+  component: Modal,
 } as ComponentMeta<React.FC<ModalProps>>
 
 const Template: ComponentStory<React.FC<ModalProps>> = (args) => {
@@ -15,12 +20,18 @@ const Template: ComponentStory<React.FC<ModalProps>> = (args) => {
   return (
     <>
       <Button onPress={() => setIsOpenModal(true)}>Open modal</Button>
-      <Modal {...args} isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
+      <Modal
+        {...args}
+        isOpen={isOpenModal}
+        onClose={() => setIsOpenModal(false)}
+      >
         <ModalContent>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </ModalContent>
         <ModalFooter>
-          <Button variant="white" onPress={() => setIsOpenModal(false)}>Cancel</Button>
+          <Button variant="white" onPress={() => setIsOpenModal(false)}>
+            Cancel
+          </Button>
           <Button onPress={() => setIsOpenModal(false)}>Ok</Button>
         </ModalFooter>
       </Modal>
@@ -31,5 +42,5 @@ const Template: ComponentStory<React.FC<ModalProps>> = (args) => {
 export const Basic = Template.bind({})
 Basic.args = {
   title: "Modal window",
-  isOverlayClickable: true
+  isOverlayClickable: true,
 }

@@ -1,5 +1,5 @@
 export const parseNumericStringToISODate = (date: string): string => {
-  if (!(/^\d+$/u).test(date) || date.length < 8) {
+  if (!/^\d+$/u.test(date) || date.length < 8) {
     return ""
   }
 
@@ -11,7 +11,7 @@ export const parseNumericStringToISODate = (date: string): string => {
 }
 
 export const parseNumericStringToISODateTime = (date: string): string => {
-  if (!(/^\d+$/u).test(date) || date.length < 8) {
+  if (!/^\d+$/u.test(date) || date.length < 8) {
     return ""
   }
 

@@ -1,37 +1,43 @@
-import React, { useState } from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import React, { useState } from "react"
+import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { SearchField, Props } from '../components/SearchField'
-import { Item } from "../components"
+import { SearchField, Props } from "../components/SearchField"
+import { Item, Preloader } from "../components"
 
 export default {
-  title: 'Components/SearchField',
-  component: SearchField
+  title: "Components/SearchField",
+  component: SearchField,
 } as ComponentMeta<React.FC<Props>>
 
 const mockItems: Item[] = [
   {
-    id: '1',
-    value: 'Cat'
-  }, {
-    id: '2',
-    value: 'Dog'
-  }, {
-    id: '3',
-    value: 'Duck'
-  }, {
-    id: '4',
-    value: 'Bear'
-  }, {
-    id: '5',
-    value: 'Mouse'
-  }, {
-    id: '6',
-    value: 'Tiger'
-  }, {
-    id: '7',
-    value: 'Lion'
-  }
+    id: "1",
+    value: "Cat",
+  },
+  {
+    id: "2",
+    value: "Dog",
+  },
+  {
+    id: "3",
+    value: "Duck",
+  },
+  {
+    id: "4",
+    value: "Bear",
+  },
+  {
+    id: "5",
+    value: "Mouse",
+  },
+  {
+    id: "6",
+    value: "Tiger",
+  },
+  {
+    id: "7",
+    value: "Lion",
+  },
 ]
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
@@ -61,17 +67,20 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
       <SearchField
         {...args}
         items={items}
-        isLoading={isLoading}
         onChange={onChange}
         fetchData={fetchData}
         handleClear={clear}
+        isDisableClickIcon={isLoading}
+        icon={isLoading ? <Preloader /> : null}
       />
-      <p>selected: {selectedItem?.id} {selectedItem?.value}</p>
+      <p>
+        selected: {selectedItem?.id} {selectedItem?.value}
+      </p>
     </>
   )
 }
 
 export const Basic = Template.bind({})
 Basic.args = {
-  placeholder: 'Animal'
+  placeholder: "Animal",
 }

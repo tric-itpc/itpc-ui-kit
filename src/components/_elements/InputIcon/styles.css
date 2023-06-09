@@ -1,0 +1,9 @@
+.itpc-input-icon {
+  padding: 0;
+  margin-right: 10px;
+  width: min-content;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}

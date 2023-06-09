@@ -1,7 +1,7 @@
 import React from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
-import './styles.css'
+import "./styles.css"
 
 interface Props {
   id: string
@@ -16,7 +16,7 @@ export const SelectItem: React.FC<Props> = ({
   disabled,
   isActive,
   onChange,
-  children
+  children,
 }) => {
   const onClick = (): void => {
     if (!disabled) {
@@ -25,8 +25,19 @@ export const SelectItem: React.FC<Props> = ({
   }
 
   return (
-    <div className={cn("itpc-select-item", disabled && "itpc-select-item_disabled")} onClick={onClick}>
-      <span className={cn('itpc-select-item__stick', isActive && 'itpc-select-item__stick_showed')} />
+    <div
+      className={cn(
+        "itpc-select-item",
+        disabled && "itpc-select-item_disabled"
+      )}
+      onClick={onClick}
+    >
+      <span
+        className={cn(
+          "itpc-select-item__stick",
+          isActive && "itpc-select-item__stick_showed"
+        )}
+      />
       {children}
     </div>
   )

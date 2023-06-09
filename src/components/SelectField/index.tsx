@@ -1,18 +1,13 @@
 import React, { useRef, useState } from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
 import { useOnClickOutside } from "../../_hooks"
 
-import {
-  IconArrow,
-  Placeholder,
-  Popover,
-  SelectItem
-} from "../_elements"
+import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
 
 import { Item } from "../types"
 
-import './styles.css'
+import "./styles.css"
 
 export interface Props {
   items: Item[]
@@ -28,8 +23,8 @@ export const SelectField: React.FC<Props> = ({
   defaultItemId = null,
   placeholder,
   disabled = false,
-  className = '',
-  onChange
+  className = "",
+  onChange,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -46,7 +41,7 @@ export const SelectField: React.FC<Props> = ({
   }
 
   const changeValue = (value: string) => {
-    if (typeof onChange === 'function') {
+    if (typeof onChange === "function") {
       onChange(value)
     }
 
@@ -56,12 +51,12 @@ export const SelectField: React.FC<Props> = ({
   useOnClickOutside(ref, close)
 
   return (
-    <div className={cn('itpc-select', className)} ref={ref}>
+    <div className={cn("itpc-select", className)} ref={ref}>
       <button
         type="button"
         className={cn(
-          'itpc-select__button',
-          isOpen && 'itpc-select__button_focused'
+          "itpc-select__button",
+          isOpen && "itpc-select__button_focused"
         )}
         disabled={disabled}
         onClick={handleOpen}
@@ -69,9 +64,10 @@ export const SelectField: React.FC<Props> = ({
         <Placeholder focused={isOpen || !!defaultItemId}>
           {placeholder}
         </Placeholder>
-        {defaultItemId && items.find((item) => item.id === defaultItemId)?.value}
+        {defaultItemId &&
+          items.find((item) => item.id === defaultItemId)?.value}
       </button>
-      <IconArrow orientation={isOpen ? 'top' : 'bottom'} onClick={handleOpen} />
+      <IconArrow orientation={isOpen ? "top" : "bottom"} onClick={handleOpen} />
 
       {isOpen && (
         <Popover>

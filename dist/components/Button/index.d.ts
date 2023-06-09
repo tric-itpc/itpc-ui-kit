@@ -1,6 +1,6 @@
-import React from 'react';
-import { ButtonType, ButtonVariant } from '../types';
-import './styles.css';
+import React from "react";
+import { ButtonType, ButtonVariant } from "../types";
+import "./styles.css";
 export interface Props {
     type?: ButtonType;
     variant?: ButtonVariant;

@@ -1,11 +1,11 @@
 import React from "react";
-import './styles.css';
+import "./styles.css";
 export interface ModalProps {
     title: string;
     isOpen: boolean;
     isOverlayClickable?: boolean;
     className?: string;
-    onClose(): void;
+    onClose?: () => void;
     iconClose?: React.ReactNode;
     children?: React.ReactNode;
 }

@@ -1,7 +1,7 @@
 import React from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
-import './styles.css'
+import "./styles.css"
 
 export interface Props {
   className?: string
@@ -9,10 +9,8 @@ export interface Props {
 }
 
 export const ErrorMessage: React.FC<Props> = ({
-  className = '',
-  children
+  className = "",
+  children,
 }: Props) => (
-  <span className={cn('itpc-error_message', className)}>
-    {children}
-  </span>
+  <span className={cn("itpc-error_message", className)}>{children}</span>
 )

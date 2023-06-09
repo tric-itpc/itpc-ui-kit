@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from "react"
-import { NumberFormatValues, PatternFormat, SourceInfo } from "react-number-format"
-import cn from 'classnames'
+import {
+  NumberFormatValues,
+  PatternFormat,
+  SourceInfo,
+} from "react-number-format"
+import cn from "classnames"
 
 import { Calendar } from "../../lab"
 
@@ -13,16 +17,16 @@ import {
   parseISODateToNumericString,
   parseISODateTimeToNumericString,
   parseNumericStringToISODate,
-  parseNumericStringToISODateTime
+  parseNumericStringToISODateTime,
 } from "./utils"
 import {
   formatMaskDate,
   formatMaskDateTime,
   maskDate,
-  maskDateTime
+  maskDateTime,
 } from "./constants"
 
-import './styles.css'
+import "./styles.css"
 
 export interface FormattedValues {
   value: string
@@ -48,12 +52,14 @@ export interface Props {
   onFocus?: () => void
   onChange?: (
     values: FormattedValues,
-    event: React.SyntheticEvent<HTMLInputElement>
+    event:
+      | React.SyntheticEvent<HTMLInputElement>
       | React.SyntheticEvent<HTMLButtonElement>
       | React.SyntheticEvent<HTMLTableDataCellElement>,
     info: IInfo
   ) => void
   isIconClickable?: boolean
+  isShowIcon?: boolean
   offsetYear?: number
   withTime?: boolean
   className?: string
@@ -78,9 +84,10 @@ export const DatePicker: React.FC<Props> = ({
   onFocus,
   onChange,
   isIconClickable = false,
+  isShowIcon = true,
   offsetYear = 10,
   withTime = false,
-  className = ''
+  className = "",
 }: Props) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
   const [isShowCalendar, setIsShowCalendar] = useState<boolean>(false)
@@ -123,32 +130,49 @@ export const DatePicker: React.FC<Props> = ({
 
   const onChangeDate = (
     date: string,
-    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableDataCellElement>
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLTableDataCellElement>
   ): void => {
     if (onChange) {
-      onChange({
-        value: withTime
-          ? parseISODateTimeToNumericString(date)
-          : parseISODateToNumericString(date),
-        formattedValue: withTime ? parseISODateTime(date) : parseISODate(date)
-      }, event, { id, name })
+      onChange(
+        {
+          value: withTime
+            ? parseISODateTimeToNumericString(date)
+            : parseISODateToNumericString(date),
+          formattedValue: withTime
+            ? parseISODateTime(date)
+            : parseISODate(date),
+        },
+        event,
+        { id, name }
+      )
     }
   }
 
-  const onChangePicker = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
+  const onChangePicker = (
+    values: NumberFormatValues,
+    sourceInfo: SourceInfo
+  ): void => {
     if (onChange && sourceInfo.event) {
-      onChange({
-        value: values.value,
-        formattedValue: values.formattedValue
-      }, sourceInfo.event, { id, name })
+      onChange(
+        {
+          value: values.value,
+          formattedValue: values.formattedValue,
+        },
+        sourceInfo.event,
+        { id, name }
+      )
     }
   }
 
   const handleCalendarPosition = (): void => {
     const documentHeight = document.documentElement.clientHeight
     const inputSize = inputWrapRef.current?.getBoundingClientRect() as DOMRect
-    const calendarHeight = (calendarWrapRef.current?.getBoundingClientRect() as DOMRect)?.
-      height
+    const calendarHeight = (
+      calendarWrapRef.current?.getBoundingClientRect() as DOMRect
+    )?.height
     const underInputSize = documentHeight - inputSize.bottom
 
     if (underInputSize < calendarHeight) {
@@ -171,11 +195,11 @@ export const DatePicker: React.FC<Props> = ({
   }, [])
 
   return (
-    <div className={cn('itpc-datepicker', className)}>
+    <div className={cn("itpc-datepicker", className)}>
       <div
         className={cn(
-          'itpc-datepicker__input-wrap',
-          validationState === 'invalid' && 'itpc-datepicker__input-wrap_error'
+          "itpc-datepicker__input-wrap",
+          validationState === "invalid" && "itpc-datepicker__input-wrap_error"
         )}
         ref={inputWrapRef}
       >
@@ -198,16 +222,21 @@ export const DatePicker: React.FC<Props> = ({
           onBlur={onBlurPicker}
           onValueChange={onChangePicker}
           className={cn(
-            'itpc-datepicker__input',
-            (focused || value.length) && 'itpc-datepicker__input_focused'
+            "itpc-datepicker__input",
+            (focused || value.length) && "itpc-datepicker__input_focused"
           )}
           valueIsNumericString
           allowEmptyFormatting
           format={withTime ? formatMaskDateTime : formatMaskDate}
           mask={withTime ? maskDateTime : maskDate}
         />
-        <IconCalendar isClickable={isIconClickable} onClick={onClickIcon} />
-        <InputError errorMessage={errorMessage} show={validationState === 'invalid'} />
+        {isShowIcon && (
+          <IconCalendar isClickable={isIconClickable} onClick={onClickIcon} />
+        )}
+        <InputError
+          errorMessage={errorMessage}
+          show={validationState === "invalid"}
+        />
       </div>
 
       <div

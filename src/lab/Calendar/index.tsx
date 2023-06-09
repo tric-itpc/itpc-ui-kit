@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
 import { IInfo } from "../../components"
 import { useOnClickOutside } from "../../_hooks"
@@ -10,17 +10,17 @@ import {
   getTodayMonthYear,
   initCurrentDate,
   initCurrentTime,
-  initDays
+  initDays,
 } from "./utils"
 import {
   CalendarControl,
   CalendarTable,
   CalendarTimes,
   SelectionMenuMonth,
-  SelectionMenuYear
+  SelectionMenuYear,
 } from "./components"
 
-import './styles.css'
+import "./styles.css"
 
 export interface Props {
   id: string
@@ -38,7 +38,10 @@ export interface Props {
   handleShow: () => void
   onChange?: (
     date: string,
-    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableCellElement>,
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLTableCellElement>,
     info: IInfo
   ) => void
   withTime?: boolean
@@ -59,12 +62,20 @@ export const Calendar: React.FC<Props> = ({
   show,
   handleShow,
   onChange,
-  withTime = false
+  withTime = false,
 }: Props) => {
-  const [currentDate, setCurrentDate] = useState<string>(initCurrentDate(currentValue, withTime))
-  const [hours, setHours] = useState<string>(initCurrentTime(currentValue, withTime)[0])
-  const [minutes, setMinutes] = useState<string>(initCurrentTime(currentValue, withTime)[1])
-  const [seconds, setSeconds] = useState<string>(initCurrentTime(currentValue, withTime)[2])
+  const [currentDate, setCurrentDate] = useState<string>(
+    initCurrentDate(currentValue, withTime)
+  )
+  const [hours, setHours] = useState<string>(
+    initCurrentTime(currentValue, withTime)[0]
+  )
+  const [minutes, setMinutes] = useState<string>(
+    initCurrentTime(currentValue, withTime)[1]
+  )
+  const [seconds, setSeconds] = useState<string>(
+    initCurrentTime(currentValue, withTime)[2]
+  )
   const [days, setDays] = useState<Day[]>(initDays(currentValue, withTime))
   const [isShowSelectMonth, setIsShowSelectMonth] = useState<boolean>(false)
   const [isShowSelectYear, setIsShowSelectYear] = useState<boolean>(false)
@@ -78,8 +89,13 @@ export const Calendar: React.FC<Props> = ({
     setIsShowSelectYear(false)
   }
 
-  const changeCurrentTime = (time: string, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>): void => {
-    const [currentHours, currentMinutes, currentSeconds] = time.split(':')
+  const changeCurrentTime = (
+    time: string,
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ): void => {
+    const [currentHours, currentMinutes, currentSeconds] = time.split(":")
     setHours(currentHours)
     setMinutes(currentMinutes)
     setSeconds(currentSeconds)
@@ -89,7 +105,10 @@ export const Calendar: React.FC<Props> = ({
     }
   }
 
-  const onChangeDate = (date: string, event: React.MouseEvent<HTMLTableDataCellElement>): void => {
+  const onChangeDate = (
+    date: string,
+    event: React.MouseEvent<HTMLTableDataCellElement>
+  ): void => {
     if (onChange) {
       if (!withTime) {
         onChange(date, event, { id, name })
@@ -129,10 +148,7 @@ export const Calendar: React.FC<Props> = ({
 
   return (
     <div
-      className={cn(
-        'itpc-calendar',
-        show && 'itpc-calendar_opened'
-      )}
+      className={cn("itpc-calendar", show && "itpc-calendar_opened")}
       ref={calendarRef}
     >
       <CalendarControl

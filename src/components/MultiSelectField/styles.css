@@ -4,14 +4,14 @@
   height: 40px;
   display: flex;
   align-items: center;
-  border: 1px solid #B2B7C7;
+  border: 1px solid #b2b7c7;
   border-radius: 4px;
   box-shadow: none;
   box-sizing: border-box;
 }
 
 .itpc-multi-select:hover {
-  border-color: #5C53AC;
+  border-color: #5c53ac;
 }
 
 .itpc-multi-select__button {
@@ -30,9 +30,9 @@
 }
 
 .itpc-multi-select__button:hover {
-  border-color: #5C53AC;
+  border-color: #5c53ac;
 }
 
 .itpc-multi-select__button_focused {
-  border-color: #6F65CB;
+  border-color: #6f65cb;
 }

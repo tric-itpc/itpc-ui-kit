@@ -1,18 +1,13 @@
 import React, { useRef, useState } from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
 import { useOnClickOutside } from "../../_hooks"
 
-import {
-  IconArrow,
-  Placeholder,
-  Popover,
-  SelectItem
-} from "../_elements"
+import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
 
 import { Item } from "../types"
 
-import './styles.css'
+import "./styles.css"
 
 export interface Props {
   items: Item[]
@@ -26,10 +21,10 @@ export interface Props {
 export const MultiSelectField: React.FC<Props> = ({
   items,
   selectedItems = [],
-  placeholder = '',
+  placeholder = "",
   disabled = false,
   className,
-  onChange
+  onChange,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -46,7 +41,7 @@ export const MultiSelectField: React.FC<Props> = ({
   }
 
   const onChangeValue = (value: string): void => {
-    if (typeof onChange === 'function') {
+    if (typeof onChange === "function") {
       const select = new Set<string>(selectedItems)
 
       if (select.has(value)) {
@@ -66,29 +61,31 @@ export const MultiSelectField: React.FC<Props> = ({
     }
 
     if (selectedItems?.length === 1) {
-      return items.find((item) => item.id === selectedItems[0])?.value ?? ''
+      return items.find((item) => item.id === selectedItems[0])?.value ?? ""
     }
 
-    return ''
+    return ""
   }
 
   useOnClickOutside(ref, onClose)
 
   return (
-    <div ref={ref} className={cn('itpc-multi-select', className)}>
+    <div ref={ref} className={cn("itpc-multi-select", className)}>
       <button
         type="button"
         className={cn(
-          'itpc-multi-select__button',
-          isOpen && 'itpc-multi-select__button_focused'
+          "itpc-multi-select__button",
+          isOpen && "itpc-multi-select__button_focused"
         )}
         disabled={disabled}
         onClick={handleOpen}
       >
-        <Placeholder focused={isOpen || !!selectedItems?.length}>{placeholder}</Placeholder>
+        <Placeholder focused={isOpen || !!selectedItems?.length}>
+          {placeholder}
+        </Placeholder>
         {selectText()}
       </button>
-      <IconArrow orientation={isOpen ? 'top' : 'bottom'} onClick={handleOpen} />
+      <IconArrow orientation={isOpen ? "top" : "bottom"} onClick={handleOpen} />
 
       {isOpen && (
         <Popover>

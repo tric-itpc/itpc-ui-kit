@@ -1,6 +1,6 @@
 import React from "react";
 import { Orientation } from "../../../types";
-import './styles.css';
+import "./styles.css";
 interface Props {
     orientation: Orientation;
     onClick?: () => void;

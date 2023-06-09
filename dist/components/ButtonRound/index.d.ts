@@ -1,6 +1,6 @@
-import React from 'react';
-import { ButtonType } from '../types';
-import './styles.css';
+import React from "react";
+import { ButtonType } from "../types";
+import "./styles.css";
 export interface Props {
     type?: ButtonType;
     disabled?: boolean;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { InputState, InputType, ValidationState } from "../types";
+import React from "react";
+import { InputType, ValidationState } from "../types";
 export interface Props {
     id: string;
     name: string;
@@ -8,13 +8,12 @@ export interface Props {
     disabled?: boolean;
     maxLength?: number;
     placeholder?: string;
-    state?: InputState;
     validationState?: ValidationState;
     errorMessage?: string;
+    icon?: React.ReactNode;
     className?: string;
     onBlur?: () => void;
     onFocus?: () => void;
     onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
-    onClickIcon?: () => void;
 }
 export declare const TextField: React.FC<Props>;

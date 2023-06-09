@@ -1,5 +1,5 @@
-import React from 'react';
-import { FormattedValues, ValidationState } from '../types';
+import React from "react";
+import { FormattedValues, ValidationState } from "../types";
 export interface Props {
     id: string;
     name: string;
@@ -14,6 +14,7 @@ export interface Props {
     suffix?: string;
     allowEmptyFormatting?: boolean;
     allowNegative?: boolean;
+    icon?: React.ReactNode;
     onBlur?: () => void;
     onFocus?: () => void;
     onChange?: (values: FormattedValues, event?: React.SyntheticEvent<HTMLInputElement>) => void;

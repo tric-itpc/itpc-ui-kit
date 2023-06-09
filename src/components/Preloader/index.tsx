@@ -1,14 +1,12 @@
 import React from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
-import './styles.css'
+import "./styles.css"
 
 export interface PreloaderProps {
   className?: string
 }
 
-export const Preloader: React.FC<PreloaderProps> = ({
-  className = ''
-}) => (
-  <span className={cn('itpc-preloader', className)} />
+export const Preloader: React.FC<PreloaderProps> = ({ className = "" }) => (
+  <span className={cn("itpc-preloader", className)} />
 )

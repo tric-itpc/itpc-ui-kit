@@ -5,16 +5,16 @@ import { isDisabledDate } from "../../utils"
 
 import { CalendarCell } from "../CalendarCell"
 
-import './styles.css'
+import "./styles.css"
 
 const getRows = (days: Day[]): Day[][] => {
-  const step = 7,
-    arrayDays: Day[][] = []
+  const step = 7
+  const arrayDays: Day[][] = []
 
-  let start = 0,
-    end = step
+  let start = 0
+  let end = step
 
-  for (let iterator = 0; iterator <= (days.length / step) - 1; iterator++) {
+  for (let iterator = 0; iterator <= days.length / step - 1; iterator++) {
     const arrayDay = days.slice(start, end)
     arrayDays.push(arrayDay)
     start = end
@@ -26,14 +26,17 @@ const getRows = (days: Day[]): Day[][] => {
 
 interface Props {
   id: string
-  currentDate: string;
-  days: Day[];
+  currentDate: string
+  days: Day[]
   activeDates?: string[]
   disabledDates?: string[]
   disabledAfterDate?: string
   disabledBeforeDate?: string
   disabledDaysOfWeek?: number[]
-  onChange(date: string, event: React.MouseEvent<HTMLTableDataCellElement>): void;
+  onChange(
+    date: string,
+    event: React.MouseEvent<HTMLTableDataCellElement>
+  ): void
 }
 
 export const CalendarTable: React.FC<Props> = ({
@@ -45,7 +48,7 @@ export const CalendarTable: React.FC<Props> = ({
   disabledAfterDate,
   disabledBeforeDate,
   disabledDaysOfWeek,
-  onChange
+  onChange,
 }: Props) => {
   const rows = getRows(days)
 
@@ -78,7 +81,12 @@ export const CalendarTable: React.FC<Props> = ({
                 isChanged={currentDate === day.date}
                 onChange={onChange}
                 disabled={isDisabledDate(
-                  day.date, activeDates, disabledDates, disabledAfterDate, disabledBeforeDate, disabledDaysOfWeek
+                  day.date,
+                  activeDates,
+                  disabledDates,
+                  disabledAfterDate,
+                  disabledBeforeDate,
+                  disabledDaysOfWeek
                 )}
               />
             ))}

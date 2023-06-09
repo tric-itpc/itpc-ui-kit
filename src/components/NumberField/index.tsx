@@ -1,11 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react'
-import { NumberFormatValues, PatternFormat, SourceInfo } from 'react-number-format'
-import cn from 'classnames'
+import React, { useState } from "react"
+import {
+  NumberFormatValues,
+  PatternFormat,
+  SourceInfo,
+} from "react-number-format"
+import cn from "classnames"
 
-import { Field, InputError, InputWrap, Placeholder } from '../_elements'
+import {
+  Field,
+  InputError,
+  InputIcon,
+  InputWrap,
+  Placeholder,
+} from "../_elements"
 
-import { FormattedValues, ValidationState } from '../types'
+import { FormattedValues, ValidationState } from "../types"
 
 export interface Props {
   id: string
@@ -21,9 +31,13 @@ export interface Props {
   suffix?: string
   allowEmptyFormatting?: boolean
   allowNegative?: boolean
+  icon?: React.ReactNode
   onBlur?: () => void
   onFocus?: () => void
-  onChange?: (values: FormattedValues, event?: React.SyntheticEvent<HTMLInputElement>) => void
+  onChange?: (
+    values: FormattedValues,
+    event?: React.SyntheticEvent<HTMLInputElement>
+  ) => void
   getInputRef?: ((el: HTMLInputElement) => void) | React.Ref<any>
   className?: string
 }
@@ -31,20 +45,21 @@ export interface Props {
 export const NumberField: React.FC<Props> = ({
   id,
   name,
-  value = '',
+  value = "",
   disabled = false,
-  placeholder = '',
-  validationState = 'valid',
-  errorMessage = '',
-  format = '',
-  mask = '_',
+  placeholder = "",
+  validationState = "valid",
+  errorMessage = "",
+  format = "",
+  mask = "_",
   prefix = "",
   allowEmptyFormatting = true,
+  icon,
   onBlur,
   onFocus,
   onChange,
   getInputRef,
-  className = ''
+  className = "",
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
 
@@ -64,19 +79,29 @@ export const NumberField: React.FC<Props> = ({
     }
   }
 
-  const onChangeInput = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
+  const onChangeInput = (
+    values: NumberFormatValues,
+    sourceInfo: SourceInfo
+  ): void => {
     if (onChange) {
-      onChange({
-        value: values.value,
-        formattedValue: values.formattedValue
-      }, sourceInfo.event)
+      onChange(
+        {
+          value: values.value,
+          formattedValue: values.formattedValue,
+        },
+        sourceInfo.event
+      )
     }
   }
 
   return (
     <Field className={className}>
       <InputWrap focused={focused} validationState={validationState}>
-        <Placeholder htmlFor={id} focused={focused || !!value.length} validationState={validationState}>
+        <Placeholder
+          htmlFor={id}
+          focused={focused || !!value.length}
+          validationState={validationState}
+        >
           {placeholder}
         </Placeholder>
 
@@ -89,7 +114,10 @@ export const NumberField: React.FC<Props> = ({
           onFocus={onFocusInput}
           onBlur={onBlurInput}
           onValueChange={onChangeInput}
-          className={cn('itpc-input', (focused || !!value.length) && 'itpc-input_focused')}
+          className={cn(
+            "itpc-input",
+            (focused || !!value.length) && "itpc-input_focused"
+          )}
           valueIsNumericString
           allowEmptyFormatting={allowEmptyFormatting}
           format={format}
@@ -98,7 +126,12 @@ export const NumberField: React.FC<Props> = ({
           getInputRef={getInputRef}
         />
 
-        <InputError errorMessage={errorMessage} show={validationState === "invalid"} />
+        <InputError
+          errorMessage={errorMessage}
+          show={validationState === "invalid"}
+        />
+
+        {icon && <InputIcon>{icon}</InputIcon>}
       </InputWrap>
     </Field>
   )

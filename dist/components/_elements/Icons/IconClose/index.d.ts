@@ -1,6 +1,6 @@
 import React from "react";
 import { UIKitColors } from "../../../constants";
-import './styles.css';
+import "./styles.css";
 interface Props {
     color?: UIKitColors;
     onPress?: () => void;

@@ -1,9 +1,9 @@
-import React from 'react'
-import cn from 'classnames'
+import React from "react"
+import cn from "classnames"
 
-import { ButtonType } from '../types'
+import { ButtonType } from "../types"
 
-import './styles.css'
+import "./styles.css"
 
 export interface Props {
   type?: ButtonType
@@ -15,12 +15,12 @@ export interface Props {
 }
 
 export const ButtonRound: React.FC<Props> = ({
-  type = 'button',
+  type = "button",
   disabled = false,
   tooltip,
   onPress,
   className,
-  children
+  children,
 }: Props) => {
   const onClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (onPress) {
@@ -33,7 +33,7 @@ export const ButtonRound: React.FC<Props> = ({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={cn('itpc-button-round', className)}
+      className={cn("itpc-button-round", className)}
     >
       {children}
       {tooltip && <span className="itpc-tooltip">{tooltip}</span>}

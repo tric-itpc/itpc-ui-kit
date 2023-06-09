@@ -1,6 +1,6 @@
 import React from "react";
 import { PopupPosition, PopupSize, PopupVariant } from "../types";
-import './styles.css';
+import "./styles.css";
 export interface Props {
     title: string;
     isOpen: boolean;
@@ -10,6 +10,5 @@ export interface Props {
     className?: string;
     iconClose?: React.ReactNode;
     children?: React.ReactNode;
-    onClose(): void;
 }
 export declare const Popup: React.FC<Props>;

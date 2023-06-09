@@ -1,9 +1,9 @@
-import React from 'react'
-import cn from 'classnames'
+import React from "react"
+import cn from "classnames"
 
-import { ButtonType, ButtonVariant } from '../types'
+import { ButtonType, ButtonVariant } from "../types"
 
-import './styles.css'
+import "./styles.css"
 
 export interface Props {
   type?: ButtonType
@@ -15,12 +15,12 @@ export interface Props {
 }
 
 export const Button: React.FC<Props> = ({
-  type = 'button',
+  type = "button",
   variant,
   disabled = false,
   onPress,
-  className = '',
-  children
+  className = "",
+  children,
 }: Props) => {
   const onClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (onPress) {
@@ -34,10 +34,10 @@ export const Button: React.FC<Props> = ({
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'itpc-button',
+        "itpc-button",
         {
-          'itpc-button__color_white': variant === 'white',
-          'itpc-button__color_red': variant === 'red'
+          "itpc-button__color_white": variant === "white",
+          "itpc-button__color_red": variant === "red",
         },
         className
       )}

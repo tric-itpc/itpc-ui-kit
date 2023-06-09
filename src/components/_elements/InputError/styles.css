@@ -1,6 +1,6 @@
 .itpc-error {
   padding: 0 5px;
-  max-width: 50%;
+  max-width: 85%;
   position: absolute;
   bottom: calc(-7px);
   right: 10px;
@@ -8,7 +8,7 @@
   cursor: text;
   font-size: 12px;
   line-height: 14px;
-  color: #D42564;
+  color: #d42564;
   box-sizing: border-box;
   opacity: 0;
   overflow: hidden;

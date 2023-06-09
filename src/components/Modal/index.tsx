@@ -1,16 +1,14 @@
 import React from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
-import { IconClose } from '../_elements'
-
-import './styles.css'
+import "./styles.css"
 
 export interface ModalProps {
   title: string
   isOpen: boolean
   isOverlayClickable?: boolean
   className?: string
-  onClose(): void
+  onClose?: () => void
   iconClose?: React.ReactNode
   children?: React.ReactNode
 }
@@ -20,12 +18,12 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   isOverlayClickable = false,
   onClose,
-  className = '',
+  className = "",
   iconClose,
-  children
+  children,
 }) => {
   const onCloseOverlay = (): void => {
-    if (isOverlayClickable) {
+    if (isOverlayClickable && onClose) {
       onClose()
     }
   }
@@ -33,9 +31,9 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <div
       className={cn(
-        'itpc-modal-overlay',
-        isOpen && 'itpc-modal-overlay_opened',
-        isOverlayClickable && 'itpc-modal-overlay_clickable',
+        "itpc-modal-overlay",
+        isOpen && "itpc-modal-overlay_opened",
+        isOverlayClickable && "itpc-modal-overlay_clickable",
         className
       )}
       onClick={onCloseOverlay}
@@ -44,7 +42,6 @@ export const Modal: React.FC<ModalProps> = ({
         <div className="itpc-modal__header">
           {title}
           {iconClose && iconClose}
-          {!iconClose && <IconClose onPress={onClose} />}
         </div>
 
         {children}
@@ -59,12 +56,10 @@ interface ModalContentProps {
 }
 
 export const ModalContent: React.FC<ModalContentProps> = ({
-  className = '',
-  children
+  className = "",
+  children,
 }: ModalContentProps) => (
-  <div className={cn('itpc-modal__content', className)}>
-    {children}
-  </div>
+  <div className={cn("itpc-modal__content", className)}>{children}</div>
 )
 
 interface ModalFooterProps {
@@ -73,10 +68,8 @@ interface ModalFooterProps {
 }
 
 export const ModalFooter: React.FC<ModalFooterProps> = ({
-  className = '',
-  children
+  className = "",
+  children,
 }: ModalFooterProps) => (
-  <div className={cn('itpc-modal__footer', className)}>
-    {children}
-  </div>
+  <div className={cn("itpc-modal__footer", className)}>{children}</div>
 )

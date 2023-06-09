@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { PaginationResult } from "../types";
-import './styles.css';
+import "./styles.css";
 export interface Props {
     step?: number;
     dataLength: number;

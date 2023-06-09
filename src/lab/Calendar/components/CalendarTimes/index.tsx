@@ -1,42 +1,66 @@
 import React from "react"
-import { NumberFormatValues, PatternFormat, SourceInfo } from "react-number-format"
+import {
+  NumberFormatValues,
+  PatternFormat,
+  SourceInfo,
+} from "react-number-format"
 
-import './styles.css'
+import "./styles.css"
 
 interface Props {
-  hours: string;
-  minutes: string;
-  seconds: string;
-  onChange(time: string, event?: React.SyntheticEvent<HTMLInputElement> | React.SyntheticEvent<HTMLButtonElement>): void;
+  hours: string
+  minutes: string
+  seconds: string
+  onChange(
+    time: string,
+    event?:
+      | React.SyntheticEvent<HTMLInputElement>
+      | React.SyntheticEvent<HTMLButtonElement>
+  ): void
 }
 
 export const CalendarTimes: React.FC<Props> = ({
   hours,
   minutes,
   seconds,
-  onChange
+  onChange,
 }: Props) => {
-  const changeHours = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
+  const changeHours = (
+    values: NumberFormatValues,
+    sourceInfo: SourceInfo
+  ): void => {
     if (parseInt(values.value, 10) > 23) {
       onChange(`23:${minutes}:${seconds}`, sourceInfo.event)
 
       return
     }
 
-    onChange(`${values.value.length ? values.value : "00"}:${minutes}:${seconds}`, sourceInfo.event)
+    onChange(
+      `${values.value.length ? values.value : "00"}:${minutes}:${seconds}`,
+      sourceInfo.event
+    )
   }
 
-  const changeMinutes = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
+  const changeMinutes = (
+    values: NumberFormatValues,
+    sourceInfo: SourceInfo
+  ): void => {
     if (parseInt(values.value, 10) > 59) {
       onChange(`${hours}:59:${seconds}`, sourceInfo.event)
 
       return
     }
 
-    onChange(`${hours}:${values.value.length ? values.value : "00"}:${seconds}`, sourceInfo.event)
+    onChange(
+      `${hours}:${values.value.length ? values.value : "00"}:${seconds}`,
+      sourceInfo.event
+    )
   }
 
-  const changeSeconds = (values: NumberFormatValues, sourceInfo: SourceInfo): void => {
+  const changeSeconds = (
+    values: NumberFormatValues,
+    sourceInfo: SourceInfo
+  ): void => {
     if (parseInt(values.value, 10) > 59) {
       onChange(`${hours}:${minutes}:59`, sourceInfo.event)
 

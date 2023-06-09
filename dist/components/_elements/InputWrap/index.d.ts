@@ -1,6 +1,6 @@
 import React from "react";
 import { ValidationState } from "../../types";
-import './styles.css';
+import "./styles.css";
 interface InputWrapProps {
     focused?: boolean;
     validationState: ValidationState;

@@ -2,7 +2,7 @@
   min-height: 40px;
   max-height: 40px;
   position: relative;
-  padding: .75rem;
+  padding: 0.75rem;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -14,7 +14,7 @@
 }
 
 .itpc-select-item:hover {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
 }
 
 .itpc-select-item_disabled {

@@ -1,29 +1,34 @@
 import React from "react"
 
-export type InputState = 'default' | 'cancel' | 'loading' | 'success' | 'warning'
-export type InputType = 'password' | 'text'
-export type ButtonType = 'button' | 'submit' | 'reset'
-export type ButtonVariant = 'white' | 'red'
+export type InputState =
+  | "default"
+  | "cancel"
+  | "loading"
+  | "success"
+  | "warning"
+export type InputType = "password" | "text"
+export type ButtonType = "button" | "submit" | "reset"
+export type ButtonVariant = "white" | "red"
 export type InputCheckboxType = "checkbox" | "radio"
 export type InputCheckboxVariant = "android" | "ios"
 export type InputCheckboxLabelPosition = "left" | "right"
-export type Orientation = 'top' | 'right' | 'bottom' | 'left'
-export type PopupSize = 'small' | 'normal'
-export type PopupVariant = 'default' | 'error' | 'warning' | 'success'
+export type Orientation = "top" | "right" | "bottom" | "left"
+export type PopupSize = "small" | "normal"
+export type PopupVariant = "default" | "error" | "warning" | "success"
 export type PopupPosition =
-  'top-left'
-  | 'top-center'
-  | 'top-right'
-  | 'center-left'
-  | 'center-center'
-  | 'center-right'
-  | 'bottom-left'
-  | 'bottom-center'
-  | 'bottom-right'
-export type ValidationState = 'valid' | 'invalid'
+  | "top-left"
+  | "top-center"
+  | "top-right"
+  | "center-left"
+  | "center-center"
+  | "center-right"
+  | "bottom-left"
+  | "bottom-center"
+  | "bottom-right"
+export type ValidationState = "valid" | "invalid"
 
 export interface TabsItem {
-  title: string,
+  title: string
   content: React.ReactElement<React.ReactNode>
 }
 
@@ -40,7 +45,7 @@ export interface Item {
 }
 
 export interface FormattedValues {
-  value: string,
+  value: string
   formattedValue: string
 }
 

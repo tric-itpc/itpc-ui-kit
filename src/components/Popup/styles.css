@@ -6,13 +6,13 @@
   flex-direction: column;
   gap: 30px;
   background-color: #fff;
-  border: 1px solid #B2B7C7;
+  border: 1px solid #b2b7c7;
   border-radius: 4px;
   font-size: 14px;
   color: #000;
   visibility: hidden;
   opacity: 0;
-  transition: all ease-in-out .3s;
+  transition: all ease-in-out 0.3s;
 }
 
 .itpc-popup_opened {
@@ -21,36 +21,43 @@
 }
 
 .itpc-popup_color_error {
-  border-color: #D42564;
+  border-color: #d42564;
 }
 
 .itpc-popup_color_warning {
-  border-color: #DCB21E;
-
+  border-color: #dcb21e;
 }
 
 .itpc-popup_color_success {
-  border-color: #4DB04D;
-
+  border-color: #4db04d;
 }
 
-.itpc-popup_position_top_left {}
+.itpc-popup_position_top_left {
+}
 
-.itpc-popup_position_top_center {}
+.itpc-popup_position_top_center {
+}
 
-.itpc-popup_position_top_right {}
+.itpc-popup_position_top_right {
+}
 
-.itpc-popup_position_center_left {}
+.itpc-popup_position_center_left {
+}
 
-.itpc-popup_position_center_center {}
+.itpc-popup_position_center_center {
+}
 
-.itpc-popup_position_center_right {}
+.itpc-popup_position_center_right {
+}
 
-.itpc-popup_position_bottom_left {}
+.itpc-popup_position_bottom_left {
+}
 
-.itpc-popup_position_bottom_center {}
+.itpc-popup_position_bottom_center {
+}
 
-.itpc-popup_position_bottom_right {}
+.itpc-popup_position_bottom_right {
+}
 
 .itpc-popup__header {
   display: flex;

@@ -1,9 +1,9 @@
 import React from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
 import { ValidationState } from "../../types"
 
-import './styles.css'
+import "./styles.css"
 
 interface Props {
   htmlFor?: string
@@ -16,14 +16,14 @@ export const Placeholder: React.FC<Props> = ({
   htmlFor,
   focused,
   validationState,
-  children
+  children,
 }) => (
   <label
     htmlFor={htmlFor}
     className={cn(
-      'itpc-placeholder',
-      focused && 'itpc-placeholder_focused',
-      validationState === 'invalid' && 'itpc-placeholder_color_red'
+      "itpc-placeholder",
+      focused && "itpc-placeholder_focused",
+      validationState === "invalid" && "itpc-placeholder_color_red"
     )}
   >
     {children}

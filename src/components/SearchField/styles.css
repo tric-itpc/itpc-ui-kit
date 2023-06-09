@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  border: 1px solid #B2B7C7;
+  border: 1px solid #b2b7c7;
   border-radius: 4px;
   box-shadow: none;
   box-sizing: border-box;
@@ -13,7 +13,7 @@
 }
 
 .itpc-search-field:hover {
-  border-color: #5C53AC;
+  border-color: #5c53ac;
 }
 
 .itpc-search-field > .itpc-field {

@@ -1,7 +1,7 @@
 import React from "react";
-import './styles.css';
+import "./styles.css";
 export interface Props {
-    title?: string;
+    title?: React.ReactNode;
     isBordered?: boolean;
     className?: string;
     children?: React.ReactNode;

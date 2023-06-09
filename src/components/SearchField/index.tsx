@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
 import { useOnClickOutside } from "../../_hooks"
 
@@ -7,19 +7,18 @@ import { TextField } from "../TextField"
 import { Item } from "../types"
 import { Popover, SelectItem } from "../_elements"
 
-import { getSearchState } from "./utils"
-
-import './styles.css'
+import "./styles.css"
 
 export interface Props {
   defaultItem?: string
   items: Item[]
   placeholder?: string
-  isLoading: boolean
   isClear?: boolean
   className?: boolean
+  icon?: React.ReactNode
+  isDisableClickIcon?: boolean
   handleClear?: () => void
-  fetchData?: (value: string) => Promise<void>,
+  fetchData?: (value: string) => Promise<void>
   onChange(id: string): void
 }
 
@@ -27,16 +26,21 @@ export const SearchField: React.FC<Props> = ({
   defaultItem,
   items,
   placeholder,
-  isLoading,
   isClear = false,
-  className = '',
+  className = "",
+  icon,
+  isDisableClickIcon,
   handleClear,
   fetchData,
-  onChange
+  onChange,
 }) => {
   const [isOpenedSuggestions, setIsOpenedSuggestions] = useState<boolean>(false)
-  const [value, setValue] = useState<string>(defaultItem ? items.find((item) => item.id === defaultItem)?.value ?? '' : '')
-  const [currentItem, setCurrentItem] = useState<string>(defaultItem ?? '')
+  const [value, setValue] = useState<string>(
+    defaultItem
+      ? items.find((item) => item.id === defaultItem)?.value ?? ""
+      : ""
+  )
+  const [currentItem, setCurrentItem] = useState<string>(defaultItem ?? "")
   const [isBlockFetch, setIsBlockFetch] = useState<boolean>(true)
 
   const ref = useRef<HTMLDivElement>(null)
@@ -63,10 +67,14 @@ export const SearchField: React.FC<Props> = ({
   }
 
   const clear = (): void => {
+    if (isDisableClickIcon) {
+      return
+    }
+
     setIsOpenedSuggestions(false)
-    setValue('')
-    setCurrentItem('')
-    onChange('')
+    setValue("")
+    setCurrentItem("")
+    onChange("")
     setIsBlockFetch(true)
   }
 
@@ -98,7 +106,7 @@ export const SearchField: React.FC<Props> = ({
   const filteredItems = items.filter(filterItems)
 
   return (
-    <div className={cn('itpc-search-field', className)} ref={ref}>
+    <div className={cn("itpc-search-field", className)} ref={ref}>
       <TextField
         id="itpc-search-field"
         name="itpc-search-field"
@@ -106,8 +114,7 @@ export const SearchField: React.FC<Props> = ({
         onChange={changeValue}
         onFocus={openSuggestions}
         value={value}
-        state={getSearchState(isLoading, value)}
-        onClickIcon={clear}
+        icon={<div onClick={clear}>{icon}</div>}
       />
 
       {!!filteredItems.length && isOpenedSuggestions && (

@@ -1,11 +1,11 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { Checkbox, Props } from '../components/Checkbox'
+import { Checkbox, Props } from "../components/Checkbox"
 
 export default {
-  title: 'Components/Checkbox',
-  component: Checkbox
+  title: "Components/Checkbox",
+  component: Checkbox,
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
@@ -40,5 +40,5 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
 export const Basic = Template.bind({})
 Basic.args = {
-  disabled: false
+  disabled: false,
 }

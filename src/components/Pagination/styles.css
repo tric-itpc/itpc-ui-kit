@@ -20,7 +20,7 @@
 }
 
 .itpc-pagination__btn:hover {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
 }
 
 .itpc-pagination__btn > .itpc-icon__arrow {
@@ -40,13 +40,13 @@
 }
 
 .itpc-pagination__btn_page_active {
-  background-color: #5C53AC;
+  background-color: #5c53ac;
   color: #fff;
 }
 
 .itpc-pagination__btn_page:hover {
-  background-color: #E5E5E5;
-  color: #000
+  background-color: #e5e5e5;
+  color: #000;
 }
 
 .itpc-pagination__pages {

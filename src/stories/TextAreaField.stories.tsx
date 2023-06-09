@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import React, { useState } from "react"
+import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { TextAreaField, Props } from '../components/TextAreaField'
+import { TextAreaField, Props } from "../components/TextAreaField"
 
 export default {
-  title: 'Components/TextAreaField',
-  component: TextAreaField
+  title: "Components/TextAreaField",
+  component: TextAreaField,
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>("")
 
   const onChange = (valueInput: string): void => {
     setValue(valueInput)
@@ -25,7 +25,7 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
 export const Basic = Template.bind({})
 Basic.args = {
-  placeholder: 'Enter text',
-  validationState: 'valid',
-  errorMessage: 'Error message'
+  placeholder: "Enter text",
+  validationState: "valid",
+  errorMessage: "Error message",
 }

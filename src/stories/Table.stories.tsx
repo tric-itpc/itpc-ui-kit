@@ -1,11 +1,19 @@
-import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import React from "react"
+import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { Cell, Column, Row, Table, TableBody, TableHeader, TableProps } from "../components/Table"
+import {
+  Cell,
+  Column,
+  Row,
+  Table,
+  TableBody,
+  TableHeader,
+  TableProps,
+} from "../components/Table"
 
 export default {
-  title: 'Components/Table',
-  component: Table
+  title: "Components/Table",
+  component: Table,
 } as ComponentMeta<React.FC<TableProps>>
 
 const Template: ComponentStory<React.FC<TableProps>> = (args) => (
@@ -39,5 +47,5 @@ const Template: ComponentStory<React.FC<TableProps>> = (args) => (
 
 export const Basic = Template.bind({})
 Basic.args = {
-  title: 'Table title'
+  title: "Table title",
 }

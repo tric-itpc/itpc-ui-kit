@@ -1,7 +1,7 @@
 .itpc-table {
   width: 100%;
   table-layout: unset;
-  border: 1px solid #B2B7C7;
+  border: 1px solid #b2b7c7;
   border-spacing: 0;
   border-radius: 4px;
   text-align: left;
@@ -9,7 +9,7 @@
 }
 
 .itpc-table__caption {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   font-size: 14px;
 }
 
@@ -21,7 +21,7 @@
 .itpc-table__column {
   padding: 10px;
   font-weight: 400;
-  border-bottom: 1px solid #B2B7C7;
+  border-bottom: 1px solid #b2b7c7;
   border-radius: 0;
   cursor: default;
 }
@@ -30,7 +30,8 @@
   cursor: pointer;
 }
 
-.itpc-table__body {}
+.itpc-table__body {
+}
 
 .itpc-table__cell {
   padding: 10px;
@@ -54,7 +55,8 @@
 }
 
 .itpc-table__row:hover {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
 }
 
-.itpc-table__footer {}
+.itpc-table__footer {
+}

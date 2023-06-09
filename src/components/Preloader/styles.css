@@ -5,7 +5,7 @@
   max-height: 25px;
   display: flex;
   border: 4px solid rgba(0, 0, 0, 0.25);
-  border-top-color: #5C53AC;
+  border-top-color: #5c53ac;
   border-radius: 50%;
   box-sizing: border-box;
   animation: rotate 1s linear infinite;

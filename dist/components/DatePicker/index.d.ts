@@ -1,6 +1,6 @@
 import React from "react";
 import { IInfo, ValidationState } from "../types";
-import './styles.css';
+import "./styles.css";
 export interface FormattedValues {
     value: string;
     formattedValue: string;
@@ -24,6 +24,7 @@ export interface Props {
     onFocus?: () => void;
     onChange?: (values: FormattedValues, event: React.SyntheticEvent<HTMLInputElement> | React.SyntheticEvent<HTMLButtonElement> | React.SyntheticEvent<HTMLTableDataCellElement>, info: IInfo) => void;
     isIconClickable?: boolean;
+    isShowIcon?: boolean;
     offsetYear?: number;
     withTime?: boolean;
     className?: string;

@@ -2,64 +2,64 @@
   padding: 6px 20px;
   min-width: 40px;
   min-height: 40px;
-  background-color: #5C53AC;
-  border: 1px solid #5C53AC;
+  background-color: #5c53ac;
+  border: 1px solid #5c53ac;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
   font-size: 14px;
   outline: none;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   user-select: none;
 }
 
 .itpc-button:hover {
-  background-color: #6F65CB;
-  border-color: #6F65CB;
+  background-color: #6f65cb;
+  border-color: #6f65cb;
   color: #fff;
 }
 
 .itpc-button:disabled {
-  background-color: #B2B7C7;
-  border-color: #B2B7C7;
+  background-color: #b2b7c7;
+  border-color: #b2b7c7;
   color: #fff;
   cursor: default;
 }
 
 .itpc-button__color_white {
   background-color: #fff;
-  border-color: #5C53AC;
-  color: #5C53AC;
+  border-color: #5c53ac;
+  color: #5c53ac;
 }
 
 .itpc-button__color_white:hover {
-  background-color: #6F65CB;
-  border-color: #6F65CB;
+  background-color: #6f65cb;
+  border-color: #6f65cb;
   color: #fff;
 }
 
 .itpc-button__color_white:disabled {
-  background-color: #B2B7C7;
-  border-color: #B2B7C7;
+  background-color: #b2b7c7;
+  border-color: #b2b7c7;
   color: #fff;
   cursor: default;
 }
 
 .itpc-button__color_red {
-  background-color: #D42564;
-  border-color: #D42564;
+  background-color: #d42564;
+  border-color: #d42564;
   color: #fff;
 }
 
 .itpc-button__color_red:hover {
-  background-color: #C9184A;
-  border-color: #C9184A;
+  background-color: #c9184a;
+  border-color: #c9184a;
   color: #fff;
 }
 
 .itpc-button__color_red:disabled {
-  background-color: #B2B7C7;
-  border-color: #B2B7C7;
+  background-color: #b2b7c7;
+  border-color: #b2b7c7;
   color: #fff;
   cursor: default;
 }

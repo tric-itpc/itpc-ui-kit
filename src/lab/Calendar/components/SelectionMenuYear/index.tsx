@@ -11,7 +11,7 @@ interface Props {
 export const SelectionMenuYear: React.FC<Props> = ({
   currentDate,
   offsetYear,
-  changeCurrentDate
+  changeCurrentDate,
 }: Props) => {
   const onClick = (year: number): void => {
     const date = new Date(currentDate)
@@ -21,9 +21,9 @@ export const SelectionMenuYear: React.FC<Props> = ({
 
   return (
     <div className="itpc-calendar__select-period">
-      {getAllYears(offsetYear).
-        reverse().
-        map((year) => (
+      {getAllYears(offsetYear)
+        .reverse()
+        .map((year) => (
           <button
             key={year}
             className="itpc-calendar__button"

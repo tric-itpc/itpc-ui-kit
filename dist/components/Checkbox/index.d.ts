@@ -1,6 +1,6 @@
 import React from "react";
 import { InputCheckboxLabelPosition, InputCheckboxType, InputCheckboxVariant } from "../types";
-import './styles.css';
+import "./styles.css";
 export interface Props {
     id: string;
     name: string;

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
 import { Field, InputError, InputWrap, Placeholder } from "../_elements"
 
@@ -17,22 +17,25 @@ export interface Props {
   className?: string
   onBlur?: () => void
   onFocus?: () => void
-  onChange?: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void
+  onChange?: (
+    value: string,
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => void
 }
 
 export const TextAreaField: React.FC<Props> = ({
-  id = 'itpc-input',
-  name = 'itpc-input',
-  value = '',
+  id = "itpc-input",
+  name = "itpc-input",
+  value = "",
   maxHeight,
   disabled = false,
-  placeholder = '',
-  validationState = 'valid',
-  errorMessage = '',
-  className = '',
+  placeholder = "",
+  validationState = "valid",
+  errorMessage = "",
+  className = "",
   onBlur,
   onFocus,
-  onChange
+  onChange,
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
   const [height, setHeight] = useState<number>(40)
@@ -56,7 +59,9 @@ export const TextAreaField: React.FC<Props> = ({
     }
   }
 
-  const onChangeTextArea = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
+  const onChangeTextArea = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ): void => {
     setHeight(40)
 
     if (ref.current?.scrollHeight && ref.current.scrollHeight > 40) {
@@ -93,10 +98,16 @@ export const TextAreaField: React.FC<Props> = ({
           onFocus={onFocusTextArea}
           onBlur={onBlurTextArea}
           onChange={onChangeTextArea}
-          className={cn('itpc-input', (focused || !!value.length) && 'itpc-input_focused')}
+          className={cn(
+            "itpc-input",
+            (focused || !!value.length) && "itpc-input_focused"
+          )}
         />
 
-        <InputError errorMessage={errorMessage} show={validationState === 'invalid'} />
+        <InputError
+          errorMessage={errorMessage}
+          show={validationState === "invalid"}
+        />
       </InputWrap>
     </Field>
   )

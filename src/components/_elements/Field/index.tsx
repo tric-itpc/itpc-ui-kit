@@ -1,7 +1,7 @@
 import React from "react"
-import cn from 'classnames'
+import cn from "classnames"
 
-import './styles.css'
+import "./styles.css"
 
 interface Props {
   className?: string
@@ -9,5 +9,5 @@ interface Props {
 }
 
 export const Field: React.FC<Props> = ({ className, children }) => (
-  <div className={cn('itpc-field', className)}>{children}</div>
+  <div className={cn("itpc-field", className)}>{children}</div>
 )
