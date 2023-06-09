@@ -11,3 +11,13 @@
   box-sizing: border-box;
   transition: all 0.3s ease-in-out 0s;
 }
+
+.itpc-placeholder_focused {
+  top: calc(-8px);
+  color: rgb(0, 0, 0);
+  font-size: 12px;
+}
+
+.itpc-placeholder_color_red {
+  color: #D42564;
+}
