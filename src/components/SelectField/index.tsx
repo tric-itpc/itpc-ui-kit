@@ -14,7 +14,7 @@ export interface Props {
   defaultItemId?: string
   placeholder: string
   disabled?: boolean
-  className?: boolean
+  className?: string
   onChange(value: string): void
 }
 
