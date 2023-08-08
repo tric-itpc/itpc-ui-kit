@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react"
-import {
-  NumberFormatValues,
-  PatternFormat,
-  SourceInfo,
-} from "react-number-format"
+import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
 import cn from "classnames"
 
 import {

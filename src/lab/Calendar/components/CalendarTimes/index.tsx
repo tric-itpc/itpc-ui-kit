@@ -1,9 +1,5 @@
 import React from "react"
-import {
-  NumberFormatValues,
-  PatternFormat,
-  SourceInfo,
-} from "react-number-format"
+import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
 
 import "./styles.css"
 
