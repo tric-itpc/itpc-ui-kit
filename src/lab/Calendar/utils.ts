@@ -4,31 +4,30 @@ import moment from "moment"
 import { daysNumeric, monthNumerical, monthPlural, months } from "./constants"
 import { Day } from "./types"
 
-export function getMonth(month: number): string {
-  return month < 10 ? `0${month}` : month.toString()
-}
+export const getMonth = (month: number): string =>
+  month < 10 ? `0${month}` : month.toString()
 
-export function dateToString(date: string): string {
+export const dateToString = (date: string): string => {
   const parseDate = date.split("-")
   return `${parseDate[2]} ${monthPlural[parseInt(parseDate[1], 10) - 1]}`
 }
 
-export function getMonthToString(date: string): string {
+export const getMonthToString = (date: string): string => {
   const parseDate = date.split("-")
   return `${months[parseInt(parseDate[1], 10) - 1]}`
 }
 
-export function getYearToString(date: string): string {
+export const getYearToString = (date: string): string => {
   const parseDate = date.split("-")
   return `${parseDate[0]}`
 }
 
-export function getMonthYearToString(date: string): string {
+export const getMonthYearToString = (date: string): string => {
   const parseDate = date.split("-")
   return `${months[parseInt(parseDate[1], 10) - 1]} ${parseDate[0]}`
 }
 
-export function getTodayMonthYear(): string {
+export const getTodayMonthYear = (): string => {
   const today = new Date()
   const month = today.getMonth() + 1
   const day = today.getDate()
@@ -37,22 +36,39 @@ export function getTodayMonthYear(): string {
   }`
 }
 
-export function getAllYears(offset: number): string[] {
+export const getAllYears = (offset: number): string[] => {
   const nowYear = new Date().getFullYear()
   const allYears: string[] = []
 
-  for (
-    let iterator = nowYear - offset;
-    iterator <= nowYear + offset;
-    iterator++
-  ) {
-    allYears.push(`${iterator}`)
+  for (let i = nowYear + offset; i >= nowYear - offset; i--) {
+    allYears.push(`${i}`)
   }
 
   return allYears
 }
 
-export function getCalendarDays(date: string): Day[] {
+export const getYearsFromTo = (from: number, to: number): string[] => {
+  if (from > to) {
+    console.warn(
+      'Error in calendar years. The "from" parameter is greater than the "to" parameter'
+    )
+    return []
+  }
+
+  if (from === to) {
+    return [`${from}`]
+  }
+
+  const allYears: string[] = []
+
+  for (let i = from; i <= to; i++) {
+    allYears.push(`${i}`)
+  }
+
+  return allYears
+}
+
+export const getCalendarDays = (date: string): Day[] => {
   const parseDate = date.split("-")
   const daysInMonth = new Date(
     parseInt(parseDate[0], 10),
@@ -125,10 +141,10 @@ export function getCalendarDays(date: string): Day[] {
   return days
 }
 
-export function initCurrentDate(
+export const initCurrentDate = (
   currentValue: string,
   withTime: boolean
-): string {
+): string => {
   if (withTime && currentValue?.includes("-") && currentValue?.includes("T")) {
     return currentValue.split("T")[0]
   }
@@ -140,7 +156,7 @@ export function initCurrentDate(
   return getTodayMonthYear()
 }
 
-export function initDays(currentValue: string, withTime: boolean): Day[] {
+export const initDays = (currentValue: string, withTime: boolean): Day[] => {
   if (withTime && currentValue?.includes("-") && currentValue?.includes("T")) {
     return getCalendarDays(currentValue.split("T")[0])
   }
@@ -152,10 +168,10 @@ export function initDays(currentValue: string, withTime: boolean): Day[] {
   return getCalendarDays(getTodayMonthYear())
 }
 
-export function initCurrentTime(
+export const initCurrentTime = (
   currentValue: string,
   withTime: boolean
-): string[] {
+): string[] => {
   if (!withTime) {
     return ["00", "00", "00"]
   }
@@ -168,14 +184,14 @@ export function initCurrentTime(
 }
 
 // eslint-disable-next-line max-params
-export function isDisabledDate(
+export const isDisabledDate = (
   date: string,
   activeDates?: string[],
   disabledDates?: string[],
   disabledAfterDate?: string,
   disabledBeforeDate?: string,
   disabledDaysOfWeek?: number[]
-): boolean {
+): boolean => {
   if (activeDates && disabledDates) {
     return false
   }

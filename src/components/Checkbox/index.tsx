@@ -16,7 +16,11 @@ export interface Props {
   variant?: InputCheckboxVariant
   labelPosition?: InputCheckboxLabelPosition
   disabled?: boolean
+  labelLeft?: string
   label?: string
+  isBlurLabelLeft?: boolean
+  isBlurLabelRight?: boolean
+  isBlurCheckbox?: boolean
   className?: string
   isChecked?: boolean
   onClick?: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -29,17 +33,34 @@ export const Checkbox: React.FC<Props> = ({
   variant = "android",
   labelPosition = "right",
   disabled = false,
+  labelLeft,
   label = "",
+  isBlurLabelLeft = false,
+  isBlurLabelRight = false,
+  isBlurCheckbox = false,
   className = "",
   isChecked = false,
   onClick,
 }) => (
-  <label className={cn("itpc-checkbox", className)}>
-    {labelPosition === "left" && (
-      <span className="itpc-checkbox__label itpc-checkbox__label_left">
-        {label}
+  <label
+    className={cn(
+      "itpc-checkbox",
+      isBlurCheckbox && "itpc-checkbox_blur",
+      className
+    )}
+  >
+    {(labelPosition === "left" || labelPosition === "all") && (
+      <span
+        className={cn(
+          "itpc-checkbox__label",
+          "itpc-checkbox__label_left",
+          isBlurLabelLeft && "itpc-checkbox__label_blur"
+        )}
+      >
+        {labelLeft ?? label}
       </span>
     )}
+
     <input
       id={id}
       name={name}
@@ -52,8 +73,16 @@ export const Checkbox: React.FC<Props> = ({
     <div
       className={cn("itpc-checkbox__fake", `itpc-checkbox__fake_${variant}`)}
     />
-    {labelPosition === "right" && (
-      <span className="itpc-checkbox__label">{label}</span>
+
+    {(labelPosition === "right" || labelPosition === "all") && (
+      <span
+        className={cn(
+          "itpc-checkbox__label",
+          isBlurLabelRight && "itpc-checkbox__label_blur"
+        )}
+      >
+        {label}
+      </span>
     )}
   </label>
 )

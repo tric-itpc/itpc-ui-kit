@@ -8,7 +8,11 @@ export interface Props {
     variant?: InputCheckboxVariant;
     labelPosition?: InputCheckboxLabelPosition;
     disabled?: boolean;
+    labelLeft?: string;
     label?: string;
+    isBlurLabelLeft?: boolean;
+    isBlurLabelRight?: boolean;
+    isBlurCheckbox?: boolean;
     className?: string;
     isChecked?: boolean;
     onClick?: (e: React.ChangeEvent<HTMLInputElement>) => void;

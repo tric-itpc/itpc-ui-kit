@@ -13,6 +13,8 @@ export interface Props {
     disabledDaysOfWeek?: number[];
     disabledSelectMonth?: boolean;
     disabledSelectYear?: boolean;
+    scrollToYear?: number;
+    yearsFromTo?: [number, number];
     show: boolean;
     handleShow: () => void;
     onChange?: (date: string, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableCellElement>, info: IInfo) => void;

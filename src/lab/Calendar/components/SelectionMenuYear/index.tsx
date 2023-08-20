@@ -1,16 +1,21 @@
 import React from "react"
 
-import { getAllYears } from "../../utils"
+import { getAllYears, getYearsFromTo } from "../../utils"
+import { YearBtn } from "./components/YearBtn/YearBtn"
 
 interface Props {
   currentDate: string
   offsetYear: number
+  scrollToYear?: number
+  yearsFromTo?: [number, number]
   changeCurrentDate(date: string): void
 }
 
 export const SelectionMenuYear: React.FC<Props> = ({
   currentDate,
   offsetYear,
+  scrollToYear,
+  yearsFromTo,
   changeCurrentDate,
 }: Props) => {
   const onClick = (year: number): void => {
@@ -21,17 +26,25 @@ export const SelectionMenuYear: React.FC<Props> = ({
 
   return (
     <div className="itpc-calendar__select-period">
-      {getAllYears(offsetYear)
-        .reverse()
-        .map((year) => (
-          <button
-            key={year}
-            className="itpc-calendar__button"
-            onClick={() => onClick(parseInt(year, 10))}
-          >
-            {year}
-          </button>
-        ))}
+      {!yearsFromTo
+        ? getAllYears(offsetYear).map((year) => (
+            <YearBtn
+              key={year}
+              currentYear={currentDate.slice(0, 4)}
+              year={year}
+              scrollToYear={scrollToYear}
+              changeCurrentDate={onClick}
+            />
+          ))
+        : getYearsFromTo(yearsFromTo[0], yearsFromTo[1]).map((year) => (
+            <YearBtn
+              key={year}
+              currentYear={currentDate.slice(0, 4)}
+              year={year}
+              scrollToYear={scrollToYear}
+              changeCurrentDate={onClick}
+            />
+          ))}
     </div>
   )
 }

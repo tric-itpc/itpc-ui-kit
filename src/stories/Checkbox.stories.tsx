@@ -10,14 +10,9 @@ export default {
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
   const [checkedFirst, setCheckedFirst] = useState<boolean>(false)
-  const [checkedSecond, setCheckedSecond] = useState<boolean>(false)
 
   const handleCheckedFirst = (): void => {
     setCheckedFirst(!checkedFirst)
-  }
-
-  const handleCheckedSecond = (): void => {
-    setCheckedSecond(!checkedSecond)
   }
 
   return (
@@ -27,12 +22,6 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
         name="1"
         isChecked={checkedFirst}
         onClick={handleCheckedFirst}
-      />
-      <Checkbox
-        {...args}
-        name="1"
-        isChecked={checkedSecond}
-        onClick={handleCheckedSecond}
       />
     </>
   )

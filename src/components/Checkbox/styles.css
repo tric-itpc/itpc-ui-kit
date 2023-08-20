@@ -6,8 +6,16 @@
   cursor: pointer;
 }
 
+.itpc-checkbox_blur {
+  opacity: 0.5;
+}
+
 .itpc-checkbox__label {
   margin-left: 10px;
+}
+
+.itpc-checkbox__label_blur {
+  opacity: 0.5;
 }
 
 .itpc-checkbox__label_left {

@@ -44,6 +44,13 @@ export interface Props {
   placeholder?: string
   validationState?: ValidationState
   errorMessage?: string
+  className?: string
+  isIconClickable?: boolean
+  offsetYear?: number
+  withTime?: boolean
+  isShowIcon?: boolean
+  scrollToYear?: number
+  yearsFromTo?: [number, number]
   onBlur?: () => void
   onFocus?: () => void
   onChange?: (
@@ -54,11 +61,6 @@ export interface Props {
       | React.SyntheticEvent<HTMLTableDataCellElement>,
     info: IInfo
   ) => void
-  isIconClickable?: boolean
-  isShowIcon?: boolean
-  offsetYear?: number
-  withTime?: boolean
-  className?: string
 }
 
 export const DatePicker: React.FC<Props> = ({
@@ -82,6 +84,8 @@ export const DatePicker: React.FC<Props> = ({
   isIconClickable = false,
   isShowIcon = true,
   offsetYear = 10,
+  scrollToYear,
+  yearsFromTo,
   withTime = false,
   className = "",
 }: Props) => {
@@ -259,6 +263,8 @@ export const DatePicker: React.FC<Props> = ({
           handleShow={onCloseCalendar}
           onChange={onChangeDate}
           offsetYear={offsetYear}
+          scrollToYear={scrollToYear}
+          yearsFromTo={yearsFromTo}
           withTime={withTime}
         />
       </div>

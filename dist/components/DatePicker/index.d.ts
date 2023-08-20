@@ -20,13 +20,15 @@ export interface Props {
     placeholder?: string;
     validationState?: ValidationState;
     errorMessage?: string;
+    className?: string;
+    isIconClickable?: boolean;
+    offsetYear?: number;
+    withTime?: boolean;
+    isShowIcon?: boolean;
+    scrollToYear?: number;
+    yearsFromTo?: [number, number];
     onBlur?: () => void;
     onFocus?: () => void;
     onChange?: (values: FormattedValues, event: React.SyntheticEvent<HTMLInputElement> | React.SyntheticEvent<HTMLButtonElement> | React.SyntheticEvent<HTMLTableDataCellElement>, info: IInfo) => void;
-    isIconClickable?: boolean;
-    isShowIcon?: boolean;
-    offsetYear?: number;
-    withTime?: boolean;
-    className?: string;
 }
 export declare const DatePicker: React.FC<Props>;

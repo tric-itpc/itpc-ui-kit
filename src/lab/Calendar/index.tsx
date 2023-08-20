@@ -34,6 +34,8 @@ export interface Props {
   disabledDaysOfWeek?: number[]
   disabledSelectMonth?: boolean
   disabledSelectYear?: boolean
+  scrollToYear?: number
+  yearsFromTo?: [number, number]
   show: boolean
   handleShow: () => void
   onChange?: (
@@ -59,6 +61,8 @@ export const Calendar: React.FC<Props> = ({
   disabledDaysOfWeek,
   disabledSelectMonth,
   disabledSelectYear,
+  scrollToYear,
+  yearsFromTo,
   show,
   handleShow,
   onChange,
@@ -188,6 +192,8 @@ export const Calendar: React.FC<Props> = ({
         <SelectionMenuYear
           currentDate={currentDate}
           offsetYear={offsetYear}
+          scrollToYear={scrollToYear}
+          yearsFromTo={yearsFromTo}
           changeCurrentDate={changeCurrentDate}
         />
       )}
