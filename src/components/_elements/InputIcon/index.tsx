@@ -8,7 +8,7 @@ interface InputWrapProps {
 }
 
 export const InputIcon: React.FC<InputWrapProps> = ({ onClick, children }) => (
-  <button type="button" className="itpc-input-icon" onClick={onClick}>
+  <span className="itpc-input-icon" onClick={onClick}>
     {children}
-  </button>
+  </span>
 )
