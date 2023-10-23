@@ -44,7 +44,7 @@ export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
   disabled?: boolean
   changeActiveTab?: (id: string) => void
   className?: string
-  childProps: { [key: string]: unknown }
+  childProps?: { [key: string]: unknown }
 }
 
 export const Tabs: React.FC<TabsProps> = ({

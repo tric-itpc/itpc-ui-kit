@@ -13,7 +13,7 @@ export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
     disabled?: boolean;
     changeActiveTab?: (id: string) => void;
     className?: string;
-    childProps: {
+    childProps?: {
         [key: string]: unknown;
     };
 }
