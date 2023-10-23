@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react"
+import React, { HTMLAttributes, useRef, useState } from "react"
 import cn from "classnames"
 
 import { Field, InputError, InputWrap, Placeholder } from "../_elements"
 
 import { ValidationState } from "../types"
 
-export interface Props {
+export interface Props
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   id: string
   name: string
   value?: string
@@ -36,6 +37,7 @@ export const TextAreaField: React.FC<Props> = ({
   onBlur,
   onFocus,
   onChange,
+  ...rest
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
   const [height, setHeight] = useState<number>(40)
@@ -74,7 +76,7 @@ export const TextAreaField: React.FC<Props> = ({
   }
 
   return (
-    <Field className={className}>
+    <Field className={className} {...rest}>
       <InputWrap
         focused={focused}
         validationState={validationState}

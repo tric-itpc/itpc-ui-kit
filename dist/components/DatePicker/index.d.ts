@@ -1,11 +1,11 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { IInfo, ValidationState } from "../types";
 import "./styles.css";
 export interface FormattedValues {
     value: string;
     formattedValue: string;
 }
-export interface Props {
+export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
     id?: string;
     name?: string;
     value?: string;

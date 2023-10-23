@@ -1,7 +1,7 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { PopupPosition, PopupSize, PopupVariant } from "../types";
 import "./styles.css";
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLDivElement> {
     title: string;
     isOpen: boolean;
     size?: PopupSize;

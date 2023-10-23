@@ -1,11 +1,11 @@
-import React from "react"
+import React, { HTMLAttributes } from "react"
 import cn from "classnames"
 
 import { ButtonType, ButtonVariant } from "../types"
 
 import "./styles.css"
 
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType
   variant?: ButtonVariant
   disabled?: boolean
@@ -21,6 +21,7 @@ export const Button: React.FC<Props> = ({
   onPress,
   className = "",
   children,
+  ...rest
 }: Props) => {
   const onClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (onPress) {
@@ -41,6 +42,7 @@ export const Button: React.FC<Props> = ({
         },
         className
       )}
+      {...rest}
     >
       {children}
     </button>

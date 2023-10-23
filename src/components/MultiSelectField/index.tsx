@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { HTMLAttributes, useRef, useState } from "react"
 import cn from "classnames"
 
 import { useOnClickOutside } from "../../_hooks"
@@ -9,7 +9,8 @@ import { Item } from "../types"
 
 import "./styles.css"
 
-export interface Props {
+export interface Props
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   items: Item[]
   selectedItems?: string[]
   placeholder?: string
@@ -25,6 +26,7 @@ export const MultiSelectField: React.FC<Props> = ({
   disabled = false,
   className,
   onChange,
+  ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -70,7 +72,7 @@ export const MultiSelectField: React.FC<Props> = ({
   useOnClickOutside(ref, onClose)
 
   return (
-    <div ref={ref} className={cn("itpc-multi-select", className)}>
+    <div ref={ref} className={cn("itpc-multi-select", className)} {...rest}>
       <button
         type="button"
         className={cn(
@@ -83,8 +85,10 @@ export const MultiSelectField: React.FC<Props> = ({
         <Placeholder focused={isOpen || !!selectedItems?.length}>
           {placeholder}
         </Placeholder>
+
         {selectText()}
       </button>
+
       <IconArrow orientation={isOpen ? "top" : "bottom"} onClick={handleOpen} />
 
       {isOpen && (

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { Item } from "../types";
 import "./styles.css";
-export interface Props {
+export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
     items: Item[];
     defaultItemId?: string;
     placeholder: string;

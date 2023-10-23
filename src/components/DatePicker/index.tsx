@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { HTMLAttributes, useEffect, useRef, useState } from "react"
 import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
 import cn from "classnames"
 
@@ -29,7 +29,8 @@ export interface FormattedValues {
   formattedValue: string
 }
 
-export interface Props {
+export interface Props
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   id?: string
   name?: string
   value?: string
@@ -88,6 +89,7 @@ export const DatePicker: React.FC<Props> = ({
   yearsFromTo,
   withTime = false,
   className = "",
+  ...rest
 }: Props) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
   const [isShowCalendar, setIsShowCalendar] = useState<boolean>(false)
@@ -195,7 +197,7 @@ export const DatePicker: React.FC<Props> = ({
   }, [])
 
   return (
-    <div className={cn("itpc-datepicker", className)}>
+    <div className={cn("itpc-datepicker", className)} {...rest}>
       <div
         className={cn(
           "itpc-datepicker__input-wrap",
@@ -212,6 +214,7 @@ export const DatePicker: React.FC<Props> = ({
             {placeholder}
           </Placeholder>
         )}
+
         <PatternFormat
           id={id}
           name={name}
@@ -230,9 +233,11 @@ export const DatePicker: React.FC<Props> = ({
           format={withTime ? formatMaskDateTime : formatMaskDate}
           mask={withTime ? maskDateTime : maskDate}
         />
+
         {isShowIcon && (
           <IconCalendar isClickable={isIconClickable} onClick={onClickIcon} />
         )}
+
         <InputError
           errorMessage={errorMessage}
           show={validationState === "invalid"}

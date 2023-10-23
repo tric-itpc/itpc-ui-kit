@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { HTMLAttributes, useEffect, useRef, useState } from "react"
 import cn from "classnames"
 
 import { useOnClickOutside } from "../../_hooks"
@@ -9,7 +9,8 @@ import { Popover, SelectItem } from "../_elements"
 
 import "./styles.css"
 
-export interface Props {
+export interface Props
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "className"> {
   defaultItem?: string
   items: Item[]
   placeholder?: string
@@ -20,6 +21,10 @@ export interface Props {
   handleClear?: () => void
   fetchData?: (value: string) => Promise<void>
   onChange(id: string): void
+  textFieldAttr?: Omit<
+    HTMLAttributes<HTMLDivElement>,
+    "onChange" | "onFocus" | "onBlur"
+  >
 }
 
 export const SearchField: React.FC<Props> = ({
@@ -33,6 +38,8 @@ export const SearchField: React.FC<Props> = ({
   handleClear,
   fetchData,
   onChange,
+  textFieldAttr,
+  ...rest
 }) => {
   const [isOpenedSuggestions, setIsOpenedSuggestions] = useState<boolean>(false)
   const [value, setValue] = useState<string>(
@@ -106,7 +113,7 @@ export const SearchField: React.FC<Props> = ({
   const filteredItems = items.filter(filterItems)
 
   return (
-    <div className={cn("itpc-search-field", className)} ref={ref}>
+    <div className={cn("itpc-search-field", className)} ref={ref} {...rest}>
       <TextField
         id="itpc-search-field"
         name="itpc-search-field"
@@ -115,6 +122,7 @@ export const SearchField: React.FC<Props> = ({
         onFocus={openSuggestions}
         value={value}
         icon={<div onClick={clear}>{icon}</div>}
+        {...textFieldAttr}
       />
 
       {!!filteredItems.length && isOpenedSuggestions && (

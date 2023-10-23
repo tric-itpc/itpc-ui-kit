@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react"
+import React, { HTMLAttributes, useState } from "react"
 import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
 import cn from "classnames"
 
@@ -13,7 +13,8 @@ import {
 
 import { FormattedValues, ValidationState } from "../types"
 
-export interface Props {
+export interface Props
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   id: string
   name: string
   value?: string
@@ -56,6 +57,7 @@ export const NumberField: React.FC<Props> = ({
   onChange,
   getInputRef,
   className = "",
+  ...rest
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
 
@@ -91,7 +93,7 @@ export const NumberField: React.FC<Props> = ({
   }
 
   return (
-    <Field className={className}>
+    <Field className={className} {...rest}>
       <InputWrap focused={focused} validationState={validationState}>
         <Placeholder
           htmlFor={id}

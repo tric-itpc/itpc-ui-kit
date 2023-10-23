@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { HTMLAttributes, useRef, useState } from "react"
 import cn from "classnames"
 
 import { useOnClickOutside } from "../../_hooks"
@@ -9,7 +9,8 @@ import { Item } from "../types"
 
 import "./styles.css"
 
-export interface Props {
+export interface Props
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   items: Item[]
   defaultItemId?: string
   placeholder: string
@@ -25,6 +26,7 @@ export const SelectField: React.FC<Props> = ({
   disabled = false,
   className = "",
   onChange,
+  ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -51,7 +53,7 @@ export const SelectField: React.FC<Props> = ({
   useOnClickOutside(ref, close)
 
   return (
-    <div className={cn("itpc-select", className)} ref={ref}>
+    <div className={cn("itpc-select", className)} ref={ref} {...rest}>
       <button
         type="button"
         className={cn(
@@ -64,9 +66,11 @@ export const SelectField: React.FC<Props> = ({
         <Placeholder focused={isOpen || !!defaultItemId}>
           {placeholder}
         </Placeholder>
+
         {defaultItemId &&
           items.find((item) => item.id === defaultItemId)?.value}
       </button>
+
       <IconArrow orientation={isOpen ? "top" : "bottom"} onClick={handleOpen} />
 
       {isOpen && (
