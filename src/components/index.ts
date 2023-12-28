@@ -29,6 +29,7 @@ import { Preloader } from "./Preloader"
 import { SearchField } from "./SearchField"
 import { SelectField } from "./SelectField"
 import { Tabs, TabButton } from "./Tabs"
+import { TableSort } from "./TableSort"
 import { Text } from "./Text"
 import { TextField } from "./TextField"
 
@@ -65,6 +66,7 @@ export {
   Tabs,
   Text,
   TextField,
+  TableSort,
 }
 
 export { UIKitColors } from "./constants"

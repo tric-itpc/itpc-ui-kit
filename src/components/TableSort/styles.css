@@ -1,0 +1,80 @@
+.itpc-table-sort {
+  width: 100%;
+  table-layout: unset;
+  border: none;
+  border-spacing: 0;
+  border-radius: 4px;
+  text-align: left;
+  overflow: hidden;
+}
+
+.itpc-table-sort_pointer-none {
+  pointer-events: none;
+}
+
+.itpc-table-sort__caption {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+}
+
+.itpc-table-sort__head {
+  background-color: #b8b8b8;
+  cursor: default;
+  padding: 10px 10px;
+  border-bottom: 1px solid #b2b7c7;
+}
+
+.itpc-table-sort__head:hover {
+  background-color: #a7a7a7;
+}
+
+ .itpc-table-sort__head_background {
+  background-color: #afb0b8;
+}
+
+.itpc-table-sort__column {
+  padding: 10px;
+  font-weight: 400;
+  border-bottom: 1px solid #b2b7c7;
+  border-radius: 0;
+  cursor: default;
+}
+
+.itpc-table-sort_clickable {
+  cursor: pointer;
+}
+
+.itpc-table-sort__body {
+}
+
+.itpc-table-sort__wrap-cell {
+  display: flex;
+  align-items: center;
+}
+
+
+.itpc-table-sort__cell {
+  padding: 10px;
+  font-weight: 400;
+  border-bottom: 1px solid #b2b7c7;
+  border-radius: 0;
+  cursor: default;
+}
+
+.itpc-table-sort__cell_back {
+  background-color: #e5e5e5;
+}
+
+.itpc-table-sort_clickable {
+  cursor: pointer;
+}
+
+.itpc-table-sort__row {
+  cursor: default;
+  background-color: transparent;
+  border-bottom: 1px solid #b2b7c7;
+}
+
+.itpc-table-sort__row:hover {
+  background-color: #e5e5e5;
+}

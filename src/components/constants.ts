@@ -10,3 +10,5 @@ export enum UIKitColors {
   purple = "#5C53AC",
   purpleLight = "#6F65CB",
 }
+
+export const cellKey = "key"
