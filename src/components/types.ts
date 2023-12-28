@@ -53,3 +53,10 @@ export interface IInfo {
   id: string
   name: string
 }
+
+export enum AriaSort {
+  NONE = "none",
+  ASCENDING = "ascending",
+  DESCENDING = "descending",
+  OTHER = "other",
+}
