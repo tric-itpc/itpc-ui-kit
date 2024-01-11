@@ -1,9 +1,9 @@
-import React from "react"
+import React, { HTMLAttributes } from "react"
 import cn from "classnames"
 
 import "./styles.css"
 
-export interface ModalProps {
+export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   title: string
   isOpen: boolean
   isOverlayClickable?: boolean
@@ -21,6 +21,7 @@ export const Modal: React.FC<ModalProps> = ({
   className = "",
   iconClose,
   children,
+  ...rest
 }) => {
   const onCloseOverlay = (): void => {
     if (isOverlayClickable && onClose) {
@@ -37,10 +38,12 @@ export const Modal: React.FC<ModalProps> = ({
         className
       )}
       onClick={onCloseOverlay}
+      {...rest}
     >
       <div className="itpc-modal" onClick={(event) => event.stopPropagation()}>
         <div className="itpc-modal__header">
           {title}
+
           {iconClose && iconClose}
         </div>
 
@@ -50,7 +53,7 @@ export const Modal: React.FC<ModalProps> = ({
   )
 }
 
-interface ModalContentProps {
+interface ModalContentProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
   children?: React.ReactNode
 }
@@ -58,11 +61,14 @@ interface ModalContentProps {
 export const ModalContent: React.FC<ModalContentProps> = ({
   className = "",
   children,
+  ...rest
 }: ModalContentProps) => (
-  <div className={cn("itpc-modal__content", className)}>{children}</div>
+  <div className={cn("itpc-modal__content", className)} {...rest}>
+    {children}
+  </div>
 )
 
-interface ModalFooterProps {
+interface ModalFooterProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
   children?: React.ReactNode
 }
@@ -70,6 +76,9 @@ interface ModalFooterProps {
 export const ModalFooter: React.FC<ModalFooterProps> = ({
   className = "",
   children,
+  ...rest
 }: ModalFooterProps) => (
-  <div className={cn("itpc-modal__footer", className)}>{children}</div>
+  <div className={cn("itpc-modal__footer", className)} {...rest}>
+    {children}
+  </div>
 )

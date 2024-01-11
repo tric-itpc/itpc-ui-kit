@@ -1,6 +1,6 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import "./styles.css";
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLParagraphElement> {
     className?: string;
     children?: React.ReactNode;
 }

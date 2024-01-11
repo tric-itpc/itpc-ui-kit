@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { HTMLAttributes, useState } from "react"
 import cn from "classnames"
 
 import {
@@ -11,7 +11,8 @@ import {
 
 import { InputType, ValidationState } from "../types"
 
-export interface Props {
+export interface Props
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   id: string
   name: string
   type?: InputType
@@ -43,6 +44,7 @@ export const TextField: React.FC<Props> = ({
   onBlur,
   onFocus,
   onChange,
+  ...rest
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
 
@@ -69,7 +71,7 @@ export const TextField: React.FC<Props> = ({
   }
 
   return (
-    <Field className={className}>
+    <Field className={className} {...rest}>
       <InputWrap focused={focused} validationState={validationState}>
         <Placeholder
           htmlFor={id}

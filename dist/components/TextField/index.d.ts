@@ -1,6 +1,6 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { InputType, ValidationState } from "../types";
-export interface Props {
+export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
     id: string;
     name: string;
     type?: InputType;

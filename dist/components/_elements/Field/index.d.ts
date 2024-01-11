@@ -1,6 +1,6 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import "./styles.css";
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
     className?: string;
     children?: React.ReactNode;
 }

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react"
+import React, { FC, HTMLAttributes, useEffect, useState } from "react"
 import cn from "classnames"
 
 import { PaginationResult } from "../types"
@@ -6,7 +6,7 @@ import { PaginationResult } from "../types"
 import "./styles.css"
 import { IconArrow, IconDoubleArrow } from "../_elements"
 
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLDivElement> {
   step?: number
   dataLength: number
   className?: string
@@ -18,6 +18,7 @@ export const Pagination: FC<Props> = ({
   dataLength,
   className = "",
   callback,
+  ...rest
 }) => {
   const [startPagination, setStartPagination] = useState<number>(0)
   const [endPagination, setEndPagination] = useState<number>(step)
@@ -130,7 +131,7 @@ export const Pagination: FC<Props> = ({
   }, [dataLength])
 
   return (
-    <div className={cn("itpc-pagination", className)}>
+    <div className={cn("itpc-pagination", className)} {...rest}>
       <button
         type="button"
         className="itpc-pagination__btn itpc-pagination__btn_left"
@@ -139,6 +140,7 @@ export const Pagination: FC<Props> = ({
       >
         <IconDoubleArrow orientation="left" />
       </button>
+
       <button
         type="button"
         className="itpc-pagination__btn itpc-pagination__btn_left"
@@ -147,6 +149,7 @@ export const Pagination: FC<Props> = ({
       >
         <IconArrow orientation="left" />
       </button>
+
       <div className="itpc-pagination__pages">
         {pages
           .slice(startSlicePagesCount(), endSlicePagesCount())
@@ -164,9 +167,11 @@ export const Pagination: FC<Props> = ({
               {page}
             </button>
           ))}
+
         {currentPage < pages.length - 3 && pages.length > 4 && (
           <p className="itpc-pagination__text">...</p>
         )}
+
         {currentPage < pages.length && pages.length > 5 && (
           <button
             type="button"
@@ -182,6 +187,7 @@ export const Pagination: FC<Props> = ({
           </button>
         )}
       </div>
+
       <button
         type="button"
         className="itpc-pagination__btn itpc-pagination__btn_right"
@@ -190,6 +196,7 @@ export const Pagination: FC<Props> = ({
       >
         <IconArrow orientation="right" />
       </button>
+
       <button
         type="button"
         className="itpc-pagination__btn itpc-pagination__btn_right"

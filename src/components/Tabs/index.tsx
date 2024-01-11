@@ -1,11 +1,12 @@
-import React, { useState } from "react"
+import React, { HTMLAttributes, useState } from "react"
 import cn from "classnames"
 
 import { TabsItem } from "../types"
 
 import "./styles.css"
 
-interface TabButtonProps {
+interface TabButtonProps
+  extends Omit<HTMLAttributes<HTMLButtonElement>, "id" | "onClick"> {
   id: number
   title: string
   isActive: boolean
@@ -17,6 +18,7 @@ export const TabButton: React.FC<TabButtonProps> = ({
   title,
   isActive,
   onClick,
+  ...rest
 }) => {
   const click = (): void => {
     onClick(id)
@@ -30,18 +32,19 @@ export const TabButton: React.FC<TabButtonProps> = ({
         isActive && "itpc-tabs__button_active"
       )}
       onClick={click}
+      {...rest}
     >
       {title}
     </button>
   )
 }
 
-export interface TabsProps {
+export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
   items: TabsItem[]
   disabled?: boolean
   changeActiveTab?: (id: string) => void
   className?: string
-  [key: string]: unknown
+  childProps?: { [key: string]: unknown }
 }
 
 export const Tabs: React.FC<TabsProps> = ({
@@ -49,7 +52,8 @@ export const Tabs: React.FC<TabsProps> = ({
   disabled = false,
   changeActiveTab,
   className = "",
-  ...props
+  childProps,
+  ...rest
 }) => {
   const [activeTab, setActiveTab] = useState<number>(0)
 
@@ -63,10 +67,10 @@ export const Tabs: React.FC<TabsProps> = ({
   }
 
   const renderChildren = () =>
-    React.cloneElement(items[activeTab].content, { ...props })
+    React.cloneElement(items[activeTab].content, { ...childProps })
 
   return (
-    <div className={cn("itpc-tabs", className)}>
+    <div className={cn("itpc-tabs", className)} {...rest}>
       <div className="itpc-tabs__buttons">
         {items.map((item, i) => (
           <TabButton
@@ -78,6 +82,7 @@ export const Tabs: React.FC<TabsProps> = ({
           />
         ))}
       </div>
+
       <div className="itpc-tabs__content">{renderChildren()}</div>
     </div>
   )

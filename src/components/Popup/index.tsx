@@ -1,5 +1,4 @@
-/* eslint-disable no-nested-ternary */
-import React, { useEffect, useRef, useState } from "react"
+import React, { HTMLAttributes, useEffect, useRef, useState } from "react"
 import cn from "classnames"
 
 import { PopupPosition, PopupSize, PopupVariant } from "../types"
@@ -8,7 +7,7 @@ import { getPosition } from "./utils"
 
 import "./styles.css"
 
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLDivElement> {
   title: string
   isOpen: boolean
   size?: PopupSize
@@ -28,6 +27,7 @@ export const Popup: React.FC<Props> = ({
   className = "",
   iconClose,
   children,
+  ...rest
 }) => {
   const [height, setHeight] = useState<number>(0)
   const [width, setWidth] = useState<number>(0)
@@ -51,9 +51,11 @@ export const Popup: React.FC<Props> = ({
         variant === "success" && "itpc-popup_color_success",
         className
       )}
+      {...rest}
     >
       <div className="itpc-popup__header">
         <p className="itpc-popup__title">{title}</p>
+
         {iconClose && iconClose}
       </div>
 

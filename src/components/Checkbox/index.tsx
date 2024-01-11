@@ -1,4 +1,4 @@
-import React from "react"
+import React, { HTMLAttributes } from "react"
 import cn from "classnames"
 
 import {
@@ -9,7 +9,8 @@ import {
 
 import "./styles.css"
 
-export interface Props {
+export interface Props
+  extends Omit<HTMLAttributes<HTMLLabelElement>, "onClick"> {
   id: string
   name: string
   type?: InputCheckboxType
@@ -24,6 +25,8 @@ export interface Props {
   className?: string
   isChecked?: boolean
   onClick?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  inputAttr?: HTMLAttributes<HTMLInputElement>
+  labelAttr?: HTMLAttributes<HTMLSpanElement>
 }
 
 export const Checkbox: React.FC<Props> = ({
@@ -41,6 +44,9 @@ export const Checkbox: React.FC<Props> = ({
   className = "",
   isChecked = false,
   onClick,
+  inputAttr,
+  labelAttr,
+  ...rest
 }) => (
   <label
     className={cn(
@@ -48,6 +54,7 @@ export const Checkbox: React.FC<Props> = ({
       isBlurCheckbox && "itpc-checkbox_blur",
       className
     )}
+    {...rest}
   >
     {(labelPosition === "left" || labelPosition === "all") && (
       <span
@@ -56,6 +63,7 @@ export const Checkbox: React.FC<Props> = ({
           "itpc-checkbox__label_left",
           isBlurLabelLeft && "itpc-checkbox__label_blur"
         )}
+        {...labelAttr}
       >
         {labelLeft ?? label}
       </span>
@@ -69,6 +77,7 @@ export const Checkbox: React.FC<Props> = ({
       checked={isChecked}
       className="itpc-checkbox__input"
       onChange={onClick}
+      {...inputAttr}
     />
     <div
       className={cn("itpc-checkbox__fake", `itpc-checkbox__fake_${variant}`)}
@@ -80,6 +89,7 @@ export const Checkbox: React.FC<Props> = ({
           "itpc-checkbox__label",
           isBlurLabelRight && "itpc-checkbox__label_blur"
         )}
+        {...labelAttr}
       >
         {label}
       </span>
