@@ -1,4 +1,6 @@
 const path = require("path")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 
 module.exports = {
   mode: "production",
@@ -15,11 +17,12 @@ module.exports = {
   externals: {
     react: "react",
   },
+  plugins: [new MiniCssExtractPlugin({ filename: "index.css" })],
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.(ts|tsx)?$/,
@@ -27,5 +30,8 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
+  },
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
   },
 }
