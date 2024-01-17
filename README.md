@@ -229,22 +229,24 @@ const MyComponent: React.FC = () => {
 
 #### Props
 
-| Название         | Тип                                                              | Описание                                                          | Значение по умолчанию | Возможные значения         |
-|------------------|------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------|----------------------------|
-| id               | `string`                                                         | -                                                                 | -                     | Любая строка               |
-| name             | `string`                                                         | -                                                                 | -                     | Любая строка               |
-| type             | `string` `undefined`                                             | Тип кнопки                                                        | `'checkbox'`          | `'checkbox', 'radio'`      |
-| variant          | `InputCheckboxVariant`                                           | Вариант стилизации                                                | `'android'`           | `'android'` `'ios'`        |
-| labelPosition    | `InputCheckboxLabelPosition`                                     | Позиция подписи чекбокса                                          | `'right'`             | `'left'` `'right'` `'all'` |
-| disabled         | `boolean` `undefined`                                            | Блокировка чекбокса                                               | `false`               | `true` `false`             |
-| labelLeft        | `string` `undefined`                                             | Значение левой подписи (если нет, то по дефолту возьмет из label) | `undefined`           | Любая строка               |
-| label            | `string` `undefined`                                             | Значение подписи                                                  | `undefined`           | Любая строка               |
-| isBlurLabelLeft  | `boolean` `undefined`                                            | Блюр левой подписи                                                | `false`               | `true` `false`             |
-| isBlurLabelRight | `boolean` `undefined`                                            | Блюр правой подписи                                               | `false`               | `true` `false`             |
-| isBlurCheckbox   | `boolean` `undefined`                                            | Блюр всего чекбокса                                               | `false`               | `true` `false`             |
-| isChecked        | `boolean` `undefined`                                            | Выбран ли чекбокс                                                 | `false`               | `true` `false`             |
-| onClick          | `(e: React.ChangeEvent<HTMLInputElement>) => void` `undefined`   | Обработчик клика                                                  | `undefined`           |                            |
-| className        | `string` `undefined`                                             | CSS класс                                                         | `''`                  | Любая строка               |
+| Название         | Тип                                                            | Описание                                                          | Значение по умолчанию | Возможные значения                       |
+|------------------|----------------------------------------------------------------|-------------------------------------------------------------------|-----------------------|------------------------------------------|
+| id               | `string`                                                       | -                                                                 | -                     | Любая строка                             |
+| name             | `string`                                                       | -                                                                 | -                     | Любая строка                             |
+| type             | `string` `undefined`                                           | Тип кнопки                                                        | `'checkbox'`          | `'checkbox', 'radio'`                    |
+| variant          | `InputCheckboxVariant`                                         | Вариант стилизации                                                | `'android'`           | `'android'` `'ios'` `'round'` `'square'` |
+| labelPosition    | `InputCheckboxLabelPosition`                                   | Позиция подписи чекбокса                                          | `'right'`             | `'left'` `'right'` `'all'`               |
+| disabled         | `boolean` `undefined`                                          | Блокировка чекбокса                                               | `false`               | `true` `false`                           |
+| labelLeft        | `string` `undefined`                                           | Значение левой подписи (если нет, то по дефолту возьмет из label) | `undefined`           | Любая строка                             |
+| label            | `string` `undefined`                                           | Значение подписи                                                  | `undefined`           | Любая строка                             |
+| isBlurLabelLeft  | `boolean` `undefined`                                          | Блюр левой подписи                                                | `false`               | `true` `false`                           |
+| isBlurLabelRight | `boolean` `undefined`                                          | Блюр правой подписи                                               | `false`               | `true` `false`                           |
+| isBlurCheckbox   | `boolean` `undefined`                                          | Блюр всего чекбокса                                               | `false`               | `true` `false`                           |
+| isChecked        | `boolean` `undefined`                                          | Выбран ли чекбокс                                                 | `false`               | `true` `false`                           |
+| onClick          | `(e: React.ChangeEvent<HTMLInputElement>) => void` `undefined` | Обработчик клика                                                  | `undefined`           |                                          |
+| inputAttr        | `HTMLAttributes<HTMLInputElement>`                             | Атрибуты input                                                    | `undefined`           |                                          |
+| labelAttr        | `HTMLAttributes<HTMLSpanElement>`                              | Атрибуты label                                                    | `undefined`           |                                          |
+| className        | `string` `undefined`                                           | CSS класс                                                         | `''`                  | Любая строка                             |
 
 #### Пример
 
