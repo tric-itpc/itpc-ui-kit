@@ -11,4 +11,4 @@ export declare const getCalendarDays: (date: string) => Day[];
 export declare const initCurrentDate: (currentValue: string, withTime: boolean) => string;
 export declare const initDays: (currentValue: string, withTime: boolean) => Day[];
 export declare const initCurrentTime: (currentValue: string, withTime: boolean) => string[];
-export declare const isDisabledDate: (date: string, activeDates?: string[] | undefined, disabledDates?: string[] | undefined, disabledAfterDate?: string | undefined, disabledBeforeDate?: string | undefined, disabledDaysOfWeek?: number[] | undefined) => boolean;
+export declare const isDisabledDate: (date: string, activeDates?: string[], disabledDates?: string[], disabledAfterDate?: string, disabledBeforeDate?: string, disabledDaysOfWeek?: number[]) => boolean;

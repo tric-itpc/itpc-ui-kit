@@ -10,6 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     libraryTarget: "umd",
     clean: true,
+    assetModuleFilename: "assets/[name][ext]",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
@@ -28,6 +29,10 @@ module.exports = {
         test: /\.(ts|tsx)?$/,
         use: ["ts-loader"],
         exclude: /node_modules/,
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
       },
     ],
   },
