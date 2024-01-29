@@ -15,8 +15,19 @@
     "eslint:fix": "eslint src --fix --ext .ts,.tsx",
     "prettier": "prettier -c --ignore-unknown .",
     "prettier:fix": "prettier -c --ignore-unknown --write .",
-    "stylelint": "stylelint **/styles.css",
-    "stylelint:fix": "stylelint --fix **/*.css"
+    "stylelint": "stylelint **/*.css",
+    "stylelint:fix": "stylelint --fix --allow-empty-input **/*.css"
+  },
+  "lint-staged": {
+    "*": [
+      "npm run prettier:fix"
+    ],
+    "*.{ts,tsx}": [
+      "npm run eslint:fix"
+    ],
+    "*.css": [
+      "npm run stylelint:fix"
+    ]
   },
   "repository": {
     "type": "git",
@@ -41,6 +52,7 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
+    "decimal.js-light": "^2.5.1",
     "eslint": "^8.42.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -51,14 +63,15 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
     "gh-pages": "^5.0.0",
+    "husky": "^9.1.6",
     "itpc-input-mask": "^0.2.1",
+    "lint-staged": "^15.2.10",
     "mini-css-extract-plugin": "^2.7.7",
     "prettier": "^2.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "style-loader": "^3.3.1",
     "stylelint": "^15.7.0",
-    "stylelint-config-standard": "^33.0.0",
     "stylelint-no-unsupported-browser-features": "^6.0.1",
     "stylelint-order": "^6.0.3",
     "stylelint-prettier": "^3.0.0",

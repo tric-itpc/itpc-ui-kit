@@ -25,7 +25,7 @@ export type PopupPosition =
   | "top-center"
   | "top-right"
   | "top-left"
-export type ValidationState = "invalid" | "valid"
+export type ValidationState = "invalid" | "warning" | "valid"
 
 export interface TabsItem {
   content: React.ReactElement<React.ReactNode>
