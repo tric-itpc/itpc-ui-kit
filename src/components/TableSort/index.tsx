@@ -1,4 +1,4 @@
-import React, { TableHTMLAttributes, useState } from "react"
+import React, { TableHTMLAttributes, useCallback, useState } from "react"
 
 import cn from "classnames"
 
@@ -8,6 +8,8 @@ import { TableSortBody, TableSortHeader } from "./_components"
 import "./styles.css"
 import { Column, KeySort, KeysSort, RowType, SaveOrder } from "./types"
 import {
+  addColumn,
+  addParameterInRows,
   byKey,
   byKeys,
   getKeysNamesColumns,
@@ -21,6 +23,7 @@ export interface TableSortProps<T extends RowType>
   extends TableHTMLAttributes<HTMLTableElement> {
   className?: string
   columns?: Column<T>[]
+  nameColumnIndex?: string
   rows: RowType<T>[]
   sortByNumberColumns?: NumberColumns
 }
@@ -28,6 +31,7 @@ export interface TableSortProps<T extends RowType>
 export const TableSort: React.FC<TableSortProps<any>> = ({
   className = "",
   columns,
+  nameColumnIndex,
   rows,
   sortByNumberColumns = NumberColumns.ZERO,
   ...rest
@@ -109,11 +113,42 @@ export const TableSort: React.FC<TableSortProps<any>> = ({
     }
   }
 
+  const dataColumns = useCallback(
+    (
+      columns: Column<RowType>[],
+      nameColumnIndex?: string
+    ): Column<RowType>[] => {
+      if (nameColumnIndex !== undefined) {
+        return addColumn(columns, nameColumnIndex)
+      } else {
+        return columns
+      }
+    },
+    [columns, nameColumnIndex]
+  )
+
+  const dataRows = useCallback(
+    (rows: RowType[], nameColumnIndex?: string): RowType[] => {
+      if (nameColumnIndex !== undefined) {
+        return addParameterInRows(rows)
+      } else {
+        return rows
+      }
+    },
+    [rows, nameColumnIndex]
+  )
+
+  const arrKeysNameColumns = useCallback(
+    (columns: Column<RowType>[], nameColumnIndex?: string): (keyof RowType)[] =>
+      getKeysNamesColumns(columns, nameColumnIndex),
+    [columns, nameColumnIndex]
+  )
+
   return (
     <table className={cn("itpc-table-sort", className)} {...rest}>
       {columns?.length && (
         <TableSortHeader
-          columns={columns}
+          columns={dataColumns(columns, nameColumnIndex)}
           currentKey={currentKey}
           currentKeys={currentKeys}
           setKeySort={setKeySort}
@@ -123,9 +158,11 @@ export const TableSort: React.FC<TableSortProps<any>> = ({
 
       {data && (
         <TableSortBody
-          arrKeysNameColumns={columns && getKeysNamesColumns(columns)}
+          arrKeysNameColumns={
+            columns && arrKeysNameColumns(columns, nameColumnIndex)
+          }
           nameMainColumnSort={currentKeys?.mainKey?.name}
-          rows={data}
+          rows={dataRows(data, nameColumnIndex)}
           sortByNumberColumns={sortByNumberColumns}
         />
       )}
