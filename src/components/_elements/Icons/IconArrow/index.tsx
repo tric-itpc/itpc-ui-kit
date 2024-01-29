@@ -1,4 +1,5 @@
 import React from "react"
+
 import cn from "classnames"
 
 import { Orientation } from "../../../types"
@@ -6,11 +7,11 @@ import { Orientation } from "../../../types"
 import "./styles.css"
 
 interface Props {
-  orientation: Orientation
   onClick?: () => void
+  orientation: Orientation
 }
 
-export const IconArrow: React.FC<Props> = ({ orientation, onClick }) => (
+export const IconArrow: React.FC<Props> = ({ onClick, orientation }) => (
   <i
     className={cn(
       "itpc-icon__arrow",
@@ -22,10 +23,10 @@ export const IconArrow: React.FC<Props> = ({ orientation, onClick }) => (
     onClick={onClick}
   >
     <svg
-      width="12"
+      fill="none"
       height="8"
       viewBox="0 0 12 8"
-      fill="none"
+      width="12"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

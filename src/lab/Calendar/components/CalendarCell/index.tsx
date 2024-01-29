@@ -1,4 +1,5 @@
 import React from "react"
+
 import cn from "classnames"
 
 import { daysOfTheWeekShort } from "../../constants"
@@ -6,13 +7,13 @@ import { daysOfTheWeekShort } from "../../constants"
 import "./styles.css"
 
 interface Props {
-  id: string
-  date: string
   currentDate: string
+  date: string
   dayOfTheWeek?: number
-  isHeader?: boolean
-  isChanged: boolean
   disabled?: boolean
+  id: string
+  isChanged: boolean
+  isHeader?: boolean
   onChange?: (
     date: string,
     event: React.MouseEvent<HTMLTableDataCellElement>
@@ -20,13 +21,13 @@ interface Props {
 }
 
 export const CalendarCell: React.FC<Props> = ({
-  id,
-  date,
   currentDate,
+  date,
   dayOfTheWeek,
-  isHeader = false,
-  isChanged,
   disabled,
+  id,
+  isChanged,
+  isHeader = false,
   onChange,
 }: Props) => {
   const isCurrentMonth =
@@ -40,7 +41,6 @@ export const CalendarCell: React.FC<Props> = ({
 
   return (
     <td
-      id={id}
       className={cn(
         "itpc-calendar__cell",
         isHeader && "itpc-calendar__cell_header",
@@ -48,6 +48,7 @@ export const CalendarCell: React.FC<Props> = ({
         !isHeader && !isCurrentMonth && "itpc-calendar__cell_not_current",
         disabled && "itpc-calendar__cell_disabled"
       )}
+      id={id}
       onClick={click}
     >
       <p className="itpc-calendar__text">

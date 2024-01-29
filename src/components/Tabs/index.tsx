@@ -1,4 +1,5 @@
 import React, { HTMLAttributes, useState } from "react"
+
 import cn from "classnames"
 
 import { TabsItem } from "../types"
@@ -6,18 +7,18 @@ import { TabsItem } from "../types"
 import "./styles.css"
 
 interface TabButtonProps
-  extends Omit<HTMLAttributes<HTMLButtonElement>, "id" | "onClick"> {
+  extends Omit<HTMLAttributes<HTMLButtonElement>, "onClick" | "id"> {
   id: number
-  title: string
   isActive: boolean
   onClick(id: number): void
+  title: string
 }
 
 export const TabButton: React.FC<TabButtonProps> = ({
   id,
-  title,
   isActive,
   onClick,
+  title,
   ...rest
 }) => {
   const click = (): void => {
@@ -26,12 +27,12 @@ export const TabButton: React.FC<TabButtonProps> = ({
 
   return (
     <button
-      type="button"
       className={cn(
         "itpc-tabs__button",
         isActive && "itpc-tabs__button_active"
       )}
       onClick={click}
+      type="button"
       {...rest}
     >
       {title}
@@ -40,19 +41,19 @@ export const TabButton: React.FC<TabButtonProps> = ({
 }
 
 export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
-  items: TabsItem[]
-  disabled?: boolean
   changeActiveTab?: (id: string) => void
-  className?: string
   childProps?: { [key: string]: unknown }
+  className?: string
+  disabled?: boolean
+  items: TabsItem[]
 }
 
 export const Tabs: React.FC<TabsProps> = ({
-  items,
-  disabled = false,
   changeActiveTab,
-  className = "",
   childProps,
+  className = "",
+  disabled = false,
+  items,
   ...rest
 }) => {
   const [activeTab, setActiveTab] = useState<number>(0)
@@ -74,11 +75,11 @@ export const Tabs: React.FC<TabsProps> = ({
       <div className="itpc-tabs__buttons">
         {items.map((item, i) => (
           <TabButton
-            key={i}
             id={i}
-            title={item.title}
             isActive={activeTab === i}
+            key={i}
             onClick={handleActiveTab}
+            title={item.title}
           />
         ))}
       </div>

@@ -1,11 +1,12 @@
 import React from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
+
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Card, Props } from "../components/Card"
 
 export default {
-  title: "Components/Card",
   component: Card,
+  title: "Components/Card",
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => (
@@ -19,6 +20,6 @@ const Template: ComponentStory<React.FC<Props>> = (args) => (
 
 export const Basic = Template.bind({})
 Basic.args = {
-  title: "My card",
   isBordered: true,
+  title: "My card",
 }

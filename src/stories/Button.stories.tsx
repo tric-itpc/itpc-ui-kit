@@ -1,25 +1,26 @@
 import React from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
+
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Button, Props } from "../components/Button"
 
 export default {
-  title: "Components/Button",
   component: Button,
+  title: "Components/Button",
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = ({
-  variant,
-  disabled,
   children,
+  disabled,
+  variant,
 }: Props) => (
-  <Button variant={variant} disabled={disabled}>
+  <Button disabled={disabled} variant={variant}>
     {children}
   </Button>
 )
 
 export const Basic = Template.bind({})
 Basic.args = {
-  disabled: false,
   children: "Button",
+  disabled: false,
 }

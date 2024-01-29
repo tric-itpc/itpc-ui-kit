@@ -1,4 +1,5 @@
 import React from "react"
+
 import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
 
 import "./styles.css"
@@ -6,20 +7,20 @@ import "./styles.css"
 interface Props {
   hours: string
   minutes: string
-  seconds: string
   onChange(
     time: string,
     event?:
-      | React.SyntheticEvent<HTMLInputElement>
       | React.SyntheticEvent<HTMLButtonElement>
+      | React.SyntheticEvent<HTMLInputElement>
   ): void
+  seconds: string
 }
 
 export const CalendarTimes: React.FC<Props> = ({
   hours,
   minutes,
-  seconds,
   onChange,
+  seconds,
 }: Props) => {
   const changeHours = (
     values: NumberFormatValues,
@@ -123,28 +124,28 @@ export const CalendarTimes: React.FC<Props> = ({
       <div className="itpc-calendar__time">
         <button
           className="itpc-calendar__button"
-          type="button"
-          tabIndex={-1}
           disabled={hours === "23"}
           onClick={increaseHours}
+          tabIndex={-1}
+          type="button"
         >
           <i className="itpc-calendar__arrow itpc-calendar__arrow_top" />
         </button>
         <PatternFormat
           className="itpc-calendar__input"
-          valueIsNumericString
-          allowEmptyFormatting
           format="##"
           mask={["Ч", "Ч"]}
-          value={hours}
           onValueChange={changeHours}
+          value={hours}
+          allowEmptyFormatting
+          valueIsNumericString
         />
         <button
           className="itpc-calendar__button"
-          type="button"
-          tabIndex={-1}
           disabled={!hours.length || hours === "00"}
           onClick={decreaseHours}
+          tabIndex={-1}
+          type="button"
         >
           <i className="itpc-calendar__arrow itpc-calendar__arrow_bottom" />
         </button>
@@ -155,28 +156,28 @@ export const CalendarTimes: React.FC<Props> = ({
       <div className="itpc-calendar__time">
         <button
           className="itpc-calendar__button"
-          type="button"
-          tabIndex={-1}
           disabled={minutes === "59"}
           onClick={increaseMinutes}
+          tabIndex={-1}
+          type="button"
         >
           <i className="itpc-calendar__arrow itpc-calendar__arrow_top" />
         </button>
         <PatternFormat
           className="itpc-calendar__input"
-          valueIsNumericString
-          allowEmptyFormatting
           format="##"
           mask={["М", "М"]}
-          value={minutes}
           onValueChange={changeMinutes}
+          value={minutes}
+          allowEmptyFormatting
+          valueIsNumericString
         />
         <button
           className="itpc-calendar__button"
-          type="button"
-          tabIndex={-1}
           disabled={!minutes.length || minutes === "00"}
           onClick={decreaseMinutes}
+          tabIndex={-1}
+          type="button"
         >
           <i className="itpc-calendar__arrow itpc-calendar__arrow_bottom" />
         </button>
@@ -187,28 +188,28 @@ export const CalendarTimes: React.FC<Props> = ({
       <div className="itpc-calendar__time">
         <button
           className="itpc-calendar__button"
-          type="button"
-          tabIndex={-1}
           disabled={seconds === "59"}
           onClick={increaseSeconds}
+          tabIndex={-1}
+          type="button"
         >
           <i className="itpc-calendar__arrow itpc-calendar__arrow_top" />
         </button>
         <PatternFormat
           className="itpc-calendar__input"
-          valueIsNumericString
-          allowEmptyFormatting
           format="##"
           mask={["С", "С"]}
-          value={seconds}
           onValueChange={changeSeconds}
+          value={seconds}
+          allowEmptyFormatting
+          valueIsNumericString
         />
         <button
           className="itpc-calendar__button"
-          type="button"
-          tabIndex={-1}
           disabled={!seconds.length || seconds === "00"}
           onClick={decreaseSeconds}
+          tabIndex={-1}
+          type="button"
         >
           <i className="itpc-calendar__arrow itpc-calendar__arrow_bottom" />
         </button>
