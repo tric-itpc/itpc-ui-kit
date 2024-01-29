@@ -1,4 +1,5 @@
 import React, { HTMLAttributes } from "react"
+
 import cn from "classnames"
 
 import { ButtonType, ButtonVariant } from "../types"
@@ -6,21 +7,21 @@ import { ButtonType, ButtonVariant } from "../types"
 import "./styles.css"
 
 export interface Props extends HTMLAttributes<HTMLButtonElement> {
-  type?: ButtonType
-  variant?: ButtonVariant
+  children?: React.ReactNode
+  className?: string
   disabled?: boolean
   onPress?: (e?: React.MouseEvent<HTMLButtonElement>) => void
-  className?: string
-  children?: React.ReactNode
+  type?: ButtonType
+  variant?: ButtonVariant
 }
 
 export const Button: React.FC<Props> = ({
-  type = "button",
-  variant,
+  children,
+  className = "",
   disabled = false,
   onPress,
-  className = "",
-  children,
+  type = "button",
+  variant,
   ...rest
 }: Props) => {
   const onClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
@@ -31,17 +32,17 @@ export const Button: React.FC<Props> = ({
 
   return (
     <button
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
       className={cn(
         "itpc-button",
         {
-          "itpc-button__color_white": variant === "white",
           "itpc-button__color_red": variant === "red",
+          "itpc-button__color_white": variant === "white",
         },
         className
       )}
+      disabled={disabled}
+      onClick={onClick}
+      type={type}
       {...rest}
     >
       {children}

@@ -1,42 +1,42 @@
 import React, { HTMLAttributes, useRef, useState } from "react"
+
 import cn from "classnames"
 
 import { Field, InputError, InputWrap, Placeholder } from "../_elements"
-
 import { ValidationState } from "../types"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  id: string
-  name: string
-  value?: string
-  maxHeight?: number
-  disabled?: boolean
-  placeholder?: string
-  validationState?: ValidationState
-  errorMessage?: string
   className?: string
+  disabled?: boolean
+  errorMessage?: string
+  id: string
+  maxHeight?: number
+  name: string
   onBlur?: () => void
-  onFocus?: () => void
   onChange?: (
     value: string,
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => void
+  onFocus?: () => void
+  placeholder?: string
+  validationState?: ValidationState
+  value?: string
 }
 
 export const TextAreaField: React.FC<Props> = ({
-  id = "itpc-input",
-  name = "itpc-input",
-  value = "",
-  maxHeight,
+  className = "",
   disabled = false,
+  errorMessage = "",
+  id = "itpc-input",
+  maxHeight,
+  name = "itpc-input",
+  onBlur,
+  onChange,
+  onFocus,
   placeholder = "",
   validationState = "valid",
-  errorMessage = "",
-  className = "",
-  onBlur,
-  onFocus,
-  onChange,
+  value = "",
   ...rest
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
@@ -79,31 +79,31 @@ export const TextAreaField: React.FC<Props> = ({
     <Field className={className} {...rest}>
       <InputWrap
         focused={focused}
-        validationState={validationState}
         height={height}
         maxHeight={maxHeight}
+        validationState={validationState}
       >
         <Placeholder
-          htmlFor={id}
           focused={focused || value.length > 0}
+          htmlFor={id}
           validationState={validationState}
         >
           {placeholder}
         </Placeholder>
 
         <textarea
-          ref={ref}
-          id={id}
-          name={name}
-          value={value}
-          disabled={disabled}
-          onFocus={onFocusTextArea}
-          onBlur={onBlurTextArea}
-          onChange={onChangeTextArea}
           className={cn(
             "itpc-input",
             (focused || !!value.length) && "itpc-input_focused"
           )}
+          disabled={disabled}
+          id={id}
+          name={name}
+          onBlur={onBlurTextArea}
+          onChange={onChangeTextArea}
+          onFocus={onFocusTextArea}
+          ref={ref}
+          value={value}
         />
 
         <InputError

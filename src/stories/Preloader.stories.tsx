@@ -1,11 +1,12 @@
 import React from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
+
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Preloader, PreloaderProps } from "../components/Preloader"
 
 export default {
-  title: "Components/Preloader",
   component: Preloader,
+  title: "Components/Preloader",
 } as ComponentMeta<React.FC<PreloaderProps>>
 
 const Template: ComponentStory<React.FC<PreloaderProps>> = (args) => (

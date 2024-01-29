@@ -1,19 +1,20 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { SelectField, Props } from "../components/SelectField"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
+
 import { Item } from "../components"
+import { Props, SelectField } from "../components/SelectField"
 
 export default {
-  title: "Components/SelectField",
   component: SelectField,
+  title: "Components/SelectField",
 } as ComponentMeta<React.FC<Props>>
 
 const mockItems: Item[] = [
   {
+    disabled: true,
     id: "1",
     value: "Cat",
-    disabled: true,
   },
   {
     id: "2",
@@ -51,8 +52,8 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
   return (
     <SelectField
       {...args}
-      items={mockItems}
       defaultItemId={selectedItem?.id}
+      items={mockItems}
       onChange={onChange}
     />
   )

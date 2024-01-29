@@ -1,27 +1,28 @@
 import React from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { Tabs, TabsProps } from "../components/Tabs"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
+
 import { TabsItem } from "../components"
+import { Tabs, TabsProps } from "../components/Tabs"
 
 const items: TabsItem[] = [
   {
-    title: "First",
     content: <div>First tab</div>,
+    title: "First",
   },
   {
-    title: "Second",
     content: <div>Second tab</div>,
+    title: "Second",
   },
   {
-    title: "Third",
     content: <div>Third tab</div>,
+    title: "Third",
   },
 ]
 
 export default {
-  title: "Components/Tabs",
   component: Tabs,
+  title: "Components/Tabs",
 } as ComponentMeta<React.FC<TabsProps>>
 
 const Template: ComponentStory<React.FC<TabsProps>> = (args) => (

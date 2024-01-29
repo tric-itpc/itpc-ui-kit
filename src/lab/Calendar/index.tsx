@@ -1,9 +1,18 @@
 import React, { useEffect, useRef, useState } from "react"
+
 import cn from "classnames"
 
-import { IInfo } from "../../components"
 import { useOnClickOutside } from "../../_hooks"
+import { IInfo } from "../../components"
 
+import {
+  CalendarControl,
+  CalendarTable,
+  CalendarTimes,
+  SelectionMenuMonth,
+  SelectionMenuYear,
+} from "./components"
+import "./styles.css"
 import { Day } from "./types"
 import {
   getCalendarDays,
@@ -12,61 +21,52 @@ import {
   initCurrentTime,
   initDays,
 } from "./utils"
-import {
-  CalendarControl,
-  CalendarTable,
-  CalendarTimes,
-  SelectionMenuMonth,
-  SelectionMenuYear,
-} from "./components"
-
-import "./styles.css"
 
 export interface Props {
-  id: string
-  name: string
-  currentValue?: string
-  offsetYear?: number
   activeDates?: string[]
-  disabledDates?: string[]
+  currentValue?: string
   disabledAfterDate?: string
   disabledBeforeDate?: string
+  disabledDates?: string[]
   disabledDaysOfWeek?: number[]
   disabledSelectMonth?: boolean
   disabledSelectYear?: boolean
-  scrollToYear?: number
-  yearsFromTo?: [number, number]
-  show: boolean
   handleShow: () => void
+  id: string
+  name: string
+  offsetYear?: number
   onChange?: (
     date: string,
     event:
+      | React.MouseEvent<HTMLTableCellElement>
       | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>
-      | React.MouseEvent<HTMLTableCellElement>,
+      | React.MouseEvent<HTMLButtonElement>,
     info: IInfo
   ) => void
+  scrollToYear?: number
+  show: boolean
   withTime?: boolean
+  yearsFromTo?: [number, number]
 }
 
 export const Calendar: React.FC<Props> = ({
-  id,
-  name,
-  currentValue = getTodayMonthYear(),
-  offsetYear = 10,
   activeDates,
-  disabledDates,
+  currentValue = getTodayMonthYear(),
   disabledAfterDate,
   disabledBeforeDate,
+  disabledDates,
   disabledDaysOfWeek,
   disabledSelectMonth,
   disabledSelectYear,
-  scrollToYear,
-  yearsFromTo,
-  show,
   handleShow,
+  id,
+  name,
+  offsetYear = 10,
   onChange,
+  scrollToYear,
+  show,
   withTime = false,
+  yearsFromTo,
 }: Props) => {
   const [currentDate, setCurrentDate] = useState<string>(
     initCurrentDate(currentValue, withTime)
@@ -156,45 +156,45 @@ export const Calendar: React.FC<Props> = ({
       ref={calendarRef}
     >
       <CalendarControl
+        changeCurrentDate={changeCurrentDate}
         currentDate={currentDate}
         disabledSelectMonth={disabledSelectMonth}
         disabledSelectYear={disabledSelectYear}
-        changeCurrentDate={changeCurrentDate}
-        handleShowSelectYear={handleShowSelectYear}
         handleShowSelectMonth={handleShowSelectMonth}
+        handleShowSelectYear={handleShowSelectYear}
       />
       <CalendarTable
-        id={id}
-        days={days}
-        currentDate={currentDate}
         activeDates={activeDates}
-        disabledDates={disabledDates}
+        currentDate={currentDate}
+        days={days}
         disabledAfterDate={disabledAfterDate}
         disabledBeforeDate={disabledBeforeDate}
+        disabledDates={disabledDates}
         disabledDaysOfWeek={disabledDaysOfWeek}
+        id={id}
         onChange={onChangeDate}
       />
       {withTime && (
         <CalendarTimes
           hours={hours}
           minutes={minutes}
-          seconds={seconds}
           onChange={changeCurrentTime}
+          seconds={seconds}
         />
       )}
       {isShowSelectMonth && (
         <SelectionMenuMonth
-          currentDate={currentDate}
           changeCurrentDate={changeCurrentDate}
+          currentDate={currentDate}
         />
       )}
       {isShowSelectYear && (
         <SelectionMenuYear
+          changeCurrentDate={changeCurrentDate}
           currentDate={currentDate}
           offsetYear={offsetYear}
           scrollToYear={scrollToYear}
           yearsFromTo={yearsFromTo}
-          changeCurrentDate={changeCurrentDate}
         />
       )}
     </div>
