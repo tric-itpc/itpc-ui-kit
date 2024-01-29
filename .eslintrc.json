@@ -43,7 +43,14 @@
       {
         "type": "alphabetical",
         "order": "asc",
-        "groups": ["react", "external", "parent", "sibling", "internal", "index"],
+        "groups": [
+          "react",
+          "external",
+          "parent",
+          "sibling",
+          "internal",
+          "index"
+        ],
         "custom-groups": {
           "value": {
             "react": ["react"]

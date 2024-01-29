@@ -10,3 +10,5 @@ export declare enum UIKitColors {
     white = "#FFF",
     yellow = "#DCB21E"
 }
+export declare const dotRegExp: RegExp;
+export declare const numberAndOnlyPointRegExp: RegExp;

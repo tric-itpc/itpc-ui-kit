@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { FormattedValues, IInfo } from "../components"
+import { FormattedValues } from "../components"
 import { DatePicker, Props } from "../components/DatePicker"
 
 export default {
@@ -33,6 +33,5 @@ export const Basic = Template.bind({})
 Basic.args = {
   errorMessage: "Error message",
   placeholder: "Enter date",
-  validationState: "valid",
   withTime: false,
 }
