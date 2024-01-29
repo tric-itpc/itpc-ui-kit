@@ -1,24 +1,25 @@
 import React, { HTMLAttributes } from "react"
+
 import cn from "classnames"
 
 import "./styles.css"
 
 export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
-  title?: React.ReactNode
-  isBordered?: boolean
-  className?: string
-  children?: React.ReactNode
-  titleAttr?: HTMLAttributes<HTMLParagraphElement>
   bodyAttr?: HTMLAttributes<HTMLDivElement>
+  children?: React.ReactNode
+  className?: string
+  isBordered?: boolean
+  title?: React.ReactNode
+  titleAttr?: HTMLAttributes<HTMLParagraphElement>
 }
 
 export const Card: React.FC<Props> = ({
-  title,
-  isBordered = false,
-  className,
-  children,
-  titleAttr,
   bodyAttr,
+  children,
+  className,
+  isBordered = false,
+  title,
+  titleAttr,
   ...rest
 }) => (
   <div

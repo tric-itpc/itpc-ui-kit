@@ -1,13 +1,13 @@
 import React from "react";
 import "./styles.css";
 interface Props {
-    id: string;
-    date: string;
     currentDate: string;
+    date: string;
     dayOfTheWeek?: number;
-    isHeader?: boolean;
-    isChanged: boolean;
     disabled?: boolean;
+    id: string;
+    isChanged: boolean;
+    isHeader?: boolean;
     onChange?: (date: string, event: React.MouseEvent<HTMLTableDataCellElement>) => void;
 }
 export declare const CalendarCell: React.FC<Props>;

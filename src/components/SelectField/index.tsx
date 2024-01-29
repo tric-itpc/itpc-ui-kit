@@ -1,31 +1,30 @@
 import React, { HTMLAttributes, useRef, useState } from "react"
+
 import cn from "classnames"
 
-import { useOnClickOutside } from "../../_hooks"
-
 import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
-
+import { useOnClickOutside } from "../../_hooks"
 import { Item } from "../types"
 
 import "./styles.css"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  items: Item[]
-  defaultItemId?: string
-  placeholder: string
-  disabled?: boolean
   className?: string
+  defaultItemId?: string
+  disabled?: boolean
+  items: Item[]
   onChange(value: string): void
+  placeholder: string
 }
 
 export const SelectField: React.FC<Props> = ({
-  items,
-  defaultItemId = null,
-  placeholder,
-  disabled = false,
   className = "",
+  defaultItemId = null,
+  disabled = false,
+  items,
   onChange,
+  placeholder,
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -55,13 +54,13 @@ export const SelectField: React.FC<Props> = ({
   return (
     <div className={cn("itpc-select", className)} ref={ref} {...rest}>
       <button
-        type="button"
         className={cn(
           "itpc-select__button",
           isOpen && "itpc-select__button_focused"
         )}
         disabled={disabled}
         onClick={handleOpen}
+        type="button"
       >
         <Placeholder focused={isOpen || !!defaultItemId}>
           {placeholder}
@@ -71,16 +70,16 @@ export const SelectField: React.FC<Props> = ({
           items.find((item) => item.id === defaultItemId)?.value}
       </button>
 
-      <IconArrow orientation={isOpen ? "top" : "bottom"} onClick={handleOpen} />
+      <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
 
       {isOpen && (
         <Popover>
           {items.map((item) => (
             <SelectItem
-              key={item.id}
-              id={item.id}
               disabled={item.disabled}
+              id={item.id}
               isActive={defaultItemId === item.id}
+              key={item.id}
               onChange={changeValue}
             >
               {item.value}

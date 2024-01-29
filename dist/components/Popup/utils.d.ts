@@ -1,9 +1,9 @@
-import { PopupPosition, PopupVariant } from "../types";
 import { UIKitColors } from "../constants";
+import { PopupPosition, PopupVariant } from "../types";
 export declare const getColor: (variant: PopupVariant) => UIKitColors;
 export declare const getPosition: (position: PopupPosition, width: number, height: number) => {
-    top?: string;
-    left?: string;
     bottom?: string;
+    left?: string;
     right?: string;
+    top?: string;
 };

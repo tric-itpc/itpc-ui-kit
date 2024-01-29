@@ -1,32 +1,32 @@
 import React, { HTMLAttributes, useEffect, useRef, useState } from "react"
+
 import cn from "classnames"
 
 import { PopupPosition, PopupSize, PopupVariant } from "../types"
 
+import "./styles.css"
 import { getPosition } from "./utils"
 
-import "./styles.css"
-
 export interface Props extends HTMLAttributes<HTMLDivElement> {
-  title: string
-  isOpen: boolean
-  size?: PopupSize
-  variant?: PopupVariant
-  position?: PopupPosition
+  children?: React.ReactNode
   className?: string
   iconClose?: React.ReactNode
-  children?: React.ReactNode
+  isOpen: boolean
+  position?: PopupPosition
+  size?: PopupSize
+  title: string
+  variant?: PopupVariant
 }
 
 export const Popup: React.FC<Props> = ({
-  title,
-  isOpen,
-  size = "normal",
-  variant = "default",
-  position = "center-center",
+  children,
   className = "",
   iconClose,
-  children,
+  isOpen,
+  position = "center-center",
+  size = "normal",
+  title,
+  variant = "default",
   ...rest
 }) => {
   const [height, setHeight] = useState<number>(0)
@@ -41,8 +41,6 @@ export const Popup: React.FC<Props> = ({
 
   return (
     <div
-      ref={ref}
-      style={getPosition(position, width, height)}
       className={cn(
         "itpc-popup",
         isOpen && "itpc-popup_opened",
@@ -51,6 +49,8 @@ export const Popup: React.FC<Props> = ({
         variant === "success" && "itpc-popup_color_success",
         className
       )}
+      ref={ref}
+      style={getPosition(position, width, height)}
       {...rest}
     >
       <div className="itpc-popup__header">

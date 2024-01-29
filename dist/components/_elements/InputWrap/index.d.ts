@@ -2,11 +2,11 @@ import React from "react";
 import { ValidationState } from "../../types";
 import "./styles.css";
 interface InputWrapProps {
+    children?: React.ReactNode;
     focused?: boolean;
-    validationState: ValidationState;
     height?: number;
     maxHeight?: number;
-    children?: React.ReactNode;
+    validationState: ValidationState;
 }
 export declare const InputWrap: React.FC<InputWrapProps>;
 export {};

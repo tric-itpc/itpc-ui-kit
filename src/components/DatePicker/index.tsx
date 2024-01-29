@@ -1,94 +1,93 @@
 import React, { HTMLAttributes, useEffect, useRef, useState } from "react"
-import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
+
 import cn from "classnames"
+import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
 
-import { Calendar } from "../../lab"
-
-import { IInfo, ValidationState } from "../types"
 import { IconCalendar, InputError, Placeholder } from "../_elements"
+import { Calendar } from "../../lab"
+import { IInfo, ValidationState } from "../types"
 
-import {
-  parseISODate,
-  parseISODateTime,
-  parseISODateToNumericString,
-  parseISODateTimeToNumericString,
-  parseNumericStringToISODate,
-  parseNumericStringToISODateTime,
-} from "./utils"
 import {
   formatMaskDate,
   formatMaskDateTime,
   maskDate,
   maskDateTime,
 } from "./constants"
-
 import "./styles.css"
+import {
+  parseISODate,
+  parseISODateTime,
+  parseISODateTimeToNumericString,
+  parseISODateToNumericString,
+  parseNumericStringToISODate,
+  parseNumericStringToISODateTime,
+} from "./utils"
 
 export interface FormattedValues {
-  value: string
   formattedValue: string
+  value: string
 }
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  id?: string
-  name?: string
-  value?: string
   activeDates?: string[]
-  disabledDates?: string[]
+  className?: string
+  disabled?: boolean
   disabledAfterDate?: string
   disabledBeforeDate?: string
+  disabledDates?: string[]
   disabledDaysOfWeek?: number[]
-  disabled?: boolean
   disabledSelectMonth?: boolean
   disabledSelectYear?: boolean
-  placeholder?: string
-  validationState?: ValidationState
   errorMessage?: string
-  className?: string
+  id?: string
   isIconClickable?: boolean
-  offsetYear?: number
-  withTime?: boolean
   isShowIcon?: boolean
-  scrollToYear?: number
-  yearsFromTo?: [number, number]
+  name?: string
+  offsetYear?: number
   onBlur?: () => void
-  onFocus?: () => void
   onChange?: (
     values: FormattedValues,
     event:
-      | React.SyntheticEvent<HTMLInputElement>
+      | React.SyntheticEvent<HTMLTableDataCellElement>
       | React.SyntheticEvent<HTMLButtonElement>
-      | React.SyntheticEvent<HTMLTableDataCellElement>,
+      | React.SyntheticEvent<HTMLInputElement>,
     info: IInfo
   ) => void
+  onFocus?: () => void
+  placeholder?: string
+  scrollToYear?: number
+  validationState?: ValidationState
+  value?: string
+  withTime?: boolean
+  yearsFromTo?: [number, number]
 }
 
 export const DatePicker: React.FC<Props> = ({
-  id = "itpc-datepicker",
-  name = "itpc-datepicker",
-  value = "",
   activeDates,
-  disabledDates,
+  className = "",
+  disabled = false,
   disabledAfterDate,
   disabledBeforeDate,
+  disabledDates,
   disabledDaysOfWeek,
-  disabled = false,
   disabledSelectMonth = false,
   disabledSelectYear = false,
-  placeholder = "",
-  validationState = "valid",
   errorMessage = "",
-  onBlur,
-  onFocus,
-  onChange,
+  id = "itpc-datepicker",
   isIconClickable = false,
   isShowIcon = true,
+  name = "itpc-datepicker",
   offsetYear = 10,
+  onBlur,
+  onChange,
+  onFocus,
+  placeholder = "",
   scrollToYear,
-  yearsFromTo,
+  validationState = "valid",
+  value = "",
   withTime = false,
-  className = "",
+  yearsFromTo,
   ...rest
 }: Props) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
@@ -133,19 +132,19 @@ export const DatePicker: React.FC<Props> = ({
   const onChangeDate = (
     date: string,
     event:
+      | React.MouseEvent<HTMLTableDataCellElement>
       | React.ChangeEvent<HTMLInputElement>
       | React.MouseEvent<HTMLButtonElement>
-      | React.MouseEvent<HTMLTableDataCellElement>
   ): void => {
     if (onChange) {
       onChange(
         {
-          value: withTime
-            ? parseISODateTimeToNumericString(date)
-            : parseISODateToNumericString(date),
           formattedValue: withTime
             ? parseISODateTime(date)
             : parseISODate(date),
+          value: withTime
+            ? parseISODateTimeToNumericString(date)
+            : parseISODateToNumericString(date),
         },
         event,
         { id, name }
@@ -160,8 +159,8 @@ export const DatePicker: React.FC<Props> = ({
     if (onChange && sourceInfo.event) {
       onChange(
         {
-          value: values.value,
           formattedValue: values.formattedValue,
+          value: values.value,
         },
         sourceInfo.event,
         { id, name }
@@ -207,8 +206,8 @@ export const DatePicker: React.FC<Props> = ({
       >
         {placeholder && (
           <Placeholder
-            htmlFor={name}
             focused={focused || !!value.length}
+            htmlFor={name}
             validationState={validationState}
           >
             {placeholder}
@@ -216,22 +215,22 @@ export const DatePicker: React.FC<Props> = ({
         )}
 
         <PatternFormat
-          id={id}
-          name={name}
-          type="text"
-          value={value}
-          disabled={disabled}
-          onFocus={onFocusPicker}
-          onBlur={onBlurPicker}
-          onValueChange={onChangePicker}
           className={cn(
             "itpc-datepicker__input",
             (focused || value.length) && "itpc-datepicker__input_focused"
           )}
-          valueIsNumericString
-          allowEmptyFormatting
+          disabled={disabled}
           format={withTime ? formatMaskDateTime : formatMaskDate}
+          id={id}
           mask={withTime ? maskDateTime : maskDate}
+          name={name}
+          onBlur={onBlurPicker}
+          onFocus={onFocusPicker}
+          onValueChange={onChangePicker}
+          type="text"
+          value={value}
+          allowEmptyFormatting
+          valueIsNumericString
         />
 
         {isShowIcon && (
@@ -250,27 +249,27 @@ export const DatePicker: React.FC<Props> = ({
         style={{ top: `${calendarPosition}px` }}
       >
         <Calendar
-          id={id}
-          name={name}
           currentValue={
             withTime
               ? parseNumericStringToISODateTime(value)
               : parseNumericStringToISODate(value)
           }
           activeDates={activeDates}
-          disabledDates={disabledDates}
           disabledAfterDate={disabledAfterDate}
           disabledBeforeDate={disabledBeforeDate}
+          disabledDates={disabledDates}
           disabledDaysOfWeek={disabledDaysOfWeek}
           disabledSelectMonth={disabledSelectMonth}
           disabledSelectYear={disabledSelectYear}
-          show={isShowCalendar}
           handleShow={onCloseCalendar}
-          onChange={onChangeDate}
+          id={id}
+          name={name}
           offsetYear={offsetYear}
+          onChange={onChangeDate}
           scrollToYear={scrollToYear}
-          yearsFromTo={yearsFromTo}
+          show={isShowCalendar}
           withTime={withTime}
+          yearsFromTo={yearsFromTo}
         />
       </div>
     </div>

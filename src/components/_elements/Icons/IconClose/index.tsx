@@ -16,10 +16,10 @@ export const IconClose: React.FC<Props> = ({
 }) => (
   <i className="itpc-icon__close" onClick={onPress}>
     <svg
-      width="20"
+      fill="none"
       height="20"
       viewBox="0 0 15 15"
-      fill="none"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

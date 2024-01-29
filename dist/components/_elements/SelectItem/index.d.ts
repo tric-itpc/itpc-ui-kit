@@ -1,11 +1,11 @@
 import React from "react";
 import "./styles.css";
 interface Props {
+    children?: React.ReactNode;
+    disabled?: boolean;
     id: string;
     isActive?: boolean;
-    disabled?: boolean;
     onChange(id: string): void;
-    children?: React.ReactNode;
 }
 export declare const SelectItem: React.FC<Props>;
 export {};
