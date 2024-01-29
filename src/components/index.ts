@@ -10,6 +10,7 @@ import { ButtonRound } from "./ButtonRound"
 import { Card } from "./Card"
 import { Checkbox } from "./Checkbox"
 import { DatePicker } from "./DatePicker"
+import { DecimalField } from "./DecimalField"
 import { ErrorMessage } from "./ErrorMessage"
 import { Modal, ModalContent, ModalFooter } from "./Modal"
 import { MultiSelectField } from "./MultiSelectField"
@@ -47,6 +48,7 @@ export {
   Checkbox,
   Column,
   DatePicker,
+  DecimalField,
   ErrorMessage,
   Modal,
   ModalContent,

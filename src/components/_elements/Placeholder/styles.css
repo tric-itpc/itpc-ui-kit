@@ -1,23 +1,28 @@
 .itpc-placeholder {
-  padding: 0 5px;
   position: absolute;
   top: calc(50% - 7px);
   left: 10px;
-  background-color: rgb(255, 255, 255);
-  cursor: text;
+
+  box-sizing: border-box;
+  padding: 0 5px;
+
   font-size: 14px;
   line-height: 14px;
   color: #b2b7c7;
-  box-sizing: border-box;
+
+  background-color: rgb(255, 255, 255);
+  cursor: text;
+
   transition: all 0.3s ease-in-out 0s;
 }
 
 .itpc-placeholder_focused {
   top: calc(-8px);
-  color: rgb(0, 0, 0);
+
   font-size: 12px;
+  color: rgb(0, 0, 0);
 }
 
 .itpc-placeholder_color_red {
-  color: #D42564;
+  color: #d42564;
 }

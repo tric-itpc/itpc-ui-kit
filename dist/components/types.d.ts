@@ -10,7 +10,7 @@ export type Orientation = "bottom" | "right" | "left" | "top";
 export type PopupSize = "normal" | "small";
 export type PopupVariant = "default" | "warning" | "success" | "error";
 export type PopupPosition = "center-center" | "bottom-center" | "center-right" | "bottom-right" | "center-left" | "bottom-left" | "top-center" | "top-right" | "top-left";
-export type ValidationState = "invalid" | "valid";
+export type ValidationState = "invalid" | "warning" | "valid";
 export interface TabsItem {
     content: React.ReactElement<React.ReactNode>;
     title: string;
