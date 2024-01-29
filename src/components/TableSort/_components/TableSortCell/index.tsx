@@ -9,7 +9,7 @@ import "./styles.css"
 interface TableSortCellProps {
   isMainColumSort?: boolean
   sortByNumberColumns?: NumberColumns
-  value: string
+  value?: string
 }
 
 export const TableSortCell: React.FC<TableSortCellProps> = ({

@@ -1,10 +1,13 @@
 import { SortType } from "../types"
 
-export type RowType<T = object> = {
-  [key in keyof T]: T[key]
-} & {
+export interface LocalType {
+  _index?: string
   id: string
 }
+
+export type RowType<T = object> = {
+  [key in keyof T]: T[key]
+} & LocalType
 
 export type SorterFn<T> = (a: T, b: T) => number
 
@@ -13,6 +16,11 @@ export interface Column<T> {
   name: keyof T
   sorter?: SorterFn<T>
   title: string
+}
+
+export interface ColumnWithIndex {
+  _index?: string
+  id: string
 }
 
 export interface KeySort<T> {

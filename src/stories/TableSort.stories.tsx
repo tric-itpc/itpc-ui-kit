@@ -15,7 +15,6 @@ interface TypeData extends RowType {
   age: string
   city: string
   duty: string
-  id: string
   name: string
 }
 
@@ -33,18 +32,13 @@ const dataRows: TypeData[] = [
 const dataColumnsNoSort: Column<TypeData>[] = [
   {
     isSortable: false,
-    name: "id",
-    title: "ID",
+    name: "city",
+    title: "Город",
   },
   {
     isSortable: false,
     name: "name",
     title: "Name",
-  },
-  {
-    isSortable: false,
-    name: "city",
-    title: "Город",
   },
   {
     isSortable: false,
@@ -97,6 +91,7 @@ const Template: ComponentStory<React.FC<TableSortProps<TypeData>>> = (args) => (
 export const Basic = Template.bind({})
 Basic.args = {
   columns: dataColumnsNoSort,
+  nameColumnIndex: "N",
 }
 
 export const TableSortOneColumns = Template.bind({})
@@ -108,5 +103,12 @@ TableSortOneColumns.args = {
 export const TableSortTwoColumns = Template.bind({})
 TableSortTwoColumns.args = {
   columns: dataColumns,
+  sortByNumberColumns: NumberColumns.TWO,
+}
+
+export const TableSortAddIndexColumn = Template.bind({})
+TableSortAddIndexColumn.args = {
+  columns: dataColumns,
+  nameColumnIndex: "N",
   sortByNumberColumns: NumberColumns.TWO,
 }

@@ -3,6 +3,7 @@ import React from "react"
 import { IconSortDown, IconSortUp } from "../_elements"
 import { SortType } from "../types"
 
+import { indexProperty } from "./const"
 import {
   Column,
   KeySort,
@@ -28,15 +29,25 @@ export const toggleSort = (orderSort: SortType): SortType => {
   }
 }
 
+export const getKeysNames = (column: Column<RowType>[]): (keyof RowType)[] =>
+  column?.map((item: Column<RowType>) => item.name)
+
 export const getKeysNamesColumns = (
-  column: Column<RowType>[]
-): (keyof RowType)[] => column?.map((item: Column<RowType>) => item.name)
+  columns: Column<RowType>[],
+  nameColumnIndex?: string
+): (keyof RowType)[] => {
+  if (nameColumnIndex !== undefined) {
+    return [indexProperty, ...getKeysNames(columns)]
+  } else {
+    return getKeysNames(columns)
+  }
+}
 
 export const sorterFn =
   (currentKey: Column<RowType>): SorterFn<RowType> =>
   (a: RowType, b: RowType): number =>
-    Number(a[currentKey?.name] > b[currentKey?.name]) -
-    Number(a[currentKey?.name] < b[currentKey?.name])
+    Number((a[currentKey?.name] ?? 0) > (b[currentKey?.name] ?? 0)) -
+    Number((a[currentKey?.name] ?? 0) < (b[currentKey?.name] ?? 0))
 
 export const setKey = (
   key: Column<RowType>,
@@ -225,3 +236,27 @@ export const restoreOrder = (
     const index: number = rows?.findIndex((row: RowType) => row?.id === el?._id)
     return rows[index]
   })
+
+export const addParameterInRows = (data: RowType[]): RowType[] => {
+  const newData = [...data].map((row: RowType, index: number) => ({
+    _index: (index + 1).toString(),
+    ...row,
+  }))
+
+  return newData
+}
+
+export const addColumn = (
+  columns: ConcatArray<Column<RowType>>,
+  nameColumnIndex?: string
+): Column<RowType>[] => {
+  const columnIndex: Column<RowType>[] = [
+    {
+      isSortable: false,
+      name: indexProperty,
+      title: nameColumnIndex ? nameColumnIndex : "",
+    },
+  ]
+
+  return columnIndex.concat(columns)
+}
