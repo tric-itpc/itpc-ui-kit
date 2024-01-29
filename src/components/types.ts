@@ -2,54 +2,66 @@ import React from "react"
 
 export type InputState =
   | "default"
-  | "cancel"
   | "loading"
   | "success"
   | "warning"
+  | "cancel"
 export type InputType = "password" | "text"
 export type ButtonType = "button" | "submit" | "reset"
 export type ButtonVariant = "white" | "red"
 export type InputCheckboxType = "checkbox" | "radio"
-export type InputCheckboxVariant = "android" | "ios" | "round" | "square"
-export type InputCheckboxLabelPosition = "left" | "right" | "all"
-export type Orientation = "top" | "right" | "bottom" | "left"
-export type PopupSize = "small" | "normal"
-export type PopupVariant = "default" | "error" | "warning" | "success"
+export type InputCheckboxVariant = "android" | "square" | "round" | "ios"
+export type InputCheckboxLabelPosition = "right" | "left" | "all"
+export type Orientation = "bottom" | "right" | "left" | "top"
+export type PopupSize = "normal" | "small"
+export type PopupVariant = "default" | "warning" | "success" | "error"
 export type PopupPosition =
-  | "top-left"
+  | "center-center"
+  | "bottom-center"
+  | "center-right"
+  | "bottom-right"
+  | "center-left"
+  | "bottom-left"
   | "top-center"
   | "top-right"
-  | "center-left"
-  | "center-center"
-  | "center-right"
-  | "bottom-left"
-  | "bottom-center"
-  | "bottom-right"
-export type ValidationState = "valid" | "invalid"
+  | "top-left"
+export type ValidationState = "invalid" | "valid"
 
 export interface TabsItem {
-  title: string
   content: React.ReactElement<React.ReactNode>
+  title: string
 }
 
 export interface PaginationResult {
   currentPage?: number
-  start: number
   end: number
+  start: number
 }
 
 export interface Item {
+  disabled?: boolean
   id: string
   value: string
-  disabled?: boolean
 }
 
 export interface FormattedValues {
-  value: string
   formattedValue: string
+  value: string
 }
 
 export interface IInfo {
   id: string
   name: string
+}
+
+export enum SortType {
+  ASCENDING = "ascending",
+  DESCENDING = "descending",
+  NONE = "none",
+}
+
+export enum NumberColumns {
+  ONE = "one",
+  TWO = "two",
+  ZERO = "zero",
 }

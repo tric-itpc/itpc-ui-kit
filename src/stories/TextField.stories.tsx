@@ -1,12 +1,13 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { TextField, Props } from "../components/TextField"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
+
 import { IconOk } from "../components/_elements"
+import { Props, TextField } from "../components/TextField"
 
 export default {
-  title: "Components/TextField",
   component: TextField,
+  title: "Components/TextField",
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
@@ -20,13 +21,13 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
     <>
       <TextField
         {...args}
-        value={value}
-        onChange={onChange}
         icon={
           <div onClick={() => setValue("test")}>
             <IconOk />
           </div>
         }
+        onChange={onChange}
+        value={value}
       />
       <p>Value: {value}</p>
     </>
@@ -35,7 +36,7 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
 export const Basic = Template.bind({})
 Basic.args = {
+  errorMessage: "Error message",
   placeholder: "Enter text",
   validationState: "valid",
-  errorMessage: "Error message",
 }

@@ -1,12 +1,13 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
+
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Button } from "../components"
 import { Popup, Props } from "../components/Popup"
 
 export default {
-  title: "Components/Popup",
   component: Popup,
+  title: "Components/Popup",
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
@@ -25,8 +26,8 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
 export const Basic = Template.bind({})
 Basic.args = {
-  title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   position: "bottom-left",
-  variant: "success",
   size: "small",
+  title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  variant: "success",
 }

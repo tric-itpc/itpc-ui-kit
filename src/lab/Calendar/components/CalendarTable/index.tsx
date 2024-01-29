@@ -2,7 +2,6 @@ import React from "react"
 
 import { Day } from "../../types"
 import { isDisabledDate } from "../../utils"
-
 import { CalendarCell } from "../CalendarCell"
 
 import "./styles.css"
@@ -25,14 +24,14 @@ const getRows = (days: Day[]): Day[][] => {
 }
 
 interface Props {
-  id: string
+  activeDates?: string[]
   currentDate: string
   days: Day[]
-  activeDates?: string[]
-  disabledDates?: string[]
   disabledAfterDate?: string
   disabledBeforeDate?: string
+  disabledDates?: string[]
   disabledDaysOfWeek?: number[]
+  id: string
   onChange(
     date: string,
     event: React.MouseEvent<HTMLTableDataCellElement>
@@ -40,14 +39,14 @@ interface Props {
 }
 
 export const CalendarTable: React.FC<Props> = ({
-  id,
+  activeDates,
   currentDate,
   days,
-  activeDates,
-  disabledDates,
   disabledAfterDate,
   disabledBeforeDate,
+  disabledDates,
   disabledDaysOfWeek,
+  id,
   onChange,
 }: Props) => {
   const rows = getRows(days)
@@ -58,13 +57,13 @@ export const CalendarTable: React.FC<Props> = ({
         <tr>
           {days.slice(0, 7).map((day) => (
             <CalendarCell
-              id={id}
-              key={day.date}
-              date={day.date}
               currentDate={currentDate}
+              date={day.date}
               dayOfTheWeek={day.dayOfTheWeek}
-              isHeader
+              id={id}
               isChanged={currentDate === day.date}
+              key={day.date}
+              isHeader
             />
           ))}
         </tr>
@@ -74,12 +73,6 @@ export const CalendarTable: React.FC<Props> = ({
           <tr key={key}>
             {row.map((day) => (
               <CalendarCell
-                id={id}
-                key={day.date}
-                date={day.date}
-                currentDate={currentDate}
-                isChanged={currentDate === day.date}
-                onChange={onChange}
                 disabled={isDisabledDate(
                   day.date,
                   activeDates,
@@ -88,6 +81,12 @@ export const CalendarTable: React.FC<Props> = ({
                   disabledBeforeDate,
                   disabledDaysOfWeek
                 )}
+                currentDate={currentDate}
+                date={day.date}
+                id={id}
+                isChanged={currentDate === day.date}
+                key={day.date}
+                onChange={onChange}
               />
             ))}
           </tr>

@@ -1,11 +1,12 @@
 import React from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { Text, Props } from "../components/Text"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
+
+import { Props, Text } from "../components/Text"
 
 export default {
-  title: "Components/Text",
   component: Text,
+  title: "Components/Text",
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = ({ children }: Props) => (

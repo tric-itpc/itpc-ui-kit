@@ -1,22 +1,23 @@
 import React from "react"
 
 import { getAllYears, getYearsFromTo } from "../../utils"
+
 import { YearBtn } from "./components/YearBtn/YearBtn"
 
 interface Props {
+  changeCurrentDate(date: string): void
   currentDate: string
   offsetYear: number
   scrollToYear?: number
   yearsFromTo?: [number, number]
-  changeCurrentDate(date: string): void
 }
 
 export const SelectionMenuYear: React.FC<Props> = ({
+  changeCurrentDate,
   currentDate,
   offsetYear,
   scrollToYear,
   yearsFromTo,
-  changeCurrentDate,
 }: Props) => {
   const onClick = (year: number): void => {
     const date = new Date(currentDate)
@@ -29,20 +30,20 @@ export const SelectionMenuYear: React.FC<Props> = ({
       {!yearsFromTo
         ? getAllYears(offsetYear).map((year) => (
             <YearBtn
-              key={year}
-              currentYear={currentDate.slice(0, 4)}
-              year={year}
-              scrollToYear={scrollToYear}
               changeCurrentDate={onClick}
+              currentYear={currentDate.slice(0, 4)}
+              key={year}
+              scrollToYear={scrollToYear}
+              year={year}
             />
           ))
         : getYearsFromTo(yearsFromTo[0], yearsFromTo[1]).map((year) => (
             <YearBtn
-              key={year}
-              currentYear={currentDate.slice(0, 4)}
-              year={year}
-              scrollToYear={scrollToYear}
               changeCurrentDate={onClick}
+              currentYear={currentDate.slice(0, 4)}
+              key={year}
+              scrollToYear={scrollToYear}
+              year={year}
             />
           ))}
     </div>

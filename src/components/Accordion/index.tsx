@@ -1,4 +1,5 @@
 import React, { HTMLAttributes } from "react"
+
 import cn from "classnames"
 
 import { IconArrow } from "../_elements"
@@ -19,13 +20,13 @@ export const AccordionArrow: React.FC<AccordionArrowProps> = ({
 )
 
 interface AccordionBodyProps extends HTMLAttributes<HTMLDivElement> {
-  isOpened: boolean
   children?: React.ReactNode
+  isOpened: boolean
 }
 
 export const AccordionBody: React.FC<AccordionBodyProps> = ({
-  isOpened,
   children,
+  isOpened,
   ...rest
 }) => (
   <div
@@ -40,28 +41,28 @@ export const AccordionBody: React.FC<AccordionBodyProps> = ({
 )
 
 interface AccordionHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  id?: string
-  isOpened: boolean
-  isActive?: boolean
-  onPress?: (e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   children?: React.ReactNode
+  id?: string
+  isActive?: boolean
+  isOpened: boolean
+  onPress?: (e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
 
 export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
-  id = "itpc-accordion-header",
-  isOpened,
-  isActive = false,
-  onPress,
   children,
+  id = "itpc-accordion-header",
+  isActive = false,
+  isOpened,
+  onPress,
   ...rest
 }) => (
   <div
-    id={id}
     className={cn(
       "itpc-accordion-header",
       isOpened && "itpc-accordion-header_opened",
       isActive && "itpc-accordion-header_active"
     )}
+    id={id}
     onClick={onPress}
     {...rest}
   >
@@ -83,13 +84,13 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
 )
 
 export interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
-  className?: string
   children?: React.ReactNode
+  className?: string
 }
 
 export const Accordion: React.FC<AccordionProps> = ({
-  className = "",
   children,
+  className = "",
   ...rest
 }) => (
   <div className={cn("itpc-accordion", className)} {...rest}>

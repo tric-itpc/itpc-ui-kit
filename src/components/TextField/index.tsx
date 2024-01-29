@@ -1,4 +1,5 @@
 import React, { HTMLAttributes, useState } from "react"
+
 import cn from "classnames"
 
 import {
@@ -8,42 +9,41 @@ import {
   InputWrap,
   Placeholder,
 } from "../_elements"
-
 import { InputType, ValidationState } from "../types"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  id: string
-  name: string
-  type?: InputType
-  value?: string
+  className?: string
   disabled?: boolean
-  maxLength?: number
-  placeholder?: string
-  validationState?: ValidationState
   errorMessage?: string
   icon?: React.ReactNode
-  className?: string
+  id: string
+  maxLength?: number
+  name: string
   onBlur?: () => void
-  onFocus?: () => void
   onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void
+  onFocus?: () => void
+  placeholder?: string
+  type?: InputType
+  validationState?: ValidationState
+  value?: string
 }
 
 export const TextField: React.FC<Props> = ({
-  id = "itpc-input",
-  name = "itpc-input",
-  type = "text",
-  value = "",
+  className = "",
   disabled = false,
-  maxLength,
-  placeholder = "",
-  validationState = "valid",
   errorMessage = "",
   icon,
-  className = "",
+  id = "itpc-input",
+  maxLength,
+  name = "itpc-input",
   onBlur,
-  onFocus,
   onChange,
+  onFocus,
+  placeholder = "",
+  type = "text",
+  validationState = "valid",
+  value = "",
   ...rest
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
@@ -74,27 +74,27 @@ export const TextField: React.FC<Props> = ({
     <Field className={className} {...rest}>
       <InputWrap focused={focused} validationState={validationState}>
         <Placeholder
-          htmlFor={id}
           focused={focused || value.length > 0}
+          htmlFor={id}
           validationState={validationState}
         >
           {placeholder}
         </Placeholder>
 
         <input
-          id={id}
-          name={name}
-          type={type}
-          value={value}
-          disabled={disabled}
-          onFocus={onFocusInput}
-          onBlur={onBlurInput}
-          onChange={onChangeInput}
           className={cn(
             "itpc-input",
             (focused || !!value.length) && "itpc-input_focused"
           )}
+          disabled={disabled}
+          id={id}
           maxLength={maxLength}
+          name={name}
+          onBlur={onBlurInput}
+          onChange={onChangeInput}
+          onFocus={onFocusInput}
+          type={type}
+          value={value}
         />
 
         <InputError

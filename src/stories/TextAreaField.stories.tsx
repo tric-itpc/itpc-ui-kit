@@ -1,11 +1,12 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { TextAreaField, Props } from "../components/TextAreaField"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
+
+import { Props, TextAreaField } from "../components/TextAreaField"
 
 export default {
-  title: "Components/TextAreaField",
   component: TextAreaField,
+  title: "Components/TextAreaField",
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
@@ -17,7 +18,7 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
   return (
     <>
-      <TextAreaField {...args} value={value} onChange={onChange} />
+      <TextAreaField {...args} onChange={onChange} value={value} />
       <p>Value: {value}</p>
     </>
   )
@@ -25,7 +26,7 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
 export const Basic = Template.bind({})
 Basic.args = {
+  errorMessage: "Error message",
   placeholder: "Enter text",
   validationState: "valid",
-  errorMessage: "Error message",
 }

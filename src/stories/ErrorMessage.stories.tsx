@@ -1,11 +1,12 @@
 import React from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
+
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { ErrorMessage, Props } from "../components/ErrorMessage"
 
 export default {
-  title: "Components/ErrorMessage",
   component: ErrorMessage,
+  title: "Components/ErrorMessage",
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => (

@@ -1,26 +1,26 @@
 import React, { HTMLAttributes, useEffect, useRef, useState } from "react"
+
 import cn from "classnames"
 
+import { Popover, SelectItem } from "../_elements"
 import { useOnClickOutside } from "../../_hooks"
-
 import { TextField } from "../TextField"
 import { Item } from "../types"
-import { Popover, SelectItem } from "../_elements"
 
 import "./styles.css"
 
 export interface Props
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "className"> {
-  defaultItem?: string
-  items: Item[]
-  placeholder?: string
-  isClear?: boolean
+  extends Omit<HTMLAttributes<HTMLDivElement>, "className" | "onChange"> {
   className?: boolean
-  icon?: React.ReactNode
-  isDisableClickIcon?: boolean
-  handleClear?: () => void
+  defaultItem?: string
   fetchData?: (value: string) => Promise<void>
+  handleClear?: () => void
+  icon?: React.ReactNode
+  isClear?: boolean
+  isDisableClickIcon?: boolean
+  items: Item[]
   onChange(id: string): void
+  placeholder?: string
   textFieldAttr?: Omit<
     HTMLAttributes<HTMLDivElement>,
     "onChange" | "onFocus" | "onBlur"
@@ -28,16 +28,16 @@ export interface Props
 }
 
 export const SearchField: React.FC<Props> = ({
-  defaultItem,
-  items,
-  placeholder,
-  isClear = false,
   className = "",
-  icon,
-  isDisableClickIcon,
-  handleClear,
+  defaultItem,
   fetchData,
+  handleClear,
+  icon,
+  isClear = false,
+  isDisableClickIcon,
+  items,
   onChange,
+  placeholder,
   textFieldAttr,
   ...rest
 }) => {
@@ -115,13 +115,13 @@ export const SearchField: React.FC<Props> = ({
   return (
     <div className={cn("itpc-search-field", className)} ref={ref} {...rest}>
       <TextField
+        icon={<div onClick={clear}>{icon}</div>}
         id="itpc-search-field"
         name="itpc-search-field"
-        placeholder={placeholder}
         onChange={changeValue}
         onFocus={openSuggestions}
+        placeholder={placeholder}
         value={value}
-        icon={<div onClick={clear}>{icon}</div>}
         {...textFieldAttr}
       />
 
@@ -129,9 +129,9 @@ export const SearchField: React.FC<Props> = ({
         <Popover>
           {filteredItems.map((item) => (
             <SelectItem
-              key={item.id}
               id={item.id}
               isActive={item.id === currentItem}
+              key={item.id}
               onChange={changeItem}
             >
               {item.value}

@@ -1,31 +1,30 @@
 import React, { HTMLAttributes, useRef, useState } from "react"
+
 import cn from "classnames"
 
-import { useOnClickOutside } from "../../_hooks"
-
 import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
-
+import { useOnClickOutside } from "../../_hooks"
 import { Item } from "../types"
 
 import "./styles.css"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  items: Item[]
-  selectedItems?: string[]
-  placeholder?: string
-  disabled?: boolean
   className?: string
+  disabled?: boolean
+  items: Item[]
   onChange(values: string[]): void
+  placeholder?: string
+  selectedItems?: string[]
 }
 
 export const MultiSelectField: React.FC<Props> = ({
-  items,
-  selectedItems = [],
-  placeholder = "",
-  disabled = false,
   className,
+  disabled = false,
+  items,
   onChange,
+  placeholder = "",
+  selectedItems = [],
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -72,15 +71,15 @@ export const MultiSelectField: React.FC<Props> = ({
   useOnClickOutside(ref, onClose)
 
   return (
-    <div ref={ref} className={cn("itpc-multi-select", className)} {...rest}>
+    <div className={cn("itpc-multi-select", className)} ref={ref} {...rest}>
       <button
-        type="button"
         className={cn(
           "itpc-multi-select__button",
           isOpen && "itpc-multi-select__button_focused"
         )}
         disabled={disabled}
         onClick={handleOpen}
+        type="button"
       >
         <Placeholder focused={isOpen || !!selectedItems?.length}>
           {placeholder}
@@ -89,16 +88,16 @@ export const MultiSelectField: React.FC<Props> = ({
         {selectText()}
       </button>
 
-      <IconArrow orientation={isOpen ? "top" : "bottom"} onClick={handleOpen} />
+      <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
 
       {isOpen && (
         <Popover>
           {items.map((item) => (
             <SelectItem
-              key={item.id}
-              id={item.id}
               disabled={item.disabled}
+              id={item.id}
               isActive={selectedItems?.includes(item.id) ?? false}
+              key={item.id}
               onChange={onChangeValue}
             >
               {item.value}

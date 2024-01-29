@@ -1,4 +1,5 @@
 import React, { HTMLAttributes } from "react"
+
 import cn from "classnames"
 
 import {
@@ -11,41 +12,41 @@ import "./styles.css"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLLabelElement>, "onClick"> {
-  id: string
-  name: string
-  type?: InputCheckboxType
-  variant?: InputCheckboxVariant
-  labelPosition?: InputCheckboxLabelPosition
+  className?: string
   disabled?: boolean
-  labelLeft?: string
-  label?: string
+  id: string
+  inputAttr?: HTMLAttributes<HTMLInputElement>
+  isBlurCheckbox?: boolean
   isBlurLabelLeft?: boolean
   isBlurLabelRight?: boolean
-  isBlurCheckbox?: boolean
-  className?: string
   isChecked?: boolean
-  onClick?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  inputAttr?: HTMLAttributes<HTMLInputElement>
+  label?: string
   labelAttr?: HTMLAttributes<HTMLSpanElement>
+  labelLeft?: string
+  labelPosition?: InputCheckboxLabelPosition
+  name: string
+  onClick?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  type?: InputCheckboxType
+  variant?: InputCheckboxVariant
 }
 
 export const Checkbox: React.FC<Props> = ({
-  id,
-  name,
-  type = "checkbox",
-  variant = "android",
-  labelPosition = "right",
+  className = "",
   disabled = false,
-  labelLeft,
-  label = "",
+  id,
+  inputAttr,
+  isBlurCheckbox = false,
   isBlurLabelLeft = false,
   isBlurLabelRight = false,
-  isBlurCheckbox = false,
-  className = "",
   isChecked = false,
-  onClick,
-  inputAttr,
+  label = "",
   labelAttr,
+  labelLeft,
+  labelPosition = "right",
+  name,
+  onClick,
+  type = "checkbox",
+  variant = "android",
   ...rest
 }) => (
   <label
@@ -70,13 +71,13 @@ export const Checkbox: React.FC<Props> = ({
     )}
 
     <input
-      id={id}
-      name={name}
-      type={type}
-      disabled={disabled}
       checked={isChecked}
       className="itpc-checkbox__input"
+      disabled={disabled}
+      id={id}
+      name={name}
       onChange={onClick}
+      type={type}
       {...inputAttr}
     />
     <div

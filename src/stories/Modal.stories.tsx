@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
+
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Button } from "../components"
 import {
@@ -10,8 +11,8 @@ import {
 } from "../components/Modal"
 
 export default {
-  title: "Components/Modal",
   component: Modal,
+  title: "Components/Modal",
 } as ComponentMeta<React.FC<ModalProps>>
 
 const Template: ComponentStory<React.FC<ModalProps>> = (args) => {
@@ -29,7 +30,7 @@ const Template: ComponentStory<React.FC<ModalProps>> = (args) => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </ModalContent>
         <ModalFooter>
-          <Button variant="white" onPress={() => setIsOpenModal(false)}>
+          <Button onPress={() => setIsOpenModal(false)} variant="white">
             Cancel
           </Button>
           <Button onPress={() => setIsOpenModal(false)}>Ok</Button>
@@ -41,6 +42,6 @@ const Template: ComponentStory<React.FC<ModalProps>> = (args) => {
 
 export const Basic = Template.bind({})
 Basic.args = {
-  title: "Modal window",
   isOverlayClickable: true,
+  title: "Modal window",
 }

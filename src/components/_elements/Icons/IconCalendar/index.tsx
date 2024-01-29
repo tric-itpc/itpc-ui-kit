@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React from "react"
+
 import cn from "classnames"
 
 import "./styles.css"
@@ -18,10 +19,10 @@ export const IconCalendar: React.FC<Props> = ({ isClickable, onClick }) => (
     onClick={onClick}
   >
     <svg
-      width="20"
+      fill="none"
       height="20"
       viewBox="0 0 12 12"
-      fill="none"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g clipPath="url(#clip0_94_50)">
@@ -32,7 +33,7 @@ export const IconCalendar: React.FC<Props> = ({ isClickable, onClick }) => (
       </g>
       <defs>
         <clipPath id="clip0_94_50">
-          <rect width="12" height="12" fill="white" />
+          <rect fill="white" height="12" width="12" />
         </clipPath>
       </defs>
     </svg>

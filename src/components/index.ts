@@ -8,15 +8,6 @@ import {
 import { Button } from "./Button"
 import { ButtonRound } from "./ButtonRound"
 import { Card } from "./Card"
-import {
-  Cell,
-  Column,
-  Row,
-  Table,
-  TableBody,
-  TableFooter,
-  TableHeader,
-} from "./Table"
 import { Checkbox } from "./Checkbox"
 import { DatePicker } from "./DatePicker"
 import { ErrorMessage } from "./ErrorMessage"
@@ -28,7 +19,17 @@ import { Popup } from "./Popup"
 import { Preloader } from "./Preloader"
 import { SearchField } from "./SearchField"
 import { SelectField } from "./SelectField"
-import { Tabs, TabButton } from "./Tabs"
+import {
+  Cell,
+  Column,
+  Row,
+  Table,
+  TableBody,
+  TableFooter,
+  TableHeader,
+} from "./Table"
+import { TableSort } from "./TableSort"
+import { TabButton, Tabs } from "./Tabs"
 import { Text } from "./Text"
 import { TextField } from "./TextField"
 
@@ -62,6 +63,7 @@ export {
   TableBody,
   TableFooter,
   TableHeader,
+  TableSort,
   Tabs,
   Text,
   TextField,
@@ -72,6 +74,8 @@ export {
   FormattedValues,
   IInfo,
   Item,
+  NumberColumns,
   PaginationResult,
+  SortType,
   TabsItem,
 } from "./types"

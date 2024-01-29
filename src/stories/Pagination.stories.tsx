@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { Pagination, Props } from "../components/Pagination"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
+
 import { Button, Item, PaginationResult } from "../components"
+import { Pagination, Props } from "../components/Pagination"
 
 const mockItems: Item[] = [
   {
@@ -316,8 +317,8 @@ const mockItems: Item[] = [
 ]
 
 export default {
-  title: "Components/Pagination",
   component: Pagination,
+  title: "Components/Pagination",
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
@@ -342,17 +343,17 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
     <>
       <Pagination
         {...args}
-        dataLength={items.length}
         callback={paginationResult}
+        dataLength={items.length}
       />
-      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+      <div style={{ alignItems: "center", display: "flex", gap: "10px" }}>
         <p>Start: {start}</p>
         <p>End: {end}</p>
         <p>Step: {args.step ?? 10}</p>
         <p>Items count: {items.length}</p>
       </div>
-      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-        <Button variant="white" onPress={deleteItem}>
+      <div style={{ alignItems: "center", display: "flex", gap: "10px" }}>
+        <Button onPress={deleteItem} variant="white">
           Delete item
         </Button>
         <Button onPress={addItem}>Add item</Button>
