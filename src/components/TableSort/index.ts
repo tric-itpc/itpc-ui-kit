@@ -1,0 +1,1 @@
+export { TableSortOneColumn } from "./TableSortOneColumn"

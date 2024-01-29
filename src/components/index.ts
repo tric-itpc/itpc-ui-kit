@@ -31,6 +31,7 @@ import { SelectField } from "./SelectField"
 import { Tabs, TabButton } from "./Tabs"
 import { Text } from "./Text"
 import { TextField } from "./TextField"
+import { TableSortOneColumn } from "./TableSort/TableSortOneColumn"
 
 export {
   Accordion,
@@ -65,6 +66,7 @@ export {
   Tabs,
   Text,
   TextField,
+  TableSortOneColumn,
 }
 
 export { UIKitColors } from "./constants"
