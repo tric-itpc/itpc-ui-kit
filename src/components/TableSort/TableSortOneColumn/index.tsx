@@ -1,8 +1,7 @@
 import React, { Key, TableHTMLAttributes, useState } from "react"
 import cn from "classnames"
 
-import { TableSortBody } from "../_components/TableSortBody"
-import { TableSortHeader } from "../_components/TableSortHeader"
+import { TableSortBody, TableSortHeader } from "../_components"
 import { Column, SortType, KeysSort, UseType, SaveOrder } from "../types"
 import {
   getKeysNamesColumns,
@@ -26,9 +25,9 @@ export const TableSortOneColumn: React.FC<TableSortOneColumnProps<any>> = ({
   className = "",
   ...rest
 }: TableSortOneColumnProps<any>) => {
-  const [currentKeys, setCurrentKeys] = useState<KeysSort>()
+  const [saveKeys, setSaveKeys] = useState<KeysSort<UseType>>()
   const [data, setData] = useState(rows)
-  const [arrKeysNameTitle, setArrKeysNameTitle] = useState<string[]>(
+  const [arrKeysNameHeader, setArrKeysNameHeader] = useState<string[]>(
     getKeysNamesColumns(columns)
   )
   const [orderOriginal, setOrderOriginal] = useState<SaveOrder[] | undefined>(
@@ -39,20 +38,20 @@ export const TableSortOneColumn: React.FC<TableSortOneColumnProps<any>> = ({
     if (orderOriginal?.length !== rows.length && rows) {
       setOrderOriginal(doSaveOrder(rows))
     }
-    if (Boolean(keys) && keys.name !== currentKeys?.name) {
-      const currentKeysUpdate = updateParametersKeys(keys)
-      setCurrentKeys(currentKeysUpdate)
-      return doSort(currentKeysUpdate)
+    if (Boolean(keys) && keys.name !== saveKeys?.name) {
+      const updateKeys = updateParametersKeys(keys)
+      setSaveKeys(updateKeys)
+      return doSort(updateKeys)
     } else {
-      if (currentKeys) {
-        const currentKeysUpdate = updateParametersKeys(currentKeys)
-        setCurrentKeys(currentKeysUpdate)
-        return doSort(currentKeysUpdate)
+      if (saveKeys) {
+        const updateKeys = updateParametersKeys(saveKeys)
+        setSaveKeys(updateKeys)
+        return doSort(updateKeys)
       }
     }
   }
 
-  const doSort = (keys: KeysSort) => {
+  const doSort = (keys: KeysSort<UseType>) => {
     const copy = [...data]
     switch (keys.order) {
       case SortType.ASCENDING:
@@ -78,12 +77,12 @@ export const TableSortOneColumn: React.FC<TableSortOneColumnProps<any>> = ({
       {columns?.length && (
         <TableSortHeader
           columns={columns}
-          currentKeys={currentKeys}
+          saveKeys={saveKeys}
           setKeySort={setKeysSort}
         />
       )}
       {data && (
-        <TableSortBody rows={data} arrKeysNameTitle={arrKeysNameTitle} />
+        <TableSortBody rows={data} arrKeysNameHeader={arrKeysNameHeader} />
       )}
     </table>
   )

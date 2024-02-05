@@ -1,19 +1,18 @@
 import React, { HTMLAttributes } from "react"
 import cn from "classnames"
 import { Column, KeysSort, SortType, UseType } from "../../types"
-import { IconSortDown, IconSortUp } from "../../../_elements"
 import "./styles.css"
 import { renderIcon } from "../../utils"
 
 interface TableSortHeaderProps extends HTMLAttributes<HTMLTableCellElement> {
-  columns?: Column[]
-  currentKeys?: KeysSort
+  columns?: Column<UseType>[]
+  saveKeys?: KeysSort<UseType>
   setKeySort?: (key: Column<UseType>) => void
 }
 
 export const TableSortHeader: React.FC<TableSortHeaderProps> = ({
   columns,
-  currentKeys,
+  saveKeys,
   setKeySort,
 }: TableSortHeaderProps) => (
   <thead className="itpc-table-sort__head">
@@ -26,8 +25,8 @@ export const TableSortHeader: React.FC<TableSortHeaderProps> = ({
               Boolean(values?.isSortable)
                 ? "itpc-table-sort_clickable"
                 : "itpc-table-sort_pointer-none",
-              currentKeys?.name === values?.name &&
-                currentKeys?.order !== SortType.NONE
+              saveKeys?.name === values?.name &&
+                saveKeys?.order !== SortType.NONE
                 ? "itpc-table-sort__head_background-active"
                 : "itpc-table-sort__head_background"
             )}
@@ -39,7 +38,7 @@ export const TableSortHeader: React.FC<TableSortHeaderProps> = ({
             <div className="itpc-table-sort__wrap-cell">
               {values.title}
               <div className="itpc-table-sort__wrap-icon">
-                {values && renderIcon(values, currentKeys)}
+                {values && renderIcon(values, saveKeys)}
               </div>
             </div>
           </th>

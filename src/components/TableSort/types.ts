@@ -10,20 +10,20 @@ export type UseType<T = object> = {
   id: string
 }
 
-export type SorterFn<T extends UseType = UseType> = (a: T, b: T) => number
+export type SorterFn<T> = (a: T, b: T) => number
 
 export interface Column<T> {
   name: keyof T
   title: string
   isSortable: boolean
-  sorter?: (a: T, b: T) => number
+  sorter?: SorterFn<Omit<T, "_index">>
 }
 
-export interface KeysSort {
+export interface KeysSort<T> {
   name: string
   isSortable: boolean
   order?: SortType
-  sorter?: SorterFn
+  sorter?: SorterFn<T>
 }
 
 export interface SaveOrder {

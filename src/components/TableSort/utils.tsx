@@ -1,11 +1,4 @@
-import {
-  UseType,
-  SaveOrder,
-  SortType,
-  SorterFn,
-  Column,
-  KeysSort,
-} from "./types"
+import { UseType, SaveOrder, SortType, Column, KeysSort } from "./types"
 import { IconSortDown, IconSortUp } from "../_elements"
 import React from "react"
 
@@ -32,28 +25,30 @@ export const getKeysNamesColumns = (
   return []
 }
 
-export const sorterFn = (sorter: SorterFn | undefined) => {
-  if (!sorter) {
-    return (a: UseType, b: UseType): number => Number(a > b) - Number(a < b)
+export const sorterFn = (currentKeys: Column<UseType>) => {
+  if (Object.keys(currentKeys.name).length !== 0) {
+    return (a: UseType, b: UseType): number =>
+      Number(a[currentKeys?.name] > b[currentKeys?.name]) -
+      Number(a[currentKeys?.name] < b[currentKeys?.name])
   }
-  return sorter
 }
 
-export const updateParametersKeys = (keys: Column<UseType> | KeysSort) => {
+export const updateParametersKeys = (
+  keys: Column<UseType> | KeysSort<UseType>
+) => {
   if ("order" in keys) {
-    const currentKeys = {
+    const updateKeys = {
       ...keys,
       order: keys.order && toggleSort(keys?.order),
-      sorter: sorterFn(keys.sorter),
     }
-    return currentKeys as KeysSort
+    return updateKeys as KeysSort<UseType>
   } else {
-    const currentKeys = {
+    const updateKeys = {
       ...keys,
       order: SortType.ASCENDING,
-      sorter: sorterFn(keys.sorter),
+      sorter: !keys.sorter ? sorterFn(keys as Column<UseType>) : keys.sorter,
     }
-    return currentKeys as KeysSort
+    return updateKeys as KeysSort<UseType>
   }
 }
 
@@ -72,7 +67,10 @@ export const doRestoreOrder = (saveOrder: SaveOrder[], dataBody: UseType[]) =>
     dataBody.find((elBody: UseType) => elBody.id === el._id)
   )
 
-export const renderIcon = (values: Column<UseType>, currentKeys?: KeysSort) => {
+export const renderIcon = (
+  values: Column<UseType>,
+  currentKeys?: KeysSort<UseType>
+) => {
   if (values?.isSortable) {
     if (values.name === currentKeys?.name) {
       switch (currentKeys?.order) {
@@ -97,7 +95,7 @@ export const renderIcon = (values: Column<UseType>, currentKeys?: KeysSort) => {
   }
 }
 
-export const byKey = (keys: KeysSort) => (a: UseType, b: UseType) => {
+export const byKey = (keys: KeysSort<UseType>) => (a: UseType, b: UseType) => {
   if (keys && keys.sorter) {
     return keys.sorter(a, b)
   }

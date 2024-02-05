@@ -5,12 +5,12 @@ import "./styles.css"
 
 interface TableSortBodyProps {
   rows: UseType[]
-  arrKeysNameTitle: string[]
+  arrKeysNameHeader: string[]
 }
 
 export const TableSortBody: React.FC<TableSortBodyProps> = ({
   rows,
-  arrKeysNameTitle,
+  arrKeysNameHeader,
   ...rest
 }: TableSortBodyProps) => (
   <tbody className="itpc-table-sort__body" {...rest}>
@@ -20,7 +20,7 @@ export const TableSortBody: React.FC<TableSortBodyProps> = ({
           id={row.id}
           key={row.id}
           rowData={row}
-          arrKeysNameTitle={arrKeysNameTitle}
+          arrKeysNameHeader={arrKeysNameHeader}
           data-index={index + 1}
         />
       ))}

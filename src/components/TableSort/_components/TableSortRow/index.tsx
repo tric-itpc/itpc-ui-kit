@@ -7,19 +7,19 @@ import "./styles.css"
 interface TableSortRowProps {
   id: string
   rowData: UseType
-  arrKeysNameTitle: string[]
+  arrKeysNameHeader: string[]
 }
 
 export const TableSortRow: React.FC<TableSortRowProps> = ({
   id,
   rowData,
-  arrKeysNameTitle,
+  arrKeysNameHeader,
   ...rest
 }: TableSortRowProps) => (
   <tr className={cn("itpc-table-sort__row")} {...rest}>
     {rowData &&
       Object.entries(rowData).map(([key, value]) => {
-        if (arrKeysNameTitle.includes(key)) {
+        if (arrKeysNameHeader.includes(key)) {
           return <TableSortCell key={key} value={value} />
         }
       })}

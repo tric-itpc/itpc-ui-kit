@@ -37,7 +37,6 @@ const dataColumns: Column<TypeData>[] = [
   {
     name: "name",
     title: "Name",
-    sorter: (a: TypeData, b: TypeData) => a.name.length - b.name.length,
     isSortable: true,
   },
   {
