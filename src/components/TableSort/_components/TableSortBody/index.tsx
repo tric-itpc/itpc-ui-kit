@@ -6,11 +6,13 @@ import "./styles.css"
 interface TableSortBodyProps {
   rows: UseType[]
   arrKeysNameHeader: string[]
+  nameMainColumnSort?: string
 }
 
 export const TableSortBody: React.FC<TableSortBodyProps> = ({
   rows,
   arrKeysNameHeader,
+  nameMainColumnSort,
   ...rest
 }: TableSortBodyProps) => (
   <tbody className="itpc-table-sort__body" {...rest}>
@@ -21,6 +23,7 @@ export const TableSortBody: React.FC<TableSortBodyProps> = ({
           key={row.id}
           rowData={row}
           arrKeysNameHeader={arrKeysNameHeader}
+          nameMainColumnSort={nameMainColumnSort}
           data-index={index + 1}
         />
       ))}

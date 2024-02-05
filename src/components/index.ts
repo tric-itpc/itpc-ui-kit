@@ -32,6 +32,7 @@ import { Tabs, TabButton } from "./Tabs"
 import { Text } from "./Text"
 import { TextField } from "./TextField"
 import { TableSortOneColumn } from "./TableSort/TableSortOneColumn"
+import { TableSortTwoColumns } from "./TableSort/TableSortTwoColumns"
 
 export {
   Accordion,
@@ -67,6 +68,7 @@ export {
   Text,
   TextField,
   TableSortOneColumn,
+  TableSortTwoColumns,
 }
 
 export { UIKitColors } from "./constants"

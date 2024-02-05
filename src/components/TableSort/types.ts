@@ -26,6 +26,11 @@ export interface KeysSort<T> {
   sorter?: SorterFn<T>
 }
 
+export interface SaveKeys<T> {
+  mainKey?: KeysSort<T>
+  secondKey?: KeysSort<T>
+}
+
 export interface SaveOrder {
   index: number
   _id: string

@@ -1,8 +1,8 @@
 import React, { HTMLAttributes } from "react"
 import cn from "classnames"
 import { Column, KeysSort, SortType, UseType } from "../../types"
-import "./styles.css"
 import { renderIcon } from "../../utils"
+import "./styles.css"
 
 interface TableSortHeaderProps extends HTMLAttributes<HTMLTableCellElement> {
   columns?: Column<UseType>[]

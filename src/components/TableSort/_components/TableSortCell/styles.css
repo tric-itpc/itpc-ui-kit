@@ -6,6 +6,10 @@
   cursor: default;
 }
 
-.tpc-table-sort__cell_clickable {
+.itpc-table-sort__cell_clickable {
   cursor: pointer;
+}
+
+.itpc-table-sort__cell_back {
+  background-color: #e5e5e5;
 }
