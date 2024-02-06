@@ -5,14 +5,14 @@ import {
   TableSortOneColumn,
   TableSortOneColumnProps,
 } from "../components/TableSort/TableSortOneColumn"
-import { Column, UseType } from "../components/TableSort/types"
+import { Column, RowType } from "../components/TableSort/types"
 
 export default {
   title: "Components/TableSortOneColumn",
   component: TableSortOneColumn,
 } as ComponentMeta<React.FC<TableSortOneColumnProps<TypeData>>>
 
-interface TypeData extends UseType {
+interface TypeData extends RowType {
   id: string
   name: string
   age: string

@@ -1,12 +1,13 @@
 import React from "react"
 import cn from "classnames"
-import { UseType } from "../../types"
+
+import { RowType } from "../../types"
 import { TableSortCell } from "../TableSortCell"
 import "./styles.css"
 
 interface TableSortRowProps {
   id: string
-  rowData: UseType
+  rowData: RowType
   arrKeysNameHeader: string[]
 }
 

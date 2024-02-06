@@ -4,7 +4,7 @@ export enum SortType {
   DESCENDING = "descending",
 }
 
-export type UseType<T = object> = {
+export type RowType<T = object> = {
   [key in keyof T]: T[key]
 } & {
   id: string
@@ -16,17 +16,12 @@ export interface Column<T> {
   name: keyof T
   title: string
   isSortable: boolean
-  sorter?: SorterFn<Omit<T, "_index">>
+  sorter?: SorterFn<T>
 }
 
-export interface KeysSort<T> {
+export interface KeySort<T> {
   name: string
   isSortable: boolean
   order?: SortType
   sorter?: SorterFn<T>
-}
-
-export interface SaveOrder {
-  index: number
-  _id: string
 }
