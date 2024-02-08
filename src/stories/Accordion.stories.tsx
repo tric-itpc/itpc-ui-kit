@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
+
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import {
   Accordion,
@@ -11,8 +12,8 @@ import {
 } from "../components/Accordion"
 
 export default {
-  title: "Components/Accordion",
   component: Accordion,
+  title: "Components/Accordion",
 } as ComponentMeta<React.FC<AccordionProps>>
 
 const Template: ComponentStory<React.FC<AccordionProps>> = (args) => {

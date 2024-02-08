@@ -1,8 +1,10 @@
 import React, { HTMLAttributes } from "react"
+
 import cn from "classnames"
 
-import { Column, KeySort, SortType, RowType } from "../../types"
+import { Column, KeySort, RowType, SortType } from "../../types"
 import { renderIcon } from "../../utils"
+
 import "./styles.css"
 
 interface TableSortHeaderProps extends HTMLAttributes<HTMLTableCellElement> {
@@ -31,8 +33,8 @@ export const TableSortHeader: React.FC<TableSortHeaderProps> = ({
                 ? "itpc-table-sort__head_background-active"
                 : "itpc-table-sort__head_background"
             )}
-            key={index}
             data-column-key={column.name}
+            key={index}
             onClick={() => setKeySort?.(column)}
           >
             <div className="itpc-table-sort__wrap-cell">

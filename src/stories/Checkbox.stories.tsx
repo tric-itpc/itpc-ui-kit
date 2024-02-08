@@ -1,11 +1,12 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
+
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Checkbox, Props } from "../components/Checkbox"
 
 export default {
-  title: "Components/Checkbox",
   component: Checkbox,
+  title: "Components/Checkbox",
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
@@ -19,8 +20,8 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
     <>
       <Checkbox
         {...args}
-        name="1"
         isChecked={checkedFirst}
+        name="1"
         onClick={handleCheckedFirst}
       />
     </>

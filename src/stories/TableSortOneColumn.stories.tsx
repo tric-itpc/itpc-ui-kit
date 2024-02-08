@@ -1,5 +1,6 @@
 import React from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
+
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import {
   TableSortOneColumn,
@@ -8,48 +9,48 @@ import {
 import { Column, RowType } from "../components/TableSort/types"
 
 export default {
-  title: "Components/TableSortOneColumn",
   component: TableSortOneColumn,
+  title: "Components/TableSortOneColumn",
 } as ComponentMeta<React.FC<TableSortOneColumnProps<TypeData>>>
 
 interface TypeData extends RowType {
-  id: string
-  name: string
   age: string
   duty: string
+  id: string
+  name: string
 }
 
 const dataRows: TypeData[] = [
-  { id: "1", name: "Сергей", age: "35", duty: "50" },
-  { id: "2", name: "Рома", age: "42", duty: "500.02" },
-  { id: "3", name: "Алексей", age: "18", duty: "1.10" },
-  { id: "4", name: "Борис", age: "9", duty: "250" },
-  { id: "5", name: "Яша", age: "100", duty: "250.02" },
+  { age: "35", duty: "50", id: "1", name: "Сергей" },
+  { age: "42", duty: "500.02", id: "2", name: "Рома" },
+  { age: "18", duty: "1.10", id: "3", name: "Алексей" },
+  { age: "9", duty: "250", id: "4", name: "Борис" },
+  { age: "100", duty: "250.02", id: "5", name: "Яша" },
 ]
 
 const dataColumns: Column<TypeData>[] = [
   {
-    name: "id",
-    title: "ID",
-    sorter: (a: TypeData, b: TypeData) => Number(a.id) - Number(b.id),
     isSortable: false,
+    name: "id",
+    sorter: (a: TypeData, b: TypeData) => Number(a.id) - Number(b.id),
+    title: "ID",
   },
   {
+    isSortable: true,
     name: "name",
     title: "Name",
-    isSortable: true,
   },
   {
+    isSortable: true,
     name: "age",
-    title: "Age",
     sorter: (a: TypeData, b: TypeData) => Number(a.age) - Number(b.age),
-    isSortable: true,
+    title: "Age",
   },
   {
-    name: "duty",
-    title: "Duty",
-    sorter: (a: TypeData, b: TypeData) => Number(a.duty) - Number(b.duty),
     isSortable: true,
+    name: "duty",
+    sorter: (a: TypeData, b: TypeData) => Number(a.duty) - Number(b.duty),
+    title: "Duty",
   },
 ]
 

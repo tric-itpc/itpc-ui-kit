@@ -1,4 +1,5 @@
 import React from "react"
+
 import cn from "classnames"
 
 import { ValidationState } from "../../types"
@@ -6,19 +7,19 @@ import { ValidationState } from "../../types"
 import "./styles.css"
 
 interface InputWrapProps {
+  children?: React.ReactNode
   focused?: boolean
-  validationState: ValidationState
   height?: number
   maxHeight?: number
-  children?: React.ReactNode
+  validationState: ValidationState
 }
 
 export const InputWrap: React.FC<InputWrapProps> = ({
+  children,
   focused,
-  validationState,
   height = 40,
   maxHeight = 200,
-  children,
+  validationState,
 }) => (
   <div
     className={cn(

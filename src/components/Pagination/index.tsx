@@ -1,23 +1,24 @@
 import React, { FC, HTMLAttributes, useEffect, useState } from "react"
+
 import cn from "classnames"
 
+import { IconArrow, IconDoubleArrow } from "../_elements"
 import { PaginationResult } from "../types"
 
 import "./styles.css"
-import { IconArrow, IconDoubleArrow } from "../_elements"
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
-  step?: number
-  dataLength: number
-  className?: string
   callback: (pagination: PaginationResult) => void
+  className?: string
+  dataLength: number
+  step?: number
 }
 
 export const Pagination: FC<Props> = ({
-  step = 10,
-  dataLength,
-  className = "",
   callback,
+  className = "",
+  dataLength,
+  step = 10,
   ...rest
 }) => {
   const [startPagination, setStartPagination] = useState<number>(0)
@@ -31,8 +32,8 @@ export const Pagination: FC<Props> = ({
     setEndPagination(endPagination - step)
     callback({
       currentPage: (endPagination - step) / step,
-      start: startPagination - step,
       end: endPagination - step,
+      start: startPagination - step,
     })
   }
 
@@ -42,8 +43,8 @@ export const Pagination: FC<Props> = ({
     setEndPagination(endPagination + step)
     callback({
       currentPage: (endPagination + step) / step,
-      start: startPagination + step,
       end: endPagination + step,
+      start: startPagination + step,
     })
   }
 
@@ -53,8 +54,8 @@ export const Pagination: FC<Props> = ({
     setEndPagination(step)
     callback({
       currentPage: 1,
-      start: 0,
       end: step,
+      start: 0,
     })
   }
 
@@ -64,8 +65,8 @@ export const Pagination: FC<Props> = ({
     setEndPagination(pages[pages.length - 1] * step)
     callback({
       currentPage: pages[pages.length - 1],
-      start: pages[pages.length - 1] * step - step,
       end: pages[pages.length - 1] * step,
+      start: pages[pages.length - 1] * step - step,
     })
   }
 
@@ -76,8 +77,8 @@ export const Pagination: FC<Props> = ({
       setEndPagination(step * page)
       callback({
         currentPage: page,
-        start: step * page - step,
         end: step * page,
+        start: step * page - step,
       })
     }
   }
@@ -133,19 +134,19 @@ export const Pagination: FC<Props> = ({
   return (
     <div className={cn("itpc-pagination", className)} {...rest}>
       <button
-        type="button"
         className="itpc-pagination__btn itpc-pagination__btn_left"
         disabled={!startPagination || !dataLength}
         onClick={start}
+        type="button"
       >
         <IconDoubleArrow orientation="left" />
       </button>
 
       <button
-        type="button"
         className="itpc-pagination__btn itpc-pagination__btn_left"
         disabled={!startPagination || !dataLength}
         onClick={prev}
+        type="button"
       >
         <IconArrow orientation="left" />
       </button>
@@ -155,14 +156,14 @@ export const Pagination: FC<Props> = ({
           .slice(startSlicePagesCount(), endSlicePagesCount())
           .map((page) => (
             <button
-              key={page}
-              type="button"
-              onClick={() => openPage(page)}
               className={cn(
                 "itpc-pagination__btn",
                 "itpc-pagination__btn_page",
                 currentPage === page && "itpc-pagination__btn_page_active"
               )}
+              key={page}
+              onClick={() => openPage(page)}
+              type="button"
             >
               {page}
             </button>
@@ -174,14 +175,14 @@ export const Pagination: FC<Props> = ({
 
         {currentPage < pages.length && pages.length > 5 && (
           <button
-            type="button"
-            onClick={() => openPage(pages[pages.length - 1])}
             className={cn(
               "itpc-pagination__btn",
               "itpc-pagination__btn_page",
               currentPage === pages[pages.length - 1] &&
                 "itpc-pagination__btn_page_active"
             )}
+            onClick={() => openPage(pages[pages.length - 1])}
+            type="button"
           >
             {pages[pages.length - 1]}
           </button>
@@ -189,19 +190,19 @@ export const Pagination: FC<Props> = ({
       </div>
 
       <button
-        type="button"
         className="itpc-pagination__btn itpc-pagination__btn_right"
         disabled={currentPage === pages[pages.length - 1] || !dataLength}
         onClick={next}
+        type="button"
       >
         <IconArrow orientation="right" />
       </button>
 
       <button
-        type="button"
         className="itpc-pagination__btn itpc-pagination__btn_right"
         disabled={currentPage === pages[pages.length - 1] || !dataLength}
         onClick={end}
+        type="button"
       >
         <IconDoubleArrow orientation="right" />
       </button>

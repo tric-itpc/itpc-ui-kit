@@ -1,7 +1,8 @@
 import React from "react"
 
 import { IconSortDown, IconSortUp } from "../_elements"
-import { RowType, SortType, Column, KeySort, SorterFn } from "./types"
+
+import { Column, KeySort, RowType, SorterFn, SortType } from "./types"
 
 export const toggleSort = (orderSort: SortType): SortType => {
   switch (orderSort) {
@@ -37,7 +38,7 @@ export const setKey = (
 }
 
 const updateParametersKey = (
-  key: Column<RowType> | KeySort<RowType>
+  key: KeySort<RowType> | Column<RowType>
 ): KeySort<RowType> => {
   if ("order" in key) {
     return {

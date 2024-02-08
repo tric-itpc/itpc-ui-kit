@@ -1,26 +1,27 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { DatePicker, Props } from "../components/DatePicker"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
+
 import { FormattedValues, IInfo } from "../components"
+import { DatePicker, Props } from "../components/DatePicker"
 
 export default {
-  title: "Components/DatePicker",
   component: DatePicker,
+  title: "Components/DatePicker",
 } as ComponentMeta<React.FC<Props>>
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
   const [date, setDate] = useState<FormattedValues>({
-    value: "",
     formattedValue: "",
+    value: "",
   })
 
   const onChange = (
     inputValue: FormattedValues,
     event:
-      | React.SyntheticEvent<HTMLInputElement>
+      | React.SyntheticEvent<HTMLTableDataCellElement>
       | React.SyntheticEvent<HTMLButtonElement>
-      | React.SyntheticEvent<HTMLTableDataCellElement>,
+      | React.SyntheticEvent<HTMLInputElement>,
     info: IInfo
   ): void => {
     setDate(inputValue)
@@ -28,7 +29,7 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
   return (
     <>
-      <DatePicker {...args} value={date.value} onChange={onChange} />
+      <DatePicker {...args} onChange={onChange} value={date.value} />
       <p>Value: {date.value}</p>
       <p>Formatted value: {date.formattedValue}</p>
     </>
@@ -37,8 +38,8 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
 export const Basic = Template.bind({})
 Basic.args = {
+  errorMessage: "Error message",
   placeholder: "Enter date",
   validationState: "valid",
-  errorMessage: "Error message",
   withTime: false,
 }

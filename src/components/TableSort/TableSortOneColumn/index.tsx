@@ -1,23 +1,24 @@
 import React, { TableHTMLAttributes, useState } from "react"
+
 import cn from "classnames"
 
 import { TableSortBody, TableSortHeader } from "../_components"
-import { Column, SortType, RowType, KeySort } from "../types"
-import { getKeysNamesColumns, byKey, setKey } from "../utils"
+import { Column, KeySort, RowType, SortType } from "../types"
+import { byKey, getKeysNamesColumns, setKey } from "../utils"
 
 import "./styles.css"
 
 export interface TableSortOneColumnProps<T extends RowType>
   extends TableHTMLAttributes<HTMLTableElement> {
+  className?: string
   columns: Column<T>[]
   rows: RowType<T>[]
-  className?: string
 }
 
 export const TableSortOneColumn: React.FC<TableSortOneColumnProps<any>> = ({
+  className = "",
   columns,
   rows,
-  className = "",
   ...rest
 }: TableSortOneColumnProps<any>) => {
   const [currentKey, setCurrentKey] = useState<KeySort<RowType>>()
@@ -55,8 +56,8 @@ export const TableSortOneColumn: React.FC<TableSortOneColumnProps<any>> = ({
 
       {data && (
         <TableSortBody
-          rows={data}
           arrKeysNameHeader={getKeysNamesColumns(columns)}
+          rows={data}
         />
       )}
     </table>

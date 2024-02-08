@@ -1,20 +1,20 @@
 import React from "react"
+
 import cn from "classnames"
 
 import { RowType } from "../../types"
 import { TableSortCell } from "../TableSortCell"
+
 import "./styles.css"
 
 interface TableSortRowProps {
-  id: string
-  rowData: RowType
   arrKeysNameHeader: string[]
+  rowData: RowType
 }
 
 export const TableSortRow: React.FC<TableSortRowProps> = ({
-  id,
-  rowData,
   arrKeysNameHeader,
+  rowData,
   ...rest
 }: TableSortRowProps) => (
   <tr className={cn("itpc-table-sort__row")} {...rest}>

@@ -1,5 +1,6 @@
 import React from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
+
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import {
   Cell,
@@ -12,8 +13,8 @@ import {
 } from "../components/Table"
 
 export default {
-  title: "Components/Table",
   component: Table,
+  title: "Components/Table",
 } as ComponentMeta<React.FC<TableProps>>
 
 const Template: ComponentStory<React.FC<TableProps>> = (args) => (

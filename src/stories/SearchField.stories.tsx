@@ -1,12 +1,13 @@
 import React, { useState } from "react"
-import { ComponentStory, ComponentMeta } from "@storybook/react"
 
-import { SearchField, Props } from "../components/SearchField"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
+
 import { Item, Preloader } from "../components"
+import { Props, SearchField } from "../components/SearchField"
 
 export default {
-  title: "Components/SearchField",
   component: SearchField,
+  title: "Components/SearchField",
 } as ComponentMeta<React.FC<Props>>
 
 const mockItems: Item[] = [
@@ -66,12 +67,12 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
     <>
       <SearchField
         {...args}
-        items={items}
-        onChange={onChange}
         fetchData={fetchData}
         handleClear={clear}
-        isDisableClickIcon={isLoading}
         icon={isLoading ? <Preloader /> : null}
+        isDisableClickIcon={isLoading}
+        items={items}
+        onChange={onChange}
       />
       <p>
         selected: {selectedItem?.id} {selectedItem?.value}

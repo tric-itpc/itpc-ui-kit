@@ -5,7 +5,8 @@
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:perfectionist/recommended-line-length"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -19,9 +20,98 @@
     "react",
     "@typescript-eslint",
     "eslint-plugin-import",
-    "eslint-plugin-prefer-arrow"
+    "eslint-plugin-prefer-arrow",
+    "perfectionist"
   ],
   "rules": {
+    "perfectionist/sort-exports": [
+      "error",
+      {
+        "type": "alphabetical",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-imports": [
+      "error",
+      {
+        "type": "alphabetical",
+        "order": "asc",
+        "groups": ["react", "external", "parent", "sibling", "internal", "index"],
+        "custom-groups": {
+          "value": {
+            "react": ["react"]
+          },
+          "type": {
+            "react": "react"
+          }
+        },
+        "newlines-between": "always"
+      }
+    ],
+    "perfectionist/sort-named-imports": [
+      "error",
+      {
+        "type": "alphabetical",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-jsx-props": [
+      "error",
+      {
+        "type": "alphabetical",
+        "order": "asc",
+        "groups": ["multiline", "unknown", "shorthand"]
+      }
+    ],
+    "perfectionist/sort-objects": [
+      "error",
+      {
+        "type": "alphabetical",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-object-types": [
+      "error",
+      {
+        "type": "alphabetical",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-interfaces": [
+      "error",
+      {
+        "type": "alphabetical",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-enums": [
+      "error",
+      {
+        "type": "alphabetical",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-classes": [
+      "error",
+      {
+        "type": "alphabetical",
+        "order": "asc",
+        "groups": [
+          "constructor",
+          "unknown",
+          "index-signature",
+          "static-private-method",
+          "static-property",
+          "private-property",
+          "property",
+          "get-method",
+          "set-method",
+          "static-method",
+          "private-method",
+          "method"
+        ]
+      }
+    ],
     "prettier/prettier": [
       "error",
       {
