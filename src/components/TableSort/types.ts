@@ -4,6 +4,12 @@ export enum SortType {
   NONE = "none",
 }
 
+export enum NumberSortingColumns {
+  ZERO = "zero",
+  ONE = "one",
+  TWO = "two",
+}
+
 export type RowType<T = object> = {
   [key in keyof T]: T[key]
 } & {
@@ -22,6 +28,16 @@ export interface Column<T> {
 export interface KeySort<T> {
   isSortable: boolean
   name: string
-  order?: SortType
-  sorter?: SorterFn<T>
+  order: SortType
+  sorter: SorterFn<T>
+}
+
+export interface KeysSort<T> {
+  mainKey?: KeySort<T>
+  secondKey?: KeySort<T>
+}
+
+export interface SaveOrder {
+  index: number
+  _id: string
 }

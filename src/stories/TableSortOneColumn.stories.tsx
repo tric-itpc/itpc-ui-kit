@@ -14,18 +14,18 @@ export default {
 } as ComponentMeta<React.FC<TableSortOneColumnProps<TypeData>>>
 
 interface TypeData extends RowType {
-  age: string
-  duty: string
   id: string
   name: string
+  age: string
+  duty: string
 }
 
 const dataRows: TypeData[] = [
-  { age: "35", duty: "50", id: "1", name: "Сергей" },
-  { age: "42", duty: "500.02", id: "2", name: "Рома" },
-  { age: "18", duty: "1.10", id: "3", name: "Алексей" },
-  { age: "9", duty: "250", id: "4", name: "Борис" },
-  { age: "100", duty: "250.02", id: "5", name: "Яша" },
+  { id: "1", name: "Сергей", age: "35", duty: "50" },
+  { id: "2", name: "Рома", age: "42", duty: "500.02" },
+  { id: "3", name: "Алексей", age: "18", duty: "1.10" },
+  { id: "4", name: "Борис", age: "9", duty: "250" },
+  { id: "5", name: "Яша", age: "100", duty: "250.02" },
 ]
 
 const dataColumns: Column<TypeData>[] = [
@@ -56,10 +56,10 @@ const dataColumns: Column<TypeData>[] = [
 
 const Template: ComponentStory<React.FC<TableSortOneColumnProps<TypeData>>> = (
   args
-) => <TableSortOneColumn columns={dataColumns} rows={dataRows} />
+) => <TableSortOneColumn {...args} />
 
 export const Basic = Template.bind({})
 Basic.args = {
-  columns: { dataColumns },
-  rows: { dataRows },
+  columns: dataColumns,
+  rows: dataRows,
 }

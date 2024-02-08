@@ -29,11 +29,13 @@ import {
   TableHeader,
 } from "./Table"
 import { TableSortOneColumn } from "./TableSort/TableSortOneColumn"
+import { TableSortTwoColumns } from "./TableSort/TableSortTwoColumns"
 import { TabButton, Tabs } from "./Tabs"
 import { Text } from "./Text"
 import { TextField } from "./TextField"
 
 export {
+  TableSortTwoColumns,
   TableSortOneColumn,
   MultiSelectField,
   AccordionHeader,

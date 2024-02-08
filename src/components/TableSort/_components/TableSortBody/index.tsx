@@ -7,11 +7,13 @@ import "./styles.css"
 
 interface TableSortBodyProps {
   arrKeysNameHeader: string[]
+  nameMainColumnSort?: string
   rows: RowType[]
 }
 
 export const TableSortBody: React.FC<TableSortBodyProps> = ({
   arrKeysNameHeader,
+  nameMainColumnSort,
   rows,
   ...rest
 }: TableSortBodyProps) => (
@@ -20,6 +22,7 @@ export const TableSortBody: React.FC<TableSortBodyProps> = ({
       rows.map((row: RowType) => (
         <TableSortRow
           arrKeysNameHeader={arrKeysNameHeader}
+          nameMainColumnSort={nameMainColumnSort}
           key={row.id}
           rowData={row}
         />
