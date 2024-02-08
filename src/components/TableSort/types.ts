@@ -22,6 +22,16 @@ export interface Column<T> {
 export interface KeySort<T> {
   name: string
   isSortable: boolean
-  order?: SortType
-  sorter?: SorterFn<T>
+  order: SortType
+  sorter: SorterFn<T>
+}
+
+export interface KeysSort<T> {
+  mainKey?: KeySort<T>
+  secondKey?: KeySort<T>
+}
+
+export interface SaveOrder {
+  index: number
+  _id: string
 }
