@@ -28,8 +28,9 @@ export const toggleSort = (orderSort: SortType): SortType => {
   }
 }
 
-export const getKeysNamesColumns = (column: Column<RowType>[]): string[] =>
-  column?.map((item: Column<RowType>) => item.name)
+export const getKeysNamesColumns = (
+  column: Column<RowType>[]
+): (keyof RowType)[] => column?.map((item: Column<RowType>) => item.name)
 
 export const sorterFn =
   (currentKey: Column<RowType>): SorterFn<RowType> =>
@@ -103,13 +104,13 @@ export const updateParametersKeys = (
   key: Column<RowType>,
   currentKeys?: KeysSort<RowType>
 ): KeysSort<RowType> => {
-  let keys: KeysSort<RowType>
+  let keys: KeysSort<RowType> = {}
 
   if (
     currentKeys?.mainKey?.name === key.name &&
     currentKeys?.mainKey?.order === SortType.DESCENDING
   ) {
-    return {}
+    return keys
   }
 
   if (
@@ -138,7 +139,6 @@ export const updateParametersKeys = (
         secondKey: currentKeys.secondKey,
       }
     }
-    return keys
   } else {
     if (key.name === currentKeys?.secondKey?.name) {
       keys = {
@@ -151,7 +151,6 @@ export const updateParametersKeys = (
           sorter: !key?.sorter ? sorterFn(key) : key?.sorter,
         },
       }
-      return keys
     } else {
       keys = {
         mainKey: currentKeys?.mainKey,
@@ -161,9 +160,10 @@ export const updateParametersKeys = (
           sorter: !key?.sorter ? sorterFn(key) : key?.sorter,
         },
       }
-      return keys
     }
   }
+
+  return keys
 }
 
 export const renderIconTwoColumns = (

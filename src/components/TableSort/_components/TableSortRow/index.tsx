@@ -8,7 +8,7 @@ import { TableSortCell } from "../TableSortCell"
 import "./styles.css"
 
 interface TableSortRowProps {
-  arrKeysNameHeader: string[]
+  arrKeysNameHeader: (keyof RowType)[]
   nameMainColumnSort?: string
   rowData: RowType
 }
@@ -21,16 +21,13 @@ export const TableSortRow: React.FC<TableSortRowProps> = ({
 }: TableSortRowProps) => (
   <tr className={cn("itpc-table-sort__row")} {...rest}>
     {rowData &&
-      Object.entries(rowData).map(([key, value]) => {
-        if (arrKeysNameHeader.includes(key)) {
-          return (
-            <TableSortCell
-              key={key}
-              value={value}
-              isMainColumSort={nameMainColumnSort === key}
-            />
-          )
-        }
-      })}
+      arrKeysNameHeader &&
+      arrKeysNameHeader.map((colName: keyof RowType) => (
+        <TableSortCell
+          key={colName}
+          value={rowData[colName]}
+          isMainColumSort={nameMainColumnSort === colName}
+        />
+      ))}
   </tr>
 )

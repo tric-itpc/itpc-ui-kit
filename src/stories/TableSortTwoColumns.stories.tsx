@@ -39,26 +39,26 @@ const dataColumns: Column<TypeData>[] = [
     isSortable: false,
   },
   {
+    name: "city",
+    title: "Город",
+    isSortable: true,
+  },
+  {
     name: "name",
     title: "Name",
     sorter: (a: TypeData, b: TypeData) => a.name.length - b.name.length,
     isSortable: true,
   },
   {
-    name: "city",
-    title: "Город",
+    name: "duty",
+    title: "Duty",
+    sorter: (a: TypeData, b: TypeData) => Number(a.duty) - Number(b.duty),
     isSortable: true,
   },
   {
     name: "age",
     title: "Age",
     sorter: (a: TypeData, b: TypeData) => Number(a.age) - Number(b.age),
-    isSortable: true,
-  },
-  {
-    name: "duty",
-    title: "Duty",
-    sorter: (a: TypeData, b: TypeData) => Number(a.duty) - Number(b.duty),
     isSortable: true,
   },
 ]
@@ -71,5 +71,4 @@ export const Basic = Template.bind({})
 Basic.args = {
   columns: dataColumns,
   rows: dataRows,
-  sortBy: "two",
 }

@@ -4,12 +4,6 @@ export enum SortType {
   NONE = "none",
 }
 
-export enum NumberSortingColumns {
-  ZERO = "zero",
-  ONE = "one",
-  TWO = "two",
-}
-
 export type RowType<T = object> = {
   [key in keyof T]: T[key]
 } & {

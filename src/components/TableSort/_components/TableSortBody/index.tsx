@@ -6,7 +6,7 @@ import { TableSortRow } from "../TableSortRow"
 import "./styles.css"
 
 interface TableSortBodyProps {
-  arrKeysNameHeader: string[]
+  arrKeysNameHeader: (keyof RowType)[]
   nameMainColumnSort?: string
   rows: RowType[]
 }

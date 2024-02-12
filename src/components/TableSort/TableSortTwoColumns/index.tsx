@@ -7,7 +7,6 @@ import {
   Column,
   KeySort,
   KeysSort,
-  NumberSortingColumns,
   RowType,
   SaveOrder,
   SortType,
@@ -27,14 +26,12 @@ export interface TableSortTwoColumnsProps<T extends RowType>
   columns: Column<T>[]
   rows: RowType<T>[]
   className?: string
-  sortBy?: NumberSortingColumns
 }
 
 export const TableSortTwoColumns: React.FC<TableSortTwoColumnsProps<any>> = ({
   columns,
   className = "",
   rows,
-  sortBy,
   ...rest
 }: TableSortTwoColumnsProps<any>) => {
   const [currentKeys, setCurrentKeys] = useState<KeysSort<RowType>>({})
@@ -60,42 +57,19 @@ export const TableSortTwoColumns: React.FC<TableSortTwoColumnsProps<any>> = ({
     const secondKey: KeySort<RowType> | undefined = updateKeysSort?.secondKey
 
     if (key.name === mainKey?.name) {
-      if (mainKey.order === SortType.ASCENDING) {
-        setData([...data].sort(byKeys(updateKeysSort)))
-      }
-
-      if (
-        mainKey.order === SortType.DESCENDING &&
-        secondKey?.order === SortType.NONE
-      ) {
-        setData([...data].sort(byKeys(updateKeysSort)))
-      }
-
-      if (
-        mainKey.order === SortType.DESCENDING &&
-        secondKey?.order !== SortType.NONE
-      ) {
+      {
         setData([...data].sort(byKeys(updateKeysSort)))
       }
     }
 
     if (key.name === secondKey?.name) {
-      if (
-        secondKey?.order !== SortType.NONE &&
-        mainKey?.order === SortType.ASCENDING
-      ) {
+      if (secondKey?.order !== SortType.NONE) {
         setData([...data].sort(byKeys(updateKeysSort)))
-        if (!orderAscending.length) {
+
+        if (!orderAscending.length && mainKey?.order === SortType.ASCENDING) {
           setOrderAscending(order([...data]))
         }
-      }
-
-      if (
-        secondKey?.order !== SortType.NONE &&
-        mainKey?.order === SortType.DESCENDING
-      ) {
-        setData([...data].sort(byKeys(updateKeysSort)))
-        if (!orderDescending.length) {
+        if (!orderDescending.length && mainKey?.order === SortType.DESCENDING) {
           setOrderDescending(order([...data]))
         }
       }
@@ -123,7 +97,6 @@ export const TableSortTwoColumns: React.FC<TableSortTwoColumnsProps<any>> = ({
           columns={columns}
           currentKeys={currentKeys}
           setKeySort={setKeySort}
-          sortBy={sortBy}
         />
       )}
 
