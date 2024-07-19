@@ -1,6 +1,6 @@
 {
   "name": "itpc-ui-kit",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "",
   "main": "./dist/index.js",
   "homepage": "https://tric-itpc.github.io/itpc-ui-kit",
@@ -51,7 +51,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
     "gh-pages": "^5.0.0",
-    "itpc-input-mask": "^0.2.0",
+    "itpc-input-mask": "^0.2.1",
     "mini-css-extract-plugin": "^2.7.7",
     "prettier": "^2.8.1",
     "react": "^17.0.2",
