@@ -24106,6 +24106,104 @@ exports.Text = Text;
 
 /***/ }),
 
+/***/ 5524:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.TextAreaField = void 0;
+var react_1 = __importStar(__webpack_require__(9155));
+var classnames_1 = __importDefault(__webpack_require__(6942));
+var _elements_1 = __webpack_require__(5010);
+var TextAreaField = function (_a) {
+    var _b = _a.className, className = _b === void 0 ? "" : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.errorMessage, errorMessage = _d === void 0 ? "" : _d, _e = _a.id, id = _e === void 0 ? "itpc-input" : _e, maxHeight = _a.maxHeight, _f = _a.name, name = _f === void 0 ? "itpc-input" : _f, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _g = _a.placeholder, placeholder = _g === void 0 ? "" : _g, _h = _a.validationState, validationState = _h === void 0 ? "valid" : _h, _j = _a.value, value = _j === void 0 ? "" : _j, rest = __rest(_a, ["className", "disabled", "errorMessage", "id", "maxHeight", "name", "onBlur", "onChange", "onFocus", "placeholder", "validationState", "value"]);
+    var _k = (0, react_1.useState)(false), focused = _k[0], onHandleFocused = _k[1];
+    var _l = (0, react_1.useState)(40), height = _l[0], setHeight = _l[1];
+    var ref = (0, react_1.useRef)(null);
+    var onBlurTextArea = function () {
+        onHandleFocused(false);
+        if (onBlur) {
+            onBlur();
+        }
+    };
+    var onFocusTextArea = function () {
+        var _a;
+        onHandleFocused(true);
+        (_a = ref.current) === null || _a === void 0 ? void 0 : _a.focus();
+        if (onFocus) {
+            onFocus();
+        }
+    };
+    var onChangeTextArea = function (event) {
+        var _a;
+        setHeight(40);
+        if (((_a = ref.current) === null || _a === void 0 ? void 0 : _a.scrollHeight) && ref.current.scrollHeight > 40) {
+            setHeight(ref.current.scrollHeight);
+        }
+        if (onChange) {
+            onChange(event.currentTarget.value, event);
+        }
+    };
+    return (react_1.default.createElement(_elements_1.Field, __assign({ className: className }, rest),
+        react_1.default.createElement(_elements_1.InputWrap, { focused: focused, height: height, maxHeight: maxHeight, validationState: validationState },
+            react_1.default.createElement(_elements_1.Placeholder, { focused: focused || value.length > 0, htmlFor: id, validationState: validationState }, placeholder),
+            react_1.default.createElement("textarea", { className: (0, classnames_1.default)("itpc-input", (focused || !!value.length) && "itpc-input_focused"), disabled: disabled, id: id, name: name, onBlur: onBlurTextArea, onChange: onChangeTextArea, onFocus: onFocusTextArea, ref: ref, value: value }),
+            react_1.default.createElement(_elements_1.InputError, { errorMessage: errorMessage, show: validationState === "invalid" }))));
+};
+exports.TextAreaField = TextAreaField;
+
+
+/***/ }),
+
 /***/ 2329:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -24670,7 +24768,7 @@ var UIKitColors;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.SortType = exports.NumberColumns = exports.UIKitColors = exports.TextField = exports.Text = exports.Tabs = exports.TableSort = exports.TableHeader = exports.TableFooter = exports.TableBody = exports.Table = exports.TabButton = exports.SelectField = exports.SearchField = exports.Row = exports.Preloader = exports.Popup = exports.Pagination = exports.NumberField = exports.MultiSelectField = exports.ModalFooter = exports.ModalContent = exports.Modal = exports.ErrorMessage = exports.DatePicker = exports.Column = exports.Checkbox = exports.Cell = exports.Card = exports.ButtonRound = exports.Button = exports.AccordionItem = exports.AccordionHeader = exports.AccordionBody = exports.AccordionArrow = exports.Accordion = void 0;
+exports.SortType = exports.NumberColumns = exports.UIKitColors = exports.TextField = exports.TextAreaField = exports.Text = exports.Tabs = exports.TableSort = exports.TableHeader = exports.TableFooter = exports.TableBody = exports.Table = exports.TabButton = exports.SelectField = exports.SearchField = exports.Row = exports.Preloader = exports.Popup = exports.Pagination = exports.NumberField = exports.MultiSelectField = exports.ModalFooter = exports.ModalContent = exports.Modal = exports.ErrorMessage = exports.DatePicker = exports.Column = exports.Checkbox = exports.Cell = exports.Card = exports.ButtonRound = exports.Button = exports.AccordionItem = exports.AccordionHeader = exports.AccordionBody = exports.AccordionArrow = exports.Accordion = void 0;
 var Accordion_1 = __webpack_require__(1976);
 Object.defineProperty(exports, "Accordion", ({ enumerable: true, get: function () { return Accordion_1.Accordion; } }));
 Object.defineProperty(exports, "AccordionArrow", ({ enumerable: true, get: function () { return Accordion_1.AccordionArrow; } }));
@@ -24722,6 +24820,8 @@ Object.defineProperty(exports, "TabButton", ({ enumerable: true, get: function (
 Object.defineProperty(exports, "Tabs", ({ enumerable: true, get: function () { return Tabs_1.Tabs; } }));
 var Text_1 = __webpack_require__(2803);
 Object.defineProperty(exports, "Text", ({ enumerable: true, get: function () { return Text_1.Text; } }));
+var TextAreaField_1 = __webpack_require__(5524);
+Object.defineProperty(exports, "TextAreaField", ({ enumerable: true, get: function () { return TextAreaField_1.TextAreaField; } }));
 var TextField_1 = __webpack_require__(2329);
 Object.defineProperty(exports, "TextField", ({ enumerable: true, get: function () { return TextField_1.TextField; } }));
 var constants_1 = __webpack_require__(5736);

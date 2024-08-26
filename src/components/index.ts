@@ -31,6 +31,7 @@ import {
 import { TableSort } from "./TableSort"
 import { TabButton, Tabs } from "./Tabs"
 import { Text } from "./Text"
+import { TextAreaField } from "./TextAreaField"
 import { TextField } from "./TextField"
 
 export {
@@ -66,6 +67,7 @@ export {
   TableSort,
   Tabs,
   Text,
+  TextAreaField,
   TextField,
 }
 

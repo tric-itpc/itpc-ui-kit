@@ -17,7 +17,8 @@ import { Cell, Column, Row, Table, TableBody, TableFooter, TableHeader } from ".
 import { TableSort } from "./TableSort";
 import { TabButton, Tabs } from "./Tabs";
 import { Text } from "./Text";
+import { TextAreaField } from "./TextAreaField";
 import { TextField } from "./TextField";
-export { Accordion, AccordionArrow, AccordionBody, AccordionHeader, AccordionItem, Button, ButtonRound, Card, Cell, Checkbox, Column, DatePicker, ErrorMessage, Modal, ModalContent, ModalFooter, MultiSelectField, NumberField, Pagination, Popup, Preloader, Row, SearchField, SelectField, TabButton, Table, TableBody, TableFooter, TableHeader, TableSort, Tabs, Text, TextField, };
+export { Accordion, AccordionArrow, AccordionBody, AccordionHeader, AccordionItem, Button, ButtonRound, Card, Cell, Checkbox, Column, DatePicker, ErrorMessage, Modal, ModalContent, ModalFooter, MultiSelectField, NumberField, Pagination, Popup, Preloader, Row, SearchField, SelectField, TabButton, Table, TableBody, TableFooter, TableHeader, TableSort, Tabs, Text, TextAreaField, TextField, };
 export { UIKitColors } from "./constants";
 export { FormattedValues, IInfo, Item, NumberColumns, PaginationResult, SortType, TabsItem, } from "./types";
