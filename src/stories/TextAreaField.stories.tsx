@@ -2,7 +2,10 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
+import { Text } from "../components"
 import { Props, TextAreaField } from "../components/TextAreaField"
+import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: TextAreaField,
@@ -19,7 +22,8 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
   return (
     <>
       <TextAreaField {...args} onChange={onChange} value={value} />
-      <p>Value: {value}</p>
+      <br />
+      <Text>Value: {value}</Text>
     </>
   )
 }
@@ -29,4 +33,19 @@ Basic.args = {
   errorMessage: "Error message",
   placeholder: "Enter text",
   validationState: "valid",
+}
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
+
+export const TextAreaDark = Template.bind({})
+TextAreaDark.args = {
+  errorMessage: "Error message",
+  placeholder: "Enter text",
+  validationState: "valid",
+}
+TextAreaDark.decorators = [ThemeDecorator(Theme.DARK)]
+
+TextAreaDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

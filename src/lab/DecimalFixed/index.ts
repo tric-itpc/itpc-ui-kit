@@ -75,5 +75,3 @@ export class DecimalFixed implements IDecimalFixed {
     return this.generate()
   }
 }
-
-export { IDecimalFixed }

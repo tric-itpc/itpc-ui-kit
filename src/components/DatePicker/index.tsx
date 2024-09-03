@@ -108,6 +108,7 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
   const [stylePositionCalendar, setStylePositionCalendar] =
     useState<CSSProperties>({})
 
+  const datePickerRef = useRef<HTMLDivElement>(null)
   const inputWrapRef = useRef<HTMLDivElement>(null)
   const calendarWrapRef = useRef<HTMLDivElement>(null)
 
@@ -208,7 +209,11 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
   }, [windowWidth, isShowCalendar])
 
   return (
-    <div className={cn("itpc-datepicker", className)} {...rest}>
+    <div
+      className={cn("itpc-datepicker", className)}
+      ref={datePickerRef}
+      {...rest}
+    >
       <div
         className={cn(
           "itpc-datepicker__input-wrap",
@@ -278,6 +283,7 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
           name={name}
           offsetYear={offsetYear}
           onChange={onChangeDate}
+          parentRef={datePickerRef}
           scrollToYear={scrollToYear}
           show={isShowCalendar}
           withTime={withTime}

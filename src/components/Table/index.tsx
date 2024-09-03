@@ -20,7 +20,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   id = "",
   ...rest
 }) => (
-  <thead className="itpc-table__head" id={id} {...rest}>
+  <thead className={cn("itpc-table__head")} id={id} {...rest}>
     {children}
   </thead>
 )

@@ -23,5 +23,4 @@ import { Text } from "./Text";
 import { TextAreaField } from "./TextAreaField";
 import { TextField } from "./TextField";
 export { Accordion, AccordionArrow, AccordionBody, AccordionHeader, AccordionItem, Button, ButtonRound, Card, Cell, Checkbox, Col, DatePicker, DecimalField, ErrorMessage, Flex, Modal, ModalContent, ModalFooter, MultiSelectField, NumberField, Pagination, Popup, Preloader, Row, SearchField, SelectField, TabButton, Table, TableBody, TableColumn, TableFooter, TableHeader, TableRow, TableSort, Tabs, Text, TextAreaField, TextField, };
-export { UIKitColors } from "./constants";
-export { FormattedValues, IInfo, Item, NumberColumns, PaginationResult, RowAlign, RowJustify, SortType, TabsItem, } from "./types";
+export type { FormattedValues, IInfo, Item, PaginationResult, TabsItem, } from "./types";

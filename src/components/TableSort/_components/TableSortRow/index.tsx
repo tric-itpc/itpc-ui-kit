@@ -2,7 +2,7 @@ import React from "react"
 
 import cn from "classnames"
 
-import { NumberColumns } from "../../../types"
+import { NumberColumns } from "../../../../enums"
 import { RowType } from "../../types"
 import { TableSortCell } from "../TableSortCell"
 

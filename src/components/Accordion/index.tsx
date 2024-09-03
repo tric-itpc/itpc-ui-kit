@@ -14,7 +14,7 @@ export const AccordionArrow: React.FC<AccordionArrowProps> = ({
   isOpened,
   ...rest
 }) => (
-  <span className="itpc-accordion-arrow" {...rest}>
+  <span className={cn("itpc-accordion-arrow")} {...rest}>
     <IconArrow orientation={isOpened ? "top" : "bottom"} />
   </span>
 )
@@ -78,7 +78,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   children,
   ...rest
 }) => (
-  <div className="itpc-accordion-item" {...rest}>
+  <div className={cn("itpc-accordion-item")} {...rest}>
     {children}
   </div>
 )

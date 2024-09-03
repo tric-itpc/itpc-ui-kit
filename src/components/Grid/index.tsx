@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from "react"
 
-import { RowAlign, RowJustify } from "../types"
+import { RowAlign, RowJustify } from "../../enums"
 
 import { RowContext, RowContextState } from "./RowContext"
 import "./styles.css"

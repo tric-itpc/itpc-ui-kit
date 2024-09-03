@@ -3,7 +3,7 @@ import React, { HTMLAttributes, useEffect, useRef, useState } from "react"
 import cn from "classnames"
 
 import { Popover, SelectItem } from "../_elements"
-import { useOnClickOutside } from "../../_hooks"
+import { useOnClickOutside } from "../../lab"
 import { TextField } from "../TextField"
 import { Item } from "../types"
 

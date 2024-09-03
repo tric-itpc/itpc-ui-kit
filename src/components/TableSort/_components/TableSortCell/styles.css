@@ -1,6 +1,8 @@
 .itpc-table-sort__cell {
   padding: 10px;
+
   font-weight: 400;
+
   border: none;
   border-radius: 0;
   cursor: default;
@@ -11,5 +13,5 @@
 }
 
 .itpc-table-sort__cell_back {
-  background-color: #e5e5e5;
+  background-color: var(--itpc-table-hover-color-component);
 }

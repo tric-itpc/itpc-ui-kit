@@ -1,4 +1,4 @@
-import { UIKitColors } from "../constants"
+import { UIKitColors } from "../../enums"
 import { PopupPosition, PopupVariant } from "../types"
 
 export const getColor = (variant: PopupVariant): UIKitColors => {

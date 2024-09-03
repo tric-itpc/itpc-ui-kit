@@ -1,5 +1,5 @@
 import React from "react";
-import { NumberColumns } from "../../../types";
+import { NumberColumns } from "../../../../enums";
 import { RowType } from "../../types";
 import "./styles.css";
 interface TableSortRowProps {

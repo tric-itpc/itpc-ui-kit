@@ -1,4 +1,4 @@
-import { SortType } from "../types";
+import { SortType } from "../../enums";
 export type RowType<T = object> = {
     [key in keyof T]: T[key];
 } & {

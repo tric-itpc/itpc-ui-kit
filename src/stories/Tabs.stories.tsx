@@ -4,6 +4,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { TabsItem } from "../components"
 import { Tabs, TabsProps } from "../components/Tabs"
+import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 const items: TabsItem[] = [
   {
@@ -31,3 +33,14 @@ const Template: ComponentStory<React.FC<TabsProps>> = (args) => (
 
 export const Basic = Template.bind({})
 Basic.args = {}
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
+
+export const TabsDark = Template.bind({})
+TabsDark.args = {}
+TabsDark.decorators = [ThemeDecorator(Theme.DARK)]
+
+TabsDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}

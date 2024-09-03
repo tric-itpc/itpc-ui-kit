@@ -1,9 +1,12 @@
 .itpc-icon__ok {
-  height: 100%;
-  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  padding: 0 10px;
+
   background-color: transparent;
+  fill: var(--itpc-success-icon-color);
+
   transition: all ease-in-out 0.3s;
 }
