@@ -65,3 +65,8 @@ export enum NumberColumns {
   TWO = "two",
   ZERO = "zero",
 }
+
+export enum Theme {
+  DARK = "dark",
+  DEFAULT = "default",
+}

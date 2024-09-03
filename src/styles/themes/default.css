@@ -1,0 +1,71 @@
+.itpc_default_theme {
+  /* Фон */
+  --primary-bg-color: #ffffff;
+
+    /* Кнопка */
+      --primary-component-color: #5c53ac;
+      --component-text-color: #ffffff;
+ 
+  --primary-component-hover: #6f65cb;
+
+  --hider-table-color: #fafafa;
+
+  /* Цвета состояния */
+  --error-color: #d42564;
+  --success-color: #7add7a;
+  --success-green-light-color: #7add7a49;
+  --disabled-color: #b2b7c7;
+  --warning-color: #ecc022;
+
+  /* Текст */
+  --primary-text-color: #212529;
+  --secondary-text-color: #b2b7c7;
+  --small-text-color: #575757;
+  --button-text-color: #ffffff;
+  --input-text-color: #212529;
+
+  /* Ховеры */
+  --primary-hover: #f0f0f0;
+  --extra-hover: #e7e7e7;
+  --primary-icon-hover: #6f65cb;
+
+  /* Тени */
+  --box-shadow-color: #e5e5e5;
+  --box-shadow-color-second: #d4d6e7;
+
+  /* Иконки */
+  --primary-icon-color: #393185;
+  --secondary-icon-color: #ffffff;
+  --success-icon-color: #7add7a;
+  --cancel-icon-color: #d42564;
+  --additional-icon-color: #8f8f8f;
+  --icon-color-yellow: #ecc022;
+  --icon-color-blue: #0d6efd;
+  --icon-color-red: #d42564;
+
+  --link-color: #0d6efd;
+  --line-color: #393185;
+
+  /* Скелетон */
+  --skeleton-start: #eeeef4;
+  --skeleton-fifty: #fafafa;
+  --skeleton-end: #f0f0f0;
+
+  /* Бордеры */
+  --primary-border-color: #37374538;
+  --secondary-border-color: #d4d6e7;
+  --extra-border-color: #393185;
+
+  /* Ui kit */
+  --primary-placeholder-text-color: #b2b7c7;
+  --focused-placeholder-text-color: #575757;
+  --input-border-color: #b2b7c7;
+  --extra-bg-component: #ffffff;
+  --modal-overlay-bg: rgba(0, 0, 0, 0.2);
+  --disabled-input-color: #eeeef4;
+
+  /* Скролл */
+  --primary-scroll-color: #ffffff;
+  --extra-scroll-color: #4c43a1;
+  --extra-scroll-thumb-color: #979797;
+}

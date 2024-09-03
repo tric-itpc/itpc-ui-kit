@@ -2,10 +2,10 @@
   padding: 6px 20px;
   min-width: 40px;
   min-height: 40px;
-  background-color: #5c53ac;
-  border: 1px solid #5c53ac;
+  background-color: var(--primary-component-color);
+  border: 1px solid var(--primary-component-color);
   border-radius: 4px;
-  color: #fff;
+  color: var(--component-text-color);
   cursor: pointer;
   font-size: 14px;
   outline: none;
@@ -14,17 +14,18 @@
 }
 
 .itpc-button:hover {
-  background-color: #6f65cb;
-  border-color: #6f65cb;
-  color: #fff;
+  background-color: var(--primary-component-hover);
+  border-color: var(--primary-component-hover);
+  color: var(--component-text-color);
 }
 
 .itpc-button:disabled {
-  background-color: #b2b7c7;
-  border-color: #b2b7c7;
-  color: #fff;
+  background-color: var(--disabled-color);
+  border-color: var(--disabled-color);
+  color: var(--button-text-color);
   cursor: default;
 }
+
 
 .itpc-button__color_white {
   background-color: #fff;
