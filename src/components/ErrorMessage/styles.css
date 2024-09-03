@@ -1,5 +1,6 @@
 .itpc-error_message {
   margin: 0;
+
   font-size: 14px;
-  color: #d42564;
+  color: var(--itpc-danger-text-color);
 }

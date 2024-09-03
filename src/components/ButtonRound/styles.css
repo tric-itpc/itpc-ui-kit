@@ -1,25 +1,30 @@
 .itpc-button-round {
-  padding: 10px;
-  width: 30px;
-  height: 30px;
   position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+
+  font-size: 14px;
+  color: var(--itpc-secondary-text-color-component);
+
   border: none;
   border-radius: 50%;
-  color: #5c53ac;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all ease-in-out 0.3s;
+  background-color: transparent;
   outline: 0;
+  cursor: pointer;
   user-select: none;
+
+  transition: all ease-in-out 0.3s;
 }
 
 .itpc-button-round:hover {
-  background-color: #e5e5e5;
-  color: #5c53ac;
+  color: var(--itpc-secondary-text-color-component);
+
+  background-color: var(--itpc-extra-hover-color-component);
 }
 
 .itpc-button-round:hover > .itpc-tooltip {
@@ -28,20 +33,26 @@
 
 .itpc-button-round:disabled {
   opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
 }
 
 .itpc-tooltip {
-  padding: 2px 4px;
-  width: max-content;
   position: absolute;
   top: 120%;
+  z-index: 100;
+
   display: flex;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 0;
+  width: max-content;
+  padding: 2px 4px;
+
   font-size: 12px;
-  color: #fff;
-  transition: all ease-in-out 0.15s;
+  color: var(--itpc-primary-text-color-component);
+
+  border-radius: 0;
+  background-color: var(--itpc-primary-bg-color-text);
   visibility: hidden;
-  z-index: 100;
+
+  transition: all ease-in-out 0.15s;
 }

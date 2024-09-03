@@ -10,11 +10,11 @@
 
   font-size: 12px;
   line-height: 14px;
-  color: transparent;
+  color: var(--itpc-danger-text-color);
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  background-color: rgb(255 255 255);
+  background-color: var(--itpc-primary-bg-color);
   opacity: 0;
   cursor: text;
 

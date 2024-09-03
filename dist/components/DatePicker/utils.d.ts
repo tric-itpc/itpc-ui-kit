@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { CalendarDimensions, DocumentDimensions, type GetHorizontalPositionProps, HORIZONTAL_POSITION_CALENDAR, InputDimensions } from "./types";
+import { CalendarDimensions, DocumentDimensions, type GetHorizontalPositionArg, HORIZONTAL_POSITION_CALENDAR, InputDimensions, type PositionType } from "./types";
 export declare const parseNumericStringToISODate: (date: string) => string;
 export declare const parseNumericStringToISODateTime: (date: string) => string;
 export declare const parseISODate: (date: string) => string;
@@ -10,5 +10,5 @@ export declare const getCalendarStyle: (documentWidth: number, calendarWidth: nu
 export declare const getCalendarDimensions: (ref: HTMLDivElement) => CalendarDimensions;
 export declare const getDocumentDimensions: () => DocumentDimensions;
 export declare const getInputDimensions: (ref: HTMLDivElement) => InputDimensions;
-export declare const getHorizontalPosition: (props: GetHorizontalPositionProps) => HORIZONTAL_POSITION_CALENDAR;
-export declare const getCalculatePositionCalendar: (inputWrapRef: React.RefObject<HTMLDivElement>, calendarWrapRef: React.RefObject<HTMLDivElement>) => CSSProperties;
+export declare const getHorizontalPosition: (arg: GetHorizontalPositionArg) => HORIZONTAL_POSITION_CALENDAR;
+export declare const getCalculatePositionCalendar: (inputWrapRef: React.RefObject<HTMLDivElement>, calendarWrapRef: React.RefObject<HTMLDivElement>, position: PositionType) => CSSProperties;

@@ -2,7 +2,7 @@ import React, { TableHTMLAttributes, useState } from "react"
 
 import cn from "classnames"
 
-import { NumberColumns, SortType } from "../types"
+import { NumberColumns, SortType } from "../../enums"
 
 import { TableSortBody, TableSortHeader } from "./_components"
 import "./styles.css"

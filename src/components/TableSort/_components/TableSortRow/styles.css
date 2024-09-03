@@ -1,10 +1,10 @@
 .itpc-table-sort__row {
+  background-color: var(--itpc-primary-bg-color);
   cursor: default;
-  background-color: transparent;
 }
 
 .itpc-table-sort__row:hover {
-  background-color: #e5e5e5;
+  background-color: var(--itpc-table-hover-color-component);
 }
 
 .itpc-table-sort__row_clickable {

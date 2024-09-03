@@ -1,15 +1,19 @@
 .itpc-table {
+  overflow: hidden;
   width: 100%;
-  table-layout: unset;
-  border: 1px solid #b2b7c7;
+
+  color: var(--itpc-primary-text-color);
+  text-align: left;
+
+  border: 1px solid var(--itpc-input-border-color);
   border-spacing: 0;
   border-radius: 4px;
-  text-align: left;
-  overflow: hidden;
+  table-layout: unset;
 }
 
 .itpc-table__caption {
   margin-bottom: 0.5rem;
+
   font-size: 14px;
 }
 
@@ -20,8 +24,10 @@
 
 .itpc-table__column {
   padding: 10px;
+
   font-weight: 400;
-  border-bottom: 1px solid #b2b7c7;
+
+  border-bottom: 1px solid var(--itpc-input-border-color);
   border-radius: 0;
   cursor: default;
 }
@@ -30,12 +36,11 @@
   cursor: pointer;
 }
 
-.itpc-table__body {
-}
-
 .itpc-table__cell {
   padding: 10px;
+
   font-weight: 400;
+
   border: none;
   border-radius: 0;
   cursor: default;
@@ -46,8 +51,8 @@
 }
 
 .itpc-table__row {
-  cursor: default;
   background-color: transparent;
+  cursor: default;
 }
 
 .itpc-table__row_clickable {
@@ -55,8 +60,5 @@
 }
 
 .itpc-table__row:hover {
-  background-color: #e5e5e5;
-}
-
-.itpc-table__footer {
+  background-color: var(--itpc-table-hover-color-component);
 }

@@ -2199,16 +2199,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 1076:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ 3912:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -23924,49 +23914,6 @@ webpackContext.id = 5358;
 
 /***/ }),
 
-/***/ 510:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.useOnClickOutside = void 0;
-var useOnClickOutside_1 = __webpack_require__(6399);
-Object.defineProperty(exports, "useOnClickOutside", ({ enumerable: true, get: function () { return useOnClickOutside_1.useOnClickOutside; } }));
-
-
-/***/ }),
-
-/***/ 6399:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.useOnClickOutside = void 0;
-var react_1 = __webpack_require__(9155);
-var useOnClickOutside = function (ref, handler) {
-    (0, react_1.useEffect)(function () {
-        var listener = function (event) {
-            var el = ref === null || ref === void 0 ? void 0 : ref.current;
-            if (!el || el.contains((event === null || event === void 0 ? void 0 : event.target) || null)) {
-                return;
-            }
-            handler(event);
-        };
-        document.addEventListener("mousedown", listener);
-        document.addEventListener("touchstart", listener);
-        return function () {
-            document.removeEventListener("mousedown", listener);
-            document.removeEventListener("touchstart", listener);
-        };
-    }, [ref, handler]);
-};
-exports.useOnClickOutside = useOnClickOutside;
-
-
-/***/ }),
-
 /***/ 1976:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -24005,7 +23952,7 @@ var _elements_1 = __webpack_require__(5010);
 __webpack_require__(3747);
 var AccordionArrow = function (_a) {
     var isOpened = _a.isOpened, rest = __rest(_a, ["isOpened"]);
-    return (react_1.default.createElement("span", __assign({ className: "itpc-accordion-arrow" }, rest),
+    return (react_1.default.createElement("span", __assign({ className: (0, classnames_1.default)("itpc-accordion-arrow") }, rest),
         react_1.default.createElement(_elements_1.IconArrow, { orientation: isOpened ? "top" : "bottom" })));
 };
 exports.AccordionArrow = AccordionArrow;
@@ -24021,7 +23968,7 @@ var AccordionHeader = function (_a) {
 exports.AccordionHeader = AccordionHeader;
 var AccordionItem = function (_a) {
     var children = _a.children, rest = __rest(_a, ["children"]);
-    return (react_1.default.createElement("div", __assign({ className: "itpc-accordion-item" }, rest), children));
+    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-accordion-item") }, rest), children));
 };
 exports.AccordionItem = AccordionItem;
 var Accordion = function (_a) {
@@ -24236,7 +24183,7 @@ exports.Checkbox = Checkbox;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.DEFAULT_WIDTH_CALENDAR = exports.WIDTH_BODY_CALENDAR = exports.MIN_WIDTH_CALENDAR = exports.INPUT_TO_CALENDAR_DISTANCE = exports.DIVIDER_IN_TWO = exports.FORMAT_MASK_DATE_TIME = exports.FORMAT_MASK_DATE = exports.MASK_DATE_TIME = exports.MASK_DATE = void 0;
+exports.DEFAULT_POSITION = exports.DEFAULT_WIDTH_CALENDAR = exports.WIDTH_BODY_CALENDAR = exports.MIN_WIDTH_CALENDAR = exports.INPUT_TO_CALENDAR_DISTANCE = exports.DIVIDER_IN_TWO = exports.FORMAT_MASK_DATE_TIME = exports.FORMAT_MASK_DATE = exports.MASK_DATE_TIME = exports.MASK_DATE = void 0;
 exports.MASK_DATE = ["Д", "Д", "М", "М", "Г", "Г", "Г", "Г"];
 exports.MASK_DATE_TIME = [
     "Д",
@@ -24261,6 +24208,12 @@ exports.INPUT_TO_CALENDAR_DISTANCE = 8;
 exports.MIN_WIDTH_CALENDAR = 280;
 exports.WIDTH_BODY_CALENDAR = 320;
 exports.DEFAULT_WIDTH_CALENDAR = 352;
+exports.DEFAULT_POSITION = {
+    bottom: "auto",
+    left: "auto",
+    right: "auto",
+    top: "auto",
+};
 
 
 /***/ }),
@@ -24329,16 +24282,15 @@ var constants_1 = __webpack_require__(7993);
 __webpack_require__(2057);
 var utils_1 = __webpack_require__(6937);
 var DatePicker = function (_a) {
-    var activeDates = _a.activeDates, _b = _a.className, className = _b === void 0 ? "" : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, disabledAfterDate = _a.disabledAfterDate, disabledBeforeDate = _a.disabledBeforeDate, disabledDates = _a.disabledDates, disabledDaysOfWeek = _a.disabledDaysOfWeek, _d = _a.disabledSelectMonth, disabledSelectMonth = _d === void 0 ? false : _d, _e = _a.disabledSelectYear, disabledSelectYear = _e === void 0 ? false : _e, _f = _a.errorMessage, errorMessage = _f === void 0 ? "" : _f, _g = _a.id, id = _g === void 0 ? "itpc-datepicker" : _g, _h = _a.isIconClickable, isIconClickable = _h === void 0 ? false : _h, _j = _a.isShowIcon, isShowIcon = _j === void 0 ? true : _j, _k = _a.name, name = _k === void 0 ? "itpc-datepicker" : _k, _l = _a.offsetYear, offsetYear = _l === void 0 ? 10 : _l, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _m = _a.placeholder, placeholder = _m === void 0 ? "" : _m, scrollToYear = _a.scrollToYear, _o = _a.validationState, validationState = _o === void 0 ? "valid" : _o, _p = _a.value, value = _p === void 0 ? "" : _p, _q = _a.withTime, withTime = _q === void 0 ? false : _q, yearsFromTo = _a.yearsFromTo, rest = __rest(_a, ["activeDates", "className", "disabled", "disabledAfterDate", "disabledBeforeDate", "disabledDates", "disabledDaysOfWeek", "disabledSelectMonth", "disabledSelectYear", "errorMessage", "id", "isIconClickable", "isShowIcon", "name", "offsetYear", "onBlur", "onChange", "onFocus", "placeholder", "scrollToYear", "validationState", "value", "withTime", "yearsFromTo"]);
+    var activeDates = _a.activeDates, _b = _a.className, className = _b === void 0 ? "" : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, disabledAfterDate = _a.disabledAfterDate, disabledBeforeDate = _a.disabledBeforeDate, disabledDates = _a.disabledDates, disabledDaysOfWeek = _a.disabledDaysOfWeek, _d = _a.disabledSelectMonth, disabledSelectMonth = _d === void 0 ? false : _d, _e = _a.disabledSelectYear, disabledSelectYear = _e === void 0 ? false : _e, _f = _a.errorMessage, errorMessage = _f === void 0 ? "" : _f, _g = _a.id, id = _g === void 0 ? "itpc-datepicker" : _g, _h = _a.isIconClickable, isIconClickable = _h === void 0 ? false : _h, _j = _a.isShowIcon, isShowIcon = _j === void 0 ? true : _j, _k = _a.name, name = _k === void 0 ? "itpc-datepicker" : _k, _l = _a.offsetYear, offsetYear = _l === void 0 ? 10 : _l, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _m = _a.placeholder, placeholder = _m === void 0 ? "" : _m, _o = _a.position, position = _o === void 0 ? "fixed" : _o, scrollToYear = _a.scrollToYear, _p = _a.validationState, validationState = _p === void 0 ? "valid" : _p, _q = _a.value, value = _q === void 0 ? "" : _q, _r = _a.withTime, withTime = _r === void 0 ? false : _r, yearsFromTo = _a.yearsFromTo, rest = __rest(_a, ["activeDates", "className", "disabled", "disabledAfterDate", "disabledBeforeDate", "disabledDates", "disabledDaysOfWeek", "disabledSelectMonth", "disabledSelectYear", "errorMessage", "id", "isIconClickable", "isShowIcon", "name", "offsetYear", "onBlur", "onChange", "onFocus", "placeholder", "position", "scrollToYear", "validationState", "value", "withTime", "yearsFromTo"]);
     var windowWidth = (0, lab_1.useWindowSize)().windowWidth;
-    var _r = (0, react_1.useState)(false), focused = _r[0], onHandleFocused = _r[1];
-    var _s = (0, react_1.useState)(false), isShowCalendar = _s[0], setIsShowCalendar = _s[1];
-    var _t = (0, react_1.useState)({}), stylePositionCalendar = _t[0], setStylePositionCalendar = _t[1];
+    var _s = (0, react_1.useState)(false), focused = _s[0], onHandleFocused = _s[1];
+    var _t = (0, react_1.useState)(false), isShowCalendar = _t[0], setIsShowCalendar = _t[1];
+    var _u = (0, react_1.useState)({}), stylePositionCalendar = _u[0], setStylePositionCalendar = _u[1];
     var inputWrapRef = (0, react_1.useRef)(null);
     var calendarWrapRef = (0, react_1.useRef)(null);
     var onOpenCalendar = function () {
         setIsShowCalendar(true);
-        calculatePositionCalendar();
     };
     var onCloseCalendar = function () {
         setIsShowCalendar(false);
@@ -24385,8 +24337,8 @@ var DatePicker = function (_a) {
         }
     };
     var calculatePositionCalendar = function () {
-        var position = (0, utils_1.getCalculatePositionCalendar)(inputWrapRef, calendarWrapRef);
-        setStylePositionCalendar(position);
+        var stylePosition = (0, utils_1.getCalculatePositionCalendar)(inputWrapRef, calendarWrapRef, position);
+        setStylePositionCalendar(stylePosition);
     };
     (0, react_1.useEffect)(function () {
         var hasScroll = document.body.scrollHeight > window.innerHeight;
@@ -24398,8 +24350,10 @@ var DatePicker = function (_a) {
         };
     }, []);
     (0, react_1.useEffect)(function () {
-        calculatePositionCalendar();
-    }, [windowWidth]);
+        if (isShowCalendar) {
+            calculatePositionCalendar();
+        }
+    }, [windowWidth, isShowCalendar]);
     return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-datepicker", className) }, rest),
         react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-datepicker__input-wrap", validationState === "invalid" && "itpc-datepicker__input-wrap_error"), ref: inputWrapRef },
             placeholder && (react_1.default.createElement(_elements_1.Placeholder, { focused: focused || !!value.length, htmlFor: id, validationState: validationState }, placeholder)),
@@ -24422,7 +24376,7 @@ exports.DatePicker = DatePicker;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.VERTICAL_POSITION_CALENDAR = exports.HORIZONTAL_POSITION_CALENDAR = void 0;
+exports.ALLOWED_POSITIONS = exports.VERTICAL_POSITION_CALENDAR = exports.HORIZONTAL_POSITION_CALENDAR = void 0;
 var HORIZONTAL_POSITION_CALENDAR;
 (function (HORIZONTAL_POSITION_CALENDAR) {
     HORIZONTAL_POSITION_CALENDAR["CALCULATED"] = "calculated";
@@ -24435,15 +24389,31 @@ var VERTICAL_POSITION_CALENDAR;
     VERTICAL_POSITION_CALENDAR["BOTTOM"] = "bottom";
     VERTICAL_POSITION_CALENDAR["TOP"] = "top";
 })(VERTICAL_POSITION_CALENDAR = exports.VERTICAL_POSITION_CALENDAR || (exports.VERTICAL_POSITION_CALENDAR = {}));
+var ALLOWED_POSITIONS;
+(function (ALLOWED_POSITIONS) {
+    ALLOWED_POSITIONS["ABSOLUTE"] = "absolute";
+    ALLOWED_POSITIONS["FIXED"] = "fixed";
+})(ALLOWED_POSITIONS = exports.ALLOWED_POSITIONS || (exports.ALLOWED_POSITIONS = {}));
 
 
 /***/ }),
 
 /***/ 6937:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getCalculatePositionCalendar = exports.getHorizontalPosition = exports.getInputDimensions = exports.getDocumentDimensions = exports.getCalendarDimensions = exports.getCalendarStyle = exports.parseISODateTimeToNumericString = exports.parseISODateToNumericString = exports.parseISODateTime = exports.parseISODate = exports.parseNumericStringToISODateTime = exports.parseNumericStringToISODate = void 0;
 var constants_1 = __webpack_require__(7993);
@@ -24524,22 +24494,23 @@ var getCalendarDimensions = function (ref) {
 };
 exports.getCalendarDimensions = getCalendarDimensions;
 var getDocumentDimensions = function () { return ({
-    documentHeight: document.documentElement.clientHeight,
-    documentWidth: document.documentElement.clientWidth,
+    documentHeight: Math.floor(document.documentElement.clientHeight),
+    documentWidth: Math.floor(document.documentElement.clientWidth),
 }); };
 exports.getDocumentDimensions = getDocumentDimensions;
 var getInputDimensions = function (ref) {
     var rect = ref.getBoundingClientRect();
     return {
-        inputBottom: rect.bottom,
-        inputLeft: rect.left,
-        inputTop: rect.top,
-        inputWidth: rect.width,
+        inputBottom: Math.floor(rect.bottom),
+        inputHeight: Math.floor(rect.height),
+        inputLeft: Math.floor(rect.left),
+        inputTop: Math.floor(rect.top),
+        inputWidth: Math.floor(rect.width),
     };
 };
 exports.getInputDimensions = getInputDimensions;
-var getHorizontalPosition = function (props) {
-    var calendarWidth = props.calendarWidth, distanceRight = props.distanceRight, documentWidth = props.documentWidth, inputLeft = props.inputLeft, inputWidth = props.inputWidth, scrollbarWidth = props.scrollbarWidth;
+var getHorizontalPosition = function (arg) {
+    var calendarWidth = arg.calendarWidth, distanceRight = arg.distanceRight, documentWidth = arg.documentWidth, inputLeft = arg.inputLeft, inputWidth = arg.inputWidth, scrollbarWidth = arg.scrollbarWidth;
     var currentWidthCalendar = calendarWidth !== 0 ? calendarWidth : constants_1.DEFAULT_WIDTH_CALENDAR;
     var rightEdgeFromCenter = inputWidth / constants_1.DIVIDER_IN_TWO + distanceRight;
     var leftEdgeFromCenter = inputWidth / constants_1.DIVIDER_IN_TWO + inputLeft;
@@ -24558,9 +24529,8 @@ var getHorizontalPosition = function (props) {
             if (inputWidth + distanceRight > currentWidthCalendar) {
                 return types_1.HORIZONTAL_POSITION_CALENDAR.LEFT;
             }
-            if ((rightEdgeFromCenter > calendarHalfWidth &&
-                leftEdgeFromCenter > calendarHalfWidth) ||
-                rightEdgeFromCenter > calendarHalfWidth) {
+            if (rightEdgeFromCenter > calendarHalfWidth &&
+                leftEdgeFromCenter > calendarHalfWidth) {
                 return types_1.HORIZONTAL_POSITION_CALENDAR.CENTER;
             }
             if (inputWidth + inputLeft > currentWidthCalendar) {
@@ -24571,15 +24541,43 @@ var getHorizontalPosition = function (props) {
     }
 };
 exports.getHorizontalPosition = getHorizontalPosition;
-var getCalculatePositionCalendar = function (inputWrapRef, calendarWrapRef) {
+var getAbsolutePositions = function (arg) {
+    var calendarHeight = arg.calendarHeight, calendarWidth = arg.calendarWidth, documentWidth = arg.documentWidth, inputHeight = arg.inputHeight, inputLeft = arg.inputLeft, inputWidth = arg.inputWidth;
+    var absoluteDefault = 0;
+    var absoluteTopPosition = inputHeight + constants_1.INPUT_TO_CALENDAR_DISTANCE;
+    var absoluteBottomPosition = -constants_1.INPUT_TO_CALENDAR_DISTANCE - calendarHeight;
+    var absoluteCenterPosition = (inputWidth - calendarWidth) / constants_1.DIVIDER_IN_TWO;
+    var absoluteCalculatedPosition = (documentWidth - calendarWidth) / constants_1.DIVIDER_IN_TWO - inputLeft;
+    return {
+        absoluteBottomPosition: absoluteBottomPosition,
+        absoluteCalculatedPosition: absoluteCalculatedPosition,
+        absoluteCenterPosition: absoluteCenterPosition,
+        absoluteDefault: absoluteDefault,
+        absoluteTopPosition: absoluteTopPosition,
+    };
+};
+var getCalculatePositionCalendar = function (inputWrapRef, calendarWrapRef, position) {
+    if (position !== types_1.ALLOWED_POSITIONS.ABSOLUTE &&
+        position !== types_1.ALLOWED_POSITIONS.FIXED) {
+        throw new Error("\u041D\u0435\u0434\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 \u0441\u0432\u043E\u0439\u0441\u0442\u0432\u0430 position: ".concat(position, ". \u0414\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u044B\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044F: absolute, fixed"));
+    }
     if ((inputWrapRef === null || inputWrapRef === void 0 ? void 0 : inputWrapRef.current) && (calendarWrapRef === null || calendarWrapRef === void 0 ? void 0 : calendarWrapRef.current)) {
         var _a = (0, exports.getDocumentDimensions)(), documentHeight = _a.documentHeight, documentWidth = _a.documentWidth;
         var _b = (0, exports.getCalendarDimensions)(calendarWrapRef.current), calendarHeight = _b.calendarHeight, calendarWidth = _b.calendarWidth;
-        var _c = (0, exports.getInputDimensions)(inputWrapRef.current), inputBottom = _c.inputBottom, inputLeft = _c.inputLeft, inputTop = _c.inputTop, inputWidth = _c.inputWidth;
+        var _c = (0, exports.getInputDimensions)(inputWrapRef.current), inputBottom = _c.inputBottom, inputHeight = _c.inputHeight, inputLeft = _c.inputLeft, inputTop = _c.inputTop, inputWidth = _c.inputWidth;
+        var argAbsolutePosition = {
+            calendarHeight: calendarHeight,
+            calendarWidth: calendarWidth,
+            documentWidth: documentWidth,
+            inputHeight: inputHeight,
+            inputLeft: inputLeft,
+            inputWidth: inputWidth,
+        };
+        var _d = getAbsolutePositions(argAbsolutePosition), absoluteBottomPosition = _d.absoluteBottomPosition, absoluteCalculatedPosition = _d.absoluteCalculatedPosition, absoluteCenterPosition = _d.absoluteCenterPosition, absoluteDefault = _d.absoluteDefault, absoluteTopPosition = _d.absoluteTopPosition;
         var scrollbarWidth = window.innerWidth - documentWidth;
         var distanceRight = documentWidth - (inputLeft + inputWidth);
         var distanceUnderInput = documentHeight - inputBottom;
-        var props = {
+        var argHorizontalPosition = {
             calendarWidth: calendarWidth,
             distanceRight: distanceRight,
             documentWidth: documentWidth,
@@ -24587,7 +24585,7 @@ var getCalculatePositionCalendar = function (inputWrapRef, calendarWrapRef) {
             inputWidth: inputWidth,
             scrollbarWidth: scrollbarWidth,
         };
-        var horizontalPosition = (0, exports.getHorizontalPosition)(props);
+        var horizontalPosition = (0, exports.getHorizontalPosition)(argHorizontalPosition);
         var verticalPosition = void 0;
         if (distanceUnderInput > calendarHeight + constants_1.INPUT_TO_CALENDAR_DISTANCE) {
             verticalPosition = types_1.VERTICAL_POSITION_CALENDAR.BOTTOM;
@@ -24599,77 +24597,157 @@ var getCalculatePositionCalendar = function (inputWrapRef, calendarWrapRef) {
         var verticalTopPosition = inputTop - constants_1.INPUT_TO_CALENDAR_DISTANCE - calendarHeight;
         var horizontalCenterPosition = inputLeft - (calendarWidth - inputWidth) / constants_1.DIVIDER_IN_TWO;
         var horizontalRightPosition = documentWidth - inputLeft - inputWidth;
-        var horizontalCalculatedPosition = (documentWidth - calendarWidth) / constants_1.DIVIDER_IN_TWO;
-        if (verticalPosition === types_1.VERTICAL_POSITION_CALENDAR.BOTTOM) {
-            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.LEFT) {
-                return {
-                    bottom: "auto",
-                    left: inputLeft,
-                    right: "auto",
-                    top: verticalBottomPosition,
-                };
+        var horizontalCalculatedPosition = Math.floor((documentWidth - calendarWidth) / constants_1.DIVIDER_IN_TWO);
+        var currentPosition = calendarWrapRef.current.style.position;
+        if (position === types_1.ALLOWED_POSITIONS.FIXED) {
+            if (currentPosition.length &&
+                String(currentPosition) !== types_1.ALLOWED_POSITIONS.FIXED) {
+                calendarWrapRef.current.style.position = position;
             }
-            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.RIGHT) {
-                return {
-                    bottom: "auto",
-                    left: "auto",
-                    right: horizontalRightPosition,
-                    top: verticalBottomPosition,
-                };
+            if (verticalPosition === types_1.VERTICAL_POSITION_CALENDAR.BOTTOM) {
+                switch (horizontalPosition) {
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.LEFT:
+                        return {
+                            bottom: "auto",
+                            left: inputLeft,
+                            right: "auto",
+                            top: verticalBottomPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.RIGHT:
+                        return {
+                            bottom: "auto",
+                            left: "auto",
+                            right: horizontalRightPosition,
+                            top: verticalBottomPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.CENTER:
+                        return {
+                            bottom: "auto",
+                            left: horizontalCenterPosition,
+                            right: "auto",
+                            top: verticalBottomPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED:
+                        return {
+                            bottom: "auto",
+                            left: horizontalCalculatedPosition,
+                            right: "auto",
+                            top: verticalBottomPosition,
+                        };
+                    default:
+                        return __assign({}, constants_1.DEFAULT_POSITION);
+                }
             }
-            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.CENTER) {
-                return {
-                    bottom: "auto",
-                    left: horizontalCenterPosition,
-                    right: "auto",
-                    top: verticalBottomPosition,
-                };
-            }
-            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED) {
-                return {
-                    bottom: "auto",
-                    left: horizontalCalculatedPosition,
-                    right: "auto",
-                    top: verticalBottomPosition,
-                };
+            if (verticalPosition === types_1.VERTICAL_POSITION_CALENDAR.TOP) {
+                switch (horizontalPosition) {
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.LEFT:
+                        return {
+                            bottom: "auto",
+                            left: inputLeft,
+                            right: "auto",
+                            top: verticalTopPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.RIGHT:
+                        return {
+                            bottom: "auto",
+                            left: "auto",
+                            right: horizontalRightPosition,
+                            top: verticalTopPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.CENTER:
+                        return {
+                            bottom: "auto",
+                            left: horizontalCenterPosition,
+                            right: "auto",
+                            top: verticalTopPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED:
+                        return {
+                            bottom: "auto",
+                            left: horizontalCalculatedPosition,
+                            right: "auto",
+                            top: verticalTopPosition,
+                        };
+                    default:
+                        return __assign({}, constants_1.DEFAULT_POSITION);
+                }
             }
         }
-        if (verticalPosition === types_1.VERTICAL_POSITION_CALENDAR.TOP) {
-            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.LEFT) {
-                return {
-                    bottom: "auto",
-                    left: inputLeft,
-                    right: "auto",
-                    top: verticalTopPosition,
-                };
+        else {
+            if (String(currentPosition) !== types_1.ALLOWED_POSITIONS.ABSOLUTE) {
+                calendarWrapRef.current.style.position = position;
             }
-            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.RIGHT) {
-                return {
-                    bottom: "auto",
-                    left: "auto",
-                    right: horizontalRightPosition,
-                    top: verticalTopPosition,
-                };
+            if (verticalPosition === types_1.VERTICAL_POSITION_CALENDAR.BOTTOM) {
+                switch (horizontalPosition) {
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.LEFT:
+                        return {
+                            bottom: "auto",
+                            left: absoluteDefault,
+                            right: "auto",
+                            top: absoluteTopPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.RIGHT:
+                        return {
+                            bottom: "auto",
+                            left: "auto",
+                            right: absoluteDefault,
+                            top: absoluteTopPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.CENTER:
+                        return {
+                            bottom: "auto",
+                            left: absoluteCenterPosition,
+                            right: "auto",
+                            top: absoluteTopPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED:
+                        return {
+                            bottom: "auto",
+                            left: absoluteCalculatedPosition,
+                            right: "auto",
+                            top: absoluteTopPosition,
+                        };
+                    default:
+                        return __assign({}, constants_1.DEFAULT_POSITION);
+                }
             }
-            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.CENTER) {
-                return {
-                    bottom: "auto",
-                    left: horizontalCenterPosition,
-                    right: "auto",
-                    top: verticalTopPosition,
-                };
-            }
-            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED) {
-                return {
-                    bottom: "auto",
-                    left: horizontalCalculatedPosition,
-                    right: "auto",
-                    top: verticalTopPosition,
-                };
+            if (verticalPosition === types_1.VERTICAL_POSITION_CALENDAR.TOP) {
+                switch (horizontalPosition) {
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.LEFT:
+                        return {
+                            bottom: "auto",
+                            left: absoluteDefault,
+                            right: "auto",
+                            top: absoluteBottomPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.RIGHT:
+                        return {
+                            bottom: "auto",
+                            left: "auto",
+                            right: absoluteDefault,
+                            top: absoluteBottomPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.CENTER:
+                        return {
+                            bottom: "auto",
+                            left: absoluteCenterPosition,
+                            right: "auto",
+                            top: absoluteBottomPosition,
+                        };
+                    case types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED:
+                        return {
+                            bottom: "auto",
+                            left: absoluteCalculatedPosition,
+                            right: "auto",
+                            top: absoluteBottomPosition,
+                        };
+                    default:
+                        return __assign({}, constants_1.DEFAULT_POSITION);
+                }
             }
         }
     }
-    return {};
+    return __assign({}, constants_1.DEFAULT_POSITION);
 };
 exports.getCalculatePositionCalendar = getCalculatePositionCalendar;
 
@@ -24734,8 +24812,8 @@ exports.DecimalField = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
-var lab_1 = __webpack_require__(432);
-var constants_1 = __webpack_require__(5736);
+var enums_1 = __webpack_require__(9965);
+var DecimalFixed_1 = __webpack_require__(1697);
 var DecimalField = function (_a) {
     var _b = _a.accuracy, accuracy = _b === void 0 ? 0 : _b, _c = _a.canEmptyString, canEmptyString = _c === void 0 ? false : _c, _d = _a.className, className = _d === void 0 ? "" : _d, _e = _a.disabled, disabled = _e === void 0 ? false : _e, _f = _a.errorMessage, errorMessage = _f === void 0 ? "" : _f, icon = _a.icon, _g = _a.id, id = _g === void 0 ? "itpc-input" : _g, maxLength = _a.maxLength, _h = _a.name, name = _h === void 0 ? "itpc-input" : _h, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _j = _a.placeholder, placeholder = _j === void 0 ? "" : _j, _k = _a.validationState, validationState = _k === void 0 ? "valid" : _k, _l = _a.value, value = _l === void 0 ? "" : _l, rest = __rest(_a, ["accuracy", "canEmptyString", "className", "disabled", "errorMessage", "icon", "id", "maxLength", "name", "onBlur", "onChange", "onFocus", "placeholder", "validationState", "value"]);
     var _m = (0, react_1.useState)(false), focused = _m[0], onHandleFocused = _m[1];
@@ -24757,10 +24835,10 @@ var DecimalField = function (_a) {
             onChange(value, event);
             return;
         }
-        var valueWithReplace = value.replace(constants_1.dotRegExp, ".");
-        var isValid = constants_1.numberAndOnlyPointRegExp.test(valueWithReplace);
+        var valueWithReplace = value.replace(enums_1.dotRegExp, ".");
+        var isValid = enums_1.numberAndOnlyPointRegExp.test(valueWithReplace);
         if (isValid && onChange) {
-            onChange(new lab_1.DecimalFixed(valueWithReplace, accuracy).toString(), event);
+            onChange(new DecimalFixed_1.DecimalFixed(valueWithReplace, accuracy).toString(), event);
         }
     };
     return (react_1.default.createElement(_elements_1.Field, __assign({ className: className }, rest),
@@ -24928,9 +25006,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.RowJustify = exports.RowAlign = exports.Row = exports.Col = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
-var types_1 = __webpack_require__(4108);
-Object.defineProperty(exports, "RowAlign", ({ enumerable: true, get: function () { return types_1.RowAlign; } }));
-Object.defineProperty(exports, "RowJustify", ({ enumerable: true, get: function () { return types_1.RowJustify; } }));
+var enums_1 = __webpack_require__(9965);
+Object.defineProperty(exports, "RowAlign", ({ enumerable: true, get: function () { return enums_1.RowAlign; } }));
+Object.defineProperty(exports, "RowJustify", ({ enumerable: true, get: function () { return enums_1.RowJustify; } }));
 var RowContext_1 = __webpack_require__(7943);
 __webpack_require__(7715);
 var utils_1 = __webpack_require__(8459);
@@ -25156,7 +25234,7 @@ exports.MultiSelectField = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
-var _hooks_1 = __webpack_require__(510);
+var lab_1 = __webpack_require__(432);
 __webpack_require__(6440);
 var MultiSelectField = function (_a) {
     var className = _a.className, _b = _a.disabled, disabled = _b === void 0 ? false : _b, items = _a.items, onChange = _a.onChange, _c = _a.placeholder, placeholder = _c === void 0 ? "" : _c, _d = _a.selectedItems, selectedItems = _d === void 0 ? [] : _d, rest = __rest(_a, ["className", "disabled", "items", "onChange", "placeholder", "selectedItems"]);
@@ -25192,7 +25270,7 @@ var MultiSelectField = function (_a) {
         }
         return "";
     };
-    (0, _hooks_1.useOnClickOutside)(ref, onClose);
+    (0, lab_1.useOnClickOutside)(ref, onClose);
     return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-multi-select", className), ref: ref }, rest),
         react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-multi-select__button", isOpen && "itpc-multi-select__button_focused"), disabled: disabled, onClick: handleOpen, type: "button" },
             react_1.default.createElement(_elements_1.Placeholder, { focused: isOpen || !!(selectedItems === null || selectedItems === void 0 ? void 0 : selectedItems.length) }, placeholder),
@@ -25565,18 +25643,18 @@ exports.Popup = Popup;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getPosition = exports.getColor = void 0;
-var constants_1 = __webpack_require__(5736);
+var enums_1 = __webpack_require__(9965);
 var getColor = function (variant) {
     if (variant === "error") {
-        return constants_1.UIKitColors.red;
+        return enums_1.UIKitColors.red;
     }
     if (variant === "warning") {
-        return constants_1.UIKitColors.yellow;
+        return enums_1.UIKitColors.yellow;
     }
     if (variant === "success") {
-        return constants_1.UIKitColors.green;
+        return enums_1.UIKitColors.green;
     }
-    return constants_1.UIKitColors.grey;
+    return enums_1.UIKitColors.grey;
 };
 exports.getColor = getColor;
 var getPosition = function (position, width, height) {
@@ -25737,7 +25815,7 @@ exports.SearchField = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
-var _hooks_1 = __webpack_require__(510);
+var lab_1 = __webpack_require__(432);
 var TextField_1 = __webpack_require__(2329);
 __webpack_require__(4801);
 var SearchField = function (_a) {
@@ -25798,7 +25876,7 @@ var SearchField = function (_a) {
             }
         }
     }, [isClear]);
-    (0, _hooks_1.useOnClickOutside)(ref, closeSuggestions);
+    (0, lab_1.useOnClickOutside)(ref, closeSuggestions);
     var filteredItems = items.filter(filterItems);
     return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-search-field", className), ref: ref }, rest),
         react_1.default.createElement(TextField_1.TextField, __assign({ icon: react_1.default.createElement("div", { onClick: clear }, icon), id: "itpc-search-field", name: "itpc-search-field", onChange: changeValue, onFocus: openSuggestions, placeholder: placeholder, value: value }, textFieldAttr)),
@@ -25867,7 +25945,7 @@ exports.SelectField = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
-var _hooks_1 = __webpack_require__(510);
+var lab_1 = __webpack_require__(432);
 __webpack_require__(2765);
 var SelectField = function (_a) {
     var _b;
@@ -25888,7 +25966,7 @@ var SelectField = function (_a) {
         }
         setIsOpen(false);
     };
-    (0, _hooks_1.useOnClickOutside)(ref, close);
+    (0, lab_1.useOnClickOutside)(ref, close);
     return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-select", className), ref: ref }, rest),
         react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-select__button", isOpen && "itpc-select__button_focused"), disabled: disabled, onClick: handleOpen, type: "button" },
             react_1.default.createElement(_elements_1.Placeholder, { focused: isOpen || !!defaultItemId }, placeholder),
@@ -25939,7 +26017,7 @@ var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(4981);
 var TableHeader = function (_a) {
     var children = _a.children, _b = _a.id, id = _b === void 0 ? "" : _b, rest = __rest(_a, ["children", "id"]);
-    return (react_1.default.createElement("thead", __assign({ className: "itpc-table__head", id: id }, rest), children));
+    return (react_1.default.createElement("thead", __assign({ className: (0, classnames_1.default)("itpc-table__head"), id: id }, rest), children));
 };
 exports.TableHeader = TableHeader;
 var TableBody = function (_a) {
@@ -26012,7 +26090,6 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TableSortBody = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
 var TableSortRow_1 = __webpack_require__(1655);
-__webpack_require__(1076);
 var TableSortBody = function (_a) {
     var arrKeysNameColumns = _a.arrKeysNameColumns, nameMainColumnSort = _a.nameMainColumnSort, rows = _a.rows, sortByNumberColumns = _a.sortByNumberColumns, rest = __rest(_a, ["arrKeysNameColumns", "nameMainColumnSort", "rows", "sortByNumberColumns"]);
     return (react_1.default.createElement("tbody", __assign({ className: "itpc-table-sort__body" }, rest), rows &&
@@ -26057,12 +26134,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TableSortCell = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
-var types_1 = __webpack_require__(4108);
+var enums_1 = __webpack_require__(9965);
 __webpack_require__(3912);
 var TableSortCell = function (_a) {
     var isMainColumSort = _a.isMainColumSort, sortByNumberColumns = _a.sortByNumberColumns, value = _a.value, rest = __rest(_a, ["isMainColumSort", "sortByNumberColumns", "value"]);
     return (react_1.default.createElement("td", __assign({ className: (0, classnames_1.default)("itpc-table-sort__cell", isMainColumSort &&
-            sortByNumberColumns === types_1.NumberColumns.TWO &&
+            sortByNumberColumns === enums_1.NumberColumns.TWO &&
             "itpc-table-sort__cell_back") }, rest), value));
 };
 exports.TableSortCell = TableSortCell;
@@ -26082,31 +26159,31 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TableSortHeader = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
-var types_1 = __webpack_require__(4108);
+var enums_1 = __webpack_require__(9965);
 var utils_1 = __webpack_require__(4665);
 __webpack_require__(2397);
 var TableSortHeader = function (_a) {
     var columns = _a.columns, currentKey = _a.currentKey, currentKeys = _a.currentKeys, setKeySort = _a.setKeySort, sortByNumberColumns = _a.sortByNumberColumns;
-    return (react_1.default.createElement("thead", { className: "itpc-table-sort__head" },
+    return (react_1.default.createElement("thead", { className: (0, classnames_1.default)("itpc-table-sort__head") },
         react_1.default.createElement("tr", null, columns &&
             columns.map(function (column, index) {
                 var _a, _b;
-                if (sortByNumberColumns === types_1.NumberColumns.TWO) {
+                if (sortByNumberColumns === enums_1.NumberColumns.TWO) {
                     return (react_1.default.createElement("th", { className: (0, classnames_1.default)("itpc-table-sort__head", Boolean(column === null || column === void 0 ? void 0 : column.isSortable)
                             ? "itpc-table-sort_clickable"
                             : "itpc-table-sort_pointer-none", ((_a = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _a === void 0 ? void 0 : _a.name) === (column === null || column === void 0 ? void 0 : column.name) &&
-                            ((_b = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _b === void 0 ? void 0 : _b.order) !== types_1.SortType.NONE
+                            ((_b = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _b === void 0 ? void 0 : _b.order) !== enums_1.SortType.NONE
                             ? "itpc-table-sort__head_background-active"
                             : "itpc-table-sort__head_background"), key: index, onClick: function () { return setKeySort === null || setKeySort === void 0 ? void 0 : setKeySort(column); } },
                         react_1.default.createElement("div", { className: "itpc-table-sort__wrap-cell" },
                             column.title,
                             react_1.default.createElement("div", { className: "itpc-table-sort__wrap-icon" }, (0, utils_1.renderIconTwoColumns)(column, currentKeys)))));
                 }
-                if (sortByNumberColumns === types_1.NumberColumns.ONE) {
+                if (sortByNumberColumns === enums_1.NumberColumns.ONE) {
                     return (react_1.default.createElement("th", { className: (0, classnames_1.default)("itpc-table-sort__head", Boolean(column === null || column === void 0 ? void 0 : column.isSortable)
                             ? "itpc-table-sort_clickable"
                             : "itpc-table-sort_pointer-none", (currentKey === null || currentKey === void 0 ? void 0 : currentKey.name) === (column === null || column === void 0 ? void 0 : column.name) &&
-                            (currentKey === null || currentKey === void 0 ? void 0 : currentKey.order) !== types_1.SortType.NONE
+                            (currentKey === null || currentKey === void 0 ? void 0 : currentKey.order) !== enums_1.SortType.NONE
                             ? "itpc-table-sort__head_background-active"
                             : "itpc-table-sort__head_background"), key: index, onClick: function () { return setKeySort === null || setKeySort === void 0 ? void 0 : setKeySort(column); } },
                         react_1.default.createElement("div", { className: "itpc-table-sort__wrap-cell" },
@@ -26250,13 +26327,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TableSort = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
-var types_1 = __webpack_require__(4108);
+var enums_1 = __webpack_require__(9965);
 var _components_1 = __webpack_require__(7480);
 __webpack_require__(1101);
 var utils_1 = __webpack_require__(4665);
 var TableSort = function (_a) {
     var _b;
-    var _c = _a.className, className = _c === void 0 ? "" : _c, columns = _a.columns, rows = _a.rows, _d = _a.sortByNumberColumns, sortByNumberColumns = _d === void 0 ? types_1.NumberColumns.ZERO : _d, rest = __rest(_a, ["className", "columns", "rows", "sortByNumberColumns"]);
+    var _c = _a.className, className = _c === void 0 ? "" : _c, columns = _a.columns, rows = _a.rows, _d = _a.sortByNumberColumns, sortByNumberColumns = _d === void 0 ? enums_1.NumberColumns.ZERO : _d, rest = __rest(_a, ["className", "columns", "rows", "sortByNumberColumns"]);
     var _e = (0, react_1.useState)(), currentKey = _e[0], setCurrentKey = _e[1];
     var _f = (0, react_1.useState)({}), currentKeys = _f[0], setCurrentKeys = _f[1];
     var _g = (0, react_1.useState)(rows), data = _g[0], setData = _g[1];
@@ -26265,10 +26342,10 @@ var TableSort = function (_a) {
     var sortByOneColumn = function (key) {
         setCurrentKey(key);
         switch (key.order) {
-            case types_1.SortType.ASCENDING:
+            case enums_1.SortType.ASCENDING:
                 setData(__spreadArray([], data, true).sort((0, utils_1.byKey)(key)));
                 break;
-            case types_1.SortType.DESCENDING:
+            case enums_1.SortType.DESCENDING:
                 setData(__spreadArray([], data, true).reverse());
                 break;
             default:
@@ -26288,18 +26365,18 @@ var TableSort = function (_a) {
             }
         }
         if (key.name === (secondKey === null || secondKey === void 0 ? void 0 : secondKey.name)) {
-            if ((secondKey === null || secondKey === void 0 ? void 0 : secondKey.order) !== types_1.SortType.NONE &&
-                (mainKey === null || mainKey === void 0 ? void 0 : mainKey.order) !== types_1.SortType.NONE) {
+            if ((secondKey === null || secondKey === void 0 ? void 0 : secondKey.order) !== enums_1.SortType.NONE &&
+                (mainKey === null || mainKey === void 0 ? void 0 : mainKey.order) !== enums_1.SortType.NONE) {
                 setData(__spreadArray([], data, true).sort((0, utils_1.byKeys)(updateKeysSort)));
-                if (!orderAscending.length && (mainKey === null || mainKey === void 0 ? void 0 : mainKey.order) === types_1.SortType.ASCENDING) {
+                if (!orderAscending.length && (mainKey === null || mainKey === void 0 ? void 0 : mainKey.order) === enums_1.SortType.ASCENDING) {
                     setOrderAscending((0, utils_1.order)(__spreadArray([], data, true)));
                 }
-                if (!orderDescending.length && (mainKey === null || mainKey === void 0 ? void 0 : mainKey.order) === types_1.SortType.DESCENDING) {
+                if (!orderDescending.length && (mainKey === null || mainKey === void 0 ? void 0 : mainKey.order) === enums_1.SortType.DESCENDING) {
                     setOrderDescending((0, utils_1.order)(__spreadArray([], data, true)));
                 }
             }
-            if ((secondKey === null || secondKey === void 0 ? void 0 : secondKey.order) === types_1.SortType.NONE) {
-                if ((mainKey === null || mainKey === void 0 ? void 0 : mainKey.order) === types_1.SortType.ASCENDING) {
+            if ((secondKey === null || secondKey === void 0 ? void 0 : secondKey.order) === enums_1.SortType.NONE) {
+                if ((mainKey === null || mainKey === void 0 ? void 0 : mainKey.order) === enums_1.SortType.ASCENDING) {
                     setData((0, utils_1.restoreOrder)(orderAscending, __spreadArray([], data, true)));
                     setOrderAscending([]);
                 }
@@ -26311,10 +26388,10 @@ var TableSort = function (_a) {
         }
     };
     var setKeySort = function (key) {
-        if (sortByNumberColumns === types_1.NumberColumns.ONE) {
+        if (sortByNumberColumns === enums_1.NumberColumns.ONE) {
             return sortByOneColumn((0, utils_1.setKey)(key, currentKey));
         }
-        if (sortByNumberColumns === types_1.NumberColumns.TWO) {
+        if (sortByNumberColumns === enums_1.NumberColumns.TWO) {
             var updateKeys = (0, utils_1.updateParametersKeys)(key, currentKeys);
             return sortByTwoColumns(key, updateKeys);
         }
@@ -26351,17 +26428,17 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.restoreOrder = exports.order = exports.byKeys = exports.renderIconTwoColumns = exports.updateParametersKeys = exports.renderIcon = exports.byKey = exports.setKey = exports.sorterFn = exports.getKeysNamesColumns = exports.toggleSort = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
 var _elements_1 = __webpack_require__(5010);
-var types_1 = __webpack_require__(4108);
+var enums_1 = __webpack_require__(9965);
 var toggleSort = function (orderSort) {
     switch (orderSort) {
-        case types_1.SortType.NONE:
-            return types_1.SortType.ASCENDING;
-        case types_1.SortType.ASCENDING:
-            return types_1.SortType.DESCENDING;
-        case types_1.SortType.DESCENDING:
-            return types_1.SortType.NONE;
+        case enums_1.SortType.NONE:
+            return enums_1.SortType.ASCENDING;
+        case enums_1.SortType.ASCENDING:
+            return enums_1.SortType.DESCENDING;
+        case enums_1.SortType.DESCENDING:
+            return enums_1.SortType.NONE;
         default:
-            return types_1.SortType.NONE;
+            return enums_1.SortType.NONE;
     }
 };
 exports.toggleSort = toggleSort;
@@ -26388,7 +26465,7 @@ var updateParametersKey = function (key) {
         return __assign(__assign({}, key), { order: key.order && (0, exports.toggleSort)(key === null || key === void 0 ? void 0 : key.order) });
     }
     else {
-        return __assign(__assign({}, key), { order: types_1.SortType.ASCENDING, sorter: !key.sorter ? (0, exports.sorterFn)(key) : key.sorter });
+        return __assign(__assign({}, key), { order: enums_1.SortType.ASCENDING, sorter: !key.sorter ? (0, exports.sorterFn)(key) : key.sorter });
     }
 };
 var byKey = function (key) {
@@ -26404,9 +26481,9 @@ var renderIcon = function (column, columnKey) {
     if (column === null || column === void 0 ? void 0 : column.isSortable) {
         if (column.name === (columnKey === null || columnKey === void 0 ? void 0 : columnKey.name)) {
             switch (columnKey === null || columnKey === void 0 ? void 0 : columnKey.order) {
-                case types_1.SortType.ASCENDING:
+                case enums_1.SortType.ASCENDING:
                     return react_1.default.createElement(_elements_1.IconSortUp, { isActiveIcon: true });
-                case types_1.SortType.DESCENDING:
+                case enums_1.SortType.DESCENDING:
                     return react_1.default.createElement(_elements_1.IconSortDown, { isActiveIcon: true });
                 default:
                     return react_1.default.createElement(_elements_1.IconSortUp, null);
@@ -26423,7 +26500,7 @@ var updateParametersKeys = function (key, currentKeys) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
     var keys = {};
     if (((_a = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _a === void 0 ? void 0 : _a.name) === key.name &&
-        ((_b = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _b === void 0 ? void 0 : _b.order) === types_1.SortType.DESCENDING) {
+        ((_b = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _b === void 0 ? void 0 : _b.order) === enums_1.SortType.DESCENDING) {
         return keys;
     }
     if (!Boolean(currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) ||
@@ -26432,14 +26509,14 @@ var updateParametersKeys = function (key, currentKeys) {
             keys = {
                 mainKey: __assign(__assign({}, key), { order: ((_d = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _d === void 0 ? void 0 : _d.order)
                         ? (0, exports.toggleSort)((_e = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _e === void 0 ? void 0 : _e.order)
-                        : types_1.SortType.ASCENDING, sorter: !(key === null || key === void 0 ? void 0 : key.sorter) ? (0, exports.sorterFn)(key) : key === null || key === void 0 ? void 0 : key.sorter }),
+                        : enums_1.SortType.ASCENDING, sorter: !(key === null || key === void 0 ? void 0 : key.sorter) ? (0, exports.sorterFn)(key) : key === null || key === void 0 ? void 0 : key.sorter }),
             };
         }
         else {
             keys = {
                 mainKey: __assign(__assign({}, key), { order: ((_f = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _f === void 0 ? void 0 : _f.order)
                         ? (0, exports.toggleSort)((_g = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _g === void 0 ? void 0 : _g.order)
-                        : types_1.SortType.ASCENDING, sorter: !(key === null || key === void 0 ? void 0 : key.sorter) ? (0, exports.sorterFn)(key) : key === null || key === void 0 ? void 0 : key.sorter }),
+                        : enums_1.SortType.ASCENDING, sorter: !(key === null || key === void 0 ? void 0 : key.sorter) ? (0, exports.sorterFn)(key) : key === null || key === void 0 ? void 0 : key.sorter }),
                 secondKey: currentKeys.secondKey,
             };
         }
@@ -26450,13 +26527,13 @@ var updateParametersKeys = function (key, currentKeys) {
                 mainKey: currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey,
                 secondKey: __assign(__assign({}, key), { order: ((_j = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.secondKey) === null || _j === void 0 ? void 0 : _j.order)
                         ? (0, exports.toggleSort)((_k = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.secondKey) === null || _k === void 0 ? void 0 : _k.order)
-                        : types_1.SortType.ASCENDING, sorter: !(key === null || key === void 0 ? void 0 : key.sorter) ? (0, exports.sorterFn)(key) : key === null || key === void 0 ? void 0 : key.sorter }),
+                        : enums_1.SortType.ASCENDING, sorter: !(key === null || key === void 0 ? void 0 : key.sorter) ? (0, exports.sorterFn)(key) : key === null || key === void 0 ? void 0 : key.sorter }),
             };
         }
         else {
             keys = {
                 mainKey: currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey,
-                secondKey: __assign(__assign({}, key), { order: types_1.SortType.ASCENDING, sorter: !(key === null || key === void 0 ? void 0 : key.sorter) ? (0, exports.sorterFn)(key) : key === null || key === void 0 ? void 0 : key.sorter }),
+                secondKey: __assign(__assign({}, key), { order: enums_1.SortType.ASCENDING, sorter: !(key === null || key === void 0 ? void 0 : key.sorter) ? (0, exports.sorterFn)(key) : key === null || key === void 0 ? void 0 : key.sorter }),
             };
         }
     }
@@ -26485,16 +26562,16 @@ var byKeys = function (currentKeys) {
         var main = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey;
         var second = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.secondKey;
         if (((_a = main === null || main === void 0 ? void 0 : main.sorter) === null || _a === void 0 ? void 0 : _a.call(main, a, b)) === 0) {
-            if ((second === null || second === void 0 ? void 0 : second.sorter) && second.order === types_1.SortType.ASCENDING) {
+            if ((second === null || second === void 0 ? void 0 : second.sorter) && second.order === enums_1.SortType.ASCENDING) {
                 return second.sorter(a, b);
             }
-            if ((second === null || second === void 0 ? void 0 : second.sorter) && second.order === types_1.SortType.DESCENDING) {
+            if ((second === null || second === void 0 ? void 0 : second.sorter) && second.order === enums_1.SortType.DESCENDING) {
                 return second.sorter(a, b) * -1;
             }
         }
         else {
             if (main === null || main === void 0 ? void 0 : main.sorter) {
-                if (main.order === types_1.SortType.DESCENDING) {
+                if (main.order === enums_1.SortType.DESCENDING) {
                     return main.sorter(a, b) * -1;
                 }
                 return main.sorter(a, b);
@@ -26742,7 +26819,7 @@ var TextAreaField = function (_a) {
             onChange(event.currentTarget.value, event);
         }
     };
-    return (react_1.default.createElement(_elements_1.Field, __assign({ className: className }, rest),
+    return (react_1.default.createElement(_elements_1.Field, __assign({ className: (0, classnames_1.default)(className) }, rest),
         react_1.default.createElement(_elements_1.InputWrap, { focused: focused, height: height, maxHeight: maxHeight, validationState: validationState },
             react_1.default.createElement(_elements_1.Placeholder, { focused: focused || value.length > 0, htmlFor: id, validationState: validationState }, placeholder),
             react_1.default.createElement("textarea", { className: (0, classnames_1.default)("itpc-input", (focused || !!value.length) && "itpc-input_focused"), disabled: disabled, id: id, name: name, onBlur: onBlurTextArea, onChange: onChangeTextArea, onFocus: onFocusTextArea, ref: ref, value: value }),
@@ -26831,7 +26908,7 @@ var TextField = function (_a) {
             onChange(event.currentTarget.value, event);
         }
     };
-    return (react_1.default.createElement(_elements_1.Field, __assign({ className: className }, rest),
+    return (react_1.default.createElement(_elements_1.Field, __assign({ className: (0, classnames_1.default)(className) }, rest),
         react_1.default.createElement(_elements_1.InputWrap, { focused: focused, validationState: validationState },
             react_1.default.createElement(_elements_1.Placeholder, { focused: focused || value.length > 0, htmlFor: id, validationState: validationState }, placeholder),
             react_1.default.createElement("input", { className: (0, classnames_1.default)("itpc-input", (focused || !!value.length) && "itpc-input_focused"), disabled: disabled, id: id, maxLength: maxLength, name: name, onBlur: onBlurInput, onChange: onChangeInput, onFocus: onFocusInput, type: type, value: value }),
@@ -26903,8 +26980,8 @@ __webpack_require__(3813);
 var IconArrow = function (_a) {
     var onClick = _a.onClick, orientation = _a.orientation;
     return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__arrow", orientation === "top" && "itpc-icon__arrow_orientation_top", orientation === "bottom" && "itpc-icon__arrow_orientation_bottom", orientation === "left" && "itpc-icon__arrow_orientation_left", orientation === "right" && "itpc-icon__arrow_orientation_right"), onClick: onClick },
-        react_1.default.createElement("svg", { fill: "none", height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
-            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z", fill: "#393185" }))));
+        react_1.default.createElement("svg", { height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
+            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z" }))));
 };
 exports.IconArrow = IconArrow;
 
@@ -26928,9 +27005,9 @@ __webpack_require__(1170);
 var IconCalendar = function (_a) {
     var isClickable = _a.isClickable, onClick = _a.onClick;
     return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__calendar", isClickable && "itpc-icon__calendar_clickable"), onClick: onClick },
-        react_1.default.createElement("svg", { fill: "none", height: "20", viewBox: "0 0 12 12", width: "20", xmlns: "http://www.w3.org/2000/svg" },
+        react_1.default.createElement("svg", { height: "20", viewBox: "0 0 12 12", width: "20", xmlns: "http://www.w3.org/2000/svg" },
             react_1.default.createElement("g", { clipPath: "url(#clip0_94_50)" },
-                react_1.default.createElement("path", { d: "M12 3.18227C12 2.31697 11.2794 1.61514 10.3892 1.61514H8.50358V0.482595C8.50358 0.216649 8.28205 0 8.00714 0C7.73223 0 7.5107 0.216649 7.5107 0.482595V1.61514H4.50003V0.482595C4.50003 0.216649 4.2785 0 4.00359 0C3.72868 0 3.50715 0.216649 3.50715 0.482595V1.61514H1.6108C0.720677 1.61514 -0.001297 2.31697 -0.001297 3.18227L3.75196e-05 10.4303C3.75196e-05 11.2956 0.720677 11.9961 1.6108 11.9961H10.3892C11.2794 11.9961 12 11.2956 12 10.4303V3.18227ZM2.01916 2.58162H3.50715V2.76065C3.50715 3.02789 3.73001 3.24324 4.00359 3.24324C4.2785 3.24324 4.50003 3.02659 4.50003 2.76065V2.58162H7.50936V2.76065C7.50936 3.02789 7.73223 3.24324 8.0058 3.24324C8.28071 3.24324 8.50224 3.02659 8.50224 2.76065V2.58162H9.97021C10.5374 2.58162 10.9978 3.03308 10.9978 3.59092V4.54703H0.988914V3.59092C0.991583 3.03308 1.45199 2.58162 2.01916 2.58162ZM9.97422 11.0231H2.0205C1.45333 11.0231 0.992918 10.5717 0.992918 10.0138V5.51222H11.0018V10.0138C11.0018 10.5717 10.5414 11.0231 9.97422 11.0231Z", fill: "#5C53AC" })),
+                react_1.default.createElement("path", { d: "M12 3.18227C12 2.31697 11.2794 1.61514 10.3892 1.61514H8.50358V0.482595C8.50358 0.216649 8.28205 0 8.00714 0C7.73223 0 7.5107 0.216649 7.5107 0.482595V1.61514H4.50003V0.482595C4.50003 0.216649 4.2785 0 4.00359 0C3.72868 0 3.50715 0.216649 3.50715 0.482595V1.61514H1.6108C0.720677 1.61514 -0.001297 2.31697 -0.001297 3.18227L3.75196e-05 10.4303C3.75196e-05 11.2956 0.720677 11.9961 1.6108 11.9961H10.3892C11.2794 11.9961 12 11.2956 12 10.4303V3.18227ZM2.01916 2.58162H3.50715V2.76065C3.50715 3.02789 3.73001 3.24324 4.00359 3.24324C4.2785 3.24324 4.50003 3.02659 4.50003 2.76065V2.58162H7.50936V2.76065C7.50936 3.02789 7.73223 3.24324 8.0058 3.24324C8.28071 3.24324 8.50224 3.02659 8.50224 2.76065V2.58162H9.97021C10.5374 2.58162 10.9978 3.03308 10.9978 3.59092V4.54703H0.988914V3.59092C0.991583 3.03308 1.45199 2.58162 2.01916 2.58162ZM9.97422 11.0231H2.0205C1.45333 11.0231 0.992918 10.5717 0.992918 10.0138V5.51222H11.0018V10.0138C11.0018 10.5717 10.5414 11.0231 9.97422 11.0231Z" })),
             react_1.default.createElement("defs", null,
                 react_1.default.createElement("clipPath", { id: "clip0_94_50" },
                     react_1.default.createElement("rect", { fill: "white", height: "12", width: "12" }))))));
@@ -26952,10 +27029,10 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.IconClose = void 0;
 /* eslint-disable max-len */
 var react_1 = __importDefault(__webpack_require__(9155));
-var constants_1 = __webpack_require__(5736);
+var enums_1 = __webpack_require__(9965);
 __webpack_require__(8016);
 var IconClose = function (_a) {
-    var _b = _a.color, color = _b === void 0 ? constants_1.UIKitColors.grey : _b, onPress = _a.onPress;
+    var _b = _a.color, color = _b === void 0 ? enums_1.UIKitColors.grey : _b, onPress = _a.onPress;
     return (react_1.default.createElement("i", { className: "itpc-icon__close", onClick: onPress },
         react_1.default.createElement("svg", { fill: "none", height: "20", viewBox: "0 0 15 15", width: "20", xmlns: "http://www.w3.org/2000/svg" },
             react_1.default.createElement("path", { d: "M10.3432 7.5L14.6075 3.23565C15.1308 2.71236 15.1308 1.86392 14.6075 1.3402L13.6598 0.392472C13.1365 -0.130824 12.2881 -0.130824 11.7643 0.392472L7.5 4.65682L3.23565 0.392472C2.71236 -0.130824 1.86392 -0.130824 1.3402 0.392472L0.392472 1.3402C-0.130824 1.86349 -0.130824 2.71193 0.392472 3.23565L4.65682 7.5L0.392472 11.7643C-0.130824 12.2876 -0.130824 13.1361 0.392472 13.6598L1.3402 14.6075C1.86349 15.1308 2.71236 15.1308 3.23565 14.6075L7.5 10.3432L11.7643 14.6075C12.2876 15.1308 13.1365 15.1308 13.6598 14.6075L14.6075 13.6598C15.1308 13.1365 15.1308 12.2881 14.6075 11.7643L10.3432 7.5Z", fill: color }))));
@@ -26981,10 +27058,10 @@ __webpack_require__(3866);
 var IconDoubleArrow = function (_a) {
     var onClick = _a.onClick, orientation = _a.orientation;
     return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__double-arrow", orientation === "top" && "itpc-icon__double-arrow_orientation_top", orientation === "bottom" && "itpc-double-icon__arrow_orientation_bottom", orientation === "left" && "itpc-icon__double-arrow_orientation_left", orientation === "right" && "itpc-icon__double-arrow_orientation_right"), onClick: onClick },
-        react_1.default.createElement("svg", { fill: "none", height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
-            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z", fill: "#393185" })),
-        react_1.default.createElement("svg", { fill: "none", height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
-            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z", fill: "#393185" }))));
+        react_1.default.createElement("svg", { height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
+            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z" })),
+        react_1.default.createElement("svg", { height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
+            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z" }))));
 };
 exports.IconDoubleArrow = IconDoubleArrow;
 
@@ -27003,10 +27080,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.IconOk = void 0;
 /* eslint-disable max-len */
 var react_1 = __importDefault(__webpack_require__(9155));
+var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(4778);
-var IconOk = function () { return (react_1.default.createElement("i", { className: "itpc-icon__ok" },
+var IconOk = function () { return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__ok") },
     react_1.default.createElement("svg", { height: "22", preserveAspectRatio: "xMidYMid meet", viewBox: "0 0 24 24", width: "22", xmlns: "http://www.w3.org/2000/svg" },
-        react_1.default.createElement("path", { d: "M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8l-1.41-1.42Z", fill: "#4DB04D" })))); };
+        react_1.default.createElement("path", { d: "M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8l-1.41-1.42Z" })))); };
 exports.IconOk = IconOk;
 
 
@@ -27077,7 +27155,7 @@ var react_1 = __importDefault(__webpack_require__(9155));
 __webpack_require__(6664);
 var IconWarning = function () { return (react_1.default.createElement("i", { className: "itpc-icon__warning" },
     react_1.default.createElement("svg", { height: "22", preserveAspectRatio: "xMidYMid meet", viewBox: "0 0 24 24", width: "22", xmlns: "http://www.w3.org/2000/svg" },
-        react_1.default.createElement("path", { d: "M11 15h2v2h-2v-2m0-8h2v6h-2V7m1-5C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8Z", fill: "#ECC022" })))); };
+        react_1.default.createElement("path", { d: "M11 15h2v2h-2v-2m0-8h2v6h-2V7m1-5C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8Z" })))); };
 exports.IconWarning = IconWarning;
 
 
@@ -27208,10 +27286,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Popover = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
+var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(4119);
 var Popover = function (_a) {
     var children = _a.children;
-    return (react_1.default.createElement("div", { className: "itpc-popover" }, children));
+    return (react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-popover") }, children));
 };
 exports.Popover = Popover;
 
@@ -27287,39 +27366,13 @@ Object.defineProperty(exports, "SelectItem", ({ enumerable: true, get: function 
 
 /***/ }),
 
-/***/ 5736:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.numberAndOnlyPointRegExp = exports.dotRegExp = exports.UIKitColors = void 0;
-var UIKitColors;
-(function (UIKitColors) {
-    UIKitColors["black"] = "#000";
-    UIKitColors["green"] = "#4DB04D";
-    UIKitColors["grey"] = "#B2B7C7";
-    UIKitColors["greyLight"] = "#E5E5E5";
-    UIKitColors["purple"] = "#5C53AC";
-    UIKitColors["purpleLight"] = "#6F65CB";
-    UIKitColors["red"] = "#D42564";
-    UIKitColors["redDark"] = "#C9184A";
-    UIKitColors["white"] = "#FFF";
-    UIKitColors["yellow"] = "#DCB21E";
-})(UIKitColors = exports.UIKitColors || (exports.UIKitColors = {}));
-exports.dotRegExp = /[,юб/]/gi;
-exports.numberAndOnlyPointRegExp = /^\d*\.?\d*$/u;
-
-
-/***/ }),
-
 /***/ 5785:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.SortType = exports.RowJustify = exports.RowAlign = exports.NumberColumns = exports.UIKitColors = exports.TextField = exports.TextAreaField = exports.Text = exports.Tabs = exports.TableSort = exports.TableRow = exports.TableHeader = exports.TableFooter = exports.TableColumn = exports.TableBody = exports.Table = exports.TabButton = exports.SelectField = exports.SearchField = exports.Row = exports.Preloader = exports.Popup = exports.Pagination = exports.NumberField = exports.MultiSelectField = exports.ModalFooter = exports.ModalContent = exports.Modal = exports.Flex = exports.ErrorMessage = exports.DecimalField = exports.DatePicker = exports.Col = exports.Checkbox = exports.Cell = exports.Card = exports.ButtonRound = exports.Button = exports.AccordionItem = exports.AccordionHeader = exports.AccordionBody = exports.AccordionArrow = exports.Accordion = void 0;
+exports.TextField = exports.TextAreaField = exports.Text = exports.Tabs = exports.TableSort = exports.TableRow = exports.TableHeader = exports.TableFooter = exports.TableColumn = exports.TableBody = exports.Table = exports.TabButton = exports.SelectField = exports.SearchField = exports.Row = exports.Preloader = exports.Popup = exports.Pagination = exports.NumberField = exports.MultiSelectField = exports.ModalFooter = exports.ModalContent = exports.Modal = exports.Flex = exports.ErrorMessage = exports.DecimalField = exports.DatePicker = exports.Col = exports.Checkbox = exports.Cell = exports.Card = exports.ButtonRound = exports.Button = exports.AccordionItem = exports.AccordionHeader = exports.AccordionBody = exports.AccordionArrow = exports.Accordion = void 0;
 var Accordion_1 = __webpack_require__(1976);
 Object.defineProperty(exports, "Accordion", ({ enumerable: true, get: function () { return Accordion_1.Accordion; } }));
 Object.defineProperty(exports, "AccordionArrow", ({ enumerable: true, get: function () { return Accordion_1.AccordionArrow; } }));
@@ -27382,24 +27435,63 @@ var TextAreaField_1 = __webpack_require__(5524);
 Object.defineProperty(exports, "TextAreaField", ({ enumerable: true, get: function () { return TextAreaField_1.TextAreaField; } }));
 var TextField_1 = __webpack_require__(2329);
 Object.defineProperty(exports, "TextField", ({ enumerable: true, get: function () { return TextField_1.TextField; } }));
-var constants_1 = __webpack_require__(5736);
-Object.defineProperty(exports, "UIKitColors", ({ enumerable: true, get: function () { return constants_1.UIKitColors; } }));
-var types_1 = __webpack_require__(4108);
-Object.defineProperty(exports, "NumberColumns", ({ enumerable: true, get: function () { return types_1.NumberColumns; } }));
-Object.defineProperty(exports, "RowAlign", ({ enumerable: true, get: function () { return types_1.RowAlign; } }));
-Object.defineProperty(exports, "RowJustify", ({ enumerable: true, get: function () { return types_1.RowJustify; } }));
-Object.defineProperty(exports, "SortType", ({ enumerable: true, get: function () { return types_1.SortType; } }));
 
 
 /***/ }),
 
-/***/ 4108:
+/***/ 5487:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ConfigContext = void 0;
+var react_1 = __webpack_require__(9155);
+exports.ConfigContext = (0, react_1.createContext)({});
+
+
+/***/ }),
+
+/***/ 3226:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ConfigContext = void 0;
+var ConfigContext_1 = __webpack_require__(5487);
+Object.defineProperty(exports, "ConfigContext", ({ enumerable: true, get: function () { return ConfigContext_1.ConfigContext; } }));
+
+
+/***/ }),
+
+/***/ 9965:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.RowJustify = exports.RowAlign = exports.NumberColumns = exports.SortType = void 0;
+exports.RowJustify = exports.RowAlign = exports.NumberColumns = exports.SortType = exports.Theme = exports.numberAndOnlyPointRegExp = exports.dotRegExp = exports.UIKitColors = void 0;
+var UIKitColors;
+(function (UIKitColors) {
+    UIKitColors["black"] = "#000";
+    UIKitColors["green"] = "#4DB04D";
+    UIKitColors["grey"] = "#B2B7C7";
+    UIKitColors["greyLight"] = "#E5E5E5";
+    UIKitColors["purple"] = "#5C53AC";
+    UIKitColors["purpleLight"] = "#6F65CB";
+    UIKitColors["red"] = "#D42564";
+    UIKitColors["redDark"] = "#C9184A";
+    UIKitColors["white"] = "#FFF";
+    UIKitColors["yellow"] = "#DCB21E";
+})(UIKitColors = exports.UIKitColors || (exports.UIKitColors = {}));
+exports.dotRegExp = /[,юб/]/gi;
+exports.numberAndOnlyPointRegExp = /^\d*\.?\d*$/u;
+var Theme;
+(function (Theme) {
+    Theme["DARK"] = "dark";
+    Theme["DEFAULT"] = "default";
+})(Theme = exports.Theme || (exports.Theme = {}));
 var SortType;
 (function (SortType) {
     SortType["ASCENDING"] = "ascending";
@@ -27452,7 +27544,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 __exportStar(__webpack_require__(5785), exports);
+__exportStar(__webpack_require__(9965), exports);
 __exportStar(__webpack_require__(432), exports);
+__exportStar(__webpack_require__(2720), exports);
 
 
 /***/ }),
@@ -27944,8 +28038,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Calendar = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
-var _hooks_1 = __webpack_require__(510);
 var utils_1 = __webpack_require__(6937);
+var hooks_1 = __webpack_require__(6771);
 var components_1 = __webpack_require__(6224);
 __webpack_require__(7252);
 var utils_2 = __webpack_require__(4078);
@@ -27958,13 +28052,9 @@ var Calendar = function (_a) {
     var _j = (0, react_1.useState)((0, utils_2.initDays)(currentValue, withTime)), days = _j[0], setDays = _j[1];
     var _k = (0, react_1.useState)(false), isShowSelectMonth = _k[0], setIsShowSelectMonth = _k[1];
     var _l = (0, react_1.useState)(false), isShowSelectYear = _l[0], setIsShowSelectYear = _l[1];
+    var _m = (0, react_1.useState)({}), styleCalendar = _m[0], setStyleCalendar = _m[1];
     var calendarRef = (0, react_1.useRef)(null);
-    var styleCalendar;
     var documentWidth = (0, utils_1.getDocumentDimensions)().documentWidth;
-    if (calendarRef.current) {
-        var calendarWidth = (0, utils_1.getCalendarDimensions)(calendarRef.current).calendarWidth;
-        styleCalendar = (0, utils_1.getCalendarStyle)(documentWidth, calendarWidth);
-    }
     var changeCurrentDate = function (date) {
         setCurrentDate(date);
         setDays((0, utils_2.getCalendarDays)(date));
@@ -28001,7 +28091,7 @@ var Calendar = function (_a) {
         setIsShowSelectYear(!isShowSelectYear);
         setIsShowSelectMonth(false);
     };
-    (0, _hooks_1.useOnClickOutside)(calendarRef, handleShow);
+    (0, hooks_1.useOnClickOutside)(calendarRef, handleShow);
     (0, react_1.useEffect)(function () {
         if (currentValue !== "".concat(currentDate, "T").concat(hours, ":").concat(minutes, ":").concat(seconds)) {
             setCurrentDate((0, utils_2.initCurrentDate)(currentValue, withTime));
@@ -28011,6 +28101,12 @@ var Calendar = function (_a) {
             setDays((0, utils_2.initDays)(currentValue, withTime));
         }
     }, [currentValue, withTime]);
+    (0, react_1.useEffect)(function () {
+        if (calendarRef.current && documentWidth) {
+            var calendarWidth = (0, utils_1.getCalendarDimensions)(calendarRef.current).calendarWidth;
+            setStyleCalendar((0, utils_1.getCalendarStyle)(documentWidth, calendarWidth));
+        }
+    }, [calendarRef.current, documentWidth]);
     return (react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-calendar", show && "itpc-calendar_opened"), ref: calendarRef, style: styleCalendar },
         react_1.default.createElement(components_1.CalendarControl, { changeCurrentDate: changeCurrentDate, currentDate: currentDate, disabledSelectMonth: disabledSelectMonth, disabledSelectYear: disabledSelectYear, handleShowSelectMonth: handleShowSelectMonth, handleShowSelectYear: handleShowSelectYear }),
         react_1.default.createElement(components_1.CalendarTable, { activeDates: activeDates, currentDate: currentDate, days: days, disabledAfterDate: disabledAfterDate, disabledBeforeDate: disabledBeforeDate, disabledDates: disabledDates, disabledDaysOfWeek: disabledDaysOfWeek, id: id, onChange: onChangeDate }),
@@ -28253,6 +28349,92 @@ exports.DecimalFixed = DecimalFixed;
 
 /***/ }),
 
+/***/ 6771:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useWindowSize = exports.useTheme = exports.useOnClickOutside = void 0;
+var useOnClickOutside_1 = __webpack_require__(9009);
+Object.defineProperty(exports, "useOnClickOutside", ({ enumerable: true, get: function () { return useOnClickOutside_1.useOnClickOutside; } }));
+var useTheme_1 = __webpack_require__(4600);
+Object.defineProperty(exports, "useTheme", ({ enumerable: true, get: function () { return useTheme_1.useTheme; } }));
+var useWindowSize_1 = __webpack_require__(7930);
+Object.defineProperty(exports, "useWindowSize", ({ enumerable: true, get: function () { return useWindowSize_1.useWindowSize; } }));
+
+
+/***/ }),
+
+/***/ 9009:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useOnClickOutside = void 0;
+var react_1 = __webpack_require__(9155);
+var useOnClickOutside = function (ref, handler, handlerRef) {
+    (0, react_1.useEffect)(function () {
+        var listener = function (event) {
+            var target = ref.current;
+            var handlerTarget = handlerRef === null || handlerRef === void 0 ? void 0 : handlerRef.current;
+            if (target &&
+                !target.contains(event.target) &&
+                !(handlerTarget === null || handlerTarget === void 0 ? void 0 : handlerTarget.contains(event.target))) {
+                handler(event);
+            }
+        };
+        document.addEventListener("mouseup", listener);
+        document.addEventListener("touchend", listener);
+        return function () {
+            document.removeEventListener("mouseup", listener);
+            document.removeEventListener("touchend", listener);
+        };
+    }, [ref]);
+};
+exports.useOnClickOutside = useOnClickOutside;
+
+
+/***/ }),
+
+/***/ 4600:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useTheme = void 0;
+var react_1 = __webpack_require__(9155);
+var ConfigContext_1 = __webpack_require__(3226);
+var enums_1 = __webpack_require__(9965);
+var useTheme = function () {
+    var themeComponent = (0, react_1.useContext)(ConfigContext_1.ConfigContext).themeComponent;
+    if (!themeComponent) {
+        return {
+            theme: enums_1.Theme.DEFAULT,
+            themeClass: "",
+            toggleTheme: function () { },
+        };
+    }
+    var setTheme = themeComponent.setTheme, theme = themeComponent.theme;
+    var _a = (0, react_1.useState)(theme), currentTheme = _a[0], setCurrentTheme = _a[1];
+    var toggleTheme = function () {
+        var newTheme = currentTheme === enums_1.Theme.DARK ? enums_1.Theme.DEFAULT : enums_1.Theme.DARK;
+        setTheme === null || setTheme === void 0 ? void 0 : setTheme(newTheme);
+        setCurrentTheme(newTheme);
+    };
+    return {
+        theme: currentTheme,
+        themeClass: enums_1.Theme.DEFAULT === currentTheme ? "" : "itpc-theme-".concat(currentTheme),
+        toggleTheme: toggleTheme,
+    };
+};
+exports.useTheme = useTheme;
+
+
+/***/ }),
+
 /***/ 7930:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -28290,18 +28472,109 @@ exports.useWindowSize = useWindowSize;
 /***/ }),
 
 /***/ 432:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.useWindowSize = exports.DecimalFixed = exports.Calendar = void 0;
+exports.Calendar = void 0;
 var Calendar_1 = __webpack_require__(4333);
 Object.defineProperty(exports, "Calendar", ({ enumerable: true, get: function () { return Calendar_1.Calendar; } }));
-var DecimalFixed_1 = __webpack_require__(1697);
-Object.defineProperty(exports, "DecimalFixed", ({ enumerable: true, get: function () { return DecimalFixed_1.DecimalFixed; } }));
-var useWindowSize_1 = __webpack_require__(7930);
-Object.defineProperty(exports, "useWindowSize", ({ enumerable: true, get: function () { return useWindowSize_1.useWindowSize; } }));
+__exportStar(__webpack_require__(6771), exports);
+
+
+/***/ }),
+
+/***/ 7118:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ConfigProvider = void 0;
+var react_1 = __importStar(__webpack_require__(9155));
+var ConfigContext_1 = __webpack_require__(3226);
+var enums_1 = __webpack_require__(9965);
+var ConfigProvider = function (props) {
+    var _a;
+    var children = props.children;
+    var _b = (0, react_1.useState)((_a = props.theme) !== null && _a !== void 0 ? _a : enums_1.Theme.DEFAULT), theme = _b[0], setTheme = _b[1];
+    var themeClass = enums_1.Theme.DEFAULT === theme ? "" : "itpc-theme-".concat(theme);
+    var defaultProps = (0, react_1.useMemo)(function () { return ({
+        themeComponent: {
+            setTheme: setTheme,
+            theme: theme,
+            themeClass: themeClass,
+        },
+    }); }, [theme]);
+    (0, react_1.useEffect)(function () {
+        document.body.className = themeClass;
+    }, [themeClass]);
+    return (react_1.default.createElement(ConfigContext_1.ConfigContext.Provider, { value: defaultProps }, children));
+};
+exports.ConfigProvider = ConfigProvider;
+
+
+/***/ }),
+
+/***/ 2720:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+__exportStar(__webpack_require__(7118), exports);
 
 
 /***/ }),

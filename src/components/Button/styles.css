@@ -1,65 +1,76 @@
 .itpc-button {
-  padding: 6px 20px;
   min-width: 40px;
   min-height: 40px;
-  background-color: #5c53ac;
-  border: 1px solid #5c53ac;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
+  padding: 6px 20px;
+
   font-size: 14px;
+  color: var(--itpc-primary-text-color-component);
+
+  border: 1px solid var(--itpc-primary-border-color);
+  border-radius: 4px;
+  background-color: var(--itpc-primary-bg-color-component);
   outline: none;
-  transition: all 0.3s ease-in-out;
+  cursor: pointer;
   user-select: none;
+
+  transition: all 0.3s ease-in-out;
 }
 
 .itpc-button:hover {
-  background-color: #6f65cb;
-  border-color: #6f65cb;
-  color: #fff;
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-primary-hover-color-component);
+  background-color: var(--itpc-primary-hover-color-component);
 }
 
 .itpc-button:disabled {
-  background-color: #b2b7c7;
-  border-color: #b2b7c7;
-  color: #fff;
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-disabled-border-color);
+  background-color: var(--itpc-disabled-bg-color-component);
   cursor: default;
 }
 
 .itpc-button__color_white {
-  background-color: #fff;
-  border-color: #5c53ac;
-  color: #5c53ac;
+  color: var(--itpc-secondary-text-color-component);
+
+  border-color: var(--itpc-primary-border-color);
+  background-color: var(--itpc-secondary-bg-color-component);
 }
 
 .itpc-button__color_white:hover {
-  background-color: #6f65cb;
-  border-color: #6f65cb;
-  color: #fff;
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-primary-border-hover-color);
+  background-color: var(--itpc-primary-hover-color-component);
 }
 
 .itpc-button__color_white:disabled {
-  background-color: #b2b7c7;
-  border-color: #b2b7c7;
-  color: #fff;
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-disabled-border-color);
+  background-color: var(--itpc-disabled-bg-color-component);
   cursor: default;
 }
 
 .itpc-button__color_red {
-  background-color: #d42564;
-  border-color: #d42564;
-  color: #fff;
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-danger-border-color);
+  background-color: var(--itpc-danger-bg-color-component);
 }
 
 .itpc-button__color_red:hover {
-  background-color: #c9184a;
-  border-color: #c9184a;
-  color: #fff;
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-danger-hover-color-component);
+  background-color: var(--itpc-danger-hover-color-component);
 }
 
 .itpc-button__color_red:disabled {
-  background-color: #b2b7c7;
-  border-color: #b2b7c7;
-  color: #fff;
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-disabled-border-color);
+  background-color: var(--itpc-disabled-bg-color-component);
   cursor: default;
 }

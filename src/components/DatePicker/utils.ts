@@ -440,4 +440,3 @@ export const getCalculatePositionCalendar = (
 
   return { ...DEFAULT_POSITION }
 }
-

@@ -56,9 +56,9 @@
   margin: 0 5px 0 0;
   padding: 0;
 
-  border: 1px solid #dadada;
+  border: 1px solid var(--itpc-extra-border-color);
   border-radius: 22px;
-  background: #dddddd;
+  background: var(--itpc-extra-bg-color-checkbox);
 }
 
 .itpc-checkbox__input + .itpc-checkbox__fake_ios::after {
@@ -71,21 +71,20 @@
   width: 20px;
   height: 20px;
 
-  border: 1px solid #4c43a1;
+  border: 1px solid var(--itpc-primary-border-color);
   border-radius: 22px;
-  background: #ffffff;
-  box-shadow: 0 3px 3px rgba(140, 140, 140, 0.1);
+  background: var(--itpc-secondary-bg-color-component);
+  box-shadow: 0 3px 3px var(--itpc-box-shadow-color);
 }
 
 .itpc-checkbox__input + .itpc-checkbox__fake_ios::before,
 .itpc-checkbox__input + .itpc-checkbox__fake_ios::after {
   transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
 }
 
 .itpc-checkbox__input:checked + .itpc-checkbox__fake_ios::before {
-  border-color: #4c43a1;
-  background: #4c43a1;
+  border-color: var(--itpc-primary-border-color);
+  background: var(--itpc-primary-bg-color-component);
 }
 
 .itpc-checkbox__input:checked + .itpc-checkbox__fake_ios::after {
@@ -116,9 +115,9 @@
   margin: 0 5px 0 0;
   padding: 0;
 
-  border: 1px solid #dadada;
+  border: 1px solid var(--itpc-extra-border-color);
   border-radius: 12px;
-  background: #dddddd;
+  background: var(--itpc-extra-bg-color-checkbox);
 }
 
 .itpc-checkbox__input + .itpc-checkbox__fake_android::after {
@@ -131,22 +130,21 @@
   width: 20px;
   height: 20px;
 
-  border: 1px solid #4c43a1;
+  border: 1px solid var(--itpc-primary-border-color);
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  background: var(--itpc-secondary-bg-color-component);
+  box-shadow: 0 3px 1px -2px var(--itpc-box-shadow-color),
+    0 1px 5px 0 var(--itpc-box-shadow-color-second);
 }
 
 .itpc-checkbox__input + .itpc-checkbox__fake_android::before,
 .itpc-checkbox__input + .itpc-checkbox__fake_android::after {
   transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
 }
 
 .itpc-checkbox__input:checked + .itpc-checkbox__fake_android::before {
-  border-color: #4c43a1;
-  background: #4c43a1;
+  border-color: var(--itpc-primary-border-color);
+  background: var(--itpc-primary-bg-color-component);
 }
 
 .itpc-checkbox__input:checked + .itpc-checkbox__fake_android::after {
@@ -178,7 +176,7 @@
   margin: 0 5px 0 0;
   padding: 0;
 
-  border: 2px solid #dadada;
+  border: 2px solid var(--itpc-extra-border-color);
   border-radius: 4px;
 }
 
@@ -199,11 +197,10 @@
 .itpc-checkbox__input + .itpc-checkbox__fake_square::before,
 .itpc-checkbox__input + .itpc-checkbox__fake_square::after {
   transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
 }
 
 .itpc-checkbox__input:checked + .itpc-checkbox__fake_square::before {
-  border-color: #4c43a1;
+  border-color: var(--itpc-secondary-bg-color-checkbox);
 }
 
 .itpc-checkbox__input:checked + .itpc-checkbox__fake_square::after {
@@ -235,7 +232,7 @@
   margin: 0 5px 0 0;
   padding: 0;
 
-  border: 2px solid #dadada;
+  border: 2px solid var(--itpc-extra-border-color);
   border-radius: 50%;
 }
 
@@ -258,15 +255,14 @@
 .itpc-checkbox__input + .itpc-checkbox__fake_round::before,
 .itpc-checkbox__input + .itpc-checkbox__fake_round::after {
   transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
 }
 
 .itpc-checkbox__input:checked + .itpc-checkbox__fake_round::before {
-  border-color: #4c43a1;
+  border-color: var(--itpc-secondary-bg-color-checkbox);
 }
 
 .itpc-checkbox__input:checked + .itpc-checkbox__fake_round::after {
-  background-color: #4c43a1;
+  background-color: var(--itpc-secondary-bg-color-checkbox);
   opacity: 1;
 
   transform: scale(1);
@@ -278,7 +274,7 @@
 .itpc-checkbox:hover > .itpc-checkbox__fake_ios::after,
 .itpc-checkbox:hover > .itpc-checkbox__fake_round::before,
 .itpc-checkbox:hover > .itpc-checkbox__fake_square::before {
-  border-color: #6f65cb;
+  border-color: var(--itpc-secondary-border-color);
 }
 
 .itpc-checkbox:hover
@@ -290,7 +286,7 @@
 .itpc-checkbox:hover
   > .itpc-checkbox__input:checked
   + .itpc-checkbox__fake_round::after {
-  background-color: #6f65cb;
+  background-color: var(--itpc-secondary-border-color);
 }
 
 .itpc-checkbox:hover

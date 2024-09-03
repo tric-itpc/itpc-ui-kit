@@ -1,5 +1,7 @@
 import React from "react"
 
+import cn from "classnames"
+
 import "./styles.css"
 
 interface Props {
@@ -7,5 +9,5 @@ interface Props {
 }
 
 export const Popover: React.FC<Props> = ({ children }) => (
-  <div className="itpc-popover">{children}</div>
+  <div className={cn("itpc-popover")}>{children}</div>
 )

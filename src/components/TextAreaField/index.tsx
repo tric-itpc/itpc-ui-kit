@@ -76,7 +76,7 @@ export const TextAreaField: React.FC<Props> = ({
   }
 
   return (
-    <Field className={className} {...rest}>
+    <Field className={cn(className)} {...rest}>
       <InputWrap
         focused={focused}
         height={height}

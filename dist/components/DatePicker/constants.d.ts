@@ -7,3 +7,9 @@ export declare const INPUT_TO_CALENDAR_DISTANCE = 8;
 export declare const MIN_WIDTH_CALENDAR = 280;
 export declare const WIDTH_BODY_CALENDAR = 320;
 export declare const DEFAULT_WIDTH_CALENDAR = 352;
+export declare const DEFAULT_POSITION: {
+    bottom: string;
+    left: string;
+    right: string;
+    top: string;
+};

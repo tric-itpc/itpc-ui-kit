@@ -2,13 +2,13 @@ import React, { type CSSProperties, useEffect, useRef, useState } from "react"
 
 import cn from "classnames"
 
-import { useOnClickOutside } from "../../_hooks"
 import { IInfo } from "../../components"
 import {
   getCalendarDimensions,
   getCalendarStyle,
   getDocumentDimensions,
 } from "../../components/DatePicker/utils"
+import { useOnClickOutside } from "../hooks"
 
 import {
   CalendarControl,
@@ -48,6 +48,7 @@ export interface Props {
       | React.MouseEvent<HTMLButtonElement>,
     info: IInfo
   ) => void
+  parentRef?: React.RefObject<HTMLDivElement>
   scrollToYear?: number
   show: boolean
   withTime?: boolean
@@ -68,6 +69,7 @@ export const Calendar: React.FC<Props> = ({
   name,
   offsetYear = 10,
   onChange,
+  parentRef,
   scrollToYear,
   show,
   withTime = false,
@@ -146,7 +148,7 @@ export const Calendar: React.FC<Props> = ({
     setIsShowSelectMonth(false)
   }
 
-  useOnClickOutside(calendarRef, handleShow)
+  useOnClickOutside(calendarRef, handleShow, parentRef)
 
   useEffect(() => {
     if (currentValue !== `${currentDate}T${hours}:${minutes}:${seconds}`) {

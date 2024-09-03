@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from "react"
 
-import { UIKitColors } from "../../../constants"
+import { UIKitColors } from "../../../../enums"
 
 import "./styles.css"
 

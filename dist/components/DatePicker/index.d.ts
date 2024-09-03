@@ -1,11 +1,12 @@
 import React, { HTMLAttributes } from "react";
 import { IInfo, ValidationState } from "../types";
 import "./styles.css";
+import { type PositionType } from "./types";
 export interface FormattedValues {
     formattedValue: string;
     value: string;
 }
-export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+export interface Props<T extends PositionType> extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
     activeDates?: string[];
     className?: string;
     disabled?: boolean;
@@ -25,10 +26,11 @@ export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> 
     onChange?: (values: FormattedValues, event: React.SyntheticEvent<HTMLTableDataCellElement> | React.SyntheticEvent<HTMLButtonElement> | React.SyntheticEvent<HTMLInputElement>, info: IInfo) => void;
     onFocus?: () => void;
     placeholder?: string;
+    position?: T;
     scrollToYear?: number;
     validationState?: ValidationState;
     value?: string;
     withTime?: boolean;
     yearsFromTo?: [number, number];
 }
-export declare const DatePicker: React.FC<Props>;
+export declare const DatePicker: React.FC<Props<PositionType>>;

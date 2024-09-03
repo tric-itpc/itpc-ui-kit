@@ -1,9 +1,11 @@
 .itpc-tabs {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+  height: 100%;
+
+  color: var(--itpc-primary-text-color);
 }
 
 .itpc-tabs__buttons {
@@ -11,28 +13,38 @@
 }
 
 .itpc-tabs__content {
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
 }
 
 .itpc-tabs__button {
   padding: 5px 10px;
-  background-color: transparent;
+
+  color: var(--itpc-primary-text-color);
+
   border: none;
-  border-bottom: 2px solid #b2b7c7;
+  border-bottom: 2px solid var(--itpc-input-border-color);
+  background-color: transparent;
   cursor: pointer;
+
   transition: all ease-in-out 0.3s;
 }
 
 .itpc-tabs__button:hover {
-  border-color: #6f65cb;
+  border-color: var(--itpc-primary-hover-color-component);
+
+  /* border-color: #6f65cb; */
 }
 
 .itpc-tabs__button_active {
-  border-color: #5c53ac;
+  border-color: var(--itpc-primary-hover-color-component-active);
+
+  /* border-color: #5c53ac; */
 }
 
 .itpc-tabs__button_active:hover {
-  border-color: #5c53ac;
+  border-color: var(--itpc-primary-hover-color-component-active);
+
+  /* border-color: #5c53ac; */
 }

@@ -1,5 +1,5 @@
 import React, { TableHTMLAttributes } from "react";
-import { NumberColumns } from "../types";
+import { NumberColumns } from "../../enums";
 import "./styles.css";
 import { Column, RowType } from "./types";
 export interface TableSortProps<T extends RowType> extends TableHTMLAttributes<HTMLTableElement> {

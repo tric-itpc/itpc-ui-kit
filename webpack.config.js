@@ -3,22 +3,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 
 module.exports = {
-  mode: "production",
   entry: path.resolve(__dirname, "src", "index.ts"),
-  output: {
-    filename: "index.js",
-    path: path.resolve(__dirname, "dist"),
-    libraryTarget: "umd",
-    clean: true,
-    assetModuleFilename: "assets/[name][ext]",
-  },
-  resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
-  },
   externals: {
     react: "react",
   },
-  plugins: [new MiniCssExtractPlugin({ filename: "index.css" })],
+  mode: "production",
   module: {
     rules: [
       {
@@ -26,9 +15,9 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
+        exclude: /node_modules/,
         test: /\.(ts|tsx)?$/,
         use: ["ts-loader"],
-        exclude: /node_modules/,
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -38,5 +27,16 @@ module.exports = {
   },
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
+  },
+  output: {
+    assetModuleFilename: "assets/[name][ext]",
+    clean: true,
+    filename: "index.js",
+    libraryTarget: "umd",
+    path: path.resolve(__dirname, "dist"),
+  },
+  plugins: [new MiniCssExtractPlugin({ filename: "index.css" })],
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
 }

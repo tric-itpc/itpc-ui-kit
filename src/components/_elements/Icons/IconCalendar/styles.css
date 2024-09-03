@@ -1,10 +1,15 @@
+@import url("../../../../styles/global.css");
+
 .itpc-icon__calendar {
-  height: 100%;
-  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  padding: 0 10px;
+
   background-color: transparent;
+  fill: var(--itpc-primary-icon-color);
+
   transition: all ease-in-out 0.3s;
 }
 

@@ -9,6 +9,8 @@ import {
   ModalFooter,
   ModalProps,
 } from "../components/Modal"
+import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: Modal,
@@ -44,4 +46,18 @@ export const Basic = Template.bind({})
 Basic.args = {
   isOverlayClickable: true,
   title: "Modal window",
+}
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
+
+export const ModalDark = Template.bind({})
+ModalDark.args = {
+  isOverlayClickable: true,
+  title: "Modal window",
+}
+ModalDark.decorators = [ThemeDecorator(Theme.DARK)]
+
+ModalDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }
