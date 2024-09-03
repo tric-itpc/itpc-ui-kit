@@ -3,12 +3,14 @@ import React from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { TableSort, TableSortProps } from "../components/TableSort"
-import { NumberColumns } from "../components/types"
+import { Column } from "../components/TableSort/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
+import { NumberColumns, Theme } from "../enums"
 
 interface RowType {
   city: string
-  population: string
   id: string
+  population: string
 }
 
 export default {
@@ -17,12 +19,12 @@ export default {
 } as ComponentMeta<React.FC<TableSortProps<RowType>>>
 
 const dataRows: RowType[] = [
-  { city: "Тюмень", population: "861 098", id: "1" },
-  { city: "Ишим", population: "64 011", id: "2" },
-  { city: "Тобольск", population: "102 000", id: "3" },
+  { city: "Тюмень", id: "1", population: "861 098" },
+  { city: "Ишим", id: "2", population: "64 011" },
+  { city: "Тобольск", id: "3", population: "102 000" },
 ]
 
-const dataColumnsNoSort = [
+const dataColumnsNoSort: Column<RowType>[] = [
   {
     isSortable: false,
     name: "id",
@@ -40,7 +42,7 @@ const dataColumnsNoSort = [
   },
 ]
 
-const dataColumns = [
+const dataColumns: Column<RowType>[] = [
   {
     isSortable: false,
     name: "id",
@@ -70,15 +72,56 @@ export const Basic = Template.bind({})
 Basic.args = {
   columns: dataColumnsNoSort,
 }
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
-export const TableSortOneColumns = Template.bind({})
-TableSortOneColumns.args = {
+export const WithoutSortDark = Template.bind({})
+WithoutSortDark.args = {
+  columns: dataColumnsNoSort,
+}
+WithoutSortDark.decorators = [ThemeDecorator(Theme.DARK)]
+
+WithoutSortDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}
+
+export const SortByOneColumns = Template.bind({})
+SortByOneColumns.args = {
   columns: dataColumns,
   sortByNumberColumns: NumberColumns.ONE,
 }
+SortByOneColumns.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
-export const TableSortTwoColumns = Template.bind({})
-TableSortTwoColumns.args = {
+export const SortByOneColumnsDark = Template.bind({})
+SortByOneColumnsDark.args = {
+  columns: dataColumns,
+  sortByNumberColumns: NumberColumns.ONE,
+}
+SortByOneColumnsDark.decorators = [ThemeDecorator(Theme.DARK)]
+
+SortByOneColumnsDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}
+
+export const SortByTwoColumns = Template.bind({})
+SortByTwoColumns.args = {
   columns: dataColumns,
   sortByNumberColumns: NumberColumns.TWO,
+}
+SortByTwoColumns.decorators = [ThemeDecorator(Theme.DEFAULT)]
+
+export const SortByTwoColumnsDark = Template.bind({})
+SortByTwoColumnsDark.args = {
+  columns: dataColumns,
+  sortByNumberColumns: NumberColumns.TWO,
+}
+SortByTwoColumnsDark.decorators = [ThemeDecorator(Theme.DARK)]
+
+SortByTwoColumnsDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

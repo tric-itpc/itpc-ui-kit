@@ -1,0 +1,62 @@
+.itpc-theme-dark {
+  /* фон */
+  --itpc-primary-bg-color: #19192a;
+
+  --itpc-primary-bg-color-text: #4b4b65;
+  --itpc-primary-bg-color-overlay: #3a385385;
+
+  --itpc-primary-bg-color-component: #5c53ac;
+  --itpc-primary-bg-color-component-active: #695dd5;
+
+  --itpc-secondary-bg-color-component: #ffffff;
+  --itpc-extra-bg-color-component: #4b4b65;
+  --itpc-disabled-bg-color-component: #8f8eb3;
+  --itpc-danger-bg-color-component: #d42564;
+
+  --itpc-extra-bg-color-checkbox: #dddddd;
+  --itpc-secondary-bg-color-checkbox: #4c43a1;
+
+  /* Ховер */
+  --itpc-primary-hover-color-component: #6f65cb;
+  --itpc-primary-hover-color-component-active: #5c53ac;
+  --itpc-secondary-hover-color-component: #343348;
+  --itpc-extra-hover-color-component: #343348;
+  --itpc-table-hover-color-component: #2c2e3e;
+  --itpc-danger-hover-color-component: #c9184a;
+  --itpc-additional-hover-color-component: #2c2e3e;
+
+  /* Бордеры */
+  --itpc-primary-border-color: #695dd5;
+  --itpc-secondary-border-color: #6f65cb;
+  --itpc-extra-border-color: #dadada;
+  --itpc-input-border-color: #9b9b9b;
+  --itpc-additional-border-color: #b3b3b3;
+
+  --itpc-preloader-border-color: #a7a7a7;
+
+  --itpc-danger-border-color: #d42564;
+  --itpc-disabled-border-color: #8f8eb3;
+  --itpc-warning-border-color: #ecc022;
+  --itpc-success-border-color: #4db04d;
+
+  /* Текст */
+  --itpc-primary-text-color: #c0c0c0;
+  --itpc-danger-text-color: #d42564;
+  --itpc-warning-text-color: #ecc022;
+
+  --itpc-primary-text-color-component: #b9b9b9;
+  --itpc-secondary-text-color-component: #695dd5;
+  --itpc-extra-text-color-component: #19192a;
+  --itpc-additional-text-color-component: #363738;
+
+  /* Иконки */
+  --itpc-primary-icon-color: #695dd5;
+  --itpc-secondary-icon-color: #b9b9b9;
+  --itpc-default-icon-color: #4e4e62;
+  --itpc-success-icon-color: #7add7a;
+  --itpc-yellow-icon-color: #ecc022;
+
+  /* Тени */
+  --itpc-box-shadow-color: #373064;
+  --itpc-box-shadow-color-second: #373064;
+}

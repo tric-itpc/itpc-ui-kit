@@ -71,7 +71,7 @@ export const TextField: React.FC<Props> = ({
   }
 
   return (
-    <Field className={className} {...rest}>
+    <Field className={cn(className)} {...rest}>
       <InputWrap focused={focused} validationState={validationState}>
         <Placeholder
           focused={focused || value.length > 0}

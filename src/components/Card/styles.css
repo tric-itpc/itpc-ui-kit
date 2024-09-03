@@ -1,22 +1,25 @@
 .itpc-card {
-  padding: 20px;
-  width: 340px;
-  height: 250px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  border-radius: 4px;
-  box-shadow: 0 0 3px 1px #0000003f;
   box-sizing: border-box;
-  -webkit-box-shadow: 0 0 3px 1px #0000003f;
+  width: 340px;
+  height: 250px;
+  padding: 20px;
+
+  color: var(--itpc-primary-text-color);
+
+  border-radius: 4px;
+  box-shadow: 0 0 3px 1px var(--itpc-box-shadow-color-second);
 }
 
 .itpc-card_bordered {
-  border: 1px solid #5c53ac;
+  border: 1px solid var(--itpc-primary-border-color);
 }
 
 .itpc-card__title {
   margin: 0;
+
   font-size: 20px;
   word-break: break-all;
 }

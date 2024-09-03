@@ -1,13 +1,16 @@
 .itpc-calendar__cell {
   padding: 0.5rem;
+
+  color: var(--itpc-primary-text-color);
+
   border-radius: 4px;
-  color: #000;
   cursor: pointer;
 }
 
 .itpc-calendar__cell:hover {
-  color: #000;
-  background-color: #f0f0f0;
+  color: var(--itpc-primary-text-color);
+
+  background-color: var(--itpc-additional-hover-color-component);
 }
 
 .itpc-calendar__cell_header {
@@ -19,16 +22,19 @@
 }
 
 .itpc-calendar__cell_changed {
-  color: #fff;
-  background-color: #4c43a1;
+  color: var(--itpc-white-color);
+
+  background-color: var(--itpc-primary-bg-color-component);
 }
 
 .itpc-calendar__cell_not_current {
-  color: #ccc;
+  color: var(--itpc-additional-text-color-component);
 }
 
 .itpc-calendar__cell_disabled {
+  color: var(--itpc-additional-text-color-component);
+
   cursor: default;
-  color: #8f8f8f;
-  /*opacity: .5;*/
+
+  /* opacity: .5; */
 }

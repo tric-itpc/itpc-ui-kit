@@ -1,19 +1,21 @@
 .itpc-search-field {
   position: relative;
+  z-index: 999999;
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  box-sizing: border-box;
   width: 100%;
   height: 40px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #b2b7c7;
+
+  border: 1px solid var(--itpc-input-border-color);
   border-radius: 4px;
   box-shadow: none;
-  box-sizing: border-box;
-  z-index: 999999;
 }
 
 .itpc-search-field:hover {
-  border-color: #5c53ac;
+  border-color: var(--itpc-primary-hover-color-component);
 }
 
 .itpc-search-field > .itpc-field {

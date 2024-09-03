@@ -1,5 +1,5 @@
 import React from "react";
-import { UIKitColors } from "../../../constants";
+import { UIKitColors } from "../../../../enums";
 import "./styles.css";
 interface Props {
     color?: UIKitColors;

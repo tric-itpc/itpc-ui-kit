@@ -1,0 +1,65 @@
+:root {
+  /* фон */
+  --itpc-primary-bg-color: #ffffff;
+
+  --itpc-primary-bg-color-text: #727272;
+  --itpc-primary-bg-color-overlay: rgba(0, 0, 0, 0.2);
+
+  --itpc-primary-bg-color-component: #5c53ac;
+  --itpc-primary-bg-color-component-active: #5c53ac;
+
+  --itpc-secondary-bg-color-component: #ffffff;
+  --itpc-extra-bg-color-component: #c7ccdb;
+  --itpc-disabled-bg-color-component: #b2b7c7;
+  --itpc-danger-bg-color-component: #d42564;
+
+  --itpc-extra-bg-color-checkbox: #dddddd;
+  --itpc-secondary-bg-color-checkbox: #4c43a1;
+
+  /* Ховер */
+  --itpc-primary-hover-color-component: #6f65cb;
+  --itpc-primary-hover-color-component-active: #5c53ac;
+  --itpc-secondary-hover-color-component: #b2b7c7;
+  --itpc-extra-hover-color-component: #e7e7e7;
+  --itpc-table-hover-color-component: #e5e5e5;
+  --itpc-danger-hover-color-component: #c9184a;
+  --itpc-additional-hover-color-component: #f0f0f0;
+
+  /* Бордеры */
+  --itpc-primary-border-color: #5c53ac;
+  --itpc-secondary-border-color: #6f65cb;
+  --itpc-extra-border-color: #dadada;
+  --itpc-input-border-color: #b2b7c7;
+  --itpc-additional-border-color: #212529;
+
+  --itpc-preloader-border-color: rgba(0, 0, 0, 0.25);
+
+  --itpc-danger-border-color: #d42564;
+  --itpc-disabled-border-color: #b2b7c7;
+  --itpc-warning-border-color: #ecc022;
+  --itpc-success-border-color: #4db04d;
+
+  /* Текст */
+  --itpc-primary-text-color: #212529;
+  --itpc-danger-text-color: #d42564;
+  --itpc-warning-text-color: #ecc022;
+
+  --itpc-primary-text-color-component: #ffffff;
+  --itpc-secondary-text-color-component: #5c53ac;
+  --itpc-extra-text-color-component: #ffffff;
+  --itpc-additional-text-color-component: #37374538;
+
+  /* Иконки */
+  --itpc-primary-icon-color: #393185;
+  --itpc-secondary-icon-color: #ffffff;
+  --itpc-default-icon-color: #cccccc;
+  --itpc-success-icon-color: #7add7a;
+  --itpc-yellow-icon-color: #ecc022;
+
+  /* Тени */
+  --itpc-box-shadow-color: #e5e5e5;
+  --itpc-box-shadow-color-second: #d4d6e7;
+
+  /* Цвета */
+  --itpc-white-color: #ffffff;
+}

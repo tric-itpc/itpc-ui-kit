@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from "react"
 
 import cn from "classnames"
 
-import { NumberColumns, SortType } from "../../../types"
+import { NumberColumns, SortType } from "../../../../enums"
 import { Column, KeySort, KeysSort, RowType } from "../../types"
 import { renderIcon, renderIconTwoColumns } from "../../utils"
 
@@ -23,7 +23,7 @@ export const TableSortHeader: React.FC<TableSortHeaderProps> = ({
   setKeySort,
   sortByNumberColumns,
 }: TableSortHeaderProps) => (
-  <thead className="itpc-table-sort__head">
+  <thead className={cn("itpc-table-sort__head")}>
     <tr>
       {columns &&
         columns.map((column: Column<RowType>, index: number) => {

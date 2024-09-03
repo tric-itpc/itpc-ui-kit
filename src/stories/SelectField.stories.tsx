@@ -4,6 +4,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Item } from "../components"
 import { Props, SelectField } from "../components/SelectField"
+import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: SelectField,
@@ -50,12 +52,14 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
   }
 
   return (
-    <SelectField
-      {...args}
-      defaultItemId={selectedItem?.id}
-      items={mockItems}
-      onChange={onChange}
-    />
+    <div style={{ height: "250px" }}>
+      <SelectField
+        {...args}
+        defaultItemId={selectedItem?.id}
+        items={mockItems}
+        onChange={onChange}
+      />
+    </div>
   )
 }
 
@@ -63,4 +67,20 @@ export const Basic = Template.bind({})
 Basic.args = {
   defaultItemId: "2",
   placeholder: "Animal",
+}
+
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
+
+export const SelectedField = Template.bind({})
+SelectedField.args = {
+  defaultItemId: "2",
+  placeholder: "Animal",
+}
+
+SelectedField.decorators = [ThemeDecorator(Theme.DARK)]
+
+SelectedField.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

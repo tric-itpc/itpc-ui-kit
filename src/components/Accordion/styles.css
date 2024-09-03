@@ -2,49 +2,56 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  color: var(--itpc-primary-text-color);
+
+  background-color: var(--itpc-extra-bg-color-component);
 }
 
 .itpc-accordion-item {
   border-radius: 4px;
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 3px 1px var(--itpc-box-shadow-color);
 }
 
 .itpc-accordion-header {
-  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px;
+
   border-radius: 4px;
   cursor: pointer;
+
   transition: all linear 0.3s;
 }
 
 .itpc-accordion-header:hover {
-  background-color: #b2b7c7;
+  background-color: var(--itpc-secondary-hover-color-component);
 }
 
 .itpc-accordion-header_opened {
-  background-color: #b2b7c7;
   border-radius: 0;
+  background-color: var(--itpc-extra-bg-color-component);
 }
 
 .itpc-accordion-header_active {
-  background-color: #4db04d;
+  background-color: var(--itpc-success-border-color);
 }
 
 .itpc-accordion-body {
+  overflow: hidden;
   max-height: 0;
   padding: 0 10px;
-  overflow: hidden;
+
   transition: max-height linear 0.3s, padding-top linear 0.3s,
     padding-bottom linear 0.3s;
 }
 
 .itpc-accordion-body_opened {
+  overflow-y: auto;
   max-height: 550px;
   padding-top: 10px;
   padding-bottom: 10px;
-  overflow-y: auto;
 }
 
 .itpc-accordion-arrow > .itpc-icon__arrow {

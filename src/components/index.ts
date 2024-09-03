@@ -78,15 +78,10 @@ export {
   TextField,
 }
 
-export { UIKitColors } from "./constants"
-export {
+export type {
   FormattedValues,
   IInfo,
   Item,
-  NumberColumns,
   PaginationResult,
-  RowAlign,
-  RowJustify,
-  SortType,
   TabsItem,
 } from "./types"

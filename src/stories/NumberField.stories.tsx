@@ -2,8 +2,10 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { FormattedValues } from "../components"
+import { FormattedValues, Text } from "../components"
 import { NumberField, Props } from "../components/NumberField"
+import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: NumberField,
@@ -29,8 +31,9 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
         onChange={onChange}
         value={date.value}
       />
-      <p>Value: {date.value}</p>
-      <p>Formatted value: {date.formattedValue}</p>
+      <br />
+      <Text>Value: {date.value}</Text>
+      <Text>Formatted value: {date.formattedValue}</Text>
     </div>
   )
 }
@@ -40,7 +43,23 @@ Basic.args = {
   errorMessage: "Phone number is invalid",
   format: "+7 (###) - ### - ## - ##",
   mask: "_",
-  placeholder: "Enter snils",
-  replaceValue: () => "",
+  placeholder: "Phone number",
   validationState: "valid",
+}
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
+
+export const NumberFieldDark = Template.bind({})
+NumberFieldDark.args = {
+  errorMessage: "Phone number is invalid",
+  format: "+7 (###) - ### - ## - ##",
+  mask: "_",
+  placeholder: "Phone number",
+  validationState: "valid",
+}
+NumberFieldDark.decorators = [ThemeDecorator(Theme.DARK)]
+
+NumberFieldDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

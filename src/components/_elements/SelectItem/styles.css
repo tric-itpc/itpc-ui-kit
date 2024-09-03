@@ -1,20 +1,24 @@
 .itpc-select-item {
+  position: relative;
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
   min-height: 40px;
   max-height: 40px;
-  position: relative;
   padding: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: #fff;
-  box-sizing: border-box;
-  cursor: pointer;
+
   font-size: 14px;
-  overflow: hidden;
+  color: var(--itpc-primary-text-color);
+
+  background-color: var(--itpc-primary-bg-color);
+  cursor: pointer;
 }
 
 .itpc-select-item:hover {
-  background-color: #e5e5e5;
+  background-color: var(--itpc-extra-hover-color-component);
 }
 
 .itpc-select-item_disabled {
@@ -25,10 +29,12 @@
   position: absolute;
   top: 6px;
   left: -4px;
+
   width: 4px;
   height: 30px;
-  background-color: #393185;
+
   border-radius: 0 3px 3px 0;
+  background-color: var(--itpc-primary-icon-color);
 }
 
 .itpc-select-item__stick_showed {

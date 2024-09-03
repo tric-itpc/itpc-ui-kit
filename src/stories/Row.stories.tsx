@@ -2,8 +2,8 @@ import React from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { Flex, RowJustify } from "../components"
-import { Col, Row, RowProps } from "../components/Grid"
+import { Flex } from "../components"
+import { Col, Row, RowJustify, RowProps } from "../components/Grid"
 
 export default {
   component: Row,

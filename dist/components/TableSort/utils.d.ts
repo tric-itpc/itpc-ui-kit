@@ -1,5 +1,5 @@
 import React from "react";
-import { SortType } from "../types";
+import { SortType } from "../../enums";
 import { Column, KeySort, KeysSort, RowType, SaveOrder, SorterFn } from "./types";
 export declare const toggleSort: (orderSort: SortType) => SortType;
 export declare const getKeysNamesColumns: (column: Column<RowType>[]) => (keyof RowType)[];

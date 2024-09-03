@@ -53,30 +53,3 @@ export interface IInfo {
   id: string
   name: string
 }
-
-export enum SortType {
-  ASCENDING = "ascending",
-  DESCENDING = "descending",
-  NONE = "none",
-}
-
-export enum NumberColumns {
-  ONE = "one",
-  TWO = "two",
-  ZERO = "zero",
-}
-
-export enum RowAlign {
-  BOTTOM = "bottom",
-  MIDDLE = "middle",
-  TOP = "top",
-}
-
-export enum RowJustify {
-  CENTER = "center",
-  END = "end",
-  SPACE_AROUND = "around",
-  SPACE_BETWEEN = "between",
-  SPACE_EVENLY = "evenly",
-  START = "start",
-}

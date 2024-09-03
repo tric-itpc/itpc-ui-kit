@@ -2,8 +2,10 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
+import { Item } from "../components"
 import { MultiSelectField, Props } from "../components/MultiSelectField"
-import { Item } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: MultiSelectField,
@@ -67,4 +69,18 @@ export const Basic = Template.bind({})
 Basic.args = {
   placeholder: "Animal",
   selectedItems: ["2"],
+}
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
+
+export const MultiSelectFieldDark = Template.bind({})
+MultiSelectFieldDark.args = {
+  placeholder: "Animal",
+  selectedItems: ["2"],
+}
+MultiSelectFieldDark.decorators = [ThemeDecorator(Theme.DARK)]
+
+MultiSelectFieldDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }
