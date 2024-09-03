@@ -41,13 +41,19 @@
 
   /* Текст */
   --itpc-primary-text-color: #212529;
+  --itpc-secondary-text-color: #8c8c8c;
+  --itpc-success-text-color: #4db04d;
   --itpc-danger-text-color: #d42564;
   --itpc-warning-text-color: #ecc022;
+  --itpc-disabled-text-color: #37374538;
+
+  --itpc-link-text-color: #0d6efd;
+  --itpc-link-text-hover-color: #5599ff;
+  --itpc-link-text-color-visited: #70aaff;
 
   --itpc-primary-text-color-component: #ffffff;
   --itpc-secondary-text-color-component: #5c53ac;
   --itpc-extra-text-color-component: #ffffff;
-  --itpc-additional-text-color-component: #37374538;
 
   /* Иконки */
   --itpc-primary-icon-color: #393185;

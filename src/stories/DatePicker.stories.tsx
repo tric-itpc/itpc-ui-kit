@@ -2,11 +2,13 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { FormattedValues, Text } from "../components"
+import { FormattedValues, Typography } from "../components"
 import { DatePicker, Props } from "../components/DatePicker"
 import type { PositionType } from "../components/DatePicker/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
 import { Theme } from "../enums"
+
+const { Text } = Typography
 
 export default {
   component: DatePicker,

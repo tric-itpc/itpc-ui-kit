@@ -2,10 +2,12 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { Item, Preloader, Text } from "../components"
+import { Item, Preloader, Typography } from "../components"
 import { Props, SearchField } from "../components/SearchField"
 import { ThemeDecorator } from "../config/ThemeDecorator"
 import { Theme } from "../enums"
+
+const { Text } = Typography
 
 export default {
   component: SearchField,

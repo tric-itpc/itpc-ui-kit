@@ -3,7 +3,7 @@
   min-height: 40px;
   padding: 6px 20px;
 
-  font-size: 14px;
+  font-size: var(--itpc-font-size-xs);
   color: var(--itpc-primary-text-color-component);
 
   border: 1px solid var(--itpc-primary-border-color);

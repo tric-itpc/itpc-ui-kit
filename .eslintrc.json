@@ -69,6 +69,13 @@
         "order": "asc"
       }
     ],
+    "perfectionist/sort-union-types": [
+      "error",
+      {
+        "type": "alphabetical",
+        "order": "asc"
+      }
+    ],
     "perfectionist/sort-jsx-props": [
       "error",
       {

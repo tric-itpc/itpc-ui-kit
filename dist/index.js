@@ -2249,7 +2249,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 7744:
+/***/ 5024:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ 6207:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ 734:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -24287,6 +24307,7 @@ var DatePicker = function (_a) {
     var _s = (0, react_1.useState)(false), focused = _s[0], onHandleFocused = _s[1];
     var _t = (0, react_1.useState)(false), isShowCalendar = _t[0], setIsShowCalendar = _t[1];
     var _u = (0, react_1.useState)({}), stylePositionCalendar = _u[0], setStylePositionCalendar = _u[1];
+    var datePickerRef = (0, react_1.useRef)(null);
     var inputWrapRef = (0, react_1.useRef)(null);
     var calendarWrapRef = (0, react_1.useRef)(null);
     var onOpenCalendar = function () {
@@ -24354,7 +24375,7 @@ var DatePicker = function (_a) {
             calculatePositionCalendar();
         }
     }, [windowWidth, isShowCalendar]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-datepicker", className) }, rest),
+    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-datepicker", className), ref: datePickerRef }, rest),
         react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-datepicker__input-wrap", validationState === "invalid" && "itpc-datepicker__input-wrap_error"), ref: inputWrapRef },
             placeholder && (react_1.default.createElement(_elements_1.Placeholder, { focused: focused || !!value.length, htmlFor: id, validationState: validationState }, placeholder)),
             react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: (0, classnames_1.default)("itpc-datepicker__input", (focused || value.length) && "itpc-datepicker__input_focused"), disabled: disabled, format: withTime ? constants_1.FORMAT_MASK_DATE_TIME : constants_1.FORMAT_MASK_DATE, id: id, mask: withTime ? constants_1.MASK_DATE_TIME : constants_1.MASK_DATE, name: name, onBlur: onBlurPicker, onFocus: onFocusPicker, onValueChange: onChangePicker, type: "text", value: value, allowEmptyFormatting: true, valueIsNumericString: true }),
@@ -24363,7 +24384,7 @@ var DatePicker = function (_a) {
         react_1.default.createElement("div", { className: "itpc-datepicker__calendar-wrap", ref: calendarWrapRef, style: stylePositionCalendar },
             react_1.default.createElement(lab_1.Calendar, { currentValue: withTime
                     ? (0, utils_1.parseNumericStringToISODateTime)(value)
-                    : (0, utils_1.parseNumericStringToISODate)(value), activeDates: activeDates, disabledAfterDate: disabledAfterDate, disabledBeforeDate: disabledBeforeDate, disabledDates: disabledDates, disabledDaysOfWeek: disabledDaysOfWeek, disabledSelectMonth: disabledSelectMonth, disabledSelectYear: disabledSelectYear, handleShow: onCloseCalendar, id: id, name: name, offsetYear: offsetYear, onChange: onChangeDate, scrollToYear: scrollToYear, show: isShowCalendar, withTime: withTime, yearsFromTo: yearsFromTo }))));
+                    : (0, utils_1.parseNumericStringToISODate)(value), activeDates: activeDates, disabledAfterDate: disabledAfterDate, disabledBeforeDate: disabledBeforeDate, disabledDates: disabledDates, disabledDaysOfWeek: disabledDaysOfWeek, disabledSelectMonth: disabledSelectMonth, disabledSelectYear: disabledSelectYear, handleShow: onCloseCalendar, id: id, name: name, offsetYear: offsetYear, onChange: onChangeDate, parentRef: datePickerRef, scrollToYear: scrollToYear, show: isShowCalendar, withTime: withTime, yearsFromTo: yearsFromTo }))));
 };
 exports.DatePicker = DatePicker;
 
@@ -24754,6 +24775,19 @@ exports.getCalculatePositionCalendar = getCalculatePositionCalendar;
 
 /***/ }),
 
+/***/ 7526:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.numberAndOnlyPointRegExp = exports.dotRegExp = void 0;
+exports.dotRegExp = /[,юб/]/gi;
+exports.numberAndOnlyPointRegExp = /^\d*\.?\d*$/u;
+
+
+/***/ }),
+
 /***/ 185:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -24812,8 +24846,8 @@ exports.DecimalField = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
-var enums_1 = __webpack_require__(9965);
-var DecimalFixed_1 = __webpack_require__(1697);
+var lab_1 = __webpack_require__(432);
+var constants_1 = __webpack_require__(7526);
 var DecimalField = function (_a) {
     var _b = _a.accuracy, accuracy = _b === void 0 ? 0 : _b, _c = _a.canEmptyString, canEmptyString = _c === void 0 ? false : _c, _d = _a.className, className = _d === void 0 ? "" : _d, _e = _a.disabled, disabled = _e === void 0 ? false : _e, _f = _a.errorMessage, errorMessage = _f === void 0 ? "" : _f, icon = _a.icon, _g = _a.id, id = _g === void 0 ? "itpc-input" : _g, maxLength = _a.maxLength, _h = _a.name, name = _h === void 0 ? "itpc-input" : _h, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _j = _a.placeholder, placeholder = _j === void 0 ? "" : _j, _k = _a.validationState, validationState = _k === void 0 ? "valid" : _k, _l = _a.value, value = _l === void 0 ? "" : _l, rest = __rest(_a, ["accuracy", "canEmptyString", "className", "disabled", "errorMessage", "icon", "id", "maxLength", "name", "onBlur", "onChange", "onFocus", "placeholder", "validationState", "value"]);
     var _m = (0, react_1.useState)(false), focused = _m[0], onHandleFocused = _m[1];
@@ -24835,10 +24869,10 @@ var DecimalField = function (_a) {
             onChange(value, event);
             return;
         }
-        var valueWithReplace = value.replace(enums_1.dotRegExp, ".");
-        var isValid = enums_1.numberAndOnlyPointRegExp.test(valueWithReplace);
+        var valueWithReplace = value.replace(constants_1.dotRegExp, ".");
+        var isValid = constants_1.numberAndOnlyPointRegExp.test(valueWithReplace);
         if (isValid && onChange) {
-            onChange(new DecimalFixed_1.DecimalFixed(valueWithReplace, accuracy).toString(), event);
+            onChange(new lab_1.DecimalFixed(valueWithReplace, accuracy).toString(), event);
         }
     };
     return (react_1.default.createElement(_elements_1.Field, __assign({ className: className }, rest),
@@ -26688,50 +26722,6 @@ exports.Tabs = Tabs;
 
 /***/ }),
 
-/***/ 2803:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Text = void 0;
-var react_1 = __importDefault(__webpack_require__(9155));
-var classnames_1 = __importDefault(__webpack_require__(6942));
-__webpack_require__(7744);
-var Text = function (_a) {
-    var children = _a.children, className = _a.className, rest = __rest(_a, ["children", "className"]);
-    return (react_1.default.createElement("p", __assign({ className: (0, classnames_1.default)("itpc-text", className) }, rest), children));
-};
-exports.Text = Text;
-
-
-/***/ }),
-
 /***/ 5524:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -26916,6 +26906,298 @@ var TextField = function (_a) {
             icon && react_1.default.createElement(_elements_1.InputIcon, null, icon))));
 };
 exports.TextField = TextField;
+
+
+/***/ }),
+
+/***/ 9823:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Link = void 0;
+var react_1 = __importDefault(__webpack_require__(9155));
+var enums_1 = __webpack_require__(9965);
+__webpack_require__(5024);
+var utils_1 = __webpack_require__(5988);
+var Link = function (_a) {
+    var children = _a.children, className = _a.className, _b = _a.disabled, disabled = _b === void 0 ? false : _b, onClick = _a.onClick, _c = _a.size, size = _c === void 0 ? enums_1.TextSize.XS : _c, style = _a.style, _d = _a.through, through = _d === void 0 ? false : _d, _e = _a.underline, underline = _e === void 0 ? true : _e, _f = _a.weight, weight = _f === void 0 ? enums_1.TextWeight.NORMAL : _f, rest = __rest(_a, ["children", "className", "disabled", "onClick", "size", "style", "through", "underline", "weight"]);
+    return (react_1.default.createElement("a", __assign({ className: (0, utils_1.generateClassList)({
+            className: className,
+            disabled: disabled,
+            size: size,
+            through: through,
+            underline: underline,
+            weight: weight,
+        }), onClick: onClick, style: style }, rest), children));
+};
+exports.Link = Link;
+
+
+/***/ }),
+
+/***/ 5988:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.generateClassList = void 0;
+var classnames_1 = __importDefault(__webpack_require__(6942));
+var utils_1 = __webpack_require__(2213);
+var generateClassList = function (props) {
+    return (0, classnames_1.default)("itpc-link", props.disabled && "itpc-link_disabled", (0, utils_1.generateBaseClassList)(props));
+};
+exports.generateClassList = generateClassList;
+
+
+/***/ }),
+
+/***/ 7066:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Text = void 0;
+var react_1 = __importDefault(__webpack_require__(9155));
+var enums_1 = __webpack_require__(9965);
+__webpack_require__(6207);
+var utils_1 = __webpack_require__(1995);
+var Text = function (_a) {
+    var children = _a.children, className = _a.className, onClick = _a.onClick, _b = _a.size, size = _b === void 0 ? enums_1.TextSize.XS : _b, style = _a.style, _c = _a.tag, tag = _c === void 0 ? enums_1.TextTag.PARAGRAPH : _c, _d = _a.through, through = _d === void 0 ? false : _d, _e = _a.type, type = _e === void 0 ? enums_1.TextType.PRIMARY : _e, _f = _a.underline, underline = _f === void 0 ? false : _f, weight = _a.weight, rest = __rest(_a, ["children", "className", "onClick", "size", "style", "tag", "through", "type", "underline", "weight"]);
+    var Tag = (0, utils_1.getTag)(tag);
+    return (react_1.default.createElement(Tag, __assign({ className: (0, utils_1.generateClassList)({
+            className: className,
+            size: size,
+            through: through,
+            type: type,
+            underline: underline,
+            weight: weight,
+        }), onClick: onClick, style: style }, rest), children));
+};
+exports.Text = Text;
+
+
+/***/ }),
+
+/***/ 1995:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.generateClassList = exports.getTag = void 0;
+var classnames_1 = __importDefault(__webpack_require__(6942));
+var utils_1 = __webpack_require__(2213);
+var getTag = function (tag) { return tag; };
+exports.getTag = getTag;
+var generateClassList = function (props) {
+    return (0, classnames_1.default)("itpc-text", (0, utils_1.generateBaseClassList)(props));
+};
+exports.generateClassList = generateClassList;
+
+
+/***/ }),
+
+/***/ 3411:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Title = void 0;
+var react_1 = __importDefault(__webpack_require__(9155));
+var enums_1 = __webpack_require__(9965);
+__webpack_require__(734);
+var utils_1 = __webpack_require__(3568);
+var Title = function (_a) {
+    var children = _a.children, className = _a.className, _b = _a.level, level = _b === void 0 ? 1 : _b, onClick = _a.onClick, size = _a.size, style = _a.style, _c = _a.through, through = _c === void 0 ? false : _c, _d = _a.type, type = _d === void 0 ? enums_1.TextType.PRIMARY : _d, _e = _a.underline, underline = _e === void 0 ? false : _e, _f = _a.weight, weight = _f === void 0 ? enums_1.TextWeight.BOLD : _f, rest = __rest(_a, ["children", "className", "level", "onClick", "size", "style", "through", "type", "underline", "weight"]);
+    var Tag = (0, utils_1.getTag)(level);
+    return (react_1.default.createElement(Tag, __assign({ className: (0, utils_1.generateClassList)({
+            className: className,
+            size: size,
+            through: through,
+            type: type,
+            underline: underline,
+            weight: weight,
+        }), onClick: onClick, style: style }, rest), children));
+};
+exports.Title = Title;
+
+
+/***/ }),
+
+/***/ 3568:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.generateClassList = exports.getTag = void 0;
+var classnames_1 = __importDefault(__webpack_require__(6942));
+var utils_1 = __webpack_require__(2213);
+var getTag = function (level) {
+    switch (level) {
+        case 1:
+            return "h1";
+        case 2:
+            return "h2";
+        case 3:
+            return "h3";
+        case 4:
+            return "h4";
+        case 5:
+            return "h5";
+        case 6:
+            return "h6";
+        default:
+            return "h1";
+    }
+};
+exports.getTag = getTag;
+var generateClassList = function (props) {
+    return (0, classnames_1.default)("itpc-title", (0, utils_1.generateBaseClassList)(props));
+};
+exports.generateClassList = generateClassList;
+
+
+/***/ }),
+
+/***/ 2232:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Title = exports.Text = exports.Link = void 0;
+var Link_1 = __webpack_require__(9823);
+Object.defineProperty(exports, "Link", ({ enumerable: true, get: function () { return Link_1.Link; } }));
+var Text_1 = __webpack_require__(7066);
+Object.defineProperty(exports, "Text", ({ enumerable: true, get: function () { return Text_1.Text; } }));
+var Title_1 = __webpack_require__(3411);
+Object.defineProperty(exports, "Title", ({ enumerable: true, get: function () { return Title_1.Title; } }));
+
+
+/***/ }),
+
+/***/ 2213:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.generateBaseClassList = void 0;
+var classnames_1 = __importDefault(__webpack_require__(6942));
+var generateBaseClassList = function (props) {
+    return (0, classnames_1.default)(props.type && "itpc-text_color_".concat(props.type), props.size && "itpc-text_size_".concat(props.size), props.weight && "itpc-text_weight_".concat(props.weight), props.through && "itpc-text_through", props.underline && "itpc-text_underline", props.className);
+};
+exports.generateBaseClassList = generateBaseClassList;
+
+
+/***/ }),
+
+/***/ 6997:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Typography = void 0;
+var components_1 = __webpack_require__(2232);
+exports.Typography = {
+    Link: components_1.Link,
+    Text: components_1.Text,
+    Title: components_1.Title,
+};
 
 
 /***/ }),
@@ -27372,7 +27654,7 @@ Object.defineProperty(exports, "SelectItem", ({ enumerable: true, get: function 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TextField = exports.TextAreaField = exports.Text = exports.Tabs = exports.TableSort = exports.TableRow = exports.TableHeader = exports.TableFooter = exports.TableColumn = exports.TableBody = exports.Table = exports.TabButton = exports.SelectField = exports.SearchField = exports.Row = exports.Preloader = exports.Popup = exports.Pagination = exports.NumberField = exports.MultiSelectField = exports.ModalFooter = exports.ModalContent = exports.Modal = exports.Flex = exports.ErrorMessage = exports.DecimalField = exports.DatePicker = exports.Col = exports.Checkbox = exports.Cell = exports.Card = exports.ButtonRound = exports.Button = exports.AccordionItem = exports.AccordionHeader = exports.AccordionBody = exports.AccordionArrow = exports.Accordion = void 0;
+exports.Typography = exports.TextField = exports.TextAreaField = exports.Tabs = exports.TableSort = exports.TableRow = exports.TableHeader = exports.TableFooter = exports.TableColumn = exports.TableBody = exports.Table = exports.TabButton = exports.SelectField = exports.SearchField = exports.Row = exports.Preloader = exports.Popup = exports.Pagination = exports.NumberField = exports.MultiSelectField = exports.ModalFooter = exports.ModalContent = exports.Modal = exports.Flex = exports.ErrorMessage = exports.DecimalField = exports.DatePicker = exports.Col = exports.Checkbox = exports.Cell = exports.Card = exports.ButtonRound = exports.Button = exports.AccordionItem = exports.AccordionHeader = exports.AccordionBody = exports.AccordionArrow = exports.Accordion = void 0;
 var Accordion_1 = __webpack_require__(1976);
 Object.defineProperty(exports, "Accordion", ({ enumerable: true, get: function () { return Accordion_1.Accordion; } }));
 Object.defineProperty(exports, "AccordionArrow", ({ enumerable: true, get: function () { return Accordion_1.AccordionArrow; } }));
@@ -27429,12 +27711,12 @@ Object.defineProperty(exports, "TableSort", ({ enumerable: true, get: function (
 var Tabs_1 = __webpack_require__(8238);
 Object.defineProperty(exports, "TabButton", ({ enumerable: true, get: function () { return Tabs_1.TabButton; } }));
 Object.defineProperty(exports, "Tabs", ({ enumerable: true, get: function () { return Tabs_1.Tabs; } }));
-var Text_1 = __webpack_require__(2803);
-Object.defineProperty(exports, "Text", ({ enumerable: true, get: function () { return Text_1.Text; } }));
 var TextAreaField_1 = __webpack_require__(5524);
 Object.defineProperty(exports, "TextAreaField", ({ enumerable: true, get: function () { return TextAreaField_1.TextAreaField; } }));
 var TextField_1 = __webpack_require__(2329);
 Object.defineProperty(exports, "TextField", ({ enumerable: true, get: function () { return TextField_1.TextField; } }));
+var Typography_1 = __webpack_require__(6997);
+Object.defineProperty(exports, "Typography", ({ enumerable: true, get: function () { return Typography_1.Typography; } }));
 
 
 /***/ }),
@@ -27471,7 +27753,7 @@ Object.defineProperty(exports, "ConfigContext", ({ enumerable: true, get: functi
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.RowJustify = exports.RowAlign = exports.NumberColumns = exports.SortType = exports.Theme = exports.numberAndOnlyPointRegExp = exports.dotRegExp = exports.UIKitColors = void 0;
+exports.TextTag = exports.TextType = exports.TextWeight = exports.TextSize = exports.RowJustify = exports.RowAlign = exports.NumberColumns = exports.SortType = exports.Theme = exports.UIKitColors = void 0;
 var UIKitColors;
 (function (UIKitColors) {
     UIKitColors["black"] = "#000";
@@ -27485,8 +27767,6 @@ var UIKitColors;
     UIKitColors["white"] = "#FFF";
     UIKitColors["yellow"] = "#DCB21E";
 })(UIKitColors = exports.UIKitColors || (exports.UIKitColors = {}));
-exports.dotRegExp = /[,юб/]/gi;
-exports.numberAndOnlyPointRegExp = /^\d*\.?\d*$/u;
 var Theme;
 (function (Theme) {
     Theme["DARK"] = "dark";
@@ -27519,6 +27799,38 @@ var RowJustify;
     RowJustify["SPACE_EVENLY"] = "evenly";
     RowJustify["START"] = "start";
 })(RowJustify = exports.RowJustify || (exports.RowJustify = {}));
+var TextSize;
+(function (TextSize) {
+    TextSize["L"] = "l";
+    TextSize["M"] = "m";
+    TextSize["S"] = "s";
+    TextSize["XL"] = "xl";
+    TextSize["XS"] = "xs";
+    TextSize["XXL"] = "xxl";
+    TextSize["XXS"] = "xxs";
+})(TextSize = exports.TextSize || (exports.TextSize = {}));
+var TextWeight;
+(function (TextWeight) {
+    TextWeight["BOLD"] = "bold";
+    TextWeight["LIGHTER"] = "lighter";
+    TextWeight["NORMAL"] = "normal";
+})(TextWeight = exports.TextWeight || (exports.TextWeight = {}));
+var TextType;
+(function (TextType) {
+    TextType["DANGER"] = "danger";
+    TextType["DISABLED"] = "disabled";
+    TextType["PRIMARY"] = "primary";
+    TextType["SECONDARY"] = "secondary";
+    TextType["SUCCESS"] = "success";
+    TextType["WARNING"] = "warning";
+})(TextType = exports.TextType || (exports.TextType = {}));
+var TextTag;
+(function (TextTag) {
+    TextTag["CODE"] = "code";
+    TextTag["EM"] = "em";
+    TextTag["PARAGRAPH"] = "p";
+    TextTag["STRONG"] = "strong";
+})(TextTag = exports.TextTag || (exports.TextTag = {}));
 
 
 /***/ }),
@@ -28044,7 +28356,7 @@ var components_1 = __webpack_require__(6224);
 __webpack_require__(7252);
 var utils_2 = __webpack_require__(4078);
 var Calendar = function (_a) {
-    var activeDates = _a.activeDates, _b = _a.currentValue, currentValue = _b === void 0 ? (0, utils_2.getTodayMonthYear)() : _b, disabledAfterDate = _a.disabledAfterDate, disabledBeforeDate = _a.disabledBeforeDate, disabledDates = _a.disabledDates, disabledDaysOfWeek = _a.disabledDaysOfWeek, disabledSelectMonth = _a.disabledSelectMonth, disabledSelectYear = _a.disabledSelectYear, handleShow = _a.handleShow, id = _a.id, name = _a.name, _c = _a.offsetYear, offsetYear = _c === void 0 ? 10 : _c, onChange = _a.onChange, scrollToYear = _a.scrollToYear, show = _a.show, _d = _a.withTime, withTime = _d === void 0 ? false : _d, yearsFromTo = _a.yearsFromTo;
+    var activeDates = _a.activeDates, _b = _a.currentValue, currentValue = _b === void 0 ? (0, utils_2.getTodayMonthYear)() : _b, disabledAfterDate = _a.disabledAfterDate, disabledBeforeDate = _a.disabledBeforeDate, disabledDates = _a.disabledDates, disabledDaysOfWeek = _a.disabledDaysOfWeek, disabledSelectMonth = _a.disabledSelectMonth, disabledSelectYear = _a.disabledSelectYear, handleShow = _a.handleShow, id = _a.id, name = _a.name, _c = _a.offsetYear, offsetYear = _c === void 0 ? 10 : _c, onChange = _a.onChange, parentRef = _a.parentRef, scrollToYear = _a.scrollToYear, show = _a.show, _d = _a.withTime, withTime = _d === void 0 ? false : _d, yearsFromTo = _a.yearsFromTo;
     var _e = (0, react_1.useState)((0, utils_2.initCurrentDate)(currentValue, withTime)), currentDate = _e[0], setCurrentDate = _e[1];
     var _f = (0, react_1.useState)((0, utils_2.initCurrentTime)(currentValue, withTime)[0]), hours = _f[0], setHours = _f[1];
     var _g = (0, react_1.useState)((0, utils_2.initCurrentTime)(currentValue, withTime)[1]), minutes = _g[0], setMinutes = _g[1];
@@ -28091,7 +28403,7 @@ var Calendar = function (_a) {
         setIsShowSelectYear(!isShowSelectYear);
         setIsShowSelectMonth(false);
     };
-    (0, hooks_1.useOnClickOutside)(calendarRef, handleShow);
+    (0, hooks_1.useOnClickOutside)(calendarRef, handleShow, parentRef);
     (0, react_1.useEffect)(function () {
         if (currentValue !== "".concat(currentDate, "T").concat(hours, ":").concat(minutes, ":").concat(seconds)) {
             setCurrentDate((0, utils_2.initCurrentDate)(currentValue, withTime));
@@ -28375,23 +28687,23 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useOnClickOutside = void 0;
 var react_1 = __webpack_require__(9155);
 var useOnClickOutside = function (ref, handler, handlerRef) {
+    var listener = function (event) {
+        var target = ref.current;
+        var handlerTarget = handlerRef === null || handlerRef === void 0 ? void 0 : handlerRef.current;
+        if (target &&
+            !target.contains(event.target) &&
+            !(handlerTarget === null || handlerTarget === void 0 ? void 0 : handlerTarget.contains(event.target))) {
+            handler(event);
+        }
+    };
     (0, react_1.useEffect)(function () {
-        var listener = function (event) {
-            var target = ref.current;
-            var handlerTarget = handlerRef === null || handlerRef === void 0 ? void 0 : handlerRef.current;
-            if (target &&
-                !target.contains(event.target) &&
-                !(handlerTarget === null || handlerTarget === void 0 ? void 0 : handlerTarget.contains(event.target))) {
-                handler(event);
-            }
-        };
         document.addEventListener("mouseup", listener);
         document.addEventListener("touchend", listener);
         return function () {
             document.removeEventListener("mouseup", listener);
             document.removeEventListener("touchend", listener);
         };
-    }, [ref]);
+    }, [ref, handler]);
 };
 exports.useOnClickOutside = useOnClickOutside;
 
@@ -28409,19 +28721,19 @@ var react_1 = __webpack_require__(9155);
 var ConfigContext_1 = __webpack_require__(3226);
 var enums_1 = __webpack_require__(9965);
 var useTheme = function () {
-    var themeComponent = (0, react_1.useContext)(ConfigContext_1.ConfigContext).themeComponent;
-    if (!themeComponent) {
+    var theme = (0, react_1.useContext)(ConfigContext_1.ConfigContext).theme;
+    if (!theme) {
         return {
             theme: enums_1.Theme.DEFAULT,
             themeClass: "",
             toggleTheme: function () { },
         };
     }
-    var setTheme = themeComponent.setTheme, theme = themeComponent.theme;
-    var _a = (0, react_1.useState)(theme), currentTheme = _a[0], setCurrentTheme = _a[1];
+    var setType = theme.setType, type = theme.type;
+    var _a = (0, react_1.useState)(type), currentTheme = _a[0], setCurrentTheme = _a[1];
     var toggleTheme = function () {
         var newTheme = currentTheme === enums_1.Theme.DARK ? enums_1.Theme.DEFAULT : enums_1.Theme.DARK;
-        setTheme === null || setTheme === void 0 ? void 0 : setTheme(newTheme);
+        setType === null || setType === void 0 ? void 0 : setType(newTheme);
         setCurrentTheme(newTheme);
     };
     return {
@@ -28491,9 +28803,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Calendar = void 0;
+exports.DecimalFixed = exports.Calendar = void 0;
 var Calendar_1 = __webpack_require__(4333);
 Object.defineProperty(exports, "Calendar", ({ enumerable: true, get: function () { return Calendar_1.Calendar; } }));
+var DecimalFixed_1 = __webpack_require__(1697);
+Object.defineProperty(exports, "DecimalFixed", ({ enumerable: true, get: function () { return DecimalFixed_1.DecimalFixed; } }));
 __exportStar(__webpack_require__(6771), exports);
 
 
@@ -28533,19 +28847,24 @@ var react_1 = __importStar(__webpack_require__(9155));
 var ConfigContext_1 = __webpack_require__(3226);
 var enums_1 = __webpack_require__(9965);
 var ConfigProvider = function (props) {
-    var _a;
+    var _a, _b;
     var children = props.children;
-    var _b = (0, react_1.useState)((_a = props.theme) !== null && _a !== void 0 ? _a : enums_1.Theme.DEFAULT), theme = _b[0], setTheme = _b[1];
-    var themeClass = enums_1.Theme.DEFAULT === theme ? "" : "itpc-theme-".concat(theme);
-    var defaultProps = (0, react_1.useMemo)(function () { return ({
-        themeComponent: {
-            setTheme: setTheme,
-            theme: theme,
-            themeClass: themeClass,
-        },
-    }); }, [theme]);
+    var _c = (0, react_1.useState)((_b = (_a = props.theme) === null || _a === void 0 ? void 0 : _a.type) !== null && _b !== void 0 ? _b : enums_1.Theme.DEFAULT), type = _c[0], setType = _c[1];
+    var themeClass = enums_1.Theme.DEFAULT === type ? "" : "itpc-theme-".concat(type);
+    var defaultProps = (0, react_1.useMemo)(function () {
+        var _a, _b;
+        return ({
+            theme: {
+                disabled: (_b = (_a = props.theme) === null || _a === void 0 ? void 0 : _a.disabled) !== null && _b !== void 0 ? _b : false,
+                setType: setType,
+                themeClass: themeClass,
+                type: type,
+            },
+        });
+    }, [type]);
     (0, react_1.useEffect)(function () {
-        document.body.className = themeClass;
+        var className = document.body.className.replace(/^itpc-theme-\w+/, "");
+        document.body.className = "".concat(className, " ").concat(themeClass);
     }, [themeClass]);
     return (react_1.default.createElement(ConfigContext_1.ConfigContext.Provider, { value: defaultProps }, children));
 };

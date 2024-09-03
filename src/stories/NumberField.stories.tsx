@@ -2,10 +2,12 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { FormattedValues, Text } from "../components"
+import { FormattedValues, Typography } from "../components"
 import { NumberField, Props } from "../components/NumberField"
 import { ThemeDecorator } from "../config/ThemeDecorator"
 import { Theme } from "../enums"
+
+const { Text } = Typography
 
 export default {
   component: NumberField,

@@ -1,5 +1,5 @@
-import { Theme } from "../src"
 import "../src/styles/global.css"
+import { Theme } from "../src"
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

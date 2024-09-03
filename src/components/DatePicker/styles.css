@@ -71,6 +71,6 @@
 .itpc-datepicker__error-message {
   margin: 0 10px;
 
-  font-size: 12px;
+  font-size: var(--itpc-font-size-xxs);
   color: var(--itpc-danger-text-color);
 }

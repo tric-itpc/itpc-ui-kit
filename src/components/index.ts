@@ -33,9 +33,9 @@ import {
 } from "./Table"
 import { TableSort } from "./TableSort"
 import { TabButton, Tabs } from "./Tabs"
-import { Text } from "./Text"
 import { TextAreaField } from "./TextAreaField"
 import { TextField } from "./TextField"
+import { Typography } from "./Typography"
 
 export {
   Accordion,
@@ -73,9 +73,9 @@ export {
   TableRow,
   TableSort,
   Tabs,
-  Text,
   TextAreaField,
   TextField,
+  Typography,
 }
 
 export type {
