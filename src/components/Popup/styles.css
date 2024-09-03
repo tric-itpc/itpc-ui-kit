@@ -7,7 +7,7 @@
   max-width: 300px;
   padding: 20px;
 
-  font-size: 14px;
+  font-size: var(--itpc-font-size-xs);
   color: var(--itpc-primary-text-color);
 
   border: 1px solid var(--itpc-input-border-color);
@@ -42,7 +42,7 @@
   align-items: center;
   justify-content: space-between;
 
-  font-size: 14px;
+  font-size: var(--itpc-font-size-xs);
 }
 
 .itpc-popup__header > .itpc-icon__close {
@@ -52,5 +52,5 @@
 .itpc-popup__title {
   margin: 0;
 
-  font-size: 16px;
+  font-size: var(--itpc-font-size-s);
 }

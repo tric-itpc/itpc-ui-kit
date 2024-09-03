@@ -7,22 +7,27 @@ import { ConfigProviderProps } from "./types"
 
 export const ConfigProvider: React.FC<ConfigProviderProps> = (props) => {
   const { children } = props
-  const [theme, setTheme] = useState<Theme>(props.theme ?? Theme.DEFAULT)
+  const [type, setType] = useState<Theme>(props.theme?.type ?? Theme.DEFAULT)
 
-  const themeClass = Theme.DEFAULT === theme ? "" : `itpc-theme-${theme}`
+  const themeClass = Theme.DEFAULT === type ? "" : `itpc-theme-${type}`
   const defaultProps: ConfigContextProps = useMemo(
     () => ({
-      themeComponent: {
-        setTheme,
-        theme,
+      theme: {
+        disabled: props.theme?.disabled ?? false,
+        setType,
         themeClass,
+        type,
       },
     }),
-    [theme]
+    [type]
   )
 
   useEffect(() => {
-    document.body.className = themeClass
+    const className = document.body.className
+      .replace(/itpc-theme-\w+/, "")
+      .trim()
+
+    document.body.className = `${className} ${themeClass}`.trim()
   }, [themeClass])
 
   return (

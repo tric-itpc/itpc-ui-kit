@@ -28,11 +28,11 @@
 }
 
 .itpc-calendar__cell_not_current {
-  color: var(--itpc-additional-text-color-component);
+  color: var(--itpc-disabled-text-color);
 }
 
 .itpc-calendar__cell_disabled {
-  color: var(--itpc-additional-text-color-component);
+  color: var(--itpc-disabled-text-color);
 
   cursor: default;
 

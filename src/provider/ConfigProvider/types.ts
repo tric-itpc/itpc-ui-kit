@@ -4,6 +4,9 @@ import { Theme } from "../../enums"
 
 export interface ConfigProviderProps {
   children: ReactNode
-  theme?: Theme
-  themeClass?: string
+  theme?: {
+    disabled?: boolean
+    themeClass?: string
+    type: Theme
+  }
 }

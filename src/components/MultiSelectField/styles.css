@@ -24,7 +24,7 @@
   height: 100%;
   padding: 7px 10px;
 
-  font-size: 14px;
+  font-size: var(--itpc-font-size-xs);
   color: var(--itpc-primary-text-color);
 
   border: none;

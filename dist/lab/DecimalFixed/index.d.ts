@@ -18,4 +18,3 @@ export declare class DecimalFixed implements IDecimalFixed {
     toDecimal(): Decimal;
     toString(): string;
 }
-export { IDecimalFixed };

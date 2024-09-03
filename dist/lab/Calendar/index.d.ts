@@ -15,6 +15,7 @@ export interface Props {
     name: string;
     offsetYear?: number;
     onChange?: (date: string, event: React.MouseEvent<HTMLTableCellElement> | React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>, info: IInfo) => void;
+    parentRef?: React.RefObject<HTMLDivElement>;
     scrollToYear?: number;
     show: boolean;
     withTime?: boolean;

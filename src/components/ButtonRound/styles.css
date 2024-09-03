@@ -8,7 +8,7 @@
   height: 30px;
   padding: 10px;
 
-  font-size: 14px;
+  font-size: var(--itpc-font-size-xs);
   color: var(--itpc-secondary-text-color-component);
 
   border: none;
@@ -47,7 +47,7 @@
   width: max-content;
   padding: 2px 4px;
 
-  font-size: 12px;
+  font-size: var(--itpc-font-size-xxs);
   color: var(--itpc-primary-text-color-component);
 
   border-radius: 0;

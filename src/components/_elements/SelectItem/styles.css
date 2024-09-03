@@ -10,7 +10,7 @@
   max-height: 40px;
   padding: 0.75rem;
 
-  font-size: 14px;
+  font-size: var(--itpc-font-size-xs);
   color: var(--itpc-primary-text-color);
 
   background-color: var(--itpc-primary-bg-color);

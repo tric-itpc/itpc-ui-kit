@@ -43,8 +43,8 @@
 }
 
 .itpc-calendar__double-dots {
-  font-weight: 500;
-  font-size: 22px;
+  font-size: var(--itpc-font-size-m);
+  weight: var(--itpc-font-weight-normal);
 }
 
 .itpc-calendar__button-group {
@@ -62,8 +62,8 @@
   justify-content: center;
   padding: 1rem;
 
-  font-size: 14px;
-  line-height: 16px;
+  font-size: var(--itpc-font-size-xs);
+  line-height: var(--itpc-line-height-xs);
   color: var(--itpc-primary-text-color);
 
   border: none;

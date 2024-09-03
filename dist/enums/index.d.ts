@@ -10,8 +10,6 @@ export declare enum UIKitColors {
     white = "#FFF",
     yellow = "#DCB21E"
 }
-export declare const dotRegExp: RegExp;
-export declare const numberAndOnlyPointRegExp: RegExp;
 export declare enum Theme {
     DARK = "dark",
     DEFAULT = "default"
@@ -38,4 +36,32 @@ export declare enum RowJustify {
     SPACE_BETWEEN = "between",
     SPACE_EVENLY = "evenly",
     START = "start"
+}
+export declare enum TextSize {
+    L = "l",
+    M = "m",
+    S = "s",
+    XL = "xl",
+    XS = "xs",
+    XXL = "xxl",
+    XXS = "xxs"
+}
+export declare enum TextWeight {
+    BOLD = "bold",
+    LIGHTER = "lighter",
+    NORMAL = "normal"
+}
+export declare enum TextType {
+    DANGER = "danger",
+    DISABLED = "disabled",
+    PRIMARY = "primary",
+    SECONDARY = "secondary",
+    SUCCESS = "success",
+    WARNING = "warning"
+}
+export declare enum TextTag {
+    CODE = "code",
+    EM = "em",
+    PARAGRAPH = "p",
+    STRONG = "strong"
 }

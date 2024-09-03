@@ -1,5 +1,4 @@
 import React from "react";
-export type InputState = "default" | "loading" | "success" | "warning" | "cancel";
 export type InputType = "password" | "text";
 export type ButtonType = "button" | "submit" | "reset";
 export type ButtonVariant = "white" | "red";
