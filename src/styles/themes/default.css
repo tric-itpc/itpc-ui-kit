@@ -1,27 +1,64 @@
 .itpc_default_theme {
-  /* Фон */
-  --primary-bg-color: #ffffff;
+  /* фон */
+  --itpc-primary-bg-color: #19192a;
 
-    /* Кнопка */
-      --primary-component-color: #5c53ac;
-      --component-text-color: #ffffff;
- 
-  --primary-component-hover: #6f65cb;
+  /* Фон компонента */
+  --itpc-primary-bg-color-component: #5c53ac;
+  --itpc-secondary-bg-color-component: #ffffff;
+  --itpc-extra-bg-color-component: #c7ccdb;
+  --itpc-disabled-bg-color-component: #b2b7c7;
+  --itpc-danger-bg-color-component: #d42564;
 
-  --hider-table-color: #fafafa;
+  --itpc-primary-bg-hover-color-component: #6f65cb;
+  --itpc-secondary-bg-hover-color-component: #b2b7c7;
+  --itpc-danger-bg-hover-color-component: #c9184a;
+
+  /* Бордеры */
+  --itpc-primary-border-color: #5c53ac;
+  --itpc-primary-border-hover-color: #6f65cb;;
+  --itpc-danger-border-color: #d42564;
+  --itpc-danger-border-hover-color: #c9184a;
+  --itpc-disabled-border-color: #b2b7c7;
+  --itpc-warning-border-color: #ecc022;
+
+  /* Текст */
+  --itpc-primary-text-color: #212529;;
+  --itpc-danger-text-color: #d42564;
+  --itpc-warning-text-color: #ecc022;
+
+  --itpc-primary-text-color-component: #ffffff;
+  --itpc-secondary-text-color-component: #5c53ac;
+
+  /* Иконки */
+  --itpc-primary-icon-color: #393185;
+  --itpc-secondary-icon-color: #ffffff;
+  --itpc-success-icon-color: #7add7a;
+  --itpc-cancel-icon-color: #d42564;
+  --itpc-additional-icon-color: #8f8f8f;
+  --itpc-icon-color-yellow: #ecc022;
+  --itpc-icon-color-blue: #0d6efd;
+  --itpc-icon-color-red: #d42564;
+
+  --itpc-link-color: #0d6efd;
+  --itpc-line-color: #393185;
+
+  /* Тени */
+  --itpc-box-shadow-color: #e5e5e5;
+  --itpc-box-shadow-color-second: #d4d6e7;
+
 
   /* Цвета состояния */
   --error-color: #d42564;
   --success-color: #7add7a;
   --success-green-light-color: #7add7a49;
-  --disabled-color: #b2b7c7;
+  
   --warning-color: #ecc022;
 
   /* Текст */
   --primary-text-color: #212529;
   --secondary-text-color: #b2b7c7;
   --small-text-color: #575757;
-  --button-text-color: #ffffff;
+  
   --input-text-color: #212529;
 
   /* Ховеры */
@@ -29,22 +66,9 @@
   --extra-hover: #e7e7e7;
   --primary-icon-hover: #6f65cb;
 
-  /* Тени */
-  --box-shadow-color: #e5e5e5;
-  --box-shadow-color-second: #d4d6e7;
+  
 
-  /* Иконки */
-  --primary-icon-color: #393185;
-  --secondary-icon-color: #ffffff;
-  --success-icon-color: #7add7a;
-  --cancel-icon-color: #d42564;
-  --additional-icon-color: #8f8f8f;
-  --icon-color-yellow: #ecc022;
-  --icon-color-blue: #0d6efd;
-  --icon-color-red: #d42564;
 
-  --link-color: #0d6efd;
-  --line-color: #393185;
 
   /* Скелетон */
   --skeleton-start: #eeeef4;

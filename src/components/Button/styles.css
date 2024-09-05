@@ -2,10 +2,10 @@
   padding: 6px 20px;
   min-width: 40px;
   min-height: 40px;
-  background-color: var(--primary-component-color);
-  border: 1px solid var(--primary-component-color);
+  background-color: var(--itpc-primary-bg-color-component);
+  border: 1px solid var(--itpc-primary-border-color);
   border-radius: 4px;
-  color: var(--component-text-color);
+  color: var(--itpc-primary-text-color-component);
   cursor: pointer;
   font-size: 14px;
   outline: none;
@@ -14,53 +14,53 @@
 }
 
 .itpc-button:hover {
-  background-color: var(--primary-component-hover);
-  border-color: var(--primary-component-hover);
-  color: var(--component-text-color);
+  background-color: var(--itpc-primary-bg-hover-color-component);
+  border-color: var(--itpc-primary-border-hover-color);
+  color: var(--itpc-primary-text-color-component);
 }
 
 .itpc-button:disabled {
-  background-color: var(--disabled-color);
-  border-color: var(--disabled-color);
-  color: var(--button-text-color);
+  background-color: var(--itpc-disabled-bg-color-component);
+  border-color: var(--itpc-disabled-border-color);
+  color: var(--itpc-primary-text-color-component);
   cursor: default;
 }
 
 
 .itpc-button__color_white {
-  background-color: #fff;
-  border-color: #5c53ac;
-  color: #5c53ac;
+  background-color: var(--itpc-secondary-bg-color-component);
+  border-color: var(--itpc-primary-border-color);
+  color: var(--itpc-secondary-text-color-component);
 }
 
 .itpc-button__color_white:hover {
-  background-color: #6f65cb;
-  border-color: #6f65cb;
-  color: #fff;
+  background-color: var(--itpc-primary-bg-hover-color-component);
+  border-color: var(--itpc-primary-border-hover-color);
+  color: var(--itpc-primary-text-color-component);
 }
 
 .itpc-button__color_white:disabled {
-  background-color: #b2b7c7;
-  border-color: #b2b7c7;
-  color: #fff;
+  background-color: var(--itpc-disabled-bg-color-component);
+  border-color: var(--itpc-disabled-border-color);
+  color: var(--itpc-primary-text-color-component);
   cursor: default;
 }
 
 .itpc-button__color_red {
-  background-color: #d42564;
-  border-color: #d42564;
-  color: #fff;
+  background-color: var(--itpc-danger-bg-color-component);
+  border-color: var(--itpc-danger-border-color);
+  color: var(--itpc-primary-text-color-component);
 }
 
 .itpc-button__color_red:hover {
-  background-color: #c9184a;
-  border-color: #c9184a;
-  color: #fff;
+  background-color: var(--itpc-danger-bg-hover-color-component);
+  border-color: var(--itpc-danger-border-hover-color);
+  color: var(--itpc-primary-text-color-component);
 }
 
 .itpc-button__color_red:disabled {
-  background-color: #b2b7c7;
-  border-color: #b2b7c7;
-  color: #fff;
+  background-color: var(--itpc-disabled-bg-color-component);
+  border-color: var(--itpc-disabled-border-color);
+  color: var(--itpc-primary-text-color-component);
   cursor: default;
 }

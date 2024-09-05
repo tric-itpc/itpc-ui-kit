@@ -11,8 +11,8 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
   className?: string
   disabled?: boolean
   onPress?: (e?: React.MouseEvent<HTMLButtonElement>) => void
-  type?: ButtonType
   theme?: Theme
+  type?: ButtonType
   variant?: ButtonVariant
 }
 
@@ -21,8 +21,8 @@ export const Button: React.FC<Props> = ({
   className = "",
   disabled = false,
   onPress,
-  type = "button",
   theme = Theme.DEFAULT,
+  type = "button",
   variant,
   ...rest
 }: Props) => {
