@@ -4,7 +4,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { TableSort, TableSortProps } from "../components/TableSort"
 import { Column, RowType } from "../components/TableSort/types"
-import { NumberColumns } from "../components/types"
+import { NumberColumns, Theme } from "../components/types"
 
 export default {
   component: TableSort,
@@ -91,22 +91,63 @@ const dataColumns: Column<TypeData>[] = [
 ]
 
 const Template: ComponentStory<React.FC<TableSortProps<TypeData>>> = (args) => (
-  <TableSort {...args} rows={dataRows} />
+  <TableSort {...args} rows={dataRows} theme={args.theme} />
 )
 
 export const Basic = Template.bind({})
 Basic.args = {
   columns: dataColumnsNoSort,
+  theme: Theme.DEFAULT,
 }
 
-export const TableSortOneColumns = Template.bind({})
-TableSortOneColumns.args = {
+export const WithoutSortDark = Template.bind({})
+WithoutSortDark.args = {
+  columns: dataColumnsNoSort,
+  theme: Theme.DARK,
+}
+
+WithoutSortDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}
+
+export const SortByOneColumns = Template.bind({})
+SortByOneColumns.args = {
   columns: dataColumns,
   sortByNumberColumns: NumberColumns.ONE,
+  theme: Theme.DEFAULT,
 }
 
-export const TableSortTwoColumns = Template.bind({})
-TableSortTwoColumns.args = {
+export const SortByOneColumnsDark = Template.bind({})
+SortByOneColumnsDark.args = {
+  columns: dataColumns,
+  sortByNumberColumns: NumberColumns.ONE,
+  theme: Theme.DARK,
+}
+
+SortByOneColumnsDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}
+
+export const SortByTwoColumns = Template.bind({})
+SortByTwoColumns.args = {
   columns: dataColumns,
   sortByNumberColumns: NumberColumns.TWO,
+  theme: Theme.DEFAULT,
+}
+
+export const SortByTwoColumnsDark = Template.bind({})
+SortByTwoColumnsDark.args = {
+  columns: dataColumns,
+  sortByNumberColumns: NumberColumns.TWO,
+  theme: Theme.DARK,
+}
+
+SortByTwoColumnsDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

@@ -6,15 +6,16 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #fff;
+  background-color: var(--itpc-primary-bg-color);
   box-sizing: border-box;
   cursor: pointer;
   font-size: 14px;
   overflow: hidden;
+  color: var(--itpc-primary-text-color);
 }
 
 .itpc-select-item:hover {
-  background-color: #e5e5e5;
+  background-color: var(--itpc-extra-hover-color-component);
 }
 
 .itpc-select-item_disabled {
@@ -27,7 +28,7 @@
   left: -4px;
   width: 4px;
   height: 30px;
-  background-color: #393185;
+  background-color: var(--itpc-primary-icon-color);
   border-radius: 0 3px 3px 0;
 }
 

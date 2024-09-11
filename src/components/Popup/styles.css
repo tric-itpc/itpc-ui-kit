@@ -5,11 +5,11 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-  background-color: #fff;
-  border: 1px solid #b2b7c7;
+  background-color: var(--itpc-primary-bg-color);
+  border: 1px solid var(--itpc-input-border-color);
   border-radius: 4px;
   font-size: 14px;
-  color: #000;
+  color: var(--itpc-primary-text-color);
   visibility: hidden;
   opacity: 0;
   transition: all ease-in-out 0.3s;
@@ -21,15 +21,15 @@
 }
 
 .itpc-popup_color_error {
-  border-color: #d42564;
+  border-color: var(--itpc-danger-border-color);
 }
 
 .itpc-popup_color_warning {
-  border-color: #dcb21e;
+  border-color: var(--itpc-warning-border-color);
 }
 
 .itpc-popup_color_success {
-  border-color: #4db04d;
+  border-color: var(--itpc-success-border-color);
 }
 
 .itpc-popup_position_top_left {

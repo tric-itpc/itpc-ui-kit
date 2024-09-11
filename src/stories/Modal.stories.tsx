@@ -9,6 +9,7 @@ import {
   ModalFooter,
   ModalProps,
 } from "../components/Modal"
+import { Theme } from "../components/types"
 
 export default {
   component: Modal,
@@ -20,20 +21,28 @@ const Template: ComponentStory<React.FC<ModalProps>> = (args) => {
 
   return (
     <>
-      <Button onPress={() => setIsOpenModal(true)}>Open modal</Button>
+      <Button onPress={() => setIsOpenModal(true)} theme={args.theme}>
+        Open modal
+      </Button>
       <Modal
         {...args}
         isOpen={isOpenModal}
         onClose={() => setIsOpenModal(false)}
       >
-        <ModalContent>
+        <ModalContent theme={args.theme}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </ModalContent>
-        <ModalFooter>
-          <Button onPress={() => setIsOpenModal(false)} variant="white">
+        <ModalFooter theme={args.theme}>
+          <Button
+            onPress={() => setIsOpenModal(false)}
+            theme={args.theme}
+            variant="white"
+          >
             Cancel
           </Button>
-          <Button onPress={() => setIsOpenModal(false)}>Ok</Button>
+          <Button onPress={() => setIsOpenModal(false)} theme={args.theme}>
+            Ok
+          </Button>
         </ModalFooter>
       </Modal>
     </>
@@ -43,5 +52,19 @@ const Template: ComponentStory<React.FC<ModalProps>> = (args) => {
 export const Basic = Template.bind({})
 Basic.args = {
   isOverlayClickable: true,
+  theme: Theme.DEFAULT,
   title: "Modal window",
+}
+
+export const ModalDark = Template.bind({})
+ModalDark.args = {
+  isOverlayClickable: true,
+  theme: Theme.DARK,
+  title: "Modal window",
+}
+
+ModalDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

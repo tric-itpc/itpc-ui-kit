@@ -11,6 +11,7 @@ import {
   TableHeader,
   TableProps,
 } from "../components/Table"
+import { Theme } from "../components/types"
 
 export default {
   component: Table,
@@ -18,7 +19,7 @@ export default {
 } as ComponentMeta<React.FC<TableProps>>
 
 const Template: ComponentStory<React.FC<TableProps>> = (args) => (
-  <Table {...args}>
+  <Table theme={args.theme} {...args}>
     <TableHeader>
       <Row>
         <Column>#</Column>
@@ -48,5 +49,18 @@ const Template: ComponentStory<React.FC<TableProps>> = (args) => (
 
 export const Basic = Template.bind({})
 Basic.args = {
+  theme: Theme.DEFAULT,
   title: "Table title",
+}
+
+export const TableDark = Template.bind({})
+TableDark.args = {
+  theme: Theme.DARK,
+  title: "Table title",
+}
+
+TableDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

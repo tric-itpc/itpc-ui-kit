@@ -22,7 +22,7 @@
 }
 
 .itpc-accordion-header:hover {
-  background-color: var(--itpc-secondary-bg-hover-color-component);
+  background-color: var(--itpc-secondary-hover-color-component);
 }
 
 .itpc-accordion-header_opened {

@@ -1,11 +1,12 @@
 .itpc-table {
   width: 100%;
   table-layout: unset;
-  border: 1px solid #b2b7c7;
+  border: 1px solid var(--itpc-input-border-color);
   border-spacing: 0;
   border-radius: 4px;
   text-align: left;
   overflow: hidden;
+  color: var(--itpc-primary-text-color);
 }
 
 .itpc-table__caption {
@@ -21,7 +22,7 @@
 .itpc-table__column {
   padding: 10px;
   font-weight: 400;
-  border-bottom: 1px solid #b2b7c7;
+  border-bottom: 1px solid var(--itpc-input-border-color);
   border-radius: 0;
   cursor: default;
 }
@@ -55,7 +56,7 @@
 }
 
 .itpc-table__row:hover {
-  background-color: #e5e5e5;
+  background-color: var(--itpc-table-hover-color-component);
 }
 
 .itpc-table__footer {

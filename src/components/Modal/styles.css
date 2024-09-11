@@ -14,7 +14,7 @@
 }
 
 .itpc-modal-overlay_opened {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--itpc-primary-bg-color-overlay);
   visibility: visible;
   opacity: 1;
 }
@@ -28,7 +28,7 @@
   min-width: 30%;
   max-width: 80%;
   max-height: 80%;
-  background-color: #fff;
+  background-color: var(--itpc-primary-bg-color);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -43,6 +43,7 @@
   justify-content: space-between;
   gap: 1rem;
   font-size: 20px;
+  color: var(--itpc-primary-text-color);
 }
 
 .itpc-modal__content {
@@ -51,6 +52,7 @@
   justify-content: space-between;
   gap: 30px;
   overflow-y: auto;
+  color: var(--itpc-primary-text-color);
 }
 
 .itpc-modal__footer {

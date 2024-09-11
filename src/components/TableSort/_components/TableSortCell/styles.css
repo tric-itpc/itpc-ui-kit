@@ -11,5 +11,5 @@
 }
 
 .itpc-table-sort__cell_back {
-  background-color: #e5e5e5;
+  background-color: var(--itpc-table-hover-color-component);
 }

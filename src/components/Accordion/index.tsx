@@ -115,7 +115,7 @@ export interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
 export const Accordion: React.FC<AccordionProps> = ({
   children,
   className = "",
-  theme,
+  theme = Theme.DEFAULT,
   ...rest
 }) => (
   <div

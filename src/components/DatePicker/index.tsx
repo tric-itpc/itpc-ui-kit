@@ -5,7 +5,7 @@ import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
 
 import { IconCalendar, InputError, Placeholder } from "../_elements"
 import { Calendar } from "../../lab"
-import { IInfo, ValidationState } from "../types"
+import { IInfo, Theme, ValidationState } from "../types"
 
 import {
   formatMaskDate,
@@ -57,6 +57,7 @@ export interface Props
   onFocus?: () => void
   placeholder?: string
   scrollToYear?: number
+  theme?: Theme
   validationState?: ValidationState
   value?: string
   withTime?: boolean
@@ -84,6 +85,7 @@ export const DatePicker: React.FC<Props> = ({
   onFocus,
   placeholder = "",
   scrollToYear,
+  theme = Theme.DEFAULT,
   validationState = "valid",
   value = "",
   withTime = false,
@@ -196,7 +198,15 @@ export const DatePicker: React.FC<Props> = ({
   }, [])
 
   return (
-    <div className={cn("itpc-datepicker", className)} {...rest}>
+    <div
+      className={cn(
+        "itpc-datepicker",
+        theme === Theme.DEFAULT && "itpc_default_theme",
+        theme === Theme.DARK && "itpc_dark_theme",
+        className
+      )}
+      {...rest}
+    >
       <div
         className={cn(
           "itpc-datepicker__input-wrap",
@@ -208,6 +218,7 @@ export const DatePicker: React.FC<Props> = ({
           <Placeholder
             focused={focused || !!value.length}
             htmlFor={name}
+            theme={theme}
             validationState={validationState}
           >
             {placeholder}

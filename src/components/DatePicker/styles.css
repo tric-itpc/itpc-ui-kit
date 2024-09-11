@@ -14,17 +14,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid rgb(178, 183, 199);
+  border: 1px solid var(--itpc-input-border-color);
   border-radius: 4px;
   box-sizing: border-box;
 }
 
 .itpc-datepicker__input-wrap:hover {
-  border-color: rgb(92, 83, 172);
+  border-color: var(--itpc-primary-hover-color-component);
 }
 
 .itpc-datepicker__input-wrap_error {
-  border: 1px solid rgb(212, 37, 100);
+  border: 1px solid var(--itpc-danger-hover-color-component);
 }
 
 .itpc-datepicker__input {
@@ -38,11 +38,12 @@
   outline: none;
   border-radius: 4px;
   box-sizing: border-box;
-  color: #fff;
+  background-color: var(--itpc-primary-bg-color);
+  color: var(--itpc-extra-text-color-component);
 }
 
 .itpc-datepicker__input_focused {
-  color: #000;
+  color: var(--itpc-primary-text-color);
 }
 
 .itpc-datepicker__icon {
@@ -57,7 +58,7 @@
 .itpc-datepicker__calendar-wrap {
   position: fixed;
   z-index: 999999;
-  background-color: #fff;
+  background-color: var(--itpc-primary-bg-color);
 }
 
 .itpc-datepicker__error-message {

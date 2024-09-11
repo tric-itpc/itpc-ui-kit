@@ -18,3 +18,16 @@ Basic.args = {
   disabled: false,
   theme: Theme.DEFAULT,
 }
+
+export const ButtonDark = Template.bind({})
+ButtonDark.args = {
+  children: "Button",
+  disabled: false,
+  theme: Theme.DARK,
+}
+
+ButtonDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}

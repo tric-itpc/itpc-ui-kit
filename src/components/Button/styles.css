@@ -14,8 +14,8 @@
 }
 
 .itpc-button:hover {
-  background-color: var(--itpc-primary-bg-hover-color-component);
-  border-color: var(--itpc-primary-border-hover-color);
+  background-color: var(--itpc-primary-hover-color-component);
+  border-color: var(--itpc-primary-hover-color-component);
   color: var(--itpc-primary-text-color-component);
 }
 
@@ -34,7 +34,7 @@
 }
 
 .itpc-button__color_white:hover {
-  background-color: var(--itpc-primary-bg-hover-color-component);
+  background-color: var(--itpc-primary-hover-color-component);
   border-color: var(--itpc-primary-border-hover-color);
   color: var(--itpc-primary-text-color-component);
 }
@@ -53,8 +53,8 @@
 }
 
 .itpc-button__color_red:hover {
-  background-color: var(--itpc-danger-bg-hover-color-component);
-  border-color: var(--itpc-danger-border-hover-color);
+  background-color: var(--itpc-danger-hover-color-component);
+  border-color: var(--itpc-danger-hover-color-component);
   color: var(--itpc-primary-text-color-component);
 }
 

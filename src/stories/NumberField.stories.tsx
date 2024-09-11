@@ -2,8 +2,9 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { FormattedValues } from "../components"
+import { FormattedValues, Text } from "../components"
 import { NumberField, Props } from "../components/NumberField"
+import { Theme } from "../components/types"
 
 export default {
   component: NumberField,
@@ -29,8 +30,9 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
         onChange={onChange}
         value={date.value}
       />
-      <p>Value: {date.value}</p>
-      <p>Formatted value: {date.formattedValue}</p>
+      <br />
+      <Text theme={args.theme}>Value: {date.value}</Text>
+      <Text theme={args.theme}>Formatted value: {date.formattedValue}</Text>
     </div>
   )
 }
@@ -40,7 +42,25 @@ Basic.args = {
   errorMessage: "Phone number is invalid",
   format: "+7 (###) - ### - ## - ##",
   mask: "_",
-  placeholder: "Enter snils",
+  placeholder: "Phone number",
   replaceValue: () => "",
+  theme: Theme.DEFAULT,
   validationState: "valid",
+}
+
+export const NumberFieldDark = Template.bind({})
+NumberFieldDark.args = {
+  errorMessage: "Phone number is invalid",
+  format: "+7 (###) - ### - ## - ##",
+  mask: "_",
+  placeholder: "Phone number",
+  replaceValue: () => "",
+  theme: Theme.DARK,
+  validationState: "valid",
+}
+
+NumberFieldDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

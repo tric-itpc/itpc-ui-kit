@@ -4,6 +4,7 @@ import cn from "classnames"
 
 import { useOnClickOutside } from "../../_hooks"
 import { IInfo } from "../../components"
+import { Theme } from "../../components/types"
 
 import {
   CalendarControl,
@@ -45,6 +46,7 @@ export interface Props {
   ) => void
   scrollToYear?: number
   show: boolean
+  theme?: Theme
   withTime?: boolean
   yearsFromTo?: [number, number]
 }
@@ -65,6 +67,7 @@ export const Calendar: React.FC<Props> = ({
   onChange,
   scrollToYear,
   show,
+  theme,
   withTime = false,
   yearsFromTo,
 }: Props) => {
@@ -152,7 +155,12 @@ export const Calendar: React.FC<Props> = ({
 
   return (
     <div
-      className={cn("itpc-calendar", show && "itpc-calendar_opened")}
+      className={cn(
+        "itpc-calendar",
+        show && "itpc-calendar_opened",
+        theme === Theme.DEFAULT && "itpc_default_theme",
+        theme === Theme.DARK && "itpc_dark_theme"
+      )}
       ref={calendarRef}
     >
       <CalendarControl
@@ -173,6 +181,7 @@ export const Calendar: React.FC<Props> = ({
         disabledDaysOfWeek={disabledDaysOfWeek}
         id={id}
         onChange={onChangeDate}
+        theme={theme}
       />
       {withTime && (
         <CalendarTimes

@@ -2,6 +2,8 @@ import React, { HTMLAttributes } from "react"
 
 import cn from "classnames"
 
+import { Theme } from "../types"
+
 import "./styles.css"
 
 export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
@@ -9,6 +11,7 @@ export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   children?: React.ReactNode
   className?: string
   isBordered?: boolean
+  theme?: Theme
   title?: React.ReactNode
   titleAttr?: HTMLAttributes<HTMLParagraphElement>
 }
@@ -18,12 +21,19 @@ export const Card: React.FC<Props> = ({
   children,
   className,
   isBordered = false,
+  theme = Theme.DEFAULT,
   title,
   titleAttr,
   ...rest
 }) => (
   <div
-    className={cn("itpc-card", isBordered && "itpc-card_bordered", className)}
+    className={cn(
+      "itpc-card",
+      isBordered && "itpc-card_bordered",
+      theme === Theme.DEFAULT && "itpc_default_theme",
+      theme === Theme.DARK && "itpc_dark_theme",
+      className
+    )}
     {...rest}
   >
     {title && (

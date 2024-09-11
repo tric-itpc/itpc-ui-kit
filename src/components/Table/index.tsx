@@ -7,6 +7,8 @@ import React, {
 
 import cn from "classnames"
 
+import { Theme } from "../types"
+
 import "./styles.css"
 
 export interface TableHeaderProps
@@ -20,7 +22,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   id = "",
   ...rest
 }) => (
-  <thead className="itpc-table__head" id={id} {...rest}>
+  <thead className={cn("itpc-table__head")} id={id} {...rest}>
     {children}
   </thead>
 )
@@ -127,6 +129,7 @@ export interface TableProps extends TableHTMLAttributes<HTMLTableElement> {
   children?: React.ReactNode
   className?: string
   id?: string
+  theme?: Theme
   title?: string
 }
 
@@ -134,10 +137,20 @@ export const Table: React.FC<TableProps> = ({
   children,
   className = "",
   id = "",
+  theme = Theme.DEFAULT,
   title,
   ...rest
 }) => (
-  <table className={cn("itpc-table", className)} id={id} {...rest}>
+  <table
+    className={cn(
+      "itpc-table",
+      theme === Theme.DEFAULT && "itpc_default_theme",
+      theme === Theme.DARK && "itpc_dark_theme",
+      className
+    )}
+    id={id}
+    {...rest}
+  >
     {title && <caption className="itpc-table__caption">{title}</caption>}
     {children}
   </table>

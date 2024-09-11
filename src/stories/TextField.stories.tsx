@@ -2,8 +2,10 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
+import { Text } from "../components"
 import { IconOk } from "../components/_elements"
 import { Props, TextField } from "../components/TextField"
+import { Theme } from "../components/types"
 
 export default {
   component: TextField,
@@ -22,14 +24,18 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
       <TextField
         {...args}
         icon={
-          <div onClick={() => setValue("test")}>
-            <IconOk />
-          </div>
+          value && (
+            <div onClick={() => setValue("test")}>
+              <IconOk />
+            </div>
+          )
         }
         onChange={onChange}
+        theme={args.theme}
         value={value}
       />
-      <p>Value: {value}</p>
+      <br />
+      <Text theme={args.theme}>Value: {value}</Text>
     </>
   )
 }
@@ -38,5 +44,20 @@ export const Basic = Template.bind({})
 Basic.args = {
   errorMessage: "Error message",
   placeholder: "Enter text",
+  theme: Theme.DEFAULT,
   validationState: "valid",
+}
+
+export const TextFieldDark = Template.bind({})
+TextFieldDark.args = {
+  errorMessage: "Error message",
+  placeholder: "Enter text",
+  theme: Theme.DARK,
+  validationState: "valid",
+}
+
+TextFieldDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

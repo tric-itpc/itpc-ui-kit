@@ -8,7 +8,7 @@
 }
 
 .itpc-pagination__btn {
-  background-color: #fff;
+  background-color: var(--itpc-primary-bg-color);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -20,7 +20,7 @@
 }
 
 .itpc-pagination__btn:hover {
-  background-color: #e5e5e5;
+  background-color: var(--itpc-extra-hover-color-component);
 }
 
 .itpc-pagination__btn > .itpc-icon__arrow {
@@ -37,16 +37,17 @@
   min-width: 40px;
   height: 40px;
   background-color: transparent;
+  color: var(--itpc-primary-text-color);
 }
 
 .itpc-pagination__btn_page_active {
-  background-color: #5c53ac;
-  color: #fff;
+  background-color: var(--itpc-primary-bg-color-component-active);
+  color: var(--itpc-primary-text-color-component);
 }
 
 .itpc-pagination__btn_page:hover {
-  background-color: #e5e5e5;
-  color: #000;
+  background-color: var(--itpc-extra-hover-color-component);
+  color: var(--itpc-primary-text-color);
 }
 
 .itpc-pagination__pages {
@@ -56,5 +57,8 @@
 
 .itpc-pagination__text {
   margin: 0;
-  padding: 6px 10px;
+  text-align: center;
+  width: 40px;
+  color: var(--itpc-primary-text-color);
+  font-size: 20px;
 }

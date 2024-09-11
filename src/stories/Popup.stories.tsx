@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Button } from "../components"
 import { Popup, Props } from "../components/Popup"
+import { Theme } from "../components/types"
 
 export default {
   component: Popup,
@@ -15,8 +16,10 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 
   return (
     <div style={{ height: "100vh" }}>
-      <Button onPress={() => setIsOpen(true)}>Open popup</Button>
-      <Popup {...args} isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Button onPress={() => setIsOpen(!isOpen)} theme={args.theme}>
+        Open popup
+      </Button>
+      <Popup {...args} isOpen={isOpen}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum est
         sagittis, odio tincidunt ipsum, lorem cras mollis.
       </Popup>
@@ -28,6 +31,22 @@ export const Basic = Template.bind({})
 Basic.args = {
   position: "bottom-left",
   size: "small",
+  theme: Theme.DEFAULT,
   title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   variant: "success",
+}
+
+export const PopupDark = Template.bind({})
+PopupDark.args = {
+  position: "bottom-left",
+  size: "small",
+  theme: Theme.DARK,
+  title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  variant: "success",
+}
+
+PopupDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

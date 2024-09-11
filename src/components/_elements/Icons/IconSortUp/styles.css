@@ -6,7 +6,7 @@
   justify-content: center;
   background-color: transparent;
   transition: all ease-in-out 0.3s;
-  fill: #dddddd;
+  fill: var(--itpc-default-icon-color);
 }
 
 .itpc-icon__sort_clickable {
@@ -14,5 +14,5 @@
 }
 
 .itpc-icon__sort_color {
-  fill: #6f65cb;
+  fill: var(--itpc-primary-icon-color);
 }

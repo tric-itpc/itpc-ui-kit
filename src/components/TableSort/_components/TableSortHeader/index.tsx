@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from "react"
 
 import cn from "classnames"
 
-import { NumberColumns, SortType } from "../../../types"
+import { NumberColumns, SortType, Theme } from "../../../types"
 import { Column, KeySort, KeysSort, RowType } from "../../types"
 import { renderIcon, renderIconTwoColumns } from "../../utils"
 
@@ -14,6 +14,7 @@ interface TableSortHeaderProps extends HTMLAttributes<HTMLTableCellElement> {
   currentKeys?: KeysSort<RowType>
   setKeySort?: (key: Column<RowType>) => void
   sortByNumberColumns?: NumberColumns
+  theme?: Theme
 }
 
 export const TableSortHeader: React.FC<TableSortHeaderProps> = ({
@@ -22,8 +23,15 @@ export const TableSortHeader: React.FC<TableSortHeaderProps> = ({
   currentKeys,
   setKeySort,
   sortByNumberColumns,
+  theme,
 }: TableSortHeaderProps) => (
-  <thead className="itpc-table-sort__head">
+  <thead
+    className={cn(
+      "itpc-table-sort__head",
+      theme === Theme.DEFAULT && "itpc_default_theme",
+      theme === Theme.DARK && "itpc_dark_theme"
+    )}
+  >
     <tr>
       {columns &&
         columns.map((column: Column<RowType>, index: number) => {

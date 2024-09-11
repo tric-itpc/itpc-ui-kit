@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { TabsItem } from "../components"
 import { Tabs, TabsProps } from "../components/Tabs"
+import { Theme } from "../components/types"
 
 const items: TabsItem[] = [
   {
@@ -26,8 +27,21 @@ export default {
 } as ComponentMeta<React.FC<TabsProps>>
 
 const Template: ComponentStory<React.FC<TabsProps>> = (args) => (
-  <Tabs {...args} items={items} />
+  <Tabs {...args} items={items} theme={args.theme} />
 )
 
 export const Basic = Template.bind({})
-Basic.args = {}
+Basic.args = {
+  theme: Theme.DEFAULT,
+}
+
+export const TabsDark = Template.bind({})
+TabsDark.args = {
+  theme: Theme.DARK,
+}
+
+TabsDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}

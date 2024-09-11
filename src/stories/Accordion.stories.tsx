@@ -10,6 +10,7 @@ import {
   AccordionItem,
   AccordionProps,
 } from "../components/Accordion"
+import { Theme } from "../components/types"
 
 export default {
   component: Accordion,
@@ -37,4 +38,17 @@ const Template: ComponentStory<React.FC<AccordionProps>> = (args) => {
 }
 
 export const Basic = Template.bind({})
-Basic.args = {}
+Basic.args = {
+  theme: Theme.DEFAULT,
+}
+
+export const AccordionDark = Template.bind({})
+AccordionDark.args = {
+  theme: Theme.DARK,
+}
+
+AccordionDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}
