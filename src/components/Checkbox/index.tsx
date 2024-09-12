@@ -6,6 +6,7 @@ import {
   InputCheckboxLabelPosition,
   InputCheckboxType,
   InputCheckboxVariant,
+  Theme,
 } from "../types"
 
 import "./styles.css"
@@ -26,6 +27,7 @@ export interface Props
   labelPosition?: InputCheckboxLabelPosition
   name: string
   onClick?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  theme?: Theme
   type?: InputCheckboxType
   variant?: InputCheckboxVariant
 }
@@ -45,6 +47,7 @@ export const Checkbox: React.FC<Props> = ({
   labelPosition = "right",
   name,
   onClick,
+  theme = Theme.DEFAULT,
   type = "checkbox",
   variant = "android",
   ...rest
@@ -53,6 +56,8 @@ export const Checkbox: React.FC<Props> = ({
     className={cn(
       "itpc-checkbox",
       isBlurCheckbox && "itpc-checkbox_blur",
+      theme === Theme.DEFAULT && "itpc_default_theme",
+      theme === Theme.DARK && "itpc_dark_theme",
       className
     )}
     {...rest}

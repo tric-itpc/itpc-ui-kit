@@ -2,8 +2,9 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { Button, Item, PaginationResult } from "../components"
+import { Button, Item, PaginationResult, Text } from "../components"
 import { Pagination, Props } from "../components/Pagination"
+import { Theme } from "../components/types"
 
 const mockItems: Item[] = [
   {
@@ -345,22 +346,38 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
         {...args}
         callback={paginationResult}
         dataLength={items.length}
+        theme={args.theme}
       />
       <div style={{ alignItems: "center", display: "flex", gap: "10px" }}>
-        <p>Start: {start}</p>
-        <p>End: {end}</p>
-        <p>Step: {args.step ?? 10}</p>
-        <p>Items count: {items.length}</p>
+        <Text theme={args.theme}>Start: {start}</Text>
+        <Text theme={args.theme}>End: {end}</Text>
+        <Text theme={args.theme}>Step: {args.step ?? 10}</Text>
+        <Text theme={args.theme}>Items count: {items.length}</Text>
       </div>
       <div style={{ alignItems: "center", display: "flex", gap: "10px" }}>
-        <Button onPress={deleteItem} variant="white">
+        <Button onPress={deleteItem} theme={args.theme} variant="white">
           Delete item
         </Button>
-        <Button onPress={addItem}>Add item</Button>
+        <Button onPress={addItem} theme={args.theme}>
+          Add item
+        </Button>
       </div>
     </>
   )
 }
 
 export const Basic = Template.bind({})
-Basic.args = {}
+Basic.args = {
+  theme: Theme.DEFAULT,
+}
+
+export const PaginationDark = Template.bind({})
+PaginationDark.args = {
+  theme: Theme.DARK,
+}
+
+PaginationDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}

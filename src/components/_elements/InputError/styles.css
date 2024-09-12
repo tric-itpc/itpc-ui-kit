@@ -4,11 +4,12 @@
   position: absolute;
   bottom: calc(-7px);
   right: 10px;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--itpc-primary-bg-color);
+  /* background-color: rgb(255, 255, 255); */
   cursor: text;
   font-size: 12px;
   line-height: 14px;
-  color: #d42564;
+  color: var(--itpc-danger-text-color);
   box-sizing: border-box;
   opacity: 0;
   overflow: hidden;

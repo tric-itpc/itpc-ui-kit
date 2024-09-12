@@ -2,8 +2,9 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { Item, Preloader } from "../components"
+import { Item, Preloader, Text } from "../components"
 import { Props, SearchField } from "../components/SearchField"
+import { Theme } from "../components/types"
 
 export default {
   component: SearchField,
@@ -64,24 +65,39 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
   }
 
   return (
-    <>
+    <div style={{ height: "250px" }}>
       <SearchField
         {...args}
         fetchData={fetchData}
         handleClear={clear}
-        icon={isLoading ? <Preloader /> : null}
+        icon={isLoading ? <Preloader theme={args.theme} /> : null}
         isDisableClickIcon={isLoading}
         items={items}
         onChange={onChange}
+        theme={args.theme}
       />
-      <p>
+      <br />
+      <Text theme={args.theme}>
         selected: {selectedItem?.id} {selectedItem?.value}
-      </p>
-    </>
+      </Text>
+    </div>
   )
 }
 
 export const Basic = Template.bind({})
 Basic.args = {
   placeholder: "Animal",
+  theme: Theme.DEFAULT,
+}
+
+export const SearchFieldDark = Template.bind({})
+SearchFieldDark.args = {
+  placeholder: "Animal",
+  theme: Theme.DARK,
+}
+
+SearchFieldDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

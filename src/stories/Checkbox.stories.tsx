@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Checkbox, Props } from "../components/Checkbox"
+import { Theme } from "../components/types"
 
 export default {
   component: Checkbox,
@@ -31,4 +32,17 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 export const Basic = Template.bind({})
 Basic.args = {
   disabled: false,
+  theme: Theme.DEFAULT,
+}
+
+export const CheckBoxDark = Template.bind({})
+CheckBoxDark.args = {
+  disabled: false,
+  theme: Theme.DARK,
+}
+
+CheckBoxDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

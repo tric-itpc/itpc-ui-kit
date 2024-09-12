@@ -3,7 +3,7 @@ import React, { FC, HTMLAttributes, useEffect, useState } from "react"
 import cn from "classnames"
 
 import { IconArrow, IconDoubleArrow } from "../_elements"
-import { PaginationResult } from "../types"
+import { PaginationResult, Theme } from "../types"
 
 import "./styles.css"
 
@@ -12,6 +12,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   className?: string
   dataLength: number
   step?: number
+  theme?: Theme
 }
 
 export const Pagination: FC<Props> = ({
@@ -19,6 +20,7 @@ export const Pagination: FC<Props> = ({
   className = "",
   dataLength,
   step = 10,
+  theme = Theme.DEFAULT,
   ...rest
 }) => {
   const [startPagination, setStartPagination] = useState<number>(0)
@@ -132,14 +134,22 @@ export const Pagination: FC<Props> = ({
   }, [dataLength])
 
   return (
-    <div className={cn("itpc-pagination", className)} {...rest}>
+    <div
+      className={cn(
+        "itpc-pagination",
+        theme === Theme.DEFAULT && "itpc_default_theme",
+        theme === Theme.DARK && "itpc_dark_theme",
+        className
+      )}
+      {...rest}
+    >
       <button
         className="itpc-pagination__btn itpc-pagination__btn_left"
         disabled={!startPagination || !dataLength}
         onClick={start}
         type="button"
       >
-        <IconDoubleArrow orientation="left" />
+        <IconDoubleArrow orientation="left" theme={theme} />
       </button>
 
       <button

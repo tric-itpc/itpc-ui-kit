@@ -4,7 +4,7 @@ import cn from "classnames"
 
 import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
 import { useOnClickOutside } from "../../_hooks"
-import { Item } from "../types"
+import { Item, Theme } from "../types"
 
 import "./styles.css"
 
@@ -16,6 +16,7 @@ export interface Props
   onChange(values: string[]): void
   placeholder?: string
   selectedItems?: string[]
+  theme?: Theme
 }
 
 export const MultiSelectField: React.FC<Props> = ({
@@ -25,6 +26,7 @@ export const MultiSelectField: React.FC<Props> = ({
   onChange,
   placeholder = "",
   selectedItems = [],
+  theme,
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -71,11 +73,22 @@ export const MultiSelectField: React.FC<Props> = ({
   useOnClickOutside(ref, onClose)
 
   return (
-    <div className={cn("itpc-multi-select", className)} ref={ref} {...rest}>
+    <div
+      className={cn(
+        "itpc-multi-select",
+        theme === Theme.DEFAULT && "itpc_default_theme",
+        theme === Theme.DARK && "itpc_dark_theme",
+        className
+      )}
+      ref={ref}
+      {...rest}
+    >
       <button
         className={cn(
           "itpc-multi-select__button",
-          isOpen && "itpc-multi-select__button_focused"
+          isOpen && "itpc-multi-select__button_focused",
+          theme === Theme.DEFAULT && "itpc_default_theme",
+          theme === Theme.DARK && "itpc_dark_theme"
         )}
         disabled={disabled}
         onClick={handleOpen}
@@ -88,7 +101,11 @@ export const MultiSelectField: React.FC<Props> = ({
         {selectText()}
       </button>
 
-      <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
+      <IconArrow
+        onClick={handleOpen}
+        orientation={isOpen ? "top" : "bottom"}
+        theme={theme}
+      />
 
       {isOpen && (
         <Popover>

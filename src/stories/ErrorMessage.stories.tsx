@@ -3,6 +3,7 @@ import React from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { ErrorMessage, Props } from "../components/ErrorMessage"
+import { Theme } from "../components/types"
 
 export default {
   component: ErrorMessage,
@@ -16,4 +17,17 @@ const Template: ComponentStory<React.FC<Props>> = (args) => (
 export const Basic = Template.bind({})
 Basic.args = {
   children: "Error text",
+  theme: Theme.DEFAULT,
+}
+
+export const ErrorMessageDark = Template.bind({})
+ErrorMessageDark.args = {
+  children: "Error text",
+  theme: Theme.DARK,
+}
+
+ErrorMessageDark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
 }

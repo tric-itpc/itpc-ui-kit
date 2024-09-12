@@ -5,7 +5,7 @@ import cn from "classnames"
 import { Popover, SelectItem } from "../_elements"
 import { useOnClickOutside } from "../../_hooks"
 import { TextField } from "../TextField"
-import { Item } from "../types"
+import { Item, Theme } from "../types"
 
 import "./styles.css"
 
@@ -25,6 +25,7 @@ export interface Props
     HTMLAttributes<HTMLDivElement>,
     "onChange" | "onFocus" | "onBlur"
   >
+  theme?: Theme
 }
 
 export const SearchField: React.FC<Props> = ({
@@ -39,6 +40,7 @@ export const SearchField: React.FC<Props> = ({
   onChange,
   placeholder,
   textFieldAttr,
+  theme = Theme.DEFAULT,
   ...rest
 }) => {
   const [isOpenedSuggestions, setIsOpenedSuggestions] = useState<boolean>(false)
@@ -113,7 +115,16 @@ export const SearchField: React.FC<Props> = ({
   const filteredItems = items.filter(filterItems)
 
   return (
-    <div className={cn("itpc-search-field", className)} ref={ref} {...rest}>
+    <div
+      className={cn(
+        "itpc-search-field",
+        theme === Theme.DEFAULT && "itpc_default_theme",
+        theme === Theme.DARK && "itpc_dark_theme",
+        className
+      )}
+      ref={ref}
+      {...rest}
+    >
       <TextField
         icon={<div onClick={clear}>{icon}</div>}
         id="itpc-search-field"
@@ -121,18 +132,20 @@ export const SearchField: React.FC<Props> = ({
         onChange={changeValue}
         onFocus={openSuggestions}
         placeholder={placeholder}
+        theme={theme}
         value={value}
         {...textFieldAttr}
       />
 
       {!!filteredItems.length && isOpenedSuggestions && (
-        <Popover>
+        <Popover theme={theme}>
           {filteredItems.map((item) => (
             <SelectItem
               id={item.id}
               isActive={item.id === currentItem}
               key={item.id}
               onChange={changeItem}
+              theme={theme}
             >
               {item.value}
             </SelectItem>

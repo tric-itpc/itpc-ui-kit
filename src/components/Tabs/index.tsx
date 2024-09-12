@@ -2,7 +2,7 @@ import React, { HTMLAttributes, useState } from "react"
 
 import cn from "classnames"
 
-import { TabsItem } from "../types"
+import { TabsItem, Theme } from "../types"
 
 import "./styles.css"
 
@@ -11,6 +11,7 @@ interface TabButtonProps
   id: number
   isActive: boolean
   onClick(id: number): void
+  theme?: Theme
   title: string
 }
 
@@ -18,6 +19,7 @@ export const TabButton: React.FC<TabButtonProps> = ({
   id,
   isActive,
   onClick,
+  theme = Theme.DEFAULT,
   title,
   ...rest
 }) => {
@@ -29,7 +31,9 @@ export const TabButton: React.FC<TabButtonProps> = ({
     <button
       className={cn(
         "itpc-tabs__button",
-        isActive && "itpc-tabs__button_active"
+        isActive && "itpc-tabs__button_active",
+        theme === Theme.DEFAULT && "itpc_default_theme",
+        theme === Theme.DARK && "itpc_dark_theme"
       )}
       onClick={click}
       type="button"
@@ -46,6 +50,7 @@ export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
   disabled?: boolean
   items: TabsItem[]
+  theme?: Theme
 }
 
 export const Tabs: React.FC<TabsProps> = ({
@@ -54,6 +59,7 @@ export const Tabs: React.FC<TabsProps> = ({
   className = "",
   disabled = false,
   items,
+  theme,
   ...rest
 }) => {
   const [activeTab, setActiveTab] = useState<number>(0)
@@ -71,7 +77,15 @@ export const Tabs: React.FC<TabsProps> = ({
     React.cloneElement(items[activeTab].content, { ...childProps })
 
   return (
-    <div className={cn("itpc-tabs", className)} {...rest}>
+    <div
+      className={cn(
+        "itpc-tabs",
+        theme === Theme.DEFAULT && "itpc_default_theme",
+        theme === Theme.DARK && "itpc_dark_theme",
+        className
+      )}
+      {...rest}
+    >
       <div className="itpc-tabs__buttons">
         {items.map((item, i) => (
           <TabButton
@@ -79,6 +93,7 @@ export const Tabs: React.FC<TabsProps> = ({
             isActive={activeTab === i}
             key={i}
             onClick={handleActiveTab}
+            theme={theme}
             title={item.title}
           />
         ))}

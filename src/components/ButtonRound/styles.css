@@ -9,7 +9,7 @@
   background-color: transparent;
   border: none;
   border-radius: 50%;
-  color: #5c53ac;
+  color: var(--itpc-secondary-text-color-component);
   cursor: pointer;
   font-size: 14px;
   transition: all ease-in-out 0.3s;
@@ -18,8 +18,8 @@
 }
 
 .itpc-button-round:hover {
-  background-color: #e5e5e5;
-  color: #5c53ac;
+  background-color: var(--itpc-extra-hover-color-component);
+  color: var(--itpc-secondary-text-color-component);
 }
 
 .itpc-button-round:hover > .itpc-tooltip {
@@ -28,6 +28,8 @@
 
 .itpc-button-round:disabled {
   opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
 }
 
 .itpc-tooltip {
@@ -37,10 +39,10 @@
   top: 120%;
   display: flex;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--itpc-primary-bg-color-text);
   border-radius: 0;
   font-size: 12px;
-  color: #fff;
+  color: var(--itpc-primary-text-color-component);
   transition: all ease-in-out 0.15s;
   visibility: hidden;
   z-index: 100;

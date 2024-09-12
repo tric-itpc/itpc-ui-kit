@@ -3,21 +3,21 @@
   position: absolute;
   top: calc(50% - 7px);
   left: 10px;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--itpc-primary-bg-color);
   cursor: text;
   font-size: 14px;
   line-height: 14px;
-  color: #b2b7c7;
+  color: var(--itpc-primary-text-color);
   box-sizing: border-box;
   transition: all 0.3s ease-in-out 0s;
 }
 
 .itpc-placeholder_focused {
   top: calc(-8px);
-  color: rgb(0, 0, 0);
+  color: var(--itpc-primary-text-color);
   font-size: 12px;
 }
 
 .itpc-placeholder_color_red {
-  color: #D42564;
+  color: var(--itpc-danger-text-color);
 }

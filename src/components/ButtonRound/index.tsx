@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from "react"
 
 import cn from "classnames"
 
-import { ButtonType } from "../types"
+import { ButtonType, Theme } from "../types"
 
 import "./styles.css"
 
@@ -11,6 +11,7 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
   className?: string
   disabled?: boolean
   onPress?: (e?: React.MouseEvent<HTMLButtonElement>) => void
+  theme?: Theme
   tooltip?: string
   tooltipAttr?: HTMLAttributes<HTMLSpanElement>
   type?: ButtonType
@@ -21,6 +22,7 @@ export const ButtonRound: React.FC<Props> = ({
   className,
   disabled = false,
   onPress,
+  theme = Theme.DEFAULT,
   tooltip,
   tooltipAttr,
   type = "button",
@@ -34,7 +36,12 @@ export const ButtonRound: React.FC<Props> = ({
 
   return (
     <button
-      className={cn("itpc-button-round", className)}
+      className={cn(
+        "itpc-button-round",
+        theme === Theme.DEFAULT && "itpc_default_theme",
+        theme === Theme.DARK && "itpc_dark_theme",
+        className
+      )}
       disabled={disabled}
       onClick={onClick}
       type={type}

@@ -2,6 +2,7 @@ import React from "react"
 
 import cn from "classnames"
 
+import { Theme } from "../../../../components/types"
 import { daysOfTheWeekShort } from "../../constants"
 
 import "./styles.css"
@@ -18,6 +19,7 @@ interface Props {
     date: string,
     event: React.MouseEvent<HTMLTableDataCellElement>
   ) => void
+  theme?: Theme
 }
 
 export const CalendarCell: React.FC<Props> = ({
@@ -29,6 +31,7 @@ export const CalendarCell: React.FC<Props> = ({
   isChanged,
   isHeader = false,
   onChange,
+  theme,
 }: Props) => {
   const isCurrentMonth =
     parseInt(currentDate.split("-")[1], 10) === parseInt(date.split("-")[1], 10)
@@ -46,6 +49,8 @@ export const CalendarCell: React.FC<Props> = ({
         isHeader && "itpc-calendar__cell_header",
         !isHeader && isChanged && "itpc-calendar__cell_changed",
         !isHeader && !isCurrentMonth && "itpc-calendar__cell_not_current",
+        theme === Theme.DEFAULT && "itpc_default_theme",
+        theme === Theme.DARK && "itpc_dark_theme",
         disabled && "itpc-calendar__cell_disabled"
       )}
       id={id}

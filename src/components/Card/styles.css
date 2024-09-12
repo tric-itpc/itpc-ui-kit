@@ -6,13 +6,14 @@
   flex-direction: column;
   gap: 15px;
   border-radius: 4px;
-  box-shadow: 0 0 3px 1px #0000003f;
+  box-shadow: 0 0 3px 1px var(--itpc-box-shadow-color-second);
   box-sizing: border-box;
-  -webkit-box-shadow: 0 0 3px 1px #0000003f;
+  -webkit-box-shadow: 0 0 3px 1px var(--itpc-box-shadow-color-second);
+  color: var(--itpc-primary-text-color);
 }
 
 .itpc-card_bordered {
-  border: 1px solid #5c53ac;
+  border: 1px solid var(--itpc-primary-border-color);
 }
 
 .itpc-card__title {
