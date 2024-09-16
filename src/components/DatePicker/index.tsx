@@ -1,20 +1,27 @@
-import React, { HTMLAttributes, useEffect, useRef, useState } from "react"
+import React, {
+  type CSSProperties,
+  HTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 
 import cn from "classnames"
 import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
 
 import { IconCalendar, InputError, Placeholder } from "../_elements"
-import { Calendar } from "../../lab"
+import { Calendar, useWindowSize } from "../../lab"
 import { IInfo, ValidationState } from "../types"
 
 import {
-  formatMaskDate,
-  formatMaskDateTime,
-  maskDate,
-  maskDateTime,
+  FORMAT_MASK_DATE,
+  FORMAT_MASK_DATE_TIME,
+  MASK_DATE,
+  MASK_DATE_TIME,
 } from "./constants"
 import "./styles.css"
 import {
+  getCalculatePositionCalendar,
   parseISODate,
   parseISODateTime,
   parseISODateTimeToNumericString,
@@ -90,15 +97,20 @@ export const DatePicker: React.FC<Props> = ({
   yearsFromTo,
   ...rest
 }: Props) => {
+  const { windowWidth } = useWindowSize()
+
   const [focused, onHandleFocused] = useState<boolean>(false)
   const [isShowCalendar, setIsShowCalendar] = useState<boolean>(false)
-  const [calendarPosition, setCalendarPosition] = useState<number>(0)
+
+  const [stylePositionCalendar, setStylePositionCalendar] =
+    useState<CSSProperties>({})
 
   const inputWrapRef = useRef<HTMLDivElement>(null)
   const calendarWrapRef = useRef<HTMLDivElement>(null)
 
   const onOpenCalendar = (): void => {
     setIsShowCalendar(true)
+    calculatePositionCalendar()
   }
 
   const onCloseCalendar = (): void => {
@@ -168,32 +180,24 @@ export const DatePicker: React.FC<Props> = ({
     }
   }
 
-  const handleCalendarPosition = (): void => {
-    const documentHeight = document.documentElement.clientHeight
-    const inputSize = inputWrapRef.current?.getBoundingClientRect() as DOMRect
-    const calendarHeight = (
-      calendarWrapRef.current?.getBoundingClientRect() as DOMRect
-    )?.height
-    const underInputSize = documentHeight - inputSize.bottom
-
-    if (underInputSize < calendarHeight) {
-      setCalendarPosition(inputSize.top - calendarHeight - 10)
-      return
-    }
-
-    if (underInputSize >= calendarHeight) {
-      setCalendarPosition(inputSize.bottom + 10)
-    }
+  const calculatePositionCalendar = (): void => {
+    const position = getCalculatePositionCalendar(inputWrapRef, calendarWrapRef)
+    setStylePositionCalendar(position)
   }
 
   useEffect(() => {
-    handleCalendarPosition()
-  }, [isShowCalendar])
+    const hasScroll: boolean = document.body.scrollHeight > window.innerHeight
+    if (hasScroll) {
+      window.addEventListener("scroll", calculatePositionCalendar)
+    }
+    return () => {
+      window.removeEventListener("scroll", calculatePositionCalendar)
+    }
+  }, [])
 
   useEffect(() => {
-    window.addEventListener("scroll", handleCalendarPosition)
-    return () => window.removeEventListener("scroll", handleCalendarPosition)
-  }, [])
+    calculatePositionCalendar()
+  }, [windowWidth])
 
   return (
     <div className={cn("itpc-datepicker", className)} {...rest}>
@@ -207,7 +211,7 @@ export const DatePicker: React.FC<Props> = ({
         {placeholder && (
           <Placeholder
             focused={focused || !!value.length}
-            htmlFor={name}
+            htmlFor={id}
             validationState={validationState}
           >
             {placeholder}
@@ -220,9 +224,9 @@ export const DatePicker: React.FC<Props> = ({
             (focused || value.length) && "itpc-datepicker__input_focused"
           )}
           disabled={disabled}
-          format={withTime ? formatMaskDateTime : formatMaskDate}
+          format={withTime ? FORMAT_MASK_DATE_TIME : FORMAT_MASK_DATE}
           id={id}
-          mask={withTime ? maskDateTime : maskDate}
+          mask={withTime ? MASK_DATE_TIME : MASK_DATE}
           name={name}
           onBlur={onBlurPicker}
           onFocus={onFocusPicker}
@@ -246,7 +250,7 @@ export const DatePicker: React.FC<Props> = ({
       <div
         className="itpc-datepicker__calendar-wrap"
         ref={calendarWrapRef}
-        style={{ top: `${calendarPosition}px` }}
+        style={stylePositionCalendar}
       >
         <Calendar
           currentValue={

@@ -4,6 +4,11 @@ import cn from "classnames"
 
 import { useOnClickOutside } from "../../_hooks"
 import { IInfo } from "../../components"
+import {
+  getCalendarDimensions,
+  getCalendarStyle,
+  getDocumentDimensions,
+} from "../../components/DatePicker/utils"
 
 import {
   CalendarControl,
@@ -86,6 +91,15 @@ export const Calendar: React.FC<Props> = ({
 
   const calendarRef = useRef<HTMLDivElement>(null)
 
+  let styleCalendar
+
+  const { documentWidth } = getDocumentDimensions()
+
+  if (calendarRef.current) {
+    const { calendarWidth } = getCalendarDimensions(calendarRef.current)
+    styleCalendar = getCalendarStyle(documentWidth, calendarWidth)
+  }
+
   const changeCurrentDate = (date: string): void => {
     setCurrentDate(date)
     setDays(getCalendarDays(date))
@@ -154,6 +168,7 @@ export const Calendar: React.FC<Props> = ({
     <div
       className={cn("itpc-calendar", show && "itpc-calendar_opened")}
       ref={calendarRef}
+      style={styleCalendar}
     >
       <CalendarControl
         changeCurrentDate={changeCurrentDate}
