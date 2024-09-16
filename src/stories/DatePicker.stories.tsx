@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { FormattedValues } from "../components"
+import { FormattedValues, Text } from "../components"
 import { DatePicker, Props } from "../components/DatePicker"
 
 export default {
@@ -23,8 +23,9 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
   return (
     <>
       <DatePicker {...args} onChange={onChange} value={date.value} />
-      <p>Value: {date.value}</p>
-      <p>Formatted value: {date.formattedValue}</p>
+      <br />
+      <Text>Value: {date.value}</Text>
+      <Text>Formatted value: {date.formattedValue}</Text>
     </>
   )
 }
