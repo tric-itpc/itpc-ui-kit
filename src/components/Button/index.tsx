@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from "react"
 
 import cn from "classnames"
 
-import { ButtonType, ButtonVariant, Theme } from "../types"
+import { ButtonType, ButtonVariant } from "../types"
 
 import "./styles.css"
 
@@ -11,7 +11,6 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
   className?: string
   disabled?: boolean
   onPress?: (e?: React.MouseEvent<HTMLButtonElement>) => void
-  theme?: Theme
   type?: ButtonType
   variant?: ButtonVariant
 }
@@ -21,7 +20,6 @@ export const Button: React.FC<Props> = ({
   className = "",
   disabled = false,
   onPress,
-  theme = Theme.DEFAULT,
   type = "button",
   variant,
   ...rest
@@ -40,8 +38,6 @@ export const Button: React.FC<Props> = ({
           "itpc-button__color_red": variant === "red",
           "itpc-button__color_white": variant === "white",
         },
-        theme === Theme.DEFAULT && "itpc_default_theme",
-        theme === Theme.DARK && "itpc_dark_theme",
         className
       )}
       disabled={disabled}

@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Button, Props } from "../components/Button"
 import { Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: Button,
@@ -18,6 +19,7 @@ Basic.args = {
   disabled: false,
   theme: Theme.DEFAULT,
 }
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const ButtonDark = Template.bind({})
 ButtonDark.args = {
@@ -25,6 +27,7 @@ ButtonDark.args = {
   disabled: false,
   theme: Theme.DARK,
 }
+ButtonDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 ButtonDark.parameters = {
   backgrounds: {

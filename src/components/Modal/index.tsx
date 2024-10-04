@@ -2,8 +2,6 @@ import React, { HTMLAttributes } from "react"
 
 import cn from "classnames"
 
-import { Theme } from "../types"
-
 import "./styles.css"
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
@@ -13,7 +11,6 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean
   isOverlayClickable?: boolean
   onClose?: () => void
-  theme?: Theme
   title: string
 }
 
@@ -24,7 +21,6 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   isOverlayClickable = false,
   onClose,
-  theme = Theme.DEFAULT,
   title,
   ...rest
 }) => {
@@ -40,8 +36,6 @@ export const Modal: React.FC<ModalProps> = ({
         "itpc-modal-overlay",
         isOpen && "itpc-modal-overlay_opened",
         isOverlayClickable && "itpc-modal-overlay_clickable",
-        theme === Theme.DEFAULT && "itpc_default_theme",
-        theme === Theme.DARK && "itpc_dark_theme",
         className
       )}
       onClick={onCloseOverlay}
@@ -63,24 +57,14 @@ export const Modal: React.FC<ModalProps> = ({
 interface ModalContentProps extends HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode
   className?: string
-  theme?: Theme
 }
 
 export const ModalContent: React.FC<ModalContentProps> = ({
   children,
   className = "",
-  theme,
   ...rest
 }: ModalContentProps) => (
-  <div
-    className={cn(
-      "itpc-modal__content",
-      theme === Theme.DEFAULT && "itpc_default_theme",
-      theme === Theme.DARK && "itpc_dark_theme",
-      className
-    )}
-    {...rest}
-  >
+  <div className={cn("itpc-modal__content", className)} {...rest}>
     {children}
   </div>
 )
@@ -88,24 +72,14 @@ export const ModalContent: React.FC<ModalContentProps> = ({
 interface ModalFooterProps extends HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode
   className?: string
-  theme?: Theme
 }
 
 export const ModalFooter: React.FC<ModalFooterProps> = ({
   children,
   className = "",
-  theme,
   ...rest
 }: ModalFooterProps) => (
-  <div
-    className={cn(
-      "itpc-modal__footer",
-      theme === Theme.DEFAULT && "itpc_default_theme",
-      theme === Theme.DARK && "itpc_dark_theme",
-      className
-    )}
-    {...rest}
-  >
+  <div className={cn("itpc-modal__footer", className)} {...rest}>
     {children}
   </div>
 )

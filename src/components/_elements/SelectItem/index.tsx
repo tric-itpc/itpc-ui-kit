@@ -2,8 +2,6 @@ import React from "react"
 
 import cn from "classnames"
 
-import { Theme } from "../../types"
-
 import "./styles.css"
 
 interface Props {
@@ -12,7 +10,6 @@ interface Props {
   id: string
   isActive?: boolean
   onChange(id: string): void
-  theme?: Theme
 }
 
 export const SelectItem: React.FC<Props> = ({
@@ -21,7 +18,6 @@ export const SelectItem: React.FC<Props> = ({
   id,
   isActive,
   onChange,
-  theme,
 }) => {
   const onClick = (): void => {
     if (!disabled) {
@@ -33,9 +29,7 @@ export const SelectItem: React.FC<Props> = ({
     <div
       className={cn(
         "itpc-select-item",
-        disabled && "itpc-select-item_disabled",
-        theme === Theme.DEFAULT && "itpc_default_theme",
-        theme === Theme.DARK && "itpc_dark_theme"
+        disabled && "itpc-select-item_disabled"
       )}
       onClick={onClick}
     >

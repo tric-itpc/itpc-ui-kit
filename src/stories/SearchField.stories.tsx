@@ -5,6 +5,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { Item, Preloader, Text } from "../components"
 import { Props, SearchField } from "../components/SearchField"
 import { Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: SearchField,
@@ -70,14 +71,13 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
         {...args}
         fetchData={fetchData}
         handleClear={clear}
-        icon={isLoading ? <Preloader theme={args.theme} /> : null}
+        icon={isLoading ? <Preloader /> : null}
         isDisableClickIcon={isLoading}
         items={items}
         onChange={onChange}
-        theme={args.theme}
       />
       <br />
-      <Text theme={args.theme}>
+      <Text>
         selected: {selectedItem?.id} {selectedItem?.value}
       </Text>
     </div>
@@ -87,14 +87,14 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
 export const Basic = Template.bind({})
 Basic.args = {
   placeholder: "Animal",
-  theme: Theme.DEFAULT,
 }
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const SearchFieldDark = Template.bind({})
 SearchFieldDark.args = {
   placeholder: "Animal",
-  theme: Theme.DARK,
 }
+SearchFieldDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 SearchFieldDark.parameters = {
   backgrounds: {

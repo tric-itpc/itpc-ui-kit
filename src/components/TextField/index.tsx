@@ -9,7 +9,7 @@ import {
   InputWrap,
   Placeholder,
 } from "../_elements"
-import { InputType, Theme, ValidationState } from "../types"
+import { InputType, ValidationState } from "../types"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -24,7 +24,6 @@ export interface Props
   onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void
   onFocus?: () => void
   placeholder?: string
-  theme?: Theme
   type?: InputType
   validationState?: ValidationState
   value?: string
@@ -42,7 +41,6 @@ export const TextField: React.FC<Props> = ({
   onChange,
   onFocus,
   placeholder = "",
-  theme = Theme.DEFAULT,
   type = "text",
   validationState = "valid",
   value = "",
@@ -73,24 +71,11 @@ export const TextField: React.FC<Props> = ({
   }
 
   return (
-    <Field
-      className={cn(
-        theme === Theme.DEFAULT && "itpc_default_theme",
-        theme === Theme.DARK && "itpc_dark_theme",
-        className
-      )}
-      theme={theme}
-      {...rest}
-    >
-      <InputWrap
-        focused={focused}
-        theme={theme}
-        validationState={validationState}
-      >
+    <Field className={cn(className)} {...rest}>
+      <InputWrap focused={focused} validationState={validationState}>
         <Placeholder
           focused={focused || value.length > 0}
           htmlFor={id}
-          theme={theme}
           validationState={validationState}
         >
           {placeholder}
@@ -115,7 +100,6 @@ export const TextField: React.FC<Props> = ({
         <InputError
           errorMessage={errorMessage}
           show={validationState === "invalid"}
-          theme={theme}
         />
 
         {icon && <InputIcon>{icon}</InputIcon>}

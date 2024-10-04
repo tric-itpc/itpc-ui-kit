@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Checkbox, Props } from "../components/Checkbox"
 import { Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: Checkbox,
@@ -34,12 +35,14 @@ Basic.args = {
   disabled: false,
   theme: Theme.DEFAULT,
 }
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const CheckBoxDark = Template.bind({})
 CheckBoxDark.args = {
   disabled: false,
   theme: Theme.DARK,
 }
+CheckBoxDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 CheckBoxDark.parameters = {
   backgrounds: {

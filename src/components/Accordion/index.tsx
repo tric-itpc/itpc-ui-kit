@@ -3,29 +3,19 @@ import React, { HTMLAttributes } from "react"
 import cn from "classnames"
 
 import { IconArrow } from "../_elements"
-import { Theme } from "../types"
 
 import "./styles.css"
 
 interface AccordionArrowProps extends HTMLAttributes<HTMLSpanElement> {
   isOpened: boolean
-  theme?: Theme
 }
 
 export const AccordionArrow: React.FC<AccordionArrowProps> = ({
   isOpened,
-  theme,
   ...rest
 }) => (
-  <span
-    className={cn(
-      "itpc-accordion-arrow",
-      theme === Theme.DEFAULT && "itpc_default_theme",
-      theme === Theme.DARK && "itpc_dark_theme"
-    )}
-    {...rest}
-  >
-    <IconArrow orientation={isOpened ? "top" : "bottom"} theme={theme} />
+  <span className={cn("itpc-accordion-arrow")} {...rest}>
+    <IconArrow orientation={isOpened ? "top" : "bottom"} />
   </span>
 )
 
@@ -56,7 +46,6 @@ interface AccordionHeaderProps extends HTMLAttributes<HTMLDivElement> {
   isActive?: boolean
   isOpened: boolean
   onPress?: (e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
-  theme?: Theme
 }
 
 export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
@@ -65,16 +54,13 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
   isActive = false,
   isOpened,
   onPress,
-  theme,
   ...rest
 }) => (
   <div
     className={cn(
       "itpc-accordion-header",
       isOpened && "itpc-accordion-header_opened",
-      isActive && "itpc-accordion-header_active",
-      theme === Theme.DEFAULT && "itpc_default_theme",
-      theme === Theme.DARK && "itpc_dark_theme"
+      isActive && "itpc-accordion-header_active"
     )}
     id={id}
     onClick={onPress}
@@ -86,22 +72,13 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
 
 interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode
-  theme?: Theme
 }
 
 export const AccordionItem: React.FC<AccordionItemProps> = ({
   children,
-  theme,
   ...rest
 }) => (
-  <div
-    className={cn(
-      "itpc-accordion-item",
-      theme === Theme.DEFAULT && "itpc_default_theme",
-      theme === Theme.DARK && "itpc_dark_theme"
-    )}
-    {...rest}
-  >
+  <div className={cn("itpc-accordion-item")} {...rest}>
     {children}
   </div>
 )
@@ -109,24 +86,14 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
 export interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode
   className?: string
-  theme?: Theme
 }
 
 export const Accordion: React.FC<AccordionProps> = ({
   children,
   className = "",
-  theme = Theme.DEFAULT,
   ...rest
 }) => (
-  <div
-    className={cn(
-      "itpc-accordion",
-      theme === Theme.DEFAULT && "itpc_default_theme",
-      theme === Theme.DARK && "itpc_dark_theme",
-      className
-    )}
-    {...rest}
-  >
+  <div className={cn("itpc-accordion", className)} {...rest}>
     {children}
   </div>
 )

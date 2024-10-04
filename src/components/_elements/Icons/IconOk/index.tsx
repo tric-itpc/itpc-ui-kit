@@ -3,22 +3,10 @@ import React from "react"
 
 import cn from "classnames"
 
-import { Theme } from "../../../types"
-
 import "./styles.css"
 
-interface Props {
-  theme?: Theme
-}
-
-export const IconOk: React.FC<Props> = ({ theme }) => (
-  <i
-    className={cn(
-      "itpc-icon__ok",
-      theme === Theme.DEFAULT && "itpc_default_theme",
-      theme === Theme.DARK && "itpc_dark_theme"
-    )}
-  >
+export const IconOk: React.FC = () => (
+  <i className={cn("itpc-icon__ok")}>
     <svg
       height="22"
       preserveAspectRatio="xMidYMid meet"

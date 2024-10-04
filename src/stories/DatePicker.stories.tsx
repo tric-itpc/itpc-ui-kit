@@ -2,10 +2,11 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { FormattedValues, IInfo } from "../components"
+import { FormattedValues } from "../components"
 import { DatePicker, Props } from "../components/DatePicker"
 import { Text } from "../components/Text"
 import { Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: DatePicker,
@@ -26,8 +27,8 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
     <>
       <DatePicker {...args} onChange={onChange} value={date.value} />
       <br />
-      <Text theme={args.theme}>Value: {date.value}</Text>
-      <Text theme={args.theme}>Formatted value: {date.formattedValue}</Text>
+      <Text>Value: {date.value}</Text>
+      <Text>Formatted value: {date.formattedValue}</Text>
     </>
   )
 }
@@ -40,6 +41,7 @@ Basic.args = {
   validationState: "valid",
   withTime: false,
 }
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const DatePickerDark = Template.bind({})
 DatePickerDark.args = {
@@ -49,6 +51,7 @@ DatePickerDark.args = {
   validationState: "valid",
   withTime: false,
 }
+DatePickerDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 DatePickerDark.parameters = {
   backgrounds: {

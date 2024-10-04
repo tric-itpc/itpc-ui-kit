@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Preloader, PreloaderProps } from "../components/Preloader"
 import { Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: Preloader,
@@ -15,14 +16,14 @@ const Template: ComponentStory<React.FC<PreloaderProps>> = (args) => (
 )
 
 export const Basic = Template.bind({})
-Basic.args = {
-  theme: Theme.DEFAULT,
-}
+Basic.args = {}
+
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const PreloaderDark = Template.bind({})
-PreloaderDark.args = {
-  theme: Theme.DARK,
-}
+PreloaderDark.args = {}
+
+PreloaderDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 PreloaderDark.parameters = {
   backgrounds: {

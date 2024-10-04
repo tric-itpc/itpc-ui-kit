@@ -5,6 +5,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { TableSort, TableSortProps } from "../components/TableSort"
 import { Column, RowType } from "../components/TableSort/types"
 import { NumberColumns, Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: TableSort,
@@ -91,20 +92,20 @@ const dataColumns: Column<TypeData>[] = [
 ]
 
 const Template: ComponentStory<React.FC<TableSortProps<TypeData>>> = (args) => (
-  <TableSort {...args} rows={dataRows} theme={args.theme} />
+  <TableSort {...args} rows={dataRows} />
 )
 
 export const Basic = Template.bind({})
 Basic.args = {
   columns: dataColumnsNoSort,
-  theme: Theme.DEFAULT,
 }
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const WithoutSortDark = Template.bind({})
 WithoutSortDark.args = {
   columns: dataColumnsNoSort,
-  theme: Theme.DARK,
 }
+WithoutSortDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 WithoutSortDark.parameters = {
   backgrounds: {
@@ -118,6 +119,7 @@ SortByOneColumns.args = {
   sortByNumberColumns: NumberColumns.ONE,
   theme: Theme.DEFAULT,
 }
+SortByOneColumns.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const SortByOneColumnsDark = Template.bind({})
 SortByOneColumnsDark.args = {
@@ -125,6 +127,7 @@ SortByOneColumnsDark.args = {
   sortByNumberColumns: NumberColumns.ONE,
   theme: Theme.DARK,
 }
+SortByOneColumnsDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 SortByOneColumnsDark.parameters = {
   backgrounds: {
@@ -138,6 +141,7 @@ SortByTwoColumns.args = {
   sortByNumberColumns: NumberColumns.TWO,
   theme: Theme.DEFAULT,
 }
+SortByTwoColumns.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const SortByTwoColumnsDark = Template.bind({})
 SortByTwoColumnsDark.args = {
@@ -145,6 +149,7 @@ SortByTwoColumnsDark.args = {
   sortByNumberColumns: NumberColumns.TWO,
   theme: Theme.DARK,
 }
+SortByTwoColumnsDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 SortByTwoColumnsDark.parameters = {
   backgrounds: {

@@ -1,4 +1,4 @@
-.itpc_default_theme {
+:root {
   /* фон */
   --itpc-primary-bg-color: #ffffff;
 
@@ -54,7 +54,7 @@
   --itpc-secondary-icon-color: #ffffff;
   --itpc-default-icon-color: #cccccc;
   --itpc-success-icon-color: #7add7a;
-  --itpc-icon-color-yellow: #ecc022;
+  --itpc-yellow-icon-color: #ecc022;
   
   /* Тени */
   --itpc-box-shadow-color: #e5e5e5;

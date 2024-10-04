@@ -5,6 +5,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { Button } from "../components/Button"
 import { Card, Props } from "../components/Card"
 import { Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: Card,
@@ -15,7 +16,7 @@ const Template: ComponentStory<React.FC<Props>> = (args) => (
   <Card {...args}>
     <form>
       <p>My form</p>
-      <Button theme={args.theme}>Test</Button>
+      <Button>Test</Button>
     </form>
   </Card>
 )
@@ -26,6 +27,7 @@ Basic.args = {
   theme: Theme.DEFAULT,
   title: "My card",
 }
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const CardDark = Template.bind({})
 CardDark.args = {
@@ -33,6 +35,8 @@ CardDark.args = {
   theme: Theme.DARK,
   title: "My card",
 }
+
+CardDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 CardDark.parameters = {
   backgrounds: {

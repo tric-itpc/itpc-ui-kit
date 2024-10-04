@@ -4,7 +4,7 @@ import cn from "classnames"
 
 import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
 import { useOnClickOutside } from "../../_hooks"
-import { Item, Theme } from "../types"
+import { Item } from "../types"
 
 import "./styles.css"
 
@@ -16,7 +16,6 @@ export interface Props
   items: Item[]
   onChange(value: string): void
   placeholder: string
-  theme?: Theme
 }
 
 export const SelectField: React.FC<Props> = ({
@@ -26,7 +25,6 @@ export const SelectField: React.FC<Props> = ({
   items,
   onChange,
   placeholder,
-  theme = Theme.DEFAULT,
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -54,16 +52,7 @@ export const SelectField: React.FC<Props> = ({
   useOnClickOutside(ref, close)
 
   return (
-    <div
-      className={cn(
-        "itpc-select",
-        theme === Theme.DEFAULT && "itpc_default_theme",
-        theme === Theme.DARK && "itpc_dark_theme",
-        className
-      )}
-      ref={ref}
-      {...rest}
-    >
+    <div className={cn("itpc-select", className)} ref={ref} {...rest}>
       <button
         className={cn(
           "itpc-select__button",
@@ -73,7 +62,7 @@ export const SelectField: React.FC<Props> = ({
         onClick={handleOpen}
         type="button"
       >
-        <Placeholder focused={isOpen || !!defaultItemId} theme={theme}>
+        <Placeholder focused={isOpen || !!defaultItemId}>
           {placeholder}
         </Placeholder>
 
@@ -81,14 +70,10 @@ export const SelectField: React.FC<Props> = ({
           items.find((item) => item.id === defaultItemId)?.value}
       </button>
 
-      <IconArrow
-        onClick={handleOpen}
-        orientation={isOpen ? "top" : "bottom"}
-        theme={theme}
-      />
+      <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
 
       {isOpen && (
-        <Popover theme={theme}>
+        <Popover>
           {items.map((item) => (
             <SelectItem
               disabled={item.disabled}
@@ -96,7 +81,6 @@ export const SelectField: React.FC<Props> = ({
               isActive={defaultItemId === item.id}
               key={item.id}
               onChange={changeValue}
-              theme={theme}
             >
               {item.value}
             </SelectItem>

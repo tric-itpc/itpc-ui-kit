@@ -9,6 +9,7 @@ import { Button } from "./Button"
 import { ButtonRound } from "./ButtonRound"
 import { Card } from "./Card"
 import { Checkbox } from "./Checkbox"
+import { ComponentProvider } from "./ComponentProvider"
 import { DatePicker } from "./DatePicker"
 import { ErrorMessage } from "./ErrorMessage"
 import { Modal, ModalContent, ModalFooter } from "./Modal"
@@ -46,6 +47,7 @@ export {
   Cell,
   Checkbox,
   Column,
+  ComponentProvider,
   DatePicker,
   ErrorMessage,
   Modal,
@@ -80,4 +82,5 @@ export {
   PaginationResult,
   SortType,
   TabsItem,
+  Theme,
 } from "./types"

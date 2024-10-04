@@ -6,6 +6,7 @@ import { Text } from "../components"
 import { IconOk } from "../components/_elements"
 import { Props, TextField } from "../components/TextField"
 import { Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: TextField,
@@ -31,11 +32,10 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
           )
         }
         onChange={onChange}
-        theme={args.theme}
         value={value}
       />
       <br />
-      <Text theme={args.theme}>Value: {value}</Text>
+      <Text>Value: {value}</Text>
     </>
   )
 }
@@ -44,17 +44,19 @@ export const Basic = Template.bind({})
 Basic.args = {
   errorMessage: "Error message",
   placeholder: "Enter text",
-  theme: Theme.DEFAULT,
   validationState: "valid",
 }
+
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const TextFieldDark = Template.bind({})
 TextFieldDark.args = {
   errorMessage: "Error message",
   placeholder: "Enter text",
-  theme: Theme.DARK,
   validationState: "valid",
 }
+
+TextFieldDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 TextFieldDark.parameters = {
   backgrounds: {

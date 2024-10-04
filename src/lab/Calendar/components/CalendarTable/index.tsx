@@ -1,6 +1,5 @@
 import React from "react"
 
-import { Theme } from "../../../../components/types"
 import { Day } from "../../types"
 import { isDisabledDate } from "../../utils"
 import { CalendarCell } from "../CalendarCell"
@@ -37,7 +36,6 @@ interface Props {
     date: string,
     event: React.MouseEvent<HTMLTableDataCellElement>
   ): void
-  theme?: Theme
 }
 
 export const CalendarTable: React.FC<Props> = ({
@@ -50,7 +48,6 @@ export const CalendarTable: React.FC<Props> = ({
   disabledDaysOfWeek,
   id,
   onChange,
-  theme,
 }: Props) => {
   const rows = getRows(days)
 
@@ -66,7 +63,6 @@ export const CalendarTable: React.FC<Props> = ({
               id={id}
               isChanged={currentDate === day.date}
               key={day.date}
-              theme={theme}
               isHeader
             />
           ))}
@@ -91,7 +87,6 @@ export const CalendarTable: React.FC<Props> = ({
                 isChanged={currentDate === day.date}
                 key={day.date}
                 onChange={onChange}
-                theme={theme}
               />
             ))}
           </tr>

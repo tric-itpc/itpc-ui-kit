@@ -2,30 +2,23 @@ import React from "react"
 
 import cn from "classnames"
 
-import { Orientation, Theme } from "../../../types"
+import { Orientation } from "../../../types"
 
 import "./styles.css"
 
 interface Props {
   onClick?: () => void
   orientation: Orientation
-  theme?: Theme
 }
 
-export const IconDoubleArrow: React.FC<Props> = ({
-  onClick,
-  orientation,
-  theme,
-}) => (
+export const IconDoubleArrow: React.FC<Props> = ({ onClick, orientation }) => (
   <i
     className={cn(
       "itpc-icon__double-arrow",
       orientation === "top" && "itpc-icon__double-arrow_orientation_top",
       orientation === "bottom" && "itpc-double-icon__arrow_orientation_bottom",
       orientation === "left" && "itpc-icon__double-arrow_orientation_left",
-      orientation === "right" && "itpc-icon__double-arrow_orientation_right",
-      theme === Theme.DEFAULT && "itpc_default_theme",
-      theme === Theme.DARK && "itpc_dark_theme"
+      orientation === "right" && "itpc-icon__double-arrow_orientation_right"
     )}
     onClick={onClick}
   >

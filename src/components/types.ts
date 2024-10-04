@@ -1,4 +1,4 @@
-import React from "react"
+import React, { type ReactNode } from "react"
 
 export type InputState =
   | "default"
@@ -69,4 +69,20 @@ export enum NumberColumns {
 export enum Theme {
   DARK = "dark",
   DEFAULT = "default",
+}
+
+export interface ComponentProviderProps {
+  children: ReactNode
+  theme?: Theme
+  themeClass?: string
+}
+
+export interface ComponentContextProps {
+  themeComponent?: ThemeContext
+}
+
+export interface ThemeContext {
+  setTheme: (theme: Theme) => void
+  theme: Theme
+  themeClass: string
 }

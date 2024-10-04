@@ -11,7 +11,7 @@ import {
   InputWrap,
   Placeholder,
 } from "../_elements"
-import { FormattedValues, Theme, ValidationState } from "../types"
+import { FormattedValues, ValidationState } from "../types"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -36,7 +36,6 @@ export interface Props
   prefix?: string
   replaceValue?: (value: string) => string
   suffix?: string
-  theme?: Theme
   validationState?: ValidationState
   value?: string
 }
@@ -58,7 +57,6 @@ export const NumberField: React.FC<Props> = ({
   placeholder = "",
   prefix = "",
   replaceValue,
-  theme = Theme.DEFAULT,
   validationState = "valid",
   value = "",
   ...rest
@@ -98,15 +96,10 @@ export const NumberField: React.FC<Props> = ({
 
   return (
     <Field className={className} {...rest}>
-      <InputWrap
-        focused={focused}
-        theme={theme}
-        validationState={validationState}
-      >
+      <InputWrap focused={focused} validationState={validationState}>
         <Placeholder
           focused={focused || !!value.length}
           htmlFor={id}
-          theme={theme}
           validationState={validationState}
         >
           {placeholder}

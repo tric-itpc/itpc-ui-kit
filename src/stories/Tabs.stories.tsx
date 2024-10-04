@@ -5,6 +5,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { TabsItem } from "../components"
 import { Tabs, TabsProps } from "../components/Tabs"
 import { Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 const items: TabsItem[] = [
   {
@@ -27,18 +28,16 @@ export default {
 } as ComponentMeta<React.FC<TabsProps>>
 
 const Template: ComponentStory<React.FC<TabsProps>> = (args) => (
-  <Tabs {...args} items={items} theme={args.theme} />
+  <Tabs {...args} items={items} />
 )
 
 export const Basic = Template.bind({})
-Basic.args = {
-  theme: Theme.DEFAULT,
-}
+Basic.args = {}
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const TabsDark = Template.bind({})
-TabsDark.args = {
-  theme: Theme.DARK,
-}
+TabsDark.args = {}
+TabsDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 TabsDark.parameters = {
   backgrounds: {

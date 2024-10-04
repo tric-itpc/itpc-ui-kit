@@ -3,27 +3,18 @@ import React from "react"
 
 import cn from "classnames"
 
-import { Theme } from "../../../types"
-
 import "./styles.css"
 
 interface Props {
   isClickable: boolean
   onClick(): void
-  theme?: Theme
 }
 
-export const IconCalendar: React.FC<Props> = ({
-  isClickable,
-  onClick,
-  theme,
-}) => (
+export const IconCalendar: React.FC<Props> = ({ isClickable, onClick }) => (
   <i
     className={cn(
       "itpc-icon__calendar",
-      isClickable && "itpc-icon__calendar_clickable",
-      theme === Theme.DEFAULT && "itpc_default_theme",
-      theme === Theme.DARK && "itpc_dark_theme"
+      isClickable && "itpc-icon__calendar_clickable"
     )}
     onClick={onClick}
   >

@@ -5,6 +5,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { FormattedValues, Text } from "../components"
 import { NumberField, Props } from "../components/NumberField"
 import { Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: NumberField,
@@ -31,8 +32,8 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
         value={date.value}
       />
       <br />
-      <Text theme={args.theme}>Value: {date.value}</Text>
-      <Text theme={args.theme}>Formatted value: {date.formattedValue}</Text>
+      <Text>Value: {date.value}</Text>
+      <Text>Formatted value: {date.formattedValue}</Text>
     </div>
   )
 }
@@ -44,9 +45,9 @@ Basic.args = {
   mask: "_",
   placeholder: "Phone number",
   replaceValue: () => "",
-  theme: Theme.DEFAULT,
   validationState: "valid",
 }
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const NumberFieldDark = Template.bind({})
 NumberFieldDark.args = {
@@ -55,9 +56,9 @@ NumberFieldDark.args = {
   mask: "_",
   placeholder: "Phone number",
   replaceValue: () => "",
-  theme: Theme.DARK,
   validationState: "valid",
 }
+NumberFieldDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 NumberFieldDark.parameters = {
   backgrounds: {

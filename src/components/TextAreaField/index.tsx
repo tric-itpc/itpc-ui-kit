@@ -3,7 +3,7 @@ import React, { HTMLAttributes, useRef, useState } from "react"
 import cn from "classnames"
 
 import { Field, InputError, InputWrap, Placeholder } from "../_elements"
-import { Theme, ValidationState } from "../types"
+import { ValidationState } from "../types"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -20,7 +20,6 @@ export interface Props
   ) => void
   onFocus?: () => void
   placeholder?: string
-  theme?: Theme
   validationState?: ValidationState
   value?: string
 }
@@ -36,7 +35,6 @@ export const TextAreaField: React.FC<Props> = ({
   onChange,
   onFocus,
   placeholder = "",
-  theme = Theme.DEFAULT,
   validationState = "valid",
   value = "",
   ...rest
@@ -78,26 +76,16 @@ export const TextAreaField: React.FC<Props> = ({
   }
 
   return (
-    <Field
-      className={cn(
-        theme === Theme.DEFAULT && "itpc_default_theme",
-        theme === Theme.DARK && "itpc_dark_theme",
-        className
-      )}
-      theme={theme}
-      {...rest}
-    >
+    <Field className={cn(className)} {...rest}>
       <InputWrap
         focused={focused}
         height={height}
         maxHeight={maxHeight}
-        theme={theme}
         validationState={validationState}
       >
         <Placeholder
           focused={focused || value.length > 0}
           htmlFor={id}
-          theme={theme}
           validationState={validationState}
         >
           {placeholder}
@@ -121,7 +109,6 @@ export const TextAreaField: React.FC<Props> = ({
         <InputError
           errorMessage={errorMessage}
           show={validationState === "invalid"}
-          theme={theme}
         />
       </InputWrap>
     </Field>

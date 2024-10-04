@@ -5,6 +5,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { IconWarning } from "../components/_elements"
 import { ButtonRound, Props } from "../components/ButtonRound"
 import { Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: ButtonRound,
@@ -22,6 +23,7 @@ Basic.args = {
   theme: Theme.DEFAULT,
   tooltip: "текст",
 }
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const ButtonRoundDark = Template.bind({})
 ButtonRoundDark.args = {
@@ -30,6 +32,7 @@ ButtonRoundDark.args = {
   theme: Theme.DARK,
   tooltip: "текст",
 }
+ButtonRoundDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 ButtonRoundDark.parameters = {
   backgrounds: {

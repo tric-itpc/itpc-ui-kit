@@ -2,7 +2,7 @@ import React, { TableHTMLAttributes, useState } from "react"
 
 import cn from "classnames"
 
-import { NumberColumns, SortType, Theme } from "../types"
+import { NumberColumns, SortType } from "../types"
 
 import { TableSortBody, TableSortHeader } from "./_components"
 import "./styles.css"
@@ -23,7 +23,6 @@ export interface TableSortProps<T extends RowType>
   columns?: Column<T>[]
   rows: RowType<T>[]
   sortByNumberColumns?: NumberColumns
-  theme?: Theme
 }
 
 export const TableSort: React.FC<TableSortProps<any>> = ({
@@ -31,7 +30,6 @@ export const TableSort: React.FC<TableSortProps<any>> = ({
   columns,
   rows,
   sortByNumberColumns = NumberColumns.ZERO,
-  theme = Theme.DEFAULT,
   ...rest
 }: TableSortProps<any>) => {
   const [currentKey, setCurrentKey] = useState<KeySort<RowType>>()
@@ -112,15 +110,7 @@ export const TableSort: React.FC<TableSortProps<any>> = ({
   }
 
   return (
-    <table
-      className={cn(
-        "itpc-table-sort",
-        theme === Theme.DEFAULT && "itpc_default_theme",
-        theme === Theme.DARK && "itpc_dark_theme",
-        className
-      )}
-      {...rest}
-    >
+    <table className={cn("itpc-table-sort", className)} {...rest}>
       {columns?.length && (
         <TableSortHeader
           columns={columns}
@@ -128,7 +118,6 @@ export const TableSort: React.FC<TableSortProps<any>> = ({
           currentKeys={currentKeys}
           setKeySort={setKeySort}
           sortByNumberColumns={sortByNumberColumns}
-          theme={theme}
         />
       )}
 

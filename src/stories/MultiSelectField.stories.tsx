@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { MultiSelectField, Props } from "../components/MultiSelectField"
 import { Item, Theme } from "../components/types"
+import { ThemeDecorator } from "../config/ThemeDecorator"
 
 export default {
   component: MultiSelectField,
@@ -59,7 +60,6 @@ const Template: ComponentStory<React.FC<Props>> = (args) => {
       items={mockItems}
       onChange={onChange}
       selectedItems={selectedItems.map((item) => item.id)}
-      theme={args.theme}
     />
   )
 }
@@ -68,15 +68,15 @@ export const Basic = Template.bind({})
 Basic.args = {
   placeholder: "Animal",
   selectedItems: ["2"],
-  theme: Theme.DEFAULT,
 }
+Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const MultiSelectFieldDark = Template.bind({})
 MultiSelectFieldDark.args = {
   placeholder: "Animal",
   selectedItems: ["2"],
-  theme: Theme.DARK,
 }
+MultiSelectFieldDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 MultiSelectFieldDark.parameters = {
   backgrounds: {

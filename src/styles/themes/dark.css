@@ -1,4 +1,4 @@
-.itpc_dark_theme {
+.itpc-theme-dark {
   /* фон */
   --itpc-primary-bg-color: #19192a;
 
@@ -56,7 +56,7 @@
   --itpc-secondary-icon-color: #b9b9b9;
   --itpc-default-icon-color: #4e4e62;
   --itpc-success-icon-color: #7add7a;
-  --itpc-icon-color-yellow: #ecc022;
+  --itpc-yellow-icon-color: #ecc022;
 
   /* Тени */
   --itpc-box-shadow-color: #373064;
