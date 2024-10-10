@@ -13,18 +13,18 @@ export interface TableFooterProps extends HTMLAttributes<HTMLTableSectionElement
     children?: React.ReactNode;
 }
 export declare const TableFooter: React.FC<TableFooterProps>;
-export interface RowProps extends HTMLAttributes<HTMLTableRowElement> {
+export interface TableRowProps extends HTMLAttributes<HTMLTableRowElement> {
     children?: React.ReactNode;
     id?: string;
     onPressRow?: (event?: React.MouseEvent<HTMLTableRowElement>) => void;
 }
-export declare const Row: React.FC<RowProps>;
-export interface ColumnProps extends ThHTMLAttributes<HTMLTableHeaderCellElement> {
+export declare const TableRow: React.FC<TableRowProps>;
+export interface TableColumnProps extends ThHTMLAttributes<HTMLTableHeaderCellElement> {
     children?: React.ReactNode;
     id?: string;
     onPressColumn?: (event?: React.MouseEvent<HTMLTableCellElement>) => void;
 }
-export declare const Column: React.FC<ColumnProps>;
+export declare const TableColumn: React.FC<TableColumnProps>;
 export interface CellProps extends TdHTMLAttributes<HTMLTableDataCellElement> {
     children?: React.ReactNode;
     id?: string;
