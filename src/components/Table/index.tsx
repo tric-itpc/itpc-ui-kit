@@ -50,13 +50,13 @@ export const TableFooter: React.FC<TableFooterProps> = ({
   </tfoot>
 )
 
-export interface RowProps extends HTMLAttributes<HTMLTableRowElement> {
+export interface TableRowProps extends HTMLAttributes<HTMLTableRowElement> {
   children?: React.ReactNode
   id?: string
   onPressRow?: (event?: React.MouseEvent<HTMLTableRowElement>) => void
 }
 
-export const Row: React.FC<RowProps> = ({
+export const TableRow: React.FC<TableRowProps> = ({
   children,
   id = "",
   onPressRow,
@@ -72,14 +72,14 @@ export const Row: React.FC<RowProps> = ({
   </tr>
 )
 
-export interface ColumnProps
+export interface TableColumnProps
   extends ThHTMLAttributes<HTMLTableHeaderCellElement> {
   children?: React.ReactNode
   id?: string
   onPressColumn?: (event?: React.MouseEvent<HTMLTableCellElement>) => void
 }
 
-export const Column: React.FC<ColumnProps> = ({
+export const TableColumn: React.FC<TableColumnProps> = ({
   children,
   id = "",
   onPressColumn,
