@@ -12,6 +12,8 @@ import { Checkbox } from "./Checkbox"
 import { DatePicker } from "./DatePicker"
 import { DecimalField } from "./DecimalField"
 import { ErrorMessage } from "./ErrorMessage"
+import { Flex } from "./Flex"
+import { Col, Row } from "./Grid"
 import { Modal, ModalContent, ModalFooter } from "./Modal"
 import { MultiSelectField } from "./MultiSelectField"
 import { NumberField } from "./NumberField"
@@ -22,12 +24,12 @@ import { SearchField } from "./SearchField"
 import { SelectField } from "./SelectField"
 import {
   Cell,
-  Column,
-  Row,
   Table,
   TableBody,
+  TableColumn,
   TableFooter,
   TableHeader,
+  TableRow,
 } from "./Table"
 import { TableSort } from "./TableSort"
 import { TabButton, Tabs } from "./Tabs"
@@ -46,10 +48,11 @@ export {
   Card,
   Cell,
   Checkbox,
-  Column,
+  Col,
   DatePicker,
   DecimalField,
   ErrorMessage,
+  Flex,
   Modal,
   ModalContent,
   ModalFooter,
@@ -64,8 +67,10 @@ export {
   TabButton,
   Table,
   TableBody,
+  TableColumn,
   TableFooter,
   TableHeader,
+  TableRow,
   TableSort,
   Tabs,
   Text,
@@ -80,6 +85,8 @@ export {
   Item,
   NumberColumns,
   PaginationResult,
+  RowAlign,
+  RowJustify,
   SortType,
   TabsItem,
 } from "./types"

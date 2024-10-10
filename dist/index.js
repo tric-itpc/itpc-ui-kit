@@ -2099,6 +2099,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ 9084:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ 7715:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ 688:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -24216,9 +24236,9 @@ exports.Checkbox = Checkbox;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.formatMaskDateTime = exports.formatMaskDate = exports.maskDateTime = exports.maskDate = void 0;
-exports.maskDate = ["Д", "Д", "М", "М", "Г", "Г", "Г", "Г"];
-exports.maskDateTime = [
+exports.DEFAULT_WIDTH_CALENDAR = exports.WIDTH_BODY_CALENDAR = exports.MIN_WIDTH_CALENDAR = exports.INPUT_TO_CALENDAR_DISTANCE = exports.DIVIDER_IN_TWO = exports.FORMAT_MASK_DATE_TIME = exports.FORMAT_MASK_DATE = exports.MASK_DATE_TIME = exports.MASK_DATE = void 0;
+exports.MASK_DATE = ["Д", "Д", "М", "М", "Г", "Г", "Г", "Г"];
+exports.MASK_DATE_TIME = [
     "Д",
     "Д",
     "М",
@@ -24234,8 +24254,13 @@ exports.maskDateTime = [
     "С",
     "С",
 ];
-exports.formatMaskDate = "##.##.####";
-exports.formatMaskDateTime = "##.##.#### ##:##:##";
+exports.FORMAT_MASK_DATE = "##.##.####";
+exports.FORMAT_MASK_DATE_TIME = "##.##.#### ##:##:##";
+exports.DIVIDER_IN_TWO = 2;
+exports.INPUT_TO_CALENDAR_DISTANCE = 8;
+exports.MIN_WIDTH_CALENDAR = 280;
+exports.WIDTH_BODY_CALENDAR = 320;
+exports.DEFAULT_WIDTH_CALENDAR = 352;
 
 
 /***/ }),
@@ -24305,13 +24330,15 @@ __webpack_require__(2057);
 var utils_1 = __webpack_require__(6937);
 var DatePicker = function (_a) {
     var activeDates = _a.activeDates, _b = _a.className, className = _b === void 0 ? "" : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, disabledAfterDate = _a.disabledAfterDate, disabledBeforeDate = _a.disabledBeforeDate, disabledDates = _a.disabledDates, disabledDaysOfWeek = _a.disabledDaysOfWeek, _d = _a.disabledSelectMonth, disabledSelectMonth = _d === void 0 ? false : _d, _e = _a.disabledSelectYear, disabledSelectYear = _e === void 0 ? false : _e, _f = _a.errorMessage, errorMessage = _f === void 0 ? "" : _f, _g = _a.id, id = _g === void 0 ? "itpc-datepicker" : _g, _h = _a.isIconClickable, isIconClickable = _h === void 0 ? false : _h, _j = _a.isShowIcon, isShowIcon = _j === void 0 ? true : _j, _k = _a.name, name = _k === void 0 ? "itpc-datepicker" : _k, _l = _a.offsetYear, offsetYear = _l === void 0 ? 10 : _l, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _m = _a.placeholder, placeholder = _m === void 0 ? "" : _m, scrollToYear = _a.scrollToYear, _o = _a.validationState, validationState = _o === void 0 ? "valid" : _o, _p = _a.value, value = _p === void 0 ? "" : _p, _q = _a.withTime, withTime = _q === void 0 ? false : _q, yearsFromTo = _a.yearsFromTo, rest = __rest(_a, ["activeDates", "className", "disabled", "disabledAfterDate", "disabledBeforeDate", "disabledDates", "disabledDaysOfWeek", "disabledSelectMonth", "disabledSelectYear", "errorMessage", "id", "isIconClickable", "isShowIcon", "name", "offsetYear", "onBlur", "onChange", "onFocus", "placeholder", "scrollToYear", "validationState", "value", "withTime", "yearsFromTo"]);
+    var windowWidth = (0, lab_1.useWindowSize)().windowWidth;
     var _r = (0, react_1.useState)(false), focused = _r[0], onHandleFocused = _r[1];
     var _s = (0, react_1.useState)(false), isShowCalendar = _s[0], setIsShowCalendar = _s[1];
-    var _t = (0, react_1.useState)(0), calendarPosition = _t[0], setCalendarPosition = _t[1];
+    var _t = (0, react_1.useState)({}), stylePositionCalendar = _t[0], setStylePositionCalendar = _t[1];
     var inputWrapRef = (0, react_1.useRef)(null);
     var calendarWrapRef = (0, react_1.useRef)(null);
     var onOpenCalendar = function () {
         setIsShowCalendar(true);
+        calculatePositionCalendar();
     };
     var onCloseCalendar = function () {
         setIsShowCalendar(false);
@@ -24357,34 +24384,29 @@ var DatePicker = function (_a) {
             }, sourceInfo.event, { id: id, name: name });
         }
     };
-    var handleCalendarPosition = function () {
-        var _a, _b, _c;
-        var documentHeight = document.documentElement.clientHeight;
-        var inputSize = (_a = inputWrapRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect();
-        var calendarHeight = (_c = (_b = calendarWrapRef.current) === null || _b === void 0 ? void 0 : _b.getBoundingClientRect()) === null || _c === void 0 ? void 0 : _c.height;
-        var underInputSize = documentHeight - inputSize.bottom;
-        if (underInputSize < calendarHeight) {
-            setCalendarPosition(inputSize.top - calendarHeight - 10);
-            return;
-        }
-        if (underInputSize >= calendarHeight) {
-            setCalendarPosition(inputSize.bottom + 10);
-        }
+    var calculatePositionCalendar = function () {
+        var position = (0, utils_1.getCalculatePositionCalendar)(inputWrapRef, calendarWrapRef);
+        setStylePositionCalendar(position);
     };
     (0, react_1.useEffect)(function () {
-        handleCalendarPosition();
-    }, [isShowCalendar]);
-    (0, react_1.useEffect)(function () {
-        window.addEventListener("scroll", handleCalendarPosition);
-        return function () { return window.removeEventListener("scroll", handleCalendarPosition); };
+        var hasScroll = document.body.scrollHeight > window.innerHeight;
+        if (hasScroll) {
+            window.addEventListener("scroll", calculatePositionCalendar);
+        }
+        return function () {
+            window.removeEventListener("scroll", calculatePositionCalendar);
+        };
     }, []);
+    (0, react_1.useEffect)(function () {
+        calculatePositionCalendar();
+    }, [windowWidth]);
     return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-datepicker", className) }, rest),
         react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-datepicker__input-wrap", validationState === "invalid" && "itpc-datepicker__input-wrap_error"), ref: inputWrapRef },
-            placeholder && (react_1.default.createElement(_elements_1.Placeholder, { focused: focused || !!value.length, htmlFor: name, validationState: validationState }, placeholder)),
-            react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: (0, classnames_1.default)("itpc-datepicker__input", (focused || value.length) && "itpc-datepicker__input_focused"), disabled: disabled, format: withTime ? constants_1.formatMaskDateTime : constants_1.formatMaskDate, id: id, mask: withTime ? constants_1.maskDateTime : constants_1.maskDate, name: name, onBlur: onBlurPicker, onFocus: onFocusPicker, onValueChange: onChangePicker, type: "text", value: value, allowEmptyFormatting: true, valueIsNumericString: true }),
+            placeholder && (react_1.default.createElement(_elements_1.Placeholder, { focused: focused || !!value.length, htmlFor: id, validationState: validationState }, placeholder)),
+            react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: (0, classnames_1.default)("itpc-datepicker__input", (focused || value.length) && "itpc-datepicker__input_focused"), disabled: disabled, format: withTime ? constants_1.FORMAT_MASK_DATE_TIME : constants_1.FORMAT_MASK_DATE, id: id, mask: withTime ? constants_1.MASK_DATE_TIME : constants_1.MASK_DATE, name: name, onBlur: onBlurPicker, onFocus: onFocusPicker, onValueChange: onChangePicker, type: "text", value: value, allowEmptyFormatting: true, valueIsNumericString: true }),
             isShowIcon && (react_1.default.createElement(_elements_1.IconCalendar, { isClickable: isIconClickable, onClick: onClickIcon })),
             react_1.default.createElement(_elements_1.InputError, { errorMessage: errorMessage, show: validationState === "invalid" })),
-        react_1.default.createElement("div", { className: "itpc-datepicker__calendar-wrap", ref: calendarWrapRef, style: { top: "".concat(calendarPosition, "px") } },
+        react_1.default.createElement("div", { className: "itpc-datepicker__calendar-wrap", ref: calendarWrapRef, style: stylePositionCalendar },
             react_1.default.createElement(lab_1.Calendar, { currentValue: withTime
                     ? (0, utils_1.parseNumericStringToISODateTime)(value)
                     : (0, utils_1.parseNumericStringToISODate)(value), activeDates: activeDates, disabledAfterDate: disabledAfterDate, disabledBeforeDate: disabledBeforeDate, disabledDates: disabledDates, disabledDaysOfWeek: disabledDaysOfWeek, disabledSelectMonth: disabledSelectMonth, disabledSelectYear: disabledSelectYear, handleShow: onCloseCalendar, id: id, name: name, offsetYear: offsetYear, onChange: onChangeDate, scrollToYear: scrollToYear, show: isShowCalendar, withTime: withTime, yearsFromTo: yearsFromTo }))));
@@ -24394,13 +24416,38 @@ exports.DatePicker = DatePicker;
 
 /***/ }),
 
-/***/ 6937:
+/***/ 5613:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parseISODateTimeToNumericString = exports.parseISODateToNumericString = exports.parseISODateTime = exports.parseISODate = exports.parseNumericStringToISODateTime = exports.parseNumericStringToISODate = void 0;
+exports.VERTICAL_POSITION_CALENDAR = exports.HORIZONTAL_POSITION_CALENDAR = void 0;
+var HORIZONTAL_POSITION_CALENDAR;
+(function (HORIZONTAL_POSITION_CALENDAR) {
+    HORIZONTAL_POSITION_CALENDAR["CALCULATED"] = "calculated";
+    HORIZONTAL_POSITION_CALENDAR["CENTER"] = "center";
+    HORIZONTAL_POSITION_CALENDAR["LEFT"] = "left";
+    HORIZONTAL_POSITION_CALENDAR["RIGHT"] = "right";
+})(HORIZONTAL_POSITION_CALENDAR = exports.HORIZONTAL_POSITION_CALENDAR || (exports.HORIZONTAL_POSITION_CALENDAR = {}));
+var VERTICAL_POSITION_CALENDAR;
+(function (VERTICAL_POSITION_CALENDAR) {
+    VERTICAL_POSITION_CALENDAR["BOTTOM"] = "bottom";
+    VERTICAL_POSITION_CALENDAR["TOP"] = "top";
+})(VERTICAL_POSITION_CALENDAR = exports.VERTICAL_POSITION_CALENDAR || (exports.VERTICAL_POSITION_CALENDAR = {}));
+
+
+/***/ }),
+
+/***/ 6937:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getCalculatePositionCalendar = exports.getHorizontalPosition = exports.getInputDimensions = exports.getDocumentDimensions = exports.getCalendarDimensions = exports.getCalendarStyle = exports.parseISODateTimeToNumericString = exports.parseISODateToNumericString = exports.parseISODateTime = exports.parseISODate = exports.parseNumericStringToISODateTime = exports.parseNumericStringToISODate = void 0;
+var constants_1 = __webpack_require__(7993);
+var types_1 = __webpack_require__(5613);
 var parseNumericStringToISODate = function (date) {
     if (!/^\d+$/u.test(date) || date.length < 8) {
         return "";
@@ -24448,6 +24495,183 @@ var parseISODateTimeToNumericString = function (datetime) {
     return "".concat(day).concat(month).concat(year).concat(hours).concat(minutes).concat(seconds);
 };
 exports.parseISODateTimeToNumericString = parseISODateTimeToNumericString;
+var getCalendarStyle = function (documentWidth, calendarWidth) {
+    var freeSpace = documentWidth - constants_1.WIDTH_BODY_CALENDAR;
+    var freeSpaceMinCalendar = documentWidth - constants_1.MIN_WIDTH_CALENDAR;
+    if (documentWidth <=
+        (calendarWidth !== 0 ? calendarWidth : constants_1.DEFAULT_WIDTH_CALENDAR)) {
+        if (documentWidth > constants_1.WIDTH_BODY_CALENDAR) {
+            return {
+                maxWidth: constants_1.WIDTH_BODY_CALENDAR,
+                minWidth: constants_1.WIDTH_BODY_CALENDAR,
+                padding: " 16px ".concat(freeSpace / constants_1.DIVIDER_IN_TWO, "px"),
+            };
+        }
+        else {
+            return {
+                maxWidth: constants_1.MIN_WIDTH_CALENDAR,
+                minWidth: constants_1.MIN_WIDTH_CALENDAR,
+                padding: " 16px ".concat(freeSpaceMinCalendar / constants_1.DIVIDER_IN_TWO, "px"),
+            };
+        }
+    }
+    return {};
+};
+exports.getCalendarStyle = getCalendarStyle;
+var getCalendarDimensions = function (ref) {
+    var rect = ref.getBoundingClientRect();
+    return { calendarHeight: rect.height, calendarWidth: rect.width };
+};
+exports.getCalendarDimensions = getCalendarDimensions;
+var getDocumentDimensions = function () { return ({
+    documentHeight: document.documentElement.clientHeight,
+    documentWidth: document.documentElement.clientWidth,
+}); };
+exports.getDocumentDimensions = getDocumentDimensions;
+var getInputDimensions = function (ref) {
+    var rect = ref.getBoundingClientRect();
+    return {
+        inputBottom: rect.bottom,
+        inputLeft: rect.left,
+        inputTop: rect.top,
+        inputWidth: rect.width,
+    };
+};
+exports.getInputDimensions = getInputDimensions;
+var getHorizontalPosition = function (props) {
+    var calendarWidth = props.calendarWidth, distanceRight = props.distanceRight, documentWidth = props.documentWidth, inputLeft = props.inputLeft, inputWidth = props.inputWidth, scrollbarWidth = props.scrollbarWidth;
+    var currentWidthCalendar = calendarWidth !== 0 ? calendarWidth : constants_1.DEFAULT_WIDTH_CALENDAR;
+    var rightEdgeFromCenter = inputWidth / constants_1.DIVIDER_IN_TWO + distanceRight;
+    var leftEdgeFromCenter = inputWidth / constants_1.DIVIDER_IN_TWO + inputLeft;
+    var calendarHalfWidth = constants_1.DEFAULT_WIDTH_CALENDAR / constants_1.DIVIDER_IN_TWO;
+    if (documentWidth <= currentWidthCalendar) {
+        return types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED;
+    }
+    if (inputWidth > currentWidthCalendar) {
+        return types_1.HORIZONTAL_POSITION_CALENDAR.LEFT;
+    }
+    else {
+        if (documentWidth - scrollbarWidth < currentWidthCalendar) {
+            return types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED;
+        }
+        else {
+            if (inputWidth + distanceRight > currentWidthCalendar) {
+                return types_1.HORIZONTAL_POSITION_CALENDAR.LEFT;
+            }
+            if ((rightEdgeFromCenter > calendarHalfWidth &&
+                leftEdgeFromCenter > calendarHalfWidth) ||
+                rightEdgeFromCenter > calendarHalfWidth) {
+                return types_1.HORIZONTAL_POSITION_CALENDAR.CENTER;
+            }
+            if (inputWidth + inputLeft > currentWidthCalendar) {
+                return types_1.HORIZONTAL_POSITION_CALENDAR.RIGHT;
+            }
+            return types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED;
+        }
+    }
+};
+exports.getHorizontalPosition = getHorizontalPosition;
+var getCalculatePositionCalendar = function (inputWrapRef, calendarWrapRef) {
+    if ((inputWrapRef === null || inputWrapRef === void 0 ? void 0 : inputWrapRef.current) && (calendarWrapRef === null || calendarWrapRef === void 0 ? void 0 : calendarWrapRef.current)) {
+        var _a = (0, exports.getDocumentDimensions)(), documentHeight = _a.documentHeight, documentWidth = _a.documentWidth;
+        var _b = (0, exports.getCalendarDimensions)(calendarWrapRef.current), calendarHeight = _b.calendarHeight, calendarWidth = _b.calendarWidth;
+        var _c = (0, exports.getInputDimensions)(inputWrapRef.current), inputBottom = _c.inputBottom, inputLeft = _c.inputLeft, inputTop = _c.inputTop, inputWidth = _c.inputWidth;
+        var scrollbarWidth = window.innerWidth - documentWidth;
+        var distanceRight = documentWidth - (inputLeft + inputWidth);
+        var distanceUnderInput = documentHeight - inputBottom;
+        var props = {
+            calendarWidth: calendarWidth,
+            distanceRight: distanceRight,
+            documentWidth: documentWidth,
+            inputLeft: inputLeft,
+            inputWidth: inputWidth,
+            scrollbarWidth: scrollbarWidth,
+        };
+        var horizontalPosition = (0, exports.getHorizontalPosition)(props);
+        var verticalPosition = void 0;
+        if (distanceUnderInput > calendarHeight + constants_1.INPUT_TO_CALENDAR_DISTANCE) {
+            verticalPosition = types_1.VERTICAL_POSITION_CALENDAR.BOTTOM;
+        }
+        else {
+            verticalPosition = types_1.VERTICAL_POSITION_CALENDAR.TOP;
+        }
+        var verticalBottomPosition = inputBottom + constants_1.INPUT_TO_CALENDAR_DISTANCE;
+        var verticalTopPosition = inputTop - constants_1.INPUT_TO_CALENDAR_DISTANCE - calendarHeight;
+        var horizontalCenterPosition = inputLeft - (calendarWidth - inputWidth) / constants_1.DIVIDER_IN_TWO;
+        var horizontalRightPosition = documentWidth - inputLeft - inputWidth;
+        var horizontalCalculatedPosition = (documentWidth - calendarWidth) / constants_1.DIVIDER_IN_TWO;
+        if (verticalPosition === types_1.VERTICAL_POSITION_CALENDAR.BOTTOM) {
+            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.LEFT) {
+                return {
+                    bottom: "auto",
+                    left: inputLeft,
+                    right: "auto",
+                    top: verticalBottomPosition,
+                };
+            }
+            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.RIGHT) {
+                return {
+                    bottom: "auto",
+                    left: "auto",
+                    right: horizontalRightPosition,
+                    top: verticalBottomPosition,
+                };
+            }
+            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.CENTER) {
+                return {
+                    bottom: "auto",
+                    left: horizontalCenterPosition,
+                    right: "auto",
+                    top: verticalBottomPosition,
+                };
+            }
+            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED) {
+                return {
+                    bottom: "auto",
+                    left: horizontalCalculatedPosition,
+                    right: "auto",
+                    top: verticalBottomPosition,
+                };
+            }
+        }
+        if (verticalPosition === types_1.VERTICAL_POSITION_CALENDAR.TOP) {
+            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.LEFT) {
+                return {
+                    bottom: "auto",
+                    left: inputLeft,
+                    right: "auto",
+                    top: verticalTopPosition,
+                };
+            }
+            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.RIGHT) {
+                return {
+                    bottom: "auto",
+                    left: "auto",
+                    right: horizontalRightPosition,
+                    top: verticalTopPosition,
+                };
+            }
+            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.CENTER) {
+                return {
+                    bottom: "auto",
+                    left: horizontalCenterPosition,
+                    right: "auto",
+                    top: verticalTopPosition,
+                };
+            }
+            if (horizontalPosition === types_1.HORIZONTAL_POSITION_CALENDAR.CALCULATED) {
+                return {
+                    bottom: "auto",
+                    left: horizontalCalculatedPosition,
+                    right: "auto",
+                    top: verticalTopPosition,
+                };
+            }
+        }
+    }
+    return {};
+};
+exports.getCalculatePositionCalendar = getCalculatePositionCalendar;
 
 
 /***/ }),
@@ -24591,6 +24815,221 @@ var ErrorMessage = function (_a) {
     return (react_1.default.createElement("span", __assign({ className: (0, classnames_1.default)("itpc-error_message", className) }, rest), children));
 };
 exports.ErrorMessage = ErrorMessage;
+
+
+/***/ }),
+
+/***/ 5035:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Flex = void 0;
+var react_1 = __importDefault(__webpack_require__(9155));
+__webpack_require__(9084);
+var utils_1 = __webpack_require__(6568);
+var Flex = function (_a) {
+    var children = _a.children, style = _a.style, props = __rest(_a, ["children", "style"]);
+    return (react_1.default.createElement("div", { className: (0, utils_1.generateClassList)(props), style: __assign({ gap: props.gap }, style) }, children));
+};
+exports.Flex = Flex;
+
+
+/***/ }),
+
+/***/ 6568:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.generateClassList = void 0;
+var classnames_1 = __importDefault(__webpack_require__(6942));
+var generateClassList = function (props) {
+    return (0, classnames_1.default)("itpc-flex", props.vertical && "itpc-flex_direction_vertical", props.wrap && "itpc-flex_wrap_".concat(props.wrap), props.justify && "itpc-flex_justify_".concat(props.justify), props.align && "itpc-flex_align_".concat(props.align), props.className);
+};
+exports.generateClassList = generateClassList;
+
+
+/***/ }),
+
+/***/ 7943:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.RowContext = void 0;
+var react_1 = __webpack_require__(9155);
+exports.RowContext = (0, react_1.createContext)({});
+
+
+/***/ }),
+
+/***/ 970:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.RowJustify = exports.RowAlign = exports.Row = exports.Col = void 0;
+var react_1 = __importDefault(__webpack_require__(9155));
+var types_1 = __webpack_require__(4108);
+Object.defineProperty(exports, "RowAlign", ({ enumerable: true, get: function () { return types_1.RowAlign; } }));
+Object.defineProperty(exports, "RowJustify", ({ enumerable: true, get: function () { return types_1.RowJustify; } }));
+var RowContext_1 = __webpack_require__(7943);
+__webpack_require__(7715);
+var utils_1 = __webpack_require__(8459);
+var Col = function (_a) {
+    var children = _a.children, props = __rest(_a, ["children"]);
+    var gap = react_1.default.useContext(RowContext_1.RowContext).gap;
+    return (react_1.default.createElement("div", { className: (0, utils_1.generateColClassList)(props), style: (0, utils_1.generateColStyle)(props, gap) }, children));
+};
+exports.Col = Col;
+var Row = function (_a) {
+    var children = _a.children, _b = _a.wrap, wrap = _b === void 0 ? true : _b, props = __rest(_a, ["children", "wrap"]);
+    var rowContext = react_1.default.useMemo(function () { return ({ gap: props.gap }); }, [props.gap]);
+    return (react_1.default.createElement(RowContext_1.RowContext.Provider, { value: rowContext },
+        react_1.default.createElement("div", { className: (0, utils_1.generateRowClassList)(__assign({ wrap: wrap }, props)), style: (0, utils_1.generateRowStyle)(props) }, children)));
+};
+exports.Row = Row;
+
+
+/***/ }),
+
+/***/ 8459:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.generateRowStyle = exports.generateRowClassList = exports.generateColStyle = exports.generateColClassList = void 0;
+var classnames_1 = __importDefault(__webpack_require__(6942));
+var generateColClassList = function (props) {
+    return (0, classnames_1.default)("itpc-col", props.col && !props.flex && "itpc-col-".concat(props.col), props.className);
+};
+exports.generateColClassList = generateColClassList;
+var generateColStyle = function (props, gap) {
+    var style = {};
+    if (gap) {
+        if (Array.isArray(gap) && gap.length === 2) {
+            style.paddingLeft = "".concat(gap[1] / 2, "px");
+            style.paddingRight = "".concat(gap[1] / 2, "px");
+        }
+        else if (Number.isInteger(gap)) {
+            style.paddingLeft = "".concat(gap / 2, "px");
+            style.paddingRight = "".concat(gap / 2, "px");
+        }
+    }
+    if (props.order) {
+        style.order = props.order;
+    }
+    if (props.flex) {
+        if (Number.isInteger(props.flex)) {
+            style.flex = "".concat(props.flex, " ").concat(props.flex, " auto");
+        }
+        else {
+            style.flex = props.flex;
+        }
+    }
+    if (props.style) {
+        style = __assign(__assign({}, style), props.style);
+    }
+    return style;
+};
+exports.generateColStyle = generateColStyle;
+var generateRowClassList = function (props) {
+    return (0, classnames_1.default)("itpc-row", !props.wrap && "itpc-row-no_wrap", props.align && "itpc-row-align_".concat(props.align), props.justify && "itpc-row-justify_".concat(props.justify), props.className);
+};
+exports.generateRowClassList = generateRowClassList;
+var generateRowStyle = function (props) {
+    var style = {};
+    if (props.gap) {
+        if (Array.isArray(props.gap) && props.gap.length === 2) {
+            style.rowGap = "".concat(props.gap[0], "px");
+            style.marginLeft = "-".concat(props.gap[0] / 2, "px");
+            style.marginRight = "-".concat(props.gap[0] / 2, "px");
+        }
+        else if (Number.isInteger(props.gap)) {
+            style.rowGap = "".concat(props.gap, "px");
+            style.marginLeft = "-".concat(props.gap / 2, "px");
+            style.marginRight = "-".concat(props.gap / 2, "px");
+        }
+    }
+    if (props.style) {
+        style = __assign(__assign({}, style), props.style);
+    }
+    return style;
+};
+exports.generateRowStyle = generateRowStyle;
 
 
 /***/ }),
@@ -25494,7 +25933,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Table = exports.Cell = exports.Column = exports.Row = exports.TableFooter = exports.TableBody = exports.TableHeader = void 0;
+exports.Table = exports.Cell = exports.TableColumn = exports.TableRow = exports.TableFooter = exports.TableBody = exports.TableHeader = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(4981);
@@ -25513,16 +25952,16 @@ var TableFooter = function (_a) {
     return (react_1.default.createElement("tfoot", __assign({ className: "itpc-table__footer" }, rest), children));
 };
 exports.TableFooter = TableFooter;
-var Row = function (_a) {
+var TableRow = function (_a) {
     var children = _a.children, _b = _a.id, id = _b === void 0 ? "" : _b, onPressRow = _a.onPressRow, rest = __rest(_a, ["children", "id", "onPressRow"]);
     return (react_1.default.createElement("tr", __assign({ className: (0, classnames_1.default)("itpc-table__row", onPressRow && "itpc-table__row_clickable"), id: id, onClick: onPressRow && onPressRow }, rest), children));
 };
-exports.Row = Row;
-var Column = function (_a) {
+exports.TableRow = TableRow;
+var TableColumn = function (_a) {
     var children = _a.children, _b = _a.id, id = _b === void 0 ? "" : _b, onPressColumn = _a.onPressColumn, rest = __rest(_a, ["children", "id", "onPressColumn"]);
     return (react_1.default.createElement("th", __assign({ className: (0, classnames_1.default)("itpc-table__column", onPressColumn && "itpc-table__column_clickable"), id: id, onClick: onPressColumn && onPressColumn }, rest), children));
 };
-exports.Column = Column;
+exports.TableColumn = TableColumn;
 var Cell = function (_a) {
     var children = _a.children, _b = _a.id, id = _b === void 0 ? "" : _b, onPressCell = _a.onPressCell, rest = __rest(_a, ["children", "id", "onPressCell"]);
     return (react_1.default.createElement("td", __assign({ className: (0, classnames_1.default)("itpc-table__cell", onPressCell && "itpc-table__cell_clickable"), id: id, onClick: onPressCell && onPressCell }, rest), children));
@@ -26880,7 +27319,7 @@ exports.numberAndOnlyPointRegExp = /^\d*\.?\d*$/u;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.SortType = exports.NumberColumns = exports.UIKitColors = exports.TextField = exports.TextAreaField = exports.Text = exports.Tabs = exports.TableSort = exports.TableHeader = exports.TableFooter = exports.TableBody = exports.Table = exports.TabButton = exports.SelectField = exports.SearchField = exports.Row = exports.Preloader = exports.Popup = exports.Pagination = exports.NumberField = exports.MultiSelectField = exports.ModalFooter = exports.ModalContent = exports.Modal = exports.ErrorMessage = exports.DecimalField = exports.DatePicker = exports.Column = exports.Checkbox = exports.Cell = exports.Card = exports.ButtonRound = exports.Button = exports.AccordionItem = exports.AccordionHeader = exports.AccordionBody = exports.AccordionArrow = exports.Accordion = void 0;
+exports.SortType = exports.RowJustify = exports.RowAlign = exports.NumberColumns = exports.UIKitColors = exports.TextField = exports.TextAreaField = exports.Text = exports.Tabs = exports.TableSort = exports.TableRow = exports.TableHeader = exports.TableFooter = exports.TableColumn = exports.TableBody = exports.Table = exports.TabButton = exports.SelectField = exports.SearchField = exports.Row = exports.Preloader = exports.Popup = exports.Pagination = exports.NumberField = exports.MultiSelectField = exports.ModalFooter = exports.ModalContent = exports.Modal = exports.Flex = exports.ErrorMessage = exports.DecimalField = exports.DatePicker = exports.Col = exports.Checkbox = exports.Cell = exports.Card = exports.ButtonRound = exports.Button = exports.AccordionItem = exports.AccordionHeader = exports.AccordionBody = exports.AccordionArrow = exports.Accordion = void 0;
 var Accordion_1 = __webpack_require__(1976);
 Object.defineProperty(exports, "Accordion", ({ enumerable: true, get: function () { return Accordion_1.Accordion; } }));
 Object.defineProperty(exports, "AccordionArrow", ({ enumerable: true, get: function () { return Accordion_1.AccordionArrow; } }));
@@ -26901,6 +27340,11 @@ var DecimalField_1 = __webpack_require__(185);
 Object.defineProperty(exports, "DecimalField", ({ enumerable: true, get: function () { return DecimalField_1.DecimalField; } }));
 var ErrorMessage_1 = __webpack_require__(6285);
 Object.defineProperty(exports, "ErrorMessage", ({ enumerable: true, get: function () { return ErrorMessage_1.ErrorMessage; } }));
+var Flex_1 = __webpack_require__(5035);
+Object.defineProperty(exports, "Flex", ({ enumerable: true, get: function () { return Flex_1.Flex; } }));
+var Grid_1 = __webpack_require__(970);
+Object.defineProperty(exports, "Col", ({ enumerable: true, get: function () { return Grid_1.Col; } }));
+Object.defineProperty(exports, "Row", ({ enumerable: true, get: function () { return Grid_1.Row; } }));
 var Modal_1 = __webpack_require__(9633);
 Object.defineProperty(exports, "Modal", ({ enumerable: true, get: function () { return Modal_1.Modal; } }));
 Object.defineProperty(exports, "ModalContent", ({ enumerable: true, get: function () { return Modal_1.ModalContent; } }));
@@ -26921,12 +27365,12 @@ var SelectField_1 = __webpack_require__(6686);
 Object.defineProperty(exports, "SelectField", ({ enumerable: true, get: function () { return SelectField_1.SelectField; } }));
 var Table_1 = __webpack_require__(9078);
 Object.defineProperty(exports, "Cell", ({ enumerable: true, get: function () { return Table_1.Cell; } }));
-Object.defineProperty(exports, "Column", ({ enumerable: true, get: function () { return Table_1.Column; } }));
-Object.defineProperty(exports, "Row", ({ enumerable: true, get: function () { return Table_1.Row; } }));
 Object.defineProperty(exports, "Table", ({ enumerable: true, get: function () { return Table_1.Table; } }));
 Object.defineProperty(exports, "TableBody", ({ enumerable: true, get: function () { return Table_1.TableBody; } }));
+Object.defineProperty(exports, "TableColumn", ({ enumerable: true, get: function () { return Table_1.TableColumn; } }));
 Object.defineProperty(exports, "TableFooter", ({ enumerable: true, get: function () { return Table_1.TableFooter; } }));
 Object.defineProperty(exports, "TableHeader", ({ enumerable: true, get: function () { return Table_1.TableHeader; } }));
+Object.defineProperty(exports, "TableRow", ({ enumerable: true, get: function () { return Table_1.TableRow; } }));
 var TableSort_1 = __webpack_require__(7114);
 Object.defineProperty(exports, "TableSort", ({ enumerable: true, get: function () { return TableSort_1.TableSort; } }));
 var Tabs_1 = __webpack_require__(8238);
@@ -26942,6 +27386,8 @@ var constants_1 = __webpack_require__(5736);
 Object.defineProperty(exports, "UIKitColors", ({ enumerable: true, get: function () { return constants_1.UIKitColors; } }));
 var types_1 = __webpack_require__(4108);
 Object.defineProperty(exports, "NumberColumns", ({ enumerable: true, get: function () { return types_1.NumberColumns; } }));
+Object.defineProperty(exports, "RowAlign", ({ enumerable: true, get: function () { return types_1.RowAlign; } }));
+Object.defineProperty(exports, "RowJustify", ({ enumerable: true, get: function () { return types_1.RowJustify; } }));
 Object.defineProperty(exports, "SortType", ({ enumerable: true, get: function () { return types_1.SortType; } }));
 
 
@@ -26953,7 +27399,7 @@ Object.defineProperty(exports, "SortType", ({ enumerable: true, get: function ()
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.NumberColumns = exports.SortType = void 0;
+exports.RowJustify = exports.RowAlign = exports.NumberColumns = exports.SortType = void 0;
 var SortType;
 (function (SortType) {
     SortType["ASCENDING"] = "ascending";
@@ -26966,6 +27412,21 @@ var NumberColumns;
     NumberColumns["TWO"] = "two";
     NumberColumns["ZERO"] = "zero";
 })(NumberColumns = exports.NumberColumns || (exports.NumberColumns = {}));
+var RowAlign;
+(function (RowAlign) {
+    RowAlign["BOTTOM"] = "bottom";
+    RowAlign["MIDDLE"] = "middle";
+    RowAlign["TOP"] = "top";
+})(RowAlign = exports.RowAlign || (exports.RowAlign = {}));
+var RowJustify;
+(function (RowJustify) {
+    RowJustify["CENTER"] = "center";
+    RowJustify["END"] = "end";
+    RowJustify["SPACE_AROUND"] = "around";
+    RowJustify["SPACE_BETWEEN"] = "between";
+    RowJustify["SPACE_EVENLY"] = "evenly";
+    RowJustify["START"] = "start";
+})(RowJustify = exports.RowJustify || (exports.RowJustify = {}));
 
 
 /***/ }),
@@ -27484,22 +27945,29 @@ exports.Calendar = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _hooks_1 = __webpack_require__(510);
+var utils_1 = __webpack_require__(6937);
 var components_1 = __webpack_require__(6224);
 __webpack_require__(7252);
-var utils_1 = __webpack_require__(4078);
+var utils_2 = __webpack_require__(4078);
 var Calendar = function (_a) {
-    var activeDates = _a.activeDates, _b = _a.currentValue, currentValue = _b === void 0 ? (0, utils_1.getTodayMonthYear)() : _b, disabledAfterDate = _a.disabledAfterDate, disabledBeforeDate = _a.disabledBeforeDate, disabledDates = _a.disabledDates, disabledDaysOfWeek = _a.disabledDaysOfWeek, disabledSelectMonth = _a.disabledSelectMonth, disabledSelectYear = _a.disabledSelectYear, handleShow = _a.handleShow, id = _a.id, name = _a.name, _c = _a.offsetYear, offsetYear = _c === void 0 ? 10 : _c, onChange = _a.onChange, scrollToYear = _a.scrollToYear, show = _a.show, _d = _a.withTime, withTime = _d === void 0 ? false : _d, yearsFromTo = _a.yearsFromTo;
-    var _e = (0, react_1.useState)((0, utils_1.initCurrentDate)(currentValue, withTime)), currentDate = _e[0], setCurrentDate = _e[1];
-    var _f = (0, react_1.useState)((0, utils_1.initCurrentTime)(currentValue, withTime)[0]), hours = _f[0], setHours = _f[1];
-    var _g = (0, react_1.useState)((0, utils_1.initCurrentTime)(currentValue, withTime)[1]), minutes = _g[0], setMinutes = _g[1];
-    var _h = (0, react_1.useState)((0, utils_1.initCurrentTime)(currentValue, withTime)[2]), seconds = _h[0], setSeconds = _h[1];
-    var _j = (0, react_1.useState)((0, utils_1.initDays)(currentValue, withTime)), days = _j[0], setDays = _j[1];
+    var activeDates = _a.activeDates, _b = _a.currentValue, currentValue = _b === void 0 ? (0, utils_2.getTodayMonthYear)() : _b, disabledAfterDate = _a.disabledAfterDate, disabledBeforeDate = _a.disabledBeforeDate, disabledDates = _a.disabledDates, disabledDaysOfWeek = _a.disabledDaysOfWeek, disabledSelectMonth = _a.disabledSelectMonth, disabledSelectYear = _a.disabledSelectYear, handleShow = _a.handleShow, id = _a.id, name = _a.name, _c = _a.offsetYear, offsetYear = _c === void 0 ? 10 : _c, onChange = _a.onChange, scrollToYear = _a.scrollToYear, show = _a.show, _d = _a.withTime, withTime = _d === void 0 ? false : _d, yearsFromTo = _a.yearsFromTo;
+    var _e = (0, react_1.useState)((0, utils_2.initCurrentDate)(currentValue, withTime)), currentDate = _e[0], setCurrentDate = _e[1];
+    var _f = (0, react_1.useState)((0, utils_2.initCurrentTime)(currentValue, withTime)[0]), hours = _f[0], setHours = _f[1];
+    var _g = (0, react_1.useState)((0, utils_2.initCurrentTime)(currentValue, withTime)[1]), minutes = _g[0], setMinutes = _g[1];
+    var _h = (0, react_1.useState)((0, utils_2.initCurrentTime)(currentValue, withTime)[2]), seconds = _h[0], setSeconds = _h[1];
+    var _j = (0, react_1.useState)((0, utils_2.initDays)(currentValue, withTime)), days = _j[0], setDays = _j[1];
     var _k = (0, react_1.useState)(false), isShowSelectMonth = _k[0], setIsShowSelectMonth = _k[1];
     var _l = (0, react_1.useState)(false), isShowSelectYear = _l[0], setIsShowSelectYear = _l[1];
     var calendarRef = (0, react_1.useRef)(null);
+    var styleCalendar;
+    var documentWidth = (0, utils_1.getDocumentDimensions)().documentWidth;
+    if (calendarRef.current) {
+        var calendarWidth = (0, utils_1.getCalendarDimensions)(calendarRef.current).calendarWidth;
+        styleCalendar = (0, utils_1.getCalendarStyle)(documentWidth, calendarWidth);
+    }
     var changeCurrentDate = function (date) {
         setCurrentDate(date);
-        setDays((0, utils_1.getCalendarDays)(date));
+        setDays((0, utils_2.getCalendarDays)(date));
         setIsShowSelectMonth(false);
         setIsShowSelectYear(false);
     };
@@ -27536,14 +28004,14 @@ var Calendar = function (_a) {
     (0, _hooks_1.useOnClickOutside)(calendarRef, handleShow);
     (0, react_1.useEffect)(function () {
         if (currentValue !== "".concat(currentDate, "T").concat(hours, ":").concat(minutes, ":").concat(seconds)) {
-            setCurrentDate((0, utils_1.initCurrentDate)(currentValue, withTime));
-            setHours((0, utils_1.initCurrentTime)(currentValue, withTime)[0]);
-            setMinutes((0, utils_1.initCurrentTime)(currentValue, withTime)[1]);
-            setSeconds((0, utils_1.initCurrentTime)(currentValue, withTime)[2]);
-            setDays((0, utils_1.initDays)(currentValue, withTime));
+            setCurrentDate((0, utils_2.initCurrentDate)(currentValue, withTime));
+            setHours((0, utils_2.initCurrentTime)(currentValue, withTime)[0]);
+            setMinutes((0, utils_2.initCurrentTime)(currentValue, withTime)[1]);
+            setSeconds((0, utils_2.initCurrentTime)(currentValue, withTime)[2]);
+            setDays((0, utils_2.initDays)(currentValue, withTime));
         }
     }, [currentValue, withTime]);
-    return (react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-calendar", show && "itpc-calendar_opened"), ref: calendarRef },
+    return (react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-calendar", show && "itpc-calendar_opened"), ref: calendarRef, style: styleCalendar },
         react_1.default.createElement(components_1.CalendarControl, { changeCurrentDate: changeCurrentDate, currentDate: currentDate, disabledSelectMonth: disabledSelectMonth, disabledSelectYear: disabledSelectYear, handleShowSelectMonth: handleShowSelectMonth, handleShowSelectYear: handleShowSelectYear }),
         react_1.default.createElement(components_1.CalendarTable, { activeDates: activeDates, currentDate: currentDate, days: days, disabledAfterDate: disabledAfterDate, disabledBeforeDate: disabledBeforeDate, disabledDates: disabledDates, disabledDaysOfWeek: disabledDaysOfWeek, id: id, onChange: onChangeDate }),
         withTime && (react_1.default.createElement(components_1.CalendarTimes, { hours: hours, minutes: minutes, onChange: changeCurrentTime, seconds: seconds })),
@@ -27785,17 +28253,55 @@ exports.DecimalFixed = DecimalFixed;
 
 /***/ }),
 
+/***/ 7930:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useWindowSize = void 0;
+var react_1 = __webpack_require__(9155);
+var useWindowSize = function () {
+    var _a = (0, react_1.useState)({
+        windowHeight: 0,
+        windowWidth: 0,
+    }), windowSize = _a[0], setWindowSize = _a[1];
+    var handleSize = function () {
+        setWindowSize({
+            windowHeight: window.innerHeight,
+            windowWidth: window.innerWidth,
+        });
+    };
+    (0, react_1.useEffect)(function () {
+        if (windowSize.windowWidth !== window.innerWidth ||
+            windowSize.windowHeight !== window.innerHeight) {
+            handleSize();
+        }
+        window.addEventListener("resize", handleSize);
+        return function () {
+            window.removeEventListener("DOMContentLoaded", handleSize);
+        };
+    }, [window.innerWidth, window.innerHeight]);
+    return windowSize;
+};
+exports.useWindowSize = useWindowSize;
+
+
+/***/ }),
+
 /***/ 432:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.DecimalFixed = exports.Calendar = void 0;
+exports.useWindowSize = exports.DecimalFixed = exports.Calendar = void 0;
 var Calendar_1 = __webpack_require__(4333);
 Object.defineProperty(exports, "Calendar", ({ enumerable: true, get: function () { return Calendar_1.Calendar; } }));
 var DecimalFixed_1 = __webpack_require__(1697);
 Object.defineProperty(exports, "DecimalFixed", ({ enumerable: true, get: function () { return DecimalFixed_1.DecimalFixed; } }));
+var useWindowSize_1 = __webpack_require__(7930);
+Object.defineProperty(exports, "useWindowSize", ({ enumerable: true, get: function () { return useWindowSize_1.useWindowSize; } }));
 
 
 /***/ }),
