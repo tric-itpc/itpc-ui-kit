@@ -4,8 +4,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Button, Item, PaginationResult, Text } from "../components"
 import { Pagination, Props } from "../components/Pagination"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 const mockItems: Item[] = [
   {

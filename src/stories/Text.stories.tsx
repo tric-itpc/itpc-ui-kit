@@ -3,8 +3,8 @@ import React from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Props, Text } from "../components/Text"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: Text,

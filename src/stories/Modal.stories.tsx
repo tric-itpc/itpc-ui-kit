@@ -9,8 +9,8 @@ import {
   ModalFooter,
   ModalProps,
 } from "../components/Modal"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: Modal,

@@ -21893,49 +21893,6 @@ webpackContext.id = 5358;
 
 /***/ }),
 
-/***/ 510:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.useOnClickOutside = void 0;
-var useOnClickOutside_1 = __webpack_require__(6399);
-Object.defineProperty(exports, "useOnClickOutside", ({ enumerable: true, get: function () { return useOnClickOutside_1.useOnClickOutside; } }));
-
-
-/***/ }),
-
-/***/ 6399:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.useOnClickOutside = void 0;
-var react_1 = __webpack_require__(9155);
-var useOnClickOutside = function (ref, handler) {
-    (0, react_1.useEffect)(function () {
-        var listener = function (event) {
-            var el = ref === null || ref === void 0 ? void 0 : ref.current;
-            if (!el || el.contains((event === null || event === void 0 ? void 0 : event.target) || null)) {
-                return;
-            }
-            handler(event);
-        };
-        document.addEventListener("mousedown", listener);
-        document.addEventListener("touchstart", listener);
-        return function () {
-            document.removeEventListener("mousedown", listener);
-            document.removeEventListener("touchstart", listener);
-        };
-    }, [ref, handler]);
-};
-exports.useOnClickOutside = useOnClickOutside;
-
-
-/***/ }),
-
 /***/ 1976:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -21974,7 +21931,7 @@ var _elements_1 = __webpack_require__(5010);
 __webpack_require__(3747);
 var AccordionArrow = function (_a) {
     var isOpened = _a.isOpened, rest = __rest(_a, ["isOpened"]);
-    return (react_1.default.createElement("span", __assign({ className: "itpc-accordion-arrow" }, rest),
+    return (react_1.default.createElement("span", __assign({ className: (0, classnames_1.default)("itpc-accordion-arrow") }, rest),
         react_1.default.createElement(_elements_1.IconArrow, { orientation: isOpened ? "top" : "bottom" })));
 };
 exports.AccordionArrow = AccordionArrow;
@@ -21990,7 +21947,7 @@ var AccordionHeader = function (_a) {
 exports.AccordionHeader = AccordionHeader;
 var AccordionItem = function (_a) {
     var children = _a.children, rest = __rest(_a, ["children"]);
-    return (react_1.default.createElement("div", __assign({ className: "itpc-accordion-item" }, rest), children));
+    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-accordion-item") }, rest), children));
 };
 exports.AccordionItem = AccordionItem;
 var Accordion = function (_a) {
@@ -22607,7 +22564,7 @@ exports.MultiSelectField = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
-var _hooks_1 = __webpack_require__(510);
+var lab_1 = __webpack_require__(432);
 __webpack_require__(6440);
 var MultiSelectField = function (_a) {
     var className = _a.className, _b = _a.disabled, disabled = _b === void 0 ? false : _b, items = _a.items, onChange = _a.onChange, _c = _a.placeholder, placeholder = _c === void 0 ? "" : _c, _d = _a.selectedItems, selectedItems = _d === void 0 ? [] : _d, rest = __rest(_a, ["className", "disabled", "items", "onChange", "placeholder", "selectedItems"]);
@@ -22643,7 +22600,7 @@ var MultiSelectField = function (_a) {
         }
         return "";
     };
-    (0, _hooks_1.useOnClickOutside)(ref, onClose);
+    (0, lab_1.useOnClickOutside)(ref, onClose);
     return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-multi-select", className), ref: ref }, rest),
         react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-multi-select__button", isOpen && "itpc-multi-select__button_focused"), disabled: disabled, onClick: handleOpen, type: "button" },
             react_1.default.createElement(_elements_1.Placeholder, { focused: isOpen || !!(selectedItems === null || selectedItems === void 0 ? void 0 : selectedItems.length) }, placeholder),
@@ -23188,7 +23145,7 @@ exports.SearchField = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
-var _hooks_1 = __webpack_require__(510);
+var lab_1 = __webpack_require__(432);
 var TextField_1 = __webpack_require__(2329);
 __webpack_require__(4801);
 var SearchField = function (_a) {
@@ -23249,7 +23206,7 @@ var SearchField = function (_a) {
             }
         }
     }, [isClear]);
-    (0, _hooks_1.useOnClickOutside)(ref, closeSuggestions);
+    (0, lab_1.useOnClickOutside)(ref, closeSuggestions);
     var filteredItems = items.filter(filterItems);
     return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-search-field", className), ref: ref }, rest),
         react_1.default.createElement(TextField_1.TextField, __assign({ icon: react_1.default.createElement("div", { onClick: clear }, icon), id: "itpc-search-field", name: "itpc-search-field", onChange: changeValue, onFocus: openSuggestions, placeholder: placeholder, value: value }, textFieldAttr)),
@@ -23318,7 +23275,7 @@ exports.SelectField = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
-var _hooks_1 = __webpack_require__(510);
+var lab_1 = __webpack_require__(432);
 __webpack_require__(2765);
 var SelectField = function (_a) {
     var _b;
@@ -23339,7 +23296,7 @@ var SelectField = function (_a) {
         }
         setIsOpen(false);
     };
-    (0, _hooks_1.useOnClickOutside)(ref, close);
+    (0, lab_1.useOnClickOutside)(ref, close);
     return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-select", className), ref: ref }, rest),
         react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-select__button", isOpen && "itpc-select__button_focused"), disabled: disabled, onClick: handleOpen, type: "button" },
             react_1.default.createElement(_elements_1.Placeholder, { focused: isOpen || !!defaultItemId }, placeholder),
@@ -23390,7 +23347,7 @@ var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(4981);
 var TableHeader = function (_a) {
     var children = _a.children, _b = _a.id, id = _b === void 0 ? "" : _b, rest = __rest(_a, ["children", "id"]);
-    return (react_1.default.createElement("thead", __assign({ className: "itpc-table__head", id: id }, rest), children));
+    return (react_1.default.createElement("thead", __assign({ className: (0, classnames_1.default)("itpc-table__head"), id: id }, rest), children));
 };
 exports.TableHeader = TableHeader;
 var TableBody = function (_a) {
@@ -23538,7 +23495,7 @@ var utils_1 = __webpack_require__(4665);
 __webpack_require__(2397);
 var TableSortHeader = function (_a) {
     var columns = _a.columns, currentKey = _a.currentKey, currentKeys = _a.currentKeys, setKeySort = _a.setKeySort, sortByNumberColumns = _a.sortByNumberColumns;
-    return (react_1.default.createElement("thead", { className: "itpc-table-sort__head" },
+    return (react_1.default.createElement("thead", { className: (0, classnames_1.default)("itpc-table-sort__head") },
         react_1.default.createElement("tr", null, columns &&
             columns.map(function (column, index) {
                 var _a, _b;
@@ -24193,7 +24150,7 @@ var TextAreaField = function (_a) {
             onChange(event.currentTarget.value, event);
         }
     };
-    return (react_1.default.createElement(_elements_1.Field, __assign({ className: className }, rest),
+    return (react_1.default.createElement(_elements_1.Field, __assign({ className: (0, classnames_1.default)(className) }, rest),
         react_1.default.createElement(_elements_1.InputWrap, { focused: focused, height: height, maxHeight: maxHeight, validationState: validationState },
             react_1.default.createElement(_elements_1.Placeholder, { focused: focused || value.length > 0, htmlFor: id, validationState: validationState }, placeholder),
             react_1.default.createElement("textarea", { className: (0, classnames_1.default)("itpc-input", (focused || !!value.length) && "itpc-input_focused"), disabled: disabled, id: id, name: name, onBlur: onBlurTextArea, onChange: onChangeTextArea, onFocus: onFocusTextArea, ref: ref, value: value }),
@@ -24282,7 +24239,7 @@ var TextField = function (_a) {
             onChange(event.currentTarget.value, event);
         }
     };
-    return (react_1.default.createElement(_elements_1.Field, __assign({ className: className }, rest),
+    return (react_1.default.createElement(_elements_1.Field, __assign({ className: (0, classnames_1.default)(className) }, rest),
         react_1.default.createElement(_elements_1.InputWrap, { focused: focused, validationState: validationState },
             react_1.default.createElement(_elements_1.Placeholder, { focused: focused || value.length > 0, htmlFor: id, validationState: validationState }, placeholder),
             react_1.default.createElement("input", { className: (0, classnames_1.default)("itpc-input", (focused || !!value.length) && "itpc-input_focused"), disabled: disabled, id: id, maxLength: maxLength, name: name, onBlur: onBlurInput, onChange: onChangeInput, onFocus: onFocusInput, type: type, value: value }),
@@ -24354,8 +24311,8 @@ __webpack_require__(3813);
 var IconArrow = function (_a) {
     var onClick = _a.onClick, orientation = _a.orientation;
     return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__arrow", orientation === "top" && "itpc-icon__arrow_orientation_top", orientation === "bottom" && "itpc-icon__arrow_orientation_bottom", orientation === "left" && "itpc-icon__arrow_orientation_left", orientation === "right" && "itpc-icon__arrow_orientation_right"), onClick: onClick },
-        react_1.default.createElement("svg", { fill: "none", height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
-            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z", fill: "#393185" }))));
+        react_1.default.createElement("svg", { height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
+            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z" }))));
 };
 exports.IconArrow = IconArrow;
 
@@ -24379,9 +24336,9 @@ __webpack_require__(1170);
 var IconCalendar = function (_a) {
     var isClickable = _a.isClickable, onClick = _a.onClick;
     return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__calendar", isClickable && "itpc-icon__calendar_clickable"), onClick: onClick },
-        react_1.default.createElement("svg", { fill: "none", height: "20", viewBox: "0 0 12 12", width: "20", xmlns: "http://www.w3.org/2000/svg" },
+        react_1.default.createElement("svg", { height: "20", viewBox: "0 0 12 12", width: "20", xmlns: "http://www.w3.org/2000/svg" },
             react_1.default.createElement("g", { clipPath: "url(#clip0_94_50)" },
-                react_1.default.createElement("path", { d: "M12 3.18227C12 2.31697 11.2794 1.61514 10.3892 1.61514H8.50358V0.482595C8.50358 0.216649 8.28205 0 8.00714 0C7.73223 0 7.5107 0.216649 7.5107 0.482595V1.61514H4.50003V0.482595C4.50003 0.216649 4.2785 0 4.00359 0C3.72868 0 3.50715 0.216649 3.50715 0.482595V1.61514H1.6108C0.720677 1.61514 -0.001297 2.31697 -0.001297 3.18227L3.75196e-05 10.4303C3.75196e-05 11.2956 0.720677 11.9961 1.6108 11.9961H10.3892C11.2794 11.9961 12 11.2956 12 10.4303V3.18227ZM2.01916 2.58162H3.50715V2.76065C3.50715 3.02789 3.73001 3.24324 4.00359 3.24324C4.2785 3.24324 4.50003 3.02659 4.50003 2.76065V2.58162H7.50936V2.76065C7.50936 3.02789 7.73223 3.24324 8.0058 3.24324C8.28071 3.24324 8.50224 3.02659 8.50224 2.76065V2.58162H9.97021C10.5374 2.58162 10.9978 3.03308 10.9978 3.59092V4.54703H0.988914V3.59092C0.991583 3.03308 1.45199 2.58162 2.01916 2.58162ZM9.97422 11.0231H2.0205C1.45333 11.0231 0.992918 10.5717 0.992918 10.0138V5.51222H11.0018V10.0138C11.0018 10.5717 10.5414 11.0231 9.97422 11.0231Z", fill: "#5C53AC" })),
+                react_1.default.createElement("path", { d: "M12 3.18227C12 2.31697 11.2794 1.61514 10.3892 1.61514H8.50358V0.482595C8.50358 0.216649 8.28205 0 8.00714 0C7.73223 0 7.5107 0.216649 7.5107 0.482595V1.61514H4.50003V0.482595C4.50003 0.216649 4.2785 0 4.00359 0C3.72868 0 3.50715 0.216649 3.50715 0.482595V1.61514H1.6108C0.720677 1.61514 -0.001297 2.31697 -0.001297 3.18227L3.75196e-05 10.4303C3.75196e-05 11.2956 0.720677 11.9961 1.6108 11.9961H10.3892C11.2794 11.9961 12 11.2956 12 10.4303V3.18227ZM2.01916 2.58162H3.50715V2.76065C3.50715 3.02789 3.73001 3.24324 4.00359 3.24324C4.2785 3.24324 4.50003 3.02659 4.50003 2.76065V2.58162H7.50936V2.76065C7.50936 3.02789 7.73223 3.24324 8.0058 3.24324C8.28071 3.24324 8.50224 3.02659 8.50224 2.76065V2.58162H9.97021C10.5374 2.58162 10.9978 3.03308 10.9978 3.59092V4.54703H0.988914V3.59092C0.991583 3.03308 1.45199 2.58162 2.01916 2.58162ZM9.97422 11.0231H2.0205C1.45333 11.0231 0.992918 10.5717 0.992918 10.0138V5.51222H11.0018V10.0138C11.0018 10.5717 10.5414 11.0231 9.97422 11.0231Z" })),
             react_1.default.createElement("defs", null,
                 react_1.default.createElement("clipPath", { id: "clip0_94_50" },
                     react_1.default.createElement("rect", { fill: "white", height: "12", width: "12" }))))));
@@ -24432,10 +24389,10 @@ __webpack_require__(3866);
 var IconDoubleArrow = function (_a) {
     var onClick = _a.onClick, orientation = _a.orientation;
     return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__double-arrow", orientation === "top" && "itpc-icon__double-arrow_orientation_top", orientation === "bottom" && "itpc-double-icon__arrow_orientation_bottom", orientation === "left" && "itpc-icon__double-arrow_orientation_left", orientation === "right" && "itpc-icon__double-arrow_orientation_right"), onClick: onClick },
-        react_1.default.createElement("svg", { fill: "none", height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
-            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z", fill: "#393185" })),
-        react_1.default.createElement("svg", { fill: "none", height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
-            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z", fill: "#393185" }))));
+        react_1.default.createElement("svg", { height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
+            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z" })),
+        react_1.default.createElement("svg", { height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
+            react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z" }))));
 };
 exports.IconDoubleArrow = IconDoubleArrow;
 
@@ -24454,10 +24411,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.IconOk = void 0;
 /* eslint-disable max-len */
 var react_1 = __importDefault(__webpack_require__(9155));
+var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(4778);
-var IconOk = function () { return (react_1.default.createElement("i", { className: "itpc-icon__ok" },
+var IconOk = function () { return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__ok") },
     react_1.default.createElement("svg", { height: "22", preserveAspectRatio: "xMidYMid meet", viewBox: "0 0 24 24", width: "22", xmlns: "http://www.w3.org/2000/svg" },
-        react_1.default.createElement("path", { d: "M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8l-1.41-1.42Z", fill: "#4DB04D" })))); };
+        react_1.default.createElement("path", { d: "M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8l-1.41-1.42Z" })))); };
 exports.IconOk = IconOk;
 
 
@@ -24528,7 +24486,7 @@ var react_1 = __importDefault(__webpack_require__(9155));
 __webpack_require__(6664);
 var IconWarning = function () { return (react_1.default.createElement("i", { className: "itpc-icon__warning" },
     react_1.default.createElement("svg", { height: "22", preserveAspectRatio: "xMidYMid meet", viewBox: "0 0 24 24", width: "22", xmlns: "http://www.w3.org/2000/svg" },
-        react_1.default.createElement("path", { d: "M11 15h2v2h-2v-2m0-8h2v6h-2V7m1-5C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8Z", fill: "#ECC022" })))); };
+        react_1.default.createElement("path", { d: "M11 15h2v2h-2v-2m0-8h2v6h-2V7m1-5C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8Z" })))); };
 exports.IconWarning = IconWarning;
 
 
@@ -24659,10 +24617,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Popover = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
+var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(4119);
 var Popover = function (_a) {
     var children = _a.children;
-    return (react_1.default.createElement("div", { className: "itpc-popover" }, children));
+    return (react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-popover") }, children));
 };
 exports.Popover = Popover;
 
@@ -24856,6 +24815,48 @@ var NumberColumns;
 
 /***/ }),
 
+/***/ 5487:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ConfigContext = void 0;
+var react_1 = __webpack_require__(9155);
+exports.ConfigContext = (0, react_1.createContext)({});
+
+
+/***/ }),
+
+/***/ 3226:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ConfigContext = void 0;
+var ConfigContext_1 = __webpack_require__(5487);
+Object.defineProperty(exports, "ConfigContext", ({ enumerable: true, get: function () { return ConfigContext_1.ConfigContext; } }));
+
+
+/***/ }),
+
+/***/ 9965:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Theme = void 0;
+var Theme;
+(function (Theme) {
+    Theme["DARK"] = "dark";
+    Theme["DEFAULT"] = "default";
+})(Theme = exports.Theme || (exports.Theme = {}));
+
+
+/***/ }),
+
 /***/ 8156:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -24878,6 +24879,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 __exportStar(__webpack_require__(5785), exports);
 __exportStar(__webpack_require__(432), exports);
+__exportStar(__webpack_require__(2720), exports);
 
 
 /***/ }),
@@ -25369,7 +25371,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Calendar = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
-var _hooks_1 = __webpack_require__(510);
+var hooks_1 = __webpack_require__(6771);
 var components_1 = __webpack_require__(6224);
 __webpack_require__(7252);
 var utils_1 = __webpack_require__(4078);
@@ -25419,7 +25421,7 @@ var Calendar = function (_a) {
         setIsShowSelectYear(!isShowSelectYear);
         setIsShowSelectMonth(false);
     };
-    (0, _hooks_1.useOnClickOutside)(calendarRef, handleShow);
+    (0, hooks_1.useOnClickOutside)(calendarRef, handleShow);
     (0, react_1.useEffect)(function () {
         if (currentValue !== "".concat(currentDate, "T").concat(hours, ":").concat(minutes, ":").concat(seconds)) {
             setCurrentDate((0, utils_1.initCurrentDate)(currentValue, withTime));
@@ -25602,15 +25604,190 @@ exports.isDisabledDate = isDisabledDate;
 
 /***/ }),
 
-/***/ 432:
+/***/ 6771:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useTheme = exports.useOnClickOutside = void 0;
+var useOnClickOutside_1 = __webpack_require__(9009);
+Object.defineProperty(exports, "useOnClickOutside", ({ enumerable: true, get: function () { return useOnClickOutside_1.useOnClickOutside; } }));
+var useTheme_1 = __webpack_require__(4600);
+Object.defineProperty(exports, "useTheme", ({ enumerable: true, get: function () { return useTheme_1.useTheme; } }));
+
+
+/***/ }),
+
+/***/ 9009:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useOnClickOutside = void 0;
+var react_1 = __webpack_require__(9155);
+var useOnClickOutside = function (ref, handler, handlerRef) {
+    (0, react_1.useEffect)(function () {
+        var listener = function (event) {
+            var target = ref.current;
+            var handlerTarget = handlerRef === null || handlerRef === void 0 ? void 0 : handlerRef.current;
+            if (target &&
+                !target.contains(event.target) &&
+                !(handlerTarget === null || handlerTarget === void 0 ? void 0 : handlerTarget.contains(event.target))) {
+                handler(event);
+            }
+        };
+        document.addEventListener("mouseup", listener);
+        document.addEventListener("touchend", listener);
+        return function () {
+            document.removeEventListener("mouseup", listener);
+            document.removeEventListener("touchend", listener);
+        };
+    }, [ref]);
+};
+exports.useOnClickOutside = useOnClickOutside;
+
+
+/***/ }),
+
+/***/ 4600:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useTheme = void 0;
+var react_1 = __webpack_require__(9155);
+var ConfigContext_1 = __webpack_require__(3226);
+var enums_1 = __webpack_require__(9965);
+var useTheme = function () {
+    var themeComponent = (0, react_1.useContext)(ConfigContext_1.ConfigContext).themeComponent;
+    if (!themeComponent) {
+        return {
+            theme: enums_1.Theme.DEFAULT,
+            themeClass: "",
+            toggleTheme: function () { },
+        };
+    }
+    var setTheme = themeComponent.setTheme, theme = themeComponent.theme;
+    var _a = (0, react_1.useState)(theme), currentTheme = _a[0], setCurrentTheme = _a[1];
+    var toggleTheme = function () {
+        var newTheme = currentTheme === enums_1.Theme.DARK ? enums_1.Theme.DEFAULT : enums_1.Theme.DARK;
+        setTheme === null || setTheme === void 0 ? void 0 : setTheme(newTheme);
+        setCurrentTheme(newTheme);
+    };
+    return {
+        theme: currentTheme,
+        themeClass: enums_1.Theme.DEFAULT === currentTheme ? "" : "itpc-theme-".concat(currentTheme),
+        toggleTheme: toggleTheme,
+    };
+};
+exports.useTheme = useTheme;
+
+
+/***/ }),
+
+/***/ 432:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Calendar = void 0;
 var Calendar_1 = __webpack_require__(4333);
 Object.defineProperty(exports, "Calendar", ({ enumerable: true, get: function () { return Calendar_1.Calendar; } }));
+__exportStar(__webpack_require__(6771), exports);
+
+
+/***/ }),
+
+/***/ 7118:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ConfigProvider = void 0;
+var react_1 = __importStar(__webpack_require__(9155));
+var ConfigContext_1 = __webpack_require__(3226);
+var enums_1 = __webpack_require__(9965);
+var ConfigProvider = function (props) {
+    var children = props.children;
+    var _a = (0, react_1.useState)(enums_1.Theme.DEFAULT), theme = _a[0], setTheme = _a[1];
+    var themeClass = enums_1.Theme.DEFAULT === theme ? "" : "itpc-theme-".concat(theme);
+    var defaultProps = (0, react_1.useMemo)(function () { return ({
+        themeComponent: {
+            setTheme: setTheme,
+            theme: theme,
+            themeClass: themeClass,
+        },
+    }); }, [theme]);
+    return (react_1.default.createElement(ConfigContext_1.ConfigContext.Provider, { value: defaultProps }, children));
+};
+exports.ConfigProvider = ConfigProvider;
+
+
+/***/ }),
+
+/***/ 2720:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+__exportStar(__webpack_require__(7118), exports);
 
 
 /***/ }),

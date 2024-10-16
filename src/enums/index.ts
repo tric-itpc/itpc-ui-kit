@@ -10,3 +10,20 @@ export enum UIKitColors {
   white = "#FFF",
   yellow = "#DCB21E",
 }
+
+export enum Theme {
+  DARK = "dark",
+  DEFAULT = "default",
+}
+
+export enum SortType {
+  ASCENDING = "ascending",
+  DESCENDING = "descending",
+  NONE = "none",
+}
+
+export enum NumberColumns {
+  ONE = "one",
+  TWO = "two",
+  ZERO = "zero",
+}

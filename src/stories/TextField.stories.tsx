@@ -5,8 +5,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { Text } from "../components"
 import { IconOk } from "../components/_elements"
 import { Props, TextField } from "../components/TextField"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: TextField,

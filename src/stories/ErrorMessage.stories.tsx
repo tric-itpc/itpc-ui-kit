@@ -3,8 +3,8 @@ import React from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { ErrorMessage, Props } from "../components/ErrorMessage"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: ErrorMessage,
@@ -18,14 +18,12 @@ const Template: ComponentStory<React.FC<Props>> = (args) => (
 export const Basic = Template.bind({})
 Basic.args = {
   children: "Error text",
-  theme: Theme.DEFAULT,
 }
 Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const ErrorMessageDark = Template.bind({})
 ErrorMessageDark.args = {
   children: "Error text",
-  theme: Theme.DARK,
 }
 ErrorMessageDark.decorators = [ThemeDecorator(Theme.DARK)]
 

@@ -4,8 +4,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Button } from "../components"
 import { Popup, Props } from "../components/Popup"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: Popup,

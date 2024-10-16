@@ -1,7 +1,7 @@
 import React from "react"
 
 import { IconSortDown, IconSortUp } from "../_elements"
-import { SortType } from "../types"
+import { SortType } from "../../enums"
 
 import {
   Column,

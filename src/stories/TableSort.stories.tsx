@@ -117,7 +117,6 @@ export const SortByOneColumns = Template.bind({})
 SortByOneColumns.args = {
   columns: dataColumns,
   sortByNumberColumns: NumberColumns.ONE,
-  theme: Theme.DEFAULT,
 }
 SortByOneColumns.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
@@ -125,7 +124,6 @@ export const SortByOneColumnsDark = Template.bind({})
 SortByOneColumnsDark.args = {
   columns: dataColumns,
   sortByNumberColumns: NumberColumns.ONE,
-  theme: Theme.DARK,
 }
 SortByOneColumnsDark.decorators = [ThemeDecorator(Theme.DARK)]
 
@@ -139,7 +137,6 @@ export const SortByTwoColumns = Template.bind({})
 SortByTwoColumns.args = {
   columns: dataColumns,
   sortByNumberColumns: NumberColumns.TWO,
-  theme: Theme.DEFAULT,
 }
 SortByTwoColumns.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
@@ -147,7 +144,6 @@ export const SortByTwoColumnsDark = Template.bind({})
 SortByTwoColumnsDark.args = {
   columns: dataColumns,
   sortByNumberColumns: NumberColumns.TWO,
-  theme: Theme.DARK,
 }
 SortByTwoColumnsDark.decorators = [ThemeDecorator(Theme.DARK)]
 

@@ -2,14 +2,14 @@ import React from "react"
 
 import { Story } from "@storybook/react"
 
-import { ComponentProvider } from "../components/ComponentProvider"
-import type { Theme } from "../components/types"
+import { Theme } from "../enums"
+import { ConfigProvider } from "../provider"
 
 export const ThemeDecorator = (theme: Theme) => (StoryComponent: Story) =>
   (
-    <ComponentProvider theme={theme}>
+    <ConfigProvider theme={theme}>
       <div className={`app itpc-theme-${theme}`}>
         <StoryComponent />
       </div>
-    </ComponentProvider>
+    </ConfigProvider>
   )

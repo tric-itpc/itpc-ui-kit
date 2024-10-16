@@ -3,8 +3,8 @@ import React from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { Button, Props } from "../components/Button"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: Button,
@@ -17,7 +17,6 @@ export const Basic = Template.bind({})
 Basic.args = {
   children: "Button",
   disabled: false,
-  theme: Theme.DEFAULT,
 }
 Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
@@ -25,7 +24,6 @@ export const ButtonDark = Template.bind({})
 ButtonDark.args = {
   children: "Button",
   disabled: false,
-  theme: Theme.DARK,
 }
 ButtonDark.decorators = [ThemeDecorator(Theme.DARK)]
 

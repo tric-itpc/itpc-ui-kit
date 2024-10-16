@@ -5,8 +5,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { FormattedValues } from "../components"
 import { DatePicker, Props } from "../components/DatePicker"
 import { Text } from "../components/Text"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: DatePicker,
@@ -37,7 +37,6 @@ export const Basic = Template.bind({})
 Basic.args = {
   errorMessage: "Error message",
   placeholder: "Enter date",
-  theme: Theme.DEFAULT,
   validationState: "valid",
   withTime: false,
 }
@@ -47,7 +46,6 @@ export const DatePickerDark = Template.bind({})
 DatePickerDark.args = {
   errorMessage: "Error message",
   placeholder: "Enter date",
-  theme: Theme.DARK,
   validationState: "valid",
   withTime: false,
 }

@@ -10,8 +10,8 @@ import {
   AccordionItem,
   AccordionProps,
 } from "../components/Accordion"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: Accordion,
@@ -39,15 +39,11 @@ const Template: ComponentStory<React.FC<AccordionProps>> = (args) => {
 }
 
 export const Basic = Template.bind({})
-Basic.args = {
-  theme: Theme.DEFAULT,
-}
+Basic.args = {}
 Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
 
 export const AccordionDark = Template.bind({})
-AccordionDark.args = {
-  theme: Theme.DARK,
-}
+AccordionDark.args = {}
 AccordionDark.decorators = [ThemeDecorator(Theme.DARK)]
 
 AccordionDark.parameters = {

@@ -3,7 +3,7 @@ import React, { HTMLAttributes, useRef, useState } from "react"
 import cn from "classnames"
 
 import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
-import { useOnClickOutside } from "../../_hooks"
+import { useOnClickOutside } from "../../lab"
 import { Item } from "../types"
 
 import "./styles.css"

@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react"
+import React from "react"
 
 export type InputState =
   | "default"
@@ -52,37 +52,4 @@ export interface FormattedValues {
 export interface IInfo {
   id: string
   name: string
-}
-
-export enum SortType {
-  ASCENDING = "ascending",
-  DESCENDING = "descending",
-  NONE = "none",
-}
-
-export enum NumberColumns {
-  ONE = "one",
-  TWO = "two",
-  ZERO = "zero",
-}
-
-export enum Theme {
-  DARK = "dark",
-  DEFAULT = "default",
-}
-
-export interface ComponentProviderProps {
-  children: ReactNode
-  theme?: Theme
-  themeClass?: string
-}
-
-export interface ComponentContextProps {
-  themeComponent?: ThemeContext
-}
-
-export interface ThemeContext {
-  setTheme: (theme: Theme) => void
-  theme: Theme
-  themeClass: string
 }

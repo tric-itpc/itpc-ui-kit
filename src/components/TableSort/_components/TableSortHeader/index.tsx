@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from "react"
 
 import cn from "classnames"
 
-import { NumberColumns, SortType } from "../../../types"
+import { NumberColumns, SortType } from "../../../../enums"
 import { Column, KeySort, KeysSort, RowType } from "../../types"
 import { renderIcon, renderIconTwoColumns } from "../../utils"
 

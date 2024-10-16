@@ -4,8 +4,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { TabsItem } from "../components"
 import { Tabs, TabsProps } from "../components/Tabs"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 const items: TabsItem[] = [
   {

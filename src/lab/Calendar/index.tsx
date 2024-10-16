@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react"
 
 import cn from "classnames"
 
-import { useOnClickOutside } from "../../_hooks"
 import { IInfo } from "../../components"
+import { useOnClickOutside } from "../hooks"
 
 import {
   CalendarControl,

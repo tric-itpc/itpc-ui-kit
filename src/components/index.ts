@@ -9,7 +9,6 @@ import { Button } from "./Button"
 import { ButtonRound } from "./ButtonRound"
 import { Card } from "./Card"
 import { Checkbox } from "./Checkbox"
-import { ComponentProvider } from "./ComponentProvider"
 import { DatePicker } from "./DatePicker"
 import { ErrorMessage } from "./ErrorMessage"
 import { Modal, ModalContent, ModalFooter } from "./Modal"
@@ -47,7 +46,6 @@ export {
   Cell,
   Checkbox,
   Column,
-  ComponentProvider,
   DatePicker,
   ErrorMessage,
   Modal,
@@ -73,14 +71,10 @@ export {
   TextField,
 }
 
-export { UIKitColors } from "./constants"
-export {
+export type {
   FormattedValues,
   IInfo,
   Item,
-  NumberColumns,
   PaginationResult,
-  SortType,
   TabsItem,
-  Theme,
 } from "./types"

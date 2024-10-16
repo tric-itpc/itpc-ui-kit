@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 
-import { Theme } from "../../../components"
-import { ComponentContext } from "../../ComponentContext"
+import { ConfigContext } from "../../../context/ConfigContext"
+import { Theme } from "../../../enums"
 
 interface UseTheme {
   theme: Theme
@@ -10,7 +10,7 @@ interface UseTheme {
 }
 
 export const useTheme = (): UseTheme => {
-  const { themeComponent } = useContext(ComponentContext)
+  const { themeComponent } = useContext(ConfigContext)
 
   if (!themeComponent) {
     return {

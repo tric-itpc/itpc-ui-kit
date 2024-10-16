@@ -4,8 +4,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { FormattedValues, Text } from "../components"
 import { NumberField, Props } from "../components/NumberField"
-import { Theme } from "../components/types"
 import { ThemeDecorator } from "../config/ThemeDecorator"
+import { Theme } from "../enums"
 
 export default {
   component: NumberField,
@@ -44,7 +44,6 @@ Basic.args = {
   format: "+7 (###) - ### - ## - ##",
   mask: "_",
   placeholder: "Phone number",
-  replaceValue: () => "",
   validationState: "valid",
 }
 Basic.decorators = [ThemeDecorator(Theme.DEFAULT)]
@@ -55,7 +54,6 @@ NumberFieldDark.args = {
   format: "+7 (###) - ### - ## - ##",
   mask: "_",
   placeholder: "Phone number",
-  replaceValue: () => "",
   validationState: "valid",
 }
 NumberFieldDark.decorators = [ThemeDecorator(Theme.DARK)]
