@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { type CSSProperties, useEffect, useRef, useState } from "react"
 
 import cn from "classnames"
 
@@ -88,17 +88,11 @@ export const Calendar: React.FC<Props> = ({
   const [days, setDays] = useState<Day[]>(initDays(currentValue, withTime))
   const [isShowSelectMonth, setIsShowSelectMonth] = useState<boolean>(false)
   const [isShowSelectYear, setIsShowSelectYear] = useState<boolean>(false)
+  const [styleCalendar, setStyleCalendar] = useState<CSSProperties>({})
 
   const calendarRef = useRef<HTMLDivElement>(null)
 
-  let styleCalendar
-
   const { documentWidth } = getDocumentDimensions()
-
-  if (calendarRef.current) {
-    const { calendarWidth } = getCalendarDimensions(calendarRef.current)
-    styleCalendar = getCalendarStyle(documentWidth, calendarWidth)
-  }
 
   const changeCurrentDate = (date: string): void => {
     setCurrentDate(date)
@@ -163,6 +157,13 @@ export const Calendar: React.FC<Props> = ({
       setDays(initDays(currentValue, withTime))
     }
   }, [currentValue, withTime])
+
+  useEffect(() => {
+    if (calendarRef.current && documentWidth) {
+      const { calendarWidth } = getCalendarDimensions(calendarRef.current)
+      setStyleCalendar(getCalendarStyle(documentWidth, calendarWidth))
+    }
+  }, [calendarRef.current, documentWidth])
 
   return (
     <div

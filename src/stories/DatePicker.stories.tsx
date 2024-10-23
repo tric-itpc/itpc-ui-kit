@@ -4,13 +4,14 @@ import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { FormattedValues, Text } from "../components"
 import { DatePicker, Props } from "../components/DatePicker"
+import type { PositionType } from "../components/DatePicker/types"
 
 export default {
   component: DatePicker,
   title: "Components/DatePicker",
-} as ComponentMeta<React.FC<Props>>
+} as ComponentMeta<React.FC<Props<PositionType>>>
 
-const Template: ComponentStory<React.FC<Props>> = (args) => {
+const Template: ComponentStory<React.FC<Props<PositionType>>> = (args) => {
   const [date, setDate] = useState<FormattedValues>({
     formattedValue: "",
     value: "",
@@ -34,5 +35,6 @@ export const Basic = Template.bind({})
 Basic.args = {
   errorMessage: "Error message",
   placeholder: "Enter date",
+  position: "absolute",
   withTime: false,
 }
