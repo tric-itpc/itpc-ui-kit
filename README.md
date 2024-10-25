@@ -985,6 +985,71 @@ const MyComponent: React.FC = () => {
 
 ---
 
+### TableSort
+
+Таблица поддерживает как просто отображение данных, так и сортировку по одному и двум столбцам. При передаче данных в колонку isSortable - true, сортировка будет произведена по алфавиту или используйте свой метод для сортировки передав метод с данными.
+
+#### Props
+
+| Название            | Тип                         | Описание         | Значение по умолчанию | Возможные значения                                  |
+| ------------------- | --------------------------- | ---------------- | --------------------- | --------------------------------------------------- |
+| className           | `string` `undefined`        | -                | `''`                  | Любая строка                                        |
+| columns             | `dataColumns[]`             | Список элементов |                       | `dataColumns[]`                                     |
+| rows                | `dataRows[]`                | Список элементов |                       | `dataRows[]`                                        |
+| sortByNumberColumns | `NumberColumns` `undefined` |                  |                       | `NumberColumns.ONE` `NumberColumns.TWO` `undefined` |
+
+#### Пример
+
+```typescript jsx
+import React from "react"
+import { TableSort, NumberColumns } from "itpc-ui-kit"
+
+interface RowType {
+  id: string
+  city: string
+  population: string
+}
+
+const MyComponent: React.FC = () => {
+  const dataRows: RowType[] = [
+    { id: "1", city: "Тюмень", population: "861 098" },
+    { id: "2", city: "Ишим", population: "64 011" },
+    { id: "3", city: "Тобольск", population: "102 000" },
+  ]
+
+  const dataColumns = [
+    {
+      isSortable: false,
+      name: "id",
+      sorter: (a: RowType, b: RowType) => Number(a.id) - Number(b.id),
+      title: "ID",
+    },
+    {
+      isSortable: true,
+      name: "city",
+      title: "Город",
+    },
+    {
+      isSortable: true,
+      name: "population",
+      sorter: (a: RowType, b: RowType) =>
+        Number(a.population.replace(/\s+/g, "")) -
+        Number(b.population.replace(/\s+/g, "")),
+      title: "Население",
+    },
+  ]
+  return (
+    <TableSort
+      sortByNumberColumns={NumberColumns.ONE}
+      columns={dataColumns}
+      rows={originalCounter()}
+    />
+  )
+}
+```
+
+---
+
 ### Tabs
 
 #### Props
