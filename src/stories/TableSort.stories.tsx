@@ -3,43 +3,30 @@ import React from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
 import { TableSort, TableSortProps } from "../components/TableSort"
-import { Column, RowType } from "../components/TableSort/types"
 import { NumberColumns } from "../components/types"
+
+interface RowType {
+  city: string
+  population: string
+  id: string
+}
 
 export default {
   component: TableSort,
   title: "Components/TableSort",
-} as ComponentMeta<React.FC<TableSortProps<TypeData>>>
+} as ComponentMeta<React.FC<TableSortProps<RowType>>>
 
-interface TypeData extends RowType {
-  age: string
-  city: string
-  duty: string
-  id: string
-  name: string
-}
-
-const dataRows: TypeData[] = [
-  { age: "25", city: "Тюмень", duty: "50", id: "1", name: "Сергей" },
-  { age: "19", city: "Ишим", duty: "500.02", id: "2", name: "Рома" },
-  { age: "9", city: "Тобольск", duty: "1.10", id: "3", name: "Алексей" },
-  { age: "19", city: "Тюмень", duty: "250", id: "4", name: "Борис" },
-  { age: "35", city: "Тобольск", duty: "51", id: "5", name: "Сергей" },
-  { age: "100", city: "Тюмень", duty: "250", id: "6", name: "Яша" },
-  { age: "45", city: "Тобольск", duty: "49", id: "7", name: "Сергей" },
-  { age: "19", city: "Ишим", duty: "500.02", id: "8", name: "Сергей" },
+const dataRows: RowType[] = [
+  { city: "Тюмень", population: "861 098", id: "1" },
+  { city: "Ишим", population: "64 011", id: "2" },
+  { city: "Тобольск", population: "102 000", id: "3" },
 ]
 
-const dataColumnsNoSort: Column<TypeData>[] = [
+const dataColumnsNoSort = [
   {
     isSortable: false,
     name: "id",
     title: "ID",
-  },
-  {
-    isSortable: false,
-    name: "name",
-    title: "Name",
   },
   {
     isSortable: false,
@@ -48,21 +35,16 @@ const dataColumnsNoSort: Column<TypeData>[] = [
   },
   {
     isSortable: false,
-    name: "age",
-    title: "Age",
-  },
-  {
-    isSortable: false,
-    name: "duty",
-    title: "Duty",
+    name: "population",
+    title: "Население",
   },
 ]
 
-const dataColumns: Column<TypeData>[] = [
+const dataColumns = [
   {
     isSortable: false,
     name: "id",
-    sorter: (a: TypeData, b: TypeData) => Number(a.id) - Number(b.id),
+    sorter: (a: RowType, b: RowType) => Number(a.id) - Number(b.id),
     title: "ID",
   },
   {
@@ -72,25 +54,15 @@ const dataColumns: Column<TypeData>[] = [
   },
   {
     isSortable: true,
-    name: "name",
-    sorter: (a: TypeData, b: TypeData) => a.name.length - b.name.length,
-    title: "Name",
-  },
-  {
-    isSortable: true,
-    name: "duty",
-    sorter: (a: TypeData, b: TypeData) => Number(a.duty) - Number(b.duty),
-    title: "Duty",
-  },
-  {
-    isSortable: true,
-    name: "age",
-    sorter: (a: TypeData, b: TypeData) => Number(a.age) - Number(b.age),
-    title: "Age",
+    name: "population",
+    sorter: (a: RowType, b: RowType) =>
+      Number(a.population.replace(/\s+/g, "")) -
+      Number(b.population.replace(/\s+/g, "")),
+    title: "Население",
   },
 ]
 
-const Template: ComponentStory<React.FC<TableSortProps<TypeData>>> = (args) => (
+const Template: ComponentStory<React.FC<TableSortProps<RowType>>> = (args) => (
   <TableSort {...args} rows={dataRows} />
 )
 
