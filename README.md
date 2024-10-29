@@ -1122,6 +1122,33 @@ const MyComponent: React.FC = () => {
 
 ---
 
+## Прочее
+
+### ConfigProvider
+
+Обеспечивает поддержку конфигурации theme компонентов.
+Этот компонент предоставляет конфигурацию всем компонентам React, расположенным ниже него, с помощью контекстного API. В дереве рендеринга все компоненты будут иметь доступ к предоставленной конфигурации.
+
+#### Пример
+
+```typescript jsx
+import React, { useState } from "react"
+import { createRoot } from "react-dom/client"
+import { ConfigProvider, Theme } from "itpc-ui-kit"
+import App from "./App"
+import "./index.css"
+
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
+
+root.render(
+  <ConfigProvider theme={Theme.Dark}>
+    <App />
+  </ConfigProvider>
+)
+```
+
+---
+
 ## Утилитарные типы
 
 ```typescript
