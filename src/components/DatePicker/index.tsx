@@ -20,6 +20,7 @@ import {
   MASK_DATE_TIME,
 } from "./constants"
 import "./styles.css"
+import { type PositionType } from "./types"
 import {
   getCalculatePositionCalendar,
   parseISODate,
@@ -35,7 +36,7 @@ export interface FormattedValues {
   value: string
 }
 
-export interface Props
+export interface Props<T extends PositionType>
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   activeDates?: string[]
   className?: string
@@ -63,6 +64,7 @@ export interface Props
   ) => void
   onFocus?: () => void
   placeholder?: string
+  position?: T
   scrollToYear?: number
   validationState?: ValidationState
   value?: string
@@ -70,7 +72,7 @@ export interface Props
   yearsFromTo?: [number, number]
 }
 
-export const DatePicker: React.FC<Props> = ({
+export const DatePicker: React.FC<Props<PositionType>> = ({
   activeDates,
   className = "",
   disabled = false,
@@ -90,13 +92,14 @@ export const DatePicker: React.FC<Props> = ({
   onChange,
   onFocus,
   placeholder = "",
+  position = "fixed",
   scrollToYear,
   validationState = "valid",
   value = "",
   withTime = false,
   yearsFromTo,
   ...rest
-}: Props) => {
+}: Props<PositionType>) => {
   const { windowWidth } = useWindowSize()
 
   const [focused, onHandleFocused] = useState<boolean>(false)
@@ -110,7 +113,6 @@ export const DatePicker: React.FC<Props> = ({
 
   const onOpenCalendar = (): void => {
     setIsShowCalendar(true)
-    calculatePositionCalendar()
   }
 
   const onCloseCalendar = (): void => {
@@ -181,8 +183,12 @@ export const DatePicker: React.FC<Props> = ({
   }
 
   const calculatePositionCalendar = (): void => {
-    const position = getCalculatePositionCalendar(inputWrapRef, calendarWrapRef)
-    setStylePositionCalendar(position)
+    const stylePosition: CSSProperties = getCalculatePositionCalendar(
+      inputWrapRef,
+      calendarWrapRef,
+      position
+    )
+    setStylePositionCalendar(stylePosition)
   }
 
   useEffect(() => {
@@ -196,8 +202,10 @@ export const DatePicker: React.FC<Props> = ({
   }, [])
 
   useEffect(() => {
-    calculatePositionCalendar()
-  }, [windowWidth])
+    if (isShowCalendar) {
+      calculatePositionCalendar()
+    }
+  }, [windowWidth, isShowCalendar])
 
   return (
     <div className={cn("itpc-datepicker", className)} {...rest}>
