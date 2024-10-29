@@ -304,6 +304,25 @@ const MyComponent: React.FC = () => {
 }
 ```
 
+<br>
+
+Значение `position:` при использовании 'fixsed' может выявиться баг, что открытый календарь не отображается в нужном месте.
+
+###### Примечание:
+
+Существуют несоответствия браузеров perspective, filter, transform способствующие формированию сдерживающих блоков. И в этом случаи этот предок ведет себя как содержащий блок.
+<br>
+При использовании `position: 'absolut'`, календарь может не полностью видим.
+
+###### Примечание:
+
+Если position свойство равно absolute, содержащий блок формируется краем поля заполнения ближайшего элемента-предка, имеющего position значение. Но может быть видим частично при значении свойства `overflow: 'hidden'`
+
+Ссылка: https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#calculating_percentage_values_from_the_containing_block
+<br>
+
+В календаре используется
+
 #### Props
 
 | Название            | Тип                                                                                                                                                                                                      | Описание                                                                                                                                            | Значение по умолчанию | Возможные значения                          |
@@ -320,6 +339,7 @@ const MyComponent: React.FC = () => {
 | disabledSelectMonth | `boolean` `undefined`                                                                                                                                                                                    | Флаг блокировки выбора месяца                                                                                                                       | `false`               | `'true', 'false'`                           |
 | disabledSelectYear  | `boolean` `undefined`                                                                                                                                                                                    | Флаг блокировки выбора года                                                                                                                         | `false`               | `'true', 'false'`                           |
 | placeholder         | `string` `undefined`                                                                                                                                                                                     | Подпись инпута                                                                                                                                      | `''`                  | Любая строка                                |
+| position            | `string` `undefined`                                                                                                                                                                                     | Значение определяющее в стилях position календаря                                                                                                   | `'fixed'`             | `'fixed'` `'absolute'`                      |
 | validationState     | `ValidationState` `undefined`                                                                                                                                                                            | Значение, определяющее валидность значения инпута                                                                                                   | `'valid'`             | `'valid'` `'invalid'`                       |
 | errorMessage        | `string` `undefined`                                                                                                                                                                                     | Текст ошибки при не валидности значения инпута                                                                                                      | `''`                  | Любая строка                                |
 | className           | `string` `undefined`                                                                                                                                                                                     | CSS класс                                                                                                                                           | `''`                  | Любая строка                                |

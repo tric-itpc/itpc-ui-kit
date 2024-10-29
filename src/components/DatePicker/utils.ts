@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react"
 
 import {
+  DEFAULT_POSITION,
   DEFAULT_WIDTH_CALENDAR,
   DIVIDER_IN_TWO,
   INPUT_TO_CALENDAR_DISTANCE,
@@ -8,11 +9,15 @@ import {
   WIDTH_BODY_CALENDAR,
 } from "./constants"
 import {
+  type AbsolutePosition,
+  type AbsolutePositionArg,
+  ALLOWED_POSITIONS,
   CalendarDimensions,
   DocumentDimensions,
-  type GetHorizontalPositionProps,
+  type GetHorizontalPositionArg,
   HORIZONTAL_POSITION_CALENDAR,
   InputDimensions,
+  type PositionType,
   VERTICAL_POSITION_CALENDAR,
 } from "./types"
 
@@ -106,22 +111,23 @@ export const getCalendarDimensions = (
 }
 
 export const getDocumentDimensions = (): DocumentDimensions => ({
-  documentHeight: document.documentElement.clientHeight,
-  documentWidth: document.documentElement.clientWidth,
+  documentHeight: Math.floor(document.documentElement.clientHeight),
+  documentWidth: Math.floor(document.documentElement.clientWidth),
 })
 
 export const getInputDimensions = (ref: HTMLDivElement): InputDimensions => {
   const rect: DOMRect = ref.getBoundingClientRect()
   return {
-    inputBottom: rect.bottom,
-    inputLeft: rect.left,
-    inputTop: rect.top,
-    inputWidth: rect.width,
+    inputBottom: Math.floor(rect.bottom),
+    inputHeight: Math.floor(rect.height),
+    inputLeft: Math.floor(rect.left),
+    inputTop: Math.floor(rect.top),
+    inputWidth: Math.floor(rect.width),
   }
 }
 
 export const getHorizontalPosition = (
-  props: GetHorizontalPositionProps
+  arg: GetHorizontalPositionArg
 ): HORIZONTAL_POSITION_CALENDAR => {
   const {
     calendarWidth,
@@ -130,7 +136,7 @@ export const getHorizontalPosition = (
     inputLeft,
     inputWidth,
     scrollbarWidth,
-  } = props
+  } = arg
 
   const currentWidthCalendar =
     calendarWidth !== 0 ? calendarWidth : DEFAULT_WIDTH_CALENDAR
@@ -154,9 +160,8 @@ export const getHorizontalPosition = (
       }
 
       if (
-        (rightEdgeFromCenter > calendarHalfWidth &&
-          leftEdgeFromCenter > calendarHalfWidth) ||
-        rightEdgeFromCenter > calendarHalfWidth
+        rightEdgeFromCenter > calendarHalfWidth &&
+        leftEdgeFromCenter > calendarHalfWidth
       ) {
         return HORIZONTAL_POSITION_CALENDAR.CENTER
       }
@@ -170,10 +175,47 @@ export const getHorizontalPosition = (
   }
 }
 
+const getAbsolutePositions = (arg: AbsolutePositionArg): AbsolutePosition => {
+  const {
+    calendarHeight,
+    calendarWidth,
+    documentWidth,
+    inputHeight,
+    inputLeft,
+    inputWidth,
+  } = arg
+  const absoluteDefault: number = 0
+  const absoluteTopPosition: number = inputHeight + INPUT_TO_CALENDAR_DISTANCE
+  const absoluteBottomPosition: number =
+    -INPUT_TO_CALENDAR_DISTANCE - calendarHeight
+  const absoluteCenterPosition: number =
+    (inputWidth - calendarWidth) / DIVIDER_IN_TWO
+  const absoluteCalculatedPosition: number =
+    (documentWidth - calendarWidth) / DIVIDER_IN_TWO - inputLeft
+
+  return {
+    absoluteBottomPosition,
+    absoluteCalculatedPosition,
+    absoluteCenterPosition,
+    absoluteDefault,
+    absoluteTopPosition,
+  }
+}
+
 export const getCalculatePositionCalendar = (
   inputWrapRef: React.RefObject<HTMLDivElement>,
-  calendarWrapRef: React.RefObject<HTMLDivElement>
+  calendarWrapRef: React.RefObject<HTMLDivElement>,
+  position: PositionType
 ): CSSProperties => {
+  if (
+    position !== ALLOWED_POSITIONS.ABSOLUTE &&
+    position !== ALLOWED_POSITIONS.FIXED
+  ) {
+    throw new Error(
+      `Недопустимое значение свойства position: ${position}. Допустимые значения: absolute, fixed`
+    )
+  }
+
   if (inputWrapRef?.current && calendarWrapRef?.current) {
     const { documentHeight, documentWidth } = getDocumentDimensions()
 
@@ -181,16 +223,32 @@ export const getCalculatePositionCalendar = (
       calendarWrapRef.current
     )
 
-    const { inputBottom, inputLeft, inputTop, inputWidth } = getInputDimensions(
-      inputWrapRef.current
-    )
+    const { inputBottom, inputHeight, inputLeft, inputTop, inputWidth } =
+      getInputDimensions(inputWrapRef.current)
+
+    const argAbsolutePosition: AbsolutePositionArg = {
+      calendarHeight,
+      calendarWidth,
+      documentWidth,
+      inputHeight,
+      inputLeft,
+      inputWidth,
+    }
+
+    const {
+      absoluteBottomPosition,
+      absoluteCalculatedPosition,
+      absoluteCenterPosition,
+      absoluteDefault,
+      absoluteTopPosition,
+    } = getAbsolutePositions(argAbsolutePosition)
 
     const scrollbarWidth: number = window.innerWidth - documentWidth
 
     const distanceRight: number = documentWidth - (inputLeft + inputWidth)
     const distanceUnderInput: number = documentHeight - inputBottom
 
-    const props: GetHorizontalPositionProps = {
+    const argHorizontalPosition: GetHorizontalPositionArg = {
       calendarWidth,
       distanceRight,
       documentWidth,
@@ -200,7 +258,7 @@ export const getCalculatePositionCalendar = (
     }
 
     const horizontalPosition: HORIZONTAL_POSITION_CALENDAR =
-      getHorizontalPosition(props)
+      getHorizontalPosition(argHorizontalPosition)
 
     let verticalPosition: VERTICAL_POSITION_CALENDAR
     if (distanceUnderInput > calendarHeight + INPUT_TO_CALENDAR_DISTANCE) {
@@ -221,78 +279,165 @@ export const getCalculatePositionCalendar = (
     const horizontalRightPosition: number =
       documentWidth - inputLeft - inputWidth
 
-    const horizontalCalculatedPosition: number =
+    const horizontalCalculatedPosition: number = Math.floor(
       (documentWidth - calendarWidth) / DIVIDER_IN_TWO
+    )
 
-    if (verticalPosition === VERTICAL_POSITION_CALENDAR.BOTTOM) {
-      if (horizontalPosition === HORIZONTAL_POSITION_CALENDAR.LEFT) {
-        return {
-          bottom: "auto",
-          left: inputLeft,
-          right: "auto",
-          top: verticalBottomPosition,
-        }
-      }
-      if (horizontalPosition === HORIZONTAL_POSITION_CALENDAR.RIGHT) {
-        return {
-          bottom: "auto",
-          left: "auto",
-          right: horizontalRightPosition,
-          top: verticalBottomPosition,
-        }
-      }
-      if (horizontalPosition === HORIZONTAL_POSITION_CALENDAR.CENTER) {
-        return {
-          bottom: "auto",
-          left: horizontalCenterPosition,
-          right: "auto",
-          top: verticalBottomPosition,
-        }
-      }
-      if (horizontalPosition === HORIZONTAL_POSITION_CALENDAR.CALCULATED) {
-        return {
-          bottom: "auto",
-          left: horizontalCalculatedPosition,
-          right: "auto",
-          top: verticalBottomPosition,
-        }
-      }
-    }
+    const currentPosition = calendarWrapRef.current.style.position
 
-    if (verticalPosition === VERTICAL_POSITION_CALENDAR.TOP) {
-      if (horizontalPosition === HORIZONTAL_POSITION_CALENDAR.LEFT) {
-        return {
-          bottom: "auto",
-          left: inputLeft,
-          right: "auto",
-          top: verticalTopPosition,
+    if (position === ALLOWED_POSITIONS.FIXED) {
+      if (
+        currentPosition.length &&
+        String(currentPosition) !== ALLOWED_POSITIONS.FIXED
+      ) {
+        calendarWrapRef.current.style.position = position
+      }
+
+      if (verticalPosition === VERTICAL_POSITION_CALENDAR.BOTTOM) {
+        switch (horizontalPosition) {
+          case HORIZONTAL_POSITION_CALENDAR.LEFT:
+            return {
+              bottom: "auto",
+              left: inputLeft,
+              right: "auto",
+              top: verticalBottomPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.RIGHT:
+            return {
+              bottom: "auto",
+              left: "auto",
+              right: horizontalRightPosition,
+              top: verticalBottomPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.CENTER:
+            return {
+              bottom: "auto",
+              left: horizontalCenterPosition,
+              right: "auto",
+              top: verticalBottomPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.CALCULATED:
+            return {
+              bottom: "auto",
+              left: horizontalCalculatedPosition,
+              right: "auto",
+              top: verticalBottomPosition,
+            }
+          default:
+            return { ...DEFAULT_POSITION }
         }
       }
-      if (horizontalPosition === HORIZONTAL_POSITION_CALENDAR.RIGHT) {
-        return {
-          bottom: "auto",
-          left: "auto",
-          right: horizontalRightPosition,
-          top: verticalTopPosition,
+
+      if (verticalPosition === VERTICAL_POSITION_CALENDAR.TOP) {
+        switch (horizontalPosition) {
+          case HORIZONTAL_POSITION_CALENDAR.LEFT:
+            return {
+              bottom: "auto",
+              left: inputLeft,
+              right: "auto",
+              top: verticalTopPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.RIGHT:
+            return {
+              bottom: "auto",
+              left: "auto",
+              right: horizontalRightPosition,
+              top: verticalTopPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.CENTER:
+            return {
+              bottom: "auto",
+              left: horizontalCenterPosition,
+              right: "auto",
+              top: verticalTopPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.CALCULATED:
+            return {
+              bottom: "auto",
+              left: horizontalCalculatedPosition,
+              right: "auto",
+              top: verticalTopPosition,
+            }
+          default:
+            return { ...DEFAULT_POSITION }
         }
       }
-      if (horizontalPosition === HORIZONTAL_POSITION_CALENDAR.CENTER) {
-        return {
-          bottom: "auto",
-          left: horizontalCenterPosition,
-          right: "auto",
-          top: verticalTopPosition,
+    } else {
+      if (String(currentPosition) !== ALLOWED_POSITIONS.ABSOLUTE) {
+        calendarWrapRef.current.style.position = position
+      }
+      if (verticalPosition === VERTICAL_POSITION_CALENDAR.BOTTOM) {
+        switch (horizontalPosition) {
+          case HORIZONTAL_POSITION_CALENDAR.LEFT:
+            return {
+              bottom: "auto",
+              left: absoluteDefault,
+              right: "auto",
+              top: absoluteTopPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.RIGHT:
+            return {
+              bottom: "auto",
+              left: "auto",
+              right: absoluteDefault,
+              top: absoluteTopPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.CENTER:
+            return {
+              bottom: "auto",
+              left: absoluteCenterPosition,
+              right: "auto",
+              top: absoluteTopPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.CALCULATED:
+            return {
+              bottom: "auto",
+              left: absoluteCalculatedPosition,
+              right: "auto",
+              top: absoluteTopPosition,
+            }
+          default:
+            return { ...DEFAULT_POSITION }
         }
       }
-      if (horizontalPosition === HORIZONTAL_POSITION_CALENDAR.CALCULATED) {
-        return {
-          bottom: "auto",
-          left: horizontalCalculatedPosition,
-          right: "auto",
-          top: verticalTopPosition,
+
+      if (verticalPosition === VERTICAL_POSITION_CALENDAR.TOP) {
+        switch (horizontalPosition) {
+          case HORIZONTAL_POSITION_CALENDAR.LEFT:
+            return {
+              bottom: "auto",
+              left: absoluteDefault,
+              right: "auto",
+              top: absoluteBottomPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.RIGHT:
+            return {
+              bottom: "auto",
+              left: "auto",
+              right: absoluteDefault,
+              top: absoluteBottomPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.CENTER:
+            return {
+              bottom: "auto",
+              left: absoluteCenterPosition,
+              right: "auto",
+              top: absoluteBottomPosition,
+            }
+          case HORIZONTAL_POSITION_CALENDAR.CALCULATED:
+            return {
+              bottom: "auto",
+              left: absoluteCalculatedPosition,
+              right: "auto",
+              top: absoluteBottomPosition,
+            }
+          default:
+            return { ...DEFAULT_POSITION }
         }
       }
     }
   }
-  return {}
+
+  return { ...DEFAULT_POSITION }
 }
+
