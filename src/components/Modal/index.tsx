@@ -1,7 +1,15 @@
-import React, { HTMLAttributes } from "react"
+import React, {
+  HTMLAttributes,
+  type MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 
 import cn from "classnames"
 
+import { ANIMATION_DELAY } from "./constants"
 import "./styles.css"
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
@@ -24,24 +32,53 @@ export const Modal: React.FC<ModalProps> = ({
   title,
   ...rest
 }) => {
-  const onCloseOverlay = (): void => {
-    if (isOverlayClickable && onClose) {
-      onClose()
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isClosing, setIsClosing] = useState(false)
+
+  const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>
+
+  const close = useCallback(() => {
+    if ((onClose && isOpenModal) || (onClose && isOpen)) {
+      setIsClosing(true)
+      timerRef.current = setTimeout(() => {
+        onClose()
+        setIsClosing(false)
+        setIsOpenModal(false)
+      }, ANIMATION_DELAY)
     }
-  }
+  }, [ANIMATION_DELAY, onClose])
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsOpenModal(true)
+    } else {
+      if (isOpenModal) {
+        close()
+      }
+    }
+  }, [isOpen])
 
   return (
     <div
       className={cn(
         "itpc-modal-overlay",
-        isOpen && "itpc-modal-overlay_opened",
+        isOpenModal && "itpc-modal-overlay_opened",
         isOverlayClickable && "itpc-modal-overlay_clickable",
+        isClosing && "itpc-modal-overlay_closed",
         className
       )}
-      onClick={onCloseOverlay}
+      onClick={close}
       {...rest}
     >
-      <div className="itpc-modal" onClick={(event) => event.stopPropagation()}>
+      <div
+        className={cn(
+          "itpc-modal",
+          isOpenModal && "itpc-modal__opened",
+          isClosing && "itpc-modal__closed"
+        )}
+        id="itpc-modal"
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className="itpc-modal__header">
           {title}
 
