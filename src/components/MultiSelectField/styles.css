@@ -30,26 +30,21 @@
   margin: 0;
   padding: 0;
 
-  line-height: 0;
-
   border: 1px solid var(--itpc-primary-border-color);
   border-radius: 4px;
   background-color: transparent;
   list-style: none;
-  opacity: 0;
+
   pointer-events: none;
 
-  transition: line-height ease-in-out 0.2s, transform ease-in-out 0.2s,
-    opacity ease-in-out 0.15s;
-  transform: scaleY(0);
+  transition: transform ease-in-out, opacity ease-in-out;
+
   transform-origin: top;
 
-  will-change: transform, opacity, line-height;
+  will-change: transform, opacity;
 }
 
 .itpc-multi-select__list_opened {
-  line-height: 1.2;
-
   opacity: 1;
   pointer-events: auto;
 
@@ -58,8 +53,6 @@
 }
 
 .itpc-multi-select__list_closed {
-  line-height: 0;
-
   opacity: 0;
 
   transition-duration: 0.1s;

@@ -35,32 +35,18 @@ export const MultiSelectField: React.FC<Props> = ({
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [isClosing, setIsClosing] = useState(false)
-  const [isOrientationTop, setIsOrientationTop] = useState(false)
 
   const ref = useRef<HTMLDivElement>(null)
 
   const handleOpen = (): void => {
     if (!disabled) {
       setIsOpen(!isOpen)
-      setIsOrientationTop(!isOrientationTop)
     }
   }
 
   const onClose = (): void => {
     setIsOpen(false)
   }
-
-  const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>
-
-  const close = useCallback(() => {
-    setIsClosing(true)
-    setIsOrientationTop(false)
-    timerRef.current = setTimeout(() => {
-      onClose()
-      setIsClosing(false)
-    }, ANIMATION_DELAY)
-  }, [ANIMATION_DELAY, onClose])
 
   const onChangeValue = (value: string): void => {
     if (typeof onChange === "function") {
@@ -89,7 +75,7 @@ export const MultiSelectField: React.FC<Props> = ({
     return ""
   }
 
-  useOnClickOutside(ref, close)
+  useOnClickOutside(ref, onClose)
 
   return (
     <div className={cn("itpc-multi-select", className)} ref={ref} {...rest}>
@@ -109,32 +95,27 @@ export const MultiSelectField: React.FC<Props> = ({
         {selectText()}
       </button>
 
-      <IconArrow
-        onClick={handleOpen}
-        orientation={isOrientationTop ? "top" : "bottom"}
-      />
+      <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
 
-      {(isOpen || !isClosing) && (
-        <ul
-          className={cn(
-            "itpc-multi-select__list",
-            isOpen && "itpc-multi-select__list_opened",
-            isClosing && "itpc-multi-select__list_closed"
-          )}
-        >
-          {items.map((item) => (
-            <SelectItem
-              disabled={item.disabled}
-              id={item.id}
-              isActive={selectedItems?.includes(item.id) ?? false}
-              key={item.id}
-              onChange={onChangeValue}
-            >
-              {item.value}
-            </SelectItem>
-          ))}
-        </ul>
-      )}
+      <ul
+        className={cn(
+          "itpc-multi-select__list",
+          isOpen && "itpc-multi-select__list_opened",
+          !isOpen && "itpc-multi-select__list_closed"
+        )}
+      >
+        {items.map((item) => (
+          <SelectItem
+            disabled={item.disabled}
+            id={item.id}
+            isActive={selectedItems?.includes(item.id) ?? false}
+            key={item.id}
+            onChange={onChangeValue}
+          >
+            {item.value}
+          </SelectItem>
+        ))}
+      </ul>
     </div>
   )
 }
