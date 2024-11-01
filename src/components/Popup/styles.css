@@ -13,15 +13,24 @@
   border: 1px solid var(--itpc-input-border-color);
   border-radius: 4px;
   background-color: var(--itpc-primary-bg-color);
+
+  transition: opacity linear, visibility linear, transform linear;
+}
+
+.itpc-popup__opened {
+  transition-duration: 0.25s;
+  opacity: 1;
+  visibility: visible;
+
+  transform: scale(1);
+}
+
+.itpc-popup__closed {
+  transition-duration: 0.15s;
   opacity: 0;
   visibility: hidden;
 
-  transition: all ease-in-out 0.3s;
-}
-
-.itpc-popup_opened {
-  opacity: 1;
-  visibility: visible;
+  transform: scale(0.9);
 }
 
 .itpc-popup_color_error {

@@ -43,7 +43,8 @@ export const Popup: React.FC<Props> = ({
     <div
       className={cn(
         "itpc-popup",
-        isOpen && "itpc-popup_opened",
+        isOpen && "itpc-popup__opened",
+        !isOpen && "itpc-popup__closed",
         variant === "error" && "itpc-popup_color_error",
         variant === "warning" && "itpc-popup_color_warning",
         variant === "success" && "itpc-popup_color_success",
