@@ -1,11 +1,18 @@
-import React, { HTMLAttributes, useRef, useState } from "react"
+import React, {
+  HTMLAttributes,
+  type MutableRefObject,
+  useCallback,
+  useRef,
+  useState,
+} from "react"
 
 import cn from "classnames"
 
-import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
+import { IconArrow, Placeholder, SelectItem } from "../_elements"
 import { useOnClickOutside } from "../../lab"
 import { Item } from "../types"
 
+import { ANIMATION_DELAY } from "./constants"
 import "./styles.css"
 
 export interface Props
@@ -28,18 +35,32 @@ export const MultiSelectField: React.FC<Props> = ({
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isClosing, setIsClosing] = useState(false)
+  const [isOrientationTop, setIsOrientationTop] = useState(false)
 
   const ref = useRef<HTMLDivElement>(null)
 
   const handleOpen = (): void => {
     if (!disabled) {
       setIsOpen(!isOpen)
+      setIsOrientationTop(!isOrientationTop)
     }
   }
 
   const onClose = (): void => {
     setIsOpen(false)
   }
+
+  const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>
+
+  const close = useCallback(() => {
+    setIsClosing(true)
+    setIsOrientationTop(false)
+    timerRef.current = setTimeout(() => {
+      onClose()
+      setIsClosing(false)
+    }, ANIMATION_DELAY)
+  }, [ANIMATION_DELAY, onClose])
 
   const onChangeValue = (value: string): void => {
     if (typeof onChange === "function") {
@@ -68,7 +89,7 @@ export const MultiSelectField: React.FC<Props> = ({
     return ""
   }
 
-  useOnClickOutside(ref, onClose)
+  useOnClickOutside(ref, close)
 
   return (
     <div className={cn("itpc-multi-select", className)} ref={ref} {...rest}>
@@ -88,10 +109,19 @@ export const MultiSelectField: React.FC<Props> = ({
         {selectText()}
       </button>
 
-      <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
+      <IconArrow
+        onClick={handleOpen}
+        orientation={isOrientationTop ? "top" : "bottom"}
+      />
 
-      {isOpen && (
-        <Popover>
+      {(isOpen || !isClosing) && (
+        <ul
+          className={cn(
+            "itpc-multi-select__list",
+            isOpen && "itpc-multi-select__list_opened",
+            isClosing && "itpc-multi-select__list_closed"
+          )}
+        >
           {items.map((item) => (
             <SelectItem
               disabled={item.disabled}
@@ -103,7 +133,7 @@ export const MultiSelectField: React.FC<Props> = ({
               {item.value}
             </SelectItem>
           ))}
-        </Popover>
+        </ul>
       )}
     </div>
   )
