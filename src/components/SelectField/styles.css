@@ -13,7 +13,6 @@
 }
 
 .itpc-select:hover {
-  /* border-color: #5c53ac; */
   border-color: var(--itpc-primary-hover-color-component);
 }
 
@@ -36,12 +35,8 @@
 
 .itpc-select__button:hover {
   border-color: var(--itpc-primary-hover-color-component);
-
-  /* border-color: #5c53ac; */
 }
 
 .itpc-select__button_focused {
   border-color: var(--itpc-primary-hover-color-component);
-
-  /* border-color: #6f65cb; */
 }

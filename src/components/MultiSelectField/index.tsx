@@ -1,18 +1,12 @@
-import React, {
-  HTMLAttributes,
-  type MutableRefObject,
-  useCallback,
-  useRef,
-  useState,
-} from "react"
+import React, { HTMLAttributes, useRef, useState } from "react"
 
 import cn from "classnames"
 
 import { IconArrow, Placeholder, SelectItem } from "../_elements"
+import { List } from "../_elements/List"
 import { useOnClickOutside } from "../../lab"
 import { Item } from "../types"
 
-import { ANIMATION_DELAY } from "./constants"
 import "./styles.css"
 
 export interface Props
@@ -97,13 +91,7 @@ export const MultiSelectField: React.FC<Props> = ({
 
       <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
 
-      <ul
-        className={cn(
-          "itpc-multi-select__list",
-          isOpen && "itpc-multi-select__list_opened",
-          !isOpen && "itpc-multi-select__list_closed"
-        )}
-      >
+      <List isOpen={isOpen}>
         {items.map((item) => (
           <SelectItem
             disabled={item.disabled}
@@ -115,7 +103,7 @@ export const MultiSelectField: React.FC<Props> = ({
             {item.value}
           </SelectItem>
         ))}
-      </ul>
+      </List>
     </div>
   )
 }

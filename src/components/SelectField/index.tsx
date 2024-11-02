@@ -2,7 +2,8 @@ import React, { HTMLAttributes, useRef, useState } from "react"
 
 import cn from "classnames"
 
-import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
+import { IconArrow, Placeholder, SelectItem } from "../_elements"
+import { List } from "../_elements/List"
 import { useOnClickOutside } from "../../lab"
 import { Item } from "../types"
 
@@ -31,7 +32,7 @@ export const SelectField: React.FC<Props> = ({
 
   const ref = useRef<HTMLDivElement>(null)
 
-  const close = (): void => {
+  const onClose = (): void => {
     setIsOpen(false)
   }
 
@@ -49,7 +50,7 @@ export const SelectField: React.FC<Props> = ({
     setIsOpen(false)
   }
 
-  useOnClickOutside(ref, close)
+  useOnClickOutside(ref, onClose)
 
   return (
     <div className={cn("itpc-select", className)} ref={ref} {...rest}>
@@ -72,21 +73,19 @@ export const SelectField: React.FC<Props> = ({
 
       <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
 
-      {isOpen && (
-        <Popover>
-          {items.map((item) => (
-            <SelectItem
-              disabled={item.disabled}
-              id={item.id}
-              isActive={defaultItemId === item.id}
-              key={item.id}
-              onChange={changeValue}
-            >
-              {item.value}
-            </SelectItem>
-          ))}
-        </Popover>
-      )}
+      <List isOpen={isOpen}>
+        {items.map((item) => (
+          <SelectItem
+            disabled={item.disabled}
+            id={item.id}
+            isActive={defaultItemId === item.id}
+            key={item.id}
+            onChange={changeValue}
+          >
+            {item.value}
+          </SelectItem>
+        ))}
+      </List>
     </div>
   )
 }
