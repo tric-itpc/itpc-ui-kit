@@ -1,15 +1,7 @@
-import React, {
-  HTMLAttributes,
-  type MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import React, { HTMLAttributes, useEffect, useState } from "react"
 
 import cn from "classnames"
 
-import { ANIMATION_DELAY } from "./constants"
 import "./styles.css"
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
@@ -33,24 +25,11 @@ export const Modal: React.FC<ModalProps> = ({
   ...rest
 }) => {
   const [isOpenModal, setIsOpenModal] = useState(false)
-  const [isClosing, setIsClosing] = useState(false)
-
-  const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>
-
-  const close = useCallback(() => {
-    if ((onClose && isOpenModal) || (onClose && isOpen)) {
-      setIsClosing(true)
-      timerRef.current = setTimeout(() => {
-        onClose()
-        setIsClosing(false)
-        setIsOpenModal(false)
-      }, ANIMATION_DELAY)
-    }
-  }, [ANIMATION_DELAY, onClose])
 
   const onCloseOverlay = (): void => {
     if (isOverlayClickable && onClose) {
-      close()
+      onClose()
+      setIsOpenModal(false)
     }
   }
 
@@ -58,9 +37,7 @@ export const Modal: React.FC<ModalProps> = ({
     if (isOpen) {
       setIsOpenModal(true)
     } else {
-      if (isOpenModal) {
-        close()
-      }
+      setIsOpenModal(false)
     }
   }, [isOpen])
 
@@ -70,7 +47,7 @@ export const Modal: React.FC<ModalProps> = ({
         "itpc-modal-overlay",
         isOpenModal && "itpc-modal-overlay_opened",
         isOverlayClickable && "itpc-modal-overlay_clickable",
-        isClosing && "itpc-modal-overlay_closed",
+        !isOpenModal && "itpc-modal-overlay_closed",
         className
       )}
       onClick={onCloseOverlay}
@@ -80,7 +57,7 @@ export const Modal: React.FC<ModalProps> = ({
         className={cn(
           "itpc-modal",
           isOpenModal && "itpc-modal__opened",
-          isClosing && "itpc-modal__closed"
+          !isOpenModal && "itpc-modal__closed"
         )}
         id="itpc-modal"
         onClick={(event) => event.stopPropagation()}
