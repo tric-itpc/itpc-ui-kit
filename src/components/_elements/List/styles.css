@@ -18,13 +18,16 @@
   list-style: none;
   pointer-events: none;
 
-  transition: transform ease-in-out, opacity ease-in-out;
+  transition: transform ease-in-out, opacity ease-in-out,
+    line-height ease-in-out;
   transform-origin: top;
 
-  will-change: transform, opacity;
+  will-change: transform, opacity, line-height;
 }
 
 .itpc-list__opened {
+  line-height: 1.2;
+
   opacity: 1;
   pointer-events: auto;
 
@@ -33,6 +36,8 @@
 }
 
 .itpc-list__closed {
+  line-height: 0;
+
   opacity: 0;
 
   transition-duration: 0.1s;
