@@ -48,6 +48,12 @@ export const Modal: React.FC<ModalProps> = ({
     }
   }, [ANIMATION_DELAY, onClose])
 
+  const onCloseOverlay = (): void => {
+    if (isOverlayClickable && onClose) {
+      close()
+    }
+  }
+
   useEffect(() => {
     if (isOpen) {
       setIsOpenModal(true)
@@ -67,7 +73,7 @@ export const Modal: React.FC<ModalProps> = ({
         isClosing && "itpc-modal-overlay_closed",
         className
       )}
-      onClick={close}
+      onClick={onCloseOverlay}
       {...rest}
     >
       <div
