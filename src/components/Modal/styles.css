@@ -10,7 +10,7 @@
   width: 100%;
   height: 100%;
   
-  transition: visibility linear, opacity linear, background-color cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: visibility linear, opacity linear, background-color linear;
 }
 
 .itpc-modal-overlay_opened {
@@ -23,6 +23,7 @@
 
 .itpc-modal-overlay_closed {
   transition-duration: 0.15s;
+  background-color: inherit;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
