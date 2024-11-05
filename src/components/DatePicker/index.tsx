@@ -261,7 +261,11 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
       </div>
 
       <div
-        className="itpc-datepicker__calendar-wrap"
+        className={cn(
+          "itpc-datepicker__calendar-wrap",
+          isShowCalendar && "itpc-datepicker__calendar-wrap_opened",
+          !isShowCalendar && "itpc-datepicker__calendar-wrap_closed"
+        )}
         ref={calendarWrapRef}
         style={stylePositionCalendar}
       >

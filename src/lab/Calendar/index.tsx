@@ -169,7 +169,11 @@ export const Calendar: React.FC<Props> = ({
 
   return (
     <div
-      className={cn("itpc-calendar", show && "itpc-calendar_opened")}
+      className={cn(
+        "itpc-calendar",
+        show && "itpc-calendar_opened",
+        !show && "itpc-calendar_closed"
+      )}
       ref={calendarRef}
       style={styleCalendar}
     >

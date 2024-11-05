@@ -2,7 +2,6 @@
   position: relative;
   z-index: 1000;
 
-  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -12,10 +11,22 @@
 
   border-radius: 4px;
   box-shadow: 0 0 10px var(--itpc-box-shadow-color);
+
+  transition: opacity ease-in-out 0.1s, visibility ease-in-out;
 }
 
 .itpc-calendar_opened {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+
+  transition-duration: 0.2s;
+}
+
+.itpc-calendar_closed {
+  opacity: 0;
+  visibility: hidden;
+
+  transition-duration: 0.1s;
 }
 
 .itpc-calendar__select-period {

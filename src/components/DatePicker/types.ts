@@ -60,3 +60,9 @@ export interface AbsolutePosition {
   absoluteDefault: number
   absoluteTopPosition: number
 }
+
+export interface TransformOriginArg {
+  calculatedTransformPosition: number
+  horizontalPosition: HORIZONTAL_POSITION_CALENDAR
+  verticalPosition: VERTICAL_POSITION_CALENDAR
+}
