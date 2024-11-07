@@ -3,12 +3,12 @@ import React, { type CSSProperties, useEffect, useRef, useState } from "react"
 import cn from "classnames"
 
 import { IInfo } from "../../components"
-import {
-  getCalendarDimensions,
-  getCalendarStyle,
-  getDocumentDimensions,
-} from "../../components/DatePicker/utils"
-import { useOnClickOutside } from "../hooks"
+import { getCalendarStyle } from "../../components/DatePicker/utils"
+import type { DurationAnimation } from "../../components/types"
+import { getElementDimensions } from "../getDemensions"
+import { getTransformOriginByAxisXY } from "../getTransformOriginByAxisXY"
+import { useOnClickOutside, useWindowSize } from "../hooks"
+import { setDurationAnimation } from "../setDurationAnimation/setDurationAnimation"
 
 import {
   CalendarControl,
@@ -36,6 +36,7 @@ export interface Props {
   disabledDaysOfWeek?: number[]
   disabledSelectMonth?: boolean
   disabledSelectYear?: boolean
+  durationAnimation: DurationAnimation
   handleShow: () => void
   id: string
   name: string
@@ -64,6 +65,7 @@ export const Calendar: React.FC<Props> = ({
   disabledDaysOfWeek,
   disabledSelectMonth,
   disabledSelectYear,
+  durationAnimation,
   handleShow,
   id,
   name,
@@ -75,6 +77,7 @@ export const Calendar: React.FC<Props> = ({
   withTime = false,
   yearsFromTo,
 }: Props) => {
+  const { windowWidth } = useWindowSize()
   const [currentDate, setCurrentDate] = useState<string>(
     initCurrentDate(currentValue, withTime)
   )
@@ -93,8 +96,6 @@ export const Calendar: React.FC<Props> = ({
   const [styleCalendar, setStyleCalendar] = useState<CSSProperties>({})
 
   const calendarRef = useRef<HTMLDivElement>(null)
-
-  const { documentWidth } = getDocumentDimensions()
 
   const changeCurrentDate = (date: string): void => {
     setCurrentDate(date)
@@ -148,7 +149,7 @@ export const Calendar: React.FC<Props> = ({
     setIsShowSelectMonth(false)
   }
 
-  useOnClickOutside(calendarRef, handleShow, parentRef)
+  useOnClickOutside(calendarRef, handleShow, show, parentRef)
 
   useEffect(() => {
     if (currentValue !== `${currentDate}T${hours}:${minutes}:${seconds}`) {
@@ -161,15 +162,42 @@ export const Calendar: React.FC<Props> = ({
   }, [currentValue, withTime])
 
   useEffect(() => {
-    if (calendarRef.current && documentWidth) {
-      const { calendarWidth } = getCalendarDimensions(calendarRef.current)
-      setStyleCalendar(getCalendarStyle(documentWidth, calendarWidth))
+    if (calendarRef.current) {
+      setDurationAnimation(
+        durationAnimation,
+        ".itpc-calendar_opened",
+        ".itpc-calendar_closed"
+      )
     }
-  }, [calendarRef.current, documentWidth])
+  }, [calendarRef.current, durationAnimation])
+
+  useEffect(() => {
+    if (calendarRef.current && windowWidth) {
+      const { elementWidth } = getElementDimensions(calendarRef.current)
+      setStyleCalendar(getCalendarStyle(windowWidth, elementWidth))
+    }
+  }, [calendarRef.current, windowWidth])
+
+  useEffect(() => {
+    if (show && parentRef) {
+      const animationTransform = getTransformOriginByAxisXY(
+        parentRef,
+        calendarRef
+      )
+      setStyleCalendar({
+        ...styleCalendar,
+        transformOrigin: animationTransform,
+      })
+    }
+  }, [show])
 
   return (
     <div
-      className={cn("itpc-calendar", show && "itpc-calendar_opened")}
+      className={cn(
+        "itpc-calendar",
+        show && "itpc-calendar_opened",
+        !show && "itpc-calendar_closed"
+      )}
       ref={calendarRef}
       style={styleCalendar}
     >

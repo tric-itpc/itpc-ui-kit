@@ -1,4 +1,4 @@
-import React from "react"
+import React, { type CSSProperties } from "react"
 
 export type InputType = "password" | "text"
 export type ButtonType = "button" | "submit" | "reset"
@@ -46,4 +46,13 @@ export interface FormattedValues {
 export interface IInfo {
   id: string
   name: string
+}
+
+export interface DurationAnimation {
+  durationClose?: number
+  durationOpen?: number
+}
+
+export interface CSSPropertiesWithTransformOrigin extends CSSProperties {
+  transformOrigin?: string
 }

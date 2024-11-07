@@ -5,4 +5,8 @@ module.exports = {
   core: {
     builder: "webpack5",
   },
+  previewBody: (body) => `
+    ${body}
+     <div id="app"></div>
+  `,
 }

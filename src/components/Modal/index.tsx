@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from "react"
+import React, { HTMLAttributes, useEffect, useState } from "react"
 
 import cn from "classnames"
 
@@ -24,24 +24,44 @@ export const Modal: React.FC<ModalProps> = ({
   title,
   ...rest
 }) => {
+  const [isOpenModal, setIsOpenModal] = useState(false)
+
   const onCloseOverlay = (): void => {
     if (isOverlayClickable && onClose) {
       onClose()
+      setIsOpenModal(false)
     }
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsOpenModal(true)
+    } else {
+      setIsOpenModal(false)
+    }
+  }, [isOpen])
 
   return (
     <div
       className={cn(
         "itpc-modal-overlay",
-        isOpen && "itpc-modal-overlay_opened",
+        isOpenModal && "itpc-modal-overlay_opened",
         isOverlayClickable && "itpc-modal-overlay_clickable",
+        !isOpenModal && "itpc-modal-overlay_closed",
         className
       )}
       onClick={onCloseOverlay}
       {...rest}
     >
-      <div className="itpc-modal" onClick={(event) => event.stopPropagation()}>
+      <div
+        className={cn(
+          "itpc-modal",
+          isOpenModal && "itpc-modal__opened",
+          !isOpenModal && "itpc-modal__closed"
+        )}
+        id="itpc-modal"
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className="itpc-modal__header">
           {title}
 

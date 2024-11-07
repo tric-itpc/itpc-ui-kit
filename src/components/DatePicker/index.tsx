@@ -1,17 +1,15 @@
-import React, {
-  type CSSProperties,
-  HTMLAttributes,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import React, { HTMLAttributes, useRef, useState } from "react"
 
 import cn from "classnames"
 import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
 
 import { IconCalendar, InputError, Placeholder } from "../_elements"
-import { Calendar, useWindowSize } from "../../lab"
-import { IInfo, ValidationState } from "../types"
+import { Portal } from "../_elements/Portal"
+import { WrapperComponent } from "../_elements/WrapperComponent"
+import { Calendar } from "../../lab"
+import { DISTANCE_BETWEEN_CALENDAR } from "../../lab/CalculateStyle/constants"
+import { useAnimation } from "../../lab/hooks/useAnimation"
+import { type DurationAnimation, IInfo, ValidationState } from "../types"
 
 import {
   FORMAT_MASK_DATE,
@@ -22,7 +20,6 @@ import {
 import "./styles.css"
 import { type PositionType } from "./types"
 import {
-  getCalculatePositionCalendar,
   parseISODate,
   parseISODateTime,
   parseISODateTimeToNumericString,
@@ -47,6 +44,7 @@ export interface Props<T extends PositionType>
   disabledDaysOfWeek?: number[]
   disabledSelectMonth?: boolean
   disabledSelectYear?: boolean
+  durationAnimation?: DurationAnimation
   errorMessage?: string
   id?: string
   isIconClickable?: boolean
@@ -82,6 +80,10 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
   disabledDaysOfWeek,
   disabledSelectMonth = false,
   disabledSelectYear = false,
+  durationAnimation = {
+    durationClose: 200,
+    durationOpen: 400,
+  },
   errorMessage = "",
   id = "itpc-datepicker",
   isIconClickable = false,
@@ -100,17 +102,11 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
   yearsFromTo,
   ...rest
 }: Props<PositionType>) => {
-  const { windowWidth } = useWindowSize()
-
   const [focused, onHandleFocused] = useState<boolean>(false)
   const [isShowCalendar, setIsShowCalendar] = useState<boolean>(false)
-
-  const [stylePositionCalendar, setStylePositionCalendar] =
-    useState<CSSProperties>({})
+  const { isClosing } = useAnimation(isShowCalendar, durationAnimation)
 
   const datePickerRef = useRef<HTMLDivElement>(null)
-  const inputWrapRef = useRef<HTMLDivElement>(null)
-  const calendarWrapRef = useRef<HTMLDivElement>(null)
 
   const onOpenCalendar = (): void => {
     setIsShowCalendar(true)
@@ -183,31 +179,6 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
     }
   }
 
-  const calculatePositionCalendar = (): void => {
-    const stylePosition: CSSProperties = getCalculatePositionCalendar(
-      inputWrapRef,
-      calendarWrapRef,
-      position
-    )
-    setStylePositionCalendar(stylePosition)
-  }
-
-  useEffect(() => {
-    const hasScroll: boolean = document.body.scrollHeight > window.innerHeight
-    if (hasScroll) {
-      window.addEventListener("scroll", calculatePositionCalendar)
-    }
-    return () => {
-      window.removeEventListener("scroll", calculatePositionCalendar)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (isShowCalendar) {
-      calculatePositionCalendar()
-    }
-  }, [windowWidth, isShowCalendar])
-
   return (
     <div
       className={cn("itpc-datepicker", className)}
@@ -219,7 +190,6 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
           "itpc-datepicker__input-wrap",
           validationState === "invalid" && "itpc-datepicker__input-wrap_error"
         )}
-        ref={inputWrapRef}
       >
         {placeholder && (
           <Placeholder
@@ -260,36 +230,41 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
         />
       </div>
 
-      <div
-        className="itpc-datepicker__calendar-wrap"
-        ref={calendarWrapRef}
-        style={stylePositionCalendar}
-      >
-        <Calendar
-          currentValue={
-            withTime
-              ? parseNumericStringToISODateTime(value)
-              : parseNumericStringToISODate(value)
-          }
-          activeDates={activeDates}
-          disabledAfterDate={disabledAfterDate}
-          disabledBeforeDate={disabledBeforeDate}
-          disabledDates={disabledDates}
-          disabledDaysOfWeek={disabledDaysOfWeek}
-          disabledSelectMonth={disabledSelectMonth}
-          disabledSelectYear={disabledSelectYear}
-          handleShow={onCloseCalendar}
-          id={id}
-          name={name}
-          offsetYear={offsetYear}
-          onChange={onChangeDate}
-          parentRef={datePickerRef}
-          scrollToYear={scrollToYear}
-          show={isShowCalendar}
-          withTime={withTime}
-          yearsFromTo={yearsFromTo}
-        />
-      </div>
+      <Portal element={document.body}>
+        <WrapperComponent
+          distanceBetweenElements={DISTANCE_BETWEEN_CALENDAR}
+          isClosing={isClosing}
+          isOpen={isShowCalendar}
+          position={position}
+          refParent={datePickerRef}
+        >
+          <Calendar
+            currentValue={
+              withTime
+                ? parseNumericStringToISODateTime(value)
+                : parseNumericStringToISODate(value)
+            }
+            activeDates={activeDates}
+            disabledAfterDate={disabledAfterDate}
+            disabledBeforeDate={disabledBeforeDate}
+            disabledDates={disabledDates}
+            disabledDaysOfWeek={disabledDaysOfWeek}
+            disabledSelectMonth={disabledSelectMonth}
+            disabledSelectYear={disabledSelectYear}
+            durationAnimation={durationAnimation}
+            handleShow={onCloseCalendar}
+            id={id}
+            name={name}
+            offsetYear={offsetYear}
+            onChange={onChangeDate}
+            parentRef={datePickerRef}
+            scrollToYear={scrollToYear}
+            show={isShowCalendar ? !isClosing : isShowCalendar}
+            withTime={withTime}
+            yearsFromTo={yearsFromTo}
+          />
+        </WrapperComponent>
+      </Portal>
     </div>
   )
 }
