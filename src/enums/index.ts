@@ -75,3 +75,9 @@ export enum TextTag {
   PARAGRAPH = "p",
   STRONG = "strong",
 }
+
+export enum AnimationTypes {
+  FIXED = "FIXED",
+  TRANSFORM_BY_AXIS_X = "transform-by-axis-x",
+  TRANSFORM_BY_AXIS_X_Y = "transform-by-axis-x_y",
+}

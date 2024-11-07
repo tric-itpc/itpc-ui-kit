@@ -2,9 +2,14 @@ import React, { HTMLAttributes, useRef, useState } from "react"
 
 import cn from "classnames"
 
-import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
+import { IconArrow, Placeholder, SelectItem } from "../_elements"
+import { ListBox } from "../_elements/ListBox"
+import { Portal } from "../_elements/Portal"
+import { PositionedWrap } from "../_elements/PositionedWrap"
 import { useOnClickOutside } from "../../lab"
-import { Item } from "../types"
+import { ALLOWED_POSITIONS } from "../../lab/CalculateStyle/types"
+import { useAnimation } from "../../lab/hooks/useAnimation"
+import { type DurationAnimation, Item } from "../types"
 
 import "./styles.css"
 
@@ -13,25 +18,33 @@ export interface Props
   className?: string
   defaultItemId?: string
   disabled?: boolean
+  durationAnimation?: DurationAnimation
   items: Item[]
   onChange(value: string): void
   placeholder: string
+  position?: ALLOWED_POSITIONS
 }
 
 export const SelectField: React.FC<Props> = ({
   className = "",
   defaultItemId = null,
   disabled = false,
+  durationAnimation = {
+    durationClose: 200,
+    durationOpen: 300,
+  },
   items,
   onChange,
   placeholder,
+  position = ALLOWED_POSITIONS.FIXED,
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const { isClosing } = useAnimation(isOpen, durationAnimation)
 
   const ref = useRef<HTMLDivElement>(null)
 
-  const close = (): void => {
+  const onClose = (): void => {
     setIsOpen(false)
   }
 
@@ -49,7 +62,7 @@ export const SelectField: React.FC<Props> = ({
     setIsOpen(false)
   }
 
-  useOnClickOutside(ref, close)
+  useOnClickOutside(ref, onClose, isOpen)
 
   return (
     <div className={cn("itpc-select", className)} ref={ref} {...rest}>
@@ -72,21 +85,32 @@ export const SelectField: React.FC<Props> = ({
 
       <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
 
-      {isOpen && (
-        <Popover>
-          {items.map((item) => (
-            <SelectItem
-              disabled={item.disabled}
-              id={item.id}
-              isActive={defaultItemId === item.id}
-              key={item.id}
-              onChange={changeValue}
-            >
-              {item.value}
-            </SelectItem>
-          ))}
-        </Popover>
-      )}
+      <Portal element={document.body}>
+        <PositionedWrap
+          isClosing={isClosing}
+          isOpen={isOpen}
+          position={position}
+          refParent={ref}
+        >
+          <ListBox
+            durationAnimation={durationAnimation}
+            isOpen={isOpen ? !isClosing : isOpen}
+            refParent={ref}
+          >
+            {items.map((item) => (
+              <SelectItem
+                disabled={item.disabled}
+                id={item.id}
+                isActive={defaultItemId === item.id}
+                key={item.id}
+                onChange={changeValue}
+              >
+                {item.value}
+              </SelectItem>
+            ))}
+          </ListBox>
+        </PositionedWrap>
+      </Portal>
     </div>
   )
 }

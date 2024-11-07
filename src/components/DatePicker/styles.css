@@ -61,13 +61,6 @@
   cursor: pointer;
 }
 
-.itpc-datepicker__calendar-wrap {
-  position: fixed;
-  z-index: 999999;
-
-  background-color: var(--itpc-primary-bg-color);
-}
-
 .itpc-datepicker__error-message {
   margin: 0 10px;
 

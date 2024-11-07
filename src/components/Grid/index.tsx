@@ -14,7 +14,7 @@ import {
 export interface ColProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
   col?: number
-  flex?: string | number
+  flex?: number | string
   order?: number
   style?: React.CSSProperties
 }

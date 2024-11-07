@@ -26,7 +26,7 @@ export const SelectItem: React.FC<Props> = ({
   }
 
   return (
-    <div
+    <li
       className={cn(
         "itpc-select-item",
         disabled && "itpc-select-item_disabled"
@@ -40,6 +40,6 @@ export const SelectItem: React.FC<Props> = ({
         )}
       />
       {children}
-    </div>
+    </li>
   )
 }

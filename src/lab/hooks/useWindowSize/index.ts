@@ -27,7 +27,7 @@ export const useWindowSize = (): WindowSize => {
     }
     window.addEventListener("resize", handleSize)
     return () => {
-      window.removeEventListener("DOMContentLoaded", handleSize)
+      window.removeEventListener("resize", handleSize)
     }
   }, [window.innerWidth, window.innerHeight])
 

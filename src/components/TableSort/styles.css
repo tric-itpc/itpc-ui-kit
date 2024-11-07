@@ -14,11 +14,11 @@
 .itpc-table-sort__column {
   padding: 10px;
 
+  font-weight: var(--itpc-font-weight-normal);
+
   border-bottom: 1px solid var(--itpc-input-border-color);
   border-radius: 0;
   cursor: default;
-
-  weight: var(--itpc-font-weight-normal);
 }
 
 .itpc-table-sort__column_clickable {
