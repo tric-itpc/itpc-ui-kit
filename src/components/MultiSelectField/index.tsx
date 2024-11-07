@@ -17,6 +17,7 @@ import { useAnimation } from "../../lab/hooks/useAnimation"
 import { type DurationAnimation, Item } from "../types"
 
 import "./styles.css"
+import { ListBox } from "../_elements/ListBox"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {

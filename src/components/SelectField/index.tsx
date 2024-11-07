@@ -12,6 +12,7 @@ import { useAnimation } from "../../lab/hooks/useAnimation"
 import { type DurationAnimation, Item } from "../types"
 
 import "./styles.css"
+import { Portal } from "../_elements/Portal"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -65,7 +66,12 @@ export const SelectField: React.FC<Props> = ({
   useOnClickOutside(ref, onClose, isOpen)
 
   return (
-    <div className={cn("itpc-select", className)} ref={ref} {...rest}>
+    <div
+      id="itpc-select"
+      className={cn("itpc-select", className)}
+      ref={ref}
+      {...rest}
+    >
       <button
         className={cn(
           "itpc-select__button",
