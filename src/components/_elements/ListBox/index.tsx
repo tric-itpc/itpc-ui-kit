@@ -2,7 +2,7 @@ import React, { type CSSProperties, useEffect, useRef, useState } from "react"
 
 import cn from "classnames"
 
-import { getTransformOriginByAxisX } from "../../../lab/CalculateStyle"
+import { getTransformOriginByAxisX } from "../../../lab/getTransformOriginByAxisX"
 import { setDurationAnimation } from "../../../lab/setDurationAnimation/setDurationAnimation"
 import { type DurationAnimation } from "../../types"
 

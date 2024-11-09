@@ -5,10 +5,8 @@ import cn from "classnames"
 import { IInfo } from "../../components"
 import { getCalendarStyle } from "../../components/DatePicker/utils"
 import type { DurationAnimation } from "../../components/types"
-import {
-  getElementDimensions,
-  getTransformOriginByAxisXY,
-} from "../CalculateStyle"
+import { getElementDimensions } from "../getDemensions"
+import { getTransformOriginByAxisXY } from "../getTransformOriginByAxisXY"
 import { useOnClickOutside, useWindowSize } from "../hooks"
 import { setDurationAnimation } from "../setDurationAnimation/setDurationAnimation"
 

@@ -1,50 +1,43 @@
 import type { CSSProperties, RefObject } from "react"
 
-import { DEFAULT_WIDTH_CALENDAR } from "../Calendar/constants"
+import {
+  getDocumentDimensions,
+  getElementDimensions,
+  getParentDimensions,
+} from "../getDemensions"
 
 import { DEFAULT_DISTANCE_BETWEEN_ELEMENTS, DIVIDER_IN_TWO } from "./constants"
 import {
   ALLOWED_POSITIONS,
-  type ElementDimensions,
-  getChildrenDimensions,
-  getDocumentDimensions,
   type GetHorizontalPositionArg,
-  getParentDimensions,
   HORIZONTAL_POSITION,
   type PositionType,
   VERTICAL_POSITION,
 } from "./types"
 
-export const getElementDimensions = (
-  ref: HTMLUListElement | HTMLDivElement
-): ElementDimensions => ({
-  elementHeight: ref.offsetHeight,
-  elementWidth: ref.offsetWidth,
-})
-
 export const getHorizontalPosition = (
   arg: GetHorizontalPositionArg
 ): HORIZONTAL_POSITION => {
   const {
-    childrenWidth,
     defaultParentWidth,
     distanceRight,
     documentWidth,
+    elementWidth,
     parentLeft,
     parentWidth,
     scrollbarWidth,
   } = arg
 
-  const currentWidth = childrenWidth !== 0 ? childrenWidth : defaultParentWidth
+  const currentWidth = elementWidth !== 0 ? elementWidth : defaultParentWidth
 
   const rightEdgeFromCenter = parentWidth / DIVIDER_IN_TWO + distanceRight
   const leftEdgeFromCenter = parentWidth / DIVIDER_IN_TWO + parentLeft
-  const calendarHalfWidth = childrenWidth / DIVIDER_IN_TWO
+  const calendarHalfWidth = elementWidth / DIVIDER_IN_TWO
   const rightStartParent = distanceRight + parentWidth
   const leftEndParent = parentWidth + parentLeft
 
   if (currentWidth !== undefined) {
-    if (rightStartParent <= childrenWidth && leftEndParent <= childrenWidth) {
+    if (rightStartParent <= elementWidth && leftEndParent <= elementWidth) {
       return HORIZONTAL_POSITION.CALCULATED
     }
 
@@ -96,90 +89,6 @@ export const getVerticalPosition = (
   }
 }
 
-export const getTransformOriginByAxisX = (
-  refParent: RefObject<HTMLDivElement>,
-  refChildren: RefObject<HTMLUListElement | HTMLDivElement>,
-  distanceBetweenElements?: number
-): string => {
-  const verticalPosition: VERTICAL_POSITION = getVerticalPosition(
-    refParent,
-    refChildren,
-    distanceBetweenElements
-  )
-
-  const startPosition: VERTICAL_POSITION =
-    verticalPosition === VERTICAL_POSITION.TOP
-      ? VERTICAL_POSITION.BOTTOM
-      : VERTICAL_POSITION.TOP
-
-  return `center ${startPosition}`
-}
-
-export const getTransformOriginByAxisXY = (
-  parentRef: React.RefObject<HTMLDivElement>,
-  childrenRef: React.RefObject<HTMLDivElement>
-): string => {
-  if (parentRef?.current && childrenRef?.current) {
-    const { parentBottom, parentLeft, parentWidth } = getParentDimensions(
-      parentRef.current
-    )
-    const calculatedTransformPosition: number =
-      parentLeft + parentWidth / DIVIDER_IN_TWO
-
-    const { documentHeight, documentWidth } = getDocumentDimensions()
-    const { childrenHeight, childrenWidth } = getChildrenDimensions(
-      childrenRef.current
-    )
-
-    const distanceUnderParent: number = documentHeight - parentBottom
-
-    let verticalPosition: VERTICAL_POSITION
-    if (distanceUnderParent > childrenHeight + 8) {
-      verticalPosition = VERTICAL_POSITION.BOTTOM
-    } else {
-      verticalPosition = VERTICAL_POSITION.TOP
-    }
-
-    const distanceRight: number = documentWidth - (parentLeft + parentWidth)
-    const scrollbarWidth: number = window.innerWidth - documentWidth
-
-    const argHorizontalPosition: GetHorizontalPositionArg = {
-      childrenWidth,
-      defaultParentWidth: DEFAULT_WIDTH_CALENDAR,
-      distanceRight,
-      documentWidth,
-      parentLeft,
-      parentWidth,
-      scrollbarWidth,
-    }
-
-    const horizontalPosition: HORIZONTAL_POSITION = getHorizontalPosition(
-      argHorizontalPosition
-    )
-
-    const startPosition: VERTICAL_POSITION =
-      verticalPosition === VERTICAL_POSITION.TOP
-        ? VERTICAL_POSITION.BOTTOM
-        : VERTICAL_POSITION.TOP
-
-    switch (horizontalPosition) {
-      case HORIZONTAL_POSITION.LEFT:
-        return `left ${startPosition}`
-      case HORIZONTAL_POSITION.RIGHT:
-        return `right ${startPosition}`
-      case HORIZONTAL_POSITION.CENTER:
-        return `center ${startPosition}`
-      case HORIZONTAL_POSITION.CALCULATED:
-        return `${calculatedTransformPosition}px ${startPosition}`
-
-      default:
-        return `center ${startPosition}`
-    }
-  } else {
-    return `center`
-  }
-}
-
 export const getCalculatePosition = (
   refParent: React.RefObject<HTMLDivElement>,
   refChildren: React.RefObject<HTMLUListElement | HTMLDivElement>,
@@ -198,7 +107,7 @@ export const getCalculatePosition = (
   if (refParent?.current && refChildren?.current) {
     const { documentHeight, documentWidth } = getDocumentDimensions()
 
-    const { childrenHeight, childrenWidth } = getChildrenDimensions(
+    const { elementHeight, elementWidth } = getElementDimensions(
       refChildren.current
     )
 
@@ -210,9 +119,9 @@ export const getCalculatePosition = (
     const distanceRight: number = documentWidth - (parentLeft + parentWidth)
 
     const argHorizontalPosition: GetHorizontalPositionArg = {
-      childrenWidth,
       distanceRight,
       documentWidth,
+      elementWidth,
       parentLeft,
       parentWidth,
       scrollbarWidth,
@@ -228,7 +137,7 @@ export const getCalculatePosition = (
       distanceBetweenElements ?? DEFAULT_DISTANCE_BETWEEN_ELEMENTS
 
     let verticalPosition: VERTICAL_POSITION
-    if (distanceUnderInput > childrenHeight + currentDistanceBetweenElements) {
+    if (distanceUnderInput > elementHeight + currentDistanceBetweenElements) {
       verticalPosition = VERTICAL_POSITION.BOTTOM
     } else {
       verticalPosition = VERTICAL_POSITION.TOP
@@ -238,16 +147,16 @@ export const getCalculatePosition = (
       parentBottom + currentDistanceBetweenElements
 
     const verticalTopPosition: number =
-      parentTop - currentDistanceBetweenElements - childrenHeight
+      parentTop - currentDistanceBetweenElements - elementHeight
 
     const horizontalCenterPosition: number =
-      parentLeft - (childrenWidth - parentWidth) / DIVIDER_IN_TWO
+      parentLeft - (elementHeight - parentWidth) / DIVIDER_IN_TWO
 
     const horizontalRightPosition: number =
       documentWidth - parentLeft - parentWidth
 
     const horizontalCalculatedPosition: number =
-      (documentWidth - childrenWidth) / DIVIDER_IN_TWO
+      (documentWidth - elementWidth) / DIVIDER_IN_TWO
 
     const currentPosition = refChildren.current.style.position
 
