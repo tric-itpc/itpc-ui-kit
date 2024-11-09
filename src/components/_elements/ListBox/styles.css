@@ -1,8 +1,4 @@
 .itpc-list-box {
-  position: absolute;
-  top: 44px;
-  z-index: 999999;
-
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -18,11 +14,7 @@
   list-style: none;
   pointer-events: none;
 
-  /* transition-property: transform, ; */
-  transition: transform ease-in-out,
-    line-height ease-in-out;
-  /* transform-origin: top; */
-
+  transition: transform ease-in-out, line-height ease-in-out;
 }
 
 .itpc-list-box__opened {
@@ -30,13 +22,11 @@
 
   pointer-events: auto;
 
-  transition-duration: 0.2s;
   transform: scaleY(1);
 }
 
 .itpc-list-box__closed {
   line-height: 0;
 
-  transition-duration: 0.1s;
   transform: scaleY(0);
 }

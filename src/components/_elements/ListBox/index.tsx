@@ -1,75 +1,67 @@
-import React, { useEffect, useRef, useState, type CSSProperties } from "react"
+import React, { type CSSProperties, useEffect, useRef, useState } from "react"
 
 import cn from "classnames"
 
-import "./styles.css"
+import { getTransformOriginByAxisX } from "../../../lab/CalculateStyle"
+import { setDurationAnimation } from "../../../lab/setDurationAnimation/setDurationAnimation"
+import { type DurationAnimation } from "../../types"
 
-import { getCalculatePosition } from "../../../lab/CalculateStyle"
-import { ALLOWED_POSITIONS } from "../../../lab/CalculateStyle/types"
+import "./styles.css"
 
 interface Props {
   children?: React.ReactNode
+  durationAnimation: DurationAnimation
   isOpen: boolean
-  isAnimation?: boolean
   refParent?: React.RefObject<HTMLDivElement>
 }
 
-export enum AnimationTypes {
-  DISAPPEARANCE = "disappearance",
-  ROTATE = "rotate",
-  TRANSLATE = "translate",
-  // искажает элемент, например, наклоняет его влево или вправо
-  SKEW = "skew",
-  // переворачивает элемент, например, по горизонтали или вертикали.
-  FLIP = "flip",
-  ZOOM_IN = "zoom-in",
-  ZOOM_OUT = "zoom-out",
-  OPACITY = "opacity",
-  TRANSFORM_BY_AXIS_X = "transform-by-axis-x",
-  TRANSFORM_BY_AXIS_X_Y = "transform-by-axis-x_y",
+interface CSSPropertiesWithTransformOrigin extends CSSProperties {
+  transformOrigin?: string
 }
 
 export const ListBox: React.FC<Props> = ({
   children,
+  durationAnimation,
   isOpen,
-  isAnimation = true,
   refParent,
 }) => {
-  const [stylePosition, setStylePosition] = useState<CSSProperties>({})
   const ref = useRef<HTMLUListElement>(null)
 
-  const calculateStyle = (): void => {
-    if (refParent) {
-      const stylePosition: CSSProperties = getCalculatePosition(
-        refParent,
-        ref,
-        ALLOWED_POSITIONS.FIXED,
-        isAnimation,
-        AnimationTypes.TRANSFORM_BY_AXIS_X
-      )
-      setStylePosition(stylePosition)
-    }
-  }
+  const [styleAnimation, setStyleAnimation] =
+    useState<CSSPropertiesWithTransformOrigin>({})
 
   useEffect(() => {
-    if (isOpen) {
+    if (ref.current) {
       ref.current?.style.setProperty(
         "width",
         `${refParent?.current?.offsetWidth}px`
       )
-      calculateStyle()
+      setDurationAnimation(
+        durationAnimation,
+        ".itpc-list-box__opened",
+        ".itpc-list-box__closed"
+      )
     }
-  }, [isOpen])
+  }, [ref.current, durationAnimation])
+
+  useEffect(() => {
+    if (isOpen && refParent?.current) {
+      const animationTransform = getTransformOriginByAxisX(refParent, ref)
+      setStyleAnimation({
+        transformOrigin: animationTransform,
+      })
+    }
+  }, [isOpen, refParent?.current])
 
   return (
     <ul
-      style={stylePosition}
-      ref={ref}
       className={cn(
         "itpc-list-box",
         isOpen && "itpc-list-box__opened",
         !isOpen && "itpc-list-box__closed"
       )}
+      ref={ref}
+      style={styleAnimation}
     >
       {children}
     </ul>

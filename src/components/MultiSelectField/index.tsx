@@ -17,7 +17,6 @@ import { useAnimation } from "../../lab/hooks/useAnimation"
 import { type DurationAnimation, Item } from "../types"
 
 import "./styles.css"
-import { ListBox } from "../_elements/ListBox"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -113,7 +112,6 @@ export const MultiSelectField: React.FC<Props> = ({
           <ListBox
             durationAnimation={durationAnimation}
             isOpen={isOpen ? !isClosing : isOpen}
-            refChildren={refChildren}
             refParent={ref}
           >
             {items.map((item) => (

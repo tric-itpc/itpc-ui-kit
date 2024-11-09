@@ -41,7 +41,7 @@ export const getDocumentDimensions = (): DocumentDimensions => ({
 })
 
 export const getChildrenDimensions = (
-  ref: HTMLDivElement | HTMLUListElement
+  ref: HTMLUListElement | HTMLDivElement
 ): ChildrenDimensions => ({
   childrenHeight: ref.offsetHeight,
   childrenWidth: ref.offsetWidth,
@@ -60,12 +60,12 @@ export const getParentDimensions = (ref: HTMLDivElement): ParentDimensions => {
 
 export interface GetHorizontalPositionArg {
   childrenWidth: number
+  defaultParentWidth?: number
   distanceRight: number
   documentWidth: number
   parentLeft: number
   parentWidth: number
   scrollbarWidth: number
-  defaultParentWidth?: number
 }
 
 export interface AbsolutePositionArg {
@@ -86,7 +86,11 @@ export interface AbsolutePosition {
 }
 
 export interface TransformOriginArg {
-  calculatedTransformPosition: number
-  horizontalPosition: HORIZONTAL_POSITION
-  verticalPosition: VERTICAL_POSITION
+  childrenRef: React.RefObject<HTMLDivElement>
+  parentRef: React.RefObject<HTMLDivElement>
+}
+
+export interface ElementDimensions {
+  elementHeight: number
+  elementWidth: number
 }

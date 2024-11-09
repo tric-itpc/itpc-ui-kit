@@ -13,21 +13,15 @@
   background-color: var(--itpc-primary-bg-color);
   box-shadow: 0 0 10px var(--itpc-box-shadow-color);
 
-  transition: opacity ease-in-out 0.1s, visibility ease-in-out;
+  transition: visibility ease-in-out, transform ease-in-out;
 }
 
 .itpc-calendar_opened {
-  opacity: 1;
-  visibility: visible;
-
-  transition-duration: 0.2s;
+  transform: scale(1);
 }
 
 .itpc-calendar_closed {
-  opacity: 0;
-  visibility: hidden;
-
-  transition-duration: 0.1s;
+  transform: scale(0);
 }
 
 .itpc-calendar__select-period {

@@ -18,18 +18,18 @@
 }
 
 .itpc-popup__opened {
-  transition-duration: 0.25s;
   opacity: 1;
   visibility: visible;
 
+  transition-duration: 0.25s;
   transform: scale(1);
 }
 
 .itpc-popup__closed {
-  transition-duration: 0.15s;
   opacity: 0;
   visibility: hidden;
 
+  transition-duration: 0.15s;
   transform: scale(0.9);
 }
 
@@ -54,7 +54,7 @@
   font-size: var(--itpc-font-size-xs);
 }
 
-.itpc-popup__header>.itpc-icon__close {
+.itpc-popup__header > .itpc-icon__close {
   padding: 0;
 }
 

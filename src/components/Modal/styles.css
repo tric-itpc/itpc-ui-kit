@@ -15,19 +15,21 @@
 }
 
 .itpc-modal-overlay_opened {
-  transition-duration: 0.2s;
   background-color: var(--itpc-primary-bg-color-overlay);
   opacity: 1;
   visibility: visible;
   pointer-events: all;
+
+  transition-duration: 0.2s;
 }
 
 .itpc-modal-overlay_closed {
-  transition-duration: 0.15s;
   background-color: inherit;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+
+  transition-duration: 0.15s;
 }
 
 .itpc-modal-overlay_clickable {
@@ -52,15 +54,17 @@
 }
 
 .itpc-modal__opened {
+  opacity: 1;
+
   transition-duration: 0.2s;
   transform: scale(1);
-  opacity: 1;
 }
 
 .itpc-modal__closed {
-  transform: scale(0.5);
   opacity: 0;
+
   transition-duration: 0.15s;
+  transform: scale(0.5);
 }
 
 .itpc-modal__header {
