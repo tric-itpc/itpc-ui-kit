@@ -61,27 +61,6 @@
   cursor: pointer;
 }
 
-.itpc-datepicker__calendar-wrap {
-  position: fixed;
-  z-index: 999999;
-
-  transition: transform ease-in-out, background-color ease-in-out;
-}
-
-.itpc-datepicker__calendar-wrap_opened {
-  background-color: var(--itpc-primary-bg-color);
-
-  transition-duration: 0.2s;
-  transform: scale(1);
-}
-
-.itpc-datepicker__calendar-wrap_closed {
-  background-color: transparent;
-
-  transition-duration: 0.15s;
-  transform: scale(0);
-}
-
 .itpc-datepicker__error-message {
   margin: 0 10px;
 
