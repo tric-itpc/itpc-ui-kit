@@ -143,20 +143,29 @@ export const getCalculatePosition = (
       verticalPosition = VERTICAL_POSITION.TOP
     }
 
+    const scrollTop = window.scrollY || window.pageYOffset
     const verticalBottomPosition: number =
       parentBottom + currentDistanceBetweenElements
+
+    const verticalBottomPositionAbsolute: number =
+      parentBottom + currentDistanceBetweenElements + scrollTop
 
     const verticalTopPosition: number =
       parentTop - currentDistanceBetweenElements - elementHeight
 
+    const verticalTopPositionAbsolute: number =
+      parentTop - currentDistanceBetweenElements - elementHeight + scrollTop
+
     const horizontalCenterPosition: number =
-      parentLeft - (elementHeight - parentWidth) / DIVIDER_IN_TWO
+      parentLeft - (elementWidth - parentWidth) / DIVIDER_IN_TWO
 
     const horizontalRightPosition: number =
       documentWidth - parentLeft - parentWidth
 
     const horizontalCalculatedPosition: number =
-      (documentWidth - elementWidth) / DIVIDER_IN_TWO
+      documentWidth <= elementWidth
+        ? 0
+        : (documentWidth - elementWidth) / DIVIDER_IN_TWO
 
     const currentPosition = refChildren.current.style.position
 
@@ -165,6 +174,11 @@ export const getCalculatePosition = (
     }
 
     if (verticalPosition === VERTICAL_POSITION.BOTTOM) {
+      const topPositionBottom =
+        position === ALLOWED_POSITIONS.FIXED
+          ? verticalBottomPosition
+          : verticalBottomPositionAbsolute
+
       switch (horizontalPosition) {
         case HORIZONTAL_POSITION.LEFT:
           return {
@@ -172,7 +186,7 @@ export const getCalculatePosition = (
             left: parentLeft,
             position,
             right: "auto",
-            top: verticalBottomPosition,
+            top: topPositionBottom,
           }
         case HORIZONTAL_POSITION.RIGHT:
           return {
@@ -180,7 +194,7 @@ export const getCalculatePosition = (
             left: "auto",
             position,
             right: horizontalRightPosition,
-            top: verticalBottomPosition,
+            top: topPositionBottom,
           }
         case HORIZONTAL_POSITION.CENTER:
           return {
@@ -188,7 +202,7 @@ export const getCalculatePosition = (
             left: horizontalCenterPosition,
             position,
             right: "auto",
-            top: verticalBottomPosition,
+            top: topPositionBottom,
           }
         case HORIZONTAL_POSITION.CALCULATED:
           return {
@@ -196,14 +210,17 @@ export const getCalculatePosition = (
             left: horizontalCalculatedPosition,
             position,
             right: "auto",
-            top: verticalBottomPosition,
+            top: topPositionBottom,
           }
-        default:
-          return {}
       }
     }
 
     if (verticalPosition === VERTICAL_POSITION.TOP) {
+      const topPosition =
+        position === ALLOWED_POSITIONS.FIXED
+          ? verticalTopPosition
+          : verticalTopPositionAbsolute
+
       switch (horizontalPosition) {
         case HORIZONTAL_POSITION.LEFT:
           return {
@@ -211,7 +228,7 @@ export const getCalculatePosition = (
             left: parentLeft,
             position,
             right: "auto",
-            top: verticalTopPosition,
+            top: topPosition,
           }
         case HORIZONTAL_POSITION.RIGHT:
           return {
@@ -219,7 +236,7 @@ export const getCalculatePosition = (
             left: "auto",
             position,
             right: horizontalRightPosition,
-            top: verticalTopPosition,
+            top: topPosition,
           }
         case HORIZONTAL_POSITION.CENTER:
           return {
@@ -227,7 +244,7 @@ export const getCalculatePosition = (
             left: horizontalCenterPosition,
             position,
             right: "auto",
-            top: verticalTopPosition,
+            top: topPosition,
           }
         case HORIZONTAL_POSITION.CALCULATED:
           return {
@@ -235,10 +252,8 @@ export const getCalculatePosition = (
             left: horizontalCalculatedPosition,
             position,
             right: "auto",
-            top: verticalTopPosition,
+            top: topPosition,
           }
-        default:
-          return {}
       }
     }
   }
