@@ -10,6 +10,7 @@ export const ConfigProvider: React.FC<ConfigProviderProps> = (props) => {
   const [theme, setTheme] = useState<Theme>(props.theme ?? Theme.DEFAULT)
 
   const themeClass = Theme.DEFAULT === theme ? "" : `itpc-theme-${theme}`
+
   const defaultProps: ConfigContextProps = useMemo(
     () => ({
       themeComponent: {
@@ -22,7 +23,9 @@ export const ConfigProvider: React.FC<ConfigProviderProps> = (props) => {
   )
 
   useEffect(() => {
-    document.body.className = themeClass
+    const className = document.body.className.replace(/^itpc-theme-\w+/, "")
+
+    document.body.className = `${className}`
   }, [themeClass])
 
   return (
