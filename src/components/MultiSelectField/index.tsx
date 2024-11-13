@@ -112,6 +112,7 @@ export const MultiSelectField: React.FC<Props> = ({
           <ListBox
             durationAnimation={durationAnimation}
             isOpen={isOpen ? !isClosing : isOpen}
+            refChildren={refChildren}
             refParent={ref}
           >
             {items.map((item) => (
