@@ -3,7 +3,7 @@ import React, { type CSSProperties, useEffect, useRef, useState } from "react"
 import cn from "classnames"
 
 import { IInfo } from "../../components"
-import { getCalendarStyle } from "../../components/DatePicker/utils"
+import { getCalendarStyle } from "../../components/inputs/DatePicker/utils"
 import type { DurationAnimation } from "../../components/types"
 import { getElementDimensions } from "../getDemensions"
 import { getTransformOriginByAxisXY } from "../getTransformOriginByAxisXY"

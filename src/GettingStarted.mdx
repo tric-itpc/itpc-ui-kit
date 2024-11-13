@@ -1,0 +1,148 @@
+# ITPC UI Kit
+
+UI-библиотека компании ТРИЦ
+
+## Установка
+
+```sh
+// with npm
+npm install itpc-ui-kit
+
+// with yarn
+yarn add itpc-ui-kit
+```
+
+## Использование
+
+```typescript jsx
+import React, { useState } from "react"
+import { Button } from "itpc-ui-kit"
+
+const MyComponent: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  return <Button onPress={() => setIsOpen(!isOpen)}>Click!</Button>
+}
+```
+
+## Стилизация и темная тема
+
+Для подключения стилей, необходимо использовать файл `index.css`.
+Внутри него содержится описание стилей для каждого компонента и темной темы.
+Переключение темной темы осуществляется путем подключения провайдера и использования хука `useTheme`.
+
+```typescript jsx
+import { Checkbox, ConfigProvider, useTheme, Theme } from "itpc-ui-kit"
+
+const App: React.FC = ({ children }) => {
+  const { theme, toggleTheme } = useTheme()
+
+  return (
+    <ConfigProvider>
+      <Checkbox checked={theme === Theme.DARK} onClick={toggleTheme} />
+
+      {children}
+    </ConfigProvider>
+  )
+}
+```
+
+Так же для включения темной темы, достаточно добавить класс `itpc-theme-dark` к элементу `body`.
+
+## Описание хуков
+
+<table>
+  <thead>
+    <tr>
+      <th>Хук</th>
+      <th>Описание</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>```useOnClickOutside```</td>
+      <td>Позволяет реагировать на клик вне определенного элемента.</td>
+    </tr>
+
+    <tr>
+      <td>```useTheme```</td>
+      <td>Позволяет получить текущую тему и переключить ее.</td>
+    </tr>
+
+    <tr>
+      <td>```useWindowSize```</td>
+      <td>Позволяет получить ширину и высоту окна браузера.</td>
+    </tr>
+
+  </tbody>
+</table>
+
+## Описание переменных
+
+```typescript
+enum Theme {
+  DARK = "dark",
+  DEFAULT = "default",
+}
+
+enum SortType {
+  ASCENDING = "ascending",
+  DESCENDING = "descending",
+  NONE = "none",
+}
+
+enum NumberColumns {
+  ONE = "one",
+  TWO = "two",
+  ZERO = "zero",
+}
+
+enum RowAlign {
+  BOTTOM = "bottom",
+  MIDDLE = "middle",
+  TOP = "top",
+}
+
+enum RowJustify {
+  CENTER = "center",
+  END = "end",
+  SPACE_AROUND = "around",
+  SPACE_BETWEEN = "between",
+  SPACE_EVENLY = "evenly",
+  START = "start",
+}
+
+enum TextSize {
+  L = "l",
+  M = "m",
+  S = "s",
+  XL = "xl",
+  XS = "xs",
+  XXL = "xxl",
+  XXS = "xxs",
+}
+
+enum TextWeight {
+  BOLD = "bold",
+  LIGHT = "light",
+  MEDIUM = "medium",
+  NORMAL = "normal",
+}
+
+enum TextType {
+  DANGER = "danger",
+  DISABLED = "disabled",
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  SUCCESS = "success",
+  WARNING = "warning",
+}
+
+enum TextTag {
+  CODE = "code",
+  EM = "em",
+  PARAGRAPH = "p",
+  STRONG = "strong",
+}
+```

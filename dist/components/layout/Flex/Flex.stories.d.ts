@@ -1,0 +1,11 @@
+import { Meta, StoryObj } from "@storybook/react";
+import { Flex } from "../../index";
+declare const meta: Meta<typeof Flex>;
+export default meta;
+type Story = StoryObj<typeof Flex>;
+export declare const Basic: Story;
+export declare const Gap: Story;
+export declare const Vertical: Story;
+export declare const Wrap: Story;
+export declare const Align: Story;
+export declare const Justify: Story;
