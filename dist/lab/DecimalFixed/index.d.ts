@@ -1,11 +1,11 @@
 import { Decimal } from "decimal.js-light";
 import { IDecimalFixed } from "./types";
 export declare class DecimalFixed implements IDecimalFixed {
-    constructor(value: string, accuracy?: number | null, empty?: boolean);
-    accuracy?: number | null;
+    constructor(value: string, accuracy?: null | number, empty?: boolean);
+    accuracy?: null | number;
     empty: boolean;
-    fraction?: string | null;
-    int: number | null;
+    fraction?: null | string;
+    int: null | number;
     equals(value: Decimal): boolean;
     generate(): string;
     greaterThan(value: Decimal): boolean;

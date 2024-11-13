@@ -48,7 +48,8 @@ export declare enum TextSize {
 }
 export declare enum TextWeight {
     BOLD = "bold",
-    LIGHTER = "lighter",
+    LIGHT = "light",
+    MEDIUM = "medium",
     NORMAL = "normal"
 }
 export declare enum TextType {
@@ -64,4 +65,9 @@ export declare enum TextTag {
     EM = "em",
     PARAGRAPH = "p",
     STRONG = "strong"
+}
+export declare enum AnimationTypes {
+    FIXED = "FIXED",
+    TRANSFORM_BY_AXIS_X = "transform-by-axis-x",
+    TRANSFORM_BY_AXIS_X_Y = "transform-by-axis-x_y"
 }
