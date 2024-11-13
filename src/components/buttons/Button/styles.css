@@ -1,0 +1,96 @@
+.itpc-button {
+  min-width: 40px;
+  min-height: 40px;
+  padding: 6px 20px;
+
+  font-size: var(--itpc-font-size-xs);
+
+  border: 1px solid;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+
+  transition: all 0.3s ease-in-out;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.itpc-button:hover {
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-primary-hover-color-component);
+  background-color: var(--itpc-primary-hover-color-component);
+}
+
+.itpc-button:active {
+  transition-duration: 0.05s;
+  transform: scale(0.965, 0.97);
+  transform-box: stroke-box;
+}
+
+.itpc-button:disabled {
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-disabled-border-color);
+  background-color: var(--itpc-disabled-bg-color-component);
+  cursor: default;
+}
+
+.itpc-button__color_primary {
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-primary-border-color);
+  background-color: var(--itpc-primary-bg-color-component);
+}
+
+.itpc-button__color_primary:hover {
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-primary-hover-color-component);
+  background-color: var(--itpc-primary-hover-color-component);
+}
+
+.itpc-button__color_white {
+  color: var(--itpc-secondary-text-color-component);
+
+  border-color: var(--itpc-primary-border-color);
+  background-color: var(--itpc-secondary-bg-color-component);
+}
+
+.itpc-button__color_white:hover {
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-primary-border-hover-color);
+  background-color: var(--itpc-primary-hover-color-component);
+}
+
+.itpc-button__color_white:disabled {
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-disabled-border-color);
+  background-color: var(--itpc-disabled-bg-color-component);
+  cursor: default;
+}
+
+.itpc-button__color_red {
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-danger-border-color);
+  background-color: var(--itpc-danger-bg-color-component);
+}
+
+.itpc-button__color_red:hover {
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-danger-hover-color-component);
+  background-color: var(--itpc-danger-hover-color-component);
+}
+
+.itpc-button__color_red:disabled {
+  color: var(--itpc-primary-text-color-component);
+
+  border-color: var(--itpc-disabled-border-color);
+  background-color: var(--itpc-disabled-bg-color-component);
+  cursor: default;
+}

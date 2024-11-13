@@ -1,5 +1,6 @@
 import React from "react";
 import { IInfo } from "../../components";
+import type { DurationAnimation } from "../../components/types";
 import "./styles.css";
 export interface Props {
     activeDates?: string[];
@@ -10,11 +11,12 @@ export interface Props {
     disabledDaysOfWeek?: number[];
     disabledSelectMonth?: boolean;
     disabledSelectYear?: boolean;
+    durationAnimation: DurationAnimation;
     handleShow: () => void;
     id: string;
     name: string;
     offsetYear?: number;
-    onChange?: (date: string, event: React.MouseEvent<HTMLTableCellElement> | React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>, info: IInfo) => void;
+    onChange?: (date: string, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLTableCellElement>, info: IInfo) => void;
     parentRef?: React.RefObject<HTMLDivElement>;
     scrollToYear?: number;
     show: boolean;

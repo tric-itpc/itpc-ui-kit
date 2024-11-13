@@ -1,0 +1,23 @@
+.itpc-link {
+  margin: 0;
+
+  color: var(--itpc-link-text-color);
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.itpc-link:visited {
+  color: var(--itpc-link-text-color-visited);
+}
+
+.itpc-link:hover {
+  color: var(--itpc-link-text-hover-color);
+}
+
+.itpc-link_disabled,
+.itpc-link_disabled:visited {
+  color: var(--itpc-disabled-text-color);
+
+  pointer-events: none;
+}

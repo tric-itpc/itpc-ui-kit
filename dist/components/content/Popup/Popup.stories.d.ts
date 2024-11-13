@@ -1,0 +1,18 @@
+import { Meta, StoryObj } from "@storybook/react";
+import { Popup } from "../../index";
+declare const meta: Meta<typeof Popup>;
+export default meta;
+type Story = StoryObj<typeof Popup>;
+export declare const Basic: Story;
+export declare const WithCloseButton: Story;
+export declare const TopLeftPosition: Story;
+export declare const TopCenterPosition: Story;
+export declare const TopRightPosition: Story;
+export declare const CenterLeftPosition: Story;
+export declare const CenterPosition: Story;
+export declare const CenterRightPosition: Story;
+export declare const BottomLeftPosition: Story;
+export declare const BottomCenterPosition: Story;
+export declare const BottomRightPosition: Story;
+export declare const SmallSize: Story;
+export declare const MediumSize: Story;

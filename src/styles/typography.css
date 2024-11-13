@@ -79,9 +79,9 @@ h1 {
 }
 
 .itpc-text_underline {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 .itpc-text_through {
-  text-decoration: line-through;
+  text-decoration: line-through !important;
 }

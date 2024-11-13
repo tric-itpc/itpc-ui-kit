@@ -1,0 +1,30 @@
+.itpc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-sizing: border-box;
+  width: 340px;
+  height: 250px;
+  padding: 20px;
+
+  color: var(--itpc-primary-text-color);
+
+  border-radius: 4px;
+  background-color: var(--itpc-primary-bg-color);
+  box-shadow: 0 0 3px 1px var(--itpc-box-shadow-color-second);
+}
+
+.itpc-card_bordered {
+  border: 1px solid var(--itpc-primary-border-color);
+}
+
+.itpc-card__title {
+  margin: 0;
+
+  font-size: var(--itpc-font-size-m);
+  word-break: break-all;
+}
+
+.itpc-card__body {
+  height: 100%;
+}

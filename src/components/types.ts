@@ -2,7 +2,7 @@ import React, { type CSSProperties } from "react"
 
 export type InputType = "password" | "text"
 export type ButtonType = "button" | "reset" | "submit"
-export type ButtonVariant = "red" | "white"
+export type ButtonVariant = "primary" | "red" | "white"
 export type InputCheckboxType = "checkbox" | "radio"
 export type InputCheckboxVariant = "android" | "ios" | "round" | "square"
 export type InputCheckboxLabelPosition = "all" | "left" | "right"
