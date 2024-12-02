@@ -10,9 +10,9 @@ interface UseTheme {
 }
 
 export const useTheme = (): UseTheme => {
-  const { themeComponent } = useContext(ConfigContext)
+  const { theme } = useContext(ConfigContext)
 
-  if (!themeComponent) {
+  if (!theme) {
     return {
       theme: Theme.DEFAULT,
       themeClass: "",
@@ -20,12 +20,12 @@ export const useTheme = (): UseTheme => {
     }
   }
 
-  const { setTheme, theme } = themeComponent
-  const [currentTheme, setCurrentTheme] = useState(theme)
+  const { setType, type } = theme
+  const [currentTheme, setCurrentTheme] = useState(type)
 
   const toggleTheme = (): void => {
     const newTheme = currentTheme === Theme.DARK ? Theme.DEFAULT : Theme.DARK
-    setTheme?.(newTheme)
+    setType?.(newTheme)
     setCurrentTheme(newTheme)
   }
 

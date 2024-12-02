@@ -9,9 +9,10 @@ import {
   InputWrap,
   Placeholder,
 } from "../_elements"
-import { dotRegExp, numberAndOnlyPointRegExp } from "../../enums"
 import { DecimalFixed } from "../../lab"
 import { ValidationState } from "../types"
+
+import { dotRegExp, numberAndOnlyPointRegExp } from "./constants"
 
 export interface Props
   extends Omit<

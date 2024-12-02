@@ -7,7 +7,7 @@ import { ConfigProvider } from "../provider"
 
 export const ThemeDecorator = (theme: Theme) => (StoryComponent: Story) =>
   (
-    <ConfigProvider theme={theme}>
+    <ConfigProvider theme={{ type: theme }}>
       <div className={`app itpc-theme-${theme}`}>
         <StoryComponent />
       </div>

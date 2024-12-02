@@ -1,7 +1,7 @@
 .itpc-calendar__table {
   width: 100%;
 
-  font-size: 14px;
-  line-height: 16px;
+  font-size: var(--itpc-font-size-xs);
+  line-height: var(--itpc-line-height-xs);
   text-align: center;
 }

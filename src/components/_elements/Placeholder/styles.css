@@ -6,7 +6,7 @@
   box-sizing: border-box;
   padding: 0 5px;
 
-  font-size: 14px;
+  font-size: var(--itpc-font-size-xs);
   line-height: 14px;
   color: var(--itpc-primary-text-color);
 
@@ -19,7 +19,7 @@
 .itpc-placeholder_focused {
   top: calc(-8px);
 
-  font-size: 12px;
+  font-size: var(--itpc-font-size-xxs);
   color: var(--itpc-primary-text-color);
 }
 

@@ -48,7 +48,7 @@
   align-items: center;
   justify-content: space-between;
 
-  font-size: 20px;
+  font-size: var(--itpc-font-size-m);
   color: var(--itpc-primary-text-color);
 }
 

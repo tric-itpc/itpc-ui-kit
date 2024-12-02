@@ -17,6 +17,8 @@
     "prettier:fix": "prettier -c --ignore-unknown --write .",
     "stylelint": "stylelint **/styles.css",
     "stylelint:fix": "stylelint --fix **/styles.css",
+    "lint": "npm run eslint && npm run prettier && npm run stylelint",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix && npm run stylelint:fix",
     "link": "npm link",
     "unlink": "npm unlink itpc-ui-kit"
   },

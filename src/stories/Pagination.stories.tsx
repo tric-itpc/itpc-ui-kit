@@ -2,10 +2,12 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { Button, Item, PaginationResult, Text } from "../components"
+import { Button, Item, PaginationResult, Typography } from "../components"
 import { Pagination, Props } from "../components/Pagination"
 import { ThemeDecorator } from "../config/ThemeDecorator"
 import { Theme } from "../enums"
+
+const { Text } = Typography
 
 const mockItems: Item[] = [
   {

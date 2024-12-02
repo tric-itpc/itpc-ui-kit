@@ -2,11 +2,13 @@ import React, { useState } from "react"
 
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 
-import { Text } from "../components"
+import { Typography } from "../components"
 import { IconOk } from "../components/_elements"
 import { Props, TextField } from "../components/TextField"
 import { ThemeDecorator } from "../config/ThemeDecorator"
 import { Theme } from "../enums"
+
+const { Text } = Typography
 
 export default {
   component: TextField,

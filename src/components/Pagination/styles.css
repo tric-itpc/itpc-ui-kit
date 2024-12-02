@@ -5,11 +5,11 @@
   justify-content: end;
   margin-bottom: 24px;
 
-  font-size: 14px;
+  font-size: var(--itpc-font-size-xs);
 }
 
 .itpc-pagination__btn {
-  font-size: 14px;
+  font-size: var(--itpc-font-size-xs);
 
   border: none;
   border-radius: 4px;
@@ -65,7 +65,7 @@
   width: 40px;
   margin: 0;
 
-  font-size: 20px;
+  font-size: var(--itpc-font-size-m);
   color: var(--itpc-primary-text-color);
   text-align: center;
 }

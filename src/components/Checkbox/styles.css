@@ -13,6 +13,8 @@
 
 .itpc-checkbox__label {
   margin-left: 10px;
+
+  font-size: var(--itpc-font-size-xs);
 }
 
 .itpc-checkbox__label_blur {
@@ -105,7 +107,7 @@
 .itpc-checkbox__input + .itpc-checkbox__fake_android::before {
   content: "";
   position: absolute;
-  top: 6px;
+  top: 4px;
   left: 0;
 
   display: inline-block;
@@ -123,7 +125,7 @@
 .itpc-checkbox__input + .itpc-checkbox__fake_android::after {
   content: "";
   position: absolute;
-  top: 2px;
+  top: 0;
   left: 0;
 
   display: block;
@@ -277,20 +279,12 @@
   border-color: var(--itpc-secondary-border-color);
 }
 
-.itpc-checkbox:hover
-  > .itpc-checkbox__input:checked
-  + .itpc-checkbox__fake_android::before,
-.itpc-checkbox:hover
-  > .itpc-checkbox__input:checked
-  + .itpc-checkbox__fake_ios::before,
-.itpc-checkbox:hover
-  > .itpc-checkbox__input:checked
-  + .itpc-checkbox__fake_round::after {
+.itpc-checkbox:hover > .itpc-checkbox__input:checked + .itpc-checkbox__fake_android::before,
+.itpc-checkbox:hover > .itpc-checkbox__input:checked + .itpc-checkbox__fake_ios::before,
+.itpc-checkbox:hover > .itpc-checkbox__input:checked + .itpc-checkbox__fake_round::after {
   background-color: var(--itpc-secondary-border-color);
 }
 
-.itpc-checkbox:hover
-  > .itpc-checkbox__input:checked
-  + .itpc-checkbox__fake_square::after {
+.itpc-checkbox:hover > .itpc-checkbox__input:checked + .itpc-checkbox__fake_square::after {
   background: url("../../assets/itpc-check_hover.svg") no-repeat center;
 }

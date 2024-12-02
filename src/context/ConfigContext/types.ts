@@ -1,11 +1,12 @@
 import { Theme } from "../../enums"
 
 export interface ThemeContext {
-  setTheme: (theme: Theme) => void
-  theme: Theme
+  disabled: boolean
+  setType: (type: Theme) => void
   themeClass: string
+  type: Theme
 }
 
 export interface ConfigContextProps {
-  themeComponent?: ThemeContext
+  theme?: ThemeContext
 }

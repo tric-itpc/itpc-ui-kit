@@ -14,7 +14,7 @@
 .itpc-table__caption {
   margin-bottom: 0.5rem;
 
-  font-size: 14px;
+  font-size: var(--itpc-font-size-xs);
 }
 
 .itpc-table__head {
@@ -25,11 +25,11 @@
 .itpc-table__column {
   padding: 10px;
 
-  font-weight: 400;
-
   border-bottom: 1px solid var(--itpc-input-border-color);
   border-radius: 0;
   cursor: default;
+
+  weight: var(--itpc-font-weight-normal);
 }
 
 .itpc-table__column_clickable {
@@ -39,11 +39,11 @@
 .itpc-table__cell {
   padding: 10px;
 
-  font-weight: 400;
-
   border: none;
   border-radius: 0;
   cursor: default;
+
+  weight: var(--itpc-font-weight-normal);
 }
 
 .itpc-table__cell_clickable {
