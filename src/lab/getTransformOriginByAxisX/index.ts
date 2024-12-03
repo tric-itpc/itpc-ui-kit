@@ -5,7 +5,7 @@ import { VERTICAL_POSITION } from "../CalculateStyle/types"
 
 export const getTransformOriginByAxisX = (
   refParent: RefObject<HTMLDivElement>,
-  refChildren: RefObject<HTMLUListElement | HTMLDivElement>,
+  refChildren: RefObject<HTMLDivElement | HTMLUListElement>,
   distanceBetweenElements?: number
 ): string => {
   const verticalPosition: VERTICAL_POSITION = getVerticalPosition(

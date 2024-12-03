@@ -5,7 +5,7 @@ import { NumberFormatValues, PatternFormat, SourceInfo } from "itpc-input-mask"
 
 import { IconCalendar, InputError, Placeholder } from "../_elements"
 import { Portal } from "../_elements/Portal"
-import { WrapperComponent } from "../_elements/WrapperComponent"
+import { PositionedWrap } from "../_elements/PositionedWrap"
 import { Calendar } from "../../lab"
 import { DISTANCE_BETWEEN_CALENDAR } from "../../lab/CalculateStyle/constants"
 import { useAnimation } from "../../lab/hooks/useAnimation"
@@ -55,9 +55,9 @@ export interface Props<T extends PositionType>
   onChange?: (
     values: FormattedValues,
     event:
-      | React.SyntheticEvent<HTMLTableDataCellElement>
       | React.SyntheticEvent<HTMLButtonElement>
-      | React.SyntheticEvent<HTMLInputElement>,
+      | React.SyntheticEvent<HTMLInputElement>
+      | React.SyntheticEvent<HTMLTableDataCellElement>,
     info: IInfo
   ) => void
   onFocus?: () => void
@@ -143,9 +143,9 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
   const onChangeDate = (
     date: string,
     event:
-      | React.MouseEvent<HTMLTableDataCellElement>
       | React.ChangeEvent<HTMLInputElement>
       | React.MouseEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLTableDataCellElement>
   ): void => {
     if (onChange) {
       onChange(
@@ -231,7 +231,7 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
       </div>
 
       <Portal element={document.body}>
-        <WrapperComponent
+        <PositionedWrap
           distanceBetweenElements={DISTANCE_BETWEEN_CALENDAR}
           isClosing={isClosing}
           isOpen={isShowCalendar}
@@ -263,7 +263,7 @@ export const DatePicker: React.FC<Props<PositionType>> = ({
             withTime={withTime}
             yearsFromTo={yearsFromTo}
           />
-        </WrapperComponent>
+        </PositionedWrap>
       </Portal>
     </div>
   )

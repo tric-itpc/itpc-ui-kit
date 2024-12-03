@@ -70,7 +70,7 @@ export const getHorizontalPosition = (
 
 export const getVerticalPosition = (
   refParent: RefObject<HTMLDivElement>,
-  ref: RefObject<HTMLUListElement | HTMLDivElement>,
+  ref: RefObject<HTMLDivElement | HTMLUListElement>,
   distanceBetweenElements?: number
 ): VERTICAL_POSITION => {
   const { documentHeight } = getDocumentDimensions()
@@ -91,7 +91,7 @@ export const getVerticalPosition = (
 
 export const getCalculatePosition = (
   refParent: React.RefObject<HTMLDivElement>,
-  refChildren: React.RefObject<HTMLUListElement | HTMLDivElement>,
+  refChildren: React.RefObject<HTMLDivElement | HTMLUListElement>,
   position: PositionType,
   distanceBetweenElements?: number
 ): CSSProperties => {

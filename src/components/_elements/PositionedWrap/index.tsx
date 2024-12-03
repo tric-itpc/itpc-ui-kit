@@ -10,7 +10,7 @@ import {
 
 import "./styles.css"
 
-interface WrapperComponentProps {
+interface PositionedWrapProps {
   children: React.ReactNode
   distanceBetweenElements?: number
   isClosing: boolean
@@ -19,7 +19,7 @@ interface WrapperComponentProps {
   refParent?: React.RefObject<HTMLDivElement>
 }
 
-export const WrapperComponent: React.FC<WrapperComponentProps> = ({
+export const PositionedWrap: React.FC<PositionedWrapProps> = ({
   children,
   distanceBetweenElements,
   isClosing,
@@ -60,9 +60,9 @@ export const WrapperComponent: React.FC<WrapperComponentProps> = ({
   return (
     <div
       className={cn(
-        "itpc-wrapper-component",
-        isOpen && "itpc-wrapper-component__opened",
-        !isOpen && isClosing && "itpc-wrapper-component__closed"
+        "itpc-positioned-wrap",
+        isOpen && "itpc-positioned-wrap__opened",
+        !isOpen && isClosing && "itpc-positioned-wrap__closed"
       )}
       ref={ref}
       style={stylePosition}

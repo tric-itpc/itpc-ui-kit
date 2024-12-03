@@ -1,17 +1,11 @@
-import React, {
-  HTMLAttributes,
-  type RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import React, { HTMLAttributes, type RefObject, useRef, useState } from "react"
 
 import cn from "classnames"
 
 import { IconArrow, Placeholder, SelectItem } from "../_elements"
 import { ListBox } from "../_elements/ListBox"
 import { Portal } from "../_elements/Portal"
-import { WrapperComponent } from "../_elements/WrapperComponent"
+import { PositionedWrap } from "../_elements/PositionedWrap"
 import { useOnClickOutside } from "../../lab"
 import { useAnimation } from "../../lab/hooks/useAnimation"
 import { type DurationAnimation, Item } from "../types"
@@ -108,7 +102,7 @@ export const MultiSelectField: React.FC<Props> = ({
       <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
 
       <Portal element={document.body}>
-        <WrapperComponent isClosing={isClosing} isOpen={isOpen} refParent={ref}>
+        <PositionedWrap isClosing={isClosing} isOpen={isOpen} refParent={ref}>
           <ListBox
             durationAnimation={durationAnimation}
             isOpen={isOpen ? !isClosing : isOpen}
@@ -127,7 +121,7 @@ export const MultiSelectField: React.FC<Props> = ({
               </SelectItem>
             ))}
           </ListBox>
-        </WrapperComponent>
+        </PositionedWrap>
       </Portal>
     </div>
   )

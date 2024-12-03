@@ -7,7 +7,7 @@ import { TabsItem } from "../types"
 import "./styles.css"
 
 interface TabButtonProps
-  extends Omit<HTMLAttributes<HTMLButtonElement>, "onClick" | "id"> {
+  extends Omit<HTMLAttributes<HTMLButtonElement>, "id" | "onClick"> {
   id: number
   isActive: boolean
   onClick(id: number): void

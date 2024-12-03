@@ -44,9 +44,9 @@ export interface Props {
   onChange?: (
     date: string,
     event:
-      | React.MouseEvent<HTMLTableCellElement>
       | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>,
+      | React.MouseEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLTableCellElement>,
     info: IInfo
   ) => void
   parentRef?: React.RefObject<HTMLDivElement>

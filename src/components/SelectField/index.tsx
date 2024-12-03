@@ -5,7 +5,7 @@ import cn from "classnames"
 import { IconArrow, Placeholder, SelectItem } from "../_elements"
 import { ListBox } from "../_elements/ListBox"
 import { Portal } from "../_elements/Portal"
-import { WrapperComponent } from "../_elements/WrapperComponent"
+import { PositionedWrap } from "../_elements/PositionedWrap"
 import { useOnClickOutside } from "../../lab"
 import { ALLOWED_POSITIONS } from "../../lab/CalculateStyle/types"
 import { useAnimation } from "../../lab/hooks/useAnimation"
@@ -86,7 +86,7 @@ export const SelectField: React.FC<Props> = ({
       <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
 
       <Portal element={document.body}>
-        <WrapperComponent
+        <PositionedWrap
           isClosing={isClosing}
           isOpen={isOpen}
           position={position}
@@ -109,7 +109,7 @@ export const SelectField: React.FC<Props> = ({
               </SelectItem>
             ))}
           </ListBox>
-        </WrapperComponent>
+        </PositionedWrap>
       </Portal>
     </div>
   )

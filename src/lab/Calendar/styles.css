@@ -49,8 +49,8 @@
 }
 
 .itpc-calendar__double-dots {
+  font-weight: var(--itpc-font-weight-normal);
   font-size: var(--itpc-font-size-m);
-  weight: var(--itpc-font-weight-normal);
 }
 
 .itpc-calendar__button-group {
