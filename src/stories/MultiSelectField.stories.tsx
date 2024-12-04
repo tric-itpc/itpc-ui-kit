@@ -44,7 +44,7 @@ const mockItems: Item[] = [
 ]
 
 const Template: ComponentStory<React.FC<Props>> = (args) => {
-  const [selectedItems, setSelectedItems] = useState<Item[] | []>([
+  const [selectedItems, setSelectedItems] = useState<[] | Item[]>([
     {
       id: "1",
       value: "Cat",

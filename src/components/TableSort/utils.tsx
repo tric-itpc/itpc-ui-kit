@@ -50,7 +50,7 @@ export const setKey = (
 }
 
 const updateParametersKey = (
-  key: KeySort<RowType> | Column<RowType>
+  key: Column<RowType> | KeySort<RowType>
 ): KeySort<RowType> => {
   if ("order" in key) {
     return {

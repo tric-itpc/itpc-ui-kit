@@ -1,10 +1,14 @@
-import React, { HTMLAttributes, useRef, useState } from "react"
+import React, { HTMLAttributes, type RefObject, useRef, useState } from "react"
 
 import cn from "classnames"
 
-import { IconArrow, Placeholder, Popover, SelectItem } from "../_elements"
+import { IconArrow, Placeholder, SelectItem } from "../_elements"
+import { ListBox } from "../_elements/ListBox"
+import { Portal } from "../_elements/Portal"
+import { PositionedWrap } from "../_elements/PositionedWrap"
 import { useOnClickOutside } from "../../lab"
-import { Item } from "../types"
+import { useAnimation } from "../../lab/hooks/useAnimation"
+import { type DurationAnimation, Item } from "../types"
 
 import "./styles.css"
 
@@ -12,6 +16,7 @@ export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   className?: string
   disabled?: boolean
+  durationAnimation?: DurationAnimation
   items: Item[]
   onChange(values: string[]): void
   placeholder?: string
@@ -21,6 +26,10 @@ export interface Props
 export const MultiSelectField: React.FC<Props> = ({
   className,
   disabled = false,
+  durationAnimation = {
+    durationClose: 200,
+    durationOpen: 300,
+  },
   items,
   onChange,
   placeholder = "",
@@ -28,17 +37,19 @@ export const MultiSelectField: React.FC<Props> = ({
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const { isClosing } = useAnimation(isOpen, durationAnimation)
 
   const ref = useRef<HTMLDivElement>(null)
+  const refChildren = useRef<HTMLUListElement>(null)
+
+  const onClose = (): void => {
+    setIsOpen(false)
+  }
 
   const handleOpen = (): void => {
     if (!disabled) {
       setIsOpen(!isOpen)
     }
-  }
-
-  const onClose = (): void => {
-    setIsOpen(false)
   }
 
   const onChangeValue = (value: string): void => {
@@ -68,7 +79,7 @@ export const MultiSelectField: React.FC<Props> = ({
     return ""
   }
 
-  useOnClickOutside(ref, onClose)
+  useOnClickOutside(ref, onClose, isOpen, refChildren as RefObject<HTMLElement>)
 
   return (
     <div className={cn("itpc-multi-select", className)} ref={ref} {...rest}>
@@ -90,21 +101,28 @@ export const MultiSelectField: React.FC<Props> = ({
 
       <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
 
-      {isOpen && (
-        <Popover>
-          {items.map((item) => (
-            <SelectItem
-              disabled={item.disabled}
-              id={item.id}
-              isActive={selectedItems?.includes(item.id) ?? false}
-              key={item.id}
-              onChange={onChangeValue}
-            >
-              {item.value}
-            </SelectItem>
-          ))}
-        </Popover>
-      )}
+      <Portal element={document.body}>
+        <PositionedWrap isClosing={isClosing} isOpen={isOpen} refParent={ref}>
+          <ListBox
+            durationAnimation={durationAnimation}
+            isOpen={isOpen ? !isClosing : isOpen}
+            refChildren={refChildren}
+            refParent={ref}
+          >
+            {items.map((item) => (
+              <SelectItem
+                disabled={item.disabled}
+                id={item.id}
+                isActive={selectedItems?.includes(item.id) ?? false}
+                key={item.id}
+                onChange={onChangeValue}
+              >
+                {item.value}
+              </SelectItem>
+            ))}
+          </ListBox>
+        </PositionedWrap>
+      </Portal>
     </div>
   )
 }
