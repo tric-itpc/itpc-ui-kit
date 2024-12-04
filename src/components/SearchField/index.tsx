@@ -2,10 +2,14 @@ import React, { HTMLAttributes, useEffect, useRef, useState } from "react"
 
 import cn from "classnames"
 
-import { Popover, SelectItem } from "../_elements"
+import { SelectItem } from "../_elements"
+import { ListBox } from "../_elements/ListBox"
+import { Portal } from "../_elements/Portal"
+import { PositionedWrap } from "../_elements/PositionedWrap"
 import { useOnClickOutside } from "../../lab"
+import { useAnimation } from "../../lab/hooks/useAnimation"
 import { TextField } from "../TextField"
-import { Item } from "../types"
+import { type DurationAnimation, Item } from "../types"
 
 import "./styles.css"
 
@@ -13,6 +17,7 @@ export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "className" | "onChange"> {
   className?: boolean
   defaultItem?: string
+  durationAnimation?: DurationAnimation
   fetchData?: (value: string) => Promise<void>
   handleClear?: () => void
   icon?: React.ReactNode
@@ -23,13 +28,17 @@ export interface Props
   placeholder?: string
   textFieldAttr?: Omit<
     HTMLAttributes<HTMLDivElement>,
-    "onChange" | "onFocus" | "onBlur"
+    "onBlur" | "onChange" | "onFocus"
   >
 }
 
 export const SearchField: React.FC<Props> = ({
   className = "",
   defaultItem,
+  durationAnimation = {
+    durationClose: 200,
+    durationOpen: 300,
+  },
   fetchData,
   handleClear,
   icon,
@@ -51,6 +60,7 @@ export const SearchField: React.FC<Props> = ({
   const [isBlockFetch, setIsBlockFetch] = useState<boolean>(true)
 
   const ref = useRef<HTMLDivElement>(null)
+  const refChildren = useRef<HTMLUListElement>(null)
 
   const closeSuggestions = (): void => {
     setIsOpenedSuggestions(false)
@@ -93,8 +103,14 @@ export const SearchField: React.FC<Props> = ({
     return item?.value?.toLocaleLowerCase().includes(value.toLocaleLowerCase())
   }
 
+  const filteredItems: Item[] = items.filter(filterItems)
+  const isShowListResult =
+    isOpenedSuggestions && !!filteredItems.length && !!value?.length
+
+  const { isClosing } = useAnimation(isShowListResult, durationAnimation)
+
   useEffect(() => {
-    if (fetchData && value.length && !isBlockFetch) {
+    if (fetchData && !!value.length && !isBlockFetch) {
       fetchData(value)
     }
   }, [value])
@@ -110,8 +126,6 @@ export const SearchField: React.FC<Props> = ({
 
   useOnClickOutside(ref, closeSuggestions)
 
-  const filteredItems = items.filter(filterItems)
-
   return (
     <div className={cn("itpc-search-field", className)} ref={ref} {...rest}>
       <TextField
@@ -125,20 +139,34 @@ export const SearchField: React.FC<Props> = ({
         {...textFieldAttr}
       />
 
-      {!!filteredItems.length && isOpenedSuggestions && (
-        <Popover>
-          {filteredItems.map((item) => (
-            <SelectItem
-              id={item.id}
-              isActive={item.id === currentItem}
-              key={item.id}
-              onChange={changeItem}
+      <Portal element={document.body}>
+        <PositionedWrap
+          isClosing={isClosing}
+          isOpen={isShowListResult}
+          refParent={ref}
+        >
+          {!!filteredItems.length && !!value.length && (
+            <ListBox
+              durationAnimation={durationAnimation}
+              isOpen={isOpenedSuggestions ? !isClosing : isOpenedSuggestions}
+              refChildren={refChildren}
+              refParent={ref}
             >
-              {item.value}
-            </SelectItem>
-          ))}
-        </Popover>
-      )}
+              {!!value.length &&
+                filteredItems.map((item) => (
+                  <SelectItem
+                    id={item.id}
+                    isActive={item.id === currentItem}
+                    key={item.id}
+                    onChange={changeItem}
+                  >
+                    {item.value}
+                  </SelectItem>
+                ))}
+            </ListBox>
+          )}
+        </PositionedWrap>
+      </Portal>
     </div>
   )
 }

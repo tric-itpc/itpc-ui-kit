@@ -17,7 +17,7 @@ import { dotRegExp, numberAndOnlyPointRegExp } from "./constants"
 export interface Props
   extends Omit<
     HTMLAttributes<HTMLDivElement>,
-    "onChange" | "onFocus" | "onBlur"
+    "onBlur" | "onChange" | "onFocus"
   > {
   accuracy: number
   canEmptyString: boolean

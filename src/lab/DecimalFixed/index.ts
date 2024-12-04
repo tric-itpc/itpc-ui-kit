@@ -3,7 +3,7 @@ import { Decimal } from "decimal.js-light"
 import { IDecimalFixed } from "./types"
 
 export class DecimalFixed implements IDecimalFixed {
-  constructor(value: string, accuracy: number | null = null, empty = false) {
+  constructor(value: string, accuracy: null | number = null, empty = false) {
     const [int, fraction] = value.split(".")
 
     this.int = empty ? (int.length ? Number(int) : null) : Number(int)
@@ -18,10 +18,10 @@ export class DecimalFixed implements IDecimalFixed {
     }
   }
 
-  accuracy?: number | null
+  accuracy?: null | number
   empty: boolean
-  fraction?: string | null
-  int: number | null
+  fraction?: null | string
+  int: null | number
 
   equals(value: Decimal): boolean {
     return new Decimal(this.generate()).equals(value)

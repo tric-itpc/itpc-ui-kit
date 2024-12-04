@@ -1,13 +1,13 @@
 import { Decimal } from "decimal.js-light"
 
 export interface IDecimalFixed {
-  accuracy?: number | null
+  accuracy?: null | number
   empty: boolean
   equals(value: Decimal): boolean
-  fraction?: string | null
+  fraction?: null | string
   generate(): string
   greaterThan(value: Decimal): boolean
-  int: number | null
+  int: null | number
   isEmpty(): boolean
   isValid(): boolean
   isZero(): boolean
