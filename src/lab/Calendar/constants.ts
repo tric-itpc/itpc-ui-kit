@@ -83,3 +83,7 @@ export const daysNumeric: string[] = [
   "30",
   "31",
 ]
+
+export const MIN_WIDTH_CALENDAR = 280
+export const WIDTH_BODY_CALENDAR = 320
+export const DEFAULT_WIDTH_CALENDAR = 352

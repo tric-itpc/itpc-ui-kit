@@ -1,11 +1,11 @@
 .itpc-table-sort__cell {
   padding: 10px;
 
+  font-weight: var(--itpc-font-weight-normal);
+
   border: none;
   border-radius: 0;
   cursor: default;
-
-  weight: var(--itpc-font-weight-normal);
 }
 
 .tpc-table-sort__cell_clickable {

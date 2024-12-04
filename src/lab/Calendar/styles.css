@@ -2,7 +2,6 @@
   position: relative;
   z-index: 1000;
 
-  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -11,11 +10,18 @@
   padding: 1rem;
 
   border-radius: 4px;
+  background-color: var(--itpc-primary-bg-color);
   box-shadow: 0 0 10px var(--itpc-box-shadow-color);
+
+  transition: visibility ease-in-out, transform ease-in-out;
 }
 
 .itpc-calendar_opened {
-  display: flex;
+  transform: scale(1);
+}
+
+.itpc-calendar_closed {
+  transform: scale(0);
 }
 
 .itpc-calendar__select-period {
@@ -43,8 +49,8 @@
 }
 
 .itpc-calendar__double-dots {
+  font-weight: var(--itpc-font-weight-normal);
   font-size: var(--itpc-font-size-m);
-  weight: var(--itpc-font-weight-normal);
 }
 
 .itpc-calendar__button-group {

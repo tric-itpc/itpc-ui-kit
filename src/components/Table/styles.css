@@ -25,11 +25,11 @@
 .itpc-table__column {
   padding: 10px;
 
+  font-weight: var(--itpc-font-weight-normal);
+
   border-bottom: 1px solid var(--itpc-input-border-color);
   border-radius: 0;
   cursor: default;
-
-  weight: var(--itpc-font-weight-normal);
 }
 
 .itpc-table__column_clickable {
@@ -39,11 +39,11 @@
 .itpc-table__cell {
   padding: 10px;
 
+  font-weight: var(--itpc-font-weight-normal);
+
   border: none;
   border-radius: 0;
   cursor: default;
-
-  weight: var(--itpc-font-weight-normal);
 }
 
 .itpc-table__cell_clickable {

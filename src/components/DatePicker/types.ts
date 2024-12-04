@@ -25,11 +25,6 @@ export interface InputDimensions {
   inputWidth: number
 }
 
-export interface CalendarDimensions {
-  calendarHeight: number
-  calendarWidth: number
-}
-
 export interface DocumentDimensions {
   documentHeight: number
   documentWidth: number
@@ -59,4 +54,10 @@ export interface AbsolutePosition {
   absoluteCenterPosition: number
   absoluteDefault: number
   absoluteTopPosition: number
+}
+
+export interface TransformOriginArg {
+  calculatedTransformPosition: number
+  horizontalPosition: HORIZONTAL_POSITION_CALENDAR
+  verticalPosition: VERTICAL_POSITION_CALENDAR
 }
