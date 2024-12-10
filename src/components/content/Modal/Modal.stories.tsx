@@ -2,10 +2,13 @@ import React from "react"
 
 import { Meta, StoryObj } from "@storybook/react"
 
-import { Button, Modal, ModalContent, ModalFooter } from "../../index"
+import { Button, Layout, Modal, ModalContent, ModalFooter } from "../../index"
 
 const meta: Meta<typeof Modal> = {
   component: Modal,
+  decorators: [
+    (story) => <Layout style={{ height: "300px" }}>{story()}</Layout>,
+  ],
   render: (args) => (
     <Modal {...args} isOpen>
       <ModalContent>
