@@ -34,6 +34,7 @@ import { TextAreaField } from "./inputs/TextAreaField"
 import { TextField } from "./inputs/TextField"
 import { Flex } from "./layout/Flex"
 import { Col, Row } from "./layout/Grid"
+import { Layout } from "./layout/Layout"
 import { Typography } from "./typography"
 
 export {
@@ -51,6 +52,7 @@ export {
   DatePicker,
   DecimalField,
   Flex,
+  Layout,
   Modal,
   ModalContent,
   ModalFooter,
