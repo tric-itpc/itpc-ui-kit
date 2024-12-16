@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useRef, useState } from "react"
+import React, { HTMLAttributes, useEffect, useRef, useState } from "react"
 
 import cn from "classnames"
 
@@ -10,8 +10,10 @@ import {
   SelectItem,
 } from "../../_elements"
 import { ListBox } from "../../_elements/ListBox"
-import { useAnimation, useOnClickOutside } from "../../../lab"
+import { KeyCode } from "../../../enums"
+import { updateScroll, useAnimation, useOnClickOutside } from "../../../lab"
 import { ALLOWED_POSITIONS } from "../../../lab/CalculateStyle/types"
+import { useKeyboardNavigation } from "../../../lab/hooks/useKeyboardNavigation"
 import { type DurationAnimation, Item } from "../../types"
 
 import "./styles.css"
@@ -54,6 +56,7 @@ export const SelectField: React.FC<Props> = ({
   const { isClosing } = useAnimation(isOpen, durationAnimation)
 
   const ref = useRef<HTMLDivElement>(null)
+  const refChildren = useRef<HTMLUListElement>(null)
 
   const onClose = (): void => {
     setIsOpen(false)
@@ -69,14 +72,67 @@ export const SelectField: React.FC<Props> = ({
     if (typeof onChange === "function") {
       onChange(value)
     }
-
-    setIsOpen(false)
   }
+
+  const { activeIndex, handleKeyUpAndDown, setActiveIndex } =
+    useKeyboardNavigation(items)
+
+  const handleEnterKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    changeValue(items[activeIndex]?.id)
+    setActiveIndex(-1)
+    onClose()
+  }
+
+  const handleKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (!isOpen) {
+      return
+    }
+
+    switch (event.key) {
+      case KeyCode.ARROW_UP:
+      case KeyCode.ARROW_DOWN:
+        handleKeyUpAndDown(event)
+        break
+
+      case KeyCode.ENTER:
+        handleEnterKey(event)
+        break
+
+      default:
+        break
+    }
+  }
+
+  useEffect(() => {
+    if (refChildren && activeIndex !== -1) {
+      updateScroll(refChildren, activeIndex)
+    }
+  }, [activeIndex, refChildren])
+
+  useEffect(() => {
+    if (defaultItemId && isOpen) {
+      setActiveIndex(
+        defaultItemId
+          ? items.findIndex(({ id }) => id === defaultItemId)
+          : items.findIndex((item) => !item.disabled) ?? 0
+      )
+    }
+  }, [defaultItemId, items, isOpen])
 
   useOnClickOutside(ref, onClose, isOpen)
 
   return (
-    <div className={cn("itpc-select", className)} ref={ref} {...rest}>
+    <div
+      className={cn(
+        "itpc-select",
+        !disabled && "itpc-select_hover",
+        disabled && " itpc-select_disabled",
+        className
+      )}
+      ref={ref}
+      {...rest}
+    >
       <button
         className={cn(
           "itpc-select__button",
@@ -84,9 +140,10 @@ export const SelectField: React.FC<Props> = ({
         )}
         disabled={disabled}
         onClick={handleOpen}
+        onKeyDown={handleKey}
         type="button"
       >
-        <Placeholder focused={isOpen || !!defaultItemId}>
+        <Placeholder disabled={disabled} focused={isOpen || !!defaultItemId}>
           {placeholder}
         </Placeholder>
 
@@ -94,7 +151,11 @@ export const SelectField: React.FC<Props> = ({
           items.find((item) => item.id === defaultItemId)?.value}
       </button>
 
-      <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
+      <IconArrow
+        disabled={disabled}
+        onClick={handleOpen}
+        orientation={isOpen ? "top" : "bottom"}
+      />
 
       <Portal element={document.body}>
         <PositionedWrap
@@ -106,13 +167,16 @@ export const SelectField: React.FC<Props> = ({
           <ListBox
             durationAnimation={durationAnimation}
             isOpen={isOpen ? !isClosing : isOpen}
+            refChildren={refChildren}
             refParent={ref}
           >
-            {items.map((item) => (
+            {items.map((item, itemIndex) => (
               <SelectItem
+                activeIndex={activeIndex}
                 disabled={item.disabled}
                 id={item.id}
                 isActive={defaultItemId === item.id}
+                itemIndex={itemIndex}
                 key={item.id}
                 onChange={changeValue}
               >

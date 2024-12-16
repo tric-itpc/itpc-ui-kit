@@ -31,20 +31,24 @@
   transition: all ease-in-out 0.3s;
 }
 
-.itpc-tabs__button:hover {
-  border-color: var(--itpc-primary-hover-color-component);
+.itpc-tabs__button:disabled {
+  color: var(--itpc-disabled-text-color);
 
-  /* border-color: #6f65cb; */
+  cursor: default;
 }
 
 .itpc-tabs__button_active {
   border-color: var(--itpc-primary-hover-color-component-active);
+}
 
-  /* border-color: #5c53ac; */
+.itpc-tabs__button_active:disabled {
+  border-color: var(--itpc-disabled-border-color);
+}
+
+.itpc-tabs__button_active:disabled:hover {
+  border-color: var(--itpc-disabled-border-color);
 }
 
 .itpc-tabs__button_active:hover {
   border-color: var(--itpc-primary-hover-color-component-active);
-
-  /* border-color: #5c53ac; */
 }

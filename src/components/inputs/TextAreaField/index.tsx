@@ -90,12 +90,14 @@ export const TextAreaField: React.FC<Props> = ({
   return (
     <Field className={cn(className)} {...rest}>
       <InputWrap
+        disabled={disabled}
         focused={focused}
         height={height}
         maxHeight={maxHeight}
         validationState={validationState}
       >
         <Placeholder
+          disabled={disabled}
           focused={focused || value.length > 0}
           htmlFor={id}
           validationState={validationState}

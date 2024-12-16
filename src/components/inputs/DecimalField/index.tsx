@@ -108,8 +108,13 @@ export const DecimalField: React.FC<Props> = ({
 
   return (
     <Field className={className} {...rest}>
-      <InputWrap focused={focused} validationState={validationState}>
+      <InputWrap
+        disabled={disabled}
+        focused={focused}
+        validationState={validationState}
+      >
         <Placeholder
+          disabled={disabled}
           focused={focused || value.length > 0}
           htmlFor={id}
           validationState={validationState}

@@ -1,4 +1,10 @@
-import React, { HTMLAttributes, type RefObject, useRef, useState } from "react"
+import React, {
+  HTMLAttributes,
+  type RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 
 import cn from "classnames"
 
@@ -10,7 +16,13 @@ import {
   SelectItem,
 } from "../../_elements"
 import { ListBox } from "../../_elements/ListBox"
-import { useAnimation, useOnClickOutside } from "../../../lab"
+import { KeyCode } from "../../../enums"
+import {
+  updateScroll,
+  useAnimation,
+  useKeyboardNavigation,
+  useOnClickOutside,
+} from "../../../lab"
 import { type DurationAnimation, Item } from "../../types"
 
 import "./styles.css"
@@ -89,10 +101,63 @@ export const MultiSelectField: React.FC<Props> = ({
     return ""
   }
 
+  const { activeIndex, handleKeyUpAndDown, setActiveIndex } =
+    useKeyboardNavigation(items)
+
+  const handleEnterKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    onChangeValue(items[activeIndex]?.id)
+  }
+
+  const handleKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (!isOpen) {
+      return
+    }
+
+    switch (event.key) {
+      case KeyCode.ARROW_UP:
+      case KeyCode.ARROW_DOWN:
+        handleKeyUpAndDown(event)
+        break
+
+      case KeyCode.ENTER:
+        handleEnterKey(event)
+        break
+
+      default:
+        break
+    }
+  }
+
+  useEffect(() => {
+    if (refChildren && activeIndex !== -1) {
+      updateScroll(refChildren, activeIndex)
+    }
+  }, [activeIndex, refChildren])
+
+  useEffect(() => {
+    if (!!selectedItems.length && isOpen) {
+      setActiveIndex(
+        selectedItems
+          ? items.findIndex(({ id }) => id === selectedItems[0])
+          : items.findIndex((item) => !item.disabled) ?? 0
+      )
+    }
+  }, [isOpen])
+
   useOnClickOutside(ref, onClose, isOpen, refChildren as RefObject<HTMLElement>)
 
   return (
-    <div className={cn("itpc-multi-select", className)} ref={ref} {...rest}>
+    <div
+      className={cn(
+        "itpc-multi-select",
+        disabled && " itpc-multi-select_disabled",
+        !disabled && " itpc-multi-select_hover",
+        className
+      )}
+      ref={ref}
+      {...rest}
+    >
       <button
         className={cn(
           "itpc-multi-select__button",
@@ -100,16 +165,24 @@ export const MultiSelectField: React.FC<Props> = ({
         )}
         disabled={disabled}
         onClick={handleOpen}
+        onKeyDown={handleKey}
         type="button"
       >
-        <Placeholder focused={isOpen || !!selectedItems?.length}>
+        <Placeholder
+          disabled={disabled}
+          focused={isOpen || !!selectedItems?.length}
+        >
           {placeholder}
         </Placeholder>
 
         {selectText()}
       </button>
 
-      <IconArrow onClick={handleOpen} orientation={isOpen ? "top" : "bottom"} />
+      <IconArrow
+        disabled={disabled}
+        onClick={handleOpen}
+        orientation={isOpen ? "top" : "bottom"}
+      />
 
       <Portal element={document.body}>
         <PositionedWrap isClosing={isClosing} isOpen={isOpen} refParent={ref}>
@@ -119,11 +192,13 @@ export const MultiSelectField: React.FC<Props> = ({
             refChildren={refChildren}
             refParent={ref}
           >
-            {items.map((item) => (
+            {items.map((item, itemIndex) => (
               <SelectItem
+                activeIndex={activeIndex}
                 disabled={item.disabled}
                 id={item.id}
                 isActive={selectedItems?.includes(item.id) ?? false}
+                itemIndex={itemIndex}
                 key={item.id}
                 onChange={onChangeValue}
               >

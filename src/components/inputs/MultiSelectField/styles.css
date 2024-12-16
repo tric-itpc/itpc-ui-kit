@@ -13,7 +13,17 @@
   box-shadow: none;
 }
 
-.itpc-multi-select:hover {
+.itpc-multi-select_disabled {
+  color: var(--itpc-disabled-text-color);
+
+  border-color: var(--itpc-disabled-input-border-color);
+  /* background-color: var(--itpc-input-bg-disabled-color); */
+  cursor: not-allowed;
+  pointer-events: none;
+  user-select: none;
+}
+
+.itpc-multi-select_hover:hover {
   border-color: var(--itpc-primary-hover-color-component);
 }
 
@@ -32,6 +42,7 @@
   border-radius: 4px;
   background-color: transparent;
   box-shadow: none;
+  outline: none;
   cursor: pointer;
 }
 

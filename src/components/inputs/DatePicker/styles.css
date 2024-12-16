@@ -8,6 +8,11 @@
   width: 160px;
 }
 
+.itpc-datepicker_disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .itpc-datepicker__input-wrap {
   position: relative;
 
@@ -23,7 +28,11 @@
   background-color: var(--itpc-primary-bg-color);
 }
 
-.itpc-datepicker__input-wrap:hover {
+.itpc-datepicker__input-wrap_disabled {
+  border-color: var(--itpc-disabled-input-border-color);
+}
+
+.itpc-datepicker__input-wrap_hover:hover {
   border-color: var(--itpc-primary-hover-color-component);
 }
 

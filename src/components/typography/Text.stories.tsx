@@ -1,11 +1,47 @@
+import React from "react"
+
 import { Meta, StoryObj } from "@storybook/react"
 
-import { TextSize, TextWeight } from "../../enums"
+import { TextSize, TextTag, TextType, TextWeight } from "../../enums"
 import { Typography } from "../index"
 
 const { Text } = Typography
 
 const meta: Meta<typeof Text> = {
+  argTypes: {
+    size: {
+      options: [
+        TextSize.XXS,
+        TextSize.XS,
+        TextSize.S,
+        TextSize.M,
+        TextSize.L,
+        TextSize.XL,
+        TextSize.XXL,
+      ],
+    },
+    tag: {
+      options: [TextTag.CODE, TextTag.EM, TextTag.PARAGRAPH, TextTag.STRONG],
+    },
+    type: {
+      options: [
+        TextType.PRIMARY,
+        TextType.SECONDARY,
+        TextType.DANGER,
+        TextType.DISABLED,
+        TextType.SUCCESS,
+        TextType.WARNING,
+      ],
+    },
+    weight: {
+      options: [
+        TextWeight.LIGHT,
+        TextWeight.NORMAL,
+        TextWeight.MEDIUM,
+        TextWeight.BOLD,
+      ],
+    },
+  },
   component: Text,
   title: "Typography/Text",
 }
@@ -43,4 +79,12 @@ export const Size: Story = {
     size: TextSize.XXL,
   },
   name: "Размер",
+}
+
+export const Color: Story = {
+  args: {
+    ...Basic.args,
+    type: TextType.DANGER,
+  },
+  name: "Цвет",
 }

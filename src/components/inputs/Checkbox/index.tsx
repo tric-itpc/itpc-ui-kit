@@ -68,6 +68,8 @@ export const Checkbox: React.FC<Props> = ({
   <label
     className={cn(
       "itpc-checkbox",
+      !disabled && "itpc-checkbox_hover",
+      disabled && "itpc-checkbox_disabled",
       isBlurCheckbox && "itpc-checkbox_blur",
       className
     )}

@@ -5,18 +5,22 @@ import cn from "classnames"
 import "./styles.css"
 
 interface Props {
+  activeIndex?: number
   children?: React.ReactNode
   disabled?: boolean
   id: string
   isActive?: boolean
+  itemIndex?: number
   onChange(id: string): void
 }
 
 export const SelectItem: React.FC<Props> = ({
+  activeIndex,
   children,
   disabled,
   id,
   isActive,
+  itemIndex,
   onChange,
 }) => {
   const onClick = (): void => {
@@ -25,11 +29,17 @@ export const SelectItem: React.FC<Props> = ({
     }
   }
 
+  const isActiveIndex =
+    typeof activeIndex === "number" && activeIndex === itemIndex
+
   return (
     <li
       className={cn(
         "itpc-select-item",
-        disabled && "itpc-select-item_disabled"
+        !disabled && "itpc-select-item_clickable",
+        disabled && "itpc-select-item_disabled",
+        !isActiveIndex && isActive && "itpc-select-item_selected",
+        isActiveIndex && "itpc-select-item_active"
       )}
       onClick={onClick}
     >

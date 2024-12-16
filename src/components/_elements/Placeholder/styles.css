@@ -16,6 +16,10 @@
   transition: all 0.3s ease-in-out 0s;
 }
 
+.itpc-placeholder_disabled {
+  color: var(--itpc-disabled-text-color);
+}
+
 .itpc-placeholder_focused {
   top: calc(-8px);
 
