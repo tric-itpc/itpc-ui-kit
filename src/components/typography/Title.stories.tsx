@@ -1,11 +1,42 @@
 import { Meta, StoryObj } from "@storybook/react"
 
-import { TextSize, TextWeight } from "../../enums"
+import { TextSize, TextType, TextWeight } from "../../enums"
 import { Typography } from "../index"
 
 const { Title } = Typography
 
 const meta: Meta<typeof Title> = {
+  argTypes: {
+    size: {
+      options: [
+        TextSize.XXS,
+        TextSize.XS,
+        TextSize.S,
+        TextSize.M,
+        TextSize.L,
+        TextSize.XL,
+        TextSize.XXL,
+      ],
+    },
+    type: {
+      options: [
+        TextType.PRIMARY,
+        TextType.SECONDARY,
+        TextType.DANGER,
+        TextType.DISABLED,
+        TextType.SUCCESS,
+        TextType.WARNING,
+      ],
+    },
+    weight: {
+      options: [
+        TextWeight.LIGHT,
+        TextWeight.NORMAL,
+        TextWeight.MEDIUM,
+        TextWeight.BOLD,
+      ],
+    },
+  },
   component: Title,
   title: "Typography/Title",
 }

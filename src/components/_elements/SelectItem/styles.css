@@ -17,12 +17,22 @@
   cursor: pointer;
 }
 
-.itpc-select-item:hover {
+.itpc-select-item_clickable:hover {
+  background-color: var(--itpc-primary-bg-selected-color);
+}
+
+.itpc-select-item_active {
   background-color: var(--itpc-extra-hover-color-component);
+}
+
+.itpc-select-item_selected {
+  background-color: var(--itpc-primary-bg-selected-color);
 }
 
 .itpc-select-item_disabled {
   opacity: 0.65;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .itpc-select-item__stick {

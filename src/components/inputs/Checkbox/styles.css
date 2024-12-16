@@ -7,6 +7,12 @@
   cursor: pointer;
 }
 
+.itpc-checkbox_disabled {
+  opacity: var(--itpc-opacity-color);
+  cursor: default;
+  pointer-events: none;
+}
+
 .itpc-checkbox_blur {
   opacity: 0.5;
 }
@@ -241,7 +247,7 @@
 .itpc-checkbox__input + .itpc-checkbox__fake_round::after {
   content: "";
   position: absolute;
-  top: 8px;
+  top: 8.2px;
   left: 5px;
 
   display: block;

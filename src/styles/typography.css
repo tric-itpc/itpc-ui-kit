@@ -85,3 +85,25 @@ h1 {
 .itpc-text_through {
   text-decoration: line-through !important;
 }
+
+.itpc-text_color_danger {
+  color: var(--itpc-danger-text-color);
+}
+
+.itpc-text_color_disabled {
+  color: var(--itpc-disabled-text-color);
+}
+
+.itpc-text_color_primary {
+  color: var(--itpc-primary-text-color);
+}
+
+.itpc-text_color_secondary {
+  color: var(--itpc-secondary-text-color);
+}
+.itpc-text_color_success {
+  color: var(--itpc-success-text-color);
+}
+.itpc-text_color_warning {
+  color: var(--itpc-warning-text-color);
+}

@@ -210,18 +210,25 @@ export const DatePicker: React.FC<Props> = ({
 
   return (
     <div
-      className={cn("itpc-datepicker", className)}
+      className={cn(
+        "itpc-datepicker",
+        disabled && "itpc-datepicker_disabled",
+        className
+      )}
       ref={datePickerRef}
       {...rest}
     >
       <div
         className={cn(
           "itpc-datepicker__input-wrap",
+          disabled && "itpc-datepicker__input-wrap_disabled",
+          !disabled && "itpc-datepicker__input-wrap_hover",
           validationState === "invalid" && "itpc-datepicker__input-wrap_error"
         )}
       >
         {placeholder && (
           <Placeholder
+            disabled={disabled}
             focused={focused || !!value.length}
             htmlFor={id}
             validationState={validationState}
@@ -233,6 +240,7 @@ export const DatePicker: React.FC<Props> = ({
         <PatternFormat
           className={cn(
             "itpc-datepicker__input",
+            disabled && "itpc-datepicker__input_disabled",
             (focused || value.length) && "itpc-datepicker__input_focused"
           )}
           disabled={disabled}
@@ -250,7 +258,11 @@ export const DatePicker: React.FC<Props> = ({
         />
 
         {isShowIcon && (
-          <IconCalendar isClickable={isIconClickable} onClick={onClickIcon} />
+          <IconCalendar
+            disabled={disabled}
+            isClickable={isIconClickable}
+            onClick={onClickIcon}
+          />
         )}
 
         <InputError

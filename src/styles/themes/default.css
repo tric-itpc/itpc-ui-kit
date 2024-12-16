@@ -9,6 +9,7 @@
   --itpc-primary-bg-color-component-active: #5c53ac;
 
   --itpc-secondary-bg-color-component: #ffffff;
+  --itpc-primary-bg-selected-color: #f0f0f0;
   --itpc-extra-bg-color-component: #c7ccdb;
   --itpc-disabled-bg-color-component: #b2b7c7;
   --itpc-danger-bg-color-component: #d42564;
@@ -30,6 +31,7 @@
   --itpc-secondary-border-color: #6f65cb;
   --itpc-extra-border-color: #dadada;
   --itpc-input-border-color: #b2b7c7;
+  --itpc-disabled-input-border-color: #c3c3c3;
   --itpc-additional-border-color: #212529;
 
   --itpc-preloader-border-color: rgba(0, 0, 0, 0.25);
@@ -68,4 +70,7 @@
 
   /* Цвета */
   --itpc-white-color: #ffffff;
+
+  /* Прозрачность */
+  --itpc-opacity-color: 0.5;
 }

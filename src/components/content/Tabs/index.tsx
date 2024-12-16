@@ -8,6 +8,7 @@ import "./styles.css"
 
 interface TabButtonProps
   extends Omit<HTMLAttributes<HTMLButtonElement>, "id" | "onClick"> {
+  disabled?: boolean
   id: number
   isActive: boolean
   onClick(id: number): void
@@ -15,6 +16,7 @@ interface TabButtonProps
 }
 
 export const TabButton: React.FC<TabButtonProps> = ({
+  disabled = false,
   id,
   isActive,
   onClick,
@@ -31,6 +33,7 @@ export const TabButton: React.FC<TabButtonProps> = ({
         "itpc-tabs__button",
         isActive && "itpc-tabs__button_active"
       )}
+      disabled={disabled}
       onClick={click}
       type="button"
       {...rest}
@@ -80,6 +83,7 @@ export const Tabs: React.FC<TabsProps> = ({
       <div className="itpc-tabs__buttons">
         {items.map((item, i) => (
           <TabButton
+            disabled={disabled}
             id={i}
             isActive={activeTab === i}
             key={i}
@@ -89,7 +93,7 @@ export const Tabs: React.FC<TabsProps> = ({
         ))}
       </div>
 
-      <div className="itpc-tabs__content">{renderChildren()}</div>
+      <div className={cn("itpc-tabs__content")}>{renderChildren()}</div>
     </div>
   )
 }

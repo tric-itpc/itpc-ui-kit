@@ -16,7 +16,12 @@
   box-shadow: none;
 }
 
-.itpc-input-wrap:hover {
+.itpc-input-wrap_disabled {
+  border-color: var(--itpc-disabled-input-border-color);
+  pointer-events: none;
+}
+
+.itpc-input-wrap_hover:hover {
   border-color: var(--itpc-primary-hover-color-component);
 }
 

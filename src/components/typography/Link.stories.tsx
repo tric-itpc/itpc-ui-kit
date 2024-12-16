@@ -6,6 +6,27 @@ import { Typography } from "../index"
 const { Link } = Typography
 
 const meta: Meta<typeof Link> = {
+  argTypes: {
+    size: {
+      options: [
+        TextSize.XXS,
+        TextSize.XS,
+        TextSize.S,
+        TextSize.M,
+        TextSize.L,
+        TextSize.XL,
+        TextSize.XXL,
+      ],
+    },
+    weight: {
+      options: [
+        TextWeight.LIGHT,
+        TextWeight.NORMAL,
+        TextWeight.MEDIUM,
+        TextWeight.BOLD,
+      ],
+    },
+  },
   component: Link,
   title: "Typography/Link",
 }

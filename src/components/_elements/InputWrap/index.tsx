@@ -8,6 +8,7 @@ import "./styles.css"
 
 interface InputWrapProps {
   children?: React.ReactNode
+  disabled?: boolean
   focused?: boolean
   height?: number
   maxHeight?: number
@@ -16,6 +17,7 @@ interface InputWrapProps {
 
 export const InputWrap: React.FC<InputWrapProps> = ({
   children,
+  disabled,
   focused,
   height = 40,
   maxHeight = 200,
@@ -25,6 +27,8 @@ export const InputWrap: React.FC<InputWrapProps> = ({
     className={cn(
       "itpc-input-wrap",
       focused && "itpc-input-wrap_focused",
+      disabled && "itpc-input-wrap_disabled",
+      !disabled && "itpc-input-wrap_hover",
       validationState === "invalid" && "itpc-input-wrap_error"
     )}
     style={{ height, maxHeight }}
