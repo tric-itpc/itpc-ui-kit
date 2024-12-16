@@ -32,9 +32,20 @@
 .itpc-button:disabled {
   color: var(--itpc-primary-text-color-component);
 
-  border-color: var(--itpc-disabled-border-color);
+  border-color: var(--itpc-disabled-bg-color-component);
   background-color: var(--itpc-disabled-bg-color-component);
   cursor: default;
+}
+
+.itpc-button:disabled:hover {
+  border-color: var(--itpc-disabled-bg-color-component);
+  background-color: var(--itpc-disabled-bg-color-component);
+}
+
+.itpc-button:disabled:active {
+  transition-duration: 0;
+  transform: scale(1);
+  transform-box: stroke-box;
 }
 
 .itpc-button__color_primary {

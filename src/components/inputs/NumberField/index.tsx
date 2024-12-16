@@ -114,8 +114,13 @@ export const NumberField: React.FC<Props> = ({
 
   return (
     <Field className={className} {...rest}>
-      <InputWrap focused={focused} validationState={validationState}>
+      <InputWrap
+        disabled={disabled}
+        focused={focused}
+        validationState={validationState}
+      >
         <Placeholder
+          disabled={disabled}
           focused={focused || !!value.length}
           htmlFor={id}
           validationState={validationState}

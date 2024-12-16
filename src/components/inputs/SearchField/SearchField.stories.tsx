@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 import { Meta, StoryObj } from "@storybook/react"
 
+import { AutoComplete } from "../../../enums"
 import { Item, Preloader } from "../../index"
 
 import { Props, SearchField } from "./index"
@@ -93,9 +94,21 @@ export const Basic: Story = {
 export const Controlled: Story = {
   args: {
     ...Basic.args,
+    autoComplete: AutoComplete.OFF,
     items: mockItems,
   },
   name: "Управляемый",
+  render: (args) => <Template {...args} />,
+}
+
+export const InsertCurrentlySelected: Story = {
+  args: {
+    ...Basic.args,
+    autoComplete: AutoComplete.OFF,
+    isInsertCurrentlySelected: true,
+    items: mockItems,
+  },
+  name: "С подстановкой из списка",
   render: (args) => <Template {...args} />,
 }
 

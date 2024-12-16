@@ -12,7 +12,17 @@
   box-shadow: none;
 }
 
-.itpc-select:hover {
+.itpc-select_disabled {
+  color: var(--itpc-disabled-text-color);
+
+  border-color: var(--itpc-disabled-input-border-color);
+  /* background-color: var(--itpc-input-bg-disabled-color); */
+  cursor: not-allowed;
+  pointer-events: none;
+  user-select: none;
+}
+
+.itpc-select_hover:hover {
   border-color: var(--itpc-primary-hover-color-component);
 }
 
@@ -30,6 +40,7 @@
   border: none;
   background-color: transparent;
   box-shadow: none;
+  outline: none;
   cursor: pointer;
 }
 

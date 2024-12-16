@@ -81,3 +81,15 @@ export enum AnimationTypes {
   TRANSFORM_BY_AXIS_X = "transform-by-axis-x",
   TRANSFORM_BY_AXIS_X_Y = "transform-by-axis-x_y",
 }
+
+export enum KeyCode {
+  ARROW_DOWN = "ArrowDown",
+  ARROW_UP = "ArrowUp",
+  ENTER = "Enter",
+  ESCAPE = "Escape",
+}
+
+export enum AutoComplete {
+  OFF = "off",
+  ON = "on",
+}

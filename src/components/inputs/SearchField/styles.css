@@ -14,8 +14,13 @@
   box-shadow: none;
 }
 
-.itpc-search-field:hover {
+.itpc-search-field_hover:hover {
   border-color: var(--itpc-primary-hover-color-component);
+}
+
+.itpc-search-field_disabled {
+  border-color: var(--itpc-disabled-input-border-color);
+  pointer-events: none;
 }
 
 .itpc-search-field > .itpc-field {
@@ -25,4 +30,8 @@
 
 .itpc-search-field > .itpc-field > .itpc-input-wrap {
   border: none;
+}
+
+.itpc-search-field__no-suggestions {
+  gap: 4px;
 }

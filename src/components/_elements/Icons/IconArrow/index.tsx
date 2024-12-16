@@ -7,14 +7,20 @@ import { Orientation } from "../../../types"
 import "./styles.css"
 
 interface Props {
+  disabled?: boolean
   onClick?: () => void
   orientation: Orientation
 }
 
-export const IconArrow: React.FC<Props> = ({ onClick, orientation }) => (
+export const IconArrow: React.FC<Props> = ({
+  disabled,
+  onClick,
+  orientation,
+}) => (
   <i
     className={cn(
       "itpc-icon__arrow",
+      disabled && "itpc-icon__arrow_disabled",
       orientation === "top" && "itpc-icon__arrow_orientation_top",
       orientation === "bottom" && "itpc-icon__arrow_orientation_bottom",
       orientation === "left" && "itpc-icon__arrow_orientation_left",

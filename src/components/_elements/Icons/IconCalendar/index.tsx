@@ -6,15 +6,21 @@ import cn from "classnames"
 import "./styles.css"
 
 interface Props {
+  disabled?: boolean
   isClickable: boolean
   onClick(): void
 }
 
-export const IconCalendar: React.FC<Props> = ({ isClickable, onClick }) => (
+export const IconCalendar: React.FC<Props> = ({
+  disabled,
+  isClickable,
+  onClick,
+}) => (
   <i
     className={cn(
       "itpc-icon__calendar",
-      isClickable && "itpc-icon__calendar_clickable"
+      isClickable && "itpc-icon__calendar_clickable",
+      disabled && "itpc-icon__calendar_disabled"
     )}
     onClick={onClick}
   >

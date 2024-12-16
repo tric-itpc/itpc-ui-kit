@@ -9,12 +9,17 @@ import {
   InputWrap,
   Placeholder,
 } from "../../_elements"
+import type { AutoComplete } from "../../../enums"
 import { InputType, ValidationState } from "../../types"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+  /** Параметры autoComplete */
+  autoComplete?: AutoComplete
   /** Дополнительный класс */
   className?: string
+  /** Строка поиска по умолчанию */
+  defaultItem?: string
   /** Отключение */
   disabled?: boolean
   /** Текст ошибки */
@@ -31,8 +36,12 @@ export interface Props
   onBlur?: () => void
   /** Обработчик изменения значения */
   onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void
-  /** Обработчик получения фокуса */
+  /** Обработчик клика по полю ввода */
+  onClickInput?: () => void
+  /** Обработчик установки фокуса */
   onFocus?: () => void
+  /** Обработчик нажатия на клавишу */
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void
   /** Подпись */
   placeholder?: string
   /** Тип инпута */
@@ -44,7 +53,9 @@ export interface Props
 }
 
 export const TextField: React.FC<Props> = ({
+  autoComplete,
   className = "",
+  defaultItem,
   disabled = false,
   errorMessage = "",
   icon,
@@ -53,7 +64,9 @@ export const TextField: React.FC<Props> = ({
   name = "itpc-input",
   onBlur,
   onChange,
+  onClickInput,
   onFocus,
+  onKeyDown,
   placeholder = "",
   type = "text",
   validationState = "valid",
@@ -73,6 +86,10 @@ export const TextField: React.FC<Props> = ({
   const onFocusInput = (): void => {
     onHandleFocused(true)
 
+    if (defaultItem && onClickInput) {
+      onClickInput()
+    }
+
     if (onFocus) {
       onFocus()
     }
@@ -88,7 +105,8 @@ export const TextField: React.FC<Props> = ({
     <Field className={cn(className)} {...rest}>
       <InputWrap focused={focused} validationState={validationState}>
         <Placeholder
-          focused={focused || value.length > 0}
+          disabled={disabled}
+          focused={focused || value.length > 0 || !!defaultItem}
           htmlFor={id}
           validationState={validationState}
         >
@@ -100,6 +118,7 @@ export const TextField: React.FC<Props> = ({
             "itpc-input",
             (focused || !!value.length) && "itpc-input_focused"
           )}
+          autoComplete={autoComplete}
           disabled={disabled}
           id={id}
           maxLength={maxLength}
@@ -107,6 +126,7 @@ export const TextField: React.FC<Props> = ({
           onBlur={onBlurInput}
           onChange={onChangeInput}
           onFocus={onFocusInput}
+          onKeyDown={onKeyDown}
           type={type}
           value={value}
         />
