@@ -8,6 +8,7 @@ import "./styles.css"
 
 interface Props {
   children?: React.ReactNode
+  className?: string
   disabled?: boolean
   focused?: boolean
   htmlFor?: string
@@ -16,6 +17,7 @@ interface Props {
 
 export const Placeholder: React.FC<Props> = ({
   children,
+  className,
   disabled,
   focused,
   htmlFor,
@@ -24,6 +26,7 @@ export const Placeholder: React.FC<Props> = ({
   <label
     className={cn(
       "itpc-placeholder",
+      className,
       disabled && "itpc-placeholder_disabled",
       focused && "itpc-placeholder_focused",
       validationState === "invalid" && "itpc-placeholder_color_red"

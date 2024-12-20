@@ -33,8 +33,18 @@ export const Basic: Story = {
 export const Controlled: Story = {
   args: {
     ...Basic.args,
+    maxHeight: 92,
   },
   name: "Управляемый",
+  render: (args) => <Template {...args} />,
+}
+
+export const Fix: Story = {
+  args: {
+    ...Basic.args,
+    fixedHeight: 92,
+  },
+  name: "Фиксированная высота",
   render: (args) => <Template {...args} />,
 }
 

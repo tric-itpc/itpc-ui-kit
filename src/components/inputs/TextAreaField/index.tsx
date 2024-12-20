@@ -5,6 +5,9 @@ import cn from "classnames"
 import { Field, InputError, InputWrap, Placeholder } from "../../_elements"
 import { ValidationState } from "../../types"
 
+import "./styles.css"
+import { DEFAULT_HEIGHT } from "./constants"
+
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   /** Дополнительный класс */
@@ -13,6 +16,8 @@ export interface Props
   disabled?: boolean
   /** Текст ошибки */
   errorMessage?: string
+  /** Фиксированная высота */
+  fixedHeight?: number
   /** Идентификатор */
   id: string
   /** Максимальная высота */
@@ -40,6 +45,7 @@ export const TextAreaField: React.FC<Props> = ({
   className = "",
   disabled = false,
   errorMessage = "",
+  fixedHeight,
   id = "itpc-input",
   maxHeight,
   name = "itpc-input",
@@ -52,7 +58,9 @@ export const TextAreaField: React.FC<Props> = ({
   ...rest
 }) => {
   const [focused, onHandleFocused] = useState<boolean>(false)
-  const [height, setHeight] = useState<number>(40)
+  const [height, setHeight] = useState<number>(
+    fixedHeight ? fixedHeight : DEFAULT_HEIGHT
+  )
 
   const ref = useRef<HTMLTextAreaElement>(null)
 
@@ -76,29 +84,48 @@ export const TextAreaField: React.FC<Props> = ({
   const onChangeTextArea = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ): void => {
-    setHeight(40)
-
-    if (ref.current?.scrollHeight && ref.current.scrollHeight > 40) {
-      setHeight(ref.current.scrollHeight)
-    }
+    const { scrollHeight } = ref.current || {}
+    const newHeight = calculateHeight(scrollHeight)
+    setHeight(newHeight)
 
     if (onChange) {
       onChange(event.currentTarget.value, event)
     }
   }
 
+  const calculateHeight = (scrollHeight: number | undefined): number => {
+    if (!scrollHeight) {
+      return fixedHeight || DEFAULT_HEIGHT
+    }
+
+    if (!fixedHeight) {
+      return scrollHeight > DEFAULT_HEIGHT ? scrollHeight : DEFAULT_HEIGHT
+    }
+
+    return scrollHeight > fixedHeight ? scrollHeight : fixedHeight
+  }
+
+  const isFocused = focused || !!value.length
+
   return (
     <Field className={cn(className)} {...rest}>
       <InputWrap
         disabled={disabled}
+        fixedHeight={fixedHeight}
         focused={focused}
         height={height}
         maxHeight={maxHeight}
         validationState={validationState}
       >
         <Placeholder
+          className={cn(
+            fixedHeight &&
+              fixedHeight > DEFAULT_HEIGHT &&
+              !isFocused &&
+              "itpc-textarea_placeholder"
+          )}
           disabled={disabled}
-          focused={focused || value.length > 0}
+          focused={isFocused}
           htmlFor={id}
           validationState={validationState}
         >
@@ -106,10 +133,7 @@ export const TextAreaField: React.FC<Props> = ({
         </Placeholder>
 
         <textarea
-          className={cn(
-            "itpc-input",
-            (focused || !!value.length) && "itpc-input_focused"
-          )}
+          className={cn("itpc-input", isFocused && "itpc-input_focused")}
           disabled={disabled}
           id={id}
           name={name}
