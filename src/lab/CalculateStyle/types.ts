@@ -44,8 +44,3 @@ export interface GetHorizontalPositionArg {
   parentWidth: number
   scrollbarWidth: number
 }
-
-export interface TransformOriginArg {
-  childrenRef: React.RefObject<HTMLDivElement>
-  parentRef: React.RefObject<HTMLDivElement>
-}

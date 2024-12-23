@@ -1,0 +1,263 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент Popup Применение варианта success (снапшот) 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened itpc-popup_color_success"
+    role="popup"
+    style="left: calc(50% - 0px); top: calc(50% - 0px);"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Применение варианта success 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened itpc-popup_color_success"
+    role="popup"
+    style="left: calc(50% - 0px); top: calc(50% - 0px);"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Применение дополнительных классов (снапшот) 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened custom-class"
+    role="popup"
+    style="left: calc(50% - 0px); top: calc(50% - 0px);"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Применение дополнительных классов 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened custom-class"
+    role="popup"
+    style="left: calc(50% - 0px); top: calc(50% - 0px);"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Применение позиции (снапшот) 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened"
+    role="popup"
+    style="left: 1rem; top: 1rem;"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Применение позиции 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened"
+    role="popup"
+    style="left: 1rem; top: 1rem;"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Применение размера normal (снапшот) 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened"
+    role="popup"
+    style="left: calc(50% - 0px); top: calc(50% - 0px);"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+    </div>
+    <p>
+      Контент попапа
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Применение размера normal 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened"
+    role="popup"
+    style="left: calc(50% - 0px); top: calc(50% - 0px);"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+    </div>
+    <p>
+      Контент попапа
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Рендер с иконкой закрытия (снапшот) 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened"
+    role="popup"
+    style="left: calc(50% - 0px); top: calc(50% - 0px);"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+      <span
+        data-testid="close-icon"
+      >
+        ×
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Рендер с иконкой закрытия 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened"
+    role="popup"
+    style="left: calc(50% - 0px); top: calc(50% - 0px);"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+      <span
+        data-testid="close-icon"
+      >
+        ×
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Рендер с контентом (снапшот) 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened"
+    role="popup"
+    style="left: calc(50% - 0px); top: calc(50% - 0px);"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+    </div>
+    <p>
+      Контент попапа
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Popup Рендер с контентом 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-popup itpc-popup_opened"
+    role="popup"
+    style="left: calc(50% - 0px); top: calc(50% - 0px);"
+  >
+    <div
+      class="itpc-popup__header"
+    >
+      <p
+        class="itpc-popup__title"
+      >
+        Заголовок
+      </p>
+    </div>
+    <p>
+      Контент попапа
+    </p>
+  </div>
+</DocumentFragment>
+`;

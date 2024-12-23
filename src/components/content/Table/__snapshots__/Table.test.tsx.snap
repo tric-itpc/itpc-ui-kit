@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент Cell должен соответствовать снапшоту 1`] = `
+<DocumentFragment>
+  Ячейка
+</DocumentFragment>
+`;
+
+exports[`Компонент Table должен соответствовать снапшоту 1`] = `
+<DocumentFragment>
+  <table
+    class="itpc-table"
+    id=""
+  />
+  Содержимое
+   
+  таблицы
+</DocumentFragment>
+`;
+
+exports[`Компонент TableBody должен соответствовать снапшоту 1`] = `
+<DocumentFragment>
+  Содержимое
+</DocumentFragment>
+`;
+
+exports[`Компонент TableFooter должен соответствовать снапшоту 1`] = `
+<DocumentFragment>
+  Футер
+</DocumentFragment>
+`;
+
+exports[`Компонент TableHeader должен соответствовать снапшоту 1`] = `
+<DocumentFragment>
+  Заголовок
+</DocumentFragment>
+`;
+
+exports[`Компонент TableRow должен соответствовать снапшоту 1`] = `
+<DocumentFragment>
+  Строка
+</DocumentFragment>
+`;
+
+exports[`КомпонентTableColumn должен соответствовать снапшоту 1`] = `
+<DocumentFragment>
+  Колонка
+</DocumentFragment>
+`;

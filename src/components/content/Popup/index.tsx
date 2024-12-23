@@ -49,6 +49,7 @@ export const Popup: React.FC<Props> = ({
 
   return (
     <div
+      {...rest}
       className={cn(
         "itpc-popup",
         isOpen && "itpc-popup_opened",
@@ -59,8 +60,8 @@ export const Popup: React.FC<Props> = ({
         className
       )}
       ref={ref}
+      role="popup"
       style={getPosition(position, width, height)}
-      {...rest}
     >
       <div className="itpc-popup__header">
         <p className="itpc-popup__title">{title}</p>

@@ -136,6 +136,7 @@ export const CalendarTimes: React.FC<Props> = ({
           format="##"
           mask={["Ч", "Ч"]}
           onValueChange={changeHours}
+          role="hours"
           value={hours}
           allowEmptyFormatting
           valueIsNumericString
@@ -168,6 +169,7 @@ export const CalendarTimes: React.FC<Props> = ({
           format="##"
           mask={["М", "М"]}
           onValueChange={changeMinutes}
+          role="minutes"
           value={minutes}
           allowEmptyFormatting
           valueIsNumericString
@@ -200,6 +202,7 @@ export const CalendarTimes: React.FC<Props> = ({
           format="##"
           mask={["С", "С"]}
           onValueChange={changeSeconds}
+          role="seconds"
           value={seconds}
           allowEmptyFormatting
           valueIsNumericString

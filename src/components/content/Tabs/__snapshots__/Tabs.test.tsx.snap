@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент TabButton должен соответствовать снапшоту 1`] = `
+<DocumentFragment>
+  <button
+    class="itpc-tabs__button"
+    type="button"
+  >
+    Вкладка 1
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Компонент Tabs должен соответствовать снапшоту 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-tabs"
+  >
+    <div
+      class="itpc-tabs__buttons"
+    >
+      <button
+        class="itpc-tabs__button itpc-tabs__button_active"
+        type="button"
+      >
+        Вкладка 1
+      </button>
+      <button
+        class="itpc-tabs__button"
+        type="button"
+      >
+        Вкладка 2
+      </button>
+      <button
+        class="itpc-tabs__button"
+        type="button"
+      >
+        Вкладка 3
+      </button>
+    </div>
+    <div
+      class="itpc-tabs__content"
+    >
+      <div>
+        Контент для Вкладки 1
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

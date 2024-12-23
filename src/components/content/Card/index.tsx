@@ -6,7 +6,7 @@ import "./styles.css"
 
 export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   /** Атрибуты тела карточки */
-  bodyAttr?: HTMLAttributes<HTMLDivElement>
+  bodyAttr?: HTMLAttributes<HTMLDivElement> & { "data-testid"?: string }
   /** Контент */
   children?: React.ReactNode
   /** Дополнительный класс */
@@ -16,7 +16,7 @@ export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   /** Заголовок карточки */
   title?: React.ReactNode
   /** Атрибуты заголовка карточки */
-  titleAttr?: HTMLAttributes<HTMLParagraphElement>
+  titleAttr?: HTMLAttributes<HTMLParagraphElement> & { "data-testid"?: string }
 }
 
 export const Card: React.FC<Props> = ({
@@ -29,8 +29,8 @@ export const Card: React.FC<Props> = ({
   ...rest
 }) => (
   <div
-    className={cn("itpc-card", isBordered && "itpc-card_bordered", className)}
     {...rest}
+    className={cn("itpc-card", isBordered && "itpc-card_bordered", className)}
   >
     {title && (
       <p className="itpc-card__title" {...titleAttr}>

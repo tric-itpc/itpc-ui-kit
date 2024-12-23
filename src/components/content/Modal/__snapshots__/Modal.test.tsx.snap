@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент Modal Снимок Modal без контента 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-modal-overlay itpc-modal-overlay_opened"
+  >
+    <div
+      class="itpc-modal itpc-modal_opened"
+      id="itpc-modal"
+    >
+      <div
+        class="itpc-modal__header"
+      >
+        Modal Title
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Modal Снимок Modal с заголовком и контентом 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-modal-overlay itpc-modal-overlay_opened"
+  >
+    <div
+      class="itpc-modal itpc-modal_opened"
+      id="itpc-modal"
+    >
+      <div
+        class="itpc-modal__header"
+      >
+        Modal Title
+      </div>
+      <p>
+        Modal Content
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Modal Снимок Modal с иконкой закрытия 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-modal-overlay itpc-modal-overlay_opened"
+  >
+    <div
+      class="itpc-modal itpc-modal_opened"
+      id="itpc-modal"
+    >
+      <div
+        class="itpc-modal__header"
+      >
+        Modal Title
+        <button>
+          Close
+        </button>
+      </div>
+      <p>
+        Modal Content
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

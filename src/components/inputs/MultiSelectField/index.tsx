@@ -84,11 +84,15 @@ export const MultiSelectField: React.FC<Props> = ({
 
       if (select.has(value)) {
         select.delete(value)
-        onChange(Array.from(select))
-        return
+      } else {
+        select.add(value)
       }
 
-      select.add(value)
+      console.log("value", value)
+      console.log("select.has(value)", select.has(value))
+      console.log("selectedItems", selectedItems)
+      console.log("Array.from(select)", Array.from(select))
+
       onChange(Array.from(select))
     }
   }
@@ -193,6 +197,7 @@ export const MultiSelectField: React.FC<Props> = ({
 
   return (
     <div
+      {...rest}
       className={cn(
         "itpc-multi-select",
         disabled && " itpc-multi-select_disabled",
@@ -200,7 +205,6 @@ export const MultiSelectField: React.FC<Props> = ({
         className
       )}
       ref={ref}
-      {...rest}
     >
       <button
         className={cn(

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент Field Рендерится корректно (snapshot) 1`] = `
+<div
+  class="itpc-field custom-class"
+  data-testid="field-container"
+>
+  <p>
+    Тестовый текст
+  </p>
+</div>
+`;

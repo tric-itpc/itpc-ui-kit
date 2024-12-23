@@ -18,7 +18,7 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
   /** Подсказка */
   tooltip?: string
   /** Атрибуты подсказки */
-  tooltipAttr?: HTMLAttributes<HTMLSpanElement>
+  tooltipAttr?: HTMLAttributes<HTMLSpanElement> & { "data-testid"?: string }
   /** Тип кнопки */
   type?: ButtonType
 }
@@ -41,11 +41,11 @@ export const ButtonRound: React.FC<Props> = ({
 
   return (
     <button
+      {...rest}
       className={cn("itpc-button-round", className)}
       disabled={disabled}
       onClick={onClick}
       type={type}
-      {...rest}
     >
       {children}
 

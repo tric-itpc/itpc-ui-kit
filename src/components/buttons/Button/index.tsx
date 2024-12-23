@@ -38,11 +38,11 @@ export const Button: React.FC<Props> = ({
 
   return (
     <button
+      {...rest}
       className={cn("itpc-button", `itpc-button__color_${variant}`, className)}
       disabled={disabled}
       onClick={onClick}
       type={type}
-      {...rest}
     >
       {children}
     </button>

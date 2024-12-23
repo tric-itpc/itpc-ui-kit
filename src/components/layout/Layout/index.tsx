@@ -17,8 +17,9 @@ export const Layout: React.FC<LayoutProps> = ({
   children,
   className,
   style,
+  ...props
 }) => (
-  <div className={cn("itpc-layout", className)} style={style}>
+  <div {...props} className={cn("itpc-layout", className)} style={style}>
     {children}
   </div>
 )

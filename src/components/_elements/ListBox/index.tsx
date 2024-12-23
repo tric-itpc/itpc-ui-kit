@@ -12,7 +12,7 @@ import {
 
 import "./styles.css"
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLUListElement> {
   children?: React.ReactNode
   durationAnimation: DurationAnimation
   isOpen: boolean
@@ -26,6 +26,7 @@ export const ListBox: React.FC<Props> = ({
   isOpen,
   refChildren,
   refParent,
+  ...rest
 }) => {
   const { windowWidth } = useWindowSize()
   const localRef = useRef<HTMLUListElement>(null)
@@ -52,21 +53,26 @@ export const ListBox: React.FC<Props> = ({
         refParent,
         (refChildren as React.RefObject<HTMLUListElement>) || localRef
       )
+      console.log("transformOrigin:", animationTransform)
       setStyleAnimation({
         transformOrigin: animationTransform,
       })
     }
   }, [isOpen, refParent?.current])
 
+  console.log("ref: ", ref)
+  console.log("refParent?.current: ", refParent?.current)
+
   return (
     <ul
       className={cn(
         "itpc-list-box",
-        isOpen && "itpc-list-box_opened",
-        !isOpen && "itpc-list-box_closed"
+        isOpen ? "itpc-list-box_opened" : "itpc-list-box_closed"
       )}
       ref={refChildren || localRef}
+      role="listbox"
       style={styleAnimation}
+      {...rest}
     >
       {children}
     </ul>

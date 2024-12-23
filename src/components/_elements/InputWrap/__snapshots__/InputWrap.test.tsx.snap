@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент InputWrap Рендерится корректно (snapshot) 1`] = `
+<div>
+  <div
+    class="itpc-input-wrap itpc-input-wrap_hover"
+    data-testid="input-wrap"
+    style="height: 40px; max-height: 200px;"
+  >
+    <input
+      type="text"
+    />
+  </div>
+</div>
+`;

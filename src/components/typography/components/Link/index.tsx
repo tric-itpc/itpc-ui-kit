@@ -30,20 +30,28 @@ export const Link: React.FC<LinkProps> = ({
   underline = true,
   weight = TextWeight.NORMAL,
   ...rest
-}) => (
-  <a
-    className={generateClassList({
-      className,
-      disabled,
-      size,
-      through,
-      underline,
-      weight,
-    })}
-    onClick={onClick}
-    style={style}
-    {...rest}
-  >
-    {children}
-  </a>
-)
+}) => {
+  const click = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!disabled && onClick) {
+      onClick(e)
+    }
+  }
+
+  return (
+    <a
+      className={generateClassList({
+        className,
+        disabled,
+        size,
+        through,
+        underline,
+        weight,
+      })}
+      onClick={click}
+      style={style}
+      {...rest}
+    >
+      {children}
+    </a>
+  )
+}

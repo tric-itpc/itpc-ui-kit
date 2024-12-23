@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент Preloader Снапшот с дополнительным классом 1`] = `
+<DocumentFragment>
+  <span
+    class="itpc-preloader custom-class"
+    role="preloader"
+  />
+</DocumentFragment>
+`;
+
+exports[`Компонент Preloader Снапшот с дополнительными атрибутами 1`] = `
+<DocumentFragment>
+  <span
+    aria-label="loading"
+    class="itpc-preloader custom-class"
+    role="preloader"
+  />
+</DocumentFragment>
+`;
+
+exports[`Компонент Preloader Снапшот с обязательными пропсами 1`] = `
+<DocumentFragment>
+  <span
+    class="itpc-preloader"
+    role="preloader"
+  />
+</DocumentFragment>
+`;

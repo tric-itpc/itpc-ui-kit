@@ -23,6 +23,7 @@ export const IconCalendar: React.FC<Props> = ({
       disabled && "itpc-icon__calendar_disabled"
     )}
     onClick={onClick}
+    role="iconCalendar"
   >
     <svg
       height="20"
