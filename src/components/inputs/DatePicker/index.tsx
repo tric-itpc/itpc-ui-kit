@@ -210,13 +210,13 @@ export const DatePicker: React.FC<Props> = ({
 
   return (
     <div
+      {...rest}
       className={cn(
         "itpc-datepicker",
         disabled && "itpc-datepicker_disabled",
         className
       )}
       ref={datePickerRef}
-      {...rest}
     >
       <div
         className={cn(

@@ -22,7 +22,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   id = "",
   ...rest
 }) => (
-  <thead className={cn("itpc-table__head")} id={id} {...rest}>
+  <thead {...rest} className={cn("itpc-table__head")} id={id}>
     {children}
   </thead>
 )
@@ -34,7 +34,7 @@ export interface TableBodyProps
 }
 
 export const TableBody: React.FC<TableBodyProps> = ({ children, ...rest }) => (
-  <tbody className="itpc-table__body" {...rest}>
+  <tbody {...rest} className="itpc-table__body">
     {children}
   </tbody>
 )
@@ -49,7 +49,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
   children,
   ...rest
 }) => (
-  <tfoot className="itpc-table__footer" {...rest}>
+  <tfoot {...rest} className="itpc-table__footer">
     {children}
   </tfoot>
 )
@@ -70,10 +70,10 @@ export const TableRow: React.FC<TableRowProps> = ({
   ...rest
 }) => (
   <tr
+    {...rest}
     className={cn("itpc-table__row", onPressRow && "itpc-table__row_clickable")}
     id={id}
     onClick={onPressRow && onPressRow}
-    {...rest}
   >
     {children}
   </tr>
@@ -96,13 +96,13 @@ export const TableColumn: React.FC<TableColumnProps> = ({
   ...rest
 }) => (
   <th
+    {...rest}
     className={cn(
       "itpc-table__column",
       onPressColumn && "itpc-table__column_clickable"
     )}
     id={id}
     onClick={onPressColumn && onPressColumn}
-    {...rest}
   >
     {children}
   </th>
@@ -124,13 +124,13 @@ export const Cell: React.FC<CellProps> = ({
   ...rest
 }) => (
   <td
+    {...rest}
     className={cn(
       "itpc-table__cell",
       onPressCell && "itpc-table__cell_clickable"
     )}
     id={id}
     onClick={onPressCell && onPressCell}
-    {...rest}
   >
     {children}
   </td>
@@ -154,7 +154,7 @@ export const Table: React.FC<TableProps> = ({
   title,
   ...rest
 }) => (
-  <table className={cn("itpc-table", className)} id={id} {...rest}>
+  <table {...rest} className={cn("itpc-table", className)} id={id}>
     {title && <caption className="itpc-table__caption">{title}</caption>}
     {children}
   </table>

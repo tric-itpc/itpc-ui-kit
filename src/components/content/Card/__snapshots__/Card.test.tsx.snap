@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент Card Снимок Card без заголовка и детей 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-card"
+  >
+    <p
+      class="itpc-card__title"
+    >
+      Test Card
+    </p>
+    <div
+      class="itpc-card__body"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Card Снимок Card с заголовком и детьми 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-card custom-class"
+  >
+    <p
+      class="itpc-card__title"
+    >
+      Test Card
+    </p>
+    <div
+      class="itpc-card__body"
+    >
+      <div>
+        Content
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Компонент Card Снимок Card с рамкой 1`] = `
+<DocumentFragment>
+  <div
+    class="itpc-card itpc-card_bordered"
+  >
+    <p
+      class="itpc-card__title"
+    >
+      Test Card
+    </p>
+    <div
+      class="itpc-card__body"
+    />
+  </div>
+</DocumentFragment>
+`;

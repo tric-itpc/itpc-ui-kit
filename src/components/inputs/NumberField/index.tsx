@@ -74,7 +74,7 @@ export const NumberField: React.FC<Props> = ({
   onFocus,
   placeholder = "",
   prefix = "",
-  replaceValue,
+  replaceValue = (value) => value,
   validationState = "valid",
   value = "",
   ...rest
@@ -82,6 +82,7 @@ export const NumberField: React.FC<Props> = ({
   const [focused, onHandleFocused] = useState<boolean>(false)
 
   const onBlurInput = (): void => {
+    console.log("blur")
     onHandleFocused(false)
 
     if (onBlur) {
@@ -90,6 +91,7 @@ export const NumberField: React.FC<Props> = ({
   }
 
   const onFocusInput = (): void => {
+    console.log("focus")
     onHandleFocused(true)
 
     if (onFocus) {
@@ -101,7 +103,7 @@ export const NumberField: React.FC<Props> = ({
     values: NumberFormatValues,
     sourceInfo: SourceInfo
   ): void => {
-    if (onChange) {
+    if (onChange && !disabled) {
       onChange(
         {
           formattedValue: values.formattedValue,
@@ -113,7 +115,7 @@ export const NumberField: React.FC<Props> = ({
   }
 
   return (
-    <Field className={className} {...rest}>
+    <Field {...rest} className={className}>
       <InputWrap
         disabled={disabled}
         focused={focused}

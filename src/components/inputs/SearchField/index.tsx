@@ -91,6 +91,7 @@ export const SearchField: React.FC<Props> = ({
   const refChildren = useRef<HTMLUListElement>(null)
 
   const closeSuggestions = (): void => {
+    console.log("closeSuggestions")
     setIsOpenedSuggestions(false)
   }
 
@@ -292,6 +293,7 @@ export const SearchField: React.FC<Props> = ({
 
   return (
     <div
+      {...rest}
       className={cn(
         "itpc-search-field",
         !disabled && "itpc-search-field_hover ",
@@ -299,7 +301,6 @@ export const SearchField: React.FC<Props> = ({
         className
       )}
       ref={ref}
-      {...rest}
     >
       <TextField
         autoComplete={autoComplete}
@@ -308,6 +309,7 @@ export const SearchField: React.FC<Props> = ({
         icon={<div onClick={clear}>{icon}</div>}
         id="itpc-search-field"
         name="itpc-search-field"
+        onBlur={closeSuggestions}
         onChange={changeValue}
         onClickInput={onClickInput}
         onFocus={openSuggestions}

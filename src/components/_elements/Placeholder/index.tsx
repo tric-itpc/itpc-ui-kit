@@ -6,7 +6,7 @@ import { ValidationState } from "../../types"
 
 import "./styles.css"
 
-interface Props {
+interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> {
   children?: React.ReactNode
   className?: string
   disabled?: boolean
@@ -22,6 +22,7 @@ export const Placeholder: React.FC<Props> = ({
   focused,
   htmlFor,
   validationState,
+  ...rest
 }) => (
   <label
     className={cn(
@@ -32,6 +33,7 @@ export const Placeholder: React.FC<Props> = ({
       validationState === "invalid" && "itpc-placeholder_color_red"
     )}
     htmlFor={htmlFor}
+    {...rest}
   >
     {children}
   </label>

@@ -50,6 +50,7 @@ export const CalendarCell: React.FC<Props> = ({
       )}
       id={id}
       onClick={click}
+      role="cell"
     >
       <p className="itpc-calendar__text">
         {isHeader && dayOfTheWeek !== undefined

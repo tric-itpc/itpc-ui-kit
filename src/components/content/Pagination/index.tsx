@@ -136,7 +136,7 @@ export const Pagination: FC<Props> = ({
   }, [dataLength, step])
 
   return (
-    <div className={cn("itpc-pagination", className)} {...rest}>
+    <div {...rest} className={cn("itpc-pagination", className)}>
       <button
         className="itpc-pagination__btn itpc-pagination__btn_left"
         disabled={!startPagination || !dataLength}

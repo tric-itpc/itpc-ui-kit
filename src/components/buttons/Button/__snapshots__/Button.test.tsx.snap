@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент Button Рендерится с вариантом 'primary' (снимок) 1`] = `
+<button
+  class="itpc-button itpc-button__color_primary test-class"
+  type="button"
+>
+  Нажми меня
+</button>
+`;
+
+exports[`Компонент Button Рендерится с вариантом 'red' (снимок) 1`] = `
+<button
+  class="itpc-button itpc-button__color_red test-class"
+  type="button"
+>
+  Нажми меня
+</button>
+`;
+
+exports[`Компонент Button Рендерится с вариантом 'white' (снимок) 1`] = `
+<button
+  class="itpc-button itpc-button__color_white test-class"
+  type="button"
+>
+  Нажми меня
+</button>
+`;
+
+exports[`Компонент Button Рендерится с дефолтными пропсами (снимок) 1`] = `
+<button
+  class="itpc-button itpc-button__color_primary test-class"
+  type="button"
+>
+  Нажми меня
+</button>
+`;
+
+exports[`Компонент Button Рендерится с типом кнопки 'button' (снимок) 1`] = `
+<button
+  class="itpc-button itpc-button__color_primary test-class"
+  type="button"
+>
+  Нажми меня
+</button>
+`;
+
+exports[`Компонент Button Рендерится с типом кнопки 'reset' (снимок) 1`] = `
+<button
+  class="itpc-button itpc-button__color_primary test-class"
+  type="reset"
+>
+  Нажми меня
+</button>
+`;
+
+exports[`Компонент Button Рендерится с типом кнопки 'submit' (снимок) 1`] = `
+<button
+  class="itpc-button itpc-button__color_primary test-class"
+  type="submit"
+>
+  Нажми меня
+</button>
+`;

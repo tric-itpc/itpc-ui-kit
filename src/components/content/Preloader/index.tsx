@@ -12,4 +12,10 @@ export interface PreloaderProps extends HTMLAttributes<HTMLSpanElement> {
 export const Preloader: React.FC<PreloaderProps> = ({
   className = "",
   ...rest
-}) => <span className={cn("itpc-preloader", className)} {...rest} />
+}) => (
+  <span
+    {...rest}
+    className={cn("itpc-preloader", className)}
+    role="preloader"
+  />
+)

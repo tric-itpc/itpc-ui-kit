@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент InputError Рендерится корректно (snapshot) 1`] = `
+<span
+  class="itpc-error itpc-error_show"
+  title="Ошибка"
+>
+  Ошибка
+</span>
+`;

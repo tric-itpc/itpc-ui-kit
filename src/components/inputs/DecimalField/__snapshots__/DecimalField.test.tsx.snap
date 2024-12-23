@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент DecimalField Корректно рендерится 1`] = `
+<div>
+  <div
+    class="itpc-field"
+    data-testid="decimal-field"
+  >
+    <div
+      class="itpc-input-wrap itpc-input-wrap_hover"
+      style="height: 40px; max-height: 200px;"
+    >
+      <label
+        class="itpc-placeholder"
+        for="decimal-input"
+      >
+        Введите число
+      </label>
+      <input
+        class="itpc-input"
+        id="decimal-input"
+        name="decimal-input"
+        type="text"
+        value=""
+      />
+      <span
+        class="itpc-error itpc-error_type_valid"
+        title=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Компонент DecimalField корректно рендерится 1`] = `
+<div>
+  <div
+    class="itpc-field"
+    data-testid="decimal-field"
+  >
+    <div
+      class="itpc-input-wrap itpc-input-wrap_hover"
+      style="height: 40px; max-height: 200px;"
+    >
+      <label
+        class="itpc-placeholder"
+        for="decimal-input"
+      >
+        Введите число
+      </label>
+      <input
+        class="itpc-input"
+        id="decimal-input"
+        name="decimal-input"
+        type="text"
+        value=""
+      />
+      <span
+        class="itpc-error itpc-error_type_valid"
+        title=""
+      />
+    </div>
+  </div>
+</div>
+`;
