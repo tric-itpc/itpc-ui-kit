@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент TableSort должен корректно рендериться 1`] = `
+<table
+  class="itpc-table-sort"
+  title="Test Table"
+>
+  <thead
+    class="itpc-table-sort__head"
+  >
+    <tr>
+      <th
+        class="itpc-table-sort__head-no-sort"
+      >
+        <div
+          class="itpc-table-sort__wrap-cell"
+        >
+          Name
+        </div>
+      </th>
+      <th
+        class="itpc-table-sort__head-no-sort"
+      >
+        <div
+          class="itpc-table-sort__wrap-cell"
+        >
+          Age
+        </div>
+      </th>
+      <th
+        class="itpc-table-sort__head-no-sort"
+      >
+        <div
+          class="itpc-table-sort__wrap-cell"
+        >
+          Location
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    class="itpc-table-sort__body"
+  >
+    <tr
+      class="itpc-table-sort__row"
+    >
+      <td
+        class="itpc-table-sort__cell"
+      >
+        Alice
+      </td>
+      <td
+        class="itpc-table-sort__cell"
+      >
+        30
+      </td>
+      <td
+        class="itpc-table-sort__cell"
+      >
+        New York
+      </td>
+    </tr>
+    <tr
+      class="itpc-table-sort__row"
+    >
+      <td
+        class="itpc-table-sort__cell"
+      >
+        Bob
+      </td>
+      <td
+        class="itpc-table-sort__cell"
+      >
+        25
+      </td>
+      <td
+        class="itpc-table-sort__cell"
+      >
+        Los Angeles
+      </td>
+    </tr>
+    <tr
+      class="itpc-table-sort__row"
+    >
+      <td
+        class="itpc-table-sort__cell"
+      >
+        Charlie
+      </td>
+      <td
+        class="itpc-table-sort__cell"
+      >
+        35
+      </td>
+      <td
+        class="itpc-table-sort__cell"
+      >
+        Chicago
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

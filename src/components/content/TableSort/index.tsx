@@ -114,7 +114,7 @@ export const TableSort: React.FC<TableSortProps<any>> = ({
   }
 
   return (
-    <table className={cn("itpc-table-sort", className)} {...rest}>
+    <table {...rest} className={cn("itpc-table-sort", className)}>
       {columns?.length && (
         <TableSortHeader
           columns={columns}

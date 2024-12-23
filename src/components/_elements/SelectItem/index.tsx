@@ -24,6 +24,7 @@ export const SelectItem: React.FC<Props> = ({
   itemIndex,
   onChange,
   onMouseEnter,
+  ...rest
 }) => {
   const onClick = (): void => {
     if (!disabled) {
@@ -46,6 +47,7 @@ export const SelectItem: React.FC<Props> = ({
       )}
       onClick={onClick}
       onMouseEnter={() => onMouseEnter && onMouseEnter(itemIndex)}
+      {...rest}
     >
       <span
         className={cn(

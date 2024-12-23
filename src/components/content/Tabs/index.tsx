@@ -29,6 +29,7 @@ export const TabButton: React.FC<TabButtonProps> = ({
 
   return (
     <button
+      {...rest}
       className={cn(
         "itpc-tabs__button",
         isActive && "itpc-tabs__button_active"
@@ -36,7 +37,6 @@ export const TabButton: React.FC<TabButtonProps> = ({
       disabled={disabled}
       onClick={click}
       type="button"
-      {...rest}
     >
       {title}
     </button>
@@ -79,7 +79,7 @@ export const Tabs: React.FC<TabsProps> = ({
     React.cloneElement(items[activeTab].content, { ...childProps })
 
   return (
-    <div className={cn("itpc-tabs", className)} {...rest}>
+    <div {...rest} className={cn("itpc-tabs", className)}>
       <div className="itpc-tabs__buttons">
         {items.map((item, i) => (
           <TabButton

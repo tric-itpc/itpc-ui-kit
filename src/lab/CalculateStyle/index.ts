@@ -1,4 +1,4 @@
-import type { CSSProperties, RefObject } from "react"
+import React, { CSSProperties, RefObject } from "react"
 
 import {
   getDocumentDimensions,
@@ -61,10 +61,12 @@ export const getHorizontalPosition = (
         if (parentWidth + parentLeft > currentWidth) {
           return HORIZONTAL_POSITION.RIGHT
         }
+
         return HORIZONTAL_POSITION.CALCULATED
       }
     }
   }
+
   return HORIZONTAL_POSITION.CALCULATED
 }
 
@@ -79,6 +81,7 @@ export const getVerticalPosition = (
   const distanceUnder: number = documentHeight - parentBottom
   const currentDistanceBetweenElements =
     distanceBetweenElements ?? DEFAULT_DISTANCE_BETWEEN_ELEMENTS
+
   if (
     distanceUnder >
     (ref.current?.offsetHeight ?? 0) + currentDistanceBetweenElements

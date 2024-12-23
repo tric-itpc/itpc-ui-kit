@@ -15,7 +15,7 @@ export const AccordionArrow: React.FC<AccordionArrowProps> = ({
   isOpened,
   ...rest
 }) => (
-  <span className={cn("itpc-accordion-arrow")} {...rest}>
+  <span {...rest} className={cn("itpc-accordion-arrow")}>
     <IconArrow orientation={isOpened ? "top" : "bottom"} />
   </span>
 )
@@ -33,11 +33,11 @@ export const AccordionBody: React.FC<AccordionBodyProps> = ({
   ...rest
 }) => (
   <div
+    {...rest}
     className={cn(
       "itpc-accordion-body",
       isOpened && "itpc-accordion-body_opened"
     )}
-    {...rest}
   >
     {children}
   </div>
@@ -64,6 +64,7 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
   ...rest
 }) => (
   <div
+    {...rest}
     className={cn(
       "itpc-accordion-header",
       isOpened && "itpc-accordion-header_opened",
@@ -71,7 +72,6 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
     )}
     id={id}
     onClick={onPress}
-    {...rest}
   >
     {children}
   </div>
@@ -86,7 +86,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   children,
   ...rest
 }) => (
-  <div className={cn("itpc-accordion-item")} {...rest}>
+  <div {...rest} className={cn("itpc-accordion-item")}>
     {children}
   </div>
 )
@@ -103,7 +103,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   className = "",
   ...rest
 }) => (
-  <div className={cn("itpc-accordion", className)} {...rest}>
+  <div {...rest} className={cn("itpc-accordion", className)}>
     {children}
   </div>
 )

@@ -6,7 +6,7 @@ import { ValidationState } from "../../types"
 
 import "./styles.css"
 
-interface InputWrapProps {
+interface InputWrapProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode
   disabled?: boolean
   fixedHeight?: number
@@ -24,6 +24,7 @@ export const InputWrap: React.FC<InputWrapProps> = ({
   height = 40,
   maxHeight = 200,
   validationState,
+  ...rest
 }) => (
   <div
     className={cn(
@@ -34,6 +35,7 @@ export const InputWrap: React.FC<InputWrapProps> = ({
       validationState === "invalid" && "itpc-input-wrap_error"
     )}
     style={{ height, maxHeight: fixedHeight ? fixedHeight : maxHeight }}
+    {...rest}
   >
     {children}
   </div>

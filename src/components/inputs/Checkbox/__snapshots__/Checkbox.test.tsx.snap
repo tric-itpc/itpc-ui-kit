@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент Checkbox должен соответствовать снапшоту 1`] = `
+<DocumentFragment>
+  <label
+    class="itpc-checkbox itpc-checkbox_hover"
+  >
+    <input
+      class="itpc-checkbox__input"
+      id="test-checkbox"
+      name="test"
+      type="checkbox"
+    />
+    <div
+      class="itpc-checkbox__fake itpc-checkbox__fake_android"
+    />
+    <span
+      class="itpc-checkbox__label"
+    >
+      Тестовый чекбокс
+    </span>
+  </label>
+</DocumentFragment>
+`;

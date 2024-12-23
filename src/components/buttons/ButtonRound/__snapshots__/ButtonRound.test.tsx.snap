@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент ButtonRound Рендерится с дефолтными пропсами (снимок) 1`] = `
+<button
+  class="itpc-button-round test-class"
+  type="button"
+>
+  Круглая кнопка
+  <span
+    class="itpc-tooltip"
+    data-testid="tooltip"
+  >
+    Подсказка
+  </span>
+</button>
+`;
+
+exports[`Компонент ButtonRound Рендерится с типом кнопки 'button' (снимок) 1`] = `
+<button
+  class="itpc-button-round test-class"
+  type="button"
+>
+  Круглая кнопка
+  <span
+    class="itpc-tooltip"
+    data-testid="tooltip"
+  >
+    Подсказка
+  </span>
+</button>
+`;
+
+exports[`Компонент ButtonRound Рендерится с типом кнопки 'reset' (снимок) 1`] = `
+<button
+  class="itpc-button-round test-class"
+  type="reset"
+>
+  Круглая кнопка
+  <span
+    class="itpc-tooltip"
+    data-testid="tooltip"
+  >
+    Подсказка
+  </span>
+</button>
+`;
+
+exports[`Компонент ButtonRound Рендерится с типом кнопки 'submit' (снимок) 1`] = `
+<button
+  class="itpc-button-round test-class"
+  type="submit"
+>
+  Круглая кнопка
+  <span
+    class="itpc-tooltip"
+    data-testid="tooltip"
+  >
+    Подсказка
+  </span>
+</button>
+`;

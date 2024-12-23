@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент SearchField Рендерится с дефолтными пропсами (снимок) 1`] = `
+<div
+  class="itpc-search-field itpc-search-field_hover "
+  data-testid="search-field"
+>
+  <div
+    class="itpc-field"
+  >
+    <div
+      class="itpc-input-wrap itpc-input-wrap_hover"
+      style="height: 40px; max-height: 200px;"
+    >
+      <label
+        class="itpc-placeholder"
+        for="itpc-search-field"
+      >
+        Search...
+      </label>
+      <input
+        autocomplete="off"
+        class="itpc-input"
+        id="itpc-search-field"
+        name="itpc-search-field"
+        type="text"
+        value=""
+      />
+      <span
+        class="itpc-error"
+        title=""
+      />
+      <span
+        class="itpc-input-icon"
+      >
+        <div />
+      </span>
+    </div>
+  </div>
+</div>
+`;

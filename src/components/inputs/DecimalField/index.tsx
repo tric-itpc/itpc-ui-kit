@@ -107,7 +107,7 @@ export const DecimalField: React.FC<Props> = ({
   }
 
   return (
-    <Field className={className} {...rest}>
+    <Field {...rest} className={className}>
       <InputWrap
         disabled={disabled}
         focused={focused}

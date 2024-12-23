@@ -24,6 +24,7 @@ export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Flex: React.FC<FlexProps> = ({ children, style, ...props }) => (
   <div
+    {...props}
     className={generateClassList(props)}
     style={{ gap: props.gap, ...style }}
   >

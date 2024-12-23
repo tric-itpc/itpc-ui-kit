@@ -29,6 +29,7 @@ export const Col: React.FC<ColProps> = ({ children, ...props }) => {
 
   return (
     <div
+      {...props}
       className={generateColClassList(props)}
       style={generateColStyle(props, gap)}
     >
@@ -65,6 +66,7 @@ export const Row: React.FC<RowProps> = ({
   return (
     <RowContext.Provider value={rowContext}>
       <div
+        {...props}
         className={generateRowClassList({ wrap, ...props })}
         style={generateRowStyle(props)}
       >

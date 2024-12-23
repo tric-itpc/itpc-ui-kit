@@ -164,6 +164,7 @@ export const SelectField: React.FC<Props> = ({
 
   return (
     <div
+      {...rest}
       className={cn(
         "itpc-select",
         !disabled && "itpc-select_hover",
@@ -171,7 +172,6 @@ export const SelectField: React.FC<Props> = ({
         className
       )}
       ref={ref}
-      {...rest}
     >
       <button
         className={cn(

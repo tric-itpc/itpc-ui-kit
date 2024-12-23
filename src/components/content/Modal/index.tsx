@@ -50,6 +50,7 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
+      {...rest}
       className={cn(
         "itpc-modal-overlay",
         isOpenModal && "itpc-modal-overlay_opened",
@@ -58,7 +59,6 @@ export const Modal: React.FC<ModalProps> = ({
         className
       )}
       onClick={onCloseOverlay}
-      {...rest}
     >
       <div
         className={cn(
@@ -93,7 +93,7 @@ export const ModalContent: React.FC<ModalContentProps> = ({
   className = "",
   ...rest
 }: ModalContentProps) => (
-  <div className={cn("itpc-modal__content", className)} {...rest}>
+  <div {...rest} className={cn("itpc-modal__content", className)}>
     {children}
   </div>
 )
@@ -110,7 +110,7 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
   className = "",
   ...rest
 }: ModalFooterProps) => (
-  <div className={cn("itpc-modal__footer", className)} {...rest}>
+  <div {...rest} className={cn("itpc-modal__footer", className)}>
     {children}
   </div>
 )

@@ -74,7 +74,6 @@ export const TextAreaField: React.FC<Props> = ({
 
   const onFocusTextArea = (): void => {
     onHandleFocused(true)
-    ref.current?.focus()
 
     if (onFocus) {
       onFocus()
@@ -108,7 +107,7 @@ export const TextAreaField: React.FC<Props> = ({
   const isFocused = focused || !!value.length
 
   return (
-    <Field className={cn(className)} {...rest}>
+    <Field {...rest} className={cn(className)}>
       <InputWrap
         disabled={disabled}
         fixedHeight={fixedHeight}

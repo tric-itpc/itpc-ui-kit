@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент TextAreaField Рендерится с дефолтными пропсами (снимок) 1`] = `
+<div
+  class="itpc-field"
+  data-testid="textarea-field"
+>
+  <div
+    class="itpc-input-wrap itpc-input-wrap_hover"
+    style="height: 40px; max-height: 200px;"
+  >
+    <label
+      class="itpc-placeholder"
+      for="test-textarea"
+    >
+      Введите текст
+    </label>
+    <textarea
+      class="itpc-input"
+      id="test-textarea"
+      name="test-textarea"
+    />
+    <span
+      class="itpc-error"
+      title=""
+    />
+  </div>
+</div>
+`;
