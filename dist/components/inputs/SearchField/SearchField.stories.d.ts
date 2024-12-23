@@ -5,4 +5,5 @@ export default meta;
 type Story = StoryObj<typeof SearchField>;
 export declare const Basic: Story;
 export declare const Controlled: Story;
+export declare const InsertCurrentlySelected: Story;
 export declare const Disabled: Story;

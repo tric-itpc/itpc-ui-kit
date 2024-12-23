@@ -5,7 +5,7 @@ export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
     align?: CSSProperties["alignItems"];
     /** Контент */
     children?: React.ReactNode;
-    /** Дополнительный класс */
+    /** Дополнительный класс */
     className?: string;
     /** Расстояние между элементами */
     gap?: number;

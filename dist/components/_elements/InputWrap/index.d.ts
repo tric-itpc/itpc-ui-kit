@@ -3,6 +3,8 @@ import { ValidationState } from "../../types";
 import "./styles.css";
 interface InputWrapProps {
     children?: React.ReactNode;
+    disabled?: boolean;
+    fixedHeight?: number;
     focused?: boolean;
     height?: number;
     maxHeight?: number;

@@ -1,5 +1,6 @@
 import React, { HTMLAttributes } from "react";
 import { ValidationState } from "../../types";
+import "./styles.css";
 export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
     /** Дополнительный класс */
     className?: string;
@@ -7,6 +8,8 @@ export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> 
     disabled?: boolean;
     /** Текст ошибки */
     errorMessage?: string;
+    /** Фиксированная высота */
+    fixedHeight?: number;
     /** Идентификатор */
     id: string;
     /** Максимальная высота */

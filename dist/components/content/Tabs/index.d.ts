@@ -2,6 +2,7 @@ import React, { HTMLAttributes } from "react";
 import { TabsItem } from "../../types";
 import "./styles.css";
 interface TabButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>, "id" | "onClick"> {
+    disabled?: boolean;
     id: number;
     isActive: boolean;
     onClick(id: number): void;
