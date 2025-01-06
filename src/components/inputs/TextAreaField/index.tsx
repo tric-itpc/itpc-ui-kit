@@ -5,8 +5,8 @@ import cn from "classnames"
 import { Field, InputError, InputWrap, Placeholder } from "../../_elements"
 import { ValidationState } from "../../types"
 
-import "./styles.css"
 import { DEFAULT_HEIGHT } from "./constants"
+import "./styles.css"
 
 export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {

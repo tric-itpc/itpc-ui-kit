@@ -11,8 +11,17 @@ import {
 } from "../../_elements"
 import { ListBox } from "../../_elements/ListBox"
 import { KeyCode } from "../../../enums"
-import { updateScroll, useAnimation, useOnClickOutside } from "../../../lab"
-import { ALLOWED_POSITIONS } from "../../../lab/CalculateStyle/types"
+import {
+  updateScroll,
+  useAnimation,
+  useHoveredIndex,
+  useMouseMovement,
+  useOnClickOutside,
+} from "../../../lab"
+import {
+  ALLOWED_POSITIONS,
+  HORIZONTAL_POSITION,
+} from "../../../lab/CalculateStyle/types"
 import { useKeyboardNavigation } from "../../../lab/hooks/useKeyboardNavigation"
 import { type DurationAnimation, Item } from "../../types"
 
@@ -77,6 +86,16 @@ export const SelectField: React.FC<Props> = ({
   const { activeIndex, handleKeyUpAndDown, setActiveIndex } =
     useKeyboardNavigation(items)
 
+  const { isMouseMoved, setIsMouseMoved } = useMouseMovement(refChildren)
+
+  const hoveredIndex = useHoveredIndex(refChildren, items)
+
+  const onMouseEnter = (index: number): void => {
+    if (isMouseMoved) {
+      setActiveIndex(index)
+    }
+  }
+
   const handleEnterKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     event.preventDefault()
     changeValue(items[activeIndex]?.id)
@@ -87,6 +106,10 @@ export const SelectField: React.FC<Props> = ({
   const handleKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (!isOpen) {
       return
+    }
+
+    if (isMouseMoved) {
+      setIsMouseMoved(false)
     }
 
     switch (event.key) {
@@ -119,6 +142,23 @@ export const SelectField: React.FC<Props> = ({
       )
     }
   }, [defaultItemId, items, isOpen])
+
+  useEffect(() => {
+    if (isMouseMoved) {
+      const isDisabledItem = items.find(
+        (_, index) => hoveredIndex === index
+      )?.disabled
+
+      if (
+        !isDisabledItem &&
+        typeof hoveredIndex === "number" &&
+        hoveredIndex >= 0 &&
+        hoveredIndex !== activeIndex
+      ) {
+        setActiveIndex(hoveredIndex)
+      }
+    }
+  }, [isMouseMoved])
 
   useOnClickOutside(ref, onClose, isOpen)
 
@@ -159,6 +199,7 @@ export const SelectField: React.FC<Props> = ({
 
       <Portal element={document.body}>
         <PositionedWrap
+          horizontalAlignment={HORIZONTAL_POSITION.LEFT}
           isClosing={isClosing}
           isOpen={isOpen}
           position={position}
@@ -179,6 +220,7 @@ export const SelectField: React.FC<Props> = ({
                 itemIndex={itemIndex}
                 key={item.id}
                 onChange={changeValue}
+                onMouseEnter={onMouseEnter}
               >
                 {item.value}
               </SelectItem>

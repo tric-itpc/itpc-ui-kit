@@ -7,9 +7,7 @@
   overflow: hidden;
   box-sizing: border-box;
   min-height: 40px;
-  max-height: 40px;
   padding: 0.75rem;
-
   font-size: var(--itpc-font-size-xs);
   color: var(--itpc-primary-text-color);
 
@@ -17,7 +15,7 @@
   cursor: pointer;
 }
 
-.itpc-select-item_clickable:hover {
+.itpc-select-item_clickable_hover {
   background-color: var(--itpc-primary-bg-selected-color);
 }
 
@@ -37,11 +35,11 @@
 
 .itpc-select-item__stick {
   position: absolute;
-  top: 6px;
+  top: 15%;
   left: -4px;
 
   width: 4px;
-  height: 30px;
+  height: 70%;
 
   border-radius: 0 3px 3px 0;
   background-color: var(--itpc-primary-icon-color);
