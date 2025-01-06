@@ -93,7 +93,8 @@ export const getCalculatePosition = (
   refParent: React.RefObject<HTMLDivElement>,
   refChildren: React.RefObject<HTMLDivElement | HTMLUListElement>,
   position: PositionType,
-  distanceBetweenElements?: number
+  distanceBetweenElements?: number,
+  horizontalAlignment?: HORIZONTAL_POSITION
 ): CSSProperties => {
   if (
     position !== ALLOWED_POSITIONS.ABSOLUTE &&
@@ -127,9 +128,9 @@ export const getCalculatePosition = (
       scrollbarWidth,
     }
 
-    const horizontalPosition: HORIZONTAL_POSITION = getHorizontalPosition(
-      argHorizontalPosition
-    )
+    const horizontalPosition: HORIZONTAL_POSITION = horizontalAlignment
+      ? horizontalAlignment
+      : getHorizontalPosition(argHorizontalPosition)
 
     const distanceUnderInput: number = documentHeight - parentBottom
 
