@@ -20,9 +20,12 @@ import { KeyCode } from "../../../enums"
 import {
   updateScroll,
   useAnimation,
+  useHoveredIndex,
   useKeyboardNavigation,
+  useMouseMovement,
   useOnClickOutside,
 } from "../../../lab"
+import { HORIZONTAL_POSITION } from "../../../lab/CalculateStyle/types"
 import { type DurationAnimation, Item } from "../../types"
 
 import "./styles.css"
@@ -62,6 +65,7 @@ export const MultiSelectField: React.FC<Props> = ({
   const { isClosing } = useAnimation(isOpen, durationAnimation)
 
   const ref = useRef<HTMLDivElement>(null)
+  const refButton = useRef<HTMLButtonElement>(null)
   const refChildren = useRef<HTMLUListElement>(null)
 
   const onClose = (): void => {
@@ -104,6 +108,24 @@ export const MultiSelectField: React.FC<Props> = ({
   const { activeIndex, handleKeyUpAndDown, setActiveIndex } =
     useKeyboardNavigation(items)
 
+  const { isMouseMoved, setIsMouseMoved } = useMouseMovement(refChildren)
+
+  const hoveredIndex = useHoveredIndex(refChildren, items)
+
+  const handleMouseSelection = (value: string) => {
+    onChangeValue(value)
+    setIsMouseMoved(false)
+    const index = items.findIndex((item) => item.id === value)
+    setActiveIndex(index)
+    refButton.current?.focus()
+  }
+
+  const onMouseEnter = (index: number): void => {
+    if (isMouseMoved) {
+      setActiveIndex(index)
+    }
+  }
+
   const handleEnterKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     event.preventDefault()
     onChangeValue(items[activeIndex]?.id)
@@ -114,6 +136,9 @@ export const MultiSelectField: React.FC<Props> = ({
       return
     }
 
+    if (isMouseMoved) {
+      setIsMouseMoved(false)
+    }
     switch (event.key) {
       case KeyCode.ARROW_UP:
       case KeyCode.ARROW_DOWN:
@@ -139,11 +164,30 @@ export const MultiSelectField: React.FC<Props> = ({
     if (!!selectedItems.length && isOpen) {
       setActiveIndex(
         selectedItems
-          ? items.findIndex(({ id }) => id === selectedItems[0])
+          ? items.findIndex(
+              ({ id }) => id === selectedItems[selectedItems.length - 1]
+            )
           : items.findIndex((item) => !item.disabled) ?? 0
       )
     }
   }, [isOpen])
+
+  useEffect(() => {
+    if (isMouseMoved) {
+      const isDisabledItem = items.find(
+        (_, index) => hoveredIndex === index
+      )?.disabled
+
+      if (
+        !isDisabledItem &&
+        typeof hoveredIndex === "number" &&
+        hoveredIndex >= 0 &&
+        hoveredIndex !== activeIndex
+      ) {
+        setActiveIndex(hoveredIndex)
+      }
+    }
+  }, [isMouseMoved])
 
   useOnClickOutside(ref, onClose, isOpen, refChildren as RefObject<HTMLElement>)
 
@@ -166,6 +210,7 @@ export const MultiSelectField: React.FC<Props> = ({
         disabled={disabled}
         onClick={handleOpen}
         onKeyDown={handleKey}
+        ref={refButton}
         type="button"
       >
         <Placeholder
@@ -185,7 +230,12 @@ export const MultiSelectField: React.FC<Props> = ({
       />
 
       <Portal element={document.body}>
-        <PositionedWrap isClosing={isClosing} isOpen={isOpen} refParent={ref}>
+        <PositionedWrap
+          horizontalAlignment={HORIZONTAL_POSITION.LEFT}
+          isClosing={isClosing}
+          isOpen={isOpen}
+          refParent={ref}
+        >
           <ListBox
             durationAnimation={durationAnimation}
             isOpen={isOpen ? !isClosing : isOpen}
@@ -200,7 +250,8 @@ export const MultiSelectField: React.FC<Props> = ({
                 isActive={selectedItems?.includes(item.id) ?? false}
                 itemIndex={itemIndex}
                 key={item.id}
-                onChange={onChangeValue}
+                onChange={handleMouseSelection}
+                onMouseEnter={onMouseEnter}
               >
                 {item.value}
               </SelectItem>

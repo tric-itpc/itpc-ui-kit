@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 
 import cn from "classnames"
 
+import { useWindowSize } from "../../../lab"
 import { getTransformOriginByAxisX } from "../../../lab/getTransformOriginByAxisX"
 import { setDurationAnimation } from "../../../lab/setDurationAnimation/setDurationAnimation"
 import {
@@ -26,6 +27,7 @@ export const ListBox: React.FC<Props> = ({
   refChildren,
   refParent,
 }) => {
+  const { windowWidth } = useWindowSize()
   const localRef = useRef<HTMLUListElement>(null)
 
   const ref = refChildren?.current || localRef.current
@@ -42,7 +44,7 @@ export const ListBox: React.FC<Props> = ({
       )
       ref.style.width = `${refParent.current.offsetWidth}px`
     }
-  }, [durationAnimation, refChildren, refParent])
+  }, [durationAnimation, refChildren, refParent, windowWidth])
 
   useEffect(() => {
     if (isOpen && refParent?.current && ref) {

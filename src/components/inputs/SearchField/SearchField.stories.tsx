@@ -19,7 +19,8 @@ type Story = StoryObj<typeof SearchField>
 const mockItems: Item[] = [
   {
     id: "1",
-    value: "Cat",
+    value:
+      "Cat Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorevm ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
   {
     id: "2",

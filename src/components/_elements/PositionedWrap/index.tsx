@@ -5,6 +5,7 @@ import cn from "classnames"
 import { getCalculatePosition } from "../../../lab/CalculateStyle"
 import {
   ALLOWED_POSITIONS,
+  HORIZONTAL_POSITION,
   type PositionType,
 } from "../../../lab/CalculateStyle/types"
 
@@ -13,6 +14,7 @@ import "./styles.css"
 interface PositionedWrapProps {
   children: React.ReactNode
   distanceBetweenElements?: number
+  horizontalAlignment?: HORIZONTAL_POSITION
   isClosing: boolean
   isOpen: boolean
   position?: PositionType
@@ -22,6 +24,7 @@ interface PositionedWrapProps {
 export const PositionedWrap: React.FC<PositionedWrapProps> = ({
   children,
   distanceBetweenElements,
+  horizontalAlignment,
   isClosing,
   isOpen,
   position = ALLOWED_POSITIONS.FIXED,
@@ -35,7 +38,8 @@ export const PositionedWrap: React.FC<PositionedWrapProps> = ({
         refParent,
         ref,
         position,
-        distanceBetweenElements
+        distanceBetweenElements,
+        horizontalAlignment
       )
       setStylePosition(stylePosition)
     }

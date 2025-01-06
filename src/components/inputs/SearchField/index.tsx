@@ -9,9 +9,12 @@ import {
   updateScroll,
   useAnimation,
   useDebounce,
+  useHoveredIndex,
   useKeyboardNavigation,
+  useMouseMovement,
   useOnClickOutside,
 } from "../../../lab"
+import { HORIZONTAL_POSITION } from "../../../lab/CalculateStyle/types"
 import { type DurationAnimation, Item } from "../../types"
 import { TextField } from "../TextField"
 
@@ -139,7 +142,17 @@ export const SearchField: React.FC<Props> = ({
   const { activeIndex, handleKeyUpAndDown, setActiveIndex } =
     useKeyboardNavigation(filteredItems)
 
+  const { isMouseMoved, setIsMouseMoved } = useMouseMovement(refChildren)
+
+  const hoveredIndex = useHoveredIndex(refChildren, filteredItems)
+
   const { isClosing } = useAnimation(isShowListResult, durationAnimation)
+
+  const onMouseEnter = (index: number): void => {
+    if (isMouseMoved) {
+      setActiveIndex(index)
+    }
+  }
 
   const handleArrowKeys = (event: React.KeyboardEvent<HTMLInputElement>) => {
     handleKeyUpAndDown(event)
@@ -152,6 +165,7 @@ export const SearchField: React.FC<Props> = ({
   }
 
   const handleEnterKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    event.preventDefault()
     setIsBlockFetch(false)
 
     const itemToChange =
@@ -173,6 +187,10 @@ export const SearchField: React.FC<Props> = ({
   const handleKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (!isOpenedSuggestions) {
       return
+    }
+
+    if (isMouseMoved) {
+      setIsMouseMoved(false)
     }
 
     switch (event.key) {
@@ -238,7 +256,7 @@ export const SearchField: React.FC<Props> = ({
       updateScroll(refChildren, activeIndex)
     }
 
-    if (isInsertCurrentlySelected && !!filteredArray.length) {
+    if (isInsertCurrentlySelected && !!filteredArray.length && !isMouseMoved) {
       if (!isBlockFetch) {
         setIsBlockFetch(true)
       }
@@ -254,8 +272,21 @@ export const SearchField: React.FC<Props> = ({
           ? filteredItems.findIndex(({ id }) => id === currentItem)
           : filteredItems.findIndex((item) => !item.disabled) ?? 0
       )
+    } else {
+      setIsBlockFetch(false)
     }
   }, [isOpenedSuggestions])
+
+  useEffect(() => {
+    if (
+      isMouseMoved &&
+      typeof hoveredIndex === "number" &&
+      hoveredIndex >= 0 &&
+      hoveredIndex !== activeIndex
+    ) {
+      setActiveIndex(hoveredIndex)
+    }
+  }, [isMouseMoved])
 
   useOnClickOutside(ref, closeSuggestions)
 
@@ -288,6 +319,7 @@ export const SearchField: React.FC<Props> = ({
 
       <Portal element={document.body}>
         <PositionedWrap
+          horizontalAlignment={HORIZONTAL_POSITION.LEFT}
           isClosing={isClosing}
           isOpen={isShowListResult}
           refParent={ref}
@@ -308,6 +340,7 @@ export const SearchField: React.FC<Props> = ({
                     itemIndex={itemIndex}
                     key={item.id}
                     onChange={changeItem}
+                    onMouseEnter={onMouseEnter}
                   >
                     {item.value}
                   </SelectItem>
