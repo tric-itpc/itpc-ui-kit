@@ -50,6 +50,17 @@ export const Controlled: Story = {
   render: (args) => <Template {...args} />,
 }
 
+export const СanEmptyString: Story = {
+  args: {
+    ...Basic.args,
+    accuracy: 2,
+    canEmptyString: true,
+    id: "сan-empty-string",
+  },
+  name: "С пустым значением",
+  render: (args) => <Template {...args} />,
+}
+
 export const Disabled: Story = {
   args: {
     ...Basic.args,
