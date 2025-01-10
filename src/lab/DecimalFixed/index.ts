@@ -28,7 +28,7 @@ export class DecimalFixed implements IDecimalFixed {
   }
 
   generate(): string {
-    return this.fraction === null
+    return !this.accuracy || this.fraction === null
       ? this.empty && this.int === null
         ? ""
         : String(this.int)
