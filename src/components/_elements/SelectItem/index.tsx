@@ -10,8 +10,9 @@ interface Props {
   disabled?: boolean
   id: string
   isActive?: boolean
-  itemIndex?: number
+  itemIndex: number
   onChange(id: string): void
+  onMouseEnter?(index: number): void
 }
 
 export const SelectItem: React.FC<Props> = ({
@@ -22,6 +23,7 @@ export const SelectItem: React.FC<Props> = ({
   isActive,
   itemIndex,
   onChange,
+  onMouseEnter,
 }) => {
   const onClick = (): void => {
     if (!disabled) {
@@ -37,11 +39,13 @@ export const SelectItem: React.FC<Props> = ({
       className={cn(
         "itpc-select-item",
         !disabled && "itpc-select-item_clickable",
+        !disabled && isActiveIndex && "itpc-select-item_clickable_hover",
         disabled && "itpc-select-item_disabled",
         !isActiveIndex && isActive && "itpc-select-item_selected",
         isActiveIndex && "itpc-select-item_active"
       )}
       onClick={onClick}
+      onMouseEnter={() => onMouseEnter && onMouseEnter(itemIndex)}
     >
       <span
         className={cn(

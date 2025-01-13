@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.itpc-select-item_clickable:hover {
+.itpc-select-item_clickable_hover {
   background-color: var(--itpc-primary-bg-selected-color);
 }
 
