@@ -88,11 +88,6 @@ export const MultiSelectField: React.FC<Props> = ({
         select.add(value)
       }
 
-      console.log("value", value)
-      console.log("select.has(value)", select.has(value))
-      console.log("selectedItems", selectedItems)
-      console.log("Array.from(select)", Array.from(select))
-
       onChange(Array.from(select))
     }
   }

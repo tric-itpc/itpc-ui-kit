@@ -53,15 +53,11 @@ export const ListBox: React.FC<Props> = ({
         refParent,
         (refChildren as React.RefObject<HTMLUListElement>) || localRef
       )
-      console.log("transformOrigin:", animationTransform)
       setStyleAnimation({
         transformOrigin: animationTransform,
       })
     }
   }, [isOpen, refParent?.current])
-
-  console.log("ref: ", ref)
-  console.log("refParent?.current: ", refParent?.current)
 
   return (
     <ul

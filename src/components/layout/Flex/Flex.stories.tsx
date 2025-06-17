@@ -13,19 +13,17 @@ export default meta
 
 type Story = StoryObj<typeof Flex>
 
-const Template: React.FC = (args) => (
-  <Flex {...args}>
-    <Button>Button</Button>
-    <Button>Button</Button>
-    <IconWarning />
-    <IconWarning />
-  </Flex>
-)
-
 export const Basic: Story = {
   args: {},
   name: "Базовый",
-  render: (args) => <Template {...args} />,
+  render: (args) => (
+    <Flex {...args}>
+      <Button>Button</Button>
+      <Button>Button</Button>
+      <IconWarning />
+      <IconWarning />
+    </Flex>
+  ),
 }
 
 export const Gap: Story = {
@@ -33,7 +31,14 @@ export const Gap: Story = {
     gap: 10,
   },
   name: "Расстояние между элементами",
-  render: (args) => <Template {...args} />,
+  render: (args) => (
+    <Flex {...args}>
+      <Button>Button</Button>
+      <Button>Button</Button>
+      <IconWarning />
+      <IconWarning />
+    </Flex>
+  ),
 }
 
 export const Vertical: Story = {
@@ -42,7 +47,14 @@ export const Vertical: Story = {
     vertical: true,
   },
   name: "Вертикальное расположение",
-  render: (args) => <Template {...args} />,
+  render: (args) => (
+    <Flex {...args}>
+      <Button>Button</Button>
+      <Button>Button</Button>
+      <IconWarning />
+      <IconWarning />
+    </Flex>
+  ),
 }
 
 export const Wrap: Story = {
@@ -52,7 +64,14 @@ export const Wrap: Story = {
     wrap: "wrap",
   },
   name: "Перенос строк",
-  render: (args) => <Template {...args} />,
+  render: (args) => (
+    <Flex {...args}>
+      <Button>Button</Button>
+      <Button>Button</Button>
+      <IconWarning />
+      <IconWarning />
+    </Flex>
+  ),
 }
 
 export const Align: Story = {
@@ -61,7 +80,14 @@ export const Align: Story = {
     gap: 10,
   },
   name: "Вертикальное выравнивание",
-  render: (args) => <Template {...args} />,
+  render: (args) => (
+    <Flex {...args}>
+      <Button>Button</Button>
+      <Button>Button</Button>
+      <IconWarning />
+      <IconWarning />
+    </Flex>
+  ),
 }
 
 export const Justify: Story = {
@@ -70,5 +96,12 @@ export const Justify: Story = {
     justify: "center",
   },
   name: "Горизонтальное выравнивание",
-  render: (args) => <Template {...args} />,
+  render: (args) => (
+    <Flex {...args}>
+      <Button>Button</Button>
+      <Button>Button</Button>
+      <IconWarning />
+      <IconWarning />
+    </Flex>
+  ),
 }

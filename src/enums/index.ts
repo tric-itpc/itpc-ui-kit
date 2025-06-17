@@ -93,3 +93,8 @@ export enum AutoComplete {
   OFF = "off",
   ON = "on",
 }
+
+export enum ErrorPlacement {
+  BOTTOM = "bottom",
+  INSIDE = "inside",
+}

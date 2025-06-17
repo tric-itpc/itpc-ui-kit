@@ -12,6 +12,7 @@ interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> {
   disabled?: boolean
   focused?: boolean
   htmlFor?: string
+  required?: boolean
   validationState?: ValidationState
 }
 
@@ -21,6 +22,7 @@ export const Placeholder: React.FC<Props> = ({
   disabled,
   focused,
   htmlFor,
+  required,
   validationState,
   ...rest
 }) => (
@@ -36,5 +38,7 @@ export const Placeholder: React.FC<Props> = ({
     {...rest}
   >
     {children}
+
+    {required && <span>*</span>}
   </label>
 )

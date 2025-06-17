@@ -3,9 +3,15 @@
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
   box-sizing: border-box;
+}
+
+.itpc-datepicker__width_max_content {
   width: 160px;
+}
+
+.itpc-datepicker__error-placement_bottom {
+  margin-bottom: 12px;
 }
 
 .itpc-datepicker_disabled {

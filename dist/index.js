@@ -11,6 +11,11487 @@
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 7276:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  H5: () => (/* binding */ buildQueries),
+  jK: () => (/* binding */ configure),
+  lh: () => (/* binding */ createEvent),
+  mm: () => (/* binding */ findAllByAltText),
+  tN: () => (/* binding */ findAllByDisplayValue),
+  Ll: () => (/* binding */ findAllByLabelText),
+  eX: () => (/* binding */ findAllByPlaceholderText),
+  Qb: () => (/* binding */ findAllByRole),
+  v5: () => (/* binding */ findAllByTestId),
+  fG: () => (/* binding */ findAllByText),
+  E_: () => (/* binding */ findAllByTitle),
+  d_: () => (/* binding */ findByAltText),
+  Ou: () => (/* binding */ findByDisplayValue),
+  It: () => (/* binding */ findByLabelText),
+  Fz: () => (/* binding */ findByPlaceholderText),
+  rg: () => (/* binding */ findByRole),
+  oO: () => (/* binding */ findByTestId),
+  E9: () => (/* binding */ findByText),
+  L_: () => (/* binding */ findByTitle),
+  rC: () => (/* binding */ fireEvent),
+  Bw: () => (/* binding */ getAllByAltText),
+  kL: () => (/* binding */ getAllByDisplayValue),
+  WY: () => (/* binding */ getAllByLabelTextWithSuggestions),
+  BJ: () => (/* binding */ getAllByPlaceholderText),
+  Rt: () => (/* binding */ getAllByRole),
+  Gz: () => (/* binding */ getAllByTestId),
+  Y7: () => (/* binding */ getAllByText),
+  r4: () => (/* binding */ getAllByTitle),
+  CF: () => (/* binding */ getByAltText),
+  $b: () => (/* binding */ getByDisplayValue),
+  NX: () => (/* binding */ getByLabelTextWithSuggestions),
+  Iv: () => (/* binding */ getByPlaceholderText),
+  gy: () => (/* binding */ getByRole),
+  h5: () => (/* binding */ getByTestId),
+  Tf: () => (/* binding */ getByText),
+  yw: () => (/* binding */ getByTitle),
+  zj: () => (/* binding */ getConfig),
+  v6: () => (/* binding */ getDefaultNormalizer),
+  Xj: () => (/* binding */ getElementError),
+  op: () => (/* binding */ getMultipleElementsFoundError),
+  Oe: () => (/* binding */ getNodeText),
+  E5: () => (/* binding */ getQueriesForElement),
+  O0: () => (/* binding */ getRoles),
+  IS: () => (/* binding */ getSuggestedQuery),
+  _E: () => (/* binding */ isInaccessible),
+  X_: () => (/* binding */ logDOM),
+  cY: () => (/* binding */ logRoles),
+  _Y: () => (/* binding */ makeFindQuery),
+  on: () => (/* binding */ makeGetAllQuery),
+  xO: () => (/* binding */ makeSingleQuery),
+  fE: () => (/* binding */ prettyDOM),
+  Yc: () => (/* reexport */ build),
+  Pq: () => (/* binding */ queries),
+  j7: () => (/* binding */ queryAllByAltTextWithSuggestions),
+  tc: () => (/* binding */ queryAllByAttribute),
+  aM: () => (/* binding */ queryAllByDisplayValueWithSuggestions),
+  s9: () => (/* binding */ queryAllByLabelTextWithSuggestions),
+  H0: () => (/* binding */ queryAllByPlaceholderTextWithSuggestions),
+  h3: () => (/* binding */ queryAllByRoleWithSuggestions),
+  wY: () => (/* binding */ queryAllByTestIdWithSuggestions),
+  MJ: () => (/* binding */ queryAllByTextWithSuggestions),
+  tl: () => (/* binding */ queryAllByTitleWithSuggestions),
+  Uk: () => (/* binding */ queryByAltText),
+  Oj: () => (/* binding */ queryByAttribute),
+  V: () => (/* binding */ queryByDisplayValue),
+  LM: () => (/* binding */ queryByLabelText),
+  uq: () => (/* binding */ queryByPlaceholderText),
+  AS: () => (/* binding */ queryByRole),
+  P8: () => (/* binding */ queryByTestId),
+  D3: () => (/* binding */ queryByText),
+  Eh: () => (/* binding */ queryByTitle),
+  sd: () => (/* binding */ queryHelpers),
+  nj: () => (/* binding */ screen),
+  fm: () => (/* binding */ waitForWrapper),
+  n8: () => (/* binding */ waitForElementToBeRemoved),
+  ux: () => (/* binding */ getQueriesForElement),
+  Aq: () => (/* binding */ wrapAllByQueryWithSuggestion),
+  v4: () => (/* binding */ wrapSingleQueryWithSuggestion)
+});
+
+// EXTERNAL MODULE: ./node_modules/pretty-format/build/index.js
+var build = __webpack_require__(3620);
+;// ./node_modules/dom-accessibility-api/dist/polyfills/array.from.mjs
+/**
+ * @source {https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill}
+ * but without thisArg (too hard to type, no need to `this`)
+ */
+var toStr = Object.prototype.toString;
+function isCallable(fn) {
+  return typeof fn === "function" || toStr.call(fn) === "[object Function]";
+}
+function toInteger(value) {
+  var number = Number(value);
+  if (isNaN(number)) {
+    return 0;
+  }
+  if (number === 0 || !isFinite(number)) {
+    return number;
+  }
+  return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+}
+var maxSafeInteger = Math.pow(2, 53) - 1;
+function toLength(value) {
+  var len = toInteger(value);
+  return Math.min(Math.max(len, 0), maxSafeInteger);
+}
+/**
+ * Creates an array from an iterable object.
+ * @param iterable An iterable object to convert to an array.
+ */
+
+/**
+ * Creates an array from an iterable object.
+ * @param iterable An iterable object to convert to an array.
+ * @param mapfn A mapping function to call on every element of the array.
+ * @param thisArg Value of 'this' used to invoke the mapfn.
+ */
+function arrayFrom(arrayLike, mapFn) {
+  // 1. Let C be the this value.
+  // edit(@eps1lon): we're not calling it as Array.from
+  var C = Array;
+
+  // 2. Let items be ToObject(arrayLike).
+  var items = Object(arrayLike);
+
+  // 3. ReturnIfAbrupt(items).
+  if (arrayLike == null) {
+    throw new TypeError("Array.from requires an array-like object - not null or undefined");
+  }
+
+  // 4. If mapfn is undefined, then let mapping be false.
+  // const mapFn = arguments.length > 1 ? arguments[1] : void undefined;
+
+  if (typeof mapFn !== "undefined") {
+    // 5. else
+    // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
+    if (!isCallable(mapFn)) {
+      throw new TypeError("Array.from: when provided, the second argument must be a function");
+    }
+  }
+
+  // 10. Let lenValue be Get(items, "length").
+  // 11. Let len be ToLength(lenValue).
+  var len = toLength(items.length);
+
+  // 13. If IsConstructor(C) is true, then
+  // 13. a. Let A be the result of calling the [[Construct]] internal method
+  // of C with an argument list containing the single item len.
+  // 14. a. Else, Let A be ArrayCreate(len).
+  var A = isCallable(C) ? Object(new C(len)) : new Array(len);
+
+  // 16. Let k be 0.
+  var k = 0;
+  // 17. Repeat, while k < len… (also steps a - h)
+  var kValue;
+  while (k < len) {
+    kValue = items[k];
+    if (mapFn) {
+      A[k] = mapFn(kValue, k);
+    } else {
+      A[k] = kValue;
+    }
+    k += 1;
+  }
+  // 18. Let putStatus be Put(A, "length", len, true).
+  A.length = len;
+  // 20. Return A.
+  return A;
+}
+//# sourceMappingURL=array.from.mjs.map
+;// ./node_modules/dom-accessibility-api/dist/polyfills/SetLike.mjs
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+// for environments without Set we fallback to arrays with unique members
+var SetLike = /*#__PURE__*/function () {
+  function SetLike() {
+    var items = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    _classCallCheck(this, SetLike);
+    _defineProperty(this, "items", void 0);
+    this.items = items;
+  }
+  _createClass(SetLike, [{
+    key: "add",
+    value: function add(value) {
+      if (this.has(value) === false) {
+        this.items.push(value);
+      }
+      return this;
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      this.items = [];
+    }
+  }, {
+    key: "delete",
+    value: function _delete(value) {
+      var previousLength = this.items.length;
+      this.items = this.items.filter(function (item) {
+        return item !== value;
+      });
+      return previousLength !== this.items.length;
+    }
+  }, {
+    key: "forEach",
+    value: function forEach(callbackfn) {
+      var _this = this;
+      this.items.forEach(function (item) {
+        callbackfn(item, item, _this);
+      });
+    }
+  }, {
+    key: "has",
+    value: function has(value) {
+      return this.items.indexOf(value) !== -1;
+    }
+  }, {
+    key: "size",
+    get: function get() {
+      return this.items.length;
+    }
+  }]);
+  return SetLike;
+}();
+/* harmony default export */ const polyfills_SetLike = (typeof Set === "undefined" ? Set : SetLike);
+//# sourceMappingURL=SetLike.mjs.map
+;// ./node_modules/dom-accessibility-api/dist/getRole.mjs
+// https://w3c.github.io/html-aria/#document-conformance-requirements-for-use-of-aria-attributes-in-html
+
+/**
+ * Safe Element.localName for all supported environments
+ * @param element
+ */
+function getLocalName(element) {
+  var _element$localName;
+  return (// eslint-disable-next-line no-restricted-properties -- actual guard for environments without localName
+    (_element$localName = element.localName) !== null && _element$localName !== void 0 ? _element$localName :
+    // eslint-disable-next-line no-restricted-properties -- required for the fallback
+    element.tagName.toLowerCase()
+  );
+}
+var localNameToRoleMappings = {
+  article: "article",
+  aside: "complementary",
+  button: "button",
+  datalist: "listbox",
+  dd: "definition",
+  details: "group",
+  dialog: "dialog",
+  dt: "term",
+  fieldset: "group",
+  figure: "figure",
+  // WARNING: Only with an accessible name
+  form: "form",
+  footer: "contentinfo",
+  h1: "heading",
+  h2: "heading",
+  h3: "heading",
+  h4: "heading",
+  h5: "heading",
+  h6: "heading",
+  header: "banner",
+  hr: "separator",
+  html: "document",
+  legend: "legend",
+  li: "listitem",
+  math: "math",
+  main: "main",
+  menu: "list",
+  nav: "navigation",
+  ol: "list",
+  optgroup: "group",
+  // WARNING: Only in certain context
+  option: "option",
+  output: "status",
+  progress: "progressbar",
+  // WARNING: Only with an accessible name
+  section: "region",
+  summary: "button",
+  table: "table",
+  tbody: "rowgroup",
+  textarea: "textbox",
+  tfoot: "rowgroup",
+  // WARNING: Only in certain context
+  td: "cell",
+  th: "columnheader",
+  thead: "rowgroup",
+  tr: "row",
+  ul: "list"
+};
+var prohibitedAttributes = {
+  caption: new Set(["aria-label", "aria-labelledby"]),
+  code: new Set(["aria-label", "aria-labelledby"]),
+  deletion: new Set(["aria-label", "aria-labelledby"]),
+  emphasis: new Set(["aria-label", "aria-labelledby"]),
+  generic: new Set(["aria-label", "aria-labelledby", "aria-roledescription"]),
+  insertion: new Set(["aria-label", "aria-labelledby"]),
+  paragraph: new Set(["aria-label", "aria-labelledby"]),
+  presentation: new Set(["aria-label", "aria-labelledby"]),
+  strong: new Set(["aria-label", "aria-labelledby"]),
+  subscript: new Set(["aria-label", "aria-labelledby"]),
+  superscript: new Set(["aria-label", "aria-labelledby"])
+};
+
+/**
+ *
+ * @param element
+ * @param role The role used for this element. This is specified to control whether you want to use the implicit or explicit role.
+ */
+function hasGlobalAriaAttributes(element, role) {
+  // https://rawgit.com/w3c/aria/stable/#global_states
+  // commented attributes are deprecated
+  return ["aria-atomic", "aria-busy", "aria-controls", "aria-current", "aria-describedby", "aria-details",
+  // "disabled",
+  "aria-dropeffect",
+  // "errormessage",
+  "aria-flowto", "aria-grabbed",
+  // "haspopup",
+  "aria-hidden",
+  // "invalid",
+  "aria-keyshortcuts", "aria-label", "aria-labelledby", "aria-live", "aria-owns", "aria-relevant", "aria-roledescription"].some(function (attributeName) {
+    var _prohibitedAttributes;
+    return element.hasAttribute(attributeName) && !((_prohibitedAttributes = prohibitedAttributes[role]) !== null && _prohibitedAttributes !== void 0 && _prohibitedAttributes.has(attributeName));
+  });
+}
+function ignorePresentationalRole(element, implicitRole) {
+  // https://rawgit.com/w3c/aria/stable/#conflict_resolution_presentation_none
+  return hasGlobalAriaAttributes(element, implicitRole);
+}
+function getRole(element) {
+  var explicitRole = getExplicitRole(element);
+  if (explicitRole === null || explicitRole === "presentation") {
+    var implicitRole = getImplicitRole(element);
+    if (explicitRole !== "presentation" || ignorePresentationalRole(element, implicitRole || "")) {
+      return implicitRole;
+    }
+  }
+  return explicitRole;
+}
+function getImplicitRole(element) {
+  var mappedByTag = localNameToRoleMappings[getLocalName(element)];
+  if (mappedByTag !== undefined) {
+    return mappedByTag;
+  }
+  switch (getLocalName(element)) {
+    case "a":
+    case "area":
+    case "link":
+      if (element.hasAttribute("href")) {
+        return "link";
+      }
+      break;
+    case "img":
+      if (element.getAttribute("alt") === "" && !ignorePresentationalRole(element, "img")) {
+        return "presentation";
+      }
+      return "img";
+    case "input":
+      {
+        var _ref = element,
+          type = _ref.type;
+        switch (type) {
+          case "button":
+          case "image":
+          case "reset":
+          case "submit":
+            return "button";
+          case "checkbox":
+          case "radio":
+            return type;
+          case "range":
+            return "slider";
+          case "email":
+          case "tel":
+          case "text":
+          case "url":
+            if (element.hasAttribute("list")) {
+              return "combobox";
+            }
+            return "textbox";
+          case "search":
+            if (element.hasAttribute("list")) {
+              return "combobox";
+            }
+            return "searchbox";
+          case "number":
+            return "spinbutton";
+          default:
+            return null;
+        }
+      }
+    case "select":
+      if (element.hasAttribute("multiple") || element.size > 1) {
+        return "listbox";
+      }
+      return "combobox";
+  }
+  return null;
+}
+function getExplicitRole(element) {
+  var role = element.getAttribute("role");
+  if (role !== null) {
+    var explicitRole = role.trim().split(" ")[0];
+    // String.prototype.split(sep, limit) will always return an array with at least one member
+    // as long as limit is either undefined or > 0
+    if (explicitRole.length > 0) {
+      return explicitRole;
+    }
+  }
+  return null;
+}
+//# sourceMappingURL=getRole.mjs.map
+;// ./node_modules/dom-accessibility-api/dist/util.mjs
+
+
+function isElement(node) {
+  return node !== null && node.nodeType === node.ELEMENT_NODE;
+}
+function isHTMLTableCaptionElement(node) {
+  return isElement(node) && getLocalName(node) === "caption";
+}
+function isHTMLInputElement(node) {
+  return isElement(node) && getLocalName(node) === "input";
+}
+function isHTMLOptGroupElement(node) {
+  return isElement(node) && getLocalName(node) === "optgroup";
+}
+function isHTMLSelectElement(node) {
+  return isElement(node) && getLocalName(node) === "select";
+}
+function isHTMLTableElement(node) {
+  return isElement(node) && getLocalName(node) === "table";
+}
+function isHTMLTextAreaElement(node) {
+  return isElement(node) && getLocalName(node) === "textarea";
+}
+function safeWindow(node) {
+  var _ref = node.ownerDocument === null ? node : node.ownerDocument,
+    defaultView = _ref.defaultView;
+  if (defaultView === null) {
+    throw new TypeError("no window available");
+  }
+  return defaultView;
+}
+function isHTMLFieldSetElement(node) {
+  return isElement(node) && getLocalName(node) === "fieldset";
+}
+function isHTMLLegendElement(node) {
+  return isElement(node) && getLocalName(node) === "legend";
+}
+function isHTMLSlotElement(node) {
+  return isElement(node) && getLocalName(node) === "slot";
+}
+function isSVGElement(node) {
+  return isElement(node) && node.ownerSVGElement !== undefined;
+}
+function isSVGSVGElement(node) {
+  return isElement(node) && getLocalName(node) === "svg";
+}
+function isSVGTitleElement(node) {
+  return isSVGElement(node) && getLocalName(node) === "title";
+}
+
+/**
+ *
+ * @param {Node} node -
+ * @param {string} attributeName -
+ * @returns {Element[]} -
+ */
+function queryIdRefs(node, attributeName) {
+  if (isElement(node) && node.hasAttribute(attributeName)) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- safe due to hasAttribute check
+    var ids = node.getAttribute(attributeName).split(" ");
+
+    // Browsers that don't support shadow DOM won't have getRootNode
+    var root = node.getRootNode ? node.getRootNode() : node.ownerDocument;
+    return ids.map(function (id) {
+      return root.getElementById(id);
+    }).filter(function (element) {
+      return element !== null;
+    }
+    // TODO: why does this not narrow?
+    );
+  }
+
+  return [];
+}
+function hasAnyConcreteRoles(node, roles) {
+  if (isElement(node)) {
+    return roles.indexOf(getRole(node)) !== -1;
+  }
+  return false;
+}
+//# sourceMappingURL=util.mjs.map
+;// ./node_modules/dom-accessibility-api/dist/accessible-name-and-description.mjs
+/**
+ * implements https://w3c.github.io/accname/
+ */
+
+
+
+
+/**
+ *  A string of characters where all carriage returns, newlines, tabs, and form-feeds are replaced with a single space, and multiple spaces are reduced to a single space. The string contains only character data; it does not contain any markup.
+ */
+
+/**
+ *
+ * @param {string} string -
+ * @returns {FlatString} -
+ */
+function asFlatString(s) {
+  return s.trim().replace(/\s\s+/g, " ");
+}
+
+/**
+ *
+ * @param node -
+ * @param options - These are not optional to prevent accidentally calling it without options in `computeAccessibleName`
+ * @returns {boolean} -
+ */
+function isHidden(node, getComputedStyleImplementation) {
+  if (!isElement(node)) {
+    return false;
+  }
+  if (node.hasAttribute("hidden") || node.getAttribute("aria-hidden") === "true") {
+    return true;
+  }
+  var style = getComputedStyleImplementation(node);
+  return style.getPropertyValue("display") === "none" || style.getPropertyValue("visibility") === "hidden";
+}
+
+/**
+ * @param {Node} node -
+ * @returns {boolean} - As defined in step 2E of https://w3c.github.io/accname/#mapping_additional_nd_te
+ */
+function isControl(node) {
+  return hasAnyConcreteRoles(node, ["button", "combobox", "listbox", "textbox"]) || hasAbstractRole(node, "range");
+}
+function hasAbstractRole(node, role) {
+  if (!isElement(node)) {
+    return false;
+  }
+  switch (role) {
+    case "range":
+      return hasAnyConcreteRoles(node, ["meter", "progressbar", "scrollbar", "slider", "spinbutton"]);
+    default:
+      throw new TypeError("No knowledge about abstract role '".concat(role, "'. This is likely a bug :("));
+  }
+}
+
+/**
+ * element.querySelectorAll but also considers owned tree
+ * @param element
+ * @param selectors
+ */
+function querySelectorAllSubtree(element, selectors) {
+  var elements = arrayFrom(element.querySelectorAll(selectors));
+  queryIdRefs(element, "aria-owns").forEach(function (root) {
+    // babel transpiles this assuming an iterator
+    elements.push.apply(elements, arrayFrom(root.querySelectorAll(selectors)));
+  });
+  return elements;
+}
+function querySelectedOptions(listbox) {
+  if (isHTMLSelectElement(listbox)) {
+    // IE11 polyfill
+    return listbox.selectedOptions || querySelectorAllSubtree(listbox, "[selected]");
+  }
+  return querySelectorAllSubtree(listbox, '[aria-selected="true"]');
+}
+function isMarkedPresentational(node) {
+  return hasAnyConcreteRoles(node, ["none", "presentation"]);
+}
+
+/**
+ * Elements specifically listed in html-aam
+ *
+ * We don't need this for `label` or `legend` elements.
+ * Their implicit roles already allow "naming from content".
+ *
+ * sources:
+ *
+ * - https://w3c.github.io/html-aam/#table-element
+ */
+function isNativeHostLanguageTextAlternativeElement(node) {
+  return isHTMLTableCaptionElement(node);
+}
+
+/**
+ * https://w3c.github.io/aria/#namefromcontent
+ */
+function allowsNameFromContent(node) {
+  return hasAnyConcreteRoles(node, ["button", "cell", "checkbox", "columnheader", "gridcell", "heading", "label", "legend", "link", "menuitem", "menuitemcheckbox", "menuitemradio", "option", "radio", "row", "rowheader", "switch", "tab", "tooltip", "treeitem"]);
+}
+
+/**
+ * TODO https://github.com/eps1lon/dom-accessibility-api/issues/100
+ */
+function isDescendantOfNativeHostLanguageTextAlternativeElement(
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- not implemented yet
+node) {
+  return false;
+}
+function getValueOfTextbox(element) {
+  if (isHTMLInputElement(element) || isHTMLTextAreaElement(element)) {
+    return element.value;
+  }
+  // https://github.com/eps1lon/dom-accessibility-api/issues/4
+  return element.textContent || "";
+}
+function getTextualContent(declaration) {
+  var content = declaration.getPropertyValue("content");
+  if (/^["'].*["']$/.test(content)) {
+    return content.slice(1, -1);
+  }
+  return "";
+}
+
+/**
+ * https://html.spec.whatwg.org/multipage/forms.html#category-label
+ * TODO: form-associated custom elements
+ * @param element
+ */
+function isLabelableElement(element) {
+  var localName = getLocalName(element);
+  return localName === "button" || localName === "input" && element.getAttribute("type") !== "hidden" || localName === "meter" || localName === "output" || localName === "progress" || localName === "select" || localName === "textarea";
+}
+
+/**
+ * > [...], then the first such descendant in tree order is the label element's labeled control.
+ * -- https://html.spec.whatwg.org/multipage/forms.html#labeled-control
+ * @param element
+ */
+function findLabelableElement(element) {
+  if (isLabelableElement(element)) {
+    return element;
+  }
+  var labelableElement = null;
+  element.childNodes.forEach(function (childNode) {
+    if (labelableElement === null && isElement(childNode)) {
+      var descendantLabelableElement = findLabelableElement(childNode);
+      if (descendantLabelableElement !== null) {
+        labelableElement = descendantLabelableElement;
+      }
+    }
+  });
+  return labelableElement;
+}
+
+/**
+ * Polyfill of HTMLLabelElement.control
+ * https://html.spec.whatwg.org/multipage/forms.html#labeled-control
+ * @param label
+ */
+function getControlOfLabel(label) {
+  if (label.control !== undefined) {
+    return label.control;
+  }
+  var htmlFor = label.getAttribute("for");
+  if (htmlFor !== null) {
+    return label.ownerDocument.getElementById(htmlFor);
+  }
+  return findLabelableElement(label);
+}
+
+/**
+ * Polyfill of HTMLInputElement.labels
+ * https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/labels
+ * @param element
+ */
+function getLabels(element) {
+  var labelsProperty = element.labels;
+  if (labelsProperty === null) {
+    return labelsProperty;
+  }
+  if (labelsProperty !== undefined) {
+    return arrayFrom(labelsProperty);
+  }
+
+  // polyfill
+  if (!isLabelableElement(element)) {
+    return null;
+  }
+  var document = element.ownerDocument;
+  return arrayFrom(document.querySelectorAll("label")).filter(function (label) {
+    return getControlOfLabel(label) === element;
+  });
+}
+
+/**
+ * Gets the contents of a slot used for computing the accname
+ * @param slot
+ */
+function getSlotContents(slot) {
+  // Computing the accessible name for elements containing slots is not
+  // currently defined in the spec. This implementation reflects the
+  // behavior of NVDA 2020.2/Firefox 81 and iOS VoiceOver/Safari 13.6.
+  var assignedNodes = slot.assignedNodes();
+  if (assignedNodes.length === 0) {
+    // if no nodes are assigned to the slot, it displays the default content
+    return arrayFrom(slot.childNodes);
+  }
+  return assignedNodes;
+}
+
+/**
+ * implements https://w3c.github.io/accname/#mapping_additional_nd_te
+ * @param root
+ * @param options
+ * @returns
+ */
+function computeTextAlternative(root) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var consultedNodes = new polyfills_SetLike();
+  var window = safeWindow(root);
+  var _options$compute = options.compute,
+    compute = _options$compute === void 0 ? "name" : _options$compute,
+    _options$computedStyl = options.computedStyleSupportsPseudoElements,
+    computedStyleSupportsPseudoElements = _options$computedStyl === void 0 ? options.getComputedStyle !== undefined : _options$computedStyl,
+    _options$getComputedS = options.getComputedStyle,
+    getComputedStyle = _options$getComputedS === void 0 ? window.getComputedStyle.bind(window) : _options$getComputedS,
+    _options$hidden = options.hidden,
+    hidden = _options$hidden === void 0 ? false : _options$hidden;
+
+  // 2F.i
+  function computeMiscTextAlternative(node, context) {
+    var accumulatedText = "";
+    if (isElement(node) && computedStyleSupportsPseudoElements) {
+      var pseudoBefore = getComputedStyle(node, "::before");
+      var beforeContent = getTextualContent(pseudoBefore);
+      accumulatedText = "".concat(beforeContent, " ").concat(accumulatedText);
+    }
+
+    // FIXME: Including aria-owns is not defined in the spec
+    // But it is required in the web-platform-test
+    var childNodes = isHTMLSlotElement(node) ? getSlotContents(node) : arrayFrom(node.childNodes).concat(queryIdRefs(node, "aria-owns"));
+    childNodes.forEach(function (child) {
+      var result = computeTextAlternative(child, {
+        isEmbeddedInLabel: context.isEmbeddedInLabel,
+        isReferenced: false,
+        recursion: true
+      });
+      // TODO: Unclear why display affects delimiter
+      // see https://github.com/w3c/accname/issues/3
+      var display = isElement(child) ? getComputedStyle(child).getPropertyValue("display") : "inline";
+      var separator = display !== "inline" ? " " : "";
+      // trailing separator for wpt tests
+      accumulatedText += "".concat(separator).concat(result).concat(separator);
+    });
+    if (isElement(node) && computedStyleSupportsPseudoElements) {
+      var pseudoAfter = getComputedStyle(node, "::after");
+      var afterContent = getTextualContent(pseudoAfter);
+      accumulatedText = "".concat(accumulatedText, " ").concat(afterContent);
+    }
+    return accumulatedText.trim();
+  }
+
+  /**
+   *
+   * @param element
+   * @param attributeName
+   * @returns A string non-empty string or `null`
+   */
+  function useAttribute(element, attributeName) {
+    var attribute = element.getAttributeNode(attributeName);
+    if (attribute !== null && !consultedNodes.has(attribute) && attribute.value.trim() !== "") {
+      consultedNodes.add(attribute);
+      return attribute.value;
+    }
+    return null;
+  }
+  function computeTooltipAttributeValue(node) {
+    if (!isElement(node)) {
+      return null;
+    }
+    return useAttribute(node, "title");
+  }
+  function computeElementTextAlternative(node) {
+    if (!isElement(node)) {
+      return null;
+    }
+
+    // https://w3c.github.io/html-aam/#fieldset-and-legend-elements
+    if (isHTMLFieldSetElement(node)) {
+      consultedNodes.add(node);
+      var children = arrayFrom(node.childNodes);
+      for (var i = 0; i < children.length; i += 1) {
+        var child = children[i];
+        if (isHTMLLegendElement(child)) {
+          return computeTextAlternative(child, {
+            isEmbeddedInLabel: false,
+            isReferenced: false,
+            recursion: false
+          });
+        }
+      }
+    } else if (isHTMLTableElement(node)) {
+      // https://w3c.github.io/html-aam/#table-element
+      consultedNodes.add(node);
+      var _children = arrayFrom(node.childNodes);
+      for (var _i = 0; _i < _children.length; _i += 1) {
+        var _child = _children[_i];
+        if (isHTMLTableCaptionElement(_child)) {
+          return computeTextAlternative(_child, {
+            isEmbeddedInLabel: false,
+            isReferenced: false,
+            recursion: false
+          });
+        }
+      }
+    } else if (isSVGSVGElement(node)) {
+      // https://www.w3.org/TR/svg-aam-1.0/
+      consultedNodes.add(node);
+      var _children2 = arrayFrom(node.childNodes);
+      for (var _i2 = 0; _i2 < _children2.length; _i2 += 1) {
+        var _child2 = _children2[_i2];
+        if (isSVGTitleElement(_child2)) {
+          return _child2.textContent;
+        }
+      }
+      return null;
+    } else if (getLocalName(node) === "img" || getLocalName(node) === "area") {
+      // https://w3c.github.io/html-aam/#area-element
+      // https://w3c.github.io/html-aam/#img-element
+      var nameFromAlt = useAttribute(node, "alt");
+      if (nameFromAlt !== null) {
+        return nameFromAlt;
+      }
+    } else if (isHTMLOptGroupElement(node)) {
+      var nameFromLabel = useAttribute(node, "label");
+      if (nameFromLabel !== null) {
+        return nameFromLabel;
+      }
+    }
+    if (isHTMLInputElement(node) && (node.type === "button" || node.type === "submit" || node.type === "reset")) {
+      // https://w3c.github.io/html-aam/#input-type-text-input-type-password-input-type-search-input-type-tel-input-type-email-input-type-url-and-textarea-element-accessible-description-computation
+      var nameFromValue = useAttribute(node, "value");
+      if (nameFromValue !== null) {
+        return nameFromValue;
+      }
+
+      // TODO: l10n
+      if (node.type === "submit") {
+        return "Submit";
+      }
+      // TODO: l10n
+      if (node.type === "reset") {
+        return "Reset";
+      }
+    }
+    var labels = getLabels(node);
+    if (labels !== null && labels.length !== 0) {
+      consultedNodes.add(node);
+      return arrayFrom(labels).map(function (element) {
+        return computeTextAlternative(element, {
+          isEmbeddedInLabel: true,
+          isReferenced: false,
+          recursion: true
+        });
+      }).filter(function (label) {
+        return label.length > 0;
+      }).join(" ");
+    }
+
+    // https://w3c.github.io/html-aam/#input-type-image-accessible-name-computation
+    // TODO: wpt test consider label elements but html-aam does not mention them
+    // We follow existing implementations over spec
+    if (isHTMLInputElement(node) && node.type === "image") {
+      var _nameFromAlt = useAttribute(node, "alt");
+      if (_nameFromAlt !== null) {
+        return _nameFromAlt;
+      }
+      var nameFromTitle = useAttribute(node, "title");
+      if (nameFromTitle !== null) {
+        return nameFromTitle;
+      }
+
+      // TODO: l10n
+      return "Submit Query";
+    }
+    if (hasAnyConcreteRoles(node, ["button"])) {
+      // https://www.w3.org/TR/html-aam-1.0/#button-element
+      var nameFromSubTree = computeMiscTextAlternative(node, {
+        isEmbeddedInLabel: false,
+        isReferenced: false
+      });
+      if (nameFromSubTree !== "") {
+        return nameFromSubTree;
+      }
+    }
+    return null;
+  }
+  function computeTextAlternative(current, context) {
+    if (consultedNodes.has(current)) {
+      return "";
+    }
+
+    // 2A
+    if (!hidden && isHidden(current, getComputedStyle) && !context.isReferenced) {
+      consultedNodes.add(current);
+      return "";
+    }
+
+    // 2B
+    var labelAttributeNode = isElement(current) ? current.getAttributeNode("aria-labelledby") : null;
+    // TODO: Do we generally need to block query IdRefs of attributes we have already consulted?
+    var labelElements = labelAttributeNode !== null && !consultedNodes.has(labelAttributeNode) ? queryIdRefs(current, "aria-labelledby") : [];
+    if (compute === "name" && !context.isReferenced && labelElements.length > 0) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- Can't be null here otherwise labelElements would be empty
+      consultedNodes.add(labelAttributeNode);
+      return labelElements.map(function (element) {
+        // TODO: Chrome will consider repeated values i.e. use a node multiple times while we'll bail out in computeTextAlternative.
+        return computeTextAlternative(element, {
+          isEmbeddedInLabel: context.isEmbeddedInLabel,
+          isReferenced: true,
+          // this isn't recursion as specified, otherwise we would skip
+          // `aria-label` in
+          // <input id="myself" aria-label="foo" aria-labelledby="myself"
+          recursion: false
+        });
+      }).join(" ");
+    }
+
+    // 2C
+    // Changed from the spec in anticipation of https://github.com/w3c/accname/issues/64
+    // spec says we should only consider skipping if we have a non-empty label
+    var skipToStep2E = context.recursion && isControl(current) && compute === "name";
+    if (!skipToStep2E) {
+      var ariaLabel = (isElement(current) && current.getAttribute("aria-label") || "").trim();
+      if (ariaLabel !== "" && compute === "name") {
+        consultedNodes.add(current);
+        return ariaLabel;
+      }
+
+      // 2D
+      if (!isMarkedPresentational(current)) {
+        var elementTextAlternative = computeElementTextAlternative(current);
+        if (elementTextAlternative !== null) {
+          consultedNodes.add(current);
+          return elementTextAlternative;
+        }
+      }
+    }
+
+    // special casing, cheating to make tests pass
+    // https://github.com/w3c/accname/issues/67
+    if (hasAnyConcreteRoles(current, ["menu"])) {
+      consultedNodes.add(current);
+      return "";
+    }
+
+    // 2E
+    if (skipToStep2E || context.isEmbeddedInLabel || context.isReferenced) {
+      if (hasAnyConcreteRoles(current, ["combobox", "listbox"])) {
+        consultedNodes.add(current);
+        var selectedOptions = querySelectedOptions(current);
+        if (selectedOptions.length === 0) {
+          // defined per test `name_heading_combobox`
+          return isHTMLInputElement(current) ? current.value : "";
+        }
+        return arrayFrom(selectedOptions).map(function (selectedOption) {
+          return computeTextAlternative(selectedOption, {
+            isEmbeddedInLabel: context.isEmbeddedInLabel,
+            isReferenced: false,
+            recursion: true
+          });
+        }).join(" ");
+      }
+      if (hasAbstractRole(current, "range")) {
+        consultedNodes.add(current);
+        if (current.hasAttribute("aria-valuetext")) {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- safe due to hasAttribute guard
+          return current.getAttribute("aria-valuetext");
+        }
+        if (current.hasAttribute("aria-valuenow")) {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- safe due to hasAttribute guard
+          return current.getAttribute("aria-valuenow");
+        }
+        // Otherwise, use the value as specified by a host language attribute.
+        return current.getAttribute("value") || "";
+      }
+      if (hasAnyConcreteRoles(current, ["textbox"])) {
+        consultedNodes.add(current);
+        return getValueOfTextbox(current);
+      }
+    }
+
+    // 2F: https://w3c.github.io/accname/#step2F
+    if (allowsNameFromContent(current) || isElement(current) && context.isReferenced || isNativeHostLanguageTextAlternativeElement(current) || isDescendantOfNativeHostLanguageTextAlternativeElement(current)) {
+      var accumulatedText2F = computeMiscTextAlternative(current, {
+        isEmbeddedInLabel: context.isEmbeddedInLabel,
+        isReferenced: false
+      });
+      if (accumulatedText2F !== "") {
+        consultedNodes.add(current);
+        return accumulatedText2F;
+      }
+    }
+    if (current.nodeType === current.TEXT_NODE) {
+      consultedNodes.add(current);
+      return current.textContent || "";
+    }
+    if (context.recursion) {
+      consultedNodes.add(current);
+      return computeMiscTextAlternative(current, {
+        isEmbeddedInLabel: context.isEmbeddedInLabel,
+        isReferenced: false
+      });
+    }
+    var tooltipAttributeValue = computeTooltipAttributeValue(current);
+    if (tooltipAttributeValue !== null) {
+      consultedNodes.add(current);
+      return tooltipAttributeValue;
+    }
+
+    // TODO should this be reachable?
+    consultedNodes.add(current);
+    return "";
+  }
+  return asFlatString(computeTextAlternative(root, {
+    isEmbeddedInLabel: false,
+    // by spec computeAccessibleDescription starts with the referenced elements as roots
+    isReferenced: compute === "description",
+    recursion: false
+  }));
+}
+//# sourceMappingURL=accessible-name-and-description.mjs.map
+;// ./node_modules/dom-accessibility-api/dist/accessible-description.mjs
+function accessible_description_typeof(obj) { "@babel/helpers - typeof"; return accessible_description_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, accessible_description_typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { accessible_description_defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function accessible_description_defineProperty(obj, key, value) { key = accessible_description_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function accessible_description_toPropertyKey(arg) { var key = accessible_description_toPrimitive(arg, "string"); return accessible_description_typeof(key) === "symbol" ? key : String(key); }
+function accessible_description_toPrimitive(input, hint) { if (accessible_description_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (accessible_description_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+
+/**
+ * @param root
+ * @param options
+ * @returns
+ */
+function computeAccessibleDescription(root) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var description = queryIdRefs(root, "aria-describedby").map(function (element) {
+    return computeTextAlternative(element, _objectSpread(_objectSpread({}, options), {}, {
+      compute: "description"
+    }));
+  }).join(" ");
+
+  // TODO: Technically we need to make sure that node wasn't used for the accessible name
+  //       This causes `description_1.0_combobox-focusable-manual` to fail
+  //
+  // https://www.w3.org/TR/html-aam-1.0/#accessible-name-and-description-computation
+  // says for so many elements to use the `title` that we assume all elements are considered
+  if (description === "") {
+    var title = root.getAttribute("title");
+    description = title === null ? "" : title;
+  }
+  return description;
+}
+//# sourceMappingURL=accessible-description.mjs.map
+;// ./node_modules/dom-accessibility-api/dist/accessible-name.mjs
+
+
+
+/**
+ * https://w3c.github.io/aria/#namefromprohibited
+ */
+function prohibitsNaming(node) {
+  return hasAnyConcreteRoles(node, ["caption", "code", "deletion", "emphasis", "generic", "insertion", "paragraph", "presentation", "strong", "subscript", "superscript"]);
+}
+
+/**
+ * implements https://w3c.github.io/accname/#mapping_additional_nd_name
+ * @param root
+ * @param options
+ * @returns
+ */
+function computeAccessibleName(root) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  if (prohibitsNaming(root)) {
+    return "";
+  }
+  return computeTextAlternative(root, options);
+}
+//# sourceMappingURL=accessible-name.mjs.map
+;// ./node_modules/dom-accessibility-api/dist/index.mjs
+
+
+
+
+//# sourceMappingURL=index.mjs.map
+// EXTERNAL MODULE: ./node_modules/aria-query/lib/index.js
+var lib = __webpack_require__(5037);
+// EXTERNAL MODULE: ./node_modules/lz-string/libs/lz-string.js
+var lz_string = __webpack_require__(2992);
+var lz_string_default = /*#__PURE__*/__webpack_require__.n(lz_string);
+;// ./node_modules/@testing-library/dom/dist/@testing-library/dom.esm.js
+/* module decorator */ module = __webpack_require__.hmd(module);
+
+
+
+
+
+
+/**
+ * Source: https://github.com/facebook/jest/blob/e7bb6a1e26ffab90611b2593912df15b69315611/packages/pretty-format/src/plugins/DOMElement.ts
+ */
+/* eslint-disable -- trying to stay as close to the original as possible */
+/* istanbul ignore file */
+
+function escapeHTML(str) {
+  return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+// Return empty string if keys is empty.
+const printProps = (keys, props, config, indentation, depth, refs, printer) => {
+  const indentationNext = indentation + config.indent;
+  const colors = config.colors;
+  return keys.map(key => {
+    const value = props[key];
+    let printed = printer(value, config, indentationNext, depth, refs);
+    if (typeof value !== 'string') {
+      if (printed.indexOf('\n') !== -1) {
+        printed = config.spacingOuter + indentationNext + printed + config.spacingOuter + indentation;
+      }
+      printed = '{' + printed + '}';
+    }
+    return config.spacingInner + indentation + colors.prop.open + key + colors.prop.close + '=' + colors.value.open + printed + colors.value.close;
+  }).join('');
+};
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType#node_type_constants
+const NodeTypeTextNode = 3;
+
+// Return empty string if children is empty.
+const printChildren = (children, config, indentation, depth, refs, printer) => children.map(child => {
+  const printedChild = typeof child === 'string' ? printText(child, config) : printer(child, config, indentation, depth, refs);
+  if (printedChild === '' && typeof child === 'object' && child !== null && child.nodeType !== NodeTypeTextNode) {
+    // A plugin serialized this Node to '' meaning we should ignore it.
+    return '';
+  }
+  return config.spacingOuter + indentation + printedChild;
+}).join('');
+const printText = (text, config) => {
+  const contentColor = config.colors.content;
+  return contentColor.open + escapeHTML(text) + contentColor.close;
+};
+const printComment = (comment, config) => {
+  const commentColor = config.colors.comment;
+  return commentColor.open + '<!--' + escapeHTML(comment) + '-->' + commentColor.close;
+};
+
+// Separate the functions to format props, children, and element,
+// so a plugin could override a particular function, if needed.
+// Too bad, so sad: the traditional (but unnecessary) space
+// in a self-closing tagColor requires a second test of printedProps.
+const printElement = (type, printedProps, printedChildren, config, indentation) => {
+  const tagColor = config.colors.tag;
+  return tagColor.open + '<' + type + (printedProps && tagColor.close + printedProps + config.spacingOuter + indentation + tagColor.open) + (printedChildren ? '>' + tagColor.close + printedChildren + config.spacingOuter + indentation + tagColor.open + '</' + type : (printedProps && !config.min ? '' : ' ') + '/') + '>' + tagColor.close;
+};
+const printElementAsLeaf = (type, config) => {
+  const tagColor = config.colors.tag;
+  return tagColor.open + '<' + type + tagColor.close + ' …' + tagColor.open + ' />' + tagColor.close;
+};
+const ELEMENT_NODE$1 = 1;
+const TEXT_NODE$1 = 3;
+const COMMENT_NODE$1 = 8;
+const FRAGMENT_NODE = 11;
+const ELEMENT_REGEXP = /^((HTML|SVG)\w*)?Element$/;
+const isCustomElement = val => {
+  const {
+    tagName
+  } = val;
+  return Boolean(typeof tagName === 'string' && tagName.includes('-') || typeof val.hasAttribute === 'function' && val.hasAttribute('is'));
+};
+const testNode = val => {
+  const constructorName = val.constructor.name;
+  const {
+    nodeType
+  } = val;
+  return nodeType === ELEMENT_NODE$1 && (ELEMENT_REGEXP.test(constructorName) || isCustomElement(val)) || nodeType === TEXT_NODE$1 && constructorName === 'Text' || nodeType === COMMENT_NODE$1 && constructorName === 'Comment' || nodeType === FRAGMENT_NODE && constructorName === 'DocumentFragment';
+};
+function nodeIsText(node) {
+  return node.nodeType === TEXT_NODE$1;
+}
+function nodeIsComment(node) {
+  return node.nodeType === COMMENT_NODE$1;
+}
+function nodeIsFragment(node) {
+  return node.nodeType === FRAGMENT_NODE;
+}
+function createDOMElementFilter(filterNode) {
+  return {
+    test: val => {
+      var _val$constructor2;
+      return ((val == null || (_val$constructor2 = val.constructor) == null ? void 0 : _val$constructor2.name) || isCustomElement(val)) && testNode(val);
+    },
+    serialize: (node, config, indentation, depth, refs, printer) => {
+      if (nodeIsText(node)) {
+        return printText(node.data, config);
+      }
+      if (nodeIsComment(node)) {
+        return printComment(node.data, config);
+      }
+      const type = nodeIsFragment(node) ? "DocumentFragment" : node.tagName.toLowerCase();
+      if (++depth > config.maxDepth) {
+        return printElementAsLeaf(type, config);
+      }
+      return printElement(type, printProps(nodeIsFragment(node) ? [] : Array.from(node.attributes).map(attr => attr.name).sort(), nodeIsFragment(node) ? {} : Array.from(node.attributes).reduce((props, attribute) => {
+        props[attribute.name] = attribute.value;
+        return props;
+      }, {}), config, indentation + config.indent, depth, refs, printer), printChildren(Array.prototype.slice.call(node.childNodes || node.children).filter(filterNode), config, indentation + config.indent, depth, refs, printer), config, indentation);
+    }
+  };
+}
+
+// We try to load node dependencies
+let chalk = null;
+let readFileSync = null;
+let codeFrameColumns = null;
+try {
+  const nodeRequire = module && module.require;
+  readFileSync = nodeRequire.call(module, 'fs').readFileSync;
+  codeFrameColumns = nodeRequire.call(module, '@babel/code-frame').codeFrameColumns;
+  chalk = nodeRequire.call(module, 'chalk');
+} catch {
+  // We're in a browser environment
+}
+
+// frame has the form "at myMethod (location/to/my/file.js:10:2)"
+function getCodeFrame(frame) {
+  const locationStart = frame.indexOf('(') + 1;
+  const locationEnd = frame.indexOf(')');
+  const frameLocation = frame.slice(locationStart, locationEnd);
+  const frameLocationElements = frameLocation.split(':');
+  const [filename, line, column] = [frameLocationElements[0], parseInt(frameLocationElements[1], 10), parseInt(frameLocationElements[2], 10)];
+  let rawFileContents = '';
+  try {
+    rawFileContents = readFileSync(filename, 'utf-8');
+  } catch {
+    return '';
+  }
+  const codeFrame = codeFrameColumns(rawFileContents, {
+    start: {
+      line,
+      column
+    }
+  }, {
+    highlightCode: true,
+    linesBelow: 0
+  });
+  return chalk.dim(frameLocation) + "\n" + codeFrame + "\n";
+}
+function getUserCodeFrame() {
+  // If we couldn't load dependencies, we can't generate the user trace
+  /* istanbul ignore next */
+  if (!readFileSync || !codeFrameColumns) {
+    return '';
+  }
+  const err = new Error();
+  const firstClientCodeFrame = err.stack.split('\n').slice(1) // Remove first line which has the form "Error: TypeError"
+  .find(frame => !frame.includes('node_modules/')); // Ignore frames from 3rd party libraries
+
+  return getCodeFrame(firstClientCodeFrame);
+}
+
+// Constant node.nodeType for text nodes, see:
+// https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType#Node_type_constants
+const TEXT_NODE = 3;
+function jestFakeTimersAreEnabled() {
+  /* istanbul ignore else */
+  // eslint-disable-next-line
+  if (typeof jest !== 'undefined' && jest !== null) {
+    return (
+      // legacy timers
+      setTimeout._isMockFunction === true ||
+      // modern timers
+      // eslint-disable-next-line prefer-object-has-own -- not supported by our support matrix
+      Object.prototype.hasOwnProperty.call(setTimeout, 'clock')
+    );
+  }
+  // istanbul ignore next
+  return false;
+}
+function getDocument() {
+  /* istanbul ignore if */
+  if (typeof window === 'undefined') {
+    throw new Error('Could not find default container');
+  }
+  return window.document;
+}
+function getWindowFromNode(node) {
+  if (node.defaultView) {
+    // node is document
+    return node.defaultView;
+  } else if (node.ownerDocument && node.ownerDocument.defaultView) {
+    // node is a DOM node
+    return node.ownerDocument.defaultView;
+  } else if (node.window) {
+    // node is window
+    return node.window;
+  } else if (node.ownerDocument && node.ownerDocument.defaultView === null) {
+    throw new Error("It looks like the window object is not available for the provided node.");
+  } else if (node.then instanceof Function) {
+    throw new Error("It looks like you passed a Promise object instead of a DOM node. Did you do something like `fireEvent.click(screen.findBy...` when you meant to use a `getBy` query `fireEvent.click(screen.getBy...`, or await the findBy query `fireEvent.click(await screen.findBy...`?");
+  } else if (Array.isArray(node)) {
+    throw new Error("It looks like you passed an Array instead of a DOM node. Did you do something like `fireEvent.click(screen.getAllBy...` when you meant to use a `getBy` query `fireEvent.click(screen.getBy...`?");
+  } else if (typeof node.debug === 'function' && typeof node.logTestingPlaygroundURL === 'function') {
+    throw new Error("It looks like you passed a `screen` object. Did you do something like `fireEvent.click(screen, ...` when you meant to use a query, e.g. `fireEvent.click(screen.getBy..., `?");
+  } else {
+    // The user passed something unusual to a calling function
+    throw new Error("The given node is not an Element, the node type is: " + typeof node + ".");
+  }
+}
+function checkContainerType(container) {
+  if (!container || !(typeof container.querySelector === 'function') || !(typeof container.querySelectorAll === 'function')) {
+    throw new TypeError("Expected container to be an Element, a Document or a DocumentFragment but got " + getTypeName(container) + ".");
+  }
+  function getTypeName(object) {
+    if (typeof object === 'object') {
+      return object === null ? 'null' : object.constructor.name;
+    }
+    return typeof object;
+  }
+}
+
+const shouldHighlight = () => {
+  if (typeof process === 'undefined') {
+    // Don't colorize in non-node environments (e.g. Browsers)
+    return false;
+  }
+  let colors;
+  // Try to safely parse env COLORS: We will default behavior if any step fails.
+  try {
+    var _process$env;
+    const colorsJSON = (_process$env = process.env) == null ? void 0 : _process$env.COLORS;
+    if (colorsJSON) {
+      colors = JSON.parse(colorsJSON);
+    }
+  } catch {
+    // If this throws, process.env?.COLORS wasn't parsable. Since we only
+    // care about `true` or `false`, we can safely ignore the error.
+  }
+  if (typeof colors === 'boolean') {
+    // If `colors` is set explicitly (both `true` and `false`), use that value.
+    return colors;
+  } else {
+    // If `colors` is not set, colorize if we're in node.
+    return process.versions !== undefined && process.versions.node !== undefined;
+  }
+};
+const {
+  DOMCollection
+} = build.plugins;
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType#node_type_constants
+const ELEMENT_NODE = 1;
+const COMMENT_NODE = 8;
+
+// https://github.com/facebook/jest/blob/615084195ae1ae61ddd56162c62bbdda17587569/packages/pretty-format/src/plugins/DOMElement.ts#L50
+function filterCommentsAndDefaultIgnoreTagsTags(value) {
+  return value.nodeType !== COMMENT_NODE && (value.nodeType !== ELEMENT_NODE || !value.matches(getConfig().defaultIgnore));
+}
+function prettyDOM(dom, maxLength, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  if (!dom) {
+    dom = getDocument().body;
+  }
+  if (typeof maxLength !== 'number') {
+    maxLength = typeof process !== 'undefined' && typeof process.env !== 'undefined' && process.env.DEBUG_PRINT_LIMIT || 7000;
+  }
+  if (maxLength === 0) {
+    return '';
+  }
+  if (dom.documentElement) {
+    dom = dom.documentElement;
+  }
+  let domTypeName = typeof dom;
+  if (domTypeName === 'object') {
+    domTypeName = dom.constructor.name;
+  } else {
+    // To don't fall with `in` operator
+    dom = {};
+  }
+  if (!('outerHTML' in dom)) {
+    throw new TypeError("Expected an element or document but got " + domTypeName);
+  }
+  const {
+    filterNode = filterCommentsAndDefaultIgnoreTagsTags,
+    ...prettyFormatOptions
+  } = options;
+  const debugContent = build.format(dom, {
+    plugins: [createDOMElementFilter(filterNode), DOMCollection],
+    printFunctionName: false,
+    highlight: shouldHighlight(),
+    ...prettyFormatOptions
+  });
+  return maxLength !== undefined && dom.outerHTML.length > maxLength ? debugContent.slice(0, maxLength) + "..." : debugContent;
+}
+const logDOM = function () {
+  const userCodeFrame = getUserCodeFrame();
+  if (userCodeFrame) {
+    console.log(prettyDOM(...arguments) + "\n\n" + userCodeFrame);
+  } else {
+    console.log(prettyDOM(...arguments));
+  }
+};
+
+// It would be cleaner for this to live inside './queries', but
+// other parts of the code assume that all exports from
+// './queries' are query functions.
+let config = {
+  testIdAttribute: 'data-testid',
+  asyncUtilTimeout: 1000,
+  // asyncWrapper and advanceTimersWrapper is to support React's async `act` function.
+  // forcing react-testing-library to wrap all async functions would've been
+  // a total nightmare (consider wrapping every findBy* query and then also
+  // updating `within` so those would be wrapped too. Total nightmare).
+  // so we have this config option that's really only intended for
+  // react-testing-library to use. For that reason, this feature will remain
+  // undocumented.
+  asyncWrapper: cb => cb(),
+  unstable_advanceTimersWrapper: cb => cb(),
+  eventWrapper: cb => cb(),
+  // default value for the `hidden` option in `ByRole` queries
+  defaultHidden: false,
+  // default value for the `ignore` option in `ByText` queries
+  defaultIgnore: 'script, style',
+  // showOriginalStackTrace flag to show the full error stack traces for async errors
+  showOriginalStackTrace: false,
+  // throw errors w/ suggestions for better queries. Opt in so off by default.
+  throwSuggestions: false,
+  // called when getBy* queries fail. (message, container) => Error
+  getElementError(message, container) {
+    const prettifiedDOM = prettyDOM(container);
+    const error = new Error([message, "Ignored nodes: comments, " + config.defaultIgnore + "\n" + prettifiedDOM].filter(Boolean).join('\n\n'));
+    error.name = 'TestingLibraryElementError';
+    return error;
+  },
+  _disableExpensiveErrorDiagnostics: false,
+  computedStyleSupportsPseudoElements: false
+};
+function runWithExpensiveErrorDiagnosticsDisabled(callback) {
+  try {
+    config._disableExpensiveErrorDiagnostics = true;
+    return callback();
+  } finally {
+    config._disableExpensiveErrorDiagnostics = false;
+  }
+}
+function configure(newConfig) {
+  if (typeof newConfig === 'function') {
+    // Pass the existing config out to the provided function
+    // and accept a delta in return
+    newConfig = newConfig(config);
+  }
+
+  // Merge the incoming config delta
+  config = {
+    ...config,
+    ...newConfig
+  };
+}
+function getConfig() {
+  return config;
+}
+
+const labelledNodeNames = ['button', 'meter', 'output', 'progress', 'select', 'textarea', 'input'];
+function getTextContent(node) {
+  if (labelledNodeNames.includes(node.nodeName.toLowerCase())) {
+    return '';
+  }
+  if (node.nodeType === TEXT_NODE) return node.textContent;
+  return Array.from(node.childNodes).map(childNode => getTextContent(childNode)).join('');
+}
+function getLabelContent(element) {
+  let textContent;
+  if (element.tagName.toLowerCase() === 'label') {
+    textContent = getTextContent(element);
+  } else {
+    textContent = element.value || element.textContent;
+  }
+  return textContent;
+}
+
+// Based on https://github.com/eps1lon/dom-accessibility-api/pull/352
+function getRealLabels(element) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- types are not aware of older browsers that don't implement `labels`
+  if (element.labels !== undefined) {
+    var _labels;
+    return (_labels = element.labels) != null ? _labels : [];
+  }
+  if (!isLabelable(element)) return [];
+  const labels = element.ownerDocument.querySelectorAll('label');
+  return Array.from(labels).filter(label => label.control === element);
+}
+function isLabelable(element) {
+  return /BUTTON|METER|OUTPUT|PROGRESS|SELECT|TEXTAREA/.test(element.tagName) || element.tagName === 'INPUT' && element.getAttribute('type') !== 'hidden';
+}
+function dom_esm_getLabels(container, element, _temp) {
+  let {
+    selector = '*'
+  } = _temp === void 0 ? {} : _temp;
+  const ariaLabelledBy = element.getAttribute('aria-labelledby');
+  const labelsId = ariaLabelledBy ? ariaLabelledBy.split(' ') : [];
+  return labelsId.length ? labelsId.map(labelId => {
+    const labellingElement = container.querySelector("[id=\"" + labelId + "\"]");
+    return labellingElement ? {
+      content: getLabelContent(labellingElement),
+      formControl: null
+    } : {
+      content: '',
+      formControl: null
+    };
+  }) : Array.from(getRealLabels(element)).map(label => {
+    const textToMatch = getLabelContent(label);
+    const formControlSelector = 'button, input, meter, output, progress, select, textarea';
+    const labelledFormControl = Array.from(label.querySelectorAll(formControlSelector)).filter(formControlElement => formControlElement.matches(selector))[0];
+    return {
+      content: textToMatch,
+      formControl: labelledFormControl
+    };
+  });
+}
+
+function assertNotNullOrUndefined(matcher) {
+  if (matcher === null || matcher === undefined) {
+    throw new Error( // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- implicitly converting `T` to `string`
+    "It looks like " + matcher + " was passed instead of a matcher. Did you do something like getByText(" + matcher + ")?");
+  }
+}
+function fuzzyMatches(textToMatch, node, matcher, normalizer) {
+  if (typeof textToMatch !== 'string') {
+    return false;
+  }
+  assertNotNullOrUndefined(matcher);
+  const normalizedText = normalizer(textToMatch);
+  if (typeof matcher === 'string' || typeof matcher === 'number') {
+    return normalizedText.toLowerCase().includes(matcher.toString().toLowerCase());
+  } else if (typeof matcher === 'function') {
+    return matcher(normalizedText, node);
+  } else {
+    return matchRegExp(matcher, normalizedText);
+  }
+}
+function matches(textToMatch, node, matcher, normalizer) {
+  if (typeof textToMatch !== 'string') {
+    return false;
+  }
+  assertNotNullOrUndefined(matcher);
+  const normalizedText = normalizer(textToMatch);
+  if (matcher instanceof Function) {
+    return matcher(normalizedText, node);
+  } else if (matcher instanceof RegExp) {
+    return matchRegExp(matcher, normalizedText);
+  } else {
+    return normalizedText === String(matcher);
+  }
+}
+function getDefaultNormalizer(_temp) {
+  let {
+    trim = true,
+    collapseWhitespace = true
+  } = _temp === void 0 ? {} : _temp;
+  return text => {
+    let normalizedText = text;
+    normalizedText = trim ? normalizedText.trim() : normalizedText;
+    normalizedText = collapseWhitespace ? normalizedText.replace(/\s+/g, ' ') : normalizedText;
+    return normalizedText;
+  };
+}
+
+/**
+ * Constructs a normalizer to pass to functions in matches.js
+ * @param {boolean|undefined} trim The user-specified value for `trim`, without
+ * any defaulting having been applied
+ * @param {boolean|undefined} collapseWhitespace The user-specified value for
+ * `collapseWhitespace`, without any defaulting having been applied
+ * @param {Function|undefined} normalizer The user-specified normalizer
+ * @returns {Function} A normalizer
+ */
+
+function makeNormalizer(_ref) {
+  let {
+    trim,
+    collapseWhitespace,
+    normalizer
+  } = _ref;
+  if (!normalizer) {
+    // No custom normalizer specified. Just use default.
+    return getDefaultNormalizer({
+      trim,
+      collapseWhitespace
+    });
+  }
+  if (typeof trim !== 'undefined' || typeof collapseWhitespace !== 'undefined') {
+    // They've also specified a value for trim or collapseWhitespace
+    throw new Error('trim and collapseWhitespace are not supported with a normalizer. ' + 'If you want to use the default trim and collapseWhitespace logic in your normalizer, ' + 'use "getDefaultNormalizer({trim, collapseWhitespace})" and compose that into your normalizer');
+  }
+  return normalizer;
+}
+function matchRegExp(matcher, text) {
+  const match = matcher.test(text);
+  if (matcher.global && matcher.lastIndex !== 0) {
+    console.warn("To match all elements we had to reset the lastIndex of the RegExp because the global flag is enabled. We encourage to remove the global flag from the RegExp.");
+    matcher.lastIndex = 0;
+  }
+  return match;
+}
+
+function getNodeText(node) {
+  if (node.matches('input[type=submit], input[type=button], input[type=reset]')) {
+    return node.value;
+  }
+  return Array.from(node.childNodes).filter(child => child.nodeType === TEXT_NODE && Boolean(child.textContent)).map(c => c.textContent).join('');
+}
+
+const elementRoleList = buildElementRoleList(lib/* elementRoles */._s);
+
+/**
+ * @param {Element} element -
+ * @returns {boolean} - `true` if `element` and its subtree are inaccessible
+ */
+function isSubtreeInaccessible(element) {
+  if (element.hidden === true) {
+    return true;
+  }
+  if (element.getAttribute('aria-hidden') === 'true') {
+    return true;
+  }
+  const window = element.ownerDocument.defaultView;
+  if (window.getComputedStyle(element).display === 'none') {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Partial implementation https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion
+ * which should only be used for elements with a non-presentational role i.e.
+ * `role="none"` and `role="presentation"` will not be excluded.
+ *
+ * Implements aria-hidden semantics (i.e. parent overrides child)
+ * Ignores "Child Presentational: True" characteristics
+ *
+ * @param {Element} element -
+ * @param {object} [options] -
+ * @param {function (element: Element): boolean} options.isSubtreeInaccessible -
+ * can be used to return cached results from previous isSubtreeInaccessible calls
+ * @returns {boolean} true if excluded, otherwise false
+ */
+function isInaccessible(element, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    isSubtreeInaccessible: isSubtreeInaccessibleImpl = isSubtreeInaccessible
+  } = options;
+  const window = element.ownerDocument.defaultView;
+  // since visibility is inherited we can exit early
+  if (window.getComputedStyle(element).visibility === 'hidden') {
+    return true;
+  }
+  let currentElement = element;
+  while (currentElement) {
+    if (isSubtreeInaccessibleImpl(currentElement)) {
+      return true;
+    }
+    currentElement = currentElement.parentElement;
+  }
+  return false;
+}
+function getImplicitAriaRoles(currentNode) {
+  // eslint bug here:
+  // eslint-disable-next-line no-unused-vars
+  for (const {
+    match,
+    roles
+  } of elementRoleList) {
+    if (match(currentNode)) {
+      return [...roles];
+    }
+  }
+  return [];
+}
+function buildElementRoleList(elementRolesMap) {
+  function makeElementSelector(_ref) {
+    let {
+      name,
+      attributes
+    } = _ref;
+    return "" + name + attributes.map(_ref2 => {
+      let {
+        name: attributeName,
+        value,
+        constraints = []
+      } = _ref2;
+      const shouldNotExist = constraints.indexOf('undefined') !== -1;
+      const shouldBeNonEmpty = constraints.indexOf('set') !== -1;
+      const hasExplicitValue = typeof value !== 'undefined';
+      if (hasExplicitValue) {
+        return "[" + attributeName + "=\"" + value + "\"]";
+      } else if (shouldNotExist) {
+        return ":not([" + attributeName + "])";
+      } else if (shouldBeNonEmpty) {
+        return "[" + attributeName + "]:not([" + attributeName + "=\"\"])";
+      }
+      return "[" + attributeName + "]";
+    }).join('');
+  }
+  function getSelectorSpecificity(_ref3) {
+    let {
+      attributes = []
+    } = _ref3;
+    return attributes.length;
+  }
+  function bySelectorSpecificity(_ref4, _ref5) {
+    let {
+      specificity: leftSpecificity
+    } = _ref4;
+    let {
+      specificity: rightSpecificity
+    } = _ref5;
+    return rightSpecificity - leftSpecificity;
+  }
+  function match(element) {
+    let {
+      attributes = []
+    } = element;
+
+    // https://github.com/testing-library/dom-testing-library/issues/814
+    const typeTextIndex = attributes.findIndex(attribute => attribute.value && attribute.name === 'type' && attribute.value === 'text');
+    if (typeTextIndex >= 0) {
+      // not using splice to not mutate the attributes array
+      attributes = [...attributes.slice(0, typeTextIndex), ...attributes.slice(typeTextIndex + 1)];
+    }
+    const selector = makeElementSelector({
+      ...element,
+      attributes
+    });
+    return node => {
+      if (typeTextIndex >= 0 && node.type !== 'text') {
+        return false;
+      }
+      return node.matches(selector);
+    };
+  }
+  let result = [];
+
+  // eslint bug here:
+  // eslint-disable-next-line no-unused-vars
+  for (const [element, roles] of elementRolesMap.entries()) {
+    result = [...result, {
+      match: match(element),
+      roles: Array.from(roles),
+      specificity: getSelectorSpecificity(element)
+    }];
+  }
+  return result.sort(bySelectorSpecificity);
+}
+function getRoles(container, _temp) {
+  let {
+    hidden = false
+  } = _temp === void 0 ? {} : _temp;
+  function flattenDOM(node) {
+    return [node, ...Array.from(node.children).reduce((acc, child) => [...acc, ...flattenDOM(child)], [])];
+  }
+  return flattenDOM(container).filter(element => {
+    return hidden === false ? isInaccessible(element) === false : true;
+  }).reduce((acc, node) => {
+    let roles = [];
+    // TODO: This violates html-aria which does not allow any role on every element
+    if (node.hasAttribute('role')) {
+      roles = node.getAttribute('role').split(' ').slice(0, 1);
+    } else {
+      roles = getImplicitAriaRoles(node);
+    }
+    return roles.reduce((rolesAcc, role) => Array.isArray(rolesAcc[role]) ? {
+      ...rolesAcc,
+      [role]: [...rolesAcc[role], node]
+    } : {
+      ...rolesAcc,
+      [role]: [node]
+    }, acc);
+  }, {});
+}
+function prettyRoles(dom, _ref6) {
+  let {
+    hidden,
+    includeDescription
+  } = _ref6;
+  const roles = getRoles(dom, {
+    hidden
+  });
+  // We prefer to skip generic role, we don't recommend it
+  return Object.entries(roles).filter(_ref7 => {
+    let [role] = _ref7;
+    return role !== 'generic';
+  }).map(_ref8 => {
+    let [role, elements] = _ref8;
+    const delimiterBar = '-'.repeat(50);
+    const elementsString = elements.map(el => {
+      const nameString = "Name \"" + computeAccessibleName(el, {
+        computedStyleSupportsPseudoElements: getConfig().computedStyleSupportsPseudoElements
+      }) + "\":\n";
+      const domString = prettyDOM(el.cloneNode(false));
+      if (includeDescription) {
+        const descriptionString = "Description \"" + computeAccessibleDescription(el, {
+          computedStyleSupportsPseudoElements: getConfig().computedStyleSupportsPseudoElements
+        }) + "\":\n";
+        return "" + nameString + descriptionString + domString;
+      }
+      return "" + nameString + domString;
+    }).join('\n\n');
+    return role + ":\n\n" + elementsString + "\n\n" + delimiterBar;
+  }).join('\n');
+}
+const logRoles = function (dom, _temp2) {
+  let {
+    hidden = false
+  } = _temp2 === void 0 ? {} : _temp2;
+  return console.log(prettyRoles(dom, {
+    hidden
+  }));
+};
+
+/**
+ * @param {Element} element -
+ * @returns {boolean | undefined} - false/true if (not)selected, undefined if not selectable
+ */
+function computeAriaSelected(element) {
+  // implicit value from html-aam mappings: https://www.w3.org/TR/html-aam-1.0/#html-attribute-state-and-property-mappings
+  // https://www.w3.org/TR/html-aam-1.0/#details-id-97
+  if (element.tagName === 'OPTION') {
+    return element.selected;
+  }
+
+  // explicit value
+  return checkBooleanAttribute(element, 'aria-selected');
+}
+
+/**
+ * @param {Element} element -
+ * @returns {boolean} -
+ */
+function computeAriaBusy(element) {
+  // https://www.w3.org/TR/wai-aria-1.1/#aria-busy
+  return element.getAttribute('aria-busy') === 'true';
+}
+
+/**
+ * @param {Element} element -
+ * @returns {boolean | undefined} - false/true if (not)checked, undefined if not checked-able
+ */
+function computeAriaChecked(element) {
+  // implicit value from html-aam mappings: https://www.w3.org/TR/html-aam-1.0/#html-attribute-state-and-property-mappings
+  // https://www.w3.org/TR/html-aam-1.0/#details-id-56
+  // https://www.w3.org/TR/html-aam-1.0/#details-id-67
+  if ('indeterminate' in element && element.indeterminate) {
+    return undefined;
+  }
+  if ('checked' in element) {
+    return element.checked;
+  }
+
+  // explicit value
+  return checkBooleanAttribute(element, 'aria-checked');
+}
+
+/**
+ * @param {Element} element -
+ * @returns {boolean | undefined} - false/true if (not)pressed, undefined if not press-able
+ */
+function computeAriaPressed(element) {
+  // https://www.w3.org/TR/wai-aria-1.1/#aria-pressed
+  return checkBooleanAttribute(element, 'aria-pressed');
+}
+
+/**
+ * @param {Element} element -
+ * @returns {boolean | string | null} -
+ */
+function computeAriaCurrent(element) {
+  var _ref9, _checkBooleanAttribut;
+  // https://www.w3.org/TR/wai-aria-1.1/#aria-current
+  return (_ref9 = (_checkBooleanAttribut = checkBooleanAttribute(element, 'aria-current')) != null ? _checkBooleanAttribut : element.getAttribute('aria-current')) != null ? _ref9 : false;
+}
+
+/**
+ * @param {Element} element -
+ * @returns {boolean | undefined} - false/true if (not)expanded, undefined if not expand-able
+ */
+function computeAriaExpanded(element) {
+  // https://www.w3.org/TR/wai-aria-1.1/#aria-expanded
+  return checkBooleanAttribute(element, 'aria-expanded');
+}
+function checkBooleanAttribute(element, attribute) {
+  const attributeValue = element.getAttribute(attribute);
+  if (attributeValue === 'true') {
+    return true;
+  }
+  if (attributeValue === 'false') {
+    return false;
+  }
+  return undefined;
+}
+
+/**
+ * @param {Element} element -
+ * @returns {number | undefined} - number if implicit heading or aria-level present, otherwise undefined
+ */
+function computeHeadingLevel(element) {
+  // https://w3c.github.io/html-aam/#el-h1-h6
+  // https://w3c.github.io/html-aam/#el-h1-h6
+  const implicitHeadingLevels = {
+    H1: 1,
+    H2: 2,
+    H3: 3,
+    H4: 4,
+    H5: 5,
+    H6: 6
+  };
+  // explicit aria-level value
+  // https://www.w3.org/TR/wai-aria-1.2/#aria-level
+  const ariaLevelAttribute = element.getAttribute('aria-level') && Number(element.getAttribute('aria-level'));
+  return ariaLevelAttribute || implicitHeadingLevels[element.tagName];
+}
+
+/**
+ * @param {Element} element -
+ * @returns {number | undefined} -
+ */
+function computeAriaValueNow(element) {
+  const valueNow = element.getAttribute('aria-valuenow');
+  return valueNow === null ? undefined : +valueNow;
+}
+
+/**
+ * @param {Element} element -
+ * @returns {number | undefined} -
+ */
+function computeAriaValueMax(element) {
+  const valueMax = element.getAttribute('aria-valuemax');
+  return valueMax === null ? undefined : +valueMax;
+}
+
+/**
+ * @param {Element} element -
+ * @returns {number | undefined} -
+ */
+function computeAriaValueMin(element) {
+  const valueMin = element.getAttribute('aria-valuemin');
+  return valueMin === null ? undefined : +valueMin;
+}
+
+/**
+ * @param {Element} element -
+ * @returns {string | undefined} -
+ */
+function computeAriaValueText(element) {
+  const valueText = element.getAttribute('aria-valuetext');
+  return valueText === null ? undefined : valueText;
+}
+
+const normalize = getDefaultNormalizer();
+function escapeRegExp(string) {
+  return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+function getRegExpMatcher(string) {
+  return new RegExp(escapeRegExp(string.toLowerCase()), 'i');
+}
+function makeSuggestion(queryName, element, content, _ref) {
+  let {
+    variant,
+    name
+  } = _ref;
+  let warning = '';
+  const queryOptions = {};
+  const queryArgs = [['Role', 'TestId'].includes(queryName) ? content : getRegExpMatcher(content)];
+  if (name) {
+    queryOptions.name = getRegExpMatcher(name);
+  }
+  if (queryName === 'Role' && isInaccessible(element)) {
+    queryOptions.hidden = true;
+    warning = "Element is inaccessible. This means that the element and all its children are invisible to screen readers.\n    If you are using the aria-hidden prop, make sure this is the right choice for your case.\n    ";
+  }
+  if (Object.keys(queryOptions).length > 0) {
+    queryArgs.push(queryOptions);
+  }
+  const queryMethod = variant + "By" + queryName;
+  return {
+    queryName,
+    queryMethod,
+    queryArgs,
+    variant,
+    warning,
+    toString() {
+      if (warning) {
+        console.warn(warning);
+      }
+      let [text, options] = queryArgs;
+      text = typeof text === 'string' ? "'" + text + "'" : text;
+      options = options ? ", { " + Object.entries(options).map(_ref2 => {
+        let [k, v] = _ref2;
+        return k + ": " + v;
+      }).join(', ') + " }" : '';
+      return queryMethod + "(" + text + options + ")";
+    }
+  };
+}
+function canSuggest(currentMethod, requestedMethod, data) {
+  return data && (!requestedMethod || requestedMethod.toLowerCase() === currentMethod.toLowerCase());
+}
+function getSuggestedQuery(element, variant, method) {
+  var _element$getAttribute, _getImplicitAriaRoles;
+  if (variant === void 0) {
+    variant = 'get';
+  }
+  // don't create suggestions for script and style elements
+  if (element.matches(getConfig().defaultIgnore)) {
+    return undefined;
+  }
+
+  //We prefer to suggest something else if the role is generic
+  const role = (_element$getAttribute = element.getAttribute('role')) != null ? _element$getAttribute : (_getImplicitAriaRoles = getImplicitAriaRoles(element)) == null ? void 0 : _getImplicitAriaRoles[0];
+  if (role !== 'generic' && canSuggest('Role', method, role)) {
+    return makeSuggestion('Role', element, role, {
+      variant,
+      name: computeAccessibleName(element, {
+        computedStyleSupportsPseudoElements: getConfig().computedStyleSupportsPseudoElements
+      })
+    });
+  }
+  const labelText = dom_esm_getLabels(document, element).map(label => label.content).join(' ');
+  if (canSuggest('LabelText', method, labelText)) {
+    return makeSuggestion('LabelText', element, labelText, {
+      variant
+    });
+  }
+  const placeholderText = element.getAttribute('placeholder');
+  if (canSuggest('PlaceholderText', method, placeholderText)) {
+    return makeSuggestion('PlaceholderText', element, placeholderText, {
+      variant
+    });
+  }
+  const textContent = normalize(getNodeText(element));
+  if (canSuggest('Text', method, textContent)) {
+    return makeSuggestion('Text', element, textContent, {
+      variant
+    });
+  }
+  if (canSuggest('DisplayValue', method, element.value)) {
+    return makeSuggestion('DisplayValue', element, normalize(element.value), {
+      variant
+    });
+  }
+  const alt = element.getAttribute('alt');
+  if (canSuggest('AltText', method, alt)) {
+    return makeSuggestion('AltText', element, alt, {
+      variant
+    });
+  }
+  const title = element.getAttribute('title');
+  if (canSuggest('Title', method, title)) {
+    return makeSuggestion('Title', element, title, {
+      variant
+    });
+  }
+  const testId = element.getAttribute(getConfig().testIdAttribute);
+  if (canSuggest('TestId', method, testId)) {
+    return makeSuggestion('TestId', element, testId, {
+      variant
+    });
+  }
+  return undefined;
+}
+
+// This is so the stack trace the developer sees is one that's
+// closer to their code (because async stack traces are hard to follow).
+function copyStackTrace(target, source) {
+  target.stack = source.stack.replace(source.message, target.message);
+}
+function waitFor(callback, _ref) {
+  let {
+    container = getDocument(),
+    timeout = getConfig().asyncUtilTimeout,
+    showOriginalStackTrace = getConfig().showOriginalStackTrace,
+    stackTraceError,
+    interval = 50,
+    onTimeout = error => {
+      Object.defineProperty(error, 'message', {
+        value: getConfig().getElementError(error.message, container).message
+      });
+      return error;
+    },
+    mutationObserverOptions = {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      characterData: true
+    }
+  } = _ref;
+  if (typeof callback !== 'function') {
+    throw new TypeError('Received `callback` arg must be a function');
+  }
+  return new Promise(async (resolve, reject) => {
+    let lastError, intervalId, observer;
+    let finished = false;
+    let promiseStatus = 'idle';
+    const overallTimeoutTimer = setTimeout(handleTimeout, timeout);
+    const usingJestFakeTimers = jestFakeTimersAreEnabled();
+    if (usingJestFakeTimers) {
+      const {
+        unstable_advanceTimersWrapper: advanceTimersWrapper
+      } = getConfig();
+      checkCallback();
+      // this is a dangerous rule to disable because it could lead to an
+      // infinite loop. However, eslint isn't smart enough to know that we're
+      // setting finished inside `onDone` which will be called when we're done
+      // waiting or when we've timed out.
+      // eslint-disable-next-line no-unmodified-loop-condition
+      while (!finished) {
+        if (!jestFakeTimersAreEnabled()) {
+          const error = new Error("Changed from using fake timers to real timers while using waitFor. This is not allowed and will result in very strange behavior. Please ensure you're awaiting all async things your test is doing before changing to real timers. For more info, please go to https://github.com/testing-library/dom-testing-library/issues/830");
+          if (!showOriginalStackTrace) copyStackTrace(error, stackTraceError);
+          reject(error);
+          return;
+        }
+
+        // In this rare case, we *need* to wait for in-flight promises
+        // to resolve before continuing. We don't need to take advantage
+        // of parallelization so we're fine.
+        // https://stackoverflow.com/a/59243586/971592
+        // eslint-disable-next-line no-await-in-loop
+        await advanceTimersWrapper(async () => {
+          // we *could* (maybe should?) use `advanceTimersToNextTimer` but it's
+          // possible that could make this loop go on forever if someone is using
+          // third party code that's setting up recursive timers so rapidly that
+          // the user's timer's don't get a chance to resolve. So we'll advance
+          // by an interval instead. (We have a test for this case).
+          jest.advanceTimersByTime(interval);
+        });
+
+        // Could have timed-out
+        if (finished) {
+          break;
+        }
+        // It's really important that checkCallback is run *before* we flush
+        // in-flight promises. To be honest, I'm not sure why, and I can't quite
+        // think of a way to reproduce the problem in a test, but I spent
+        // an entire day banging my head against a wall on this.
+        checkCallback();
+      }
+    } else {
+      try {
+        checkContainerType(container);
+      } catch (e) {
+        reject(e);
+        return;
+      }
+      intervalId = setInterval(checkRealTimersCallback, interval);
+      const {
+        MutationObserver
+      } = getWindowFromNode(container);
+      observer = new MutationObserver(checkRealTimersCallback);
+      observer.observe(container, mutationObserverOptions);
+      checkCallback();
+    }
+    function onDone(error, result) {
+      finished = true;
+      clearTimeout(overallTimeoutTimer);
+      if (!usingJestFakeTimers) {
+        clearInterval(intervalId);
+        observer.disconnect();
+      }
+      if (error) {
+        reject(error);
+      } else {
+        resolve(result);
+      }
+    }
+    function checkRealTimersCallback() {
+      if (jestFakeTimersAreEnabled()) {
+        const error = new Error("Changed from using real timers to fake timers while using waitFor. This is not allowed and will result in very strange behavior. Please ensure you're awaiting all async things your test is doing before changing to fake timers. For more info, please go to https://github.com/testing-library/dom-testing-library/issues/830");
+        if (!showOriginalStackTrace) copyStackTrace(error, stackTraceError);
+        return reject(error);
+      } else {
+        return checkCallback();
+      }
+    }
+    function checkCallback() {
+      if (promiseStatus === 'pending') return;
+      try {
+        const result = runWithExpensiveErrorDiagnosticsDisabled(callback);
+        if (typeof (result == null ? void 0 : result.then) === 'function') {
+          promiseStatus = 'pending';
+          result.then(resolvedValue => {
+            promiseStatus = 'resolved';
+            onDone(null, resolvedValue);
+          }, rejectedValue => {
+            promiseStatus = 'rejected';
+            lastError = rejectedValue;
+          });
+        } else {
+          onDone(null, result);
+        }
+        // If `callback` throws, wait for the next mutation, interval, or timeout.
+      } catch (error) {
+        // Save the most recent callback error to reject the promise with it in the event of a timeout
+        lastError = error;
+      }
+    }
+    function handleTimeout() {
+      let error;
+      if (lastError) {
+        error = lastError;
+        if (!showOriginalStackTrace && error.name === 'TestingLibraryElementError') {
+          copyStackTrace(error, stackTraceError);
+        }
+      } else {
+        error = new Error('Timed out in waitFor.');
+        if (!showOriginalStackTrace) {
+          copyStackTrace(error, stackTraceError);
+        }
+      }
+      onDone(onTimeout(error), null);
+    }
+  });
+}
+function waitForWrapper(callback, options) {
+  // create the error here so its stack trace is as close to the
+  // calling code as possible
+  const stackTraceError = new Error('STACK_TRACE_MESSAGE');
+  return getConfig().asyncWrapper(() => waitFor(callback, {
+    stackTraceError,
+    ...options
+  }));
+}
+
+/*
+eslint
+  max-lines-per-function: ["error", {"max": 200}],
+*/
+
+function getElementError(message, container) {
+  return getConfig().getElementError(message, container);
+}
+function getMultipleElementsFoundError(message, container) {
+  return getElementError(message + "\n\n(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).", container);
+}
+function queryAllByAttribute(attribute, container, text, _temp) {
+  let {
+    exact = true,
+    collapseWhitespace,
+    trim,
+    normalizer
+  } = _temp === void 0 ? {} : _temp;
+  const matcher = exact ? matches : fuzzyMatches;
+  const matchNormalizer = makeNormalizer({
+    collapseWhitespace,
+    trim,
+    normalizer
+  });
+  return Array.from(container.querySelectorAll("[" + attribute + "]")).filter(node => matcher(node.getAttribute(attribute), node, text, matchNormalizer));
+}
+function queryByAttribute(attribute, container, text, options) {
+  const els = queryAllByAttribute(attribute, container, text, options);
+  if (els.length > 1) {
+    throw getMultipleElementsFoundError("Found multiple elements by [" + attribute + "=" + text + "]", container);
+  }
+  return els[0] || null;
+}
+
+// this accepts a query function and returns a function which throws an error
+// if more than one elements is returned, otherwise it returns the first
+// element or null
+function makeSingleQuery(allQuery, getMultipleError) {
+  return function (container) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+    const els = allQuery(container, ...args);
+    if (els.length > 1) {
+      const elementStrings = els.map(element => getElementError(null, element).message).join('\n\n');
+      throw getMultipleElementsFoundError(getMultipleError(container, ...args) + "\n\nHere are the matching elements:\n\n" + elementStrings, container);
+    }
+    return els[0] || null;
+  };
+}
+function getSuggestionError(suggestion, container) {
+  return getConfig().getElementError("A better query is available, try this:\n" + suggestion.toString() + "\n", container);
+}
+
+// this accepts a query function and returns a function which throws an error
+// if an empty list of elements is returned
+function makeGetAllQuery(allQuery, getMissingError) {
+  return function (container) {
+    for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      args[_key2 - 1] = arguments[_key2];
+    }
+    const els = allQuery(container, ...args);
+    if (!els.length) {
+      throw getConfig().getElementError(getMissingError(container, ...args), container);
+    }
+    return els;
+  };
+}
+
+// this accepts a getter query function and returns a function which calls
+// waitFor and passing a function which invokes the getter.
+function makeFindQuery(getter) {
+  return (container, text, options, waitForOptions) => {
+    return waitForWrapper(() => {
+      return getter(container, text, options);
+    }, {
+      container,
+      ...waitForOptions
+    });
+  };
+}
+const wrapSingleQueryWithSuggestion = (query, queryAllByName, variant) => function (container) {
+  for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+    args[_key3 - 1] = arguments[_key3];
+  }
+  const element = query(container, ...args);
+  const [{
+    suggest = getConfig().throwSuggestions
+  } = {}] = args.slice(-1);
+  if (element && suggest) {
+    const suggestion = getSuggestedQuery(element, variant);
+    if (suggestion && !queryAllByName.endsWith(suggestion.queryName)) {
+      throw getSuggestionError(suggestion.toString(), container);
+    }
+  }
+  return element;
+};
+const wrapAllByQueryWithSuggestion = (query, queryAllByName, variant) => function (container) {
+  for (var _len4 = arguments.length, args = new Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+    args[_key4 - 1] = arguments[_key4];
+  }
+  const els = query(container, ...args);
+  const [{
+    suggest = getConfig().throwSuggestions
+  } = {}] = args.slice(-1);
+  if (els.length && suggest) {
+    // get a unique list of all suggestion messages.  We are only going to make a suggestion if
+    // all the suggestions are the same
+    const uniqueSuggestionMessages = [...new Set(els.map(element => {
+      var _getSuggestedQuery;
+      return (_getSuggestedQuery = getSuggestedQuery(element, variant)) == null ? void 0 : _getSuggestedQuery.toString();
+    }))];
+    if (
+    // only want to suggest if all the els have the same suggestion.
+    uniqueSuggestionMessages.length === 1 && !queryAllByName.endsWith(
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- TODO: Can this be null at runtime?
+    getSuggestedQuery(els[0], variant).queryName)) {
+      throw getSuggestionError(uniqueSuggestionMessages[0], container);
+    }
+  }
+  return els;
+};
+
+// TODO: This deviates from the published declarations
+// However, the implementation always required a dyadic (after `container`) not variadic `queryAllBy` considering the implementation of `makeFindQuery`
+// This is at least statically true and can be verified by accepting `QueryMethod<Arguments, HTMLElement[]>`
+function buildQueries(queryAllBy, getMultipleError, getMissingError) {
+  const queryBy = wrapSingleQueryWithSuggestion(makeSingleQuery(queryAllBy, getMultipleError), queryAllBy.name, 'query');
+  const getAllBy = makeGetAllQuery(queryAllBy, getMissingError);
+  const getBy = makeSingleQuery(getAllBy, getMultipleError);
+  const getByWithSuggestions = wrapSingleQueryWithSuggestion(getBy, queryAllBy.name, 'get');
+  const getAllWithSuggestions = wrapAllByQueryWithSuggestion(getAllBy, queryAllBy.name.replace('query', 'get'), 'getAll');
+  const findAllBy = makeFindQuery(wrapAllByQueryWithSuggestion(getAllBy, queryAllBy.name, 'findAll'));
+  const findBy = makeFindQuery(wrapSingleQueryWithSuggestion(getBy, queryAllBy.name, 'find'));
+  return [queryBy, getAllWithSuggestions, getByWithSuggestions, findAllBy, findBy];
+}
+
+var queryHelpers = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  getElementError: getElementError,
+  wrapAllByQueryWithSuggestion: wrapAllByQueryWithSuggestion,
+  wrapSingleQueryWithSuggestion: wrapSingleQueryWithSuggestion,
+  getMultipleElementsFoundError: getMultipleElementsFoundError,
+  queryAllByAttribute: queryAllByAttribute,
+  queryByAttribute: queryByAttribute,
+  makeSingleQuery: makeSingleQuery,
+  makeGetAllQuery: makeGetAllQuery,
+  makeFindQuery: makeFindQuery,
+  buildQueries: buildQueries
+});
+
+function queryAllLabels(container) {
+  return Array.from(container.querySelectorAll('label,input')).map(node => {
+    return {
+      node,
+      textToMatch: getLabelContent(node)
+    };
+  }).filter(_ref => {
+    let {
+      textToMatch
+    } = _ref;
+    return textToMatch !== null;
+  });
+}
+const queryAllLabelsByText = function (container, text, _temp) {
+  let {
+    exact = true,
+    trim,
+    collapseWhitespace,
+    normalizer
+  } = _temp === void 0 ? {} : _temp;
+  const matcher = exact ? matches : fuzzyMatches;
+  const matchNormalizer = makeNormalizer({
+    collapseWhitespace,
+    trim,
+    normalizer
+  });
+  const textToMatchByLabels = queryAllLabels(container);
+  return textToMatchByLabels.filter(_ref2 => {
+    let {
+      node,
+      textToMatch
+    } = _ref2;
+    return matcher(textToMatch, node, text, matchNormalizer);
+  }).map(_ref3 => {
+    let {
+      node
+    } = _ref3;
+    return node;
+  });
+};
+const queryAllByLabelText = function (container, text, _temp2) {
+  let {
+    selector = '*',
+    exact = true,
+    collapseWhitespace,
+    trim,
+    normalizer
+  } = _temp2 === void 0 ? {} : _temp2;
+  checkContainerType(container);
+  const matcher = exact ? matches : fuzzyMatches;
+  const matchNormalizer = makeNormalizer({
+    collapseWhitespace,
+    trim,
+    normalizer
+  });
+  const matchingLabelledElements = Array.from(container.querySelectorAll('*')).filter(element => {
+    return getRealLabels(element).length || element.hasAttribute('aria-labelledby');
+  }).reduce((labelledElements, labelledElement) => {
+    const labelList = dom_esm_getLabels(container, labelledElement, {
+      selector
+    });
+    labelList.filter(label => Boolean(label.formControl)).forEach(label => {
+      if (matcher(label.content, label.formControl, text, matchNormalizer) && label.formControl) {
+        labelledElements.push(label.formControl);
+      }
+    });
+    const labelsValue = labelList.filter(label => Boolean(label.content)).map(label => label.content);
+    if (matcher(labelsValue.join(' '), labelledElement, text, matchNormalizer)) {
+      labelledElements.push(labelledElement);
+    }
+    if (labelsValue.length > 1) {
+      labelsValue.forEach((labelValue, index) => {
+        if (matcher(labelValue, labelledElement, text, matchNormalizer)) {
+          labelledElements.push(labelledElement);
+        }
+        const labelsFiltered = [...labelsValue];
+        labelsFiltered.splice(index, 1);
+        if (labelsFiltered.length > 1) {
+          if (matcher(labelsFiltered.join(' '), labelledElement, text, matchNormalizer)) {
+            labelledElements.push(labelledElement);
+          }
+        }
+      });
+    }
+    return labelledElements;
+  }, []).concat(queryAllByAttribute('aria-label', container, text, {
+    exact,
+    normalizer: matchNormalizer
+  }));
+  return Array.from(new Set(matchingLabelledElements)).filter(element => element.matches(selector));
+};
+
+// the getAll* query would normally look like this:
+// const getAllByLabelText = makeGetAllQuery(
+//   queryAllByLabelText,
+//   (c, text) => `Unable to find a label with the text of: ${text}`,
+// )
+// however, we can give a more helpful error message than the generic one,
+// so we're writing this one out by hand.
+const getAllByLabelText = function (container, text) {
+  for (var _len = arguments.length, rest = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    rest[_key - 2] = arguments[_key];
+  }
+  const els = queryAllByLabelText(container, text, ...rest);
+  if (!els.length) {
+    const labels = queryAllLabelsByText(container, text, ...rest);
+    if (labels.length) {
+      const tagNames = labels.map(label => getTagNameOfElementAssociatedWithLabelViaFor(container, label)).filter(tagName => !!tagName);
+      if (tagNames.length) {
+        throw getConfig().getElementError(tagNames.map(tagName => "Found a label with the text of: " + text + ", however the element associated with this label (<" + tagName + " />) is non-labellable [https://html.spec.whatwg.org/multipage/forms.html#category-label]. If you really need to label a <" + tagName + " />, you can use aria-label or aria-labelledby instead.").join('\n\n'), container);
+      } else {
+        throw getConfig().getElementError("Found a label with the text of: " + text + ", however no form control was found associated to that label. Make sure you're using the \"for\" attribute or \"aria-labelledby\" attribute correctly.", container);
+      }
+    } else {
+      throw getConfig().getElementError("Unable to find a label with the text of: " + text, container);
+    }
+  }
+  return els;
+};
+function getTagNameOfElementAssociatedWithLabelViaFor(container, label) {
+  const htmlFor = label.getAttribute('for');
+  if (!htmlFor) {
+    return null;
+  }
+  const element = container.querySelector("[id=\"" + htmlFor + "\"]");
+  return element ? element.tagName.toLowerCase() : null;
+}
+
+// the reason mentioned above is the same reason we're not using buildQueries
+const getMultipleError$7 = (c, text) => "Found multiple elements with the text of: " + text;
+const queryByLabelText = wrapSingleQueryWithSuggestion(makeSingleQuery(queryAllByLabelText, getMultipleError$7), queryAllByLabelText.name, 'query');
+const getByLabelText = makeSingleQuery(getAllByLabelText, getMultipleError$7);
+const findAllByLabelText = makeFindQuery(wrapAllByQueryWithSuggestion(getAllByLabelText, getAllByLabelText.name, 'findAll'));
+const findByLabelText = makeFindQuery(wrapSingleQueryWithSuggestion(getByLabelText, getAllByLabelText.name, 'find'));
+const getAllByLabelTextWithSuggestions = wrapAllByQueryWithSuggestion(getAllByLabelText, getAllByLabelText.name, 'getAll');
+const getByLabelTextWithSuggestions = wrapSingleQueryWithSuggestion(getByLabelText, getAllByLabelText.name, 'get');
+const queryAllByLabelTextWithSuggestions = wrapAllByQueryWithSuggestion(queryAllByLabelText, queryAllByLabelText.name, 'queryAll');
+
+const queryAllByPlaceholderText = function () {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+  checkContainerType(args[0]);
+  return queryAllByAttribute('placeholder', ...args);
+};
+const getMultipleError$6 = (c, text) => "Found multiple elements with the placeholder text of: " + text;
+const getMissingError$6 = (c, text) => "Unable to find an element with the placeholder text of: " + text;
+const queryAllByPlaceholderTextWithSuggestions = wrapAllByQueryWithSuggestion(queryAllByPlaceholderText, queryAllByPlaceholderText.name, 'queryAll');
+const [queryByPlaceholderText, getAllByPlaceholderText, getByPlaceholderText, findAllByPlaceholderText, findByPlaceholderText] = buildQueries(queryAllByPlaceholderText, getMultipleError$6, getMissingError$6);
+
+const queryAllByText = function (container, text, _temp) {
+  let {
+    selector = '*',
+    exact = true,
+    collapseWhitespace,
+    trim,
+    ignore = getConfig().defaultIgnore,
+    normalizer
+  } = _temp === void 0 ? {} : _temp;
+  checkContainerType(container);
+  const matcher = exact ? matches : fuzzyMatches;
+  const matchNormalizer = makeNormalizer({
+    collapseWhitespace,
+    trim,
+    normalizer
+  });
+  let baseArray = [];
+  if (typeof container.matches === 'function' && container.matches(selector)) {
+    baseArray = [container];
+  }
+  return [...baseArray, ...Array.from(container.querySelectorAll(selector))]
+  // TODO: `matches` according lib.dom.d.ts can get only `string` but according our code it can handle also boolean :)
+  .filter(node => !ignore || !node.matches(ignore)).filter(node => matcher(getNodeText(node), node, text, matchNormalizer));
+};
+const getMultipleError$5 = (c, text) => "Found multiple elements with the text: " + text;
+const getMissingError$5 = function (c, text, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    collapseWhitespace,
+    trim,
+    normalizer,
+    selector
+  } = options;
+  const matchNormalizer = makeNormalizer({
+    collapseWhitespace,
+    trim,
+    normalizer
+  });
+  const normalizedText = matchNormalizer(text.toString());
+  const isNormalizedDifferent = normalizedText !== text.toString();
+  const isCustomSelector = (selector != null ? selector : '*') !== '*';
+  return "Unable to find an element with the text: " + (isNormalizedDifferent ? normalizedText + " (normalized from '" + text + "')" : text) + (isCustomSelector ? ", which matches selector '" + selector + "'" : '') + ". This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.";
+};
+const queryAllByTextWithSuggestions = wrapAllByQueryWithSuggestion(queryAllByText, queryAllByText.name, 'queryAll');
+const [queryByText, getAllByText, getByText, findAllByText, findByText] = buildQueries(queryAllByText, getMultipleError$5, getMissingError$5);
+
+const queryAllByDisplayValue = function (container, value, _temp) {
+  let {
+    exact = true,
+    collapseWhitespace,
+    trim,
+    normalizer
+  } = _temp === void 0 ? {} : _temp;
+  checkContainerType(container);
+  const matcher = exact ? matches : fuzzyMatches;
+  const matchNormalizer = makeNormalizer({
+    collapseWhitespace,
+    trim,
+    normalizer
+  });
+  return Array.from(container.querySelectorAll("input,textarea,select")).filter(node => {
+    if (node.tagName === 'SELECT') {
+      const selectedOptions = Array.from(node.options).filter(option => option.selected);
+      return selectedOptions.some(optionNode => matcher(getNodeText(optionNode), optionNode, value, matchNormalizer));
+    } else {
+      return matcher(node.value, node, value, matchNormalizer);
+    }
+  });
+};
+const getMultipleError$4 = (c, value) => "Found multiple elements with the display value: " + value + ".";
+const getMissingError$4 = (c, value) => "Unable to find an element with the display value: " + value + ".";
+const queryAllByDisplayValueWithSuggestions = wrapAllByQueryWithSuggestion(queryAllByDisplayValue, queryAllByDisplayValue.name, 'queryAll');
+const [queryByDisplayValue, getAllByDisplayValue, getByDisplayValue, findAllByDisplayValue, findByDisplayValue] = buildQueries(queryAllByDisplayValue, getMultipleError$4, getMissingError$4);
+
+// Valid tags are img, input, area and custom elements
+const VALID_TAG_REGEXP = /^(img|input|area|.+-.+)$/i;
+const queryAllByAltText = function (container, alt, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  checkContainerType(container);
+  return queryAllByAttribute('alt', container, alt, options).filter(node => VALID_TAG_REGEXP.test(node.tagName));
+};
+const getMultipleError$3 = (c, alt) => "Found multiple elements with the alt text: " + alt;
+const getMissingError$3 = (c, alt) => "Unable to find an element with the alt text: " + alt;
+const queryAllByAltTextWithSuggestions = wrapAllByQueryWithSuggestion(queryAllByAltText, queryAllByAltText.name, 'queryAll');
+const [queryByAltText, getAllByAltText, getByAltText, findAllByAltText, findByAltText] = buildQueries(queryAllByAltText, getMultipleError$3, getMissingError$3);
+
+const isSvgTitle = node => {
+  var _node$parentElement;
+  return node.tagName.toLowerCase() === 'title' && ((_node$parentElement = node.parentElement) == null ? void 0 : _node$parentElement.tagName.toLowerCase()) === 'svg';
+};
+const queryAllByTitle = function (container, text, _temp) {
+  let {
+    exact = true,
+    collapseWhitespace,
+    trim,
+    normalizer
+  } = _temp === void 0 ? {} : _temp;
+  checkContainerType(container);
+  const matcher = exact ? matches : fuzzyMatches;
+  const matchNormalizer = makeNormalizer({
+    collapseWhitespace,
+    trim,
+    normalizer
+  });
+  return Array.from(container.querySelectorAll('[title], svg > title')).filter(node => matcher(node.getAttribute('title'), node, text, matchNormalizer) || isSvgTitle(node) && matcher(getNodeText(node), node, text, matchNormalizer));
+};
+const getMultipleError$2 = (c, title) => "Found multiple elements with the title: " + title + ".";
+const getMissingError$2 = (c, title) => "Unable to find an element with the title: " + title + ".";
+const queryAllByTitleWithSuggestions = wrapAllByQueryWithSuggestion(queryAllByTitle, queryAllByTitle.name, 'queryAll');
+const [queryByTitle, getAllByTitle, getByTitle, findAllByTitle, findByTitle] = buildQueries(queryAllByTitle, getMultipleError$2, getMissingError$2);
+
+/* eslint-disable complexity */
+const queryAllByRole = function (container, role, _temp) {
+  let {
+    hidden = getConfig().defaultHidden,
+    name,
+    description,
+    queryFallbacks = false,
+    selected,
+    busy,
+    checked,
+    pressed,
+    current,
+    level,
+    expanded,
+    value: {
+      now: valueNow,
+      min: valueMin,
+      max: valueMax,
+      text: valueText
+    } = {}
+  } = _temp === void 0 ? {} : _temp;
+  checkContainerType(container);
+  if (selected !== undefined) {
+    var _allRoles$get;
+    // guard against unknown roles
+    if (((_allRoles$get = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get.props['aria-selected']) === undefined) {
+      throw new Error("\"aria-selected\" is not supported on role \"" + role + "\".");
+    }
+  }
+  if (busy !== undefined) {
+    var _allRoles$get2;
+    // guard against unknown roles
+    if (((_allRoles$get2 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get2.props['aria-busy']) === undefined) {
+      throw new Error("\"aria-busy\" is not supported on role \"" + role + "\".");
+    }
+  }
+  if (checked !== undefined) {
+    var _allRoles$get3;
+    // guard against unknown roles
+    if (((_allRoles$get3 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get3.props['aria-checked']) === undefined) {
+      throw new Error("\"aria-checked\" is not supported on role \"" + role + "\".");
+    }
+  }
+  if (pressed !== undefined) {
+    var _allRoles$get4;
+    // guard against unknown roles
+    if (((_allRoles$get4 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get4.props['aria-pressed']) === undefined) {
+      throw new Error("\"aria-pressed\" is not supported on role \"" + role + "\".");
+    }
+  }
+  if (current !== undefined) {
+    var _allRoles$get5;
+    /* istanbul ignore next */
+    // guard against unknown roles
+    // All currently released ARIA versions support `aria-current` on all roles.
+    // Leaving this for symmetry and forward compatibility
+    if (((_allRoles$get5 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get5.props['aria-current']) === undefined) {
+      throw new Error("\"aria-current\" is not supported on role \"" + role + "\".");
+    }
+  }
+  if (level !== undefined) {
+    // guard against using `level` option with any role other than `heading`
+    if (role !== 'heading') {
+      throw new Error("Role \"" + role + "\" cannot have \"level\" property.");
+    }
+  }
+  if (valueNow !== undefined) {
+    var _allRoles$get6;
+    // guard against unknown roles
+    if (((_allRoles$get6 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get6.props['aria-valuenow']) === undefined) {
+      throw new Error("\"aria-valuenow\" is not supported on role \"" + role + "\".");
+    }
+  }
+  if (valueMax !== undefined) {
+    var _allRoles$get7;
+    // guard against unknown roles
+    if (((_allRoles$get7 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get7.props['aria-valuemax']) === undefined) {
+      throw new Error("\"aria-valuemax\" is not supported on role \"" + role + "\".");
+    }
+  }
+  if (valueMin !== undefined) {
+    var _allRoles$get8;
+    // guard against unknown roles
+    if (((_allRoles$get8 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get8.props['aria-valuemin']) === undefined) {
+      throw new Error("\"aria-valuemin\" is not supported on role \"" + role + "\".");
+    }
+  }
+  if (valueText !== undefined) {
+    var _allRoles$get9;
+    // guard against unknown roles
+    if (((_allRoles$get9 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get9.props['aria-valuetext']) === undefined) {
+      throw new Error("\"aria-valuetext\" is not supported on role \"" + role + "\".");
+    }
+  }
+  if (expanded !== undefined) {
+    var _allRoles$get10;
+    // guard against unknown roles
+    if (((_allRoles$get10 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get10.props['aria-expanded']) === undefined) {
+      throw new Error("\"aria-expanded\" is not supported on role \"" + role + "\".");
+    }
+  }
+  const subtreeIsInaccessibleCache = new WeakMap();
+  function cachedIsSubtreeInaccessible(element) {
+    if (!subtreeIsInaccessibleCache.has(element)) {
+      subtreeIsInaccessibleCache.set(element, isSubtreeInaccessible(element));
+    }
+    return subtreeIsInaccessibleCache.get(element);
+  }
+  return Array.from(container.querySelectorAll(
+  // Only query elements that can be matched by the following filters
+  makeRoleSelector(role))).filter(node => {
+    const isRoleSpecifiedExplicitly = node.hasAttribute('role');
+    if (isRoleSpecifiedExplicitly) {
+      const roleValue = node.getAttribute('role');
+      if (queryFallbacks) {
+        return roleValue.split(' ').filter(Boolean).some(roleAttributeToken => roleAttributeToken === role);
+      }
+      // other wise only send the first token to match
+      const [firstRoleAttributeToken] = roleValue.split(' ');
+      return firstRoleAttributeToken === role;
+    }
+    const implicitRoles = getImplicitAriaRoles(node);
+    return implicitRoles.some(implicitRole => {
+      return implicitRole === role;
+    });
+  }).filter(element => {
+    if (selected !== undefined) {
+      return selected === computeAriaSelected(element);
+    }
+    if (busy !== undefined) {
+      return busy === computeAriaBusy(element);
+    }
+    if (checked !== undefined) {
+      return checked === computeAriaChecked(element);
+    }
+    if (pressed !== undefined) {
+      return pressed === computeAriaPressed(element);
+    }
+    if (current !== undefined) {
+      return current === computeAriaCurrent(element);
+    }
+    if (expanded !== undefined) {
+      return expanded === computeAriaExpanded(element);
+    }
+    if (level !== undefined) {
+      return level === computeHeadingLevel(element);
+    }
+    if (valueNow !== undefined || valueMax !== undefined || valueMin !== undefined || valueText !== undefined) {
+      let valueMatches = true;
+      if (valueNow !== undefined) {
+        valueMatches && (valueMatches = valueNow === computeAriaValueNow(element));
+      }
+      if (valueMax !== undefined) {
+        valueMatches && (valueMatches = valueMax === computeAriaValueMax(element));
+      }
+      if (valueMin !== undefined) {
+        valueMatches && (valueMatches = valueMin === computeAriaValueMin(element));
+      }
+      if (valueText !== undefined) {
+        var _computeAriaValueText;
+        valueMatches && (valueMatches = matches((_computeAriaValueText = computeAriaValueText(element)) != null ? _computeAriaValueText : null, element, valueText, text => text));
+      }
+      return valueMatches;
+    }
+    // don't care if aria attributes are unspecified
+    return true;
+  }).filter(element => {
+    if (name === undefined) {
+      // Don't care
+      return true;
+    }
+    return matches(computeAccessibleName(element, {
+      computedStyleSupportsPseudoElements: getConfig().computedStyleSupportsPseudoElements
+    }), element, name, text => text);
+  }).filter(element => {
+    if (description === undefined) {
+      // Don't care
+      return true;
+    }
+    return matches(computeAccessibleDescription(element, {
+      computedStyleSupportsPseudoElements: getConfig().computedStyleSupportsPseudoElements
+    }), element, description, text => text);
+  }).filter(element => {
+    return hidden === false ? isInaccessible(element, {
+      isSubtreeInaccessible: cachedIsSubtreeInaccessible
+    }) === false : true;
+  });
+};
+function makeRoleSelector(role) {
+  var _roleElements$get;
+  const explicitRoleSelector = "*[role~=\"" + role + "\"]";
+  const roleRelations = (_roleElements$get = lib/* roleElements */.wZ.get(role)) != null ? _roleElements$get : new Set();
+  const implicitRoleSelectors = new Set(Array.from(roleRelations).map(_ref => {
+    let {
+      name
+    } = _ref;
+    return name;
+  }));
+
+  // Current transpilation config sometimes assumes `...` is always applied to arrays.
+  // `...` is equivalent to `Array.prototype.concat` for arrays.
+  // If you replace this code with `[explicitRoleSelector, ...implicitRoleSelectors]`, make sure every transpilation target retains the `...` in favor of `Array.prototype.concat`.
+  return [explicitRoleSelector].concat(Array.from(implicitRoleSelectors)).join(',');
+}
+const getNameHint = name => {
+  let nameHint = '';
+  if (name === undefined) {
+    nameHint = '';
+  } else if (typeof name === 'string') {
+    nameHint = " and name \"" + name + "\"";
+  } else {
+    nameHint = " and name `" + name + "`";
+  }
+  return nameHint;
+};
+const getMultipleError$1 = function (c, role, _temp2) {
+  let {
+    name
+  } = _temp2 === void 0 ? {} : _temp2;
+  return "Found multiple elements with the role \"" + role + "\"" + getNameHint(name);
+};
+const getMissingError$1 = function (container, role, _temp3) {
+  let {
+    hidden = getConfig().defaultHidden,
+    name,
+    description
+  } = _temp3 === void 0 ? {} : _temp3;
+  if (getConfig()._disableExpensiveErrorDiagnostics) {
+    return "Unable to find role=\"" + role + "\"" + getNameHint(name);
+  }
+  let roles = '';
+  Array.from(container.children).forEach(childElement => {
+    roles += prettyRoles(childElement, {
+      hidden,
+      includeDescription: description !== undefined
+    });
+  });
+  let roleMessage;
+  if (roles.length === 0) {
+    if (hidden === false) {
+      roleMessage = 'There are no accessible roles. But there might be some inaccessible roles. ' + 'If you wish to access them, then set the `hidden` option to `true`. ' + 'Learn more about this here: https://testing-library.com/docs/dom-testing-library/api-queries#byrole';
+    } else {
+      roleMessage = 'There are no available roles.';
+    }
+  } else {
+    roleMessage = ("\nHere are the " + (hidden === false ? 'accessible' : 'available') + " roles:\n\n  " + roles.replace(/\n/g, '\n  ').replace(/\n\s\s\n/g, '\n\n') + "\n").trim();
+  }
+  let nameHint = '';
+  if (name === undefined) {
+    nameHint = '';
+  } else if (typeof name === 'string') {
+    nameHint = " and name \"" + name + "\"";
+  } else {
+    nameHint = " and name `" + name + "`";
+  }
+  let descriptionHint = '';
+  if (description === undefined) {
+    descriptionHint = '';
+  } else if (typeof description === 'string') {
+    descriptionHint = " and description \"" + description + "\"";
+  } else {
+    descriptionHint = " and description `" + description + "`";
+  }
+  return ("\nUnable to find an " + (hidden === false ? 'accessible ' : '') + "element with the role \"" + role + "\"" + nameHint + descriptionHint + "\n\n" + roleMessage).trim();
+};
+const queryAllByRoleWithSuggestions = wrapAllByQueryWithSuggestion(queryAllByRole, queryAllByRole.name, 'queryAll');
+const [queryByRole, getAllByRole, getByRole, findAllByRole, findByRole] = buildQueries(queryAllByRole, getMultipleError$1, getMissingError$1);
+
+const getTestIdAttribute = () => getConfig().testIdAttribute;
+const queryAllByTestId = function () {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+  checkContainerType(args[0]);
+  return queryAllByAttribute(getTestIdAttribute(), ...args);
+};
+const getMultipleError = (c, id) => "Found multiple elements by: [" + getTestIdAttribute() + "=\"" + id + "\"]";
+const getMissingError = (c, id) => "Unable to find an element by: [" + getTestIdAttribute() + "=\"" + id + "\"]";
+const queryAllByTestIdWithSuggestions = wrapAllByQueryWithSuggestion(queryAllByTestId, queryAllByTestId.name, 'queryAll');
+const [queryByTestId, getAllByTestId, getByTestId, findAllByTestId, findByTestId] = buildQueries(queryAllByTestId, getMultipleError, getMissingError);
+
+var queries = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  queryAllByLabelText: queryAllByLabelTextWithSuggestions,
+  queryByLabelText: queryByLabelText,
+  getAllByLabelText: getAllByLabelTextWithSuggestions,
+  getByLabelText: getByLabelTextWithSuggestions,
+  findAllByLabelText: findAllByLabelText,
+  findByLabelText: findByLabelText,
+  queryByPlaceholderText: queryByPlaceholderText,
+  queryAllByPlaceholderText: queryAllByPlaceholderTextWithSuggestions,
+  getByPlaceholderText: getByPlaceholderText,
+  getAllByPlaceholderText: getAllByPlaceholderText,
+  findAllByPlaceholderText: findAllByPlaceholderText,
+  findByPlaceholderText: findByPlaceholderText,
+  queryByText: queryByText,
+  queryAllByText: queryAllByTextWithSuggestions,
+  getByText: getByText,
+  getAllByText: getAllByText,
+  findAllByText: findAllByText,
+  findByText: findByText,
+  queryByDisplayValue: queryByDisplayValue,
+  queryAllByDisplayValue: queryAllByDisplayValueWithSuggestions,
+  getByDisplayValue: getByDisplayValue,
+  getAllByDisplayValue: getAllByDisplayValue,
+  findAllByDisplayValue: findAllByDisplayValue,
+  findByDisplayValue: findByDisplayValue,
+  queryByAltText: queryByAltText,
+  queryAllByAltText: queryAllByAltTextWithSuggestions,
+  getByAltText: getByAltText,
+  getAllByAltText: getAllByAltText,
+  findAllByAltText: findAllByAltText,
+  findByAltText: findByAltText,
+  queryByTitle: queryByTitle,
+  queryAllByTitle: queryAllByTitleWithSuggestions,
+  getByTitle: getByTitle,
+  getAllByTitle: getAllByTitle,
+  findAllByTitle: findAllByTitle,
+  findByTitle: findByTitle,
+  queryByRole: queryByRole,
+  queryAllByRole: queryAllByRoleWithSuggestions,
+  getAllByRole: getAllByRole,
+  getByRole: getByRole,
+  findAllByRole: findAllByRole,
+  findByRole: findByRole,
+  queryByTestId: queryByTestId,
+  queryAllByTestId: queryAllByTestIdWithSuggestions,
+  getByTestId: getByTestId,
+  getAllByTestId: getAllByTestId,
+  findAllByTestId: findAllByTestId,
+  findByTestId: findByTestId
+});
+
+/**
+ * @typedef {{[key: string]: Function}} FuncMap
+ */
+
+/**
+ * @param {HTMLElement} element container
+ * @param {FuncMap} queries object of functions
+ * @param {Object} initialValue for reducer
+ * @returns {FuncMap} returns object of functions bound to container
+ */
+function getQueriesForElement(element, queries$1, initialValue) {
+  if (queries$1 === void 0) {
+    queries$1 = queries;
+  }
+  if (initialValue === void 0) {
+    initialValue = {};
+  }
+  return Object.keys(queries$1).reduce((helpers, key) => {
+    const fn = queries$1[key];
+    helpers[key] = fn.bind(null, element);
+    return helpers;
+  }, initialValue);
+}
+
+const isRemoved = result => !result || Array.isArray(result) && !result.length;
+
+// Check if the element is not present.
+// As the name implies, waitForElementToBeRemoved should check `present` --> `removed`
+function initialCheck(elements) {
+  if (isRemoved(elements)) {
+    throw new Error('The element(s) given to waitForElementToBeRemoved are already removed. waitForElementToBeRemoved requires that the element(s) exist(s) before waiting for removal.');
+  }
+}
+async function waitForElementToBeRemoved(callback, options) {
+  // created here so we get a nice stacktrace
+  const timeoutError = new Error('Timed out in waitForElementToBeRemoved.');
+  if (typeof callback !== 'function') {
+    initialCheck(callback);
+    const elements = Array.isArray(callback) ? callback : [callback];
+    const getRemainingElements = elements.map(element => {
+      let parent = element.parentElement;
+      if (parent === null) return () => null;
+      while (parent.parentElement) parent = parent.parentElement;
+      return () => parent.contains(element) ? element : null;
+    });
+    callback = () => getRemainingElements.map(c => c()).filter(Boolean);
+  }
+  initialCheck(callback());
+  return waitForWrapper(() => {
+    let result;
+    try {
+      result = callback();
+    } catch (error) {
+      if (error.name === 'TestingLibraryElementError') {
+        return undefined;
+      }
+      throw error;
+    }
+    if (!isRemoved(result)) {
+      throw timeoutError;
+    }
+    return undefined;
+  }, options);
+}
+
+/*
+eslint
+  require-await: "off"
+*/
+
+const eventMap = {
+  // Clipboard Events
+  copy: {
+    EventType: 'ClipboardEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  cut: {
+    EventType: 'ClipboardEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  paste: {
+    EventType: 'ClipboardEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  // Composition Events
+  compositionEnd: {
+    EventType: 'CompositionEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  compositionStart: {
+    EventType: 'CompositionEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  compositionUpdate: {
+    EventType: 'CompositionEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  // Keyboard Events
+  keyDown: {
+    EventType: 'KeyboardEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      charCode: 0,
+      composed: true
+    }
+  },
+  keyPress: {
+    EventType: 'KeyboardEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      charCode: 0,
+      composed: true
+    }
+  },
+  keyUp: {
+    EventType: 'KeyboardEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      charCode: 0,
+      composed: true
+    }
+  },
+  // Focus Events
+  focus: {
+    EventType: 'FocusEvent',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false,
+      composed: true
+    }
+  },
+  blur: {
+    EventType: 'FocusEvent',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false,
+      composed: true
+    }
+  },
+  focusIn: {
+    EventType: 'FocusEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false,
+      composed: true
+    }
+  },
+  focusOut: {
+    EventType: 'FocusEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false,
+      composed: true
+    }
+  },
+  // Form Events
+  change: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false
+    }
+  },
+  input: {
+    EventType: 'InputEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false,
+      composed: true
+    }
+  },
+  invalid: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: true
+    }
+  },
+  submit: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true
+    }
+  },
+  reset: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true
+    }
+  },
+  // Mouse Events
+  click: {
+    EventType: 'MouseEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      button: 0,
+      composed: true
+    }
+  },
+  contextMenu: {
+    EventType: 'MouseEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  dblClick: {
+    EventType: 'MouseEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  drag: {
+    EventType: 'DragEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  dragEnd: {
+    EventType: 'DragEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false,
+      composed: true
+    }
+  },
+  dragEnter: {
+    EventType: 'DragEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  dragExit: {
+    EventType: 'DragEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false,
+      composed: true
+    }
+  },
+  dragLeave: {
+    EventType: 'DragEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false,
+      composed: true
+    }
+  },
+  dragOver: {
+    EventType: 'DragEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  dragStart: {
+    EventType: 'DragEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  drop: {
+    EventType: 'DragEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  mouseDown: {
+    EventType: 'MouseEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  mouseEnter: {
+    EventType: 'MouseEvent',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false,
+      composed: true
+    }
+  },
+  mouseLeave: {
+    EventType: 'MouseEvent',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false,
+      composed: true
+    }
+  },
+  mouseMove: {
+    EventType: 'MouseEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  mouseOut: {
+    EventType: 'MouseEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  mouseOver: {
+    EventType: 'MouseEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  mouseUp: {
+    EventType: 'MouseEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  // Selection Events
+  select: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false
+    }
+  },
+  // Touch Events
+  touchCancel: {
+    EventType: 'TouchEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false,
+      composed: true
+    }
+  },
+  touchEnd: {
+    EventType: 'TouchEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  touchMove: {
+    EventType: 'TouchEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  touchStart: {
+    EventType: 'TouchEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  // UI Events
+  resize: {
+    EventType: 'UIEvent',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  scroll: {
+    EventType: 'UIEvent',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  // Wheel Events
+  wheel: {
+    EventType: 'WheelEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  // Media Events
+  abort: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  canPlay: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  canPlayThrough: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  durationChange: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  emptied: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  encrypted: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  ended: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  loadedData: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  loadedMetadata: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  loadStart: {
+    EventType: 'ProgressEvent',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  pause: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  play: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  playing: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  progress: {
+    EventType: 'ProgressEvent',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  rateChange: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  seeked: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  seeking: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  stalled: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  suspend: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  timeUpdate: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  volumeChange: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  waiting: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  // Events
+  load: {
+    // TODO: load events can be UIEvent or Event depending on what generated them
+    // This is where this abstraction breaks down.
+    // But the common targets are <img />, <script /> and window.
+    // Neither of these targets receive a UIEvent
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  error: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  // Animation Events
+  animationStart: {
+    EventType: 'AnimationEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false
+    }
+  },
+  animationEnd: {
+    EventType: 'AnimationEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false
+    }
+  },
+  animationIteration: {
+    EventType: 'AnimationEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false
+    }
+  },
+  // Transition Events
+  transitionCancel: {
+    EventType: 'TransitionEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false
+    }
+  },
+  transitionEnd: {
+    EventType: 'TransitionEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true
+    }
+  },
+  transitionRun: {
+    EventType: 'TransitionEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false
+    }
+  },
+  transitionStart: {
+    EventType: 'TransitionEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false
+    }
+  },
+  // pointer events
+  pointerOver: {
+    EventType: 'PointerEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  pointerEnter: {
+    EventType: 'PointerEvent',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  pointerDown: {
+    EventType: 'PointerEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  pointerMove: {
+    EventType: 'PointerEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  pointerUp: {
+    EventType: 'PointerEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  pointerCancel: {
+    EventType: 'PointerEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false,
+      composed: true
+    }
+  },
+  pointerOut: {
+    EventType: 'PointerEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }
+  },
+  pointerLeave: {
+    EventType: 'PointerEvent',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  gotPointerCapture: {
+    EventType: 'PointerEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false,
+      composed: true
+    }
+  },
+  lostPointerCapture: {
+    EventType: 'PointerEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false,
+      composed: true
+    }
+  },
+  // history events
+  popState: {
+    EventType: 'PopStateEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: false
+    }
+  },
+  // window events
+  offline: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  online: {
+    EventType: 'Event',
+    defaultInit: {
+      bubbles: false,
+      cancelable: false
+    }
+  },
+  pageHide: {
+    EventType: 'PageTransitionEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true
+    }
+  },
+  pageShow: {
+    EventType: 'PageTransitionEvent',
+    defaultInit: {
+      bubbles: true,
+      cancelable: true
+    }
+  }
+};
+const eventAliasMap = {
+  doubleClick: 'dblClick'
+};
+
+function fireEvent(element, event) {
+  return getConfig().eventWrapper(() => {
+    if (!event) {
+      throw new Error("Unable to fire an event - please provide an event object.");
+    }
+    if (!element) {
+      throw new Error("Unable to fire a \"" + event.type + "\" event - please provide a DOM element.");
+    }
+    return element.dispatchEvent(event);
+  });
+}
+function createEvent(eventName, node, init, _temp) {
+  let {
+    EventType = 'Event',
+    defaultInit = {}
+  } = _temp === void 0 ? {} : _temp;
+  if (!node) {
+    throw new Error("Unable to fire a \"" + eventName + "\" event - please provide a DOM element.");
+  }
+  const eventInit = {
+    ...defaultInit,
+    ...init
+  };
+  const {
+    target: {
+      value,
+      files,
+      ...targetProperties
+    } = {}
+  } = eventInit;
+  if (value !== undefined) {
+    setNativeValue(node, value);
+  }
+  if (files !== undefined) {
+    // input.files is a read-only property so this is not allowed:
+    // input.files = [file]
+    // so we have to use this workaround to set the property
+    Object.defineProperty(node, 'files', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: files
+    });
+  }
+  Object.assign(node, targetProperties);
+  const window = getWindowFromNode(node);
+  const EventConstructor = window[EventType] || window.Event;
+  let event;
+  /* istanbul ignore else  */
+  if (typeof EventConstructor === 'function') {
+    event = new EventConstructor(eventName, eventInit);
+  } else {
+    // IE11 polyfill from https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent#Polyfill
+    event = window.document.createEvent(EventType);
+    const {
+      bubbles,
+      cancelable,
+      detail,
+      ...otherInit
+    } = eventInit;
+    event.initEvent(eventName, bubbles, cancelable, detail);
+    Object.keys(otherInit).forEach(eventKey => {
+      event[eventKey] = otherInit[eventKey];
+    });
+  }
+
+  // DataTransfer is not supported in jsdom: https://github.com/jsdom/jsdom/issues/1568
+  const dataTransferProperties = ['dataTransfer', 'clipboardData'];
+  dataTransferProperties.forEach(dataTransferKey => {
+    const dataTransferValue = eventInit[dataTransferKey];
+    if (typeof dataTransferValue === 'object') {
+      /* istanbul ignore if  */
+      if (typeof window.DataTransfer === 'function') {
+        Object.defineProperty(event, dataTransferKey, {
+          value: Object.getOwnPropertyNames(dataTransferValue).reduce((acc, propName) => {
+            Object.defineProperty(acc, propName, {
+              value: dataTransferValue[propName]
+            });
+            return acc;
+          }, new window.DataTransfer())
+        });
+      } else {
+        Object.defineProperty(event, dataTransferKey, {
+          value: dataTransferValue
+        });
+      }
+    }
+  });
+  return event;
+}
+Object.keys(eventMap).forEach(key => {
+  const {
+    EventType,
+    defaultInit
+  } = eventMap[key];
+  const eventName = key.toLowerCase();
+  createEvent[key] = (node, init) => createEvent(eventName, node, init, {
+    EventType,
+    defaultInit
+  });
+  fireEvent[key] = (node, init) => fireEvent(node, createEvent[key](node, init));
+});
+
+// function written after some investigation here:
+// https://github.com/facebook/react/issues/10135#issuecomment-401496776
+function setNativeValue(element, value) {
+  const {
+    set: valueSetter
+  } = Object.getOwnPropertyDescriptor(element, 'value') || {};
+  const prototype = Object.getPrototypeOf(element);
+  const {
+    set: prototypeValueSetter
+  } = Object.getOwnPropertyDescriptor(prototype, 'value') || {};
+  if (prototypeValueSetter && valueSetter !== prototypeValueSetter) {
+    prototypeValueSetter.call(element, value);
+  } else {
+    /* istanbul ignore if */
+    // eslint-disable-next-line no-lonely-if -- Can't be ignored by istanbul otherwise
+    if (valueSetter) {
+      valueSetter.call(element, value);
+    } else {
+      throw new Error('The given element does not have a value setter');
+    }
+  }
+}
+Object.keys(eventAliasMap).forEach(aliasKey => {
+  const key = eventAliasMap[aliasKey];
+  fireEvent[aliasKey] = function () {
+    return fireEvent[key](...arguments);
+  };
+});
+
+/* eslint complexity:["error", 9] */
+
+// WARNING: `lz-string` only has a default export but statically we assume named exports are allowed
+function unindent(string) {
+  // remove white spaces first, to save a few bytes.
+  // testing-playground will reformat on load any ways.
+  return string.replace(/[ \t]*[\n][ \t]*/g, '\n');
+}
+function encode(value) {
+  return lz_string_default().compressToEncodedURIComponent(unindent(value));
+}
+function getPlaygroundUrl(markup) {
+  return "https://testing-playground.com/#markup=" + encode(markup);
+}
+const debug = (element, maxLength, options) => Array.isArray(element) ? element.forEach(el => logDOM(el, maxLength, options)) : logDOM(element, maxLength, options);
+const logTestingPlaygroundURL = function (element) {
+  if (element === void 0) {
+    element = getDocument().body;
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!element || !('innerHTML' in element)) {
+    console.log("The element you're providing isn't a valid DOM element.");
+    return;
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!element.innerHTML) {
+    console.log("The provided element doesn't have any children.");
+    return;
+  }
+  const playgroundUrl = getPlaygroundUrl(element.innerHTML);
+  console.log("Open this URL in your browser\n\n" + playgroundUrl);
+  return playgroundUrl;
+};
+const initialValue = {
+  debug,
+  logTestingPlaygroundURL
+};
+const screen = typeof document !== 'undefined' && document.body // eslint-disable-line @typescript-eslint/no-unnecessary-condition
+? getQueriesForElement(document.body, queries, initialValue) : Object.keys(queries).reduce((helpers, key) => {
+  // `key` is for all intents and purposes the type of keyof `helpers`, which itself is the type of `initialValue` plus incoming properties from `queries`
+  // if `Object.keys(something)` returned Array<keyof typeof something> this explicit type assertion would not be necessary
+  // see https://stackoverflow.com/questions/55012174/why-doesnt-object-keys-return-a-keyof-type-in-typescript
+  helpers[key] = () => {
+    throw new TypeError('For queries bound to document.body a global document has to be available... Learn more: https://testing-library.com/s/screen-global-error');
+  };
+  return helpers;
+}, initialValue);
+
+
+
+
+/***/ }),
+
+/***/ 253:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   act: () => (/* binding */ act),
+/* harmony export */   buildQueries: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.H5),
+/* harmony export */   cleanup: () => (/* binding */ cleanup),
+/* harmony export */   configure: () => (/* binding */ configure),
+/* harmony export */   createEvent: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.lh),
+/* harmony export */   findAllByAltText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.mm),
+/* harmony export */   findAllByDisplayValue: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.tN),
+/* harmony export */   findAllByLabelText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Ll),
+/* harmony export */   findAllByPlaceholderText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.eX),
+/* harmony export */   findAllByRole: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Qb),
+/* harmony export */   findAllByTestId: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.v5),
+/* harmony export */   findAllByText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.fG),
+/* harmony export */   findAllByTitle: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.E_),
+/* harmony export */   findByAltText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.d_),
+/* harmony export */   findByDisplayValue: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Ou),
+/* harmony export */   findByLabelText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.It),
+/* harmony export */   findByPlaceholderText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Fz),
+/* harmony export */   findByRole: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.rg),
+/* harmony export */   findByTestId: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.oO),
+/* harmony export */   findByText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.E9),
+/* harmony export */   findByTitle: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.L_),
+/* harmony export */   fireEvent: () => (/* binding */ fireEvent),
+/* harmony export */   getAllByAltText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Bw),
+/* harmony export */   getAllByDisplayValue: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.kL),
+/* harmony export */   getAllByLabelText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.WY),
+/* harmony export */   getAllByPlaceholderText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.BJ),
+/* harmony export */   getAllByRole: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Rt),
+/* harmony export */   getAllByTestId: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Gz),
+/* harmony export */   getAllByText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Y7),
+/* harmony export */   getAllByTitle: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.r4),
+/* harmony export */   getByAltText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.CF),
+/* harmony export */   getByDisplayValue: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.$b),
+/* harmony export */   getByLabelText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.NX),
+/* harmony export */   getByPlaceholderText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Iv),
+/* harmony export */   getByRole: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.gy),
+/* harmony export */   getByTestId: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.h5),
+/* harmony export */   getByText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Tf),
+/* harmony export */   getByTitle: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.yw),
+/* harmony export */   getConfig: () => (/* binding */ getConfig),
+/* harmony export */   getDefaultNormalizer: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.v6),
+/* harmony export */   getElementError: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Xj),
+/* harmony export */   getMultipleElementsFoundError: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.op),
+/* harmony export */   getNodeText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Oe),
+/* harmony export */   getQueriesForElement: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.E5),
+/* harmony export */   getRoles: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.O0),
+/* harmony export */   getSuggestedQuery: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.IS),
+/* harmony export */   isInaccessible: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__._E),
+/* harmony export */   logDOM: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.X_),
+/* harmony export */   logRoles: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.cY),
+/* harmony export */   makeFindQuery: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__._Y),
+/* harmony export */   makeGetAllQuery: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.on),
+/* harmony export */   makeSingleQuery: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.xO),
+/* harmony export */   prettyDOM: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.fE),
+/* harmony export */   prettyFormat: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Yc),
+/* harmony export */   queries: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Pq),
+/* harmony export */   queryAllByAltText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.j7),
+/* harmony export */   queryAllByAttribute: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.tc),
+/* harmony export */   queryAllByDisplayValue: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.aM),
+/* harmony export */   queryAllByLabelText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.s9),
+/* harmony export */   queryAllByPlaceholderText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.H0),
+/* harmony export */   queryAllByRole: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.h3),
+/* harmony export */   queryAllByTestId: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.wY),
+/* harmony export */   queryAllByText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.MJ),
+/* harmony export */   queryAllByTitle: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.tl),
+/* harmony export */   queryByAltText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Uk),
+/* harmony export */   queryByAttribute: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Oj),
+/* harmony export */   queryByDisplayValue: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.V),
+/* harmony export */   queryByLabelText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.LM),
+/* harmony export */   queryByPlaceholderText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.uq),
+/* harmony export */   queryByRole: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.AS),
+/* harmony export */   queryByTestId: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.P8),
+/* harmony export */   queryByText: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.D3),
+/* harmony export */   queryByTitle: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Eh),
+/* harmony export */   queryHelpers: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.sd),
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   renderHook: () => (/* binding */ renderHook),
+/* harmony export */   screen: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.nj),
+/* harmony export */   waitFor: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.fm),
+/* harmony export */   waitForElementToBeRemoved: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.n8),
+/* harmony export */   within: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.ux),
+/* harmony export */   wrapAllByQueryWithSuggestion: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.Aq),
+/* harmony export */   wrapSingleQueryWithSuggestion: () => (/* reexport safe */ _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__.v4)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9155);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom_test_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7542);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(961);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5338);
+/* harmony import */ var _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7276);
+
+
+
+
+
+
+
+const reactAct = typeof react__WEBPACK_IMPORTED_MODULE_0__.act === 'function' ? react__WEBPACK_IMPORTED_MODULE_0__.act : react_dom_test_utils__WEBPACK_IMPORTED_MODULE_1__.act;
+function getGlobalThis() {
+  /* istanbul ignore else */
+  if (typeof globalThis !== 'undefined') {
+    return globalThis;
+  }
+  /* istanbul ignore next */
+  if (typeof self !== 'undefined') {
+    return self;
+  }
+  /* istanbul ignore next */
+  if (typeof window !== 'undefined') {
+    return window;
+  }
+  /* istanbul ignore next */
+  if (typeof __webpack_require__.g !== 'undefined') {
+    return __webpack_require__.g;
+  }
+  /* istanbul ignore next */
+  throw new Error('unable to locate global object');
+}
+function setIsReactActEnvironment(isReactActEnvironment) {
+  getGlobalThis().IS_REACT_ACT_ENVIRONMENT = isReactActEnvironment;
+}
+function getIsReactActEnvironment() {
+  return getGlobalThis().IS_REACT_ACT_ENVIRONMENT;
+}
+function withGlobalActEnvironment(actImplementation) {
+  return callback => {
+    const previousActEnvironment = getIsReactActEnvironment();
+    setIsReactActEnvironment(true);
+    try {
+      // The return value of `act` is always a thenable.
+      let callbackNeedsToBeAwaited = false;
+      const actResult = actImplementation(() => {
+        const result = callback();
+        if (result !== null && typeof result === 'object' && typeof result.then === 'function') {
+          callbackNeedsToBeAwaited = true;
+        }
+        return result;
+      });
+      if (callbackNeedsToBeAwaited) {
+        const thenable = actResult;
+        return {
+          then: (resolve, reject) => {
+            thenable.then(returnValue => {
+              setIsReactActEnvironment(previousActEnvironment);
+              resolve(returnValue);
+            }, error => {
+              setIsReactActEnvironment(previousActEnvironment);
+              reject(error);
+            });
+          }
+        };
+      } else {
+        setIsReactActEnvironment(previousActEnvironment);
+        return actResult;
+      }
+    } catch (error) {
+      // Can't be a `finally {}` block since we don't know if we have to immediately restore IS_REACT_ACT_ENVIRONMENT
+      // or if we have to await the callback first.
+      setIsReactActEnvironment(previousActEnvironment);
+      throw error;
+    }
+  };
+}
+const act = withGlobalActEnvironment(reactAct);
+
+/* eslint no-console:0 */
+
+// react-testing-library's version of fireEvent will call
+// dom-testing-library's version of fireEvent. The reason
+// we make this distinction however is because we have
+// a few extra events that work a bit differently
+const fireEvent = function () {
+  return (0,_testing_library_dom__WEBPACK_IMPORTED_MODULE_4__/* .fireEvent */ .rC)(...arguments);
+};
+Object.keys(_testing_library_dom__WEBPACK_IMPORTED_MODULE_4__/* .fireEvent */ .rC).forEach(key => {
+  fireEvent[key] = function () {
+    return _testing_library_dom__WEBPACK_IMPORTED_MODULE_4__/* .fireEvent */ .rC[key](...arguments);
+  };
+});
+
+// React event system tracks native mouseOver/mouseOut events for
+// running onMouseEnter/onMouseLeave handlers
+// @link https://github.com/facebook/react/blob/b87aabdfe1b7461e7331abb3601d9e6bb27544bc/packages/react-dom/src/events/EnterLeaveEventPlugin.js#L24-L31
+const mouseEnter = fireEvent.mouseEnter;
+const mouseLeave = fireEvent.mouseLeave;
+fireEvent.mouseEnter = function () {
+  mouseEnter(...arguments);
+  return fireEvent.mouseOver(...arguments);
+};
+fireEvent.mouseLeave = function () {
+  mouseLeave(...arguments);
+  return fireEvent.mouseOut(...arguments);
+};
+const pointerEnter = fireEvent.pointerEnter;
+const pointerLeave = fireEvent.pointerLeave;
+fireEvent.pointerEnter = function () {
+  pointerEnter(...arguments);
+  return fireEvent.pointerOver(...arguments);
+};
+fireEvent.pointerLeave = function () {
+  pointerLeave(...arguments);
+  return fireEvent.pointerOut(...arguments);
+};
+const select = fireEvent.select;
+fireEvent.select = (node, init) => {
+  select(node, init);
+  // React tracks this event only on focused inputs
+  node.focus();
+
+  // React creates this event when one of the following native events happens
+  // - contextMenu
+  // - mouseUp
+  // - dragEnd
+  // - keyUp
+  // - keyDown
+  // so we can use any here
+  // @link https://github.com/facebook/react/blob/b87aabdfe1b7461e7331abb3601d9e6bb27544bc/packages/react-dom/src/events/SelectEventPlugin.js#L203-L224
+  fireEvent.keyUp(node, init);
+};
+
+// React event system tracks native focusout/focusin events for
+// running blur/focus handlers
+// @link https://github.com/facebook/react/pull/19186
+const blur = fireEvent.blur;
+const focus = fireEvent.focus;
+fireEvent.blur = function () {
+  fireEvent.focusOut(...arguments);
+  return blur(...arguments);
+};
+fireEvent.focus = function () {
+  fireEvent.focusIn(...arguments);
+  return focus(...arguments);
+};
+
+let configForRTL = {
+  reactStrictMode: false
+};
+function getConfig() {
+  return {
+    ...(0,_testing_library_dom__WEBPACK_IMPORTED_MODULE_4__/* .getConfig */ .zj)(),
+    ...configForRTL
+  };
+}
+function configure(newConfig) {
+  if (typeof newConfig === 'function') {
+    // Pass the existing config out to the provided function
+    // and accept a delta in return
+    newConfig = newConfig(getConfig());
+  }
+  const {
+    reactStrictMode,
+    ...configForDTL
+  } = newConfig;
+  (0,_testing_library_dom__WEBPACK_IMPORTED_MODULE_4__/* .configure */ .jK)(configForDTL);
+  configForRTL = {
+    ...configForRTL,
+    reactStrictMode
+  };
+}
+
+function jestFakeTimersAreEnabled() {
+  /* istanbul ignore else */
+  if (typeof jest !== 'undefined' && jest !== null) {
+    return (
+      // legacy timers
+      setTimeout._isMockFunction === true ||
+      // modern timers
+      // eslint-disable-next-line prefer-object-has-own -- No Object.hasOwn in all target environments we support.
+      Object.prototype.hasOwnProperty.call(setTimeout, 'clock')
+    );
+  } // istanbul ignore next
+
+  return false;
+}
+(0,_testing_library_dom__WEBPACK_IMPORTED_MODULE_4__/* .configure */ .jK)({
+  unstable_advanceTimersWrapper: cb => {
+    return act(cb);
+  },
+  // We just want to run `waitFor` without IS_REACT_ACT_ENVIRONMENT
+  // But that's not necessarily how `asyncWrapper` is used since it's a public method.
+  // Let's just hope nobody else is using it.
+  asyncWrapper: async cb => {
+    const previousActEnvironment = getIsReactActEnvironment();
+    setIsReactActEnvironment(false);
+    try {
+      const result = await cb();
+      // Drain microtask queue.
+      // Otherwise we'll restore the previous act() environment, before we resolve the `waitFor` call.
+      // The caller would have no chance to wrap the in-flight Promises in `act()`
+      await new Promise(resolve => {
+        setTimeout(() => {
+          resolve();
+        }, 0);
+        if (jestFakeTimersAreEnabled()) {
+          jest.advanceTimersByTime(0);
+        }
+      });
+      return result;
+    } finally {
+      setIsReactActEnvironment(previousActEnvironment);
+    }
+  },
+  eventWrapper: cb => {
+    let result;
+    act(() => {
+      result = cb();
+    });
+    return result;
+  }
+});
+
+// Ideally we'd just use a WeakMap where containers are keys and roots are values.
+// We use two variables so that we can bail out in constant time when we render with a new container (most common use case)
+/**
+ * @type {Set<import('react-dom').Container>}
+ */
+const mountedContainers = new Set();
+/**
+ * @type Array<{container: import('react-dom').Container, root: ReturnType<typeof createConcurrentRoot>}>
+ */
+const mountedRootEntries = [];
+function strictModeIfNeeded(innerElement) {
+  return getConfig().reactStrictMode ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, null, innerElement) : innerElement;
+}
+function wrapUiIfNeeded(innerElement, wrapperComponent) {
+  return wrapperComponent ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(wrapperComponent, null, innerElement) : innerElement;
+}
+function createConcurrentRoot(container, _ref) {
+  let {
+    hydrate,
+    ui,
+    wrapper: WrapperComponent
+  } = _ref;
+  let root;
+  if (hydrate) {
+    act(() => {
+      root = react_dom_client__WEBPACK_IMPORTED_MODULE_3__/* .hydrateRoot */ .c(container, strictModeIfNeeded(wrapUiIfNeeded(ui, WrapperComponent)));
+    });
+  } else {
+    root = react_dom_client__WEBPACK_IMPORTED_MODULE_3__/* .createRoot */ .H(container);
+  }
+  return {
+    hydrate() {
+      /* istanbul ignore if */
+      if (!hydrate) {
+        throw new Error('Attempted to hydrate a non-hydrateable root. This is a bug in `@testing-library/react`.');
+      }
+      // Nothing to do since hydration happens when creating the root object.
+    },
+    render(element) {
+      root.render(element);
+    },
+    unmount() {
+      root.unmount();
+    }
+  };
+}
+function createLegacyRoot(container) {
+  return {
+    hydrate(element) {
+      react_dom__WEBPACK_IMPORTED_MODULE_2__.hydrate(element, container);
+    },
+    render(element) {
+      react_dom__WEBPACK_IMPORTED_MODULE_2__.render(element, container);
+    },
+    unmount() {
+      react_dom__WEBPACK_IMPORTED_MODULE_2__.unmountComponentAtNode(container);
+    }
+  };
+}
+function renderRoot(ui, _ref2) {
+  let {
+    baseElement,
+    container,
+    hydrate,
+    queries,
+    root,
+    wrapper: WrapperComponent
+  } = _ref2;
+  act(() => {
+    if (hydrate) {
+      root.hydrate(strictModeIfNeeded(wrapUiIfNeeded(ui, WrapperComponent)), container);
+    } else {
+      root.render(strictModeIfNeeded(wrapUiIfNeeded(ui, WrapperComponent)), container);
+    }
+  });
+  return {
+    container,
+    baseElement,
+    debug: function (el, maxLength, options) {
+      if (el === void 0) {
+        el = baseElement;
+      }
+      return Array.isArray(el) ?
+      // eslint-disable-next-line no-console
+      el.forEach(e => console.log((0,_testing_library_dom__WEBPACK_IMPORTED_MODULE_4__/* .prettyDOM */ .fE)(e, maxLength, options))) :
+      // eslint-disable-next-line no-console,
+      console.log((0,_testing_library_dom__WEBPACK_IMPORTED_MODULE_4__/* .prettyDOM */ .fE)(el, maxLength, options));
+    },
+    unmount: () => {
+      act(() => {
+        root.unmount();
+      });
+    },
+    rerender: rerenderUi => {
+      renderRoot(rerenderUi, {
+        container,
+        baseElement,
+        root,
+        wrapper: WrapperComponent
+      });
+      // Intentionally do not return anything to avoid unnecessarily complicating the API.
+      // folks can use all the same utilities we return in the first place that are bound to the container
+    },
+    asFragment: () => {
+      /* istanbul ignore else (old jsdom limitation) */
+      if (typeof document.createRange === 'function') {
+        return document.createRange().createContextualFragment(container.innerHTML);
+      } else {
+        const template = document.createElement('template');
+        template.innerHTML = container.innerHTML;
+        return template.content;
+      }
+    },
+    ...(0,_testing_library_dom__WEBPACK_IMPORTED_MODULE_4__/* .getQueriesForElement */ .E5)(baseElement, queries)
+  };
+}
+function render(ui, _temp) {
+  let {
+    container,
+    baseElement = container,
+    legacyRoot = false,
+    queries,
+    hydrate = false,
+    wrapper
+  } = _temp === void 0 ? {} : _temp;
+  if (legacyRoot && typeof react_dom__WEBPACK_IMPORTED_MODULE_2__.render !== 'function') {
+    const error = new Error('`legacyRoot: true` is not supported in this version of React. ' + 'If your app runs React 19 or later, you should remove this flag. ' + 'If your app runs React 18 or earlier, visit https://react.dev/blog/2022/03/08/react-18-upgrade-guide for upgrade instructions.');
+    Error.captureStackTrace(error, render);
+    throw error;
+  }
+  if (!baseElement) {
+    // default to document.body instead of documentElement to avoid output of potentially-large
+    // head elements (such as JSS style blocks) in debug output
+    baseElement = document.body;
+  }
+  if (!container) {
+    container = baseElement.appendChild(document.createElement('div'));
+  }
+  let root;
+  // eslint-disable-next-line no-negated-condition -- we want to map the evolution of this over time. The root is created first. Only later is it re-used so we don't want to read the case that happens later first.
+  if (!mountedContainers.has(container)) {
+    const createRootImpl = legacyRoot ? createLegacyRoot : createConcurrentRoot;
+    root = createRootImpl(container, {
+      hydrate,
+      ui,
+      wrapper
+    });
+    mountedRootEntries.push({
+      container,
+      root
+    });
+    // we'll add it to the mounted containers regardless of whether it's actually
+    // added to document.body so the cleanup method works regardless of whether
+    // they're passing us a custom container or not.
+    mountedContainers.add(container);
+  } else {
+    mountedRootEntries.forEach(rootEntry => {
+      // Else is unreachable since `mountedContainers` has the `container`.
+      // Only reachable if one would accidentally add the container to `mountedContainers` but not the root to `mountedRootEntries`
+      /* istanbul ignore else */
+      if (rootEntry.container === container) {
+        root = rootEntry.root;
+      }
+    });
+  }
+  return renderRoot(ui, {
+    container,
+    baseElement,
+    queries,
+    hydrate,
+    wrapper,
+    root
+  });
+}
+function cleanup() {
+  mountedRootEntries.forEach(_ref3 => {
+    let {
+      root,
+      container
+    } = _ref3;
+    act(() => {
+      root.unmount();
+    });
+    if (container.parentNode === document.body) {
+      document.body.removeChild(container);
+    }
+  });
+  mountedRootEntries.length = 0;
+  mountedContainers.clear();
+}
+function renderHook(renderCallback, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    initialProps,
+    ...renderOptions
+  } = options;
+  if (renderOptions.legacyRoot && typeof react_dom__WEBPACK_IMPORTED_MODULE_2__.render !== 'function') {
+    const error = new Error('`legacyRoot: true` is not supported in this version of React. ' + 'If your app runs React 19 or later, you should remove this flag. ' + 'If your app runs React 18 or earlier, visit https://react.dev/blog/2022/03/08/react-18-upgrade-guide for upgrade instructions.');
+    Error.captureStackTrace(error, renderHook);
+    throw error;
+  }
+  const result = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+  function TestComponent(_ref4) {
+    let {
+      renderCallbackProps
+    } = _ref4;
+    const pendingResult = renderCallback(renderCallbackProps);
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+      result.current = pendingResult;
+    });
+    return null;
+  }
+  const {
+    rerender: baseRerender,
+    unmount
+  } = render(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(TestComponent, {
+    renderCallbackProps: initialProps
+  }), renderOptions);
+  function rerender(rerenderCallbackProps) {
+    return baseRerender(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(TestComponent, {
+      renderCallbackProps: rerenderCallbackProps
+    }));
+  }
+  return {
+    result,
+    rerender,
+    unmount
+  };
+}
+
+/* eslint func-name-matching:0 */
+
+// if we're running in a test runner that supports afterEach
+// or teardown then we'll automatically run cleanup afterEach test
+// this ensures that tests run in isolation from each other
+// if you don't like this then either import the `pure` module
+// or set the RTL_SKIP_AUTO_CLEANUP env variable to 'true'.
+if (typeof process === 'undefined' || !process.env?.RTL_SKIP_AUTO_CLEANUP) {
+  // ignore teardown() in code coverage because Jest does not support it
+  /* istanbul ignore else */
+  if (typeof afterEach === 'function') {
+    afterEach(() => {
+      cleanup();
+    });
+  } else if (typeof teardown === 'function') {
+    // Block is guarded by `typeof` check.
+    // eslint does not support `typeof` guards.
+    // eslint-disable-next-line no-undef
+    teardown(() => {
+      cleanup();
+    });
+  }
+
+  // No test setup with other test runners available
+  /* istanbul ignore else */
+  if (typeof beforeAll === 'function' && typeof afterAll === 'function') {
+    // This matches the behavior of React < 18.
+    let previousIsReactActEnvironment = getIsReactActEnvironment();
+    beforeAll(() => {
+      previousIsReactActEnvironment = getIsReactActEnvironment();
+      setIsReactActEnvironment(true);
+    });
+    afterAll(() => {
+      setIsReactActEnvironment(previousIsReactActEnvironment);
+    });
+  }
+}
+
+
+
+
+/***/ }),
+
+/***/ 9880:
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = ({onlyFirst = false} = {}) => {
+	const pattern = [
+		'[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
+		'(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))'
+	].join('|');
+
+	return new RegExp(pattern, onlyFirst ? undefined : 'g');
+};
+
+
+/***/ }),
+
+/***/ 5608:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _iterationDecorator = _interopRequireDefault(__webpack_require__(984));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+var properties = [['aria-activedescendant', {
+  'type': 'id'
+}], ['aria-atomic', {
+  'type': 'boolean'
+}], ['aria-autocomplete', {
+  'type': 'token',
+  'values': ['inline', 'list', 'both', 'none']
+}], ['aria-braillelabel', {
+  'type': 'string'
+}], ['aria-brailleroledescription', {
+  'type': 'string'
+}], ['aria-busy', {
+  'type': 'boolean'
+}], ['aria-checked', {
+  'type': 'tristate'
+}], ['aria-colcount', {
+  type: 'integer'
+}], ['aria-colindex', {
+  type: 'integer'
+}], ['aria-colspan', {
+  type: 'integer'
+}], ['aria-controls', {
+  'type': 'idlist'
+}], ['aria-current', {
+  type: 'token',
+  values: ['page', 'step', 'location', 'date', 'time', true, false]
+}], ['aria-describedby', {
+  'type': 'idlist'
+}], ['aria-description', {
+  'type': 'string'
+}], ['aria-details', {
+  'type': 'id'
+}], ['aria-disabled', {
+  'type': 'boolean'
+}], ['aria-dropeffect', {
+  'type': 'tokenlist',
+  'values': ['copy', 'execute', 'link', 'move', 'none', 'popup']
+}], ['aria-errormessage', {
+  'type': 'id'
+}], ['aria-expanded', {
+  'type': 'boolean',
+  'allowundefined': true
+}], ['aria-flowto', {
+  'type': 'idlist'
+}], ['aria-grabbed', {
+  'type': 'boolean',
+  'allowundefined': true
+}], ['aria-haspopup', {
+  'type': 'token',
+  'values': [false, true, 'menu', 'listbox', 'tree', 'grid', 'dialog']
+}], ['aria-hidden', {
+  'type': 'boolean',
+  'allowundefined': true
+}], ['aria-invalid', {
+  'type': 'token',
+  'values': ['grammar', false, 'spelling', true]
+}], ['aria-keyshortcuts', {
+  type: 'string'
+}], ['aria-label', {
+  'type': 'string'
+}], ['aria-labelledby', {
+  'type': 'idlist'
+}], ['aria-level', {
+  'type': 'integer'
+}], ['aria-live', {
+  'type': 'token',
+  'values': ['assertive', 'off', 'polite']
+}], ['aria-modal', {
+  type: 'boolean'
+}], ['aria-multiline', {
+  'type': 'boolean'
+}], ['aria-multiselectable', {
+  'type': 'boolean'
+}], ['aria-orientation', {
+  'type': 'token',
+  'values': ['vertical', 'undefined', 'horizontal']
+}], ['aria-owns', {
+  'type': 'idlist'
+}], ['aria-placeholder', {
+  type: 'string'
+}], ['aria-posinset', {
+  'type': 'integer'
+}], ['aria-pressed', {
+  'type': 'tristate'
+}], ['aria-readonly', {
+  'type': 'boolean'
+}], ['aria-relevant', {
+  'type': 'tokenlist',
+  'values': ['additions', 'all', 'removals', 'text']
+}], ['aria-required', {
+  'type': 'boolean'
+}], ['aria-roledescription', {
+  type: 'string'
+}], ['aria-rowcount', {
+  type: 'integer'
+}], ['aria-rowindex', {
+  type: 'integer'
+}], ['aria-rowspan', {
+  type: 'integer'
+}], ['aria-selected', {
+  'type': 'boolean',
+  'allowundefined': true
+}], ['aria-setsize', {
+  'type': 'integer'
+}], ['aria-sort', {
+  'type': 'token',
+  'values': ['ascending', 'descending', 'none', 'other']
+}], ['aria-valuemax', {
+  'type': 'number'
+}], ['aria-valuemin', {
+  'type': 'number'
+}], ['aria-valuenow', {
+  'type': 'number'
+}], ['aria-valuetext', {
+  'type': 'string'
+}]];
+var ariaPropsMap = {
+  entries: function entries() {
+    return properties;
+  },
+  forEach: function forEach(fn) {
+    var thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var _iterator = _createForOfIteratorHelper(properties),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var _step$value = _slicedToArray(_step.value, 2),
+          key = _step$value[0],
+          values = _step$value[1];
+        fn.call(thisArg, values, key, properties);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  },
+  get: function get(key) {
+    var item = properties.find(function (tuple) {
+      return tuple[0] === key ? true : false;
+    });
+    return item && item[1];
+  },
+  has: function has(key) {
+    return !!ariaPropsMap.get(key);
+  },
+  keys: function keys() {
+    return properties.map(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+        key = _ref2[0];
+      return key;
+    });
+  },
+  values: function values() {
+    return properties.map(function (_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+        values = _ref4[1];
+      return values;
+    });
+  }
+};
+var _default = (0, _iterationDecorator.default)(ariaPropsMap, ariaPropsMap.entries());
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6403:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _iterationDecorator = _interopRequireDefault(__webpack_require__(984));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+var dom = [['a', {
+  reserved: false
+}], ['abbr', {
+  reserved: false
+}], ['acronym', {
+  reserved: false
+}], ['address', {
+  reserved: false
+}], ['applet', {
+  reserved: false
+}], ['area', {
+  reserved: false
+}], ['article', {
+  reserved: false
+}], ['aside', {
+  reserved: false
+}], ['audio', {
+  reserved: false
+}], ['b', {
+  reserved: false
+}], ['base', {
+  reserved: true
+}], ['bdi', {
+  reserved: false
+}], ['bdo', {
+  reserved: false
+}], ['big', {
+  reserved: false
+}], ['blink', {
+  reserved: false
+}], ['blockquote', {
+  reserved: false
+}], ['body', {
+  reserved: false
+}], ['br', {
+  reserved: false
+}], ['button', {
+  reserved: false
+}], ['canvas', {
+  reserved: false
+}], ['caption', {
+  reserved: false
+}], ['center', {
+  reserved: false
+}], ['cite', {
+  reserved: false
+}], ['code', {
+  reserved: false
+}], ['col', {
+  reserved: true
+}], ['colgroup', {
+  reserved: true
+}], ['content', {
+  reserved: false
+}], ['data', {
+  reserved: false
+}], ['datalist', {
+  reserved: false
+}], ['dd', {
+  reserved: false
+}], ['del', {
+  reserved: false
+}], ['details', {
+  reserved: false
+}], ['dfn', {
+  reserved: false
+}], ['dialog', {
+  reserved: false
+}], ['dir', {
+  reserved: false
+}], ['div', {
+  reserved: false
+}], ['dl', {
+  reserved: false
+}], ['dt', {
+  reserved: false
+}], ['em', {
+  reserved: false
+}], ['embed', {
+  reserved: false
+}], ['fieldset', {
+  reserved: false
+}], ['figcaption', {
+  reserved: false
+}], ['figure', {
+  reserved: false
+}], ['font', {
+  reserved: false
+}], ['footer', {
+  reserved: false
+}], ['form', {
+  reserved: false
+}], ['frame', {
+  reserved: false
+}], ['frameset', {
+  reserved: false
+}], ['h1', {
+  reserved: false
+}], ['h2', {
+  reserved: false
+}], ['h3', {
+  reserved: false
+}], ['h4', {
+  reserved: false
+}], ['h5', {
+  reserved: false
+}], ['h6', {
+  reserved: false
+}], ['head', {
+  reserved: true
+}], ['header', {
+  reserved: false
+}], ['hgroup', {
+  reserved: false
+}], ['hr', {
+  reserved: false
+}], ['html', {
+  reserved: true
+}], ['i', {
+  reserved: false
+}], ['iframe', {
+  reserved: false
+}], ['img', {
+  reserved: false
+}], ['input', {
+  reserved: false
+}], ['ins', {
+  reserved: false
+}], ['kbd', {
+  reserved: false
+}], ['keygen', {
+  reserved: false
+}], ['label', {
+  reserved: false
+}], ['legend', {
+  reserved: false
+}], ['li', {
+  reserved: false
+}], ['link', {
+  reserved: true
+}], ['main', {
+  reserved: false
+}], ['map', {
+  reserved: false
+}], ['mark', {
+  reserved: false
+}], ['marquee', {
+  reserved: false
+}], ['menu', {
+  reserved: false
+}], ['menuitem', {
+  reserved: false
+}], ['meta', {
+  reserved: true
+}], ['meter', {
+  reserved: false
+}], ['nav', {
+  reserved: false
+}], ['noembed', {
+  reserved: true
+}], ['noscript', {
+  reserved: true
+}], ['object', {
+  reserved: false
+}], ['ol', {
+  reserved: false
+}], ['optgroup', {
+  reserved: false
+}], ['option', {
+  reserved: false
+}], ['output', {
+  reserved: false
+}], ['p', {
+  reserved: false
+}], ['param', {
+  reserved: true
+}], ['picture', {
+  reserved: true
+}], ['pre', {
+  reserved: false
+}], ['progress', {
+  reserved: false
+}], ['q', {
+  reserved: false
+}], ['rp', {
+  reserved: false
+}], ['rt', {
+  reserved: false
+}], ['rtc', {
+  reserved: false
+}], ['ruby', {
+  reserved: false
+}], ['s', {
+  reserved: false
+}], ['samp', {
+  reserved: false
+}], ['script', {
+  reserved: true
+}], ['section', {
+  reserved: false
+}], ['select', {
+  reserved: false
+}], ['small', {
+  reserved: false
+}], ['source', {
+  reserved: true
+}], ['spacer', {
+  reserved: false
+}], ['span', {
+  reserved: false
+}], ['strike', {
+  reserved: false
+}], ['strong', {
+  reserved: false
+}], ['style', {
+  reserved: true
+}], ['sub', {
+  reserved: false
+}], ['summary', {
+  reserved: false
+}], ['sup', {
+  reserved: false
+}], ['table', {
+  reserved: false
+}], ['tbody', {
+  reserved: false
+}], ['td', {
+  reserved: false
+}], ['textarea', {
+  reserved: false
+}], ['tfoot', {
+  reserved: false
+}], ['th', {
+  reserved: false
+}], ['thead', {
+  reserved: false
+}], ['time', {
+  reserved: false
+}], ['title', {
+  reserved: true
+}], ['tr', {
+  reserved: false
+}], ['track', {
+  reserved: true
+}], ['tt', {
+  reserved: false
+}], ['u', {
+  reserved: false
+}], ['ul', {
+  reserved: false
+}], ['var', {
+  reserved: false
+}], ['video', {
+  reserved: false
+}], ['wbr', {
+  reserved: false
+}], ['xmp', {
+  reserved: false
+}]];
+var domMap = {
+  entries: function entries() {
+    return dom;
+  },
+  forEach: function forEach(fn) {
+    var thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var _iterator = _createForOfIteratorHelper(dom),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var _step$value = _slicedToArray(_step.value, 2),
+          key = _step$value[0],
+          values = _step$value[1];
+        fn.call(thisArg, values, key, dom);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  },
+  get: function get(key) {
+    var item = dom.find(function (tuple) {
+      return tuple[0] === key ? true : false;
+    });
+    return item && item[1];
+  },
+  has: function has(key) {
+    return !!domMap.get(key);
+  },
+  keys: function keys() {
+    return dom.map(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+        key = _ref2[0];
+      return key;
+    });
+  },
+  values: function values() {
+    return dom.map(function (_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+        values = _ref4[1];
+      return values;
+    });
+  }
+};
+var _default = (0, _iterationDecorator.default)(domMap, domMap.entries());
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9383:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _lite = __webpack_require__(3066);
+var _iterationDecorator = _interopRequireDefault(__webpack_require__(984));
+var _rolesMap = _interopRequireDefault(__webpack_require__(1876));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+var elementRoles = [];
+var keys = _rolesMap.default.keys();
+for (var i = 0; i < keys.length; i++) {
+  var key = keys[i];
+  var role = _rolesMap.default.get(key);
+  if (role) {
+    var concepts = [].concat(role.baseConcepts, role.relatedConcepts);
+    for (var k = 0; k < concepts.length; k++) {
+      var relation = concepts[k];
+      if (relation.module === 'HTML') {
+        (function () {
+          var concept = relation.concept;
+          if (concept) {
+            var elementRoleRelation = elementRoles.find(function (relation) {
+              return (0, _lite.dequal)(relation, concept);
+            });
+            var roles;
+            if (elementRoleRelation) {
+              roles = elementRoleRelation[1];
+            } else {
+              roles = [];
+            }
+            var isUnique = true;
+            for (var _i = 0; _i < roles.length; _i++) {
+              if (roles[_i] === key) {
+                isUnique = false;
+                break;
+              }
+            }
+            if (isUnique) {
+              roles.push(key);
+            }
+            elementRoles.push([concept, roles]);
+          }
+        })();
+      }
+    }
+  }
+}
+var elementRoleMap = {
+  entries: function entries() {
+    return elementRoles;
+  },
+  forEach: function forEach(fn) {
+    var thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var _iterator = _createForOfIteratorHelper(elementRoles),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var _step$value = _slicedToArray(_step.value, 2),
+          _key = _step$value[0],
+          values = _step$value[1];
+        fn.call(thisArg, values, _key, elementRoles);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  },
+  get: function get(key) {
+    var item = elementRoles.find(function (tuple) {
+      return key.name === tuple[0].name && (0, _lite.dequal)(key.attributes, tuple[0].attributes);
+    });
+    return item && item[1];
+  },
+  has: function has(key) {
+    return !!elementRoleMap.get(key);
+  },
+  keys: function keys() {
+    return elementRoles.map(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+        key = _ref2[0];
+      return key;
+    });
+  },
+  values: function values() {
+    return elementRoles.map(function (_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+        values = _ref4[1];
+      return values;
+    });
+  }
+};
+var _default = (0, _iterationDecorator.default)(elementRoleMap, elementRoleMap.entries());
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7976:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var commandRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget']]
+};
+var _default = commandRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8250:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var compositeRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-activedescendant': null,
+    'aria-disabled': null
+  },
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget']]
+};
+var _default = compositeRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4749:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var inputRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'input'
+    },
+    module: 'XForms'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget']]
+};
+var _default = inputRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1669:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var landmarkRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = landmarkRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6292:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var rangeRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-valuemax': null,
+    'aria-valuemin': null,
+    'aria-valuenow': null
+  },
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure']]
+};
+var _default = rangeRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 185:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var roletypeRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: [],
+  prohibitedProps: [],
+  props: {
+    'aria-atomic': null,
+    'aria-busy': null,
+    'aria-controls': null,
+    'aria-current': null,
+    'aria-describedby': null,
+    'aria-details': null,
+    'aria-dropeffect': null,
+    'aria-flowto': null,
+    'aria-grabbed': null,
+    'aria-hidden': null,
+    'aria-keyshortcuts': null,
+    'aria-label': null,
+    'aria-labelledby': null,
+    'aria-live': null,
+    'aria-owns': null,
+    'aria-relevant': null,
+    'aria-roledescription': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'role'
+    },
+    module: 'XHTML'
+  }, {
+    concept: {
+      name: 'type'
+    },
+    module: 'Dublin Core'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: []
+};
+var _default = roletypeRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8494:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var sectionRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: [],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'frontmatter'
+    },
+    module: 'DTB'
+  }, {
+    concept: {
+      name: 'level'
+    },
+    module: 'DTB'
+  }, {
+    concept: {
+      name: 'level'
+    },
+    module: 'SMIL'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure']]
+};
+var _default = sectionRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3088:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var sectionheadRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure']]
+};
+var _default = sectionheadRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 97:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var selectRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-orientation': null
+  },
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'composite'], ['roletype', 'structure', 'section', 'group']]
+};
+var _default = selectRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6336:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var structureRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: [],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype']]
+};
+var _default = structureRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 885:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var widgetRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: [],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype']]
+};
+var _default = widgetRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8581:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var windowRole = {
+  abstract: true,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-modal': null
+  },
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype']]
+};
+var _default = windowRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 486:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _commandRole = _interopRequireDefault(__webpack_require__(7976));
+var _compositeRole = _interopRequireDefault(__webpack_require__(8250));
+var _inputRole = _interopRequireDefault(__webpack_require__(4749));
+var _landmarkRole = _interopRequireDefault(__webpack_require__(1669));
+var _rangeRole = _interopRequireDefault(__webpack_require__(6292));
+var _roletypeRole = _interopRequireDefault(__webpack_require__(185));
+var _sectionRole = _interopRequireDefault(__webpack_require__(8494));
+var _sectionheadRole = _interopRequireDefault(__webpack_require__(3088));
+var _selectRole = _interopRequireDefault(__webpack_require__(97));
+var _structureRole = _interopRequireDefault(__webpack_require__(6336));
+var _widgetRole = _interopRequireDefault(__webpack_require__(885));
+var _windowRole = _interopRequireDefault(__webpack_require__(8581));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ariaAbstractRoles = [['command', _commandRole.default], ['composite', _compositeRole.default], ['input', _inputRole.default], ['landmark', _landmarkRole.default], ['range', _rangeRole.default], ['roletype', _roletypeRole.default], ['section', _sectionRole.default], ['sectionhead', _sectionheadRole.default], ['select', _selectRole.default], ['structure', _structureRole.default], ['widget', _widgetRole.default], ['window', _windowRole.default]];
+var _default = ariaAbstractRoles;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6825:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _docAbstractRole = _interopRequireDefault(__webpack_require__(4623));
+var _docAcknowledgmentsRole = _interopRequireDefault(__webpack_require__(9350));
+var _docAfterwordRole = _interopRequireDefault(__webpack_require__(7702));
+var _docAppendixRole = _interopRequireDefault(__webpack_require__(159));
+var _docBacklinkRole = _interopRequireDefault(__webpack_require__(8101));
+var _docBiblioentryRole = _interopRequireDefault(__webpack_require__(4485));
+var _docBibliographyRole = _interopRequireDefault(__webpack_require__(3558));
+var _docBibliorefRole = _interopRequireDefault(__webpack_require__(3132));
+var _docChapterRole = _interopRequireDefault(__webpack_require__(5781));
+var _docColophonRole = _interopRequireDefault(__webpack_require__(1292));
+var _docConclusionRole = _interopRequireDefault(__webpack_require__(8825));
+var _docCoverRole = _interopRequireDefault(__webpack_require__(4663));
+var _docCreditRole = _interopRequireDefault(__webpack_require__(9187));
+var _docCreditsRole = _interopRequireDefault(__webpack_require__(2906));
+var _docDedicationRole = _interopRequireDefault(__webpack_require__(7536));
+var _docEndnoteRole = _interopRequireDefault(__webpack_require__(4113));
+var _docEndnotesRole = _interopRequireDefault(__webpack_require__(8960));
+var _docEpigraphRole = _interopRequireDefault(__webpack_require__(5134));
+var _docEpilogueRole = _interopRequireDefault(__webpack_require__(8850));
+var _docErrataRole = _interopRequireDefault(__webpack_require__(5215));
+var _docExampleRole = _interopRequireDefault(__webpack_require__(9742));
+var _docFootnoteRole = _interopRequireDefault(__webpack_require__(166));
+var _docForewordRole = _interopRequireDefault(__webpack_require__(6700));
+var _docGlossaryRole = _interopRequireDefault(__webpack_require__(7506));
+var _docGlossrefRole = _interopRequireDefault(__webpack_require__(5521));
+var _docIndexRole = _interopRequireDefault(__webpack_require__(8052));
+var _docIntroductionRole = _interopRequireDefault(__webpack_require__(1918));
+var _docNoterefRole = _interopRequireDefault(__webpack_require__(7485));
+var _docNoticeRole = _interopRequireDefault(__webpack_require__(1782));
+var _docPagebreakRole = _interopRequireDefault(__webpack_require__(354));
+var _docPagelistRole = _interopRequireDefault(__webpack_require__(589));
+var _docPartRole = _interopRequireDefault(__webpack_require__(4048));
+var _docPrefaceRole = _interopRequireDefault(__webpack_require__(248));
+var _docPrologueRole = _interopRequireDefault(__webpack_require__(9167));
+var _docPullquoteRole = _interopRequireDefault(__webpack_require__(9018));
+var _docQnaRole = _interopRequireDefault(__webpack_require__(5898));
+var _docSubtitleRole = _interopRequireDefault(__webpack_require__(8630));
+var _docTipRole = _interopRequireDefault(__webpack_require__(5189));
+var _docTocRole = _interopRequireDefault(__webpack_require__(5349));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ariaDpubRoles = [['doc-abstract', _docAbstractRole.default], ['doc-acknowledgments', _docAcknowledgmentsRole.default], ['doc-afterword', _docAfterwordRole.default], ['doc-appendix', _docAppendixRole.default], ['doc-backlink', _docBacklinkRole.default], ['doc-biblioentry', _docBiblioentryRole.default], ['doc-bibliography', _docBibliographyRole.default], ['doc-biblioref', _docBibliorefRole.default], ['doc-chapter', _docChapterRole.default], ['doc-colophon', _docColophonRole.default], ['doc-conclusion', _docConclusionRole.default], ['doc-cover', _docCoverRole.default], ['doc-credit', _docCreditRole.default], ['doc-credits', _docCreditsRole.default], ['doc-dedication', _docDedicationRole.default], ['doc-endnote', _docEndnoteRole.default], ['doc-endnotes', _docEndnotesRole.default], ['doc-epigraph', _docEpigraphRole.default], ['doc-epilogue', _docEpilogueRole.default], ['doc-errata', _docErrataRole.default], ['doc-example', _docExampleRole.default], ['doc-footnote', _docFootnoteRole.default], ['doc-foreword', _docForewordRole.default], ['doc-glossary', _docGlossaryRole.default], ['doc-glossref', _docGlossrefRole.default], ['doc-index', _docIndexRole.default], ['doc-introduction', _docIntroductionRole.default], ['doc-noteref', _docNoterefRole.default], ['doc-notice', _docNoticeRole.default], ['doc-pagebreak', _docPagebreakRole.default], ['doc-pagelist', _docPagelistRole.default], ['doc-part', _docPartRole.default], ['doc-preface', _docPrefaceRole.default], ['doc-prologue', _docPrologueRole.default], ['doc-pullquote', _docPullquoteRole.default], ['doc-qna', _docQnaRole.default], ['doc-subtitle', _docSubtitleRole.default], ['doc-tip', _docTipRole.default], ['doc-toc', _docTocRole.default]];
+var _default = ariaDpubRoles;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3867:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _graphicsDocumentRole = _interopRequireDefault(__webpack_require__(1320));
+var _graphicsObjectRole = _interopRequireDefault(__webpack_require__(9150));
+var _graphicsSymbolRole = _interopRequireDefault(__webpack_require__(7549));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ariaGraphicsRoles = [['graphics-document', _graphicsDocumentRole.default], ['graphics-object', _graphicsObjectRole.default], ['graphics-symbol', _graphicsSymbolRole.default]];
+var _default = ariaGraphicsRoles;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8249:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _alertRole = _interopRequireDefault(__webpack_require__(9456));
+var _alertdialogRole = _interopRequireDefault(__webpack_require__(76));
+var _applicationRole = _interopRequireDefault(__webpack_require__(9684));
+var _articleRole = _interopRequireDefault(__webpack_require__(6892));
+var _bannerRole = _interopRequireDefault(__webpack_require__(6706));
+var _blockquoteRole = _interopRequireDefault(__webpack_require__(8495));
+var _buttonRole = _interopRequireDefault(__webpack_require__(1980));
+var _captionRole = _interopRequireDefault(__webpack_require__(5164));
+var _cellRole = _interopRequireDefault(__webpack_require__(4800));
+var _checkboxRole = _interopRequireDefault(__webpack_require__(4685));
+var _codeRole = _interopRequireDefault(__webpack_require__(7965));
+var _columnheaderRole = _interopRequireDefault(__webpack_require__(9091));
+var _comboboxRole = _interopRequireDefault(__webpack_require__(8307));
+var _complementaryRole = _interopRequireDefault(__webpack_require__(7948));
+var _contentinfoRole = _interopRequireDefault(__webpack_require__(6447));
+var _definitionRole = _interopRequireDefault(__webpack_require__(7201));
+var _deletionRole = _interopRequireDefault(__webpack_require__(3306));
+var _dialogRole = _interopRequireDefault(__webpack_require__(4344));
+var _directoryRole = _interopRequireDefault(__webpack_require__(6885));
+var _documentRole = _interopRequireDefault(__webpack_require__(3929));
+var _emphasisRole = _interopRequireDefault(__webpack_require__(6410));
+var _feedRole = _interopRequireDefault(__webpack_require__(40));
+var _figureRole = _interopRequireDefault(__webpack_require__(2700));
+var _formRole = _interopRequireDefault(__webpack_require__(670));
+var _genericRole = _interopRequireDefault(__webpack_require__(8763));
+var _gridRole = _interopRequireDefault(__webpack_require__(3568));
+var _gridcellRole = _interopRequireDefault(__webpack_require__(1900));
+var _groupRole = _interopRequireDefault(__webpack_require__(1829));
+var _headingRole = _interopRequireDefault(__webpack_require__(6392));
+var _imgRole = _interopRequireDefault(__webpack_require__(9389));
+var _insertionRole = _interopRequireDefault(__webpack_require__(4563));
+var _linkRole = _interopRequireDefault(__webpack_require__(3616));
+var _listRole = _interopRequireDefault(__webpack_require__(8948));
+var _listboxRole = _interopRequireDefault(__webpack_require__(1667));
+var _listitemRole = _interopRequireDefault(__webpack_require__(6619));
+var _logRole = _interopRequireDefault(__webpack_require__(1612));
+var _mainRole = _interopRequireDefault(__webpack_require__(4461));
+var _markRole = _interopRequireDefault(__webpack_require__(8550));
+var _marqueeRole = _interopRequireDefault(__webpack_require__(7366));
+var _mathRole = _interopRequireDefault(__webpack_require__(9146));
+var _menuRole = _interopRequireDefault(__webpack_require__(5691));
+var _menubarRole = _interopRequireDefault(__webpack_require__(9089));
+var _menuitemRole = _interopRequireDefault(__webpack_require__(2332));
+var _menuitemcheckboxRole = _interopRequireDefault(__webpack_require__(909));
+var _menuitemradioRole = _interopRequireDefault(__webpack_require__(4665));
+var _meterRole = _interopRequireDefault(__webpack_require__(3159));
+var _navigationRole = _interopRequireDefault(__webpack_require__(5386));
+var _noneRole = _interopRequireDefault(__webpack_require__(378));
+var _noteRole = _interopRequireDefault(__webpack_require__(7708));
+var _optionRole = _interopRequireDefault(__webpack_require__(3369));
+var _paragraphRole = _interopRequireDefault(__webpack_require__(136));
+var _presentationRole = _interopRequireDefault(__webpack_require__(3268));
+var _progressbarRole = _interopRequireDefault(__webpack_require__(4558));
+var _radioRole = _interopRequireDefault(__webpack_require__(2041));
+var _radiogroupRole = _interopRequireDefault(__webpack_require__(7510));
+var _regionRole = _interopRequireDefault(__webpack_require__(3316));
+var _rowRole = _interopRequireDefault(__webpack_require__(5926));
+var _rowgroupRole = _interopRequireDefault(__webpack_require__(815));
+var _rowheaderRole = _interopRequireDefault(__webpack_require__(2163));
+var _scrollbarRole = _interopRequireDefault(__webpack_require__(6500));
+var _searchRole = _interopRequireDefault(__webpack_require__(3548));
+var _searchboxRole = _interopRequireDefault(__webpack_require__(7403));
+var _separatorRole = _interopRequireDefault(__webpack_require__(2425));
+var _sliderRole = _interopRequireDefault(__webpack_require__(3061));
+var _spinbuttonRole = _interopRequireDefault(__webpack_require__(5656));
+var _statusRole = _interopRequireDefault(__webpack_require__(2914));
+var _strongRole = _interopRequireDefault(__webpack_require__(7251));
+var _subscriptRole = _interopRequireDefault(__webpack_require__(6444));
+var _superscriptRole = _interopRequireDefault(__webpack_require__(3442));
+var _switchRole = _interopRequireDefault(__webpack_require__(6220));
+var _tabRole = _interopRequireDefault(__webpack_require__(4629));
+var _tableRole = _interopRequireDefault(__webpack_require__(3850));
+var _tablistRole = _interopRequireDefault(__webpack_require__(2673));
+var _tabpanelRole = _interopRequireDefault(__webpack_require__(591));
+var _termRole = _interopRequireDefault(__webpack_require__(9022));
+var _textboxRole = _interopRequireDefault(__webpack_require__(2778));
+var _timeRole = _interopRequireDefault(__webpack_require__(6589));
+var _timerRole = _interopRequireDefault(__webpack_require__(2367));
+var _toolbarRole = _interopRequireDefault(__webpack_require__(9365));
+var _tooltipRole = _interopRequireDefault(__webpack_require__(2797));
+var _treeRole = _interopRequireDefault(__webpack_require__(5824));
+var _treegridRole = _interopRequireDefault(__webpack_require__(7460));
+var _treeitemRole = _interopRequireDefault(__webpack_require__(3359));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ariaLiteralRoles = [['alert', _alertRole.default], ['alertdialog', _alertdialogRole.default], ['application', _applicationRole.default], ['article', _articleRole.default], ['banner', _bannerRole.default], ['blockquote', _blockquoteRole.default], ['button', _buttonRole.default], ['caption', _captionRole.default], ['cell', _cellRole.default], ['checkbox', _checkboxRole.default], ['code', _codeRole.default], ['columnheader', _columnheaderRole.default], ['combobox', _comboboxRole.default], ['complementary', _complementaryRole.default], ['contentinfo', _contentinfoRole.default], ['definition', _definitionRole.default], ['deletion', _deletionRole.default], ['dialog', _dialogRole.default], ['directory', _directoryRole.default], ['document', _documentRole.default], ['emphasis', _emphasisRole.default], ['feed', _feedRole.default], ['figure', _figureRole.default], ['form', _formRole.default], ['generic', _genericRole.default], ['grid', _gridRole.default], ['gridcell', _gridcellRole.default], ['group', _groupRole.default], ['heading', _headingRole.default], ['img', _imgRole.default], ['insertion', _insertionRole.default], ['link', _linkRole.default], ['list', _listRole.default], ['listbox', _listboxRole.default], ['listitem', _listitemRole.default], ['log', _logRole.default], ['main', _mainRole.default], ['mark', _markRole.default], ['marquee', _marqueeRole.default], ['math', _mathRole.default], ['menu', _menuRole.default], ['menubar', _menubarRole.default], ['menuitem', _menuitemRole.default], ['menuitemcheckbox', _menuitemcheckboxRole.default], ['menuitemradio', _menuitemradioRole.default], ['meter', _meterRole.default], ['navigation', _navigationRole.default], ['none', _noneRole.default], ['note', _noteRole.default], ['option', _optionRole.default], ['paragraph', _paragraphRole.default], ['presentation', _presentationRole.default], ['progressbar', _progressbarRole.default], ['radio', _radioRole.default], ['radiogroup', _radiogroupRole.default], ['region', _regionRole.default], ['row', _rowRole.default], ['rowgroup', _rowgroupRole.default], ['rowheader', _rowheaderRole.default], ['scrollbar', _scrollbarRole.default], ['search', _searchRole.default], ['searchbox', _searchboxRole.default], ['separator', _separatorRole.default], ['slider', _sliderRole.default], ['spinbutton', _spinbuttonRole.default], ['status', _statusRole.default], ['strong', _strongRole.default], ['subscript', _subscriptRole.default], ['superscript', _superscriptRole.default], ['switch', _switchRole.default], ['tab', _tabRole.default], ['table', _tableRole.default], ['tablist', _tablistRole.default], ['tabpanel', _tabpanelRole.default], ['term', _termRole.default], ['textbox', _textboxRole.default], ['time', _timeRole.default], ['timer', _timerRole.default], ['toolbar', _toolbarRole.default], ['tooltip', _tooltipRole.default], ['tree', _treeRole.default], ['treegrid', _treegridRole.default], ['treeitem', _treeitemRole.default]];
+var _default = ariaLiteralRoles;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4623:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docAbstractRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'abstract [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = docAbstractRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9350:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docAcknowledgmentsRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'acknowledgments [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docAcknowledgmentsRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7702:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docAfterwordRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'afterword [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docAfterwordRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 159:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docAppendixRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'appendix [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docAppendixRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8101:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docBacklinkRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'referrer [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'command', 'link']]
+};
+var _default = docBacklinkRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4485:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docBiblioentryRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'EPUB biblioentry [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: ['doc-bibliography'],
+  requiredContextRole: ['doc-bibliography'],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'listitem']]
+};
+var _default = docBiblioentryRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3558:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docBibliographyRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'bibliography [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['doc-biblioentry']],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docBibliographyRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3132:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docBibliorefRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'biblioref [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'command', 'link']]
+};
+var _default = docBibliorefRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5781:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docChapterRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'chapter [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docChapterRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1292:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docColophonRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'colophon [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = docColophonRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8825:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docConclusionRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'conclusion [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docConclusionRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4663:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docCoverRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'cover [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'img']]
+};
+var _default = docCoverRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9187:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docCreditRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'credit [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = docCreditRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2906:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docCreditsRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'credits [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docCreditsRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7536:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docDedicationRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'dedication [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = docDedicationRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4113:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docEndnoteRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'rearnote [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: ['doc-endnotes'],
+  requiredContextRole: ['doc-endnotes'],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'listitem']]
+};
+var _default = docEndnoteRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8960:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docEndnotesRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'rearnotes [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['doc-endnote']],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docEndnotesRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5134:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docEpigraphRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'epigraph [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = docEpigraphRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8850:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docEpilogueRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'epilogue [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docEpilogueRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5215:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docErrataRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'errata [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docErrataRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9742:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docExampleRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = docExampleRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 166:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docFootnoteRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'footnote [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = docFootnoteRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6700:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docForewordRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'foreword [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docForewordRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7506:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docGlossaryRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'glossary [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['definition'], ['term']],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docGlossaryRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5521:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docGlossrefRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'glossref [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'command', 'link']]
+};
+var _default = docGlossrefRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8052:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docIndexRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'index [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark', 'navigation']]
+};
+var _default = docIndexRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1918:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docIntroductionRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'introduction [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docIntroductionRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7485:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docNoterefRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'noteref [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'command', 'link']]
+};
+var _default = docNoterefRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1782:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docNoticeRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'notice [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'note']]
+};
+var _default = docNoticeRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 354:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docPagebreakRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'pagebreak [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'separator']]
+};
+var _default = docPagebreakRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 589:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docPagelistRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'page-list [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark', 'navigation']]
+};
+var _default = docPagelistRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4048:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docPartRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'part [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docPartRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 248:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docPrefaceRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'preface [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docPrefaceRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9167:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docPrologueRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'prologue [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = docPrologueRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9018:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docPullquoteRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'pullquote [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['none']]
+};
+var _default = docPullquoteRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5898:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docQnaRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'qna [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = docQnaRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8630:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docSubtitleRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'subtitle [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'sectionhead']]
+};
+var _default = docSubtitleRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5189:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docTipRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'help [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'note']]
+};
+var _default = docTipRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5349:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var docTocRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'toc [EPUB-SSV]'
+    },
+    module: 'EPUB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark', 'navigation']]
+};
+var _default = docTocRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1320:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var graphicsDocumentRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    module: 'GRAPHICS',
+    concept: {
+      name: 'graphics-object'
+    }
+  }, {
+    module: 'ARIA',
+    concept: {
+      name: 'img'
+    }
+  }, {
+    module: 'ARIA',
+    concept: {
+      name: 'article'
+    }
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'document']]
+};
+var _default = graphicsDocumentRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9150:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var graphicsObjectRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    module: 'GRAPHICS',
+    concept: {
+      name: 'graphics-document'
+    }
+  }, {
+    module: 'ARIA',
+    concept: {
+      name: 'group'
+    }
+  }, {
+    module: 'ARIA',
+    concept: {
+      name: 'img'
+    }
+  }, {
+    module: 'GRAPHICS',
+    concept: {
+      name: 'graphics-symbol'
+    }
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'group']]
+};
+var _default = graphicsObjectRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7549:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var graphicsSymbolRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'img']]
+};
+var _default = graphicsSymbolRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9456:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var alertRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-atomic': 'true',
+    'aria-live': 'assertive'
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'alert'
+    },
+    module: 'XForms'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = alertRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 76:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var alertdialogRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'alert'
+    },
+    module: 'XForms'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'alert'], ['roletype', 'window', 'dialog']]
+};
+var _default = alertdialogRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9684:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var applicationRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-activedescendant': null,
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'Device Independence Delivery Unit'
+    }
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure']]
+};
+var _default = applicationRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6892:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var articleRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-posinset': null,
+    'aria-setsize': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'article'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'document']]
+};
+var _default = articleRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6706:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var bannerRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      constraints: ['scoped to the body element'],
+      name: 'header'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = bannerRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8495:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var blockquoteRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'blockquote'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = blockquoteRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1980:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var buttonRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-pressed': null
+  },
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        name: 'type',
+        value: 'button'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        name: 'type',
+        value: 'image'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        name: 'type',
+        value: 'reset'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        name: 'type',
+        value: 'submit'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'button'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'trigger'
+    },
+    module: 'XForms'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'command']]
+};
+var _default = buttonRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5164:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var captionRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'caption'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: ['figure', 'grid', 'table'],
+  requiredContextRole: ['figure', 'grid', 'table'],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = captionRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4800:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var cellRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-colindex': null,
+    'aria-colspan': null,
+    'aria-rowindex': null,
+    'aria-rowspan': null
+  },
+  relatedConcepts: [{
+    concept: {
+      constraints: ['ancestor table element has table role'],
+      name: 'td'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: ['row'],
+  requiredContextRole: ['row'],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = cellRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4685:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var checkboxRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-checked': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-invalid': null,
+    'aria-readonly': null,
+    'aria-required': null
+  },
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        name: 'type',
+        value: 'checkbox'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'option'
+    },
+    module: 'ARIA'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-checked': null
+  },
+  superClass: [['roletype', 'widget', 'input']]
+};
+var _default = checkboxRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7965:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var codeRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'code'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = codeRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9091:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var columnheaderRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-sort': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'th'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        name: 'scope',
+        value: 'col'
+      }],
+      name: 'th'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        name: 'scope',
+        value: 'colgroup'
+      }],
+      name: 'th'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: ['row'],
+  requiredContextRole: ['row'],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'cell'], ['roletype', 'structure', 'section', 'cell', 'gridcell'], ['roletype', 'widget', 'gridcell'], ['roletype', 'structure', 'sectionhead']]
+};
+var _default = columnheaderRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8307:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var comboboxRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-activedescendant': null,
+    'aria-autocomplete': null,
+    'aria-errormessage': null,
+    'aria-invalid': null,
+    'aria-readonly': null,
+    'aria-required': null,
+    'aria-expanded': 'false',
+    'aria-haspopup': 'listbox'
+  },
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'email'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'search'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'tel'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'text'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'url'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'url'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['undefined'],
+        name: 'multiple'
+      }, {
+        constraints: ['undefined'],
+        name: 'size'
+      }],
+      constraints: ['the multiple attribute is not set and the size attribute does not have a value greater than 1'],
+      name: 'select'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'select'
+    },
+    module: 'XForms'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-controls': null,
+    'aria-expanded': 'false'
+  },
+  superClass: [['roletype', 'widget', 'input']]
+};
+var _default = comboboxRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7948:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var complementaryRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'aside'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'aria-label'
+      }],
+      constraints: ['scoped to a sectioning content element', 'scoped to a sectioning root element other than body'],
+      name: 'aside'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'aria-labelledby'
+      }],
+      constraints: ['scoped to a sectioning content element', 'scoped to a sectioning root element other than body'],
+      name: 'aside'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = complementaryRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6447:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var contentinfoRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      constraints: ['scoped to the body element'],
+      name: 'footer'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = contentinfoRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7201:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var definitionRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'dd'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = definitionRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3306:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var deletionRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'del'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = deletionRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4344:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var dialogRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'dialog'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'window']]
+};
+var _default = dialogRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6885:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var directoryRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    module: 'DAISY Guide'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'list']]
+};
+var _default = directoryRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3929:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var documentRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'Device Independence Delivery Unit'
+    }
+  }, {
+    concept: {
+      name: 'html'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure']]
+};
+var _default = documentRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6410:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var emphasisRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'em'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = emphasisRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 40:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var feedRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['article']],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'list']]
+};
+var _default = feedRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2700:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var figureRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'figure'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = figureRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 670:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var formRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'aria-label'
+      }],
+      name: 'form'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'aria-labelledby'
+      }],
+      name: 'form'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'name'
+      }],
+      name: 'form'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = formRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8763:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var genericRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'a'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'area'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'aside'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'b'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'bdo'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'body'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'data'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'div'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      constraints: ['scoped to the main element', 'scoped to a sectioning content element', 'scoped to a sectioning root element other than body'],
+      name: 'footer'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      constraints: ['scoped to the main element', 'scoped to a sectioning content element', 'scoped to a sectioning root element other than body'],
+      name: 'header'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'hgroup'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'i'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'pre'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'q'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'samp'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'section'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'small'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'span'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'u'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure']]
+};
+var _default = genericRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3568:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var gridRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-multiselectable': null,
+    'aria-readonly': null
+  },
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['row'], ['row', 'rowgroup']],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'composite'], ['roletype', 'structure', 'section', 'table']]
+};
+var _default = gridRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1900:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var gridcellRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-invalid': null,
+    'aria-readonly': null,
+    'aria-required': null,
+    'aria-selected': null
+  },
+  relatedConcepts: [{
+    concept: {
+      constraints: ['ancestor table element has grid role', 'ancestor table element has treegrid role'],
+      name: 'td'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: ['row'],
+  requiredContextRole: ['row'],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'cell'], ['roletype', 'widget']]
+};
+var _default = gridcellRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1829:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var groupRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-activedescendant': null,
+    'aria-disabled': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'details'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'fieldset'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'optgroup'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'address'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = groupRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6392:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var headingRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-level': '2'
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'h1'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'h2'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'h3'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'h4'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'h5'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'h6'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-level': '2'
+  },
+  superClass: [['roletype', 'structure', 'sectionhead']]
+};
+var _default = headingRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9389:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var imgRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'alt'
+      }],
+      name: 'img'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['undefined'],
+        name: 'alt'
+      }],
+      name: 'img'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'imggroup'
+    },
+    module: 'DTB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = imgRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4563:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var insertionRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'ins'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = insertionRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3616:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var linkRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-expanded': null,
+    'aria-haspopup': null
+  },
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'href'
+      }],
+      name: 'a'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'href'
+      }],
+      name: 'area'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'command']]
+};
+var _default = linkRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8948:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var listRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'menu'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'ol'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'ul'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['listitem']],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = listRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1667:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var listboxRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-expanded': null,
+    'aria-invalid': null,
+    'aria-multiselectable': null,
+    'aria-readonly': null,
+    'aria-required': null,
+    'aria-orientation': 'vertical'
+  },
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        constraints: ['>1'],
+        name: 'size'
+      }],
+      constraints: ['the size attribute value is greater than 1'],
+      name: 'select'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        name: 'multiple'
+      }],
+      name: 'select'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'datalist'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'list'
+    },
+    module: 'ARIA'
+  }, {
+    concept: {
+      name: 'select'
+    },
+    module: 'XForms'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['option', 'group'], ['option']],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'composite', 'select'], ['roletype', 'structure', 'section', 'group', 'select']]
+};
+var _default = listboxRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6619:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var listitemRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-level': null,
+    'aria-posinset': null,
+    'aria-setsize': null
+  },
+  relatedConcepts: [{
+    concept: {
+      constraints: ['direct descendant of ol', 'direct descendant of ul', 'direct descendant of menu'],
+      name: 'li'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'item'
+    },
+    module: 'XForms'
+  }],
+  requireContextRole: ['directory', 'list'],
+  requiredContextRole: ['directory', 'list'],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = listitemRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1612:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var logRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-live': 'polite'
+  },
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = logRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4461:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var mainRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'main'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = mainRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 8550:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var markRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: [],
+  props: {
+    'aria-braillelabel': null,
+    'aria-brailleroledescription': null,
+    'aria-description': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'mark'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = markRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7366:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var marqueeRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = marqueeRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9146:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var mathRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'math'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = mathRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5691:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var menuRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-orientation': 'vertical'
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'MENU'
+    },
+    module: 'JAPI'
+  }, {
+    concept: {
+      name: 'list'
+    },
+    module: 'ARIA'
+  }, {
+    concept: {
+      name: 'select'
+    },
+    module: 'XForms'
+  }, {
+    concept: {
+      name: 'sidebar'
+    },
+    module: 'DTB'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['menuitem', 'group'], ['menuitemradio', 'group'], ['menuitemcheckbox', 'group'], ['menuitem'], ['menuitemcheckbox'], ['menuitemradio']],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'composite', 'select'], ['roletype', 'structure', 'section', 'group', 'select']]
+};
+var _default = menuRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9089:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var menubarRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-orientation': 'horizontal'
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'toolbar'
+    },
+    module: 'ARIA'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['menuitem', 'group'], ['menuitemradio', 'group'], ['menuitemcheckbox', 'group'], ['menuitem'], ['menuitemcheckbox'], ['menuitemradio']],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'composite', 'select', 'menu'], ['roletype', 'structure', 'section', 'group', 'select', 'menu']]
+};
+var _default = menubarRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2332:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var menuitemRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-posinset': null,
+    'aria-setsize': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'MENU_ITEM'
+    },
+    module: 'JAPI'
+  }, {
+    concept: {
+      name: 'listitem'
+    },
+    module: 'ARIA'
+  }, {
+    concept: {
+      name: 'option'
+    },
+    module: 'ARIA'
+  }],
+  requireContextRole: ['group', 'menu', 'menubar'],
+  requiredContextRole: ['group', 'menu', 'menubar'],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'command']]
+};
+var _default = menuitemRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 909:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var menuitemcheckboxRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'menuitem'
+    },
+    module: 'ARIA'
+  }],
+  requireContextRole: ['group', 'menu', 'menubar'],
+  requiredContextRole: ['group', 'menu', 'menubar'],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-checked': null
+  },
+  superClass: [['roletype', 'widget', 'input', 'checkbox'], ['roletype', 'widget', 'command', 'menuitem']]
+};
+var _default = menuitemcheckboxRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4665:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var menuitemradioRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'menuitem'
+    },
+    module: 'ARIA'
+  }],
+  requireContextRole: ['group', 'menu', 'menubar'],
+  requiredContextRole: ['group', 'menu', 'menubar'],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-checked': null
+  },
+  superClass: [['roletype', 'widget', 'input', 'checkbox', 'menuitemcheckbox'], ['roletype', 'widget', 'command', 'menuitem', 'menuitemcheckbox'], ['roletype', 'widget', 'input', 'radio']]
+};
+var _default = menuitemradioRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3159:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var meterRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-valuetext': null,
+    'aria-valuemax': '100',
+    'aria-valuemin': '0'
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'meter'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-valuenow': null
+  },
+  superClass: [['roletype', 'structure', 'range']]
+};
+var _default = meterRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5386:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var navigationRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'nav'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = navigationRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 378:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var noneRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: [],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: []
+};
+var _default = noneRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7708:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var noteRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = noteRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3369:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var optionRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-checked': null,
+    'aria-posinset': null,
+    'aria-setsize': null,
+    'aria-selected': 'false'
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'item'
+    },
+    module: 'XForms'
+  }, {
+    concept: {
+      name: 'listitem'
+    },
+    module: 'ARIA'
+  }, {
+    concept: {
+      name: 'option'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-selected': 'false'
+  },
+  superClass: [['roletype', 'widget', 'input']]
+};
+var _default = optionRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 136:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var paragraphRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'p'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = paragraphRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3268:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var presentationRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        name: 'alt',
+        value: ''
+      }],
+      name: 'img'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure']]
+};
+var _default = presentationRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4558:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var progressbarRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-valuetext': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'progress'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'status'
+    },
+    module: 'ARIA'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'range'], ['roletype', 'widget']]
+};
+var _default = progressbarRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2041:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var radioRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-checked': null,
+    'aria-posinset': null,
+    'aria-setsize': null
+  },
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        name: 'type',
+        value: 'radio'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-checked': null
+  },
+  superClass: [['roletype', 'widget', 'input']]
+};
+var _default = radioRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7510:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var radiogroupRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-invalid': null,
+    'aria-readonly': null,
+    'aria-required': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'list'
+    },
+    module: 'ARIA'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['radio']],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'composite', 'select'], ['roletype', 'structure', 'section', 'group', 'select']]
+};
+var _default = radiogroupRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3316:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var regionRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'aria-label'
+      }],
+      name: 'section'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['set'],
+        name: 'aria-labelledby'
+      }],
+      name: 'section'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'Device Independence Glossart perceivable unit'
+    }
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = regionRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5926:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var rowRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-colindex': null,
+    'aria-expanded': null,
+    'aria-level': null,
+    'aria-posinset': null,
+    'aria-rowindex': null,
+    'aria-selected': null,
+    'aria-setsize': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'tr'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: ['grid', 'rowgroup', 'table', 'treegrid'],
+  requiredContextRole: ['grid', 'rowgroup', 'table', 'treegrid'],
+  requiredOwnedElements: [['cell'], ['columnheader'], ['gridcell'], ['rowheader']],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'group'], ['roletype', 'widget']]
+};
+var _default = rowRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 815:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var rowgroupRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'tbody'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'tfoot'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'thead'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: ['grid', 'table', 'treegrid'],
+  requiredContextRole: ['grid', 'table', 'treegrid'],
+  requiredOwnedElements: [['row']],
+  requiredProps: {},
+  superClass: [['roletype', 'structure']]
+};
+var _default = rowgroupRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2163:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var rowheaderRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-sort': null
+  },
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        name: 'scope',
+        value: 'row'
+      }],
+      name: 'th'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        name: 'scope',
+        value: 'rowgroup'
+      }],
+      name: 'th'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: ['row', 'rowgroup'],
+  requiredContextRole: ['row', 'rowgroup'],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'cell'], ['roletype', 'structure', 'section', 'cell', 'gridcell'], ['roletype', 'widget', 'gridcell'], ['roletype', 'structure', 'sectionhead']]
+};
+var _default = rowheaderRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6500:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var scrollbarRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-valuetext': null,
+    'aria-orientation': 'vertical',
+    'aria-valuemax': '100',
+    'aria-valuemin': '0'
+  },
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-controls': null,
+    'aria-valuenow': null
+  },
+  superClass: [['roletype', 'structure', 'range'], ['roletype', 'widget']]
+};
+var _default = scrollbarRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3548:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var searchRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'landmark']]
+};
+var _default = searchRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7403:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var searchboxRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        constraints: ['undefined'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'search'
+      }],
+      constraints: ['the list attribute is not set'],
+      name: 'input'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'input', 'textbox']]
+};
+var _default = searchboxRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2425:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var separatorRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-orientation': 'horizontal',
+    'aria-valuemax': '100',
+    'aria-valuemin': '0',
+    'aria-valuenow': null,
+    'aria-valuetext': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'hr'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure']]
+};
+var _default = separatorRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3061:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var sliderRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-haspopup': null,
+    'aria-invalid': null,
+    'aria-readonly': null,
+    'aria-valuetext': null,
+    'aria-orientation': 'horizontal',
+    'aria-valuemax': '100',
+    'aria-valuemin': '0'
+  },
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        name: 'type',
+        value: 'range'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-valuenow': null
+  },
+  superClass: [['roletype', 'widget', 'input'], ['roletype', 'structure', 'range']]
+};
+var _default = sliderRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5656:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var spinbuttonRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-invalid': null,
+    'aria-readonly': null,
+    'aria-required': null,
+    'aria-valuetext': null,
+    'aria-valuenow': '0'
+  },
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        name: 'type',
+        value: 'number'
+      }],
+      name: 'input'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'composite'], ['roletype', 'widget', 'input'], ['roletype', 'structure', 'range']]
+};
+var _default = spinbuttonRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2914:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var statusRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-atomic': 'true',
+    'aria-live': 'polite'
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'output'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = statusRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7251:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var strongRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'strong'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = strongRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6444:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var subscriptRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'sub'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = subscriptRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3442:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var superscriptRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['prohibited'],
+  prohibitedProps: ['aria-label', 'aria-labelledby'],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'sup'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = superscriptRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6220:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var switchRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'button'
+    },
+    module: 'ARIA'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-checked': null
+  },
+  superClass: [['roletype', 'widget', 'input', 'checkbox']]
+};
+var _default = switchRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 4629:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var tabRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: true,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-disabled': null,
+    'aria-expanded': null,
+    'aria-haspopup': null,
+    'aria-posinset': null,
+    'aria-setsize': null,
+    'aria-selected': 'false'
+  },
+  relatedConcepts: [],
+  requireContextRole: ['tablist'],
+  requiredContextRole: ['tablist'],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'sectionhead'], ['roletype', 'widget']]
+};
+var _default = tabRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3850:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var tableRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-colcount': null,
+    'aria-rowcount': null
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'table'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['row'], ['row', 'rowgroup']],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = tableRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2673:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var tablistRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-level': null,
+    'aria-multiselectable': null,
+    'aria-orientation': 'horizontal'
+  },
+  relatedConcepts: [{
+    module: 'DAISY',
+    concept: {
+      name: 'guide'
+    }
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['tab']],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'composite']]
+};
+var _default = tablistRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 591:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var tabpanelRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = tabpanelRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9022:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var termRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'dfn'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'dt'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = termRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2778:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var textboxRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-activedescendant': null,
+    'aria-autocomplete': null,
+    'aria-errormessage': null,
+    'aria-haspopup': null,
+    'aria-invalid': null,
+    'aria-multiline': null,
+    'aria-placeholder': null,
+    'aria-readonly': null,
+    'aria-required': null
+  },
+  relatedConcepts: [{
+    concept: {
+      attributes: [{
+        constraints: ['undefined'],
+        name: 'type'
+      }, {
+        constraints: ['undefined'],
+        name: 'list'
+      }],
+      constraints: ['the list attribute is not set'],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['undefined'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'email'
+      }],
+      constraints: ['the list attribute is not set'],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['undefined'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'tel'
+      }],
+      constraints: ['the list attribute is not set'],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['undefined'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'text'
+      }],
+      constraints: ['the list attribute is not set'],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      attributes: [{
+        constraints: ['undefined'],
+        name: 'list'
+      }, {
+        name: 'type',
+        value: 'url'
+      }],
+      constraints: ['the list attribute is not set'],
+      name: 'input'
+    },
+    module: 'HTML'
+  }, {
+    concept: {
+      name: 'input'
+    },
+    module: 'XForms'
+  }, {
+    concept: {
+      name: 'textarea'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'input']]
+};
+var _default = textboxRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 6589:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var timeRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [{
+    concept: {
+      name: 'time'
+    },
+    module: 'HTML'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = timeRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2367:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var timerRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'status']]
+};
+var _default = timerRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9365:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var toolbarRole = {
+  abstract: false,
+  accessibleNameRequired: false,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-orientation': 'horizontal'
+  },
+  relatedConcepts: [{
+    concept: {
+      name: 'menubar'
+    },
+    module: 'ARIA'
+  }],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section', 'group']]
+};
+var _default = toolbarRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 2797:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var tooltipRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [],
+  requiredProps: {},
+  superClass: [['roletype', 'structure', 'section']]
+};
+var _default = tooltipRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5824:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var treeRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {
+    'aria-errormessage': null,
+    'aria-invalid': null,
+    'aria-multiselectable': null,
+    'aria-required': null,
+    'aria-orientation': 'vertical'
+  },
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['treeitem', 'group'], ['treeitem']],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'composite', 'select'], ['roletype', 'structure', 'section', 'group', 'select']]
+};
+var _default = treeRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 7460:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var treegridRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author'],
+  prohibitedProps: [],
+  props: {},
+  relatedConcepts: [],
+  requireContextRole: [],
+  requiredContextRole: [],
+  requiredOwnedElements: [['row'], ['row', 'rowgroup']],
+  requiredProps: {},
+  superClass: [['roletype', 'widget', 'composite', 'grid'], ['roletype', 'structure', 'section', 'table', 'grid'], ['roletype', 'widget', 'composite', 'select', 'tree'], ['roletype', 'structure', 'section', 'group', 'select', 'tree']]
+};
+var _default = treegridRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 3359:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var treeitemRole = {
+  abstract: false,
+  accessibleNameRequired: true,
+  baseConcepts: [],
+  childrenPresentational: false,
+  nameFrom: ['author', 'contents'],
+  prohibitedProps: [],
+  props: {
+    'aria-expanded': null,
+    'aria-haspopup': null
+  },
+  relatedConcepts: [],
+  requireContextRole: ['group', 'tree'],
+  requiredContextRole: ['group', 'tree'],
+  requiredOwnedElements: [],
+  requiredProps: {
+    'aria-selected': null
+  },
+  superClass: [['roletype', 'structure', 'section', 'listitem'], ['roletype', 'widget', 'input', 'option']]
+};
+var _default = treeitemRole;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 5037:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+var __webpack_unused_export__;
+
+
+__webpack_unused_export__ = ({
+  value: true
+});
+exports.Ot = exports.wZ = exports._s = __webpack_unused_export__ = __webpack_unused_export__ = void 0;
+var _ariaPropsMap = _interopRequireDefault(__webpack_require__(5608));
+var _domMap = _interopRequireDefault(__webpack_require__(6403));
+var _rolesMap = _interopRequireDefault(__webpack_require__(1876));
+var _elementRoleMap = _interopRequireDefault(__webpack_require__(9383));
+var _roleElementMap = _interopRequireDefault(__webpack_require__(2967));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var aria = _ariaPropsMap.default;
+__webpack_unused_export__ = aria;
+var dom = _domMap.default;
+__webpack_unused_export__ = dom;
+var roles = _rolesMap.default;
+exports.Ot = roles;
+var elementRoles = _elementRoleMap.default;
+exports._s = elementRoles;
+var roleElements = _roleElementMap.default;
+exports.wZ = roleElements;
+
+/***/ }),
+
+/***/ 2967:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _iterationDecorator = _interopRequireDefault(__webpack_require__(984));
+var _rolesMap = _interopRequireDefault(__webpack_require__(1876));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+var roleElement = [];
+var keys = _rolesMap.default.keys();
+for (var i = 0; i < keys.length; i++) {
+  var key = keys[i];
+  var role = _rolesMap.default.get(key);
+  var relationConcepts = [];
+  if (role) {
+    var concepts = [].concat(role.baseConcepts, role.relatedConcepts);
+    for (var k = 0; k < concepts.length; k++) {
+      var relation = concepts[k];
+      if (relation.module === 'HTML') {
+        var concept = relation.concept;
+        if (concept != null) {
+          relationConcepts.push(concept);
+        }
+      }
+    }
+    if (relationConcepts.length > 0) {
+      roleElement.push([key, relationConcepts]);
+    }
+  }
+}
+var roleElementMap = {
+  entries: function entries() {
+    return roleElement;
+  },
+  forEach: function forEach(fn) {
+    var thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var _iterator = _createForOfIteratorHelper(roleElement),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var _step$value = _slicedToArray(_step.value, 2),
+          _key = _step$value[0],
+          values = _step$value[1];
+        fn.call(thisArg, values, _key, roleElement);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  },
+  get: function get(key) {
+    var item = roleElement.find(function (tuple) {
+      return tuple[0] === key ? true : false;
+    });
+    return item && item[1];
+  },
+  has: function has(key) {
+    return !!roleElementMap.get(key);
+  },
+  keys: function keys() {
+    return roleElement.map(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+        key = _ref2[0];
+      return key;
+    });
+  },
+  values: function values() {
+    return roleElement.map(function (_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+        values = _ref4[1];
+      return values;
+    });
+  }
+};
+var _default = (0, _iterationDecorator.default)(roleElementMap, roleElementMap.entries());
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 1876:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _ariaAbstractRoles = _interopRequireDefault(__webpack_require__(486));
+var _ariaLiteralRoles = _interopRequireDefault(__webpack_require__(8249));
+var _ariaDpubRoles = _interopRequireDefault(__webpack_require__(6825));
+var _ariaGraphicsRoles = _interopRequireDefault(__webpack_require__(3867));
+var _iterationDecorator = _interopRequireDefault(__webpack_require__(984));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var roles = [].concat(_ariaAbstractRoles.default, _ariaLiteralRoles.default, _ariaDpubRoles.default, _ariaGraphicsRoles.default);
+roles.forEach(function (_ref) {
+  var _ref2 = _slicedToArray(_ref, 2),
+    roleDefinition = _ref2[1];
+  // Conglomerate the properties
+  var _iterator = _createForOfIteratorHelper(roleDefinition.superClass),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var superClassIter = _step.value;
+      var _iterator2 = _createForOfIteratorHelper(superClassIter),
+        _step2;
+      try {
+        var _loop = function _loop() {
+          var superClassName = _step2.value;
+          var superClassRoleTuple = roles.find(function (_ref3) {
+            var _ref4 = _slicedToArray(_ref3, 1),
+              name = _ref4[0];
+            return name === superClassName;
+          });
+          if (superClassRoleTuple) {
+            var superClassDefinition = superClassRoleTuple[1];
+            for (var _i2 = 0, _Object$keys = Object.keys(superClassDefinition.props); _i2 < _Object$keys.length; _i2++) {
+              var prop = _Object$keys[_i2];
+              if (
+              // $FlowIssue Accessing the hasOwnProperty on the Object prototype is fine.
+              !Object.prototype.hasOwnProperty.call(roleDefinition.props, prop)) {
+                Object.assign(roleDefinition.props, _defineProperty({}, prop, superClassDefinition.props[prop]));
+              }
+            }
+          }
+        };
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          _loop();
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+});
+var rolesMap = {
+  entries: function entries() {
+    return roles;
+  },
+  forEach: function forEach(fn) {
+    var thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var _iterator3 = _createForOfIteratorHelper(roles),
+      _step3;
+    try {
+      for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+        var _step3$value = _slicedToArray(_step3.value, 2),
+          key = _step3$value[0],
+          values = _step3$value[1];
+        fn.call(thisArg, values, key, roles);
+      }
+    } catch (err) {
+      _iterator3.e(err);
+    } finally {
+      _iterator3.f();
+    }
+  },
+  get: function get(key) {
+    var item = roles.find(function (tuple) {
+      return tuple[0] === key ? true : false;
+    });
+    return item && item[1];
+  },
+  has: function has(key) {
+    return !!rolesMap.get(key);
+  },
+  keys: function keys() {
+    return roles.map(function (_ref5) {
+      var _ref6 = _slicedToArray(_ref5, 1),
+        key = _ref6[0];
+      return key;
+    });
+  },
+  values: function values() {
+    return roles.map(function (_ref7) {
+      var _ref8 = _slicedToArray(_ref7, 2),
+        values = _ref8[1];
+      return values;
+    });
+  }
+};
+var _default = (0, _iterationDecorator.default)(rolesMap, rolesMap.entries());
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 984:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = iterationDecorator;
+var _iteratorProxy = _interopRequireDefault(__webpack_require__(192));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function iterationDecorator(collection, entries) {
+  if (typeof Symbol === 'function' && _typeof(Symbol.iterator) === 'symbol') {
+    Object.defineProperty(collection, Symbol.iterator, {
+      value: _iteratorProxy.default.bind(entries)
+    });
+  }
+  return collection;
+}
+
+/***/ }),
+
+/***/ 192:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+
+// eslint-disable-next-line no-unused-vars
+function iteratorProxy() {
+  var values = this;
+  var index = 0;
+  var iter = {
+    '@@iterator': function iterator() {
+      return iter;
+    },
+    next: function next() {
+      if (index < values.length) {
+        var value = values[index];
+        index = index + 1;
+        return {
+          done: false,
+          value: value
+        };
+      } else {
+        return {
+          done: true
+        };
+      }
+    }
+  };
+  return iter;
+}
+var _default = iteratorProxy;
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ 8351:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2022,10 +13503,554 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*! decimal.js-light v2.5.1 https://github.com
 
 /***/ }),
 
+/***/ 3066:
+/***/ ((__unused_webpack_module, exports) => {
+
+var has = Object.prototype.hasOwnProperty;
+
+function dequal(foo, bar) {
+	var ctor, len;
+	if (foo === bar) return true;
+
+	if (foo && bar && (ctor=foo.constructor) === bar.constructor) {
+		if (ctor === Date) return foo.getTime() === bar.getTime();
+		if (ctor === RegExp) return foo.toString() === bar.toString();
+
+		if (ctor === Array) {
+			if ((len=foo.length) === bar.length) {
+				while (len-- && dequal(foo[len], bar[len]));
+			}
+			return len === -1;
+		}
+
+		if (!ctor || typeof foo === 'object') {
+			len = 0;
+			for (ctor in foo) {
+				if (has.call(foo, ctor) && ++len && !has.call(bar, ctor)) return false;
+				if (!(ctor in bar) || !dequal(foo[ctor], bar[ctor])) return false;
+			}
+			return Object.keys(bar).length === len;
+		}
+	}
+
+	return foo !== foo && bar !== bar;
+}
+
+exports.dequal = dequal;
+
+/***/ }),
+
 /***/ 7004:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 !function(e,t){if(true)module.exports=t(__webpack_require__(9155));else { var n, r; }}(self,(e=>(()=>{"use strict";var t={607:function(e,t,r){var n=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0}),t.usePatternFormat=t.getPatternCaretBoundary=t.removePatternFormat=t.patternFormatter=t.useNumericFormat=t.getNumericCaretBoundary=t.removeNumericFormat=t.numericFormatter=t.PatternFormat=t.NumericFormat=t.NumberFormatBase=void 0;var a=n(r(44));t.NumberFormatBase=a.default;var o=n(r(528));t.NumericFormat=o.default;var u=n(r(931));t.PatternFormat=u.default;var i=r(528);Object.defineProperty(t,"numericFormatter",{enumerable:!0,get:function(){return i.format}}),Object.defineProperty(t,"removeNumericFormat",{enumerable:!0,get:function(){return i.removeFormatting}}),Object.defineProperty(t,"getNumericCaretBoundary",{enumerable:!0,get:function(){return i.getCaretBoundary}}),Object.defineProperty(t,"useNumericFormat",{enumerable:!0,get:function(){return i.useNumericFormat}});var l=r(931);Object.defineProperty(t,"patternFormatter",{enumerable:!0,get:function(){return l.format}}),Object.defineProperty(t,"removePatternFormat",{enumerable:!0,get:function(){return l.removeFormatting}}),Object.defineProperty(t,"getPatternCaretBoundary",{enumerable:!0,get:function(){return l.getCaretBoundary}}),Object.defineProperty(t,"usePatternFormat",{enumerable:!0,get:function(){return l.usePatternFormat}})},44:function(e,t,r){var n=this&&this.__assign||function(){return n=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var a in t=arguments[r])Object.prototype.hasOwnProperty.call(t,a)&&(e[a]=t[a]);return e},n.apply(this,arguments)},a=this&&this.__createBinding||(Object.create?function(e,t,r,n){void 0===n&&(n=r);var a=Object.getOwnPropertyDescriptor(t,r);a&&!("get"in a?!t.__esModule:a.writable||a.configurable)||(a={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,n,a)}:function(e,t,r,n){void 0===n&&(n=r),e[n]=t[r]}),o=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),u=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)"default"!==r&&Object.prototype.hasOwnProperty.call(e,r)&&a(t,e,r);return o(t,e),t},i=this&&this.__rest||function(e,t){var r={};for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&t.indexOf(n)<0&&(r[n]=e[n]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var a=0;for(n=Object.getOwnPropertySymbols(e);a<n.length;a++)t.indexOf(n[a])<0&&Object.prototype.propertyIsEnumerable.call(e,n[a])&&(r[n[a]]=e[n[a]])}return r};Object.defineProperty(t,"__esModule",{value:!0});var l=u(r(156)),c=r(699),s=r(383);function f(e){return e.replace(/[^0-9]/g,"")}function d(e){return e}t.default=function(e){var t=e.type,r=void 0===t?"text":t,a=e.displayType,o=void 0===a?"input":a,u=e.customInput,v=e.renderText,m=e.getInputRef,p=e.format,g=void 0===p?d:p,h=e.removeFormatting,y=void 0===h?f:h,b=e.defaultValue,S=e.valueIsNumericString,P=e.onValueChange,x=e.isAllowed,C=e.onChange,w=void 0===C?s.noop:C,N=e.onKeyDown,O=void 0===N?s.noop:N,V=e.onMouseUp,I=void 0===V?s.noop:V,F=e.onFocus,j=void 0===F?s.noop:F,D=e.onBlur,_=void 0===D?s.noop:D,B=e.value,T=e.getCaretBoundary,M=void 0===T?s.caretUnknownFormatBoundary:T,E=e.isValidInputCharacter,A=void 0===E?s.charIsNumber:E,k=i(e,["type","displayType","customInput","renderText","getInputRef","format","removeFormatting","defaultValue","valueIsNumericString","onValueChange","isAllowed","onChange","onKeyDown","onMouseUp","onFocus","onBlur","value","getCaretBoundary","isValidInputCharacter"]),R=(0,s.useInternalValues)(B,b,Boolean(S),g,y,P),L=R[0],K=L.formattedValue,W=L.numAsString,U=R[1],G=(0,l.useRef)({formattedValue:K,numAsString:W}),Z=function(e,t){G.current={formattedValue:e.formattedValue,numAsString:e.value},U(e,t)},$=(0,l.useState)(!1),q=$[0],z=$[1],H=(0,l.useRef)(null),J=(0,l.useRef)({setCaretTimeout:null,focusTimeout:null});(0,l.useEffect)((function(){return z(!0),function(){clearTimeout(J.current.setCaretTimeout),clearTimeout(J.current.focusTimeout)}}),[]);var Q=g,X=function(e,t){var r=parseFloat(t);return{formattedValue:e,value:t,floatValue:isNaN(r)?void 0:r}},Y=function(e,t,r){0===e.selectionStart&&e.selectionEnd===e.value.length||((0,s.setCaretPosition)(e,t),J.current.setCaretTimeout=setTimeout((function(){e.value===r&&e.selectionStart!==e.selectionEnd&&(0,s.setCaretPosition)(e,t)}),0))},ee=function(e,t,r){return(0,s.getCaretPosInBoundary)(e,t,M(e),r)},te=function(e,t,r){var n=M(t),a=(0,s.getCaretPosition)(t,K,e,r,n,A);return(0,s.getCaretPosInBoundary)(t,a,n)};(0,l.useEffect)((function(){var e=G.current,t=e.formattedValue,r=e.numAsString;K===t||K===W&&t===r||Z(X(K,W),{event:void 0,source:c.SourceType.props})}),[K,W]);var re=H.current?(0,s.geInputCaretPosition)(H.current):void 0;("undefined"!=typeof window?l.useLayoutEffect:l.useEffect)((function(){var e=H.current;if(K!==G.current.formattedValue&&e){var t=te(G.current.formattedValue,K,re);e.value=K,Y(e,t,K)}}),[K]);var ne=q&&(0,s.addInputMode)()?"numeric":void 0,ae=Object.assign({inputMode:ne},k,{type:r,value:K,onChange:function(e){(function(e,t,r){var a=(0,s.findChangeRange)(K,e),o=n(n({},a),{lastValue:K}),u=y(e,o),i=Q(u);if(u=y(i,void 0),x&&!x(X(i,u))){var l=t.target,c=(0,s.geInputCaretPosition)(l),f=te(e,K,c);return l.value=K,Y(l,f,K),!1}return function(e){var t=e.formattedValue,r=void 0===t?"":t,n=e.input,a=e.setCaretPosition,o=void 0===a||a,u=e.source,i=e.event,l=e.numAsString,c=e.caretPos;if(n){if(void 0===c&&o){var f=e.inputValue||n.value,d=(0,s.geInputCaretPosition)(n);n.value=r,c=te(f,r,d)}n.value=r,o&&void 0!==c&&Y(n,c,r)}r!==K&&Z(X(r,l),{event:i,source:u})}({formattedValue:i,numAsString:u,inputValue:e,event:t,source:r,setCaretPosition:!0,input:t.target}),!0})(e.target.value,e,c.SourceType.event)&&w(e)},onKeyDown:function(e){var t,r=e.target,n=e.key,a=r.selectionStart,o=r.selectionEnd,u=r.value,i=void 0===u?"":u;if("ArrowLeft"===n||"Backspace"===n?t=Math.max(a-1,0):"ArrowRight"===n?t=Math.min(a+1,i.length):"Delete"===n&&(t=a),void 0!==t&&a===o){var l=t;"ArrowLeft"===n||"ArrowRight"===n?(l=ee(i,t,"ArrowLeft"===n?"left":"right"))!==t&&e.preventDefault():"Delete"!==n||A(i[t])?"Backspace"!==n||A(i[t])||(l=ee(i,t,"left")):l=ee(i,t,"right"),l!==t&&Y(r,l,i),e.isUnitTestRun&&Y(r,l,i),O(e)}else O(e)},onMouseUp:function(e){var t=e.target,r=t.selectionStart,n=t.selectionEnd,a=t.value,o=void 0===a?"":a;if(r===n){var u=ee(o,r);u!==r&&Y(t,u,o)}I(e)},onFocus:function(e){e.persist&&e.persist();var t=e.target;H.current=t,J.current.focusTimeout=setTimeout((function(){var r=t.selectionStart,n=t.selectionEnd,a=t.value,o=void 0===a?"":a,u=ee(o,r);u===r||0===r&&n===o.length||Y(t,u,o),j(e)}),0)},onBlur:function(e){H.current=null,clearTimeout(J.current.focusTimeout),clearTimeout(J.current.setCaretTimeout),_(e)}});if("text"===o)return v?l.default.createElement(l.default.Fragment,null,v(K,k)||null):l.default.createElement("span",n({},k,{ref:m}),K);if(u){var oe=u;return l.default.createElement(oe,n({},ae,{ref:m}))}return l.default.createElement("input",n({},ae,{ref:m}))}},528:function(e,t,r){var n=this&&this.__assign||function(){return n=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var a in t=arguments[r])Object.prototype.hasOwnProperty.call(t,a)&&(e[a]=t[a]);return e},n.apply(this,arguments)},a=this&&this.__rest||function(e,t){var r={};for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&t.indexOf(n)<0&&(r[n]=e[n]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var a=0;for(n=Object.getOwnPropertySymbols(e);a<n.length;a++)t.indexOf(n[a])<0&&Object.prototype.propertyIsEnumerable.call(e,n[a])&&(r[n[a]]=e[n[a]])}return r},o=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0}),t.useNumericFormat=t.getCaretBoundary=t.removeFormatting=t.format=void 0;var u=o(r(156)),i=r(383),l=r(699),c=o(r(44));function s(e,t){var r=t.decimalScale,n=t.fixedDecimalScale,a=t.prefix,o=void 0===a?"":a,u=t.suffix,l=void 0===u?"":u,c=t.allowNegative,s=t.thousandsGroupStyle,d=void 0===s?"thousand":s;if(""===e||"-"===e)return e;var v=f(t),m=v.thousandSeparator,p=v.decimalSeparator,g=0!==r&&-1!==e.indexOf(".")||r&&n,h=(0,i.splitDecimal)(e,c),y=h.beforeDecimal,b=h.afterDecimal,S=h.addNegation;return void 0!==r&&(b=(0,i.limitToScale)(b,r,!!n)),m&&(y=(0,i.applyThousandSeparator)(y,m,d)),o&&(y=o+y),l&&(b+=l),S&&(y="-"+y),y+(g&&p||"")+b}function f(e){var t=e.decimalSeparator,r=void 0===t?".":t,n=e.thousandSeparator,a=e.allowedDecimalSeparators;return!0===n&&(n=","),a||(a=[r,"."]),{decimalSeparator:r,thousandSeparator:n,allowedDecimalSeparators:a}}function d(e,t,r){void 0===t&&(t=(0,i.getDefaultChangeMeta)(e));var n=r.allowNegative,a=r.prefix,o=void 0===a?"":a,u=r.suffix,l=void 0===u?"":u,c=r.decimalScale,s=t.from,d=t.to,v=d.start,m=d.end,p=f(r),g=p.allowedDecimalSeparators,h=p.decimalSeparator,y=e[m]===h;if((0,i.charIsNumber)(e)&&(e===o||e===l)&&""===t.lastValue)return e;if(m-v==1&&-1!==g.indexOf(e[v])){var b=0===c?"":h;e=e.substring(0,v)+b+e.substring(v+1,e.length)}var S=function(e,t,r){var n=!1,a=!1;o.startsWith("-")?n=!1:e.startsWith("--")?(n=!1,a=!0):l.startsWith("-")&&e.length===l.length?n=!1:"-"===e[0]&&(n=!0);var u=n?1:0;return a&&(u=2),u&&(e=e.substring(u),t-=u,r-=u),{value:e,start:t,end:r,hasNegation:n}},P=S(e,v,m),x=P.hasNegation;e=P.value,v=P.start,m=P.end;var C=S(t.lastValue,s.start,s.end),w=C.start,N=C.end,O=C.value,V=e.substring(v,m);!(e.length&&O.length&&(w>O.length-l.length||N<o.length))||V&&l.startsWith(V)||(e=O);var I=0;e.startsWith(o)?I+=o.length:v<o.length&&(I=v),m-=I;var F=(e=e.substring(I)).length,j=e.length-l.length;e.endsWith(l)?F=j:(m>j||m>e.length-l.length)&&(F=m),e=e.substring(0,F),e=function(e,t){void 0===e&&(e="");var r=new RegExp("(-)"),n=new RegExp("(-)(.)*(-)"),a=r.test(e),o=n.test(e);return e=e.replace(/-/g,""),a&&!o&&t&&(e="-"+e),e}(x?"-".concat(e):e,n),e=(e.match(function(e,t){return new RegExp("(^-)|[0-9]|".concat((0,i.escapeRegExp)(e)),"g")}(h))||[]).join("");var D=e.indexOf(h);e=e.replace(new RegExp((0,i.escapeRegExp)(h),"g"),(function(e,t){return t===D?".":""}));var _=(0,i.splitDecimal)(e,n),B=_.beforeDecimal,T=_.afterDecimal,M=_.addNegation;return d.end-d.start<s.end-s.start&&""===B&&y&&!parseFloat(T)&&(e=M?"-":""),e}function v(e,t){var r=t.prefix,n=void 0===r?"":r,a=t.suffix,o=void 0===a?"":a,u=Array.from({length:e.length+1}).map((function(){return!0})),i="-"===e[0];u.fill(!1,0,n.length+(i?1:0));var l=e.length;return u.fill(!1,l-o.length+1,l+1),u}function m(e){e=function(e){var t=f(e),r=t.thousandSeparator,a=t.decimalSeparator,o=e.prefix,u=void 0===o?"":o,i=e.allowNegative,l=void 0===i||i;if(r===a)throw new Error("\n        Decimal separator can't be same as thousand separator.\n        thousandSeparator: ".concat(r,' (thousandSeparator = {true} is same as thousandSeparator = ",")\n        decimalSeparator: ').concat(a," (default value for decimalSeparator is .)\n     "));return u.startsWith("-")&&l&&(console.error("\n      Prefix can't start with '-' when allowNegative is true.\n      prefix: ".concat(u,"\n      allowNegative: ").concat(l,"\n    ")),l=!1),n(n({},e),{allowNegative:l})}(e);var t=e.decimalSeparator,r=void 0===t?".":t,o=(e.allowedDecimalSeparators,e.thousandsGroupStyle,e.suffix),u=e.allowNegative,c=e.allowLeadingZeros,m=e.onKeyDown,p=void 0===m?i.noop:m,g=e.onBlur,h=void 0===g?i.noop:g,y=e.thousandSeparator,b=e.decimalScale,S=e.fixedDecimalScale,P=e.prefix,x=void 0===P?"":P,C=e.defaultValue,w=e.value,N=e.valueIsNumericString,O=e.onValueChange,V=a(e,["decimalSeparator","allowedDecimalSeparators","thousandsGroupStyle","suffix","allowNegative","allowLeadingZeros","onKeyDown","onBlur","thousandSeparator","decimalScale","fixedDecimalScale","prefix","defaultValue","value","valueIsNumericString","onValueChange"]),I=function(t){return s(t,e)},F=function(t,r){return d(t,r,e)},j=(0,i.isNil)(w)?C:w,D=null!=N?N:function(e,t,r){return""===e||!(null==t?void 0:t.match(/\d/))&&!(null==r?void 0:r.match(/\d/))&&"string"==typeof e&&!isNaN(Number(e))}(j,x,o);(0,i.isNil)(w)?(0,i.isNil)(C)||(D=N||"number"==typeof C):D=N||"number"==typeof w;var _=function(e){return(0,i.isNotValidValue)(e)?e:("number"==typeof e&&(e=(0,i.toNumericString)(e)),D&&"number"==typeof b?(0,i.roundToPrecision)(e,b,Boolean(S)):e)},B=(0,i.useInternalValues)(_(w),_(C),Boolean(D),I,F,O),T=B[0],M=T.numAsString,E=T.formattedValue,A=B[1];return n(n({},V),{value:E,valueIsNumericString:!1,isValidInputCharacter:function(e){return e===r||(0,i.charIsNumber)(e)},onValueChange:A,format:I,removeFormatting:F,getCaretBoundary:function(t){return v(t,e)},onKeyDown:function(t){var r=t.target,n=t.key,a=r.selectionStart,o=r.selectionEnd,l=r.value,c=void 0===l?"":l;if(a===o){"Backspace"===n&&"-"===c[0]&&a===x.length+1&&u&&(0,i.setCaretPosition)(r,1);var s=f(e),d=s.decimalSeparator,v=s.allowedDecimalSeparators;"Backspace"===n&&c[a-1]===d&&b&&S&&((0,i.setCaretPosition)(r,a-1),t.preventDefault()),(null==v?void 0:v.includes(n))&&c[a]===d&&(0,i.setCaretPosition)(r,a+1);var m=!0===y?",":y;"Backspace"===n&&c[a-1]===m&&(0,i.setCaretPosition)(r,a-1),"Delete"===n&&c[a]===m&&(0,i.setCaretPosition)(r,a+1),p(t)}else p(t)},onBlur:function(t){var r=M;if(r.match(/\d/g)||(r=""),c||(r=(0,i.fixLeadingZero)(r)),S&&b&&(r=(0,i.roundToPrecision)(r,b,S)),r!==M){var n=s(r,e);A({formattedValue:n,value:r,floatValue:parseFloat(r)},{event:t,source:l.SourceType.event})}h(t)}})}t.format=s,t.removeFormatting=d,t.getCaretBoundary=v,t.useNumericFormat=m,t.default=function(e){var t=m(e);return u.default.createElement(c.default,n({},t))}},931:function(e,t,r){var n=this&&this.__assign||function(){return n=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var a in t=arguments[r])Object.prototype.hasOwnProperty.call(t,a)&&(e[a]=t[a]);return e},n.apply(this,arguments)},a=this&&this.__rest||function(e,t){var r={};for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&t.indexOf(n)<0&&(r[n]=e[n]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var a=0;for(n=Object.getOwnPropertySymbols(e);a<n.length;a++)t.indexOf(n[a])<0&&Object.prototype.propertyIsEnumerable.call(e,n[a])&&(r[n[a]]=e[n[a]])}return r},o=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0}),t.usePatternFormat=t.getCaretBoundary=t.removeFormatting=t.format=void 0;var u=o(r(156)),i=r(383),l=o(r(44)),c=function(e){return e};function s(e,t){var r=t.format,n=t.allowEmptyFormatting,a=t.mask,o=t.patternChar,u=void 0===o?"#":o;if(""===e&&!n)return"";for(var l=0,c=r.split(""),s=0,f=r.length;s<f;s++)r[s]===u&&(c[s]=e[l]||(0,i.getMaskAtIndex)(a,l),l+=1);return c.join("")}function f(e,t,r,n){void 0===t&&(t=(0,i.getDefaultChangeMeta)(e)),void 0===r&&(r=c);var a=n.format,o=n.patternChar,u=void 0===o?"#":o,l=t.from,s=t.to,f=t.lastValue,d=void 0===f?"":f,v=function(e){return a[e]===u},m=function(e,t){for(var r="",n=0;n<e.length;n++)v(t+n)&&(0,i.charIsNumber)(e[n])&&(r+=e[n]);return r},p=function(e){return e.replace(/[^0-9]/g,"")};if(!a.match(/\d/))return p(e);if(""===d&&e.length===a.length){for(var g="",h=0;h<e.length;h++)if(v(h))(0,i.charIsNumber)(e[h])&&(g+=e[h]);else if(e[h]!==a[h])return p(e);return r(g)}var y=d.substring(0,l.start),b=e.substring(s.start,s.end),S=d.substring(l.end);return r("".concat(m(y,0)).concat(p(b)).concat(m(S,l.end)))}function d(e,t){var r=t.format,n=t.mask,a=t.patternChar,o=void 0===a?"#":a,u=Array.from({length:e.length+1}).map((function(){return!0})),l=0,c=-1,s={};r.split("").forEach((function(t,r){var a;t===o&&(l++,a=(0,i.getMaskAtIndex)(n,l-1),-1===c&&e[r]===a&&(c=r)),s[r]=a}));for(var f=function(t){return r[t]===o&&e[t]!==s[t]},d=0,v=u.length;d<v;d++)u[d]=d===c||f(d)||f(d-1);return u[r.indexOf(o)]=!0,u}function v(e){e.mask,e.allowEmptyFormatting;var t,r=e.format,o=e.inputMode,u=void 0===o?"numeric":o,l=e.onKeyDown,v=void 0===l?i.noop:l,m=e.patternChar,p=void 0===m?"#":m,g=e.value,h=e.defaultValue,y=e.valueIsNumericString,b=e.replaceValue,S=void 0===b?c:b,P=a(e,["mask","allowEmptyFormatting","format","inputMode","onKeyDown","patternChar","value","defaultValue","valueIsNumericString","replaceValue"]);!function(e){var t=e.mask;if(t&&("string"===t?t:t.toString()).match(/\d/g))throw new Error("Mask ".concat(t," should not contain numeric character;"))}(e);var x=function(t){return d(t,e)},C=(0,i.isNil)(g)?h:g,w=null!=y?y:function(e,t){return""===e||!((null==t?void 0:t.match(/\d/))||"string"!=typeof e||!e.match(/^\d+$/)&&""!==e)}(C,r),N=n(n({},e),{replaceValue:null!==(t=e.replaceValue)&&void 0!==t?t:c,valueIsNumericString:w});return n(n({},P),{value:g,defaultValue:h,valueIsNumericString:w,inputMode:u,format:function(e){return s(e,N)},removeFormatting:function(e,t){return f(e,t,S,N)},getCaretBoundary:x,onKeyDown:function(e){var t=e.key,n=e.target,a=n.selectionStart,o=n.selectionEnd,u=n.value;if(a===o){var l=a;if("Backspace"===t||"Delete"===t){var c="right";if("Backspace"===t){for(;l>0&&r[l-1]!==p;)l--;c="left"}else{for(var s=r.length;l<s&&r[l]!==p;)l++;c="right"}l=(0,i.getCaretPosInBoundary)(u,l,x(u),c)}else r[l]!==p&&"ArrowLeft"!==t&&"ArrowRight"!==t&&(l=(0,i.getCaretPosInBoundary)(u,l+1,x(u),"right"));l!==a&&(0,i.setCaretPosition)(n,l)}else v(e)}})}t.format=s,t.removeFormatting=f,t.getCaretBoundary=d,t.usePatternFormat=v,t.default=function(e){var t=v(e);return u.default.createElement(l.default,n({},t))}},699:(e,t)=>{var r;Object.defineProperty(t,"__esModule",{value:!0}),t.SourceType=void 0,(r=t.SourceType||(t.SourceType={})).event="event",r.props="prop"},383:(e,t,r)=>{Object.defineProperty(t,"__esModule",{value:!0}),t.useInternalValues=t.caretUnknownFormatBoundary=t.getCaretPosInBoundary=t.getCaretPosition=t.getMaskAtIndex=t.getDefaultChangeMeta=t.addInputMode=t.geInputCaretPosition=t.clamp=t.findChangeRange=t.findChangedIndex=t.setCaretPosition=t.roundToPrecision=t.toNumericString=t.limitToScale=t.fixLeadingZero=t.splitDecimal=t.usePersistentCallback=t.applyThousandSeparator=t.getThousandsGroupRegex=t.escapeRegExp=t.isNotValidValue=t.isNanValue=t.isNil=t.charIsNumber=t.noop=void 0;var n=r(156);function a(){}function o(e){return!!(e||"").match(/\d/)}function u(e){return null==e}function i(e){return"number"==typeof e&&isNaN(e)}function l(e){return u(e)||i(e)||"number"==typeof e&&!isFinite(e)}function c(e){switch(e){case"lakh":return/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/g;case"wan":return/(\d)(?=(\d{4})+(?!\d))/g;default:return/(\d)(?=(\d{3})+(?!\d))/g}}function s(e){var t=(0,n.useRef)(e);t.current=e;var r=(0,n.useRef)((function(){for(var e=[],r=0;r<arguments.length;r++)e[r]=arguments[r];return t.current.apply(t,e)}));return r.current}function f(e,t){void 0===t&&(t=!0);var r="-"===e[0],n=r&&t,a=(e=e.replace("-","")).split(".");return{beforeDecimal:a[0],afterDecimal:a[1]||"",hasNegation:r,addNegation:n}}function d(e,t,r){for(var n="",a=r?"0":"",o=0;o<=t-1;o++)n+=e[o]||a;return n}function v(e,t){return Array(t+1).join(e)}function m(e){var t=e+"",r="-"===t[0]?"-":"";r&&(t=t.substring(1));var n=t.split(/[eE]/g),a=n[0],o=n[1];if(!(o=Number(o)))return r+a;var u=1+o,i=(a=a.replace(".","")).length;return u<0?a="0."+v("0",Math.abs(u))+a:u>=i?a+=v("0",u-i):a=(a.substring(0,u)||"0")+"."+a.substring(u),r+a}function p(e,t){for(var r=0,n=0,a=e.length,o=t.length;e[r]===t[r]&&r<a;)r++;for(;e[a-1-n]===t[o-1-n]&&o-n>r&&a-n>r;)n++;return{from:{start:r,end:a-n},to:{start:r,end:o-n}}}function g(e,t,r){return Math.min(Math.max(e,t),r)}t.noop=a,t.charIsNumber=o,t.isNil=u,t.isNanValue=i,t.isNotValidValue=l,t.escapeRegExp=function(e){return e.replace(/[-[\]/{}()*+?.\\^$|]/g,"\\$&")},t.getThousandsGroupRegex=c,t.applyThousandSeparator=function(e,t,r){var n=c(r),a=e.search(/[1-9]/);return a=-1===a?e.length:a,e.substring(0,a)+e.substring(a,e.length).replace(n,"$1"+t)},t.usePersistentCallback=s,t.splitDecimal=f,t.fixLeadingZero=function(e){if(!e)return e;var t="-"===e[0];t&&(e=e.substring(1,e.length));var r=e.split("."),n=r[0].replace(/^0+/,"")||"0",a=r[1]||"";return"".concat(t?"-":"").concat(n).concat(a?".".concat(a):"")},t.limitToScale=d,t.toNumericString=m,t.roundToPrecision=function(e,t,r){if(-1!==["","-"].indexOf(e))return e;var n=(-1!==e.indexOf(".")||r)&&t,a=f(e),o=a.beforeDecimal,u=a.afterDecimal,i=a.hasNegation,l=parseFloat("0.".concat(u||"0")),c=(u.length<=t?"0.".concat(u):l.toFixed(t)).split("."),s=o.split("").reverse().reduce((function(e,t,r){return e.length>r?(Number(e[0])+Number(t)).toString()+e.substring(1,e.length):t+e}),c[0]),v=d(c[1]||"",t,r),m=n?".":"";return"".concat(i?"-":"").concat(s).concat(m).concat(v)},t.setCaretPosition=function(e,t){if(e.value=e.value,null!==e){if(e.createTextRange){var r=e.createTextRange();return r.move("character",t),r.select(),!0}return e.selectionStart||0===e.selectionStart?(e.focus(),e.setSelectionRange(t,t),!0):(e.focus(),!1)}},t.findChangedIndex=function(e,t){for(var r=0,n=0,a=e.length,o=t.length;e[r]===t[r]&&r<a;)r++;for(;e[a-1-n]===t[o-1-n]&&o-n>r&&a-n>r;)n++;return{start:r,end:a-n}},t.findChangeRange=p,t.clamp=g,t.geInputCaretPosition=function(e){return Math.max(e.selectionStart,e.selectionEnd)},t.addInputMode=function(){return"undefined"!=typeof navigator&&!(navigator.platform&&/iPhone|iPod/.test(navigator.platform))},t.getDefaultChangeMeta=function(e){return{from:{start:0,end:0},to:{start:0,end:e.length},lastValue:""}},t.getMaskAtIndex=function(e,t){return void 0===e&&(e=" "),"string"==typeof e?e:e[t]||" "},t.getCaretPosition=function(e,t,r,n,a,o){var u=p(r,e),i=u.from,l=u.to;if(i.end-i.start==1&&i.end===l.end&&l.end===n)return n;var c=a.findIndex((function(e){return e})),s=e.slice(0,c);t||r.startsWith(s)||(r=s+r,n+=s.length);for(var f=r.length,d=e.length,v={},m=new Array(f),g=0;g<f;g++){m[g]=-1;for(var h=0,y=d;h<y;h++)if(r[g]===e[h]&&!0!==v[h]){m[g]=h,v[h]=!0;break}}for(var b=n;b<f&&(-1===m[b]||!o(r[b]));)b++;var S=b===f||-1===m[b]?d:m[b];for(b=n-1;b>0&&-1===m[b];)b--;var P=-1===b||-1===m[b]?0:m[b]+1;return P>S?S:n-P<S-n?P:S},t.getCaretPosInBoundary=function(e,t,r,n){var a=e.length;if(t=g(t,0,a),"left"===n){for(;t>=0&&!r[t];)t--;-1===t&&(t=r.indexOf(!0))}else{for(;t<=a&&!r[t];)t++;t>a&&(t=r.lastIndexOf(!0))}return-1===t&&(t=a),t},t.caretUnknownFormatBoundary=function(e){for(var t=Array.from({length:e.length+1}).map((function(){return!0})),r=0,n=t.length;r<n;r++)t[r]=Boolean(o(e[r])||o(e[r-1]));return t},t.useInternalValues=function(e,t,r,o,i,c){void 0===c&&(c=a);var f=s((function(e,t){var r,n,a;return l(e)?(a="",n=""):"number"==typeof e||t?(a="number"==typeof e?m(e):e,n=o(a)):(a=null!==(r=i&&i(e,void 0))&&void 0!==r?r:"",n=o(a)),{formattedValue:n,numAsString:a}})),d=(0,n.useState)((function(){return f(u(e)?t:e,r)})),v=d[0],p=d[1],g=e,h=r;u(e)&&(g=v.numAsString,h=!0);var y=f(g,h);return(0,n.useMemo)((function(){p(y)}),[y.formattedValue]),[v,function(e,t){e.formattedValue!==v.formattedValue&&p({formattedValue:e.formattedValue,numAsString:e.value}),c(e,t)}]}},156:t=>{t.exports=e}},r={};return function e(n){var a=r[n];if(void 0!==a)return a.exports;var o=r[n]={exports:{}};return t[n].call(o.exports,o,o.exports,e),o.exports}(607)})()));
+
+/***/ }),
+
+/***/ 2992:
+/***/ ((module, exports, __webpack_require__) => {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c) 2013 Pieroxy <pieroxy@pieroxy.net>
+// This work is free. You can redistribute it and/or modify it
+// under the terms of the WTFPL, Version 2
+// For more information see LICENSE.txt or http://www.wtfpl.net/
+//
+// For more information, the home page:
+// http://pieroxy.net/blog/pages/lz-string/testing.html
+//
+// LZ-based compression algorithm, version 1.4.5
+var LZString = (function() {
+
+// private property
+var f = String.fromCharCode;
+var keyStrBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+var keyStrUriSafe = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-$";
+var baseReverseDic = {};
+
+function getBaseValue(alphabet, character) {
+  if (!baseReverseDic[alphabet]) {
+    baseReverseDic[alphabet] = {};
+    for (var i=0 ; i<alphabet.length ; i++) {
+      baseReverseDic[alphabet][alphabet.charAt(i)] = i;
+    }
+  }
+  return baseReverseDic[alphabet][character];
+}
+
+var LZString = {
+  compressToBase64 : function (input) {
+    if (input == null) return "";
+    var res = LZString._compress(input, 6, function(a){return keyStrBase64.charAt(a);});
+    switch (res.length % 4) { // To produce valid Base64
+    default: // When could this happen ?
+    case 0 : return res;
+    case 1 : return res+"===";
+    case 2 : return res+"==";
+    case 3 : return res+"=";
+    }
+  },
+
+  decompressFromBase64 : function (input) {
+    if (input == null) return "";
+    if (input == "") return null;
+    return LZString._decompress(input.length, 32, function(index) { return getBaseValue(keyStrBase64, input.charAt(index)); });
+  },
+
+  compressToUTF16 : function (input) {
+    if (input == null) return "";
+    return LZString._compress(input, 15, function(a){return f(a+32);}) + " ";
+  },
+
+  decompressFromUTF16: function (compressed) {
+    if (compressed == null) return "";
+    if (compressed == "") return null;
+    return LZString._decompress(compressed.length, 16384, function(index) { return compressed.charCodeAt(index) - 32; });
+  },
+
+  //compress into uint8array (UCS-2 big endian format)
+  compressToUint8Array: function (uncompressed) {
+    var compressed = LZString.compress(uncompressed);
+    var buf=new Uint8Array(compressed.length*2); // 2 bytes per character
+
+    for (var i=0, TotalLen=compressed.length; i<TotalLen; i++) {
+      var current_value = compressed.charCodeAt(i);
+      buf[i*2] = current_value >>> 8;
+      buf[i*2+1] = current_value % 256;
+    }
+    return buf;
+  },
+
+  //decompress from uint8array (UCS-2 big endian format)
+  decompressFromUint8Array:function (compressed) {
+    if (compressed===null || compressed===undefined){
+        return LZString.decompress(compressed);
+    } else {
+        var buf=new Array(compressed.length/2); // 2 bytes per character
+        for (var i=0, TotalLen=buf.length; i<TotalLen; i++) {
+          buf[i]=compressed[i*2]*256+compressed[i*2+1];
+        }
+
+        var result = [];
+        buf.forEach(function (c) {
+          result.push(f(c));
+        });
+        return LZString.decompress(result.join(''));
+
+    }
+
+  },
+
+
+  //compress into a string that is already URI encoded
+  compressToEncodedURIComponent: function (input) {
+    if (input == null) return "";
+    return LZString._compress(input, 6, function(a){return keyStrUriSafe.charAt(a);});
+  },
+
+  //decompress from an output of compressToEncodedURIComponent
+  decompressFromEncodedURIComponent:function (input) {
+    if (input == null) return "";
+    if (input == "") return null;
+    input = input.replace(/ /g, "+");
+    return LZString._decompress(input.length, 32, function(index) { return getBaseValue(keyStrUriSafe, input.charAt(index)); });
+  },
+
+  compress: function (uncompressed) {
+    return LZString._compress(uncompressed, 16, function(a){return f(a);});
+  },
+  _compress: function (uncompressed, bitsPerChar, getCharFromInt) {
+    if (uncompressed == null) return "";
+    var i, value,
+        context_dictionary= {},
+        context_dictionaryToCreate= {},
+        context_c="",
+        context_wc="",
+        context_w="",
+        context_enlargeIn= 2, // Compensate for the first entry which should not count
+        context_dictSize= 3,
+        context_numBits= 2,
+        context_data=[],
+        context_data_val=0,
+        context_data_position=0,
+        ii;
+
+    for (ii = 0; ii < uncompressed.length; ii += 1) {
+      context_c = uncompressed.charAt(ii);
+      if (!Object.prototype.hasOwnProperty.call(context_dictionary,context_c)) {
+        context_dictionary[context_c] = context_dictSize++;
+        context_dictionaryToCreate[context_c] = true;
+      }
+
+      context_wc = context_w + context_c;
+      if (Object.prototype.hasOwnProperty.call(context_dictionary,context_wc)) {
+        context_w = context_wc;
+      } else {
+        if (Object.prototype.hasOwnProperty.call(context_dictionaryToCreate,context_w)) {
+          if (context_w.charCodeAt(0)<256) {
+            for (i=0 ; i<context_numBits ; i++) {
+              context_data_val = (context_data_val << 1);
+              if (context_data_position == bitsPerChar-1) {
+                context_data_position = 0;
+                context_data.push(getCharFromInt(context_data_val));
+                context_data_val = 0;
+              } else {
+                context_data_position++;
+              }
+            }
+            value = context_w.charCodeAt(0);
+            for (i=0 ; i<8 ; i++) {
+              context_data_val = (context_data_val << 1) | (value&1);
+              if (context_data_position == bitsPerChar-1) {
+                context_data_position = 0;
+                context_data.push(getCharFromInt(context_data_val));
+                context_data_val = 0;
+              } else {
+                context_data_position++;
+              }
+              value = value >> 1;
+            }
+          } else {
+            value = 1;
+            for (i=0 ; i<context_numBits ; i++) {
+              context_data_val = (context_data_val << 1) | value;
+              if (context_data_position ==bitsPerChar-1) {
+                context_data_position = 0;
+                context_data.push(getCharFromInt(context_data_val));
+                context_data_val = 0;
+              } else {
+                context_data_position++;
+              }
+              value = 0;
+            }
+            value = context_w.charCodeAt(0);
+            for (i=0 ; i<16 ; i++) {
+              context_data_val = (context_data_val << 1) | (value&1);
+              if (context_data_position == bitsPerChar-1) {
+                context_data_position = 0;
+                context_data.push(getCharFromInt(context_data_val));
+                context_data_val = 0;
+              } else {
+                context_data_position++;
+              }
+              value = value >> 1;
+            }
+          }
+          context_enlargeIn--;
+          if (context_enlargeIn == 0) {
+            context_enlargeIn = Math.pow(2, context_numBits);
+            context_numBits++;
+          }
+          delete context_dictionaryToCreate[context_w];
+        } else {
+          value = context_dictionary[context_w];
+          for (i=0 ; i<context_numBits ; i++) {
+            context_data_val = (context_data_val << 1) | (value&1);
+            if (context_data_position == bitsPerChar-1) {
+              context_data_position = 0;
+              context_data.push(getCharFromInt(context_data_val));
+              context_data_val = 0;
+            } else {
+              context_data_position++;
+            }
+            value = value >> 1;
+          }
+
+
+        }
+        context_enlargeIn--;
+        if (context_enlargeIn == 0) {
+          context_enlargeIn = Math.pow(2, context_numBits);
+          context_numBits++;
+        }
+        // Add wc to the dictionary.
+        context_dictionary[context_wc] = context_dictSize++;
+        context_w = String(context_c);
+      }
+    }
+
+    // Output the code for w.
+    if (context_w !== "") {
+      if (Object.prototype.hasOwnProperty.call(context_dictionaryToCreate,context_w)) {
+        if (context_w.charCodeAt(0)<256) {
+          for (i=0 ; i<context_numBits ; i++) {
+            context_data_val = (context_data_val << 1);
+            if (context_data_position == bitsPerChar-1) {
+              context_data_position = 0;
+              context_data.push(getCharFromInt(context_data_val));
+              context_data_val = 0;
+            } else {
+              context_data_position++;
+            }
+          }
+          value = context_w.charCodeAt(0);
+          for (i=0 ; i<8 ; i++) {
+            context_data_val = (context_data_val << 1) | (value&1);
+            if (context_data_position == bitsPerChar-1) {
+              context_data_position = 0;
+              context_data.push(getCharFromInt(context_data_val));
+              context_data_val = 0;
+            } else {
+              context_data_position++;
+            }
+            value = value >> 1;
+          }
+        } else {
+          value = 1;
+          for (i=0 ; i<context_numBits ; i++) {
+            context_data_val = (context_data_val << 1) | value;
+            if (context_data_position == bitsPerChar-1) {
+              context_data_position = 0;
+              context_data.push(getCharFromInt(context_data_val));
+              context_data_val = 0;
+            } else {
+              context_data_position++;
+            }
+            value = 0;
+          }
+          value = context_w.charCodeAt(0);
+          for (i=0 ; i<16 ; i++) {
+            context_data_val = (context_data_val << 1) | (value&1);
+            if (context_data_position == bitsPerChar-1) {
+              context_data_position = 0;
+              context_data.push(getCharFromInt(context_data_val));
+              context_data_val = 0;
+            } else {
+              context_data_position++;
+            }
+            value = value >> 1;
+          }
+        }
+        context_enlargeIn--;
+        if (context_enlargeIn == 0) {
+          context_enlargeIn = Math.pow(2, context_numBits);
+          context_numBits++;
+        }
+        delete context_dictionaryToCreate[context_w];
+      } else {
+        value = context_dictionary[context_w];
+        for (i=0 ; i<context_numBits ; i++) {
+          context_data_val = (context_data_val << 1) | (value&1);
+          if (context_data_position == bitsPerChar-1) {
+            context_data_position = 0;
+            context_data.push(getCharFromInt(context_data_val));
+            context_data_val = 0;
+          } else {
+            context_data_position++;
+          }
+          value = value >> 1;
+        }
+
+
+      }
+      context_enlargeIn--;
+      if (context_enlargeIn == 0) {
+        context_enlargeIn = Math.pow(2, context_numBits);
+        context_numBits++;
+      }
+    }
+
+    // Mark the end of the stream
+    value = 2;
+    for (i=0 ; i<context_numBits ; i++) {
+      context_data_val = (context_data_val << 1) | (value&1);
+      if (context_data_position == bitsPerChar-1) {
+        context_data_position = 0;
+        context_data.push(getCharFromInt(context_data_val));
+        context_data_val = 0;
+      } else {
+        context_data_position++;
+      }
+      value = value >> 1;
+    }
+
+    // Flush the last char
+    while (true) {
+      context_data_val = (context_data_val << 1);
+      if (context_data_position == bitsPerChar-1) {
+        context_data.push(getCharFromInt(context_data_val));
+        break;
+      }
+      else context_data_position++;
+    }
+    return context_data.join('');
+  },
+
+  decompress: function (compressed) {
+    if (compressed == null) return "";
+    if (compressed == "") return null;
+    return LZString._decompress(compressed.length, 32768, function(index) { return compressed.charCodeAt(index); });
+  },
+
+  _decompress: function (length, resetValue, getNextValue) {
+    var dictionary = [],
+        next,
+        enlargeIn = 4,
+        dictSize = 4,
+        numBits = 3,
+        entry = "",
+        result = [],
+        i,
+        w,
+        bits, resb, maxpower, power,
+        c,
+        data = {val:getNextValue(0), position:resetValue, index:1};
+
+    for (i = 0; i < 3; i += 1) {
+      dictionary[i] = i;
+    }
+
+    bits = 0;
+    maxpower = Math.pow(2,2);
+    power=1;
+    while (power!=maxpower) {
+      resb = data.val & data.position;
+      data.position >>= 1;
+      if (data.position == 0) {
+        data.position = resetValue;
+        data.val = getNextValue(data.index++);
+      }
+      bits |= (resb>0 ? 1 : 0) * power;
+      power <<= 1;
+    }
+
+    switch (next = bits) {
+      case 0:
+          bits = 0;
+          maxpower = Math.pow(2,8);
+          power=1;
+          while (power!=maxpower) {
+            resb = data.val & data.position;
+            data.position >>= 1;
+            if (data.position == 0) {
+              data.position = resetValue;
+              data.val = getNextValue(data.index++);
+            }
+            bits |= (resb>0 ? 1 : 0) * power;
+            power <<= 1;
+          }
+        c = f(bits);
+        break;
+      case 1:
+          bits = 0;
+          maxpower = Math.pow(2,16);
+          power=1;
+          while (power!=maxpower) {
+            resb = data.val & data.position;
+            data.position >>= 1;
+            if (data.position == 0) {
+              data.position = resetValue;
+              data.val = getNextValue(data.index++);
+            }
+            bits |= (resb>0 ? 1 : 0) * power;
+            power <<= 1;
+          }
+        c = f(bits);
+        break;
+      case 2:
+        return "";
+    }
+    dictionary[3] = c;
+    w = c;
+    result.push(c);
+    while (true) {
+      if (data.index > length) {
+        return "";
+      }
+
+      bits = 0;
+      maxpower = Math.pow(2,numBits);
+      power=1;
+      while (power!=maxpower) {
+        resb = data.val & data.position;
+        data.position >>= 1;
+        if (data.position == 0) {
+          data.position = resetValue;
+          data.val = getNextValue(data.index++);
+        }
+        bits |= (resb>0 ? 1 : 0) * power;
+        power <<= 1;
+      }
+
+      switch (c = bits) {
+        case 0:
+          bits = 0;
+          maxpower = Math.pow(2,8);
+          power=1;
+          while (power!=maxpower) {
+            resb = data.val & data.position;
+            data.position >>= 1;
+            if (data.position == 0) {
+              data.position = resetValue;
+              data.val = getNextValue(data.index++);
+            }
+            bits |= (resb>0 ? 1 : 0) * power;
+            power <<= 1;
+          }
+
+          dictionary[dictSize++] = f(bits);
+          c = dictSize-1;
+          enlargeIn--;
+          break;
+        case 1:
+          bits = 0;
+          maxpower = Math.pow(2,16);
+          power=1;
+          while (power!=maxpower) {
+            resb = data.val & data.position;
+            data.position >>= 1;
+            if (data.position == 0) {
+              data.position = resetValue;
+              data.val = getNextValue(data.index++);
+            }
+            bits |= (resb>0 ? 1 : 0) * power;
+            power <<= 1;
+          }
+          dictionary[dictSize++] = f(bits);
+          c = dictSize-1;
+          enlargeIn--;
+          break;
+        case 2:
+          return result.join('');
+      }
+
+      if (enlargeIn == 0) {
+        enlargeIn = Math.pow(2, numBits);
+        numBits++;
+      }
+
+      if (dictionary[c]) {
+        entry = dictionary[c];
+      } else {
+        if (c === dictSize) {
+          entry = w + w.charAt(0);
+        } else {
+          return null;
+        }
+      }
+      result.push(entry);
+
+      // Add w+entry[0] to the dictionary.
+      dictionary[dictSize++] = w + entry.charAt(0);
+      enlargeIn--;
+
+      w = entry;
+
+      if (enlargeIn == 0) {
+        enlargeIn = Math.pow(2, numBits);
+        numBits++;
+      }
+
+    }
+  }
+};
+  return LZString;
+})();
+
+if (true) {
+  !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () { return LZString; }).call(exports, __webpack_require__, exports, module),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+} else {}
+
 
 /***/ }),
 
@@ -23964,6 +35989,2217 @@ webpackContext.id = 5358;
 
 /***/ }),
 
+/***/ 5509:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.printIteratorEntries = printIteratorEntries;
+exports.printIteratorValues = printIteratorValues;
+exports.printListItems = printListItems;
+exports.printObjectProperties = printObjectProperties;
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+const getKeysOfEnumerableProperties = (object, compareKeys) => {
+  const keys = Object.keys(object).sort(compareKeys);
+
+  if (Object.getOwnPropertySymbols) {
+    Object.getOwnPropertySymbols(object).forEach(symbol => {
+      if (Object.getOwnPropertyDescriptor(object, symbol).enumerable) {
+        keys.push(symbol);
+      }
+    });
+  }
+
+  return keys;
+};
+/**
+ * Return entries (for example, of a map)
+ * with spacing, indentation, and comma
+ * without surrounding punctuation (for example, braces)
+ */
+
+function printIteratorEntries(
+  iterator,
+  config,
+  indentation,
+  depth,
+  refs,
+  printer, // Too bad, so sad that separator for ECMAScript Map has been ' => '
+  // What a distracting diff if you change a data structure to/from
+  // ECMAScript Object or Immutable.Map/OrderedMap which use the default.
+  separator = ': '
+) {
+  let result = '';
+  let current = iterator.next();
+
+  if (!current.done) {
+    result += config.spacingOuter;
+    const indentationNext = indentation + config.indent;
+
+    while (!current.done) {
+      const name = printer(
+        current.value[0],
+        config,
+        indentationNext,
+        depth,
+        refs
+      );
+      const value = printer(
+        current.value[1],
+        config,
+        indentationNext,
+        depth,
+        refs
+      );
+      result += indentationNext + name + separator + value;
+      current = iterator.next();
+
+      if (!current.done) {
+        result += ',' + config.spacingInner;
+      } else if (!config.min) {
+        result += ',';
+      }
+    }
+
+    result += config.spacingOuter + indentation;
+  }
+
+  return result;
+}
+/**
+ * Return values (for example, of a set)
+ * with spacing, indentation, and comma
+ * without surrounding punctuation (braces or brackets)
+ */
+
+function printIteratorValues(
+  iterator,
+  config,
+  indentation,
+  depth,
+  refs,
+  printer
+) {
+  let result = '';
+  let current = iterator.next();
+
+  if (!current.done) {
+    result += config.spacingOuter;
+    const indentationNext = indentation + config.indent;
+
+    while (!current.done) {
+      result +=
+        indentationNext +
+        printer(current.value, config, indentationNext, depth, refs);
+      current = iterator.next();
+
+      if (!current.done) {
+        result += ',' + config.spacingInner;
+      } else if (!config.min) {
+        result += ',';
+      }
+    }
+
+    result += config.spacingOuter + indentation;
+  }
+
+  return result;
+}
+/**
+ * Return items (for example, of an array)
+ * with spacing, indentation, and comma
+ * without surrounding punctuation (for example, brackets)
+ **/
+
+function printListItems(list, config, indentation, depth, refs, printer) {
+  let result = '';
+
+  if (list.length) {
+    result += config.spacingOuter;
+    const indentationNext = indentation + config.indent;
+
+    for (let i = 0; i < list.length; i++) {
+      result += indentationNext;
+
+      if (i in list) {
+        result += printer(list[i], config, indentationNext, depth, refs);
+      }
+
+      if (i < list.length - 1) {
+        result += ',' + config.spacingInner;
+      } else if (!config.min) {
+        result += ',';
+      }
+    }
+
+    result += config.spacingOuter + indentation;
+  }
+
+  return result;
+}
+/**
+ * Return properties of an object
+ * with spacing, indentation, and comma
+ * without surrounding punctuation (for example, braces)
+ */
+
+function printObjectProperties(val, config, indentation, depth, refs, printer) {
+  let result = '';
+  const keys = getKeysOfEnumerableProperties(val, config.compareKeys);
+
+  if (keys.length) {
+    result += config.spacingOuter;
+    const indentationNext = indentation + config.indent;
+
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      const name = printer(key, config, indentationNext, depth, refs);
+      const value = printer(val[key], config, indentationNext, depth, refs);
+      result += indentationNext + name + ': ' + value;
+
+      if (i < keys.length - 1) {
+        result += ',' + config.spacingInner;
+      } else if (!config.min) {
+        result += ',';
+      }
+    }
+
+    result += config.spacingOuter + indentation;
+  }
+
+  return result;
+}
+
+
+/***/ }),
+
+/***/ 3620:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = exports.DEFAULT_OPTIONS = void 0;
+exports.format = format;
+exports.plugins = void 0;
+
+var _ansiStyles = _interopRequireDefault(__webpack_require__(2117));
+
+var _collections = __webpack_require__(5509);
+
+var _AsymmetricMatcher = _interopRequireDefault(
+  __webpack_require__(7123)
+);
+
+var _ConvertAnsi = _interopRequireDefault(__webpack_require__(1411));
+
+var _DOMCollection = _interopRequireDefault(__webpack_require__(847));
+
+var _DOMElement = _interopRequireDefault(__webpack_require__(3171));
+
+var _Immutable = _interopRequireDefault(__webpack_require__(9651));
+
+var _ReactElement = _interopRequireDefault(__webpack_require__(3130));
+
+var _ReactTestComponent = _interopRequireDefault(
+  __webpack_require__(3769)
+);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/* eslint-disable local/ban-types-eventually */
+const toString = Object.prototype.toString;
+const toISOString = Date.prototype.toISOString;
+const errorToString = Error.prototype.toString;
+const regExpToString = RegExp.prototype.toString;
+/**
+ * Explicitly comparing typeof constructor to function avoids undefined as name
+ * when mock identity-obj-proxy returns the key as the value for any key.
+ */
+
+const getConstructorName = val =>
+  (typeof val.constructor === 'function' && val.constructor.name) || 'Object';
+/* global window */
+
+/** Is val is equal to global window object? Works even if it does not exist :) */
+
+const isWindow = val => typeof window !== 'undefined' && val === window;
+
+const SYMBOL_REGEXP = /^Symbol\((.*)\)(.*)$/;
+const NEWLINE_REGEXP = /\n/gi;
+
+class PrettyFormatPluginError extends Error {
+  constructor(message, stack) {
+    super(message);
+    this.stack = stack;
+    this.name = this.constructor.name;
+  }
+}
+
+function isToStringedArrayType(toStringed) {
+  return (
+    toStringed === '[object Array]' ||
+    toStringed === '[object ArrayBuffer]' ||
+    toStringed === '[object DataView]' ||
+    toStringed === '[object Float32Array]' ||
+    toStringed === '[object Float64Array]' ||
+    toStringed === '[object Int8Array]' ||
+    toStringed === '[object Int16Array]' ||
+    toStringed === '[object Int32Array]' ||
+    toStringed === '[object Uint8Array]' ||
+    toStringed === '[object Uint8ClampedArray]' ||
+    toStringed === '[object Uint16Array]' ||
+    toStringed === '[object Uint32Array]'
+  );
+}
+
+function printNumber(val) {
+  return Object.is(val, -0) ? '-0' : String(val);
+}
+
+function printBigInt(val) {
+  return String(`${val}n`);
+}
+
+function printFunction(val, printFunctionName) {
+  if (!printFunctionName) {
+    return '[Function]';
+  }
+
+  return '[Function ' + (val.name || 'anonymous') + ']';
+}
+
+function printSymbol(val) {
+  return String(val).replace(SYMBOL_REGEXP, 'Symbol($1)');
+}
+
+function printError(val) {
+  return '[' + errorToString.call(val) + ']';
+}
+/**
+ * The first port of call for printing an object, handles most of the
+ * data-types in JS.
+ */
+
+function printBasicValue(val, printFunctionName, escapeRegex, escapeString) {
+  if (val === true || val === false) {
+    return '' + val;
+  }
+
+  if (val === undefined) {
+    return 'undefined';
+  }
+
+  if (val === null) {
+    return 'null';
+  }
+
+  const typeOf = typeof val;
+
+  if (typeOf === 'number') {
+    return printNumber(val);
+  }
+
+  if (typeOf === 'bigint') {
+    return printBigInt(val);
+  }
+
+  if (typeOf === 'string') {
+    if (escapeString) {
+      return '"' + val.replace(/"|\\/g, '\\$&') + '"';
+    }
+
+    return '"' + val + '"';
+  }
+
+  if (typeOf === 'function') {
+    return printFunction(val, printFunctionName);
+  }
+
+  if (typeOf === 'symbol') {
+    return printSymbol(val);
+  }
+
+  const toStringed = toString.call(val);
+
+  if (toStringed === '[object WeakMap]') {
+    return 'WeakMap {}';
+  }
+
+  if (toStringed === '[object WeakSet]') {
+    return 'WeakSet {}';
+  }
+
+  if (
+    toStringed === '[object Function]' ||
+    toStringed === '[object GeneratorFunction]'
+  ) {
+    return printFunction(val, printFunctionName);
+  }
+
+  if (toStringed === '[object Symbol]') {
+    return printSymbol(val);
+  }
+
+  if (toStringed === '[object Date]') {
+    return isNaN(+val) ? 'Date { NaN }' : toISOString.call(val);
+  }
+
+  if (toStringed === '[object Error]') {
+    return printError(val);
+  }
+
+  if (toStringed === '[object RegExp]') {
+    if (escapeRegex) {
+      // https://github.com/benjamingr/RegExp.escape/blob/main/polyfill.js
+      return regExpToString.call(val).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+    }
+
+    return regExpToString.call(val);
+  }
+
+  if (val instanceof Error) {
+    return printError(val);
+  }
+
+  return null;
+}
+/**
+ * Handles more complex objects ( such as objects with circular references.
+ * maps and sets etc )
+ */
+
+function printComplexValue(
+  val,
+  config,
+  indentation,
+  depth,
+  refs,
+  hasCalledToJSON
+) {
+  if (refs.indexOf(val) !== -1) {
+    return '[Circular]';
+  }
+
+  refs = refs.slice();
+  refs.push(val);
+  const hitMaxDepth = ++depth > config.maxDepth;
+  const min = config.min;
+
+  if (
+    config.callToJSON &&
+    !hitMaxDepth &&
+    val.toJSON &&
+    typeof val.toJSON === 'function' &&
+    !hasCalledToJSON
+  ) {
+    return printer(val.toJSON(), config, indentation, depth, refs, true);
+  }
+
+  const toStringed = toString.call(val);
+
+  if (toStringed === '[object Arguments]') {
+    return hitMaxDepth
+      ? '[Arguments]'
+      : (min ? '' : 'Arguments ') +
+          '[' +
+          (0, _collections.printListItems)(
+            val,
+            config,
+            indentation,
+            depth,
+            refs,
+            printer
+          ) +
+          ']';
+  }
+
+  if (isToStringedArrayType(toStringed)) {
+    return hitMaxDepth
+      ? '[' + val.constructor.name + ']'
+      : (min
+          ? ''
+          : !config.printBasicPrototype && val.constructor.name === 'Array'
+          ? ''
+          : val.constructor.name + ' ') +
+          '[' +
+          (0, _collections.printListItems)(
+            val,
+            config,
+            indentation,
+            depth,
+            refs,
+            printer
+          ) +
+          ']';
+  }
+
+  if (toStringed === '[object Map]') {
+    return hitMaxDepth
+      ? '[Map]'
+      : 'Map {' +
+          (0, _collections.printIteratorEntries)(
+            val.entries(),
+            config,
+            indentation,
+            depth,
+            refs,
+            printer,
+            ' => '
+          ) +
+          '}';
+  }
+
+  if (toStringed === '[object Set]') {
+    return hitMaxDepth
+      ? '[Set]'
+      : 'Set {' +
+          (0, _collections.printIteratorValues)(
+            val.values(),
+            config,
+            indentation,
+            depth,
+            refs,
+            printer
+          ) +
+          '}';
+  } // Avoid failure to serialize global window object in jsdom test environment.
+  // For example, not even relevant if window is prop of React element.
+
+  return hitMaxDepth || isWindow(val)
+    ? '[' + getConstructorName(val) + ']'
+    : (min
+        ? ''
+        : !config.printBasicPrototype && getConstructorName(val) === 'Object'
+        ? ''
+        : getConstructorName(val) + ' ') +
+        '{' +
+        (0, _collections.printObjectProperties)(
+          val,
+          config,
+          indentation,
+          depth,
+          refs,
+          printer
+        ) +
+        '}';
+}
+
+function isNewPlugin(plugin) {
+  return plugin.serialize != null;
+}
+
+function printPlugin(plugin, val, config, indentation, depth, refs) {
+  let printed;
+
+  try {
+    printed = isNewPlugin(plugin)
+      ? plugin.serialize(val, config, indentation, depth, refs, printer)
+      : plugin.print(
+          val,
+          valChild => printer(valChild, config, indentation, depth, refs),
+          str => {
+            const indentationNext = indentation + config.indent;
+            return (
+              indentationNext +
+              str.replace(NEWLINE_REGEXP, '\n' + indentationNext)
+            );
+          },
+          {
+            edgeSpacing: config.spacingOuter,
+            min: config.min,
+            spacing: config.spacingInner
+          },
+          config.colors
+        );
+  } catch (error) {
+    throw new PrettyFormatPluginError(error.message, error.stack);
+  }
+
+  if (typeof printed !== 'string') {
+    throw new Error(
+      `pretty-format: Plugin must return type "string" but instead returned "${typeof printed}".`
+    );
+  }
+
+  return printed;
+}
+
+function findPlugin(plugins, val) {
+  for (let p = 0; p < plugins.length; p++) {
+    try {
+      if (plugins[p].test(val)) {
+        return plugins[p];
+      }
+    } catch (error) {
+      throw new PrettyFormatPluginError(error.message, error.stack);
+    }
+  }
+
+  return null;
+}
+
+function printer(val, config, indentation, depth, refs, hasCalledToJSON) {
+  const plugin = findPlugin(config.plugins, val);
+
+  if (plugin !== null) {
+    return printPlugin(plugin, val, config, indentation, depth, refs);
+  }
+
+  const basicResult = printBasicValue(
+    val,
+    config.printFunctionName,
+    config.escapeRegex,
+    config.escapeString
+  );
+
+  if (basicResult !== null) {
+    return basicResult;
+  }
+
+  return printComplexValue(
+    val,
+    config,
+    indentation,
+    depth,
+    refs,
+    hasCalledToJSON
+  );
+}
+
+const DEFAULT_THEME = {
+  comment: 'gray',
+  content: 'reset',
+  prop: 'yellow',
+  tag: 'cyan',
+  value: 'green'
+};
+const DEFAULT_THEME_KEYS = Object.keys(DEFAULT_THEME);
+const DEFAULT_OPTIONS = {
+  callToJSON: true,
+  compareKeys: undefined,
+  escapeRegex: false,
+  escapeString: true,
+  highlight: false,
+  indent: 2,
+  maxDepth: Infinity,
+  min: false,
+  plugins: [],
+  printBasicPrototype: true,
+  printFunctionName: true,
+  theme: DEFAULT_THEME
+};
+exports.DEFAULT_OPTIONS = DEFAULT_OPTIONS;
+
+function validateOptions(options) {
+  Object.keys(options).forEach(key => {
+    if (!DEFAULT_OPTIONS.hasOwnProperty(key)) {
+      throw new Error(`pretty-format: Unknown option "${key}".`);
+    }
+  });
+
+  if (options.min && options.indent !== undefined && options.indent !== 0) {
+    throw new Error(
+      'pretty-format: Options "min" and "indent" cannot be used together.'
+    );
+  }
+
+  if (options.theme !== undefined) {
+    if (options.theme === null) {
+      throw new Error('pretty-format: Option "theme" must not be null.');
+    }
+
+    if (typeof options.theme !== 'object') {
+      throw new Error(
+        `pretty-format: Option "theme" must be of type "object" but instead received "${typeof options.theme}".`
+      );
+    }
+  }
+}
+
+const getColorsHighlight = options =>
+  DEFAULT_THEME_KEYS.reduce((colors, key) => {
+    const value =
+      options.theme && options.theme[key] !== undefined
+        ? options.theme[key]
+        : DEFAULT_THEME[key];
+    const color = value && _ansiStyles.default[value];
+
+    if (
+      color &&
+      typeof color.close === 'string' &&
+      typeof color.open === 'string'
+    ) {
+      colors[key] = color;
+    } else {
+      throw new Error(
+        `pretty-format: Option "theme" has a key "${key}" whose value "${value}" is undefined in ansi-styles.`
+      );
+    }
+
+    return colors;
+  }, Object.create(null));
+
+const getColorsEmpty = () =>
+  DEFAULT_THEME_KEYS.reduce((colors, key) => {
+    colors[key] = {
+      close: '',
+      open: ''
+    };
+    return colors;
+  }, Object.create(null));
+
+const getPrintFunctionName = options =>
+  options && options.printFunctionName !== undefined
+    ? options.printFunctionName
+    : DEFAULT_OPTIONS.printFunctionName;
+
+const getEscapeRegex = options =>
+  options && options.escapeRegex !== undefined
+    ? options.escapeRegex
+    : DEFAULT_OPTIONS.escapeRegex;
+
+const getEscapeString = options =>
+  options && options.escapeString !== undefined
+    ? options.escapeString
+    : DEFAULT_OPTIONS.escapeString;
+
+const getConfig = options => {
+  var _options$printBasicPr;
+
+  return {
+    callToJSON:
+      options && options.callToJSON !== undefined
+        ? options.callToJSON
+        : DEFAULT_OPTIONS.callToJSON,
+    colors:
+      options && options.highlight
+        ? getColorsHighlight(options)
+        : getColorsEmpty(),
+    compareKeys:
+      options && typeof options.compareKeys === 'function'
+        ? options.compareKeys
+        : DEFAULT_OPTIONS.compareKeys,
+    escapeRegex: getEscapeRegex(options),
+    escapeString: getEscapeString(options),
+    indent:
+      options && options.min
+        ? ''
+        : createIndent(
+            options && options.indent !== undefined
+              ? options.indent
+              : DEFAULT_OPTIONS.indent
+          ),
+    maxDepth:
+      options && options.maxDepth !== undefined
+        ? options.maxDepth
+        : DEFAULT_OPTIONS.maxDepth,
+    min:
+      options && options.min !== undefined ? options.min : DEFAULT_OPTIONS.min,
+    plugins:
+      options && options.plugins !== undefined
+        ? options.plugins
+        : DEFAULT_OPTIONS.plugins,
+    printBasicPrototype:
+      (_options$printBasicPr =
+        options === null || options === void 0
+          ? void 0
+          : options.printBasicPrototype) !== null &&
+      _options$printBasicPr !== void 0
+        ? _options$printBasicPr
+        : true,
+    printFunctionName: getPrintFunctionName(options),
+    spacingInner: options && options.min ? ' ' : '\n',
+    spacingOuter: options && options.min ? '' : '\n'
+  };
+};
+
+function createIndent(indent) {
+  return new Array(indent + 1).join(' ');
+}
+/**
+ * Returns a presentation string of your `val` object
+ * @param val any potential JavaScript object
+ * @param options Custom settings
+ */
+
+function format(val, options) {
+  if (options) {
+    validateOptions(options);
+
+    if (options.plugins) {
+      const plugin = findPlugin(options.plugins, val);
+
+      if (plugin !== null) {
+        return printPlugin(plugin, val, getConfig(options), '', 0, []);
+      }
+    }
+  }
+
+  const basicResult = printBasicValue(
+    val,
+    getPrintFunctionName(options),
+    getEscapeRegex(options),
+    getEscapeString(options)
+  );
+
+  if (basicResult !== null) {
+    return basicResult;
+  }
+
+  return printComplexValue(val, getConfig(options), '', 0, []);
+}
+
+const plugins = {
+  AsymmetricMatcher: _AsymmetricMatcher.default,
+  ConvertAnsi: _ConvertAnsi.default,
+  DOMCollection: _DOMCollection.default,
+  DOMElement: _DOMElement.default,
+  Immutable: _Immutable.default,
+  ReactElement: _ReactElement.default,
+  ReactTestComponent: _ReactTestComponent.default
+};
+exports.plugins = plugins;
+var _default = format;
+exports["default"] = _default;
+
+
+/***/ }),
+
+/***/ 7123:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.test = exports.serialize = exports["default"] = void 0;
+
+var _collections = __webpack_require__(5509);
+
+var global = (function () {
+  if (typeof globalThis !== 'undefined') {
+    return globalThis;
+  } else if (typeof global !== 'undefined') {
+    return global;
+  } else if (typeof self !== 'undefined') {
+    return self;
+  } else if (typeof window !== 'undefined') {
+    return window;
+  } else {
+    return Function('return this')();
+  }
+})();
+
+var Symbol = global['jest-symbol-do-not-touch'] || global.Symbol;
+const asymmetricMatcher =
+  typeof Symbol === 'function' && Symbol.for
+    ? Symbol.for('jest.asymmetricMatcher')
+    : 0x1357a5;
+const SPACE = ' ';
+
+const serialize = (val, config, indentation, depth, refs, printer) => {
+  const stringedValue = val.toString();
+
+  if (
+    stringedValue === 'ArrayContaining' ||
+    stringedValue === 'ArrayNotContaining'
+  ) {
+    if (++depth > config.maxDepth) {
+      return '[' + stringedValue + ']';
+    }
+
+    return (
+      stringedValue +
+      SPACE +
+      '[' +
+      (0, _collections.printListItems)(
+        val.sample,
+        config,
+        indentation,
+        depth,
+        refs,
+        printer
+      ) +
+      ']'
+    );
+  }
+
+  if (
+    stringedValue === 'ObjectContaining' ||
+    stringedValue === 'ObjectNotContaining'
+  ) {
+    if (++depth > config.maxDepth) {
+      return '[' + stringedValue + ']';
+    }
+
+    return (
+      stringedValue +
+      SPACE +
+      '{' +
+      (0, _collections.printObjectProperties)(
+        val.sample,
+        config,
+        indentation,
+        depth,
+        refs,
+        printer
+      ) +
+      '}'
+    );
+  }
+
+  if (
+    stringedValue === 'StringMatching' ||
+    stringedValue === 'StringNotMatching'
+  ) {
+    return (
+      stringedValue +
+      SPACE +
+      printer(val.sample, config, indentation, depth, refs)
+    );
+  }
+
+  if (
+    stringedValue === 'StringContaining' ||
+    stringedValue === 'StringNotContaining'
+  ) {
+    return (
+      stringedValue +
+      SPACE +
+      printer(val.sample, config, indentation, depth, refs)
+    );
+  }
+
+  return val.toAsymmetricMatcher();
+};
+
+exports.serialize = serialize;
+
+const test = val => val && val.$$typeof === asymmetricMatcher;
+
+exports.test = test;
+const plugin = {
+  serialize,
+  test
+};
+var _default = plugin;
+exports["default"] = _default;
+
+
+/***/ }),
+
+/***/ 1411:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.test = exports.serialize = exports["default"] = void 0;
+
+var _ansiRegex = _interopRequireDefault(__webpack_require__(9880));
+
+var _ansiStyles = _interopRequireDefault(__webpack_require__(2117));
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+const toHumanReadableAnsi = text =>
+  text.replace((0, _ansiRegex.default)(), match => {
+    switch (match) {
+      case _ansiStyles.default.red.close:
+      case _ansiStyles.default.green.close:
+      case _ansiStyles.default.cyan.close:
+      case _ansiStyles.default.gray.close:
+      case _ansiStyles.default.white.close:
+      case _ansiStyles.default.yellow.close:
+      case _ansiStyles.default.bgRed.close:
+      case _ansiStyles.default.bgGreen.close:
+      case _ansiStyles.default.bgYellow.close:
+      case _ansiStyles.default.inverse.close:
+      case _ansiStyles.default.dim.close:
+      case _ansiStyles.default.bold.close:
+      case _ansiStyles.default.reset.open:
+      case _ansiStyles.default.reset.close:
+        return '</>';
+
+      case _ansiStyles.default.red.open:
+        return '<red>';
+
+      case _ansiStyles.default.green.open:
+        return '<green>';
+
+      case _ansiStyles.default.cyan.open:
+        return '<cyan>';
+
+      case _ansiStyles.default.gray.open:
+        return '<gray>';
+
+      case _ansiStyles.default.white.open:
+        return '<white>';
+
+      case _ansiStyles.default.yellow.open:
+        return '<yellow>';
+
+      case _ansiStyles.default.bgRed.open:
+        return '<bgRed>';
+
+      case _ansiStyles.default.bgGreen.open:
+        return '<bgGreen>';
+
+      case _ansiStyles.default.bgYellow.open:
+        return '<bgYellow>';
+
+      case _ansiStyles.default.inverse.open:
+        return '<inverse>';
+
+      case _ansiStyles.default.dim.open:
+        return '<dim>';
+
+      case _ansiStyles.default.bold.open:
+        return '<bold>';
+
+      default:
+        return '';
+    }
+  });
+
+const test = val =>
+  typeof val === 'string' && !!val.match((0, _ansiRegex.default)());
+
+exports.test = test;
+
+const serialize = (val, config, indentation, depth, refs, printer) =>
+  printer(toHumanReadableAnsi(val), config, indentation, depth, refs);
+
+exports.serialize = serialize;
+const plugin = {
+  serialize,
+  test
+};
+var _default = plugin;
+exports["default"] = _default;
+
+
+/***/ }),
+
+/***/ 847:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.test = exports.serialize = exports["default"] = void 0;
+
+var _collections = __webpack_require__(5509);
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/* eslint-disable local/ban-types-eventually */
+const SPACE = ' ';
+const OBJECT_NAMES = ['DOMStringMap', 'NamedNodeMap'];
+const ARRAY_REGEXP = /^(HTML\w*Collection|NodeList)$/;
+
+const testName = name =>
+  OBJECT_NAMES.indexOf(name) !== -1 || ARRAY_REGEXP.test(name);
+
+const test = val =>
+  val &&
+  val.constructor &&
+  !!val.constructor.name &&
+  testName(val.constructor.name);
+
+exports.test = test;
+
+const isNamedNodeMap = collection =>
+  collection.constructor.name === 'NamedNodeMap';
+
+const serialize = (collection, config, indentation, depth, refs, printer) => {
+  const name = collection.constructor.name;
+
+  if (++depth > config.maxDepth) {
+    return '[' + name + ']';
+  }
+
+  return (
+    (config.min ? '' : name + SPACE) +
+    (OBJECT_NAMES.indexOf(name) !== -1
+      ? '{' +
+        (0, _collections.printObjectProperties)(
+          isNamedNodeMap(collection)
+            ? Array.from(collection).reduce((props, attribute) => {
+                props[attribute.name] = attribute.value;
+                return props;
+              }, {})
+            : {...collection},
+          config,
+          indentation,
+          depth,
+          refs,
+          printer
+        ) +
+        '}'
+      : '[' +
+        (0, _collections.printListItems)(
+          Array.from(collection),
+          config,
+          indentation,
+          depth,
+          refs,
+          printer
+        ) +
+        ']')
+  );
+};
+
+exports.serialize = serialize;
+const plugin = {
+  serialize,
+  test
+};
+var _default = plugin;
+exports["default"] = _default;
+
+
+/***/ }),
+
+/***/ 3171:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.test = exports.serialize = exports["default"] = void 0;
+
+var _markup = __webpack_require__(163);
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+const ELEMENT_NODE = 1;
+const TEXT_NODE = 3;
+const COMMENT_NODE = 8;
+const FRAGMENT_NODE = 11;
+const ELEMENT_REGEXP = /^((HTML|SVG)\w*)?Element$/;
+
+const testHasAttribute = val => {
+  try {
+    return typeof val.hasAttribute === 'function' && val.hasAttribute('is');
+  } catch {
+    return false;
+  }
+};
+
+const testNode = val => {
+  const constructorName = val.constructor.name;
+  const {nodeType, tagName} = val;
+  const isCustomElement =
+    (typeof tagName === 'string' && tagName.includes('-')) ||
+    testHasAttribute(val);
+  return (
+    (nodeType === ELEMENT_NODE &&
+      (ELEMENT_REGEXP.test(constructorName) || isCustomElement)) ||
+    (nodeType === TEXT_NODE && constructorName === 'Text') ||
+    (nodeType === COMMENT_NODE && constructorName === 'Comment') ||
+    (nodeType === FRAGMENT_NODE && constructorName === 'DocumentFragment')
+  );
+};
+
+const test = val => {
+  var _val$constructor;
+
+  return (
+    (val === null || val === void 0
+      ? void 0
+      : (_val$constructor = val.constructor) === null ||
+        _val$constructor === void 0
+      ? void 0
+      : _val$constructor.name) && testNode(val)
+  );
+};
+
+exports.test = test;
+
+function nodeIsText(node) {
+  return node.nodeType === TEXT_NODE;
+}
+
+function nodeIsComment(node) {
+  return node.nodeType === COMMENT_NODE;
+}
+
+function nodeIsFragment(node) {
+  return node.nodeType === FRAGMENT_NODE;
+}
+
+const serialize = (node, config, indentation, depth, refs, printer) => {
+  if (nodeIsText(node)) {
+    return (0, _markup.printText)(node.data, config);
+  }
+
+  if (nodeIsComment(node)) {
+    return (0, _markup.printComment)(node.data, config);
+  }
+
+  const type = nodeIsFragment(node)
+    ? 'DocumentFragment'
+    : node.tagName.toLowerCase();
+
+  if (++depth > config.maxDepth) {
+    return (0, _markup.printElementAsLeaf)(type, config);
+  }
+
+  return (0, _markup.printElement)(
+    type,
+    (0, _markup.printProps)(
+      nodeIsFragment(node)
+        ? []
+        : Array.from(node.attributes)
+            .map(attr => attr.name)
+            .sort(),
+      nodeIsFragment(node)
+        ? {}
+        : Array.from(node.attributes).reduce((props, attribute) => {
+            props[attribute.name] = attribute.value;
+            return props;
+          }, {}),
+      config,
+      indentation + config.indent,
+      depth,
+      refs,
+      printer
+    ),
+    (0, _markup.printChildren)(
+      Array.prototype.slice.call(node.childNodes || node.children),
+      config,
+      indentation + config.indent,
+      depth,
+      refs,
+      printer
+    ),
+    config,
+    indentation
+  );
+};
+
+exports.serialize = serialize;
+const plugin = {
+  serialize,
+  test
+};
+var _default = plugin;
+exports["default"] = _default;
+
+
+/***/ }),
+
+/***/ 9651:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.test = exports.serialize = exports["default"] = void 0;
+
+var _collections = __webpack_require__(5509);
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+// SENTINEL constants are from https://github.com/facebook/immutable-js
+const IS_ITERABLE_SENTINEL = '@@__IMMUTABLE_ITERABLE__@@';
+const IS_LIST_SENTINEL = '@@__IMMUTABLE_LIST__@@';
+const IS_KEYED_SENTINEL = '@@__IMMUTABLE_KEYED__@@';
+const IS_MAP_SENTINEL = '@@__IMMUTABLE_MAP__@@';
+const IS_ORDERED_SENTINEL = '@@__IMMUTABLE_ORDERED__@@';
+const IS_RECORD_SENTINEL = '@@__IMMUTABLE_RECORD__@@'; // immutable v4
+
+const IS_SEQ_SENTINEL = '@@__IMMUTABLE_SEQ__@@';
+const IS_SET_SENTINEL = '@@__IMMUTABLE_SET__@@';
+const IS_STACK_SENTINEL = '@@__IMMUTABLE_STACK__@@';
+
+const getImmutableName = name => 'Immutable.' + name;
+
+const printAsLeaf = name => '[' + name + ']';
+
+const SPACE = ' ';
+const LAZY = '…'; // Seq is lazy if it calls a method like filter
+
+const printImmutableEntries = (
+  val,
+  config,
+  indentation,
+  depth,
+  refs,
+  printer,
+  type
+) =>
+  ++depth > config.maxDepth
+    ? printAsLeaf(getImmutableName(type))
+    : getImmutableName(type) +
+      SPACE +
+      '{' +
+      (0, _collections.printIteratorEntries)(
+        val.entries(),
+        config,
+        indentation,
+        depth,
+        refs,
+        printer
+      ) +
+      '}'; // Record has an entries method because it is a collection in immutable v3.
+// Return an iterator for Immutable Record from version v3 or v4.
+
+function getRecordEntries(val) {
+  let i = 0;
+  return {
+    next() {
+      if (i < val._keys.length) {
+        const key = val._keys[i++];
+        return {
+          done: false,
+          value: [key, val.get(key)]
+        };
+      }
+
+      return {
+        done: true,
+        value: undefined
+      };
+    }
+  };
+}
+
+const printImmutableRecord = (
+  val,
+  config,
+  indentation,
+  depth,
+  refs,
+  printer
+) => {
+  // _name property is defined only for an Immutable Record instance
+  // which was constructed with a second optional descriptive name arg
+  const name = getImmutableName(val._name || 'Record');
+  return ++depth > config.maxDepth
+    ? printAsLeaf(name)
+    : name +
+        SPACE +
+        '{' +
+        (0, _collections.printIteratorEntries)(
+          getRecordEntries(val),
+          config,
+          indentation,
+          depth,
+          refs,
+          printer
+        ) +
+        '}';
+};
+
+const printImmutableSeq = (val, config, indentation, depth, refs, printer) => {
+  const name = getImmutableName('Seq');
+
+  if (++depth > config.maxDepth) {
+    return printAsLeaf(name);
+  }
+
+  if (val[IS_KEYED_SENTINEL]) {
+    return (
+      name +
+      SPACE +
+      '{' + // from Immutable collection of entries or from ECMAScript object
+      (val._iter || val._object
+        ? (0, _collections.printIteratorEntries)(
+            val.entries(),
+            config,
+            indentation,
+            depth,
+            refs,
+            printer
+          )
+        : LAZY) +
+      '}'
+    );
+  }
+
+  return (
+    name +
+    SPACE +
+    '[' +
+    (val._iter || // from Immutable collection of values
+    val._array || // from ECMAScript array
+    val._collection || // from ECMAScript collection in immutable v4
+    val._iterable // from ECMAScript collection in immutable v3
+      ? (0, _collections.printIteratorValues)(
+          val.values(),
+          config,
+          indentation,
+          depth,
+          refs,
+          printer
+        )
+      : LAZY) +
+    ']'
+  );
+};
+
+const printImmutableValues = (
+  val,
+  config,
+  indentation,
+  depth,
+  refs,
+  printer,
+  type
+) =>
+  ++depth > config.maxDepth
+    ? printAsLeaf(getImmutableName(type))
+    : getImmutableName(type) +
+      SPACE +
+      '[' +
+      (0, _collections.printIteratorValues)(
+        val.values(),
+        config,
+        indentation,
+        depth,
+        refs,
+        printer
+      ) +
+      ']';
+
+const serialize = (val, config, indentation, depth, refs, printer) => {
+  if (val[IS_MAP_SENTINEL]) {
+    return printImmutableEntries(
+      val,
+      config,
+      indentation,
+      depth,
+      refs,
+      printer,
+      val[IS_ORDERED_SENTINEL] ? 'OrderedMap' : 'Map'
+    );
+  }
+
+  if (val[IS_LIST_SENTINEL]) {
+    return printImmutableValues(
+      val,
+      config,
+      indentation,
+      depth,
+      refs,
+      printer,
+      'List'
+    );
+  }
+
+  if (val[IS_SET_SENTINEL]) {
+    return printImmutableValues(
+      val,
+      config,
+      indentation,
+      depth,
+      refs,
+      printer,
+      val[IS_ORDERED_SENTINEL] ? 'OrderedSet' : 'Set'
+    );
+  }
+
+  if (val[IS_STACK_SENTINEL]) {
+    return printImmutableValues(
+      val,
+      config,
+      indentation,
+      depth,
+      refs,
+      printer,
+      'Stack'
+    );
+  }
+
+  if (val[IS_SEQ_SENTINEL]) {
+    return printImmutableSeq(val, config, indentation, depth, refs, printer);
+  } // For compatibility with immutable v3 and v4, let record be the default.
+
+  return printImmutableRecord(val, config, indentation, depth, refs, printer);
+}; // Explicitly comparing sentinel properties to true avoids false positive
+// when mock identity-obj-proxy returns the key as the value for any key.
+
+exports.serialize = serialize;
+
+const test = val =>
+  val &&
+  (val[IS_ITERABLE_SENTINEL] === true || val[IS_RECORD_SENTINEL] === true);
+
+exports.test = test;
+const plugin = {
+  serialize,
+  test
+};
+var _default = plugin;
+exports["default"] = _default;
+
+
+/***/ }),
+
+/***/ 3130:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.test = exports.serialize = exports["default"] = void 0;
+
+var ReactIs = _interopRequireWildcard(__webpack_require__(3381));
+
+var _markup = __webpack_require__(163);
+
+function _getRequireWildcardCache(nodeInterop) {
+  if (typeof WeakMap !== 'function') return null;
+  var cacheBabelInterop = new WeakMap();
+  var cacheNodeInterop = new WeakMap();
+  return (_getRequireWildcardCache = function (nodeInterop) {
+    return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+  })(nodeInterop);
+}
+
+function _interopRequireWildcard(obj, nodeInterop) {
+  if (!nodeInterop && obj && obj.__esModule) {
+    return obj;
+  }
+  if (obj === null || (typeof obj !== 'object' && typeof obj !== 'function')) {
+    return {default: obj};
+  }
+  var cache = _getRequireWildcardCache(nodeInterop);
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+  var newObj = {};
+  var hasPropertyDescriptor =
+    Object.defineProperty && Object.getOwnPropertyDescriptor;
+  for (var key in obj) {
+    if (key !== 'default' && Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor
+        ? Object.getOwnPropertyDescriptor(obj, key)
+        : null;
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+  newObj.default = obj;
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+  return newObj;
+}
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+// Given element.props.children, or subtree during recursive traversal,
+// return flattened array of children.
+const getChildren = (arg, children = []) => {
+  if (Array.isArray(arg)) {
+    arg.forEach(item => {
+      getChildren(item, children);
+    });
+  } else if (arg != null && arg !== false) {
+    children.push(arg);
+  }
+
+  return children;
+};
+
+const getType = element => {
+  const type = element.type;
+
+  if (typeof type === 'string') {
+    return type;
+  }
+
+  if (typeof type === 'function') {
+    return type.displayName || type.name || 'Unknown';
+  }
+
+  if (ReactIs.isFragment(element)) {
+    return 'React.Fragment';
+  }
+
+  if (ReactIs.isSuspense(element)) {
+    return 'React.Suspense';
+  }
+
+  if (typeof type === 'object' && type !== null) {
+    if (ReactIs.isContextProvider(element)) {
+      return 'Context.Provider';
+    }
+
+    if (ReactIs.isContextConsumer(element)) {
+      return 'Context.Consumer';
+    }
+
+    if (ReactIs.isForwardRef(element)) {
+      if (type.displayName) {
+        return type.displayName;
+      }
+
+      const functionName = type.render.displayName || type.render.name || '';
+      return functionName !== ''
+        ? 'ForwardRef(' + functionName + ')'
+        : 'ForwardRef';
+    }
+
+    if (ReactIs.isMemo(element)) {
+      const functionName =
+        type.displayName || type.type.displayName || type.type.name || '';
+      return functionName !== '' ? 'Memo(' + functionName + ')' : 'Memo';
+    }
+  }
+
+  return 'UNDEFINED';
+};
+
+const getPropKeys = element => {
+  const {props} = element;
+  return Object.keys(props)
+    .filter(key => key !== 'children' && props[key] !== undefined)
+    .sort();
+};
+
+const serialize = (element, config, indentation, depth, refs, printer) =>
+  ++depth > config.maxDepth
+    ? (0, _markup.printElementAsLeaf)(getType(element), config)
+    : (0, _markup.printElement)(
+        getType(element),
+        (0, _markup.printProps)(
+          getPropKeys(element),
+          element.props,
+          config,
+          indentation + config.indent,
+          depth,
+          refs,
+          printer
+        ),
+        (0, _markup.printChildren)(
+          getChildren(element.props.children),
+          config,
+          indentation + config.indent,
+          depth,
+          refs,
+          printer
+        ),
+        config,
+        indentation
+      );
+
+exports.serialize = serialize;
+
+const test = val => val != null && ReactIs.isElement(val);
+
+exports.test = test;
+const plugin = {
+  serialize,
+  test
+};
+var _default = plugin;
+exports["default"] = _default;
+
+
+/***/ }),
+
+/***/ 3769:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.test = exports.serialize = exports["default"] = void 0;
+
+var _markup = __webpack_require__(163);
+
+var global = (function () {
+  if (typeof globalThis !== 'undefined') {
+    return globalThis;
+  } else if (typeof global !== 'undefined') {
+    return global;
+  } else if (typeof self !== 'undefined') {
+    return self;
+  } else if (typeof window !== 'undefined') {
+    return window;
+  } else {
+    return Function('return this')();
+  }
+})();
+
+var Symbol = global['jest-symbol-do-not-touch'] || global.Symbol;
+const testSymbol =
+  typeof Symbol === 'function' && Symbol.for
+    ? Symbol.for('react.test.json')
+    : 0xea71357;
+
+const getPropKeys = object => {
+  const {props} = object;
+  return props
+    ? Object.keys(props)
+        .filter(key => props[key] !== undefined)
+        .sort()
+    : [];
+};
+
+const serialize = (object, config, indentation, depth, refs, printer) =>
+  ++depth > config.maxDepth
+    ? (0, _markup.printElementAsLeaf)(object.type, config)
+    : (0, _markup.printElement)(
+        object.type,
+        object.props
+          ? (0, _markup.printProps)(
+              getPropKeys(object),
+              object.props,
+              config,
+              indentation + config.indent,
+              depth,
+              refs,
+              printer
+            )
+          : '',
+        object.children
+          ? (0, _markup.printChildren)(
+              object.children,
+              config,
+              indentation + config.indent,
+              depth,
+              refs,
+              printer
+            )
+          : '',
+        config,
+        indentation
+      );
+
+exports.serialize = serialize;
+
+const test = val => val && val.$$typeof === testSymbol;
+
+exports.test = test;
+const plugin = {
+  serialize,
+  test
+};
+var _default = plugin;
+exports["default"] = _default;
+
+
+/***/ }),
+
+/***/ 937:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = escapeHTML;
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+function escapeHTML(str) {
+  return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+
+/***/ }),
+
+/***/ 163:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.printText =
+  exports.printProps =
+  exports.printElementAsLeaf =
+  exports.printElement =
+  exports.printComment =
+  exports.printChildren =
+    void 0;
+
+var _escapeHTML = _interopRequireDefault(__webpack_require__(937));
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+// Return empty string if keys is empty.
+const printProps = (keys, props, config, indentation, depth, refs, printer) => {
+  const indentationNext = indentation + config.indent;
+  const colors = config.colors;
+  return keys
+    .map(key => {
+      const value = props[key];
+      let printed = printer(value, config, indentationNext, depth, refs);
+
+      if (typeof value !== 'string') {
+        if (printed.indexOf('\n') !== -1) {
+          printed =
+            config.spacingOuter +
+            indentationNext +
+            printed +
+            config.spacingOuter +
+            indentation;
+        }
+
+        printed = '{' + printed + '}';
+      }
+
+      return (
+        config.spacingInner +
+        indentation +
+        colors.prop.open +
+        key +
+        colors.prop.close +
+        '=' +
+        colors.value.open +
+        printed +
+        colors.value.close
+      );
+    })
+    .join('');
+}; // Return empty string if children is empty.
+
+exports.printProps = printProps;
+
+const printChildren = (children, config, indentation, depth, refs, printer) =>
+  children
+    .map(
+      child =>
+        config.spacingOuter +
+        indentation +
+        (typeof child === 'string'
+          ? printText(child, config)
+          : printer(child, config, indentation, depth, refs))
+    )
+    .join('');
+
+exports.printChildren = printChildren;
+
+const printText = (text, config) => {
+  const contentColor = config.colors.content;
+  return (
+    contentColor.open + (0, _escapeHTML.default)(text) + contentColor.close
+  );
+};
+
+exports.printText = printText;
+
+const printComment = (comment, config) => {
+  const commentColor = config.colors.comment;
+  return (
+    commentColor.open +
+    '<!--' +
+    (0, _escapeHTML.default)(comment) +
+    '-->' +
+    commentColor.close
+  );
+}; // Separate the functions to format props, children, and element,
+// so a plugin could override a particular function, if needed.
+// Too bad, so sad: the traditional (but unnecessary) space
+// in a self-closing tagColor requires a second test of printedProps.
+
+exports.printComment = printComment;
+
+const printElement = (
+  type,
+  printedProps,
+  printedChildren,
+  config,
+  indentation
+) => {
+  const tagColor = config.colors.tag;
+  return (
+    tagColor.open +
+    '<' +
+    type +
+    (printedProps &&
+      tagColor.close +
+        printedProps +
+        config.spacingOuter +
+        indentation +
+        tagColor.open) +
+    (printedChildren
+      ? '>' +
+        tagColor.close +
+        printedChildren +
+        config.spacingOuter +
+        indentation +
+        tagColor.open +
+        '</' +
+        type
+      : (printedProps && !config.min ? '' : ' ') + '/') +
+    '>' +
+    tagColor.close
+  );
+};
+
+exports.printElement = printElement;
+
+const printElementAsLeaf = (type, config) => {
+  const tagColor = config.colors.tag;
+  return (
+    tagColor.open +
+    '<' +
+    type +
+    tagColor.close +
+    ' …' +
+    tagColor.open +
+    ' />' +
+    tagColor.close
+  );
+};
+
+exports.printElementAsLeaf = printElementAsLeaf;
+
+
+/***/ }),
+
+/***/ 2117:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+/* module decorator */ module = __webpack_require__.nmd(module);
+
+
+const ANSI_BACKGROUND_OFFSET = 10;
+
+const wrapAnsi256 = (offset = 0) => code => `\u001B[${38 + offset};5;${code}m`;
+
+const wrapAnsi16m = (offset = 0) => (red, green, blue) => `\u001B[${38 + offset};2;${red};${green};${blue}m`;
+
+function assembleStyles() {
+	const codes = new Map();
+	const styles = {
+		modifier: {
+			reset: [0, 0],
+			// 21 isn't widely supported and 22 does the same thing
+			bold: [1, 22],
+			dim: [2, 22],
+			italic: [3, 23],
+			underline: [4, 24],
+			overline: [53, 55],
+			inverse: [7, 27],
+			hidden: [8, 28],
+			strikethrough: [9, 29]
+		},
+		color: {
+			black: [30, 39],
+			red: [31, 39],
+			green: [32, 39],
+			yellow: [33, 39],
+			blue: [34, 39],
+			magenta: [35, 39],
+			cyan: [36, 39],
+			white: [37, 39],
+
+			// Bright color
+			blackBright: [90, 39],
+			redBright: [91, 39],
+			greenBright: [92, 39],
+			yellowBright: [93, 39],
+			blueBright: [94, 39],
+			magentaBright: [95, 39],
+			cyanBright: [96, 39],
+			whiteBright: [97, 39]
+		},
+		bgColor: {
+			bgBlack: [40, 49],
+			bgRed: [41, 49],
+			bgGreen: [42, 49],
+			bgYellow: [43, 49],
+			bgBlue: [44, 49],
+			bgMagenta: [45, 49],
+			bgCyan: [46, 49],
+			bgWhite: [47, 49],
+
+			// Bright color
+			bgBlackBright: [100, 49],
+			bgRedBright: [101, 49],
+			bgGreenBright: [102, 49],
+			bgYellowBright: [103, 49],
+			bgBlueBright: [104, 49],
+			bgMagentaBright: [105, 49],
+			bgCyanBright: [106, 49],
+			bgWhiteBright: [107, 49]
+		}
+	};
+
+	// Alias bright black as gray (and grey)
+	styles.color.gray = styles.color.blackBright;
+	styles.bgColor.bgGray = styles.bgColor.bgBlackBright;
+	styles.color.grey = styles.color.blackBright;
+	styles.bgColor.bgGrey = styles.bgColor.bgBlackBright;
+
+	for (const [groupName, group] of Object.entries(styles)) {
+		for (const [styleName, style] of Object.entries(group)) {
+			styles[styleName] = {
+				open: `\u001B[${style[0]}m`,
+				close: `\u001B[${style[1]}m`
+			};
+
+			group[styleName] = styles[styleName];
+
+			codes.set(style[0], style[1]);
+		}
+
+		Object.defineProperty(styles, groupName, {
+			value: group,
+			enumerable: false
+		});
+	}
+
+	Object.defineProperty(styles, 'codes', {
+		value: codes,
+		enumerable: false
+	});
+
+	styles.color.close = '\u001B[39m';
+	styles.bgColor.close = '\u001B[49m';
+
+	styles.color.ansi256 = wrapAnsi256();
+	styles.color.ansi16m = wrapAnsi16m();
+	styles.bgColor.ansi256 = wrapAnsi256(ANSI_BACKGROUND_OFFSET);
+	styles.bgColor.ansi16m = wrapAnsi16m(ANSI_BACKGROUND_OFFSET);
+
+	// From https://github.com/Qix-/color-convert/blob/3f0e0d4e92e235796ccb17f6e85c72094a651f49/conversions.js
+	Object.defineProperties(styles, {
+		rgbToAnsi256: {
+			value: (red, green, blue) => {
+				// We use the extended greyscale palette here, with the exception of
+				// black and white. normal palette only has 4 greyscale shades.
+				if (red === green && green === blue) {
+					if (red < 8) {
+						return 16;
+					}
+
+					if (red > 248) {
+						return 231;
+					}
+
+					return Math.round(((red - 8) / 247) * 24) + 232;
+				}
+
+				return 16 +
+					(36 * Math.round(red / 255 * 5)) +
+					(6 * Math.round(green / 255 * 5)) +
+					Math.round(blue / 255 * 5);
+			},
+			enumerable: false
+		},
+		hexToRgb: {
+			value: hex => {
+				const matches = /(?<colorString>[a-f\d]{6}|[a-f\d]{3})/i.exec(hex.toString(16));
+				if (!matches) {
+					return [0, 0, 0];
+				}
+
+				let {colorString} = matches.groups;
+
+				if (colorString.length === 3) {
+					colorString = colorString.split('').map(character => character + character).join('');
+				}
+
+				const integer = Number.parseInt(colorString, 16);
+
+				return [
+					(integer >> 16) & 0xFF,
+					(integer >> 8) & 0xFF,
+					integer & 0xFF
+				];
+			},
+			enumerable: false
+		},
+		hexToAnsi256: {
+			value: hex => styles.rgbToAnsi256(...styles.hexToRgb(hex)),
+			enumerable: false
+		}
+	});
+
+	return styles;
+}
+
+// Make the export immutable
+Object.defineProperty(module, 'exports', {
+	enumerable: true,
+	get: assembleStyles
+});
+
+
+/***/ }),
+
+/***/ 3289:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+/** @license React v17.0.2
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+var b=60103,c=60106,d=60107,e=60108,f=60114,g=60109,h=60110,k=60112,l=60113,m=60120,n=60115,p=60116,q=60121,r=60122,u=60117,v=60129,w=60131;
+if("function"===typeof Symbol&&Symbol.for){var x=Symbol.for;b=x("react.element");c=x("react.portal");d=x("react.fragment");e=x("react.strict_mode");f=x("react.profiler");g=x("react.provider");h=x("react.context");k=x("react.forward_ref");l=x("react.suspense");m=x("react.suspense_list");n=x("react.memo");p=x("react.lazy");q=x("react.block");r=x("react.server.block");u=x("react.fundamental");v=x("react.debug_trace_mode");w=x("react.legacy_hidden")}
+function y(a){if("object"===typeof a&&null!==a){var t=a.$$typeof;switch(t){case b:switch(a=a.type,a){case d:case f:case e:case l:case m:return a;default:switch(a=a&&a.$$typeof,a){case h:case k:case p:case n:case g:return a;default:return t}}case c:return t}}}var z=g,A=b,B=k,C=d,D=p,E=n,F=c,G=f,H=e,I=l;exports.ContextConsumer=h;exports.ContextProvider=z;exports.Element=A;exports.ForwardRef=B;exports.Fragment=C;exports.Lazy=D;exports.Memo=E;exports.Portal=F;exports.Profiler=G;exports.StrictMode=H;
+exports.Suspense=I;exports.isAsyncMode=function(){return!1};exports.isConcurrentMode=function(){return!1};exports.isContextConsumer=function(a){return y(a)===h};exports.isContextProvider=function(a){return y(a)===g};exports.isElement=function(a){return"object"===typeof a&&null!==a&&a.$$typeof===b};exports.isForwardRef=function(a){return y(a)===k};exports.isFragment=function(a){return y(a)===d};exports.isLazy=function(a){return y(a)===p};exports.isMemo=function(a){return y(a)===n};
+exports.isPortal=function(a){return y(a)===c};exports.isProfiler=function(a){return y(a)===f};exports.isStrictMode=function(a){return y(a)===e};exports.isSuspense=function(a){return y(a)===l};exports.isValidElementType=function(a){return"string"===typeof a||"function"===typeof a||a===d||a===f||a===v||a===e||a===l||a===m||a===w||"object"===typeof a&&null!==a&&(a.$$typeof===p||a.$$typeof===n||a.$$typeof===g||a.$$typeof===h||a.$$typeof===k||a.$$typeof===u||a.$$typeof===q||a[0]===r)?!0:!1};
+exports.typeOf=y;
+
+
+/***/ }),
+
+/***/ 3381:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (true) {
+  module.exports = __webpack_require__(3289);
+} else {}
+
+
+/***/ }),
+
+/***/ 2652:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+var __webpack_unused_export__;
+/**
+ * @license React
+ * react-dom-test-utils.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+var k=__webpack_require__(9155),l=__webpack_require__(961);function m(a){var b=a,c=a;if(a.alternate)for(;b.return;)b=b.return;else{a=b;do b=a,0!==(b.flags&4098)&&(c=b.return),a=b.return;while(a)}return 3===b.tag?c:null}function n(a){if(m(a)!==a)throw Error("Unable to find node on an unmounted component.");}
+function p(a){var b=a.alternate;if(!b){b=m(a);if(null===b)throw Error("Unable to find node on an unmounted component.");return b!==a?null:a}for(var c=a,d=b;;){var f=c.return;if(null===f)break;var g=f.alternate;if(null===g){d=f.return;if(null!==d){c=d;continue}break}if(f.child===g.child){for(g=f.child;g;){if(g===c)return n(f),a;if(g===d)return n(f),b;g=g.sibling}throw Error("Unable to find node on an unmounted component.");}if(c.return!==d.return)c=f,d=g;else{for(var e=!1,h=f.child;h;){if(h===c){e=
+!0;c=f;d=g;break}if(h===d){e=!0;d=f;c=g;break}h=h.sibling}if(!e){for(h=g.child;h;){if(h===c){e=!0;c=g;d=f;break}if(h===d){e=!0;d=g;c=f;break}h=h.sibling}if(!e)throw Error("Child was not found in either parent set. This indicates a bug in React related to the return pointer. Please file an issue.");}}if(c.alternate!==d)throw Error("Return fibers should always be each others' alternates. This error is likely caused by a bug in React. Please file an issue.");}if(3!==c.tag)throw Error("Unable to find node on an unmounted component.");
+return c.stateNode.current===c?a:b}var q=Object.assign;function r(a){var b=a.keyCode;"charCode"in a?(a=a.charCode,0===a&&13===b&&(a=13)):a=b;10===a&&(a=13);return 32<=a||13===a?a:0}function t(){return!0}function u(){return!1}
+function v(a){function b(c,b,f,g,e){this._reactName=c;this._targetInst=f;this.type=b;this.nativeEvent=g;this.target=e;this.currentTarget=null;for(var d in a)a.hasOwnProperty(d)&&(c=a[d],this[d]=c?c(g):g[d]);this.isDefaultPrevented=(null!=g.defaultPrevented?g.defaultPrevented:!1===g.returnValue)?t:u;this.isPropagationStopped=u;return this}q(b.prototype,{preventDefault:function(){this.defaultPrevented=!0;var a=this.nativeEvent;a&&(a.preventDefault?a.preventDefault():"unknown"!==typeof a.returnValue&&
+(a.returnValue=!1),this.isDefaultPrevented=t)},stopPropagation:function(){var a=this.nativeEvent;a&&(a.stopPropagation?a.stopPropagation():"unknown"!==typeof a.cancelBubble&&(a.cancelBubble=!0),this.isPropagationStopped=t)},persist:function(){},isPersistent:t});return b}var w={eventPhase:0,bubbles:0,cancelable:0,timeStamp:function(a){return a.timeStamp||Date.now()},defaultPrevented:0,isTrusted:0},x=v(w),y=q({},w,{view:0,detail:0});v(y);
+var z,A,B,D=q({},y,{screenX:0,screenY:0,clientX:0,clientY:0,pageX:0,pageY:0,ctrlKey:0,shiftKey:0,altKey:0,metaKey:0,getModifierState:C,button:0,buttons:0,relatedTarget:function(a){return void 0===a.relatedTarget?a.fromElement===a.srcElement?a.toElement:a.fromElement:a.relatedTarget},movementX:function(a){if("movementX"in a)return a.movementX;a!==B&&(B&&"mousemove"===a.type?(z=a.screenX-B.screenX,A=a.screenY-B.screenY):A=z=0,B=a);return z},movementY:function(a){return"movementY"in a?a.movementY:A}});
+v(D);var E=q({},D,{dataTransfer:0});v(E);var F=q({},y,{relatedTarget:0});v(F);var aa=q({},w,{animationName:0,elapsedTime:0,pseudoElement:0});v(aa);var ba=q({},w,{clipboardData:function(a){return"clipboardData"in a?a.clipboardData:window.clipboardData}});v(ba);var ca=q({},w,{data:0});v(ca);
+var da={Esc:"Escape",Spacebar:" ",Left:"ArrowLeft",Up:"ArrowUp",Right:"ArrowRight",Down:"ArrowDown",Del:"Delete",Win:"OS",Menu:"ContextMenu",Apps:"ContextMenu",Scroll:"ScrollLock",MozPrintableKey:"Unidentified"},ea={8:"Backspace",9:"Tab",12:"Clear",13:"Enter",16:"Shift",17:"Control",18:"Alt",19:"Pause",20:"CapsLock",27:"Escape",32:" ",33:"PageUp",34:"PageDown",35:"End",36:"Home",37:"ArrowLeft",38:"ArrowUp",39:"ArrowRight",40:"ArrowDown",45:"Insert",46:"Delete",112:"F1",113:"F2",114:"F3",115:"F4",
+116:"F5",117:"F6",118:"F7",119:"F8",120:"F9",121:"F10",122:"F11",123:"F12",144:"NumLock",145:"ScrollLock",224:"Meta"},fa={Alt:"altKey",Control:"ctrlKey",Meta:"metaKey",Shift:"shiftKey"};function ha(a){var b=this.nativeEvent;return b.getModifierState?b.getModifierState(a):(a=fa[a])?!!b[a]:!1}function C(){return ha}
+var ia=q({},y,{key:function(a){if(a.key){var b=da[a.key]||a.key;if("Unidentified"!==b)return b}return"keypress"===a.type?(a=r(a),13===a?"Enter":String.fromCharCode(a)):"keydown"===a.type||"keyup"===a.type?ea[a.keyCode]||"Unidentified":""},code:0,location:0,ctrlKey:0,shiftKey:0,altKey:0,metaKey:0,repeat:0,locale:0,getModifierState:C,charCode:function(a){return"keypress"===a.type?r(a):0},keyCode:function(a){return"keydown"===a.type||"keyup"===a.type?a.keyCode:0},which:function(a){return"keypress"===
+a.type?r(a):"keydown"===a.type||"keyup"===a.type?a.keyCode:0}});v(ia);var ja=q({},D,{pointerId:0,width:0,height:0,pressure:0,tangentialPressure:0,tiltX:0,tiltY:0,twist:0,pointerType:0,isPrimary:0});v(ja);var ka=q({},y,{touches:0,targetTouches:0,changedTouches:0,altKey:0,metaKey:0,ctrlKey:0,shiftKey:0,getModifierState:C});v(ka);var la=q({},w,{propertyName:0,elapsedTime:0,pseudoElement:0});v(la);
+var ma=q({},D,{deltaX:function(a){return"deltaX"in a?a.deltaX:"wheelDeltaX"in a?-a.wheelDeltaX:0},deltaY:function(a){return"deltaY"in a?a.deltaY:"wheelDeltaY"in a?-a.wheelDeltaY:"wheelDelta"in a?-a.wheelDelta:0},deltaZ:0,deltaMode:0});v(ma);function na(a,b,c,d,f,g,e,h,N){var G=Array.prototype.slice.call(arguments,3);try{b.apply(c,G)}catch(oa){this.onError(oa)}}var H=!1,I=null,J=!1,K=null,pa={onError:function(a){H=!0;I=a}};function qa(a,b,c,d,f,g,e,h,N){H=!1;I=null;na.apply(pa,arguments)}
+function ra(a,b,c,d,f,g,e,h,N){qa.apply(this,arguments);if(H){if(H){var G=I;H=!1;I=null}else throw Error("clearCaughtError was called but no error was captured. This error is likely caused by a bug in React. Please file an issue.");J||(J=!0,K=G)}}var L=Array.isArray,M=l.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.Events,sa=M[0],ta=M[1],ua=M[2],va=M[3],wa=M[4],xa=k.unstable_act;function ya(){}
+function za(a,b){if(!a)return[];a=p(a);if(!a)return[];for(var c=a,d=[];;){if(5===c.tag||6===c.tag||1===c.tag||0===c.tag){var f=c.stateNode;b(f)&&d.push(f)}if(c.child)c.child.return=c,c=c.child;else{if(c===a)return d;for(;!c.sibling;){if(!c.return||c.return===a)return d;c=c.return}c.sibling.return=c.return;c=c.sibling}}}
+function O(a,b){if(a&&!a._reactInternals){var c=String(a);a=L(a)?"an array":a&&1===a.nodeType&&a.tagName?"a DOM node":"[object Object]"===c?"object with keys {"+Object.keys(a).join(", ")+"}":c;throw Error(b+"(...): the first argument must be a React class instance. Instead received: "+(a+"."));}}function P(a){return!(!a||1!==a.nodeType||!a.tagName)}function Q(a){return P(a)?!1:null!=a&&"function"===typeof a.render&&"function"===typeof a.setState}
+function R(a,b){return Q(a)?a._reactInternals.type===b:!1}function S(a,b){O(a,"findAllInRenderedTree");return a?za(a._reactInternals,b):[]}
+function T(a,b){O(a,"scryRenderedDOMComponentsWithClass");return S(a,function(a){if(P(a)){var c=a.className;"string"!==typeof c&&(c=a.getAttribute("class")||"");var f=c.split(/\s+/);if(!L(b)){if(void 0===b)throw Error("TestUtils.scryRenderedDOMComponentsWithClass expects a className as a second argument.");b=b.split(/\s+/)}return b.every(function(a){return-1!==f.indexOf(a)})}return!1})}
+function U(a,b){O(a,"scryRenderedDOMComponentsWithTag");return S(a,function(a){return P(a)&&a.tagName.toUpperCase()===b.toUpperCase()})}function V(a,b){O(a,"scryRenderedComponentsWithType");return S(a,function(a){return R(a,b)})}function W(a,b,c){var d=a.type||"unknown-event";a.currentTarget=ta(c);ra(d,b,void 0,a);a.currentTarget=null}
+function X(a,b,c){for(var d=[];a;){d.push(a);do a=a.return;while(a&&5!==a.tag);a=a?a:null}for(a=d.length;0<a--;)b(d[a],"captured",c);for(a=0;a<d.length;a++)b(d[a],"bubbled",c)}
+function Y(a,b){var c=a.stateNode;if(!c)return null;var d=ua(c);if(!d)return null;c=d[b];a:switch(b){case "onClick":case "onClickCapture":case "onDoubleClick":case "onDoubleClickCapture":case "onMouseDown":case "onMouseDownCapture":case "onMouseMove":case "onMouseMoveCapture":case "onMouseUp":case "onMouseUpCapture":case "onMouseEnter":(d=!d.disabled)||(a=a.type,d=!("button"===a||"input"===a||"select"===a||"textarea"===a));a=!d;break a;default:a=!1}if(a)return null;if(c&&"function"!==typeof c)throw Error("Expected `"+
+b+"` listener to be a function, instead got a value of `"+typeof c+"` type.");return c}function Aa(a,b,c){a&&c&&c._reactName&&(b=Y(a,c._reactName))&&(null==c._dispatchListeners&&(c._dispatchListeners=[]),null==c._dispatchInstances&&(c._dispatchInstances=[]),c._dispatchListeners.push(b),c._dispatchInstances.push(a))}
+function Ba(a,b,c){var d=c._reactName;"captured"===b&&(d+="Capture");if(b=Y(a,d))null==c._dispatchListeners&&(c._dispatchListeners=[]),null==c._dispatchInstances&&(c._dispatchInstances=[]),c._dispatchListeners.push(b),c._dispatchInstances.push(a)}var Z={},Ca=new Set(["mouseEnter","mouseLeave","pointerEnter","pointerLeave"]);
+function Da(a){return function(b,c){if(k.isValidElement(b))throw Error("TestUtils.Simulate expected a DOM node as the first argument but received a React element. Pass the DOM node you wish to simulate the event on instead. Note that TestUtils.Simulate will not work if you are using shallow rendering.");if(Q(b))throw Error("TestUtils.Simulate expected a DOM node as the first argument but received a component instance. Pass the DOM node you wish to simulate the event on instead.");var d="on"+a[0].toUpperCase()+
+a.slice(1),f=new ya;f.target=b;f.type=a.toLowerCase();var g=sa(b),e=new x(d,f.type,g,f,b);e.persist();q(e,c);Ca.has(a)?e&&e._reactName&&Aa(e._targetInst,null,e):e&&e._reactName&&X(e._targetInst,Ba,e);l.unstable_batchedUpdates(function(){va(b);if(e){var a=e._dispatchListeners,c=e._dispatchInstances;if(L(a))for(var d=0;d<a.length&&!e.isPropagationStopped();d++)W(e,a[d],c[d]);else a&&W(e,a,c);e._dispatchListeners=null;e._dispatchInstances=null;e.isPersistent()||e.constructor.release(e)}if(J)throw a=
+K,J=!1,K=null,a;});wa()}}
+"blur cancel click close contextMenu copy cut auxClick doubleClick dragEnd dragStart drop focus input invalid keyDown keyPress keyUp mouseDown mouseUp paste pause play pointerCancel pointerDown pointerUp rateChange reset resize seeked submit touchCancel touchEnd touchStart volumeChange drag dragEnter dragExit dragLeave dragOver mouseMove mouseOut mouseOver pointerMove pointerOut pointerOver scroll toggle touchMove wheel abort animationEnd animationIteration animationStart canPlay canPlayThrough durationChange emptied encrypted ended error gotPointerCapture load loadedData loadedMetadata loadStart lostPointerCapture playing progress seeking stalled suspend timeUpdate transitionEnd waiting mouseEnter mouseLeave pointerEnter pointerLeave change select beforeInput compositionEnd compositionStart compositionUpdate".split(" ").forEach(function(a){Z[a]=Da(a)});
+__webpack_unused_export__=Z;exports.act=xa;__webpack_unused_export__=S;__webpack_unused_export__=function(a,b){O(a,"findRenderedComponentWithType");a=V(a,b);if(1!==a.length)throw Error("Did not find exactly one match (found: "+a.length+") for componentType:"+b);return a[0]};__webpack_unused_export__=function(a,b){O(a,"findRenderedDOMComponentWithClass");a=T(a,b);if(1!==a.length)throw Error("Did not find exactly one match (found: "+a.length+") for class:"+b);return a[0]};
+__webpack_unused_export__=function(a,b){O(a,"findRenderedDOMComponentWithTag");a=U(a,b);if(1!==a.length)throw Error("Did not find exactly one match (found: "+a.length+") for tag:"+b);return a[0]};__webpack_unused_export__=Q;__webpack_unused_export__=R;__webpack_unused_export__=P;__webpack_unused_export__=function(a){return!!(a&&k.isValidElement(a)&&a.tagName)};__webpack_unused_export__=function(a){return k.isValidElement(a)};
+__webpack_unused_export__=function(a,b){return k.isValidElement(a)&&a.type===b};__webpack_unused_export__=function(a,b){b=b||a.mockTagName||"div";a.prototype.render.mockImplementation(function(){return k.createElement(b,null,this.props.children)});return this};__webpack_unused_export__=function(a,b){return{touches:[{pageX:a,pageY:b}]}};__webpack_unused_export__=function(a){var b=document.createElement("div");return l.render(a,b)};__webpack_unused_export__=V;
+__webpack_unused_export__=T;__webpack_unused_export__=U;__webpack_unused_export__=X;
+
+
+/***/ }),
+
 /***/ 2551:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -24294,6 +38530,21 @@ exports.unstable_renderSubtreeIntoContainer=function(a,b,c,d){if(!ol(c))throw Er
 
 /***/ }),
 
+/***/ 5338:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var m = __webpack_require__(961);
+if (true) {
+  exports.H = m.createRoot;
+  exports.c = m.hydrateRoot;
+} else { var i; }
+
+
+/***/ }),
+
 /***/ 961:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
@@ -24324,6 +38575,19 @@ if (true) {
   // DevTools can report bad minification during injection.
   checkDCE();
   module.exports = __webpack_require__(2551);
+} else {}
+
+
+/***/ }),
+
+/***/ 7542:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (true) {
+  module.exports = __webpack_require__(2652);
 } else {}
 
 
@@ -24453,7 +38717,7 @@ var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(1170);
 var IconCalendar = function (_a) {
     var disabled = _a.disabled, isClickable = _a.isClickable, onClick = _a.onClick;
-    return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__calendar", isClickable && "itpc-icon__calendar_clickable", disabled && "itpc-icon__calendar_disabled"), onClick: onClick },
+    return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__calendar", isClickable && "itpc-icon__calendar_clickable", disabled && "itpc-icon__calendar_disabled"), onClick: onClick, role: "iconCalendar" },
         react_1.default.createElement("svg", { height: "20", viewBox: "0 0 12 12", width: "20", xmlns: "http://www.w3.org/2000/svg" },
             react_1.default.createElement("g", { clipPath: "url(#clip0_94_50)" },
                 react_1.default.createElement("path", { d: "M12 3.18227C12 2.31697 11.2794 1.61514 10.3892 1.61514H8.50358V0.482595C8.50358 0.216649 8.28205 0 8.00714 0C7.73223 0 7.5107 0.216649 7.5107 0.482595V1.61514H4.50003V0.482595C4.50003 0.216649 4.2785 0 4.00359 0C3.72868 0 3.50715 0.216649 3.50715 0.482595V1.61514H1.6108C0.720677 1.61514 -0.001297 2.31697 -0.001297 3.18227L3.75196e-05 10.4303C3.75196e-05 11.2956 0.720677 11.9961 1.6108 11.9961H10.3892C11.2794 11.9961 12 11.2956 12 10.4303V3.18227ZM2.01916 2.58162H3.50715V2.76065C3.50715 3.02789 3.73001 3.24324 4.00359 3.24324C4.2785 3.24324 4.50003 3.02659 4.50003 2.76065V2.58162H7.50936V2.76065C7.50936 3.02789 7.73223 3.24324 8.0058 3.24324C8.28071 3.24324 8.50224 3.02659 8.50224 2.76065V2.58162H9.97021C10.5374 2.58162 10.9978 3.03308 10.9978 3.59092V4.54703H0.988914V3.59092C0.991583 3.03308 1.45199 2.58162 2.01916 2.58162ZM9.97422 11.0231H2.0205C1.45333 11.0231 0.992918 10.5717 0.992918 10.0138V5.51222H11.0018V10.0138C11.0018 10.5717 10.5414 11.0231 9.97422 11.0231Z" })),
@@ -24664,6 +38928,28 @@ exports.InputError = InputError;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -24672,8 +38958,8 @@ exports.InputIcon = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
 __webpack_require__(4007);
 var InputIcon = function (_a) {
-    var children = _a.children, onClick = _a.onClick;
-    return (react_1.default.createElement("span", { className: "itpc-input-icon", onClick: onClick }, children));
+    var children = _a.children, onClick = _a.onClick, rest = __rest(_a, ["children", "onClick"]);
+    return (react_1.default.createElement("span", __assign({ className: "itpc-input-icon", onClick: onClick }, rest), children));
 };
 exports.InputIcon = InputIcon;
 
@@ -24685,6 +38971,28 @@ exports.InputIcon = InputIcon;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -24694,8 +39002,8 @@ var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(7806);
 var InputWrap = function (_a) {
-    var children = _a.children, disabled = _a.disabled, fixedHeight = _a.fixedHeight, focused = _a.focused, _b = _a.height, height = _b === void 0 ? 40 : _b, _c = _a.maxHeight, maxHeight = _c === void 0 ? 200 : _c, validationState = _a.validationState;
-    return (react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-input-wrap", focused && "itpc-input-wrap_focused", disabled && "itpc-input-wrap_disabled", !disabled && "itpc-input-wrap_hover", validationState === "invalid" && "itpc-input-wrap_error"), style: { height: height, maxHeight: fixedHeight ? fixedHeight : maxHeight } }, children));
+    var children = _a.children, disabled = _a.disabled, fixedHeight = _a.fixedHeight, focused = _a.focused, _b = _a.height, height = _b === void 0 ? 40 : _b, _c = _a.maxHeight, maxHeight = _c === void 0 ? 200 : _c, validationState = _a.validationState, rest = __rest(_a, ["children", "disabled", "fixedHeight", "focused", "height", "maxHeight", "validationState"]);
+    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-input-wrap", focused && "itpc-input-wrap_focused", disabled && "itpc-input-wrap_disabled", !disabled && "itpc-input-wrap_hover", validationState === "invalid" && "itpc-input-wrap_error"), style: { height: height, maxHeight: fixedHeight ? fixedHeight : maxHeight } }, rest), children));
 };
 exports.InputWrap = InputWrap;
 
@@ -24707,6 +39015,17 @@ exports.InputWrap = InputWrap;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -24730,6 +39049,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -24741,7 +39071,7 @@ var getTransformOriginByAxisX_1 = __webpack_require__(2157);
 var setDurationAnimation_1 = __webpack_require__(3965);
 __webpack_require__(6235);
 var ListBox = function (_a) {
-    var children = _a.children, durationAnimation = _a.durationAnimation, isOpen = _a.isOpen, refChildren = _a.refChildren, refParent = _a.refParent;
+    var children = _a.children, durationAnimation = _a.durationAnimation, isOpen = _a.isOpen, refChildren = _a.refChildren, refParent = _a.refParent, rest = __rest(_a, ["children", "durationAnimation", "isOpen", "refChildren", "refParent"]);
     var localRef = (0, react_1.useRef)(null);
     var ref = (refChildren === null || refChildren === void 0 ? void 0 : refChildren.current) || localRef.current;
     var _b = (0, react_1.useState)({}), styleAnimation = _b[0], setStyleAnimation = _b[1];
@@ -24754,12 +39084,13 @@ var ListBox = function (_a) {
     (0, react_1.useEffect)(function () {
         if (isOpen && (refParent === null || refParent === void 0 ? void 0 : refParent.current) && ref) {
             var animationTransform = (0, getTransformOriginByAxisX_1.getTransformOriginByAxisX)(refParent, refChildren || localRef);
+            console.log("transformOrigin:", animationTransform);
             setStyleAnimation({
                 transformOrigin: animationTransform,
             });
         }
     }, [isOpen, refParent === null || refParent === void 0 ? void 0 : refParent.current]);
-    return (react_1.default.createElement("ul", { className: (0, classnames_1.default)("itpc-list-box", isOpen && "itpc-list-box_opened", !isOpen && "itpc-list-box_closed"), ref: refChildren || localRef, style: styleAnimation }, children));
+    return (react_1.default.createElement("ul", __assign({ className: (0, classnames_1.default)("itpc-list-box", isOpen ? "itpc-list-box_opened" : "itpc-list-box_closed"), ref: refChildren || localRef, role: "listbox", style: styleAnimation }, rest), children));
 };
 exports.ListBox = ListBox;
 
@@ -24771,6 +39102,28 @@ exports.ListBox = ListBox;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -24780,8 +39133,10 @@ var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(4031);
 var Placeholder = function (_a) {
-    var children = _a.children, className = _a.className, disabled = _a.disabled, focused = _a.focused, htmlFor = _a.htmlFor, validationState = _a.validationState;
-    return (react_1.default.createElement("label", { className: (0, classnames_1.default)("itpc-placeholder", className, disabled && "itpc-placeholder_disabled", focused && "itpc-placeholder_focused", validationState === "invalid" && "itpc-placeholder_color_red"), htmlFor: htmlFor }, children));
+    var children = _a.children, className = _a.className, disabled = _a.disabled, focused = _a.focused, htmlFor = _a.htmlFor, required = _a.required, validationState = _a.validationState, rest = __rest(_a, ["children", "className", "disabled", "focused", "htmlFor", "required", "validationState"]);
+    return (react_1.default.createElement("label", __assign({ className: (0, classnames_1.default)("itpc-placeholder", className, disabled && "itpc-placeholder_disabled", focused && "itpc-placeholder_focused", validationState === "invalid" && "itpc-placeholder_color_red"), htmlFor: htmlFor }, rest),
+        children,
+        required && react_1.default.createElement("span", null, "*")));
 };
 exports.Placeholder = Placeholder;
 
@@ -24904,6 +39259,28 @@ exports.PositionedWrap = PositionedWrap;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -24913,14 +39290,14 @@ var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(9373);
 var SelectItem = function (_a) {
-    var activeIndex = _a.activeIndex, children = _a.children, disabled = _a.disabled, id = _a.id, isActive = _a.isActive, itemIndex = _a.itemIndex, onChange = _a.onChange;
+    var activeIndex = _a.activeIndex, children = _a.children, disabled = _a.disabled, id = _a.id, isActive = _a.isActive, itemIndex = _a.itemIndex, onChange = _a.onChange, rest = __rest(_a, ["activeIndex", "children", "disabled", "id", "isActive", "itemIndex", "onChange"]);
     var onClick = function () {
         if (!disabled) {
             onChange(id);
         }
     };
     var isActiveIndex = typeof activeIndex === "number" && activeIndex === itemIndex;
-    return (react_1.default.createElement("li", { className: (0, classnames_1.default)("itpc-select-item", !disabled && "itpc-select-item_clickable", disabled && "itpc-select-item_disabled", !isActiveIndex && isActive && "itpc-select-item_selected", isActiveIndex && "itpc-select-item_active"), onClick: onClick },
+    return (react_1.default.createElement("li", __assign({ className: (0, classnames_1.default)("itpc-select-item", !disabled && "itpc-select-item_clickable", disabled && "itpc-select-item_disabled", !isActiveIndex && isActive && "itpc-select-item_selected", isActiveIndex && "itpc-select-item_active"), onClick: onClick }, rest),
         react_1.default.createElement("span", { className: (0, classnames_1.default)("itpc-select-item__stick", isActive && "itpc-select-item__stick_showed") }),
         children));
 };
@@ -25015,7 +39392,7 @@ var Button = function (_a) {
             onPress(event);
         }
     };
-    return (react_1.default.createElement("button", __assign({ className: (0, classnames_1.default)("itpc-button", "itpc-button__color_".concat(variant), className), disabled: disabled, onClick: onClick, type: type }, rest), children));
+    return (react_1.default.createElement("button", __assign({}, rest, { className: (0, classnames_1.default)("itpc-button", "itpc-button__color_".concat(variant), className), disabled: disabled, onClick: onClick, type: type }), children));
 };
 exports.Button = Button;
 
@@ -25064,7 +39441,7 @@ var ButtonRound = function (_a) {
             onPress(event);
         }
     };
-    return (react_1.default.createElement("button", __assign({ className: (0, classnames_1.default)("itpc-button-round", className), disabled: disabled, onClick: onClick, type: type }, rest),
+    return (react_1.default.createElement("button", __assign({}, rest, { className: (0, classnames_1.default)("itpc-button-round", className), disabled: disabled, onClick: onClick, type: type }),
         children,
         tooltip && (react_1.default.createElement("span", __assign({ className: "itpc-tooltip" }, tooltipAttr), tooltip))));
 };
@@ -25111,28 +39488,28 @@ var _elements_1 = __webpack_require__(5010);
 __webpack_require__(2213);
 var AccordionArrow = function (_a) {
     var isOpened = _a.isOpened, rest = __rest(_a, ["isOpened"]);
-    return (react_1.default.createElement("span", __assign({ className: (0, classnames_1.default)("itpc-accordion-arrow") }, rest),
+    return (react_1.default.createElement("span", __assign({}, rest, { className: (0, classnames_1.default)("itpc-accordion-arrow") }),
         react_1.default.createElement(_elements_1.IconArrow, { orientation: isOpened ? "top" : "bottom" })));
 };
 exports.AccordionArrow = AccordionArrow;
 var AccordionBody = function (_a) {
     var children = _a.children, isOpened = _a.isOpened, rest = __rest(_a, ["children", "isOpened"]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-accordion-body", isOpened && "itpc-accordion-body_opened") }, rest), children));
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-accordion-body", isOpened && "itpc-accordion-body_opened") }), children));
 };
 exports.AccordionBody = AccordionBody;
 var AccordionHeader = function (_a) {
     var children = _a.children, _b = _a.id, id = _b === void 0 ? "itpc-accordion-header" : _b, _c = _a.isActive, isActive = _c === void 0 ? false : _c, isOpened = _a.isOpened, onPress = _a.onPress, rest = __rest(_a, ["children", "id", "isActive", "isOpened", "onPress"]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-accordion-header", isOpened && "itpc-accordion-header_opened", isActive && "itpc-accordion-header_active"), id: id, onClick: onPress }, rest), children));
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-accordion-header", isOpened && "itpc-accordion-header_opened", isActive && "itpc-accordion-header_active"), id: id, onClick: onPress }), children));
 };
 exports.AccordionHeader = AccordionHeader;
 var AccordionItem = function (_a) {
     var children = _a.children, rest = __rest(_a, ["children"]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-accordion-item") }, rest), children));
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-accordion-item") }), children));
 };
 exports.AccordionItem = AccordionItem;
 var Accordion = function (_a) {
     var children = _a.children, _b = _a.className, className = _b === void 0 ? "" : _b, rest = __rest(_a, ["children", "className"]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-accordion", className) }, rest), children));
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-accordion", className) }), children));
 };
 exports.Accordion = Accordion;
 
@@ -25176,7 +39553,7 @@ var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(5539);
 var Card = function (_a) {
     var bodyAttr = _a.bodyAttr, children = _a.children, className = _a.className, _b = _a.isBordered, isBordered = _b === void 0 ? false : _b, title = _a.title, titleAttr = _a.titleAttr, rest = __rest(_a, ["bodyAttr", "children", "className", "isBordered", "title", "titleAttr"]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-card", isBordered && "itpc-card_bordered", className) }, rest),
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-card", isBordered && "itpc-card_bordered", className) }),
         title && (react_1.default.createElement("p", __assign({ className: "itpc-card__title" }, titleAttr), title)),
         react_1.default.createElement("div", __assign({ className: "itpc-card__body" }, bodyAttr), children)));
 };
@@ -25260,7 +39637,7 @@ var Modal = function (_a) {
             setIsOpenModal(false);
         }
     }, [isOpen]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-modal-overlay", isOpenModal && "itpc-modal-overlay_opened", isOverlayClickable && "itpc-modal-overlay_clickable", !isOpenModal && "itpc-modal-overlay_closed", className), onClick: onCloseOverlay }, rest),
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-modal-overlay", isOpenModal && "itpc-modal-overlay_opened", isOverlayClickable && "itpc-modal-overlay_clickable", !isOpenModal && "itpc-modal-overlay_closed", className), onClick: onCloseOverlay }),
         react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-modal", isOpenModal && "itpc-modal_opened", !isOpenModal && "itpc-modal_closed"), id: "itpc-modal", onClick: function (event) { return event.stopPropagation(); } },
             react_1.default.createElement("div", { className: "itpc-modal__header" },
                 title,
@@ -25270,12 +39647,12 @@ var Modal = function (_a) {
 exports.Modal = Modal;
 var ModalContent = function (_a) {
     var children = _a.children, _b = _a.className, className = _b === void 0 ? "" : _b, rest = __rest(_a, ["children", "className"]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-modal__content", className) }, rest), children));
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-modal__content", className) }), children));
 };
 exports.ModalContent = ModalContent;
 var ModalFooter = function (_a) {
     var children = _a.children, _b = _a.className, className = _b === void 0 ? "" : _b, rest = __rest(_a, ["children", "className"]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-modal__footer", className) }, rest), children));
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-modal__footer", className) }), children));
 };
 exports.ModalFooter = ModalFooter;
 
@@ -25435,7 +39812,7 @@ var Pagination = function (_a) {
         }
         setPages(countPages);
     }, [dataLength, step]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-pagination", className) }, rest),
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-pagination", className) }),
         react_1.default.createElement("button", { className: "itpc-pagination__btn itpc-pagination__btn_left", disabled: !startPagination || !dataLength, onClick: start, type: "button" },
             react_1.default.createElement(_elements_1.IconDoubleArrow, { orientation: "left" })),
         react_1.default.createElement("button", { className: "itpc-pagination__btn itpc-pagination__btn_left", disabled: !startPagination || !dataLength, onClick: prev, type: "button" },
@@ -25526,7 +39903,7 @@ var Popup = function (_a) {
         setHeight((_b = (_a = ref.current) === null || _a === void 0 ? void 0 : _a.clientHeight) !== null && _b !== void 0 ? _b : 0);
         setWidth((_d = (_c = ref.current) === null || _c === void 0 ? void 0 : _c.clientWidth) !== null && _d !== void 0 ? _d : 0);
     }, []);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-popup", isOpen && "itpc-popup_opened", !isOpen && "itpc-popup_closed", variant === "error" && "itpc-popup_color_error", variant === "warning" && "itpc-popup_color_warning", variant === "success" && "itpc-popup_color_success", className), ref: ref, style: (0, utils_1.getPosition)(position, width, height) }, rest),
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-popup", isOpen && "itpc-popup_opened", !isOpen && "itpc-popup_closed", variant === "error" && "itpc-popup_color_error", variant === "warning" && "itpc-popup_color_warning", variant === "success" && "itpc-popup_color_success", className), ref: ref, role: "popup", style: (0, utils_1.getPosition)(position, width, height) }),
         react_1.default.createElement("div", { className: "itpc-popup__header" },
             react_1.default.createElement("p", { className: "itpc-popup__title" }, title),
             iconClose && iconClose),
@@ -25651,7 +40028,7 @@ var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(369);
 var Preloader = function (_a) {
     var _b = _a.className, className = _b === void 0 ? "" : _b, rest = __rest(_a, ["className"]);
-    return react_1.default.createElement("span", __assign({ className: (0, classnames_1.default)("itpc-preloader", className) }, rest));
+    return (react_1.default.createElement("span", __assign({}, rest, { className: (0, classnames_1.default)("itpc-preloader", className), role: "preloader" })));
 };
 exports.Preloader = Preloader;
 
@@ -25695,37 +40072,37 @@ var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(6739);
 var TableHeader = function (_a) {
     var children = _a.children, _b = _a.id, id = _b === void 0 ? "" : _b, rest = __rest(_a, ["children", "id"]);
-    return (react_1.default.createElement("thead", __assign({ className: (0, classnames_1.default)("itpc-table__head"), id: id }, rest), children));
+    return (react_1.default.createElement("thead", __assign({}, rest, { className: (0, classnames_1.default)("itpc-table__head"), id: id }), children));
 };
 exports.TableHeader = TableHeader;
 var TableBody = function (_a) {
     var children = _a.children, rest = __rest(_a, ["children"]);
-    return (react_1.default.createElement("tbody", __assign({ className: "itpc-table__body" }, rest), children));
+    return (react_1.default.createElement("tbody", __assign({}, rest, { className: "itpc-table__body" }), children));
 };
 exports.TableBody = TableBody;
 var TableFooter = function (_a) {
     var children = _a.children, rest = __rest(_a, ["children"]);
-    return (react_1.default.createElement("tfoot", __assign({ className: "itpc-table__footer" }, rest), children));
+    return (react_1.default.createElement("tfoot", __assign({}, rest, { className: "itpc-table__footer" }), children));
 };
 exports.TableFooter = TableFooter;
 var TableRow = function (_a) {
     var children = _a.children, _b = _a.id, id = _b === void 0 ? "" : _b, onPressRow = _a.onPressRow, rest = __rest(_a, ["children", "id", "onPressRow"]);
-    return (react_1.default.createElement("tr", __assign({ className: (0, classnames_1.default)("itpc-table__row", onPressRow && "itpc-table__row_clickable"), id: id, onClick: onPressRow && onPressRow }, rest), children));
+    return (react_1.default.createElement("tr", __assign({}, rest, { className: (0, classnames_1.default)("itpc-table__row", onPressRow && "itpc-table__row_clickable"), id: id, onClick: onPressRow && onPressRow }), children));
 };
 exports.TableRow = TableRow;
 var TableColumn = function (_a) {
     var children = _a.children, _b = _a.id, id = _b === void 0 ? "" : _b, onPressColumn = _a.onPressColumn, rest = __rest(_a, ["children", "id", "onPressColumn"]);
-    return (react_1.default.createElement("th", __assign({ className: (0, classnames_1.default)("itpc-table__column", onPressColumn && "itpc-table__column_clickable"), id: id, onClick: onPressColumn && onPressColumn }, rest), children));
+    return (react_1.default.createElement("th", __assign({}, rest, { className: (0, classnames_1.default)("itpc-table__column", onPressColumn && "itpc-table__column_clickable"), id: id, onClick: onPressColumn && onPressColumn }), children));
 };
 exports.TableColumn = TableColumn;
 var Cell = function (_a) {
     var children = _a.children, _b = _a.id, id = _b === void 0 ? "" : _b, onPressCell = _a.onPressCell, rest = __rest(_a, ["children", "id", "onPressCell"]);
-    return (react_1.default.createElement("td", __assign({ className: (0, classnames_1.default)("itpc-table__cell", onPressCell && "itpc-table__cell_clickable"), id: id, onClick: onPressCell && onPressCell }, rest), children));
+    return (react_1.default.createElement("td", __assign({}, rest, { className: (0, classnames_1.default)("itpc-table__cell", onPressCell && "itpc-table__cell_clickable"), id: id, onClick: onPressCell && onPressCell }), children));
 };
 exports.Cell = Cell;
 var Table = function (_a) {
     var children = _a.children, _b = _a.className, className = _b === void 0 ? "" : _b, _c = _a.id, id = _c === void 0 ? "" : _c, title = _a.title, rest = __rest(_a, ["children", "className", "id", "title"]);
-    return (react_1.default.createElement("table", __assign({ className: (0, classnames_1.default)("itpc-table", className), id: id }, rest),
+    return (react_1.default.createElement("table", __assign({}, rest, { className: (0, classnames_1.default)("itpc-table", className), id: id }),
         title && react_1.default.createElement("caption", { className: "itpc-table__caption" }, title),
         children));
 };
@@ -26074,7 +40451,7 @@ var TableSort = function (_a) {
             return sortByTwoColumns(key, updateKeys);
         }
     };
-    return (react_1.default.createElement("table", __assign({ className: (0, classnames_1.default)("itpc-table-sort", className) }, rest),
+    return (react_1.default.createElement("table", __assign({}, rest, { className: (0, classnames_1.default)("itpc-table-sort", className) }),
         (columns === null || columns === void 0 ? void 0 : columns.length) && (react_1.default.createElement(_components_1.TableSortHeader, { columns: columns, currentKey: currentKey, currentKeys: currentKeys, setKeySort: setKeySort, sortByNumberColumns: sortByNumberColumns })),
         data && (react_1.default.createElement(_components_1.TableSortBody, { arrKeysNameColumns: columns && (0, utils_1.getKeysNamesColumns)(columns), nameMainColumnSort: (_b = currentKeys === null || currentKeys === void 0 ? void 0 : currentKeys.mainKey) === null || _b === void 0 ? void 0 : _b.name, rows: data, sortByNumberColumns: sortByNumberColumns }))));
 };
@@ -26340,7 +40717,7 @@ var TabButton = function (_a) {
     var click = function () {
         onClick(id);
     };
-    return (react_1.default.createElement("button", __assign({ className: (0, classnames_1.default)("itpc-tabs__button", isActive && "itpc-tabs__button_active"), disabled: disabled, onClick: click, type: "button" }, rest), title));
+    return (react_1.default.createElement("button", __assign({}, rest, { className: (0, classnames_1.default)("itpc-tabs__button", isActive && "itpc-tabs__button_active"), disabled: disabled, onClick: click, type: "button" }), title));
 };
 exports.TabButton = TabButton;
 var Tabs = function (_a) {
@@ -26357,7 +40734,7 @@ var Tabs = function (_a) {
     var renderChildren = function () {
         return react_1.default.cloneElement(items[activeTab].content, __assign({}, childProps));
     };
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-tabs", className) }, rest),
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-tabs", className) }),
         react_1.default.createElement("div", { className: "itpc-tabs__buttons" }, items.map(function (item, i) { return (react_1.default.createElement(exports.TabButton, { disabled: disabled, id: i, isActive: activeTab === i, key: i, onClick: handleActiveTab, title: item.title })); })),
         react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-tabs__content") }, renderChildren())));
 };
@@ -26476,7 +40853,7 @@ var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(3294);
 var Checkbox = function (_a) {
     var _b = _a.className, className = _b === void 0 ? "" : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, id = _a.id, inputAttr = _a.inputAttr, _d = _a.isBlurCheckbox, isBlurCheckbox = _d === void 0 ? false : _d, _e = _a.isBlurLabelLeft, isBlurLabelLeft = _e === void 0 ? false : _e, _f = _a.isBlurLabelRight, isBlurLabelRight = _f === void 0 ? false : _f, _g = _a.isChecked, isChecked = _g === void 0 ? false : _g, _h = _a.label, label = _h === void 0 ? "" : _h, labelAttr = _a.labelAttr, labelLeft = _a.labelLeft, _j = _a.labelPosition, labelPosition = _j === void 0 ? "right" : _j, name = _a.name, onClick = _a.onClick, _k = _a.type, type = _k === void 0 ? "checkbox" : _k, _l = _a.variant, variant = _l === void 0 ? "android" : _l, rest = __rest(_a, ["className", "disabled", "id", "inputAttr", "isBlurCheckbox", "isBlurLabelLeft", "isBlurLabelRight", "isChecked", "label", "labelAttr", "labelLeft", "labelPosition", "name", "onClick", "type", "variant"]);
-    return (react_1.default.createElement("label", __assign({ className: (0, classnames_1.default)("itpc-checkbox", !disabled && "itpc-checkbox_hover", disabled && "itpc-checkbox_disabled", isBlurCheckbox && "itpc-checkbox_blur", className) }, rest),
+    return (react_1.default.createElement("label", __assign({}, rest, { className: (0, classnames_1.default)("itpc-checkbox", !disabled && "itpc-checkbox_hover", disabled && "itpc-checkbox_disabled", isBlurCheckbox && "itpc-checkbox_blur", className) }),
         (labelPosition === "left" || labelPosition === "all") && (react_1.default.createElement("span", __assign({ className: (0, classnames_1.default)("itpc-checkbox__label", "itpc-checkbox__label_left", isBlurLabelLeft && "itpc-checkbox__label_blur") }, labelAttr), labelLeft !== null && labelLeft !== void 0 ? labelLeft : label)),
         react_1.default.createElement("input", __assign({ checked: isChecked, className: "itpc-checkbox__input", disabled: disabled, id: id, name: name, onChange: onClick, type: type }, inputAttr)),
         react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-checkbox__fake", "itpc-checkbox__fake_".concat(variant)) }),
@@ -26643,7 +41020,7 @@ var DatePicker = function (_a) {
             }, sourceInfo.event, { id: id, name: name });
         }
     };
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-datepicker", disabled && "itpc-datepicker_disabled", className), ref: datePickerRef }, rest),
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-datepicker", disabled && "itpc-datepicker_disabled", className), ref: datePickerRef }),
         react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-datepicker__input-wrap", disabled && "itpc-datepicker__input-wrap_disabled", !disabled && "itpc-datepicker__input-wrap_hover", validationState === "invalid" && "itpc-datepicker__input-wrap_error") },
             placeholder && (react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: focused || !!value.length, htmlFor: id, validationState: validationState }, placeholder)),
             react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: (0, classnames_1.default)("itpc-datepicker__input", disabled && "itpc-datepicker__input_disabled", (focused || value.length) && "itpc-datepicker__input_focused"), disabled: disabled, format: withTime ? constants_2.FORMAT_MASK_DATE_TIME : constants_2.FORMAT_MASK_DATE, id: id, mask: withTime ? constants_2.MASK_DATE_TIME : constants_2.MASK_DATE, name: name, onBlur: onBlurPicker, onFocus: onFocusPicker, onValueChange: onChangePicker, type: "text", value: value, allowEmptyFormatting: true, valueIsNumericString: true }),
@@ -26843,7 +41220,7 @@ var DecimalField = function (_a) {
             onChange(new lab_1.DecimalFixed(valueWithReplace, accuracy).toString(), event);
         }
     };
-    return (react_1.default.createElement(_elements_1.Field, __assign({ className: className }, rest),
+    return (react_1.default.createElement(_elements_1.Field, __assign({}, rest, { className: className }),
         react_1.default.createElement(_elements_1.InputWrap, { disabled: disabled, focused: focused, validationState: validationState },
             react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: focused || value.length > 0, htmlFor: id, validationState: validationState }, placeholder),
             react_1.default.createElement("input", { className: (0, classnames_1.default)("itpc-input", (focused || !!value.length) && "itpc-input_focused"), disabled: disabled, id: id, maxLength: maxLength, name: name, onBlur: onBlurInput, onChange: onChangeInput, onFocus: onFocusInput, type: "text", value: value }),
@@ -26939,10 +41316,14 @@ var MultiSelectField = function (_a) {
             var select = new Set(selectedItems);
             if (select.has(value)) {
                 select.delete(value);
-                onChange(Array.from(select));
-                return;
             }
-            select.add(value);
+            else {
+                select.add(value);
+            }
+            console.log("value", value);
+            console.log("select.has(value)", select.has(value));
+            console.log("selectedItems", selectedItems);
+            console.log("Array.from(select)", Array.from(select));
             onChange(Array.from(select));
         }
     };
@@ -26995,7 +41376,7 @@ var MultiSelectField = function (_a) {
         }
     }, [isOpen]);
     (0, lab_1.useOnClickOutside)(ref, onClose, isOpen, refChildren);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-multi-select", disabled && " itpc-multi-select_disabled", !disabled && " itpc-multi-select_hover", className), ref: ref }, rest),
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-multi-select", disabled && " itpc-multi-select_disabled", !disabled && " itpc-multi-select_hover", className), ref: ref }),
         react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-multi-select__button", isOpen && "itpc-multi-select__button_focused"), disabled: disabled, onClick: handleOpen, onKeyDown: handleKey, type: "button" },
             react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: isOpen || !!(selectedItems === null || selectedItems === void 0 ? void 0 : selectedItems.length) }, placeholder),
             selectText()),
@@ -27073,29 +41454,31 @@ var classnames_1 = __importDefault(__webpack_require__(6942));
 var itpc_input_mask_1 = __webpack_require__(7004);
 var _elements_1 = __webpack_require__(5010);
 var NumberField = function (_a) {
-    var _b = _a.allowEmptyFormatting, allowEmptyFormatting = _b === void 0 ? true : _b, _c = _a.className, className = _c === void 0 ? "" : _c, _d = _a.disabled, disabled = _d === void 0 ? false : _d, _e = _a.errorMessage, errorMessage = _e === void 0 ? "" : _e, _f = _a.format, format = _f === void 0 ? "" : _f, getInputRef = _a.getInputRef, icon = _a.icon, id = _a.id, _g = _a.mask, mask = _g === void 0 ? "_" : _g, name = _a.name, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _h = _a.placeholder, placeholder = _h === void 0 ? "" : _h, _j = _a.prefix, prefix = _j === void 0 ? "" : _j, replaceValue = _a.replaceValue, _k = _a.validationState, validationState = _k === void 0 ? "valid" : _k, _l = _a.value, value = _l === void 0 ? "" : _l, rest = __rest(_a, ["allowEmptyFormatting", "className", "disabled", "errorMessage", "format", "getInputRef", "icon", "id", "mask", "name", "onBlur", "onChange", "onFocus", "placeholder", "prefix", "replaceValue", "validationState", "value"]);
-    var _m = (0, react_1.useState)(false), focused = _m[0], onHandleFocused = _m[1];
+    var _b = _a.allowEmptyFormatting, allowEmptyFormatting = _b === void 0 ? true : _b, _c = _a.className, className = _c === void 0 ? "" : _c, _d = _a.disabled, disabled = _d === void 0 ? false : _d, _e = _a.errorMessage, errorMessage = _e === void 0 ? "" : _e, _f = _a.format, format = _f === void 0 ? "" : _f, getInputRef = _a.getInputRef, icon = _a.icon, id = _a.id, _g = _a.mask, mask = _g === void 0 ? "_" : _g, name = _a.name, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _h = _a.placeholder, placeholder = _h === void 0 ? "" : _h, _j = _a.prefix, prefix = _j === void 0 ? "" : _j, _k = _a.replaceValue, replaceValue = _k === void 0 ? function (value) { return value; } : _k, _l = _a.validationState, validationState = _l === void 0 ? "valid" : _l, _m = _a.value, value = _m === void 0 ? "" : _m, rest = __rest(_a, ["allowEmptyFormatting", "className", "disabled", "errorMessage", "format", "getInputRef", "icon", "id", "mask", "name", "onBlur", "onChange", "onFocus", "placeholder", "prefix", "replaceValue", "validationState", "value"]);
+    var _o = (0, react_1.useState)(false), focused = _o[0], onHandleFocused = _o[1];
     var onBlurInput = function () {
+        console.log("blur");
         onHandleFocused(false);
         if (onBlur) {
             onBlur();
         }
     };
     var onFocusInput = function () {
+        console.log("focus");
         onHandleFocused(true);
         if (onFocus) {
             onFocus();
         }
     };
     var onChangeInput = function (values, sourceInfo) {
-        if (onChange) {
+        if (onChange && !disabled) {
             onChange({
                 formattedValue: values.formattedValue,
                 value: values.value,
             }, sourceInfo.event);
         }
     };
-    return (react_1.default.createElement(_elements_1.Field, __assign({ className: className }, rest),
+    return (react_1.default.createElement(_elements_1.Field, __assign({}, rest, { className: className }),
         react_1.default.createElement(_elements_1.InputWrap, { disabled: disabled, focused: focused, validationState: validationState },
             react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: focused || !!value.length, htmlFor: id, validationState: validationState }, placeholder),
             react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: (0, classnames_1.default)("itpc-input", (focused || !!value.length) && "itpc-input_focused"), allowEmptyFormatting: allowEmptyFormatting, disabled: disabled, format: format, getInputRef: getInputRef, id: id, mask: mask, name: name, onBlur: onBlurInput, onFocus: onFocusInput, onValueChange: onChangeInput, prefix: prefix, replaceValue: replaceValue, type: "text", value: value, valueIsNumericString: true }),
@@ -27228,6 +41611,7 @@ var SearchField = function (_a) {
     var ref = (0, react_1.useRef)(null);
     var refChildren = (0, react_1.useRef)(null);
     var closeSuggestions = function () {
+        console.log("closeSuggestions");
         setIsOpenedSuggestions(false);
     };
     var openSuggestions = function () {
@@ -27378,8 +41762,8 @@ var SearchField = function (_a) {
         }
     }, [isOpenedSuggestions]);
     (0, lab_1.useOnClickOutside)(ref, closeSuggestions);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-search-field", !disabled && "itpc-search-field_hover ", disabled && "itpc-search-field_disabled", className), ref: ref }, rest),
-        react_1.default.createElement(TextField_1.TextField, __assign({ autoComplete: autoComplete, defaultItem: defaultItem, disabled: disabled, icon: react_1.default.createElement("div", { onClick: clear }, icon), id: "itpc-search-field", name: "itpc-search-field", onChange: changeValue, onClickInput: onClickInput, onFocus: openSuggestions, onKeyDown: handleKey, placeholder: placeholder, value: value }, textFieldAttr)),
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-search-field", !disabled && "itpc-search-field_hover ", disabled && "itpc-search-field_disabled", className), ref: ref }),
+        react_1.default.createElement(TextField_1.TextField, __assign({ autoComplete: autoComplete, defaultItem: defaultItem, disabled: disabled, icon: react_1.default.createElement("div", { onClick: clear }, icon), id: "itpc-search-field", name: "itpc-search-field", onBlur: closeSuggestions, onChange: changeValue, onClickInput: onClickInput, onFocus: openSuggestions, onKeyDown: handleKey, placeholder: placeholder, value: value }, textFieldAttr)),
         react_1.default.createElement(_elements_1.Portal, { element: document.body },
             react_1.default.createElement(_elements_1.PositionedWrap, { isClosing: isClosing, isOpen: isShowListResult, refParent: ref }, !!(filteredItems === null || filteredItems === void 0 ? void 0 : filteredItems.length) && !!(value === null || value === void 0 ? void 0 : value.length) && (react_1.default.createElement(ListBox_1.ListBox, { durationAnimation: durationAnimation, isOpen: isOpenedSuggestions ? !isClosing : isOpenedSuggestions, refChildren: refChildren, refParent: ref }, !!value.length &&
                 filteredItems.map(function (item, itemIndex) { return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, id: item.id, isActive: item.id === currentItem, itemIndex: itemIndex, key: item.id, onChange: changeItem }, item.value)); })))))));
@@ -27455,10 +41839,10 @@ var useKeyboardNavigation_1 = __webpack_require__(8252);
 __webpack_require__(2341);
 var SelectField = function (_a) {
     var _b;
-    var _c = _a.className, className = _c === void 0 ? "" : _c, _d = _a.defaultItemId, defaultItemId = _d === void 0 ? null : _d, _e = _a.disabled, disabled = _e === void 0 ? false : _e, _f = _a.durationAnimation, durationAnimation = _f === void 0 ? {
+    var _c = _a.className, className = _c === void 0 ? "" : _c, _d = _a.disabled, disabled = _d === void 0 ? false : _d, _e = _a.durationAnimation, durationAnimation = _e === void 0 ? {
         durationClose: 200,
         durationOpen: 300,
-    } : _f, items = _a.items, onChange = _a.onChange, placeholder = _a.placeholder, _g = _a.position, position = _g === void 0 ? types_1.ALLOWED_POSITIONS.FIXED : _g, rest = __rest(_a, ["className", "defaultItemId", "disabled", "durationAnimation", "items", "onChange", "placeholder", "position"]);
+    } : _e, items = _a.items, onChange = _a.onChange, placeholder = _a.placeholder, _f = _a.position, position = _f === void 0 ? types_1.ALLOWED_POSITIONS.FIXED : _f, required = _a.required, _g = _a.selectedItemId, selectedItemId = _g === void 0 ? null : _g, rest = __rest(_a, ["className", "disabled", "durationAnimation", "items", "onChange", "placeholder", "position", "required", "selectedItemId"]);
     var _h = (0, react_1.useState)(false), isOpen = _h[0], setIsOpen = _h[1];
     var isClosing = (0, lab_1.useAnimation)(isOpen, durationAnimation).isClosing;
     var ref = (0, react_1.useRef)(null);
@@ -27507,25 +41891,25 @@ var SelectField = function (_a) {
     }, [activeIndex, refChildren]);
     (0, react_1.useEffect)(function () {
         var _a;
-        if (defaultItemId && isOpen) {
-            setActiveIndex(defaultItemId
+        if (selectedItemId && isOpen) {
+            setActiveIndex(selectedItemId
                 ? items.findIndex(function (_a) {
                     var id = _a.id;
-                    return id === defaultItemId;
+                    return id === selectedItemId;
                 })
                 : (_a = items.findIndex(function (item) { return !item.disabled; })) !== null && _a !== void 0 ? _a : 0);
         }
-    }, [defaultItemId, items, isOpen]);
+    }, [selectedItemId, items, isOpen]);
     (0, lab_1.useOnClickOutside)(ref, onClose, isOpen);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-select", !disabled && "itpc-select_hover", disabled && " itpc-select_disabled", className), ref: ref }, rest),
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-select", !disabled && "itpc-select_hover", disabled && " itpc-select_disabled", className), ref: ref }),
         react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-select__button", isOpen && "itpc-select__button_focused"), disabled: disabled, onClick: handleOpen, onKeyDown: handleKey, type: "button" },
-            react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: isOpen || !!defaultItemId }, placeholder),
-            defaultItemId &&
-                ((_b = items.find(function (item) { return item.id === defaultItemId; })) === null || _b === void 0 ? void 0 : _b.value)),
+            react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: isOpen || !!selectedItemId, required: required }, placeholder),
+            selectedItemId &&
+                ((_b = items.find(function (item) { return item.id === selectedItemId; })) === null || _b === void 0 ? void 0 : _b.value)),
         react_1.default.createElement(_elements_1.IconArrow, { disabled: disabled, onClick: handleOpen, orientation: isOpen ? "top" : "bottom" }),
         react_1.default.createElement(_elements_1.Portal, { element: document.body },
             react_1.default.createElement(_elements_1.PositionedWrap, { isClosing: isClosing, isOpen: isOpen, position: position, refParent: ref },
-                react_1.default.createElement(ListBox_1.ListBox, { durationAnimation: durationAnimation, isOpen: isOpen ? !isClosing : isOpen, refChildren: refChildren, refParent: ref }, items.map(function (item, itemIndex) { return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, disabled: item.disabled, id: item.id, isActive: defaultItemId === item.id, itemIndex: itemIndex, key: item.id, onChange: changeValue }, item.value)); }))))));
+                react_1.default.createElement(ListBox_1.ListBox, { durationAnimation: durationAnimation, isOpen: isOpen ? !isClosing : isOpen, refChildren: refChildren, refParent: ref }, items.map(function (item, itemIndex) { return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, disabled: item.disabled, id: item.id, isActive: selectedItemId === item.id, itemIndex: itemIndex, key: item.id, onChange: changeValue }, item.value)); }))))));
 };
 exports.SelectField = SelectField;
 
@@ -27602,8 +41986,8 @@ exports.TextAreaField = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
-__webpack_require__(7583);
 var constants_1 = __webpack_require__(607);
+__webpack_require__(7583);
 var TextAreaField = function (_a) {
     var _b = _a.className, className = _b === void 0 ? "" : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.errorMessage, errorMessage = _d === void 0 ? "" : _d, fixedHeight = _a.fixedHeight, _e = _a.id, id = _e === void 0 ? "itpc-input" : _e, maxHeight = _a.maxHeight, _f = _a.name, name = _f === void 0 ? "itpc-input" : _f, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _g = _a.placeholder, placeholder = _g === void 0 ? "" : _g, _h = _a.validationState, validationState = _h === void 0 ? "valid" : _h, _j = _a.value, value = _j === void 0 ? "" : _j, rest = __rest(_a, ["className", "disabled", "errorMessage", "fixedHeight", "id", "maxHeight", "name", "onBlur", "onChange", "onFocus", "placeholder", "validationState", "value"]);
     var _k = (0, react_1.useState)(false), focused = _k[0], onHandleFocused = _k[1];
@@ -27616,9 +42000,7 @@ var TextAreaField = function (_a) {
         }
     };
     var onFocusTextArea = function () {
-        var _a;
         onHandleFocused(true);
-        (_a = ref.current) === null || _a === void 0 ? void 0 : _a.focus();
         if (onFocus) {
             onFocus();
         }
@@ -27641,7 +42023,7 @@ var TextAreaField = function (_a) {
         return scrollHeight > fixedHeight ? scrollHeight : fixedHeight;
     };
     var isFocused = focused || !!value.length;
-    return (react_1.default.createElement(_elements_1.Field, __assign({ className: (0, classnames_1.default)(className) }, rest),
+    return (react_1.default.createElement(_elements_1.Field, __assign({}, rest, { className: (0, classnames_1.default)(className) }),
         react_1.default.createElement(_elements_1.InputWrap, { disabled: disabled, fixedHeight: fixedHeight, focused: focused, height: height, maxHeight: maxHeight, validationState: validationState },
             react_1.default.createElement(_elements_1.Placeholder, { className: (0, classnames_1.default)(fixedHeight &&
                     fixedHeight > constants_1.DEFAULT_HEIGHT &&
@@ -27714,7 +42096,8 @@ var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
 var TextField = function (_a) {
-    var autoComplete = _a.autoComplete, _b = _a.className, className = _b === void 0 ? "" : _b, defaultItem = _a.defaultItem, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.errorMessage, errorMessage = _d === void 0 ? "" : _d, icon = _a.icon, _e = _a.id, id = _e === void 0 ? "itpc-input" : _e, maxLength = _a.maxLength, _f = _a.name, name = _f === void 0 ? "itpc-input" : _f, onBlur = _a.onBlur, onChange = _a.onChange, onClickInput = _a.onClickInput, onFocus = _a.onFocus, onKeyDown = _a.onKeyDown, _g = _a.placeholder, placeholder = _g === void 0 ? "" : _g, _h = _a.type, type = _h === void 0 ? "text" : _h, _j = _a.validationState, validationState = _j === void 0 ? "valid" : _j, _k = _a.value, value = _k === void 0 ? "" : _k, rest = __rest(_a, ["autoComplete", "className", "defaultItem", "disabled", "errorMessage", "icon", "id", "maxLength", "name", "onBlur", "onChange", "onClickInput", "onFocus", "onKeyDown", "placeholder", "type", "validationState", "value"]);
+    var autoComplete = _a.autoComplete, _b = _a.className, className = _b === void 0 ? "" : _b, defaultItem = _a.defaultItem, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.errorMessage, errorMessage = _d === void 0 ? "" : _d, icon = _a.icon, _e = _a.id, id = _e === void 0 ? "itpc-input" : _e, maxLength = _a.maxLength, _f = _a.name, name = _f === void 0 ? "itpc-input" : _f, onBlur = _a.onBlur, onChange = _a.onChange, onClickInput = _a.onClickInput, onFocus = _a.onFocus, onKeyDown = _a.onKeyDown, _g = _a.placeholder, placeholder = _g === void 0 ? "" : _g, required = _a.required, _h = _a.type, type = _h === void 0 ? "text" : _h, _j = _a.validationState, validationState = _j === void 0 ? "valid" : _j, _k = _a.value, value = _k === void 0 ? "" : _k, rest = __rest(_a, ["autoComplete", "className", "defaultItem", "disabled", "errorMessage", "icon", "id", "maxLength", "name", "onBlur", "onChange", "onClickInput", "onFocus", "onKeyDown", "placeholder", "required", "type", "validationState", "value"]);
+    console.log("TextField received props:", { onChange: onChange, value: value });
     var _l = (0, react_1.useState)(false), focused = _l[0], onHandleFocused = _l[1];
     var onBlurInput = function () {
         onHandleFocused(false);
@@ -27736,9 +42119,9 @@ var TextField = function (_a) {
             onChange(event.currentTarget.value, event);
         }
     };
-    return (react_1.default.createElement(_elements_1.Field, __assign({ className: (0, classnames_1.default)(className) }, rest),
+    return (react_1.default.createElement(_elements_1.Field, __assign({}, rest, { className: (0, classnames_1.default)(className) }),
         react_1.default.createElement(_elements_1.InputWrap, { focused: focused, validationState: validationState },
-            react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: focused || value.length > 0 || !!defaultItem, htmlFor: id, validationState: validationState }, placeholder),
+            react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: focused || value.length > 0 || !!defaultItem, htmlFor: id, required: required, validationState: validationState }, placeholder),
             react_1.default.createElement("input", { className: (0, classnames_1.default)("itpc-input", (focused || !!value.length) && "itpc-input_focused"), autoComplete: autoComplete, disabled: disabled, id: id, maxLength: maxLength, name: name, onBlur: onBlurInput, onChange: onChangeInput, onFocus: onFocusInput, onKeyDown: onKeyDown, type: type, value: value }),
             react_1.default.createElement(_elements_1.InputError, { errorMessage: errorMessage, show: validationState === "invalid" }),
             icon && react_1.default.createElement(_elements_1.InputIcon, null, icon))));
@@ -27785,7 +42168,7 @@ __webpack_require__(9885);
 var utils_1 = __webpack_require__(3567);
 var Flex = function (_a) {
     var children = _a.children, style = _a.style, props = __rest(_a, ["children", "style"]);
-    return (react_1.default.createElement("div", { className: (0, utils_1.generateClassList)(props), style: __assign({ gap: props.gap }, style) }, children));
+    return (react_1.default.createElement("div", __assign({}, props, { className: (0, utils_1.generateClassList)(props), style: __assign({ gap: props.gap }, style) }), children));
 };
 exports.Flex = Flex;
 
@@ -27866,14 +42249,14 @@ var utils_1 = __webpack_require__(4368);
 var Col = function (_a) {
     var children = _a.children, props = __rest(_a, ["children"]);
     var gap = react_1.default.useContext(RowContext_1.RowContext).gap;
-    return (react_1.default.createElement("div", { className: (0, utils_1.generateColClassList)(props), style: (0, utils_1.generateColStyle)(props, gap) }, children));
+    return (react_1.default.createElement("div", __assign({}, props, { className: (0, utils_1.generateColClassList)(props), style: (0, utils_1.generateColStyle)(props, gap) }), children));
 };
 exports.Col = Col;
 var Row = function (_a) {
     var children = _a.children, _b = _a.wrap, wrap = _b === void 0 ? true : _b, props = __rest(_a, ["children", "wrap"]);
     var rowContext = react_1.default.useMemo(function () { return ({ gap: props.gap }); }, [props.gap]);
     return (react_1.default.createElement(RowContext_1.RowContext.Provider, { value: rowContext },
-        react_1.default.createElement("div", { className: (0, utils_1.generateRowClassList)(__assign({ wrap: wrap }, props)), style: (0, utils_1.generateRowStyle)(props) }, children)));
+        react_1.default.createElement("div", __assign({}, props, { className: (0, utils_1.generateRowClassList)(__assign({ wrap: wrap }, props)), style: (0, utils_1.generateRowStyle)(props) }), children)));
 };
 exports.Row = Row;
 
@@ -27968,6 +42351,28 @@ exports.generateRowStyle = generateRowStyle;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -27977,8 +42382,8 @@ var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(8400);
 var Layout = function (_a) {
-    var children = _a.children, className = _a.className, style = _a.style;
-    return (react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-layout", className), style: style }, children));
+    var children = _a.children, className = _a.className, style = _a.style, props = __rest(_a, ["children", "className", "style"]);
+    return (react_1.default.createElement("div", __assign({}, props, { className: (0, classnames_1.default)("itpc-layout", className), style: style }), children));
 };
 exports.Layout = Layout;
 
@@ -28023,6 +42428,11 @@ __webpack_require__(4144);
 var utils_1 = __webpack_require__(5892);
 var Link = function (_a) {
     var children = _a.children, className = _a.className, _b = _a.disabled, disabled = _b === void 0 ? false : _b, onClick = _a.onClick, _c = _a.size, size = _c === void 0 ? enums_1.TextSize.XS : _c, style = _a.style, _d = _a.through, through = _d === void 0 ? false : _d, _e = _a.underline, underline = _e === void 0 ? true : _e, _f = _a.weight, weight = _f === void 0 ? enums_1.TextWeight.NORMAL : _f, rest = __rest(_a, ["children", "className", "disabled", "onClick", "size", "style", "through", "underline", "weight"]);
+    var click = function (e) {
+        if (!disabled && onClick) {
+            onClick(e);
+        }
+    };
     return (react_1.default.createElement("a", __assign({ className: (0, utils_1.generateClassList)({
             className: className,
             disabled: disabled,
@@ -28030,7 +42440,7 @@ var Link = function (_a) {
             through: through,
             underline: underline,
             weight: weight,
-        }), onClick: onClick, style: style }, rest), children));
+        }), onClick: click, style: style }, rest), children));
 };
 exports.Link = Link;
 
@@ -28694,7 +43104,7 @@ var CalendarCell = function (_a) {
             onChange(date, event);
         }
     };
-    return (react_1.default.createElement("td", { className: (0, classnames_1.default)("itpc-calendar__cell", isHeader && "itpc-calendar__cell_header", !isHeader && isChanged && "itpc-calendar__cell_changed", !isHeader && !isCurrentMonth && "itpc-calendar__cell_not_current", disabled && "itpc-calendar__cell_disabled"), id: id, onClick: click },
+    return (react_1.default.createElement("td", { className: (0, classnames_1.default)("itpc-calendar__cell", isHeader && "itpc-calendar__cell_header", !isHeader && isChanged && "itpc-calendar__cell_changed", !isHeader && !isCurrentMonth && "itpc-calendar__cell_not_current", disabled && "itpc-calendar__cell_disabled"), id: id, onClick: click, role: "cell" },
         react_1.default.createElement("p", { className: "itpc-calendar__text" }, isHeader && dayOfTheWeek !== undefined
             ? constants_1.daysOfTheWeekShort[dayOfTheWeek]
             : new Date(date).getDate())));
@@ -28875,21 +43285,21 @@ var CalendarTimes = function (_a) {
         react_1.default.createElement("div", { className: "itpc-calendar__time" },
             react_1.default.createElement("button", { className: "itpc-calendar__button", disabled: hours === "23", onClick: increaseHours, tabIndex: -1, type: "button" },
                 react_1.default.createElement("i", { className: "itpc-calendar__arrow itpc-calendar__arrow_top" })),
-            react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: "itpc-calendar__input", format: "##", mask: ["Ч", "Ч"], onValueChange: changeHours, value: hours, allowEmptyFormatting: true, valueIsNumericString: true }),
+            react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: "itpc-calendar__input", format: "##", mask: ["Ч", "Ч"], onValueChange: changeHours, role: "hours", value: hours, allowEmptyFormatting: true, valueIsNumericString: true }),
             react_1.default.createElement("button", { className: "itpc-calendar__button", disabled: !hours.length || hours === "00", onClick: decreaseHours, tabIndex: -1, type: "button" },
                 react_1.default.createElement("i", { className: "itpc-calendar__arrow itpc-calendar__arrow_bottom" }))),
         react_1.default.createElement("span", { className: "itpc-calendar__double-dots" }, ":"),
         react_1.default.createElement("div", { className: "itpc-calendar__time" },
             react_1.default.createElement("button", { className: "itpc-calendar__button", disabled: minutes === "59", onClick: increaseMinutes, tabIndex: -1, type: "button" },
                 react_1.default.createElement("i", { className: "itpc-calendar__arrow itpc-calendar__arrow_top" })),
-            react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: "itpc-calendar__input", format: "##", mask: ["М", "М"], onValueChange: changeMinutes, value: minutes, allowEmptyFormatting: true, valueIsNumericString: true }),
+            react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: "itpc-calendar__input", format: "##", mask: ["М", "М"], onValueChange: changeMinutes, role: "minutes", value: minutes, allowEmptyFormatting: true, valueIsNumericString: true }),
             react_1.default.createElement("button", { className: "itpc-calendar__button", disabled: !minutes.length || minutes === "00", onClick: decreaseMinutes, tabIndex: -1, type: "button" },
                 react_1.default.createElement("i", { className: "itpc-calendar__arrow itpc-calendar__arrow_bottom" }))),
         react_1.default.createElement("span", { className: "itpc-calendar__double-dots" }, ":"),
         react_1.default.createElement("div", { className: "itpc-calendar__time" },
             react_1.default.createElement("button", { className: "itpc-calendar__button", disabled: seconds === "59", onClick: increaseSeconds, tabIndex: -1, type: "button" },
                 react_1.default.createElement("i", { className: "itpc-calendar__arrow itpc-calendar__arrow_top" })),
-            react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: "itpc-calendar__input", format: "##", mask: ["С", "С"], onValueChange: changeSeconds, value: seconds, allowEmptyFormatting: true, valueIsNumericString: true }),
+            react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: "itpc-calendar__input", format: "##", mask: ["С", "С"], onValueChange: changeSeconds, role: "seconds", value: seconds, allowEmptyFormatting: true, valueIsNumericString: true }),
             react_1.default.createElement("button", { className: "itpc-calendar__button", disabled: !seconds.length || seconds === "00", onClick: decreaseSeconds, tabIndex: -1, type: "button" },
                 react_1.default.createElement("i", { className: "itpc-calendar__arrow itpc-calendar__arrow_bottom" })))));
 };
@@ -29698,7 +44108,9 @@ var useDebounce = function (callback, delay) {
         if (timer.current) {
             clearTimeout(timer.current);
         }
+        console.log("Setting timeout with args:", args);
         timer.current = setTimeout(function () {
+            console.log("Calling callback with args:", args);
             callback.apply(void 0, args);
         }, delay);
     }, [callback, delay]);
@@ -29886,6 +44298,7 @@ Object.defineProperty(exports, "Calendar", ({ enumerable: true, get: function ()
 var DecimalFixed_1 = __webpack_require__(1697);
 Object.defineProperty(exports, "DecimalFixed", ({ enumerable: true, get: function () { return DecimalFixed_1.DecimalFixed; } }));
 __exportStar(__webpack_require__(6771), exports);
+__exportStar(__webpack_require__(3814), exports);
 var updateScroll_1 = __webpack_require__(7833);
 Object.defineProperty(exports, "updateScroll", ({ enumerable: true, get: function () { return updateScroll_1.updateScroll; } }));
 
@@ -29918,6 +44331,93 @@ exports.setDurationAnimation = setDurationAnimation;
 
 /***/ }),
 
+/***/ 3814:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.keyDownElement = exports.keyDownInput = exports.blurInput = exports.focusInput = exports.changeInput = exports.getDateInputError = exports.getInputErrorValue = exports.getInputError = exports.getInputValue = exports.getInputDisabled = exports.getInputAttributeValue = exports.getInputAttributes = exports.getAttributeValue = exports.getAttributes = exports.getSelectValue = exports.getSelectButton = exports.getCheckboxValue = exports.getButtonDisabled = exports.getTabElement = void 0;
+var react_1 = __webpack_require__(253);
+var getTabElement = function (testId, position) {
+    return react_1.screen.getByTestId(testId).children[0].children[position - 1];
+};
+exports.getTabElement = getTabElement;
+var getButtonDisabled = function (element) {
+    return element.disabled;
+};
+exports.getButtonDisabled = getButtonDisabled;
+var getCheckboxValue = function (element, withLabelLeft) {
+    if (withLabelLeft === void 0) { withLabelLeft = true; }
+    return element.children[withLabelLeft ? 1 : 0].checked;
+};
+exports.getCheckboxValue = getCheckboxValue;
+var getSelectButton = function (element) {
+    return element.children[0];
+};
+exports.getSelectButton = getSelectButton;
+var getSelectValue = function (element) {
+    var _a;
+    var labelValue = element.children[0].children[0].textContent;
+    var value = element.children[0].textContent;
+    return (_a = value === null || value === void 0 ? void 0 : value.replace(labelValue !== null && labelValue !== void 0 ? labelValue : "", "")) !== null && _a !== void 0 ? _a : "";
+};
+exports.getSelectValue = getSelectValue;
+var getAttributes = function (element) {
+    return Array.from(element.attributes).reduce(function (acc, attr) {
+        acc[attr.name] = attr.value;
+        return acc;
+    }, {});
+};
+exports.getAttributes = getAttributes;
+var getAttributeValue = function (element, attributeName) { var _a; return (_a = element.getAttribute(attributeName)) !== null && _a !== void 0 ? _a : ""; };
+exports.getAttributeValue = getAttributeValue;
+var getInputAttributes = function (element) {
+    return (0, exports.getAttributes)(element.children[0].children[1]);
+};
+exports.getInputAttributes = getInputAttributes;
+var getInputAttributeValue = function (element, attributeName) { return (0, exports.getAttributeValue)(element.children[0].children[1], attributeName); };
+exports.getInputAttributeValue = getInputAttributeValue;
+var getInputDisabled = function (element) {
+    return element.children[0].children[1].disabled;
+};
+exports.getInputDisabled = getInputDisabled;
+var getInputValue = function (element) {
+    return element.children[0].children[1].value;
+};
+exports.getInputValue = getInputValue;
+var getInputError = function (element) {
+    return element.children[0].children[2];
+};
+exports.getInputError = getInputError;
+var getInputErrorValue = function (element) { var _a; return (_a = element.children[0].children[2].textContent) !== null && _a !== void 0 ? _a : ""; };
+exports.getInputErrorValue = getInputErrorValue;
+var getDateInputError = function (element) { var _a; return (_a = element.children[0].children[3].textContent) !== null && _a !== void 0 ? _a : ""; };
+exports.getDateInputError = getDateInputError;
+var changeInput = function (element, value) {
+    react_1.fireEvent.change(element.children[0].children[1], { target: { value: value } });
+};
+exports.changeInput = changeInput;
+var focusInput = function (element) {
+    react_1.fireEvent.focus(element.children[0].children[1]);
+};
+exports.focusInput = focusInput;
+var blurInput = function (element) {
+    react_1.fireEvent.blur(element.children[0].children[1]);
+};
+exports.blurInput = blurInput;
+var keyDownInput = function (element, key) {
+    react_1.fireEvent.keyDown(element.children[0].children[1], { key: key });
+};
+exports.keyDownInput = keyDownInput;
+var keyDownElement = function (element, key) {
+    react_1.fireEvent.keyDown(element, { key: key });
+};
+exports.keyDownElement = keyDownElement;
+
+
+/***/ }),
+
 /***/ 7833:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -29930,7 +44430,9 @@ var updateScroll = function (ref, activeIndex) {
     var listItems = (_a = ref.current) === null || _a === void 0 ? void 0 : _a.children;
     if (listItems && listItems[activeIndex]) {
         var selectedElement = listItems[activeIndex];
-        selectedElement.scrollIntoView({ block: "nearest", inline: "nearest" });
+        if (selectedElement === null || selectedElement === void 0 ? void 0 : selectedElement.scrollIntoView) {
+            selectedElement.scrollIntoView({ block: "nearest", inline: "nearest" });
+        }
     }
 };
 exports.updateScroll = updateScroll;
@@ -30146,6 +44648,57 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/harmony module decorator */
+/******/ 	(() => {
+/******/ 		__webpack_require__.hmd = (module) => {
+/******/ 			module = Object.create(module);
+/******/ 			if (!module.children) module.children = [];
+/******/ 			Object.defineProperty(module, 'exports', {
+/******/ 				enumerable: true,
+/******/ 				set: () => {
+/******/ 					throw new Error('ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: ' + module.id);
+/******/ 				}
+/******/ 			});
+/******/ 			return module;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))

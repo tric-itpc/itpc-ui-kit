@@ -37,7 +37,7 @@ describe("Компонент SelectField", () => {
       <SelectField
         {...defaultProps}
         data-testid="select-field"
-        defaultItemId="1"
+        selectedItemId="1"
       />
     )
     const selectField = screen.getByTestId("select-field")
