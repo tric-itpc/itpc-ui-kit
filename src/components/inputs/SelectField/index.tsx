@@ -31,8 +31,6 @@ export interface Props
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   /** Дополнительный класс */
   className?: string
-  /** Значение по умолчанию */
-  defaultItemId?: string
   /** Отключить */
   disabled?: boolean
   /** Задержка анимации */
@@ -45,11 +43,14 @@ export interface Props
   placeholder: string
   /** Позиционирование выпадающего списка */
   position?: ALLOWED_POSITIONS
+  /** Обязательность поля */
+  required?: boolean
+  /** Id выбранного элемента */
+  selectedItemId?: string
 }
 
 export const SelectField: React.FC<Props> = ({
   className = "",
-  defaultItemId = null,
   disabled = false,
   durationAnimation = {
     durationClose: 200,
@@ -59,6 +60,8 @@ export const SelectField: React.FC<Props> = ({
   onChange,
   placeholder,
   position = ALLOWED_POSITIONS.FIXED,
+  required,
+  selectedItemId = null,
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -134,14 +137,14 @@ export const SelectField: React.FC<Props> = ({
   }, [activeIndex, refChildren])
 
   useEffect(() => {
-    if (defaultItemId && isOpen) {
+    if (selectedItemId && isOpen) {
       setActiveIndex(
-        defaultItemId
-          ? items.findIndex(({ id }) => id === defaultItemId)
+        selectedItemId
+          ? items.findIndex(({ id }) => id === selectedItemId)
           : items.findIndex((item) => !item.disabled) ?? 0
       )
     }
-  }, [defaultItemId, items, isOpen])
+  }, [selectedItemId, items, isOpen])
 
   useEffect(() => {
     if (isMouseMoved) {
@@ -183,12 +186,16 @@ export const SelectField: React.FC<Props> = ({
         onKeyDown={handleKey}
         type="button"
       >
-        <Placeholder disabled={disabled} focused={isOpen || !!defaultItemId}>
+        <Placeholder
+          disabled={disabled}
+          focused={isOpen || !!selectedItemId}
+          required={required}
+        >
           {placeholder}
         </Placeholder>
 
-        {defaultItemId &&
-          items.find((item) => item.id === defaultItemId)?.value}
+        {selectedItemId &&
+          items.find((item) => item.id === selectedItemId)?.value}
       </button>
 
       <IconArrow
@@ -216,7 +223,7 @@ export const SelectField: React.FC<Props> = ({
                 activeIndex={activeIndex}
                 disabled={item.disabled}
                 id={item.id}
-                isActive={defaultItemId === item.id}
+                isActive={selectedItemId === item.id}
                 itemIndex={itemIndex}
                 key={item.id}
                 onChange={changeValue}

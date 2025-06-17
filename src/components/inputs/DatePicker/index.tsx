@@ -10,6 +10,7 @@ import {
   Portal,
   PositionedWrap,
 } from "../../_elements"
+import { ErrorPlacement } from "../../../enums"
 import { Calendar, useAnimation } from "../../../lab"
 import { DISTANCE_BETWEEN_CALENDAR } from "../../../lab/CalculateStyle/constants"
 import { type DurationAnimation, IInfo, ValidationState } from "../../types"
@@ -60,12 +61,16 @@ export interface Props
   durationAnimation?: DurationAnimation
   /** Сообщение об ошибке */
   errorMessage?: string
+  /** Положение текста ошибки */
+  errorPlacement?: ErrorPlacement
   /** Идентификатор */
   id?: string
   /** Флаг кликабельности иконки календаря */
   isIconClickable?: boolean
   /** Флаг отображения иконки календаря */
   isShowIcon?: boolean
+  /** Задать ограничение по ширине */
+  isWidthMaxContent?: boolean
   /** Имя */
   name?: string
   /** Период отображения календаря */
@@ -114,9 +119,11 @@ export const DatePicker: React.FC<Props> = ({
     durationOpen: 400,
   },
   errorMessage = "",
+  errorPlacement = ErrorPlacement.INSIDE,
   id = "itpc-datepicker",
   isIconClickable = false,
   isShowIcon = true,
+  isWidthMaxContent = false,
   name = "itpc-datepicker",
   offsetYear = 10,
   onBlur,
@@ -213,6 +220,9 @@ export const DatePicker: React.FC<Props> = ({
       {...rest}
       className={cn(
         "itpc-datepicker",
+        isWidthMaxContent && "itpc-datepicker__width_max_content",
+        errorPlacement === ErrorPlacement.BOTTOM &&
+          "itpc-datepicker__error-placement_bottom",
         disabled && "itpc-datepicker_disabled",
         className
       )}
@@ -264,12 +274,13 @@ export const DatePicker: React.FC<Props> = ({
             onClick={onClickIcon}
           />
         )}
-
-        <InputError
-          errorMessage={errorMessage}
-          show={validationState === "invalid"}
-        />
       </div>
+
+      <InputError
+        errorMessage={errorMessage}
+        errorPlacement={errorPlacement}
+        show={validationState === "invalid"}
+      />
 
       <Portal element={document.body}>
         <PositionedWrap

@@ -1,12 +1,10 @@
 .itpc-field {
+  position: relative;
+
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
-.itpc-field__error-message {
-  margin: 0 10px;
-
-  font-size: var(--itpc-font-size-xxs);
-  color: var(--itpc-danger-bg-color-component);
+.itpc-field__error-placement_bottom {
+  margin-bottom: 12px;
 }
