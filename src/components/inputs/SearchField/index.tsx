@@ -91,7 +91,6 @@ export const SearchField: React.FC<Props> = ({
   const refChildren = useRef<HTMLUListElement>(null)
 
   const closeSuggestions = (): void => {
-    console.log("closeSuggestions")
     setIsOpenedSuggestions(false)
   }
 

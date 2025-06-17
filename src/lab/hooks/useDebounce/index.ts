@@ -16,9 +16,7 @@ export const useDebounce = (
       if (timer.current) {
         clearTimeout(timer.current)
       }
-      console.log("Setting timeout with args:", args)
       timer.current = setTimeout(() => {
-        console.log("Calling callback with args:", args)
         callback(...args)
       }, delay)
     },

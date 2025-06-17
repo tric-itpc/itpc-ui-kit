@@ -82,7 +82,6 @@ export const NumberField: React.FC<Props> = ({
   const [focused, onHandleFocused] = useState<boolean>(false)
 
   const onBlurInput = (): void => {
-    console.log("blur")
     onHandleFocused(false)
 
     if (onBlur) {
@@ -91,7 +90,6 @@ export const NumberField: React.FC<Props> = ({
   }
 
   const onFocusInput = (): void => {
-    console.log("focus")
     onHandleFocused(true)
 
     if (onFocus) {

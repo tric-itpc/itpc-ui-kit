@@ -1,8 +1,4 @@
 .itpc-error {
-  position: absolute;
-  right: 10px;
-  bottom: calc(-7px);
-
   overflow: hidden;
   box-sizing: border-box;
   max-width: 85%;
@@ -19,6 +15,18 @@
   cursor: text;
 
   transition: all 0.3s ease-in-out 0s;
+}
+
+.itpc-error__placement_inside {
+  position: absolute;
+  right: 10px;
+  bottom: calc(-7px);
+}
+
+.itpc-error__placement_bottom {
+  height: 14px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .itpc-error_show {

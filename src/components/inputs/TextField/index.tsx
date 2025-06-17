@@ -9,7 +9,7 @@ import {
   InputWrap,
   Placeholder,
 } from "../../_elements"
-import type { AutoComplete } from "../../../enums"
+import { AutoComplete, ErrorPlacement } from "../../../enums"
 import { InputType, ValidationState } from "../../types"
 
 export interface Props
@@ -24,6 +24,8 @@ export interface Props
   disabled?: boolean
   /** Текст ошибки */
   errorMessage?: string
+  /** Положение текста ошибки */
+  errorPlacement?: ErrorPlacement
   /** Иконка */
   icon?: React.ReactNode
   /** Идентификатор */
@@ -44,6 +46,8 @@ export interface Props
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void
   /** Подпись */
   placeholder?: string
+  /** Обязательность поля */
+  required?: boolean
   /** Тип инпута */
   type?: InputType
   /** Состояние валидации */
@@ -58,6 +62,7 @@ export const TextField: React.FC<Props> = ({
   defaultItem,
   disabled = false,
   errorMessage = "",
+  errorPlacement = ErrorPlacement.INSIDE,
   icon,
   id = "itpc-input",
   maxLength,
@@ -68,6 +73,7 @@ export const TextField: React.FC<Props> = ({
   onFocus,
   onKeyDown,
   placeholder = "",
+  required,
   type = "text",
   validationState = "valid",
   value = "",
@@ -102,12 +108,13 @@ export const TextField: React.FC<Props> = ({
   }
 
   return (
-    <Field {...rest} className={cn(className)}>
+    <Field {...rest} className={cn(className)} errorPlacement={errorPlacement}>
       <InputWrap focused={focused} validationState={validationState}>
         <Placeholder
           disabled={disabled}
           focused={focused || value.length > 0 || !!defaultItem}
           htmlFor={id}
+          required={required}
           validationState={validationState}
         >
           {placeholder}
@@ -131,13 +138,14 @@ export const TextField: React.FC<Props> = ({
           value={value}
         />
 
-        <InputError
-          errorMessage={errorMessage}
-          show={validationState === "invalid"}
-        />
-
         {icon && <InputIcon>{icon}</InputIcon>}
       </InputWrap>
+
+      <InputError
+        errorMessage={errorMessage}
+        errorPlacement={errorPlacement}
+        show={validationState === "invalid"}
+      />
     </Field>
   )
 }

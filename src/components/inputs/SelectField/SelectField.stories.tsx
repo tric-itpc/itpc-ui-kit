@@ -57,9 +57,9 @@ const Template: React.FC<Props> = (args) => {
   return (
     <SelectField
       {...args}
-      defaultItemId={selectedItem?.id}
       items={mockItems}
       onChange={onChange}
+      selectedItemId={selectedItem?.id}
     />
   )
 }
