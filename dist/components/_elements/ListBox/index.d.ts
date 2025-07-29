@@ -1,7 +1,7 @@
 import React from "react";
 import { type DurationAnimation } from "../../types";
 import "./styles.css";
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLUListElement> {
     children?: React.ReactNode;
     durationAnimation: DurationAnimation;
     isOpen: boolean;

@@ -1,7 +1,7 @@
 import React from "react";
 import { ValidationState } from "../../types";
 import "./styles.css";
-interface InputWrapProps {
+interface InputWrapProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
     disabled?: boolean;
     fixedHeight?: number;

@@ -5,5 +5,6 @@ export default meta;
 type Story = StoryObj<typeof DecimalField>;
 export declare const Basic: Story;
 export declare const Controlled: Story;
+export declare const СanEmptyString: Story;
 export declare const Disabled: Story;
 export declare const WithIcon: Story;

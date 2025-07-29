@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react";
-import type { AutoComplete } from "../../../enums";
+import { AutoComplete, ErrorPlacement } from "../../../enums";
 import { InputType, ValidationState } from "../../types";
 export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
     /** Параметры autoComplete */
@@ -12,6 +12,8 @@ export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> 
     disabled?: boolean;
     /** Текст ошибки */
     errorMessage?: string;
+    /** Положение текста ошибки */
+    errorPlacement?: ErrorPlacement;
     /** Иконка */
     icon?: React.ReactNode;
     /** Идентификатор */
@@ -32,6 +34,8 @@ export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> 
     onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     /** Подпись */
     placeholder?: string;
+    /** Обязательность поля */
+    required?: boolean;
     /** Тип инпута */
     type?: InputType;
     /** Состояние валидации */
