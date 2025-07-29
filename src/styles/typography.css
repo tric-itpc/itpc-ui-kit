@@ -21,6 +21,13 @@
   --itpc-font-weight-bold: 700;
 }
 
+select,
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
 .itpc-text_size_xxs,
 h6 {
   font-size: var(--itpc-font-size-xxs);
@@ -101,9 +108,11 @@ h1 {
 .itpc-text_color_secondary {
   color: var(--itpc-secondary-text-color);
 }
+
 .itpc-text_color_success {
   color: var(--itpc-success-text-color);
 }
+
 .itpc-text_color_warning {
   color: var(--itpc-warning-text-color);
 }
