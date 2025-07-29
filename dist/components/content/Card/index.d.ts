@@ -2,7 +2,9 @@ import React, { HTMLAttributes } from "react";
 import "./styles.css";
 export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
     /** Атрибуты тела карточки */
-    bodyAttr?: HTMLAttributes<HTMLDivElement>;
+    bodyAttr?: HTMLAttributes<HTMLDivElement> & {
+        "data-testid"?: string;
+    };
     /** Контент */
     children?: React.ReactNode;
     /** Дополнительный класс */
@@ -12,6 +14,8 @@ export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
     /** Заголовок карточки */
     title?: React.ReactNode;
     /** Атрибуты заголовка карточки */
-    titleAttr?: HTMLAttributes<HTMLParagraphElement>;
+    titleAttr?: HTMLAttributes<HTMLParagraphElement> & {
+        "data-testid"?: string;
+    };
 }
 export declare const Card: React.FC<Props>;

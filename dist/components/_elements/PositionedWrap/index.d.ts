@@ -1,9 +1,10 @@
 import React from "react";
-import { type PositionType } from "../../../lab/CalculateStyle/types";
+import { HORIZONTAL_POSITION, type PositionType } from "../../../lab/CalculateStyle/types";
 import "./styles.css";
 interface PositionedWrapProps {
     children: React.ReactNode;
     distanceBetweenElements?: number;
+    horizontalAlignment?: HORIZONTAL_POSITION;
     isClosing: boolean;
     isOpen: boolean;
     position?: PositionType;

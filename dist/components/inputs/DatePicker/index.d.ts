@@ -1,4 +1,5 @@
 import React, { HTMLAttributes } from "react";
+import { ErrorPlacement } from "../../../enums";
 import { type DurationAnimation, IInfo, ValidationState } from "../../types";
 import "./styles.css";
 import { type PositionType } from "./types";
@@ -29,12 +30,16 @@ export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> 
     durationAnimation?: DurationAnimation;
     /** Сообщение об ошибке */
     errorMessage?: string;
+    /** Положение текста ошибки */
+    errorPlacement?: ErrorPlacement;
     /** Идентификатор */
     id?: string;
     /** Флаг кликабельности иконки календаря */
     isIconClickable?: boolean;
     /** Флаг отображения иконки календаря */
     isShowIcon?: boolean;
+    /** Задать ограничение по ширине */
+    isWidthMaxContent?: boolean;
     /** Имя */
     name?: string;
     /** Период отображения календаря */

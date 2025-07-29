@@ -13,7 +13,9 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
     /** Подсказка */
     tooltip?: string;
     /** Атрибуты подсказки */
-    tooltipAttr?: HTMLAttributes<HTMLSpanElement>;
+    tooltipAttr?: HTMLAttributes<HTMLSpanElement> & {
+        "data-testid"?: string;
+    };
     /** Тип кнопки */
     type?: ButtonType;
 }

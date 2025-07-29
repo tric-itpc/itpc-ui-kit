@@ -5,8 +5,6 @@ import "./styles.css";
 export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
     /** Дополнительный класс */
     className?: string;
-    /** Значение по умолчанию */
-    defaultItemId?: string;
     /** Отключить */
     disabled?: boolean;
     /** Задержка анимации */
@@ -19,5 +17,9 @@ export interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> 
     placeholder: string;
     /** Позиционирование выпадающего списка */
     position?: ALLOWED_POSITIONS;
+    /** Обязательность поля */
+    required?: boolean;
+    /** Id выбранного элемента */
+    selectedItemId?: string;
 }
 export declare const SelectField: React.FC<Props>;

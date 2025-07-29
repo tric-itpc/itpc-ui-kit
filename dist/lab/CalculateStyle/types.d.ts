@@ -1,4 +1,3 @@
-/// <reference types="react" />
 export type PositionType = "absolute" | "fixed";
 export declare enum ALLOWED_POSITIONS {
     ABSOLUTE = "absolute",
@@ -37,8 +36,4 @@ export interface GetHorizontalPositionArg {
     parentLeft: number;
     parentWidth: number;
     scrollbarWidth: number;
-}
-export interface TransformOriginArg {
-    childrenRef: React.RefObject<HTMLDivElement>;
-    parentRef: React.RefObject<HTMLDivElement>;
 }

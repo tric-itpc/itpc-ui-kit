@@ -1,1 +1,2 @@
-export declare const updateScroll: (ref: React.RefObject<HTMLUListElement>, activeIndex: number) => void;
+import { RefObject } from "react";
+export declare const updateScroll: (ref: RefObject<HTMLUListElement>, activeIndex: number) => void;

@@ -38667,10 +38667,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Field = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
+var enums_1 = __webpack_require__(9965);
 __webpack_require__(8562);
 var Field = function (_a) {
-    var children = _a.children, className = _a.className, rest = __rest(_a, ["children", "className"]);
-    return (react_1.default.createElement("div", __assign({ className: (0, classnames_1.default)("itpc-field", className) }, rest), children));
+    var children = _a.children, className = _a.className, _b = _a.errorPlacement, errorPlacement = _b === void 0 ? enums_1.ErrorPlacement.INSIDE : _b, rest = __rest(_a, ["children", "className", "errorPlacement"]);
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-field", errorPlacement === enums_1.ErrorPlacement.BOTTOM &&
+            "itpc-field__error-placement_bottom", className) }), children));
 };
 exports.Field = Field;
 
@@ -38913,10 +38915,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InputError = void 0;
 var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
+var enums_1 = __webpack_require__(9965);
 __webpack_require__(8532);
 var InputError = function (_a) {
-    var errorMessage = _a.errorMessage, show = _a.show, validationType = _a.validationType;
-    return (react_1.default.createElement("span", { className: (0, classnames_1.default)("itpc-error", show && "itpc-error_show", validationType && "itpc-error_type_".concat(validationType)), title: errorMessage }, errorMessage));
+    var errorMessage = _a.errorMessage, _b = _a.errorPlacement, errorPlacement = _b === void 0 ? enums_1.ErrorPlacement.INSIDE : _b, show = _a.show, validationType = _a.validationType;
+    return (react_1.default.createElement("span", { className: (0, classnames_1.default)("itpc-error", ["itpc-error__placement_".concat(errorPlacement.toLowerCase())], show && "itpc-error_show", validationType && "itpc-error_type_".concat(validationType)), title: errorMessage }, errorMessage));
 };
 exports.InputError = InputError;
 
@@ -39067,11 +39070,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ListBox = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
+var lab_1 = __webpack_require__(432);
 var getTransformOriginByAxisX_1 = __webpack_require__(2157);
 var setDurationAnimation_1 = __webpack_require__(3965);
 __webpack_require__(6235);
 var ListBox = function (_a) {
     var children = _a.children, durationAnimation = _a.durationAnimation, isOpen = _a.isOpen, refChildren = _a.refChildren, refParent = _a.refParent, rest = __rest(_a, ["children", "durationAnimation", "isOpen", "refChildren", "refParent"]);
+    var windowWidth = (0, lab_1.useWindowSize)().windowWidth;
     var localRef = (0, react_1.useRef)(null);
     var ref = (refChildren === null || refChildren === void 0 ? void 0 : refChildren.current) || localRef.current;
     var _b = (0, react_1.useState)({}), styleAnimation = _b[0], setStyleAnimation = _b[1];
@@ -39080,11 +39085,10 @@ var ListBox = function (_a) {
             (0, setDurationAnimation_1.setDurationAnimation)(durationAnimation, ".itpc-list-box_opened", ".itpc-list-box_closed");
             ref.style.width = "".concat(refParent.current.offsetWidth, "px");
         }
-    }, [durationAnimation, refChildren, refParent]);
+    }, [durationAnimation, refChildren, refParent, windowWidth]);
     (0, react_1.useEffect)(function () {
         if (isOpen && (refParent === null || refParent === void 0 ? void 0 : refParent.current) && ref) {
             var animationTransform = (0, getTransformOriginByAxisX_1.getTransformOriginByAxisX)(refParent, refChildren || localRef);
-            console.log("transformOrigin:", animationTransform);
             setStyleAnimation({
                 transformOrigin: animationTransform,
             });
@@ -39224,12 +39228,12 @@ var CalculateStyle_1 = __webpack_require__(2156);
 var types_1 = __webpack_require__(8109);
 __webpack_require__(4624);
 var PositionedWrap = function (_a) {
-    var children = _a.children, distanceBetweenElements = _a.distanceBetweenElements, isClosing = _a.isClosing, isOpen = _a.isOpen, _b = _a.position, position = _b === void 0 ? types_1.ALLOWED_POSITIONS.FIXED : _b, refParent = _a.refParent;
+    var children = _a.children, distanceBetweenElements = _a.distanceBetweenElements, horizontalAlignment = _a.horizontalAlignment, isClosing = _a.isClosing, isOpen = _a.isOpen, _b = _a.position, position = _b === void 0 ? types_1.ALLOWED_POSITIONS.FIXED : _b, refParent = _a.refParent;
     var ref = (0, react_1.useRef)(null);
     var _c = (0, react_1.useState)({}), stylePosition = _c[0], setStylePosition = _c[1];
     var calculatePosition = function () {
         if (refParent) {
-            var stylePosition_1 = (0, CalculateStyle_1.getCalculatePosition)(refParent, ref, position, distanceBetweenElements);
+            var stylePosition_1 = (0, CalculateStyle_1.getCalculatePosition)(refParent, ref, position, distanceBetweenElements, horizontalAlignment);
             setStylePosition(stylePosition_1);
         }
     };
@@ -39290,14 +39294,14 @@ var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(9373);
 var SelectItem = function (_a) {
-    var activeIndex = _a.activeIndex, children = _a.children, disabled = _a.disabled, id = _a.id, isActive = _a.isActive, itemIndex = _a.itemIndex, onChange = _a.onChange, rest = __rest(_a, ["activeIndex", "children", "disabled", "id", "isActive", "itemIndex", "onChange"]);
+    var activeIndex = _a.activeIndex, children = _a.children, disabled = _a.disabled, id = _a.id, isActive = _a.isActive, itemIndex = _a.itemIndex, onChange = _a.onChange, onMouseEnter = _a.onMouseEnter, rest = __rest(_a, ["activeIndex", "children", "disabled", "id", "isActive", "itemIndex", "onChange", "onMouseEnter"]);
     var onClick = function () {
         if (!disabled) {
             onChange(id);
         }
     };
     var isActiveIndex = typeof activeIndex === "number" && activeIndex === itemIndex;
-    return (react_1.default.createElement("li", __assign({ className: (0, classnames_1.default)("itpc-select-item", !disabled && "itpc-select-item_clickable", disabled && "itpc-select-item_disabled", !isActiveIndex && isActive && "itpc-select-item_selected", isActiveIndex && "itpc-select-item_active"), onClick: onClick }, rest),
+    return (react_1.default.createElement("li", __assign({ className: (0, classnames_1.default)("itpc-select-item", !disabled && "itpc-select-item_clickable", !disabled && isActiveIndex && "itpc-select-item_clickable_hover", disabled && "itpc-select-item_disabled", !isActiveIndex && isActive && "itpc-select-item_selected", isActiveIndex && "itpc-select-item_active"), onClick: onClick, onMouseEnter: function () { return onMouseEnter && onMouseEnter(itemIndex); } }, rest),
         react_1.default.createElement("span", { className: (0, classnames_1.default)("itpc-select-item__stick", isActive && "itpc-select-item__stick_showed") }),
         children));
 };
@@ -40959,6 +40963,7 @@ var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var itpc_input_mask_1 = __webpack_require__(7004);
 var _elements_1 = __webpack_require__(5010);
+var enums_1 = __webpack_require__(9965);
 var lab_1 = __webpack_require__(432);
 var constants_1 = __webpack_require__(8601);
 var constants_2 = __webpack_require__(7727);
@@ -40968,9 +40973,9 @@ var DatePicker = function (_a) {
     var activeDates = _a.activeDates, _b = _a.className, className = _b === void 0 ? "" : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, disabledAfterDate = _a.disabledAfterDate, disabledBeforeDate = _a.disabledBeforeDate, disabledDates = _a.disabledDates, disabledDaysOfWeek = _a.disabledDaysOfWeek, _d = _a.disabledSelectMonth, disabledSelectMonth = _d === void 0 ? false : _d, _e = _a.disabledSelectYear, disabledSelectYear = _e === void 0 ? false : _e, _f = _a.durationAnimation, durationAnimation = _f === void 0 ? {
         durationClose: 200,
         durationOpen: 400,
-    } : _f, _g = _a.errorMessage, errorMessage = _g === void 0 ? "" : _g, _h = _a.id, id = _h === void 0 ? "itpc-datepicker" : _h, _j = _a.isIconClickable, isIconClickable = _j === void 0 ? false : _j, _k = _a.isShowIcon, isShowIcon = _k === void 0 ? true : _k, _l = _a.name, name = _l === void 0 ? "itpc-datepicker" : _l, _m = _a.offsetYear, offsetYear = _m === void 0 ? 10 : _m, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _o = _a.placeholder, placeholder = _o === void 0 ? "" : _o, _p = _a.position, position = _p === void 0 ? "fixed" : _p, scrollToYear = _a.scrollToYear, _q = _a.validationState, validationState = _q === void 0 ? "valid" : _q, _r = _a.value, value = _r === void 0 ? "" : _r, _s = _a.withTime, withTime = _s === void 0 ? false : _s, yearsFromTo = _a.yearsFromTo, rest = __rest(_a, ["activeDates", "className", "disabled", "disabledAfterDate", "disabledBeforeDate", "disabledDates", "disabledDaysOfWeek", "disabledSelectMonth", "disabledSelectYear", "durationAnimation", "errorMessage", "id", "isIconClickable", "isShowIcon", "name", "offsetYear", "onBlur", "onChange", "onFocus", "placeholder", "position", "scrollToYear", "validationState", "value", "withTime", "yearsFromTo"]);
-    var _t = (0, react_1.useState)(false), focused = _t[0], onHandleFocused = _t[1];
-    var _u = (0, react_1.useState)(false), isShowCalendar = _u[0], setIsShowCalendar = _u[1];
+    } : _f, _g = _a.errorMessage, errorMessage = _g === void 0 ? "" : _g, _h = _a.errorPlacement, errorPlacement = _h === void 0 ? enums_1.ErrorPlacement.INSIDE : _h, _j = _a.id, id = _j === void 0 ? "itpc-datepicker" : _j, _k = _a.isIconClickable, isIconClickable = _k === void 0 ? false : _k, _l = _a.isShowIcon, isShowIcon = _l === void 0 ? true : _l, _m = _a.isWidthMaxContent, isWidthMaxContent = _m === void 0 ? false : _m, _o = _a.name, name = _o === void 0 ? "itpc-datepicker" : _o, _p = _a.offsetYear, offsetYear = _p === void 0 ? 10 : _p, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _q = _a.placeholder, placeholder = _q === void 0 ? "" : _q, _r = _a.position, position = _r === void 0 ? "fixed" : _r, scrollToYear = _a.scrollToYear, _s = _a.validationState, validationState = _s === void 0 ? "valid" : _s, _t = _a.value, value = _t === void 0 ? "" : _t, _u = _a.withTime, withTime = _u === void 0 ? false : _u, yearsFromTo = _a.yearsFromTo, rest = __rest(_a, ["activeDates", "className", "disabled", "disabledAfterDate", "disabledBeforeDate", "disabledDates", "disabledDaysOfWeek", "disabledSelectMonth", "disabledSelectYear", "durationAnimation", "errorMessage", "errorPlacement", "id", "isIconClickable", "isShowIcon", "isWidthMaxContent", "name", "offsetYear", "onBlur", "onChange", "onFocus", "placeholder", "position", "scrollToYear", "validationState", "value", "withTime", "yearsFromTo"]);
+    var _v = (0, react_1.useState)(false), focused = _v[0], onHandleFocused = _v[1];
+    var _w = (0, react_1.useState)(false), isShowCalendar = _w[0], setIsShowCalendar = _w[1];
     var isClosing = (0, lab_1.useAnimation)(isShowCalendar, durationAnimation).isClosing;
     var datePickerRef = (0, react_1.useRef)(null);
     var onOpenCalendar = function () {
@@ -41020,12 +41025,13 @@ var DatePicker = function (_a) {
             }, sourceInfo.event, { id: id, name: name });
         }
     };
-    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-datepicker", disabled && "itpc-datepicker_disabled", className), ref: datePickerRef }),
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-datepicker", isWidthMaxContent && "itpc-datepicker__width_max_content", errorPlacement === enums_1.ErrorPlacement.BOTTOM &&
+            "itpc-datepicker__error-placement_bottom", disabled && "itpc-datepicker_disabled", className), ref: datePickerRef }),
         react_1.default.createElement("div", { className: (0, classnames_1.default)("itpc-datepicker__input-wrap", disabled && "itpc-datepicker__input-wrap_disabled", !disabled && "itpc-datepicker__input-wrap_hover", validationState === "invalid" && "itpc-datepicker__input-wrap_error") },
             placeholder && (react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: focused || !!value.length, htmlFor: id, validationState: validationState }, placeholder)),
             react_1.default.createElement(itpc_input_mask_1.PatternFormat, { className: (0, classnames_1.default)("itpc-datepicker__input", disabled && "itpc-datepicker__input_disabled", (focused || value.length) && "itpc-datepicker__input_focused"), disabled: disabled, format: withTime ? constants_2.FORMAT_MASK_DATE_TIME : constants_2.FORMAT_MASK_DATE, id: id, mask: withTime ? constants_2.MASK_DATE_TIME : constants_2.MASK_DATE, name: name, onBlur: onBlurPicker, onFocus: onFocusPicker, onValueChange: onChangePicker, type: "text", value: value, allowEmptyFormatting: true, valueIsNumericString: true }),
-            isShowIcon && (react_1.default.createElement(_elements_1.IconCalendar, { disabled: disabled, isClickable: isIconClickable, onClick: onClickIcon })),
-            react_1.default.createElement(_elements_1.InputError, { errorMessage: errorMessage, show: validationState === "invalid" })),
+            isShowIcon && (react_1.default.createElement(_elements_1.IconCalendar, { disabled: disabled, isClickable: isIconClickable, onClick: onClickIcon }))),
+        react_1.default.createElement(_elements_1.InputError, { errorMessage: errorMessage, errorPlacement: errorPlacement, show: validationState === "invalid" }),
         react_1.default.createElement(_elements_1.Portal, { element: document.body },
             react_1.default.createElement(_elements_1.PositionedWrap, { distanceBetweenElements: constants_1.DISTANCE_BETWEEN_CALENDAR, isClosing: isClosing, isOpen: isShowCalendar, position: position, refParent: datePickerRef },
                 react_1.default.createElement(lab_1.Calendar, { currentValue: withTime
@@ -41293,6 +41299,7 @@ var _elements_1 = __webpack_require__(5010);
 var ListBox_1 = __webpack_require__(3288);
 var enums_1 = __webpack_require__(9965);
 var lab_1 = __webpack_require__(432);
+var types_1 = __webpack_require__(8109);
 __webpack_require__(8272);
 var MultiSelectField = function (_a) {
     var className = _a.className, _b = _a.disabled, disabled = _b === void 0 ? false : _b, _c = _a.durationAnimation, durationAnimation = _c === void 0 ? {
@@ -41302,6 +41309,7 @@ var MultiSelectField = function (_a) {
     var _f = (0, react_1.useState)(false), isOpen = _f[0], setIsOpen = _f[1];
     var isClosing = (0, lab_1.useAnimation)(isOpen, durationAnimation).isClosing;
     var ref = (0, react_1.useRef)(null);
+    var refButton = (0, react_1.useRef)(null);
     var refChildren = (0, react_1.useRef)(null);
     var onClose = function () {
         setIsOpen(false);
@@ -41320,10 +41328,6 @@ var MultiSelectField = function (_a) {
             else {
                 select.add(value);
             }
-            console.log("value", value);
-            console.log("select.has(value)", select.has(value));
-            console.log("selectedItems", selectedItems);
-            console.log("Array.from(select)", Array.from(select));
             onChange(Array.from(select));
         }
     };
@@ -41338,6 +41342,21 @@ var MultiSelectField = function (_a) {
         return "";
     };
     var _g = (0, lab_1.useKeyboardNavigation)(items), activeIndex = _g.activeIndex, handleKeyUpAndDown = _g.handleKeyUpAndDown, setActiveIndex = _g.setActiveIndex;
+    var _h = (0, lab_1.useMouseMovement)(refChildren), isMouseMoved = _h.isMouseMoved, setIsMouseMoved = _h.setIsMouseMoved;
+    var hoveredIndex = (0, lab_1.useHoveredIndex)(refChildren, items);
+    var handleMouseSelection = function (value) {
+        var _a;
+        onChangeValue(value);
+        setIsMouseMoved(false);
+        var index = items.findIndex(function (item) { return item.id === value; });
+        setActiveIndex(index);
+        (_a = refButton.current) === null || _a === void 0 ? void 0 : _a.focus();
+    };
+    var onMouseEnter = function (index) {
+        if (isMouseMoved) {
+            setActiveIndex(index);
+        }
+    };
     var handleEnterKey = function (event) {
         var _a;
         event.preventDefault();
@@ -41346,6 +41365,9 @@ var MultiSelectField = function (_a) {
     var handleKey = function (event) {
         if (!isOpen) {
             return;
+        }
+        if (isMouseMoved) {
+            setIsMouseMoved(false);
         }
         switch (event.key) {
             case enums_1.KeyCode.ARROW_UP:
@@ -41370,22 +41392,34 @@ var MultiSelectField = function (_a) {
             setActiveIndex(selectedItems
                 ? items.findIndex(function (_a) {
                     var id = _a.id;
-                    return id === selectedItems[0];
+                    return id === selectedItems[selectedItems.length - 1];
                 })
                 : (_a = items.findIndex(function (item) { return !item.disabled; })) !== null && _a !== void 0 ? _a : 0);
         }
     }, [isOpen]);
+    (0, react_1.useEffect)(function () {
+        var _a;
+        if (isMouseMoved) {
+            var isDisabledItem = (_a = items.find(function (_, index) { return hoveredIndex === index; })) === null || _a === void 0 ? void 0 : _a.disabled;
+            if (!isDisabledItem &&
+                typeof hoveredIndex === "number" &&
+                hoveredIndex >= 0 &&
+                hoveredIndex !== activeIndex) {
+                setActiveIndex(hoveredIndex);
+            }
+        }
+    }, [isMouseMoved]);
     (0, lab_1.useOnClickOutside)(ref, onClose, isOpen, refChildren);
     return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-multi-select", disabled && " itpc-multi-select_disabled", !disabled && " itpc-multi-select_hover", className), ref: ref }),
-        react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-multi-select__button", isOpen && "itpc-multi-select__button_focused"), disabled: disabled, onClick: handleOpen, onKeyDown: handleKey, type: "button" },
+        react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-multi-select__button", isOpen && "itpc-multi-select__button_focused"), disabled: disabled, onClick: handleOpen, onKeyDown: handleKey, ref: refButton, type: "button" },
             react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: isOpen || !!(selectedItems === null || selectedItems === void 0 ? void 0 : selectedItems.length) }, placeholder),
             selectText()),
         react_1.default.createElement(_elements_1.IconArrow, { disabled: disabled, onClick: handleOpen, orientation: isOpen ? "top" : "bottom" }),
         react_1.default.createElement(_elements_1.Portal, { element: document.body },
-            react_1.default.createElement(_elements_1.PositionedWrap, { isClosing: isClosing, isOpen: isOpen, refParent: ref },
+            react_1.default.createElement(_elements_1.PositionedWrap, { horizontalAlignment: types_1.HORIZONTAL_POSITION.LEFT, isClosing: isClosing, isOpen: isOpen, refParent: ref },
                 react_1.default.createElement(ListBox_1.ListBox, { durationAnimation: durationAnimation, isOpen: isOpen ? !isClosing : isOpen, refChildren: refChildren, refParent: ref }, items.map(function (item, itemIndex) {
                     var _a;
-                    return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, disabled: item.disabled, id: item.id, isActive: (_a = selectedItems === null || selectedItems === void 0 ? void 0 : selectedItems.includes(item.id)) !== null && _a !== void 0 ? _a : false, itemIndex: itemIndex, key: item.id, onChange: onChangeValue }, item.value));
+                    return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, disabled: item.disabled, id: item.id, isActive: (_a = selectedItems === null || selectedItems === void 0 ? void 0 : selectedItems.includes(item.id)) !== null && _a !== void 0 ? _a : false, itemIndex: itemIndex, key: item.id, onChange: handleMouseSelection, onMouseEnter: onMouseEnter }, item.value));
                 }))))));
 };
 exports.MultiSelectField = MultiSelectField;
@@ -41457,14 +41491,12 @@ var NumberField = function (_a) {
     var _b = _a.allowEmptyFormatting, allowEmptyFormatting = _b === void 0 ? true : _b, _c = _a.className, className = _c === void 0 ? "" : _c, _d = _a.disabled, disabled = _d === void 0 ? false : _d, _e = _a.errorMessage, errorMessage = _e === void 0 ? "" : _e, _f = _a.format, format = _f === void 0 ? "" : _f, getInputRef = _a.getInputRef, icon = _a.icon, id = _a.id, _g = _a.mask, mask = _g === void 0 ? "_" : _g, name = _a.name, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _h = _a.placeholder, placeholder = _h === void 0 ? "" : _h, _j = _a.prefix, prefix = _j === void 0 ? "" : _j, _k = _a.replaceValue, replaceValue = _k === void 0 ? function (value) { return value; } : _k, _l = _a.validationState, validationState = _l === void 0 ? "valid" : _l, _m = _a.value, value = _m === void 0 ? "" : _m, rest = __rest(_a, ["allowEmptyFormatting", "className", "disabled", "errorMessage", "format", "getInputRef", "icon", "id", "mask", "name", "onBlur", "onChange", "onFocus", "placeholder", "prefix", "replaceValue", "validationState", "value"]);
     var _o = (0, react_1.useState)(false), focused = _o[0], onHandleFocused = _o[1];
     var onBlurInput = function () {
-        console.log("blur");
         onHandleFocused(false);
         if (onBlur) {
             onBlur();
         }
     };
     var onFocusInput = function () {
-        console.log("focus");
         onHandleFocused(true);
         if (onFocus) {
             onFocus();
@@ -41596,6 +41628,7 @@ var _elements_1 = __webpack_require__(5010);
 var ListBox_1 = __webpack_require__(3288);
 var enums_1 = __webpack_require__(9965);
 var lab_1 = __webpack_require__(432);
+var types_1 = __webpack_require__(8109);
 var TextField_1 = __webpack_require__(1675);
 __webpack_require__(2873);
 var SearchField = function (_a) {
@@ -41611,7 +41644,6 @@ var SearchField = function (_a) {
     var ref = (0, react_1.useRef)(null);
     var refChildren = (0, react_1.useRef)(null);
     var closeSuggestions = function () {
-        console.log("closeSuggestions");
         setIsOpenedSuggestions(false);
     };
     var openSuggestions = function () {
@@ -41651,7 +41683,14 @@ var SearchField = function (_a) {
         : items.filter(filterItems);
     var isShowListResult = isOpenedSuggestions && !!filteredItems.length && !!(value === null || value === void 0 ? void 0 : value.length);
     var _p = (0, lab_1.useKeyboardNavigation)(filteredItems), activeIndex = _p.activeIndex, handleKeyUpAndDown = _p.handleKeyUpAndDown, setActiveIndex = _p.setActiveIndex;
+    var _q = (0, lab_1.useMouseMovement)(refChildren), isMouseMoved = _q.isMouseMoved, setIsMouseMoved = _q.setIsMouseMoved;
+    var hoveredIndex = (0, lab_1.useHoveredIndex)(refChildren, filteredItems);
     var isClosing = (0, lab_1.useAnimation)(isShowListResult, durationAnimation).isClosing;
+    var onMouseEnter = function (index) {
+        if (isMouseMoved) {
+            setActiveIndex(index);
+        }
+    };
     var handleArrowKeys = function (event) {
         handleKeyUpAndDown(event);
         setIsBlockFetch(true);
@@ -41662,6 +41701,7 @@ var SearchField = function (_a) {
     };
     var handleEnterKey = function (event) {
         var _a, _b;
+        event.preventDefault();
         setIsBlockFetch(false);
         var itemToChange = isInsertCurrentlySelected && !filteredArray.length
             ? (_a = filteredArray[activeIndex]) === null || _a === void 0 ? void 0 : _a.id
@@ -41678,6 +41718,9 @@ var SearchField = function (_a) {
     var handleKey = function (event) {
         if (!isOpenedSuggestions) {
             return;
+        }
+        if (isMouseMoved) {
+            setIsMouseMoved(false);
         }
         switch (event.key) {
             case enums_1.KeyCode.ARROW_UP:
@@ -41743,7 +41786,7 @@ var SearchField = function (_a) {
         if (refChildren && activeIndex !== -1) {
             (0, lab_1.updateScroll)(refChildren, activeIndex);
         }
-        if (isInsertCurrentlySelected && !!filteredArray.length) {
+        if (isInsertCurrentlySelected && !!filteredArray.length && !isMouseMoved) {
             if (!isBlockFetch) {
                 setIsBlockFetch(true);
             }
@@ -41760,13 +41803,24 @@ var SearchField = function (_a) {
                 })
                 : (_a = filteredItems.findIndex(function (item) { return !item.disabled; })) !== null && _a !== void 0 ? _a : 0);
         }
+        else {
+            setIsBlockFetch(false);
+        }
     }, [isOpenedSuggestions]);
+    (0, react_1.useEffect)(function () {
+        if (isMouseMoved &&
+            typeof hoveredIndex === "number" &&
+            hoveredIndex >= 0 &&
+            hoveredIndex !== activeIndex) {
+            setActiveIndex(hoveredIndex);
+        }
+    }, [isMouseMoved]);
     (0, lab_1.useOnClickOutside)(ref, closeSuggestions);
     return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-search-field", !disabled && "itpc-search-field_hover ", disabled && "itpc-search-field_disabled", className), ref: ref }),
         react_1.default.createElement(TextField_1.TextField, __assign({ autoComplete: autoComplete, defaultItem: defaultItem, disabled: disabled, icon: react_1.default.createElement("div", { onClick: clear }, icon), id: "itpc-search-field", name: "itpc-search-field", onBlur: closeSuggestions, onChange: changeValue, onClickInput: onClickInput, onFocus: openSuggestions, onKeyDown: handleKey, placeholder: placeholder, value: value }, textFieldAttr)),
         react_1.default.createElement(_elements_1.Portal, { element: document.body },
-            react_1.default.createElement(_elements_1.PositionedWrap, { isClosing: isClosing, isOpen: isShowListResult, refParent: ref }, !!(filteredItems === null || filteredItems === void 0 ? void 0 : filteredItems.length) && !!(value === null || value === void 0 ? void 0 : value.length) && (react_1.default.createElement(ListBox_1.ListBox, { durationAnimation: durationAnimation, isOpen: isOpenedSuggestions ? !isClosing : isOpenedSuggestions, refChildren: refChildren, refParent: ref }, !!value.length &&
-                filteredItems.map(function (item, itemIndex) { return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, id: item.id, isActive: item.id === currentItem, itemIndex: itemIndex, key: item.id, onChange: changeItem }, item.value)); })))))));
+            react_1.default.createElement(_elements_1.PositionedWrap, { horizontalAlignment: types_1.HORIZONTAL_POSITION.LEFT, isClosing: isClosing, isOpen: isShowListResult, refParent: ref }, !!(filteredItems === null || filteredItems === void 0 ? void 0 : filteredItems.length) && !!(value === null || value === void 0 ? void 0 : value.length) && (react_1.default.createElement(ListBox_1.ListBox, { durationAnimation: durationAnimation, isOpen: isOpenedSuggestions ? !isClosing : isOpenedSuggestions, refChildren: refChildren, refParent: ref }, !!value.length &&
+                filteredItems.map(function (item, itemIndex) { return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, id: item.id, isActive: item.id === currentItem, itemIndex: itemIndex, key: item.id, onChange: changeItem, onMouseEnter: onMouseEnter }, item.value)); })))))));
 };
 exports.SearchField = SearchField;
 
@@ -41861,6 +41915,13 @@ var SelectField = function (_a) {
         }
     };
     var _j = (0, useKeyboardNavigation_1.useKeyboardNavigation)(items), activeIndex = _j.activeIndex, handleKeyUpAndDown = _j.handleKeyUpAndDown, setActiveIndex = _j.setActiveIndex;
+    var _k = (0, lab_1.useMouseMovement)(refChildren), isMouseMoved = _k.isMouseMoved, setIsMouseMoved = _k.setIsMouseMoved;
+    var hoveredIndex = (0, lab_1.useHoveredIndex)(refChildren, items);
+    var onMouseEnter = function (index) {
+        if (isMouseMoved) {
+            setActiveIndex(index);
+        }
+    };
     var handleEnterKey = function (event) {
         var _a;
         event.preventDefault();
@@ -41871,6 +41932,9 @@ var SelectField = function (_a) {
     var handleKey = function (event) {
         if (!isOpen) {
             return;
+        }
+        if (isMouseMoved) {
+            setIsMouseMoved(false);
         }
         switch (event.key) {
             case enums_1.KeyCode.ARROW_UP:
@@ -41900,6 +41964,18 @@ var SelectField = function (_a) {
                 : (_a = items.findIndex(function (item) { return !item.disabled; })) !== null && _a !== void 0 ? _a : 0);
         }
     }, [selectedItemId, items, isOpen]);
+    (0, react_1.useEffect)(function () {
+        var _a;
+        if (isMouseMoved) {
+            var isDisabledItem = (_a = items.find(function (_, index) { return hoveredIndex === index; })) === null || _a === void 0 ? void 0 : _a.disabled;
+            if (!isDisabledItem &&
+                typeof hoveredIndex === "number" &&
+                hoveredIndex >= 0 &&
+                hoveredIndex !== activeIndex) {
+                setActiveIndex(hoveredIndex);
+            }
+        }
+    }, [isMouseMoved]);
     (0, lab_1.useOnClickOutside)(ref, onClose, isOpen);
     return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-select", !disabled && "itpc-select_hover", disabled && " itpc-select_disabled", className), ref: ref }),
         react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-select__button", isOpen && "itpc-select__button_focused"), disabled: disabled, onClick: handleOpen, onKeyDown: handleKey, type: "button" },
@@ -41908,8 +41984,8 @@ var SelectField = function (_a) {
                 ((_b = items.find(function (item) { return item.id === selectedItemId; })) === null || _b === void 0 ? void 0 : _b.value)),
         react_1.default.createElement(_elements_1.IconArrow, { disabled: disabled, onClick: handleOpen, orientation: isOpen ? "top" : "bottom" }),
         react_1.default.createElement(_elements_1.Portal, { element: document.body },
-            react_1.default.createElement(_elements_1.PositionedWrap, { isClosing: isClosing, isOpen: isOpen, position: position, refParent: ref },
-                react_1.default.createElement(ListBox_1.ListBox, { durationAnimation: durationAnimation, isOpen: isOpen ? !isClosing : isOpen, refChildren: refChildren, refParent: ref }, items.map(function (item, itemIndex) { return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, disabled: item.disabled, id: item.id, isActive: selectedItemId === item.id, itemIndex: itemIndex, key: item.id, onChange: changeValue }, item.value)); }))))));
+            react_1.default.createElement(_elements_1.PositionedWrap, { horizontalAlignment: types_1.HORIZONTAL_POSITION.LEFT, isClosing: isClosing, isOpen: isOpen, position: position, refParent: ref },
+                react_1.default.createElement(ListBox_1.ListBox, { durationAnimation: durationAnimation, isOpen: isOpen ? !isClosing : isOpen, refChildren: refChildren, refParent: ref }, items.map(function (item, itemIndex) { return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, disabled: item.disabled, id: item.id, isActive: selectedItemId === item.id, itemIndex: itemIndex, key: item.id, onChange: changeValue, onMouseEnter: onMouseEnter }, item.value)); }))))));
 };
 exports.SelectField = SelectField;
 
@@ -42095,10 +42171,10 @@ exports.TextField = void 0;
 var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 var _elements_1 = __webpack_require__(5010);
+var enums_1 = __webpack_require__(9965);
 var TextField = function (_a) {
-    var autoComplete = _a.autoComplete, _b = _a.className, className = _b === void 0 ? "" : _b, defaultItem = _a.defaultItem, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.errorMessage, errorMessage = _d === void 0 ? "" : _d, icon = _a.icon, _e = _a.id, id = _e === void 0 ? "itpc-input" : _e, maxLength = _a.maxLength, _f = _a.name, name = _f === void 0 ? "itpc-input" : _f, onBlur = _a.onBlur, onChange = _a.onChange, onClickInput = _a.onClickInput, onFocus = _a.onFocus, onKeyDown = _a.onKeyDown, _g = _a.placeholder, placeholder = _g === void 0 ? "" : _g, required = _a.required, _h = _a.type, type = _h === void 0 ? "text" : _h, _j = _a.validationState, validationState = _j === void 0 ? "valid" : _j, _k = _a.value, value = _k === void 0 ? "" : _k, rest = __rest(_a, ["autoComplete", "className", "defaultItem", "disabled", "errorMessage", "icon", "id", "maxLength", "name", "onBlur", "onChange", "onClickInput", "onFocus", "onKeyDown", "placeholder", "required", "type", "validationState", "value"]);
-    console.log("TextField received props:", { onChange: onChange, value: value });
-    var _l = (0, react_1.useState)(false), focused = _l[0], onHandleFocused = _l[1];
+    var autoComplete = _a.autoComplete, _b = _a.className, className = _b === void 0 ? "" : _b, defaultItem = _a.defaultItem, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.errorMessage, errorMessage = _d === void 0 ? "" : _d, _e = _a.errorPlacement, errorPlacement = _e === void 0 ? enums_1.ErrorPlacement.INSIDE : _e, icon = _a.icon, _f = _a.id, id = _f === void 0 ? "itpc-input" : _f, maxLength = _a.maxLength, _g = _a.name, name = _g === void 0 ? "itpc-input" : _g, onBlur = _a.onBlur, onChange = _a.onChange, onClickInput = _a.onClickInput, onFocus = _a.onFocus, onKeyDown = _a.onKeyDown, _h = _a.placeholder, placeholder = _h === void 0 ? "" : _h, required = _a.required, _j = _a.type, type = _j === void 0 ? "text" : _j, _k = _a.validationState, validationState = _k === void 0 ? "valid" : _k, _l = _a.value, value = _l === void 0 ? "" : _l, rest = __rest(_a, ["autoComplete", "className", "defaultItem", "disabled", "errorMessage", "errorPlacement", "icon", "id", "maxLength", "name", "onBlur", "onChange", "onClickInput", "onFocus", "onKeyDown", "placeholder", "required", "type", "validationState", "value"]);
+    var _m = (0, react_1.useState)(false), focused = _m[0], onHandleFocused = _m[1];
     var onBlurInput = function () {
         onHandleFocused(false);
         if (onBlur) {
@@ -42119,12 +42195,12 @@ var TextField = function (_a) {
             onChange(event.currentTarget.value, event);
         }
     };
-    return (react_1.default.createElement(_elements_1.Field, __assign({}, rest, { className: (0, classnames_1.default)(className) }),
+    return (react_1.default.createElement(_elements_1.Field, __assign({}, rest, { className: (0, classnames_1.default)(className), errorPlacement: errorPlacement }),
         react_1.default.createElement(_elements_1.InputWrap, { focused: focused, validationState: validationState },
             react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: focused || value.length > 0 || !!defaultItem, htmlFor: id, required: required, validationState: validationState }, placeholder),
             react_1.default.createElement("input", { className: (0, classnames_1.default)("itpc-input", (focused || !!value.length) && "itpc-input_focused"), autoComplete: autoComplete, disabled: disabled, id: id, maxLength: maxLength, name: name, onBlur: onBlurInput, onChange: onChangeInput, onFocus: onFocusInput, onKeyDown: onKeyDown, type: type, value: value }),
-            react_1.default.createElement(_elements_1.InputError, { errorMessage: errorMessage, show: validationState === "invalid" }),
-            icon && react_1.default.createElement(_elements_1.InputIcon, null, icon))));
+            icon && react_1.default.createElement(_elements_1.InputIcon, null, icon)),
+        react_1.default.createElement(_elements_1.InputError, { errorMessage: errorMessage, errorPlacement: errorPlacement, show: validationState === "invalid" })));
 };
 exports.TextField = TextField;
 
@@ -42719,7 +42795,7 @@ Object.defineProperty(exports, "ConfigContext", ({ enumerable: true, get: functi
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.AutoComplete = exports.KeyCode = exports.AnimationTypes = exports.TextTag = exports.TextType = exports.TextWeight = exports.TextSize = exports.RowJustify = exports.RowAlign = exports.NumberColumns = exports.SortType = exports.Theme = exports.UIKitColors = void 0;
+exports.ErrorPlacement = exports.AutoComplete = exports.KeyCode = exports.AnimationTypes = exports.TextTag = exports.TextType = exports.TextWeight = exports.TextSize = exports.RowJustify = exports.RowAlign = exports.NumberColumns = exports.SortType = exports.Theme = exports.UIKitColors = void 0;
 var UIKitColors;
 (function (UIKitColors) {
     UIKitColors["black"] = "#000";
@@ -42816,6 +42892,11 @@ var AutoComplete;
     AutoComplete["OFF"] = "off";
     AutoComplete["ON"] = "on";
 })(AutoComplete = exports.AutoComplete || (exports.AutoComplete = {}));
+var ErrorPlacement;
+(function (ErrorPlacement) {
+    ErrorPlacement["BOTTOM"] = "bottom";
+    ErrorPlacement["INSIDE"] = "inside";
+})(ErrorPlacement = exports.ErrorPlacement || (exports.ErrorPlacement = {}));
 
 
 /***/ }),
@@ -42925,7 +43006,7 @@ var getVerticalPosition = function (refParent, ref, distanceBetweenElements) {
     }
 };
 exports.getVerticalPosition = getVerticalPosition;
-var getCalculatePosition = function (refParent, refChildren, position, distanceBetweenElements) {
+var getCalculatePosition = function (refParent, refChildren, position, distanceBetweenElements, horizontalAlignment) {
     if (position !== types_1.ALLOWED_POSITIONS.ABSOLUTE &&
         position !== types_1.ALLOWED_POSITIONS.FIXED) {
         throw new Error("\u041D\u0435\u0434\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 \u0441\u0432\u043E\u0439\u0441\u0442\u0432\u0430 position: ".concat(position, ". \u0414\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u044B\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044F: absolute, fixed"));
@@ -42944,7 +43025,9 @@ var getCalculatePosition = function (refParent, refChildren, position, distanceB
             parentWidth: parentWidth,
             scrollbarWidth: scrollbarWidth,
         };
-        var horizontalPosition = (0, exports.getHorizontalPosition)(argHorizontalPosition);
+        var horizontalPosition = horizontalAlignment
+            ? horizontalAlignment
+            : (0, exports.getHorizontalPosition)(argHorizontalPosition);
         var distanceUnderInput = documentHeight - parentBottom;
         var currentDistanceBetweenElements = distanceBetweenElements !== null && distanceBetweenElements !== void 0 ? distanceBetweenElements : constants_1.DEFAULT_DISTANCE_BETWEEN_ELEMENTS;
         var verticalPosition = void 0;
@@ -43865,7 +43948,7 @@ var DecimalFixed = /** @class */ (function () {
         return new decimal_js_light_1.Decimal(this.generate()).equals(value);
     };
     DecimalFixed.prototype.generate = function () {
-        return this.fraction === null
+        return !this.accuracy || this.fraction === null
             ? this.empty && this.int === null
                 ? ""
                 : String(this.int)
@@ -44030,13 +44113,17 @@ exports.getTransformOriginByAxisXY = getTransformOriginByAxisXY;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.useWindowSize = exports.useTheme = exports.useOnClickOutside = exports.useKeyboardNavigation = exports.useDebounce = exports.useAnimation = void 0;
+exports.useWindowSize = exports.useTheme = exports.useOnClickOutside = exports.useMouseMovement = exports.useKeyboardNavigation = exports.useHoveredIndex = exports.useDebounce = exports.useAnimation = void 0;
 var useAnimation_1 = __webpack_require__(6127);
 Object.defineProperty(exports, "useAnimation", ({ enumerable: true, get: function () { return useAnimation_1.useAnimation; } }));
 var useDebounce_1 = __webpack_require__(6032);
 Object.defineProperty(exports, "useDebounce", ({ enumerable: true, get: function () { return useDebounce_1.useDebounce; } }));
+var useHoveredIndex_1 = __webpack_require__(5302);
+Object.defineProperty(exports, "useHoveredIndex", ({ enumerable: true, get: function () { return useHoveredIndex_1.useHoveredIndex; } }));
 var useKeyboardNavigation_1 = __webpack_require__(8252);
 Object.defineProperty(exports, "useKeyboardNavigation", ({ enumerable: true, get: function () { return useKeyboardNavigation_1.useKeyboardNavigation; } }));
+var useMouseMovement_1 = __webpack_require__(7667);
+Object.defineProperty(exports, "useMouseMovement", ({ enumerable: true, get: function () { return useMouseMovement_1.useMouseMovement; } }));
 var useOnClickOutside_1 = __webpack_require__(9009);
 Object.defineProperty(exports, "useOnClickOutside", ({ enumerable: true, get: function () { return useOnClickOutside_1.useOnClickOutside; } }));
 var useTheme_1 = __webpack_require__(4600);
@@ -44108,14 +44195,66 @@ var useDebounce = function (callback, delay) {
         if (timer.current) {
             clearTimeout(timer.current);
         }
-        console.log("Setting timeout with args:", args);
         timer.current = setTimeout(function () {
-            console.log("Calling callback with args:", args);
             callback.apply(void 0, args);
         }, delay);
     }, [callback, delay]);
 };
 exports.useDebounce = useDebounce;
+
+
+/***/ }),
+
+/***/ 5302:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useHoveredIndex = void 0;
+var react_1 = __webpack_require__(9155);
+/**
+ * Хук, который позволяет получить индекс элемента над которым находится курсор
+ * @param ref - ссылка на контейнер
+ * @param items - массив элементов
+ */
+var useHoveredIndex = function (ref, items) {
+    var _a = (0, react_1.useState)(-1), hoveredIndex = _a[0], setHoveredIndex = _a[1];
+    (0, react_1.useEffect)(function () {
+        var container = ref.current;
+        if (!container) {
+            return;
+        }
+        var handleMouseMove = function (event) {
+            var clientX = event.clientX, clientY = event.clientY;
+            var children = Array.from(container.children);
+            if (children.length === 0) {
+                setHoveredIndex(-1);
+                return;
+            }
+            var hoveredElement = children.find(function (child) {
+                var rect = child.getBoundingClientRect();
+                return (clientX >= rect.left &&
+                    clientX <= rect.right &&
+                    clientY >= rect.top &&
+                    clientY <= rect.bottom);
+            });
+            if (hoveredElement) {
+                var index = children.indexOf(hoveredElement);
+                setHoveredIndex(index);
+            }
+            else {
+                setHoveredIndex(-1);
+            }
+        };
+        container.addEventListener("mousemove", handleMouseMove);
+        return function () {
+            container.removeEventListener("mousemove", handleMouseMove);
+        };
+    }, [ref, items]);
+    return hoveredIndex;
+};
+exports.useHoveredIndex = useHoveredIndex;
 
 
 /***/ }),
@@ -44156,6 +44295,42 @@ var useKeyboardNavigation = function (items) {
     return { activeIndex: activeIndex, handleKeyUpAndDown: handleKeyUpAndDown, setActiveIndex: setActiveIndex };
 };
 exports.useKeyboardNavigation = useKeyboardNavigation;
+
+
+/***/ }),
+
+/***/ 7667:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useMouseMovement = void 0;
+var react_1 = __webpack_require__(9155);
+var useMouseMovement = function (ref) {
+    var _a = (0, react_1.useState)(false), isMouseMoved = _a[0], setIsMouseMoved = _a[1];
+    var _b = (0, react_1.useState)({ x: 0, y: 0 }), initialPosition = _b[0], setInitialPosition = _b[1];
+    (0, react_1.useEffect)(function () {
+        var element = (ref === null || ref === void 0 ? void 0 : ref.current) || window;
+        var handleMouseMove = function (event) {
+            var clientX = event.clientX, clientY = event.clientY;
+            if (initialPosition.x === 0 && initialPosition.y === 0) {
+                setInitialPosition({ x: clientX, y: clientY });
+            }
+            else {
+                if (clientX !== initialPosition.x || clientY !== initialPosition.y) {
+                    setIsMouseMoved(true);
+                }
+            }
+        };
+        element.addEventListener("mousemove", handleMouseMove);
+        return function () {
+            element.removeEventListener("mousemove", handleMouseMove);
+        };
+    }, [ref, initialPosition]);
+    return { isMouseMoved: isMouseMoved, setIsMouseMoved: setIsMouseMoved };
+};
+exports.useMouseMovement = useMouseMovement;
 
 
 /***/ }),

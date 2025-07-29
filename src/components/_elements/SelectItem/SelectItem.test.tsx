@@ -10,7 +10,12 @@ describe("Компонент SelectItem", () => {
 
   test("Рендерится с детьми (children)", () => {
     render(
-      <SelectItem data-testid="select-item" id="item-1" onChange={handleChange}>
+      <SelectItem
+        data-testid="select-item"
+        id="item-1"
+        itemIndex={0}
+        onChange={handleChange}
+      >
         Элемент 1
       </SelectItem>
     )
@@ -22,7 +27,12 @@ describe("Компонент SelectItem", () => {
 
   test("Применяет класс itpc-select-item_clickable, если не disabled", () => {
     render(
-      <SelectItem data-testid="select-item" id="item-1" onChange={handleChange}>
+      <SelectItem
+        data-testid="select-item"
+        id="item-1"
+        itemIndex={0}
+        onChange={handleChange}
+      >
         Элемент 1
       </SelectItem>
     )
@@ -36,6 +46,7 @@ describe("Компонент SelectItem", () => {
       <SelectItem
         data-testid="select-item"
         id="item-1"
+        itemIndex={0}
         onChange={handleChange}
         disabled
       >
@@ -52,6 +63,7 @@ describe("Компонент SelectItem", () => {
       <SelectItem
         data-testid="select-item"
         id="item-1"
+        itemIndex={0}
         onChange={handleChange}
         isActive
       >
@@ -82,7 +94,12 @@ describe("Компонент SelectItem", () => {
 
   test("Вызывает onChange при клике, если не disabled", () => {
     render(
-      <SelectItem data-testid="select-item" id="item-1" onChange={handleChange}>
+      <SelectItem
+        data-testid="select-item"
+        id="item-1"
+        itemIndex={0}
+        onChange={handleChange}
+      >
         Элемент 1
       </SelectItem>
     )
@@ -99,6 +116,7 @@ describe("Компонент SelectItem", () => {
       <SelectItem
         data-testid="select-item"
         id="item-1"
+        itemIndex={0}
         onChange={onChange}
         disabled
       >
@@ -116,6 +134,7 @@ describe("Компонент SelectItem", () => {
       <SelectItem
         data-testid="select-item"
         id="item-1"
+        itemIndex={0}
         onChange={handleChange}
         isActive
       >
