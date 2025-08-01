@@ -1,38 +1,31 @@
-import { useContext, useState } from "react"
+import { useCallback, useContext, useState } from "react"
 
 import { ConfigContext } from "../../../context/ConfigContext"
 import { Theme } from "../../../enums"
 
 interface UseTheme {
+  libClass: string
+  setTheme: (theme: Theme) => void
   theme: Theme
-  themeClass: string
   toggleTheme: () => void
 }
 
 export const useTheme = (): UseTheme => {
-  const { theme } = useContext(ConfigContext)
+  const context = useContext(ConfigContext)
 
-  if (!theme) {
-    return {
-      theme: Theme.DEFAULT,
-      themeClass: "",
-      toggleTheme: () => {},
-    }
+  if (!context) {
+    throw new Error("useTheme должен использоваться внутри <ConfigContext>")
   }
 
-  const { setType, type } = theme
-  const [currentTheme, setCurrentTheme] = useState(type)
+  const { setTheme, theme } = context
 
-  const toggleTheme = (): void => {
-    const newTheme = currentTheme === Theme.DARK ? Theme.DEFAULT : Theme.DARK
-    setType?.(newTheme)
-    setCurrentTheme(newTheme)
-  }
+  const toggleTheme = useCallback(() => {
+    const newTheme = theme === Theme.DARK ? Theme.DEFAULT : Theme.DARK
+    setTheme?.(newTheme)
+  }, [theme, setTheme])
 
   return {
-    theme: currentTheme,
-    themeClass:
-      Theme.DEFAULT === currentTheme ? "" : `itpc-theme-${currentTheme}`,
+    ...context,
     toggleTheme,
   }
 }
