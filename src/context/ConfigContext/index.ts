@@ -1,2 +1,2 @@
 export { ConfigContext } from "./ConfigContext"
-export type { ConfigContextProps, ThemeContext } from "./types"
+export type { ThemeContext } from "./types"
