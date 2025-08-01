@@ -1,6 +1,5 @@
-import React, { createContext } from "react"
+import { createContext } from "react"
 
-import { ConfigContextProps } from "./types"
+import type { ThemeContext } from "./types"
 
-export const ConfigContext: React.Context<ConfigContextProps> =
-  createContext<ConfigContextProps>({})
+export const ConfigContext = createContext<ThemeContext | undefined>(undefined)
