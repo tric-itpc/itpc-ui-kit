@@ -10,12 +10,9 @@ import { useTheme } from "./index"
 const wrapper = ({ children }: { children: React.ReactNode }) => (
   <ConfigContext.Provider
     value={{
-      theme: {
-        disabled: false,
-        setType: jest.fn(),
-        themeClass: "",
-        type: Theme.DEFAULT,
-      },
+      libClass: "",
+      setTheme: jest.fn(),
+      theme: Theme.DEFAULT,
     }}
   >
     {children}
@@ -23,36 +20,31 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
 )
 
 describe("Хук useTheme", () => {
-  test("Возвращает дефолтные значения, если контекст не предоставлен", () => {
-    const { result } = renderHook(() => useTheme(), {
-      wrapper: ({ children }) => (
-        <ConfigContext.Provider value={{}}>{children}</ConfigContext.Provider>
-      ),
-    })
+  test("Должен выбрасывать ошибку при использовании вне провайдера", () => {
+    const originalError = console.error
+    console.error = jest.fn()
 
-    expect(result.current.theme).toBe(Theme.DEFAULT)
-    expect(result.current.themeClass).toBe("")
-    expect(typeof result.current.toggleTheme).toBe("function")
+    expect(() => {
+      renderHook(() => useTheme())
+    }).toThrow("useTheme должен использоваться внутри <ConfigContext>")
+
+    console.error = originalError
   })
 
   test("Инициализируется с дефолтной темой", () => {
     const { result } = renderHook(() => useTheme(), { wrapper })
 
     expect(result.current.theme).toBe(Theme.DEFAULT)
-    expect(result.current.themeClass).toBe("")
+    expect(result.current.libClass).toBe("")
   })
-
   test("Инициализируется темной темой", () => {
     const { result } = renderHook(() => useTheme(), {
       wrapper: ({ children }) => (
         <ConfigContext.Provider
           value={{
-            theme: {
-              disabled: false,
-              setType: jest.fn(),
-              themeClass: "",
-              type: Theme.DARK,
-            },
+            libClass: "itpc-theme-dark",
+            setTheme: jest.fn(),
+            theme: Theme.DARK,
           }}
         >
           {children}
@@ -61,12 +53,29 @@ describe("Хук useTheme", () => {
     })
 
     expect(result.current.theme).toBe(Theme.DARK)
+    expect(result.current.libClass).toBe("itpc-theme-dark")
   })
 
-  test("Переключает тему при вызове toggleTheme", async () => {
+  test("Переключает тему при вызове toggleTheme", () => {
+    let theme = Theme.DEFAULT
+    const setTheme = (newTheme: Theme) => {
+      theme = newTheme
+    }
     const { rerender, result } = renderHook(() => useTheme(), {
-      wrapper,
+      wrapper: ({ children }) => (
+        <ConfigContext.Provider
+          value={{
+            libClass: theme === Theme.DARK ? "itpc-theme-dark" : "",
+            setTheme,
+            theme,
+          }}
+        >
+          {children}
+        </ConfigContext.Provider>
+      ),
     })
+
+    expect(result.current.theme).toBe(Theme.DEFAULT)
 
     act(() => {
       result.current.toggleTheme()
@@ -75,13 +84,15 @@ describe("Хук useTheme", () => {
     rerender()
 
     expect(result.current.theme).toBe(Theme.DARK)
-    expect(result.current.themeClass).toBe("itpc-theme-dark")
+    expect(result.current.libClass).toBe("itpc-theme-dark")
 
     act(() => {
       result.current.toggleTheme()
     })
 
+    rerender()
+
     expect(result.current.theme).toBe(Theme.DEFAULT)
-    expect(result.current.themeClass).toBe("")
+    expect(result.current.libClass).toBe("")
   })
 })

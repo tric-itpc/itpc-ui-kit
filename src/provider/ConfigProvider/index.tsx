@@ -1,38 +1,39 @@
 import React, { useEffect, useMemo, useState } from "react"
 
-import { ConfigContext, ConfigContextProps } from "../../context/ConfigContext"
+import { ConfigContext } from "../../context/ConfigContext"
 import { Theme } from "../../enums"
 
 import { ConfigProviderProps } from "./types"
 
 export const ConfigProvider: React.FC<ConfigProviderProps> = (props) => {
-  const { children } = props
-  const [type, setType] = useState<Theme>(props.theme?.type ?? Theme.DEFAULT)
+  const { children, defaultTheme = Theme.DEFAULT } = props
 
-  const themeClass = Theme.DEFAULT === type ? "" : `itpc-theme-${type}`
-  const defaultProps: ConfigContextProps = useMemo(
-    () => ({
-      theme: {
-        disabled: props.theme?.disabled ?? false,
-        setType,
-        themeClass,
-        type,
-      },
-    }),
-    [type]
-  )
+  const [theme, setTheme] = useState<Theme>(defaultTheme)
+  const libClass = theme === Theme.DEFAULT ? "" : `$itpc-theme-${theme}`
 
   useEffect(() => {
-    const className = document.body.className
-      .replace(/itpc-theme-\w+/, "")
-      .trim()
+    const currentThemeClasses = Array.from(document.body.classList).filter(
+      (className) => className.startsWith("itpc-theme-")
+    )
+    currentThemeClasses.forEach((className) => {
+      document.body.classList.remove(className)
+    })
 
-    document.body.className = `${className} ${themeClass}`.trim()
-  }, [themeClass])
+    if (libClass) {
+      document.body.classList.add(`itpc-theme-${theme}`)
+    }
+  }, [libClass])
+
+  const value = useMemo(
+    () => ({
+      libClass,
+      setTheme,
+      theme,
+    }),
+    [theme, libClass]
+  )
 
   return (
-    <ConfigContext.Provider value={defaultProps}>
-      {children}
-    </ConfigContext.Provider>
+    <ConfigContext.Provider value={value}>{children}</ConfigContext.Provider>
   )
 }
