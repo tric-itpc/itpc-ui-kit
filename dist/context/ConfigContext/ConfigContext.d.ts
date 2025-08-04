@@ -1,3 +1,3 @@
-import React from "react";
-import { ConfigContextProps } from "./types";
-export declare const ConfigContext: React.Context<ConfigContextProps>;
+/// <reference types="react" />
+import type { ThemeContext } from "./types";
+export declare const ConfigContext: import("react").Context<ThemeContext | undefined>;
