@@ -3,8 +3,12 @@
 exports[`Компонент MultiSelectField Корректно рендерится 1`] = `
 <div>
   <div
+    aria-expanded="false"
+    aria-haspopup="listbox"
     class="itpc-multi-select  itpc-multi-select_hover"
     data-testid="multi-select-field"
+    role="combobox"
+    tabindex="0"
   >
     <button
       class="itpc-multi-select__button"

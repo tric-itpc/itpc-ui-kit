@@ -31,33 +31,30 @@ export const ListBox: React.FC<Props> = ({
   const { windowWidth } = useWindowSize()
   const localRef = useRef<HTMLUListElement>(null)
 
-  const ref = refChildren?.current || localRef.current
+  const ref = refChildren || localRef
 
   const [styleAnimation, setStyleAnimation] =
     useState<CSSPropertiesWithTransformOrigin>({})
 
   useEffect(() => {
-    if (ref && refParent?.current) {
-      setDurationAnimation(
-        durationAnimation,
-        ".itpc-list-box_opened",
-        ".itpc-list-box_closed"
-      )
-      ref.style.width = `${refParent.current.offsetWidth}px`
+    const element = ref.current
+    const parentElement = refParent?.current
+
+    if (element && parentElement) {
+      element.style.width = `${parentElement.offsetWidth}px`
+      setDurationAnimation(durationAnimation, element, isOpen)
     }
-  }, [durationAnimation, refChildren, refParent, windowWidth])
+  }, [durationAnimation, ref, refParent, windowWidth, isOpen])
 
   useEffect(() => {
-    if (isOpen && refParent?.current && ref) {
-      const animationTransform = getTransformOriginByAxisX(
-        refParent,
-        (refChildren as React.RefObject<HTMLUListElement>) || localRef
-      )
-      setStyleAnimation({
-        transformOrigin: animationTransform,
-      })
+    const element = ref.current
+    const parentElement = refParent?.current
+
+    if (isOpen && parentElement && element) {
+      const animationTransform = getTransformOriginByAxisX(refParent, ref)
+      setStyleAnimation({ transformOrigin: animationTransform })
     }
-  }, [isOpen, refParent?.current])
+  }, [isOpen, refParent, ref])
 
   return (
     <ul
