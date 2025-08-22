@@ -53,8 +53,8 @@ export const SelectField: React.FC<Props> = ({
   className = "",
   disabled = false,
   durationAnimation = {
-    durationClose: 200,
-    durationOpen: 300,
+    durationClose: 150,
+    durationOpen: 200,
   },
   items,
   onChange,
@@ -99,14 +99,16 @@ export const SelectField: React.FC<Props> = ({
     }
   }
 
-  const handleEnterKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const handleEnterKey = (
+    event: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>
+  ) => {
     event.preventDefault()
     changeValue(items[activeIndex]?.id)
     setActiveIndex(-1)
     onClose()
   }
 
-  const handleKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const handleKey = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (!isOpen) {
       return
     }
@@ -128,6 +130,26 @@ export const SelectField: React.FC<Props> = ({
       default:
         break
     }
+  }
+
+  const handleContainerKeyDown = (
+    event: React.KeyboardEvent<HTMLDivElement>
+  ) => {
+    if (disabled) {
+      return
+    }
+
+    if (!isOpen && event.key === KeyCode.ENTER) {
+      handleOpen()
+      return
+    }
+
+    handleKey(event)
+  }
+
+  const handleItemSelect = (value: string) => {
+    changeValue(value)
+    onClose()
   }
 
   useEffect(() => {
@@ -174,7 +196,9 @@ export const SelectField: React.FC<Props> = ({
         disabled && " itpc-select_disabled",
         className
       )}
+      onKeyDown={handleContainerKeyDown}
       ref={ref}
+      tabIndex={disabled ? -1 : 0}
     >
       <button
         className={cn(
@@ -183,7 +207,6 @@ export const SelectField: React.FC<Props> = ({
         )}
         disabled={disabled}
         onClick={handleOpen}
-        onKeyDown={handleKey}
         type="button"
       >
         <Placeholder
@@ -199,9 +222,11 @@ export const SelectField: React.FC<Props> = ({
       </button>
 
       <IconArrow
+        aria-hidden="true"
         disabled={disabled}
         onClick={handleOpen}
         orientation={isOpen ? "top" : "bottom"}
+        className="itpc-select__icon-arrow"
       />
 
       <Portal element={document.body}>
@@ -226,7 +251,7 @@ export const SelectField: React.FC<Props> = ({
                 isActive={selectedItemId === item.id}
                 itemIndex={itemIndex}
                 key={item.id}
-                onChange={changeValue}
+                onChange={handleItemSelect}
                 onMouseEnter={onMouseEnter}
               >
                 {item.value}

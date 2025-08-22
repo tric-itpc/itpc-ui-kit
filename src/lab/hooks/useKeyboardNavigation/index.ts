@@ -7,7 +7,9 @@ export const useKeyboardNavigation = (items: Item[]) => {
   const [activeIndex, setActiveIndex] = useState<number>(-1)
 
   const handleKeyUpAndDown = (
-    event: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>
+    event: React.KeyboardEvent<
+      HTMLButtonElement | HTMLDivElement | HTMLInputElement
+    >
   ) => {
     event.preventDefault()
 

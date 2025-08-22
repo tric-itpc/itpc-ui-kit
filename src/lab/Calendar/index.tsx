@@ -163,13 +163,9 @@ export const Calendar: React.FC<Props> = ({
 
   useEffect(() => {
     if (calendarRef.current) {
-      setDurationAnimation(
-        durationAnimation,
-        ".itpc-calendar_opened",
-        ".itpc-calendar_closed"
-      )
+      setDurationAnimation(durationAnimation, calendarRef.current, show)
     }
-  }, [calendarRef.current, durationAnimation])
+  }, [calendarRef.current, durationAnimation, show])
 
   useEffect(() => {
     if (calendarRef.current && windowWidth) {

@@ -4,6 +4,7 @@ exports[`Компонент SelectField Рендерится с дефолтны
 <div
   class="itpc-select itpc-select_hover"
   data-testid="select-field"
+  tabindex="0"
 >
   <button
     class="itpc-select__button"
@@ -16,7 +17,7 @@ exports[`Компонент SelectField Рендерится с дефолтны
     </label>
   </button>
   <i
-    class="itpc-icon__arrow itpc-icon__arrow_orientation_bottom"
+    class="itpc-icon__arrow itpc-icon__arrow_orientation_bottom itpc-select__icon-arrow"
   >
     <svg
       height="8"

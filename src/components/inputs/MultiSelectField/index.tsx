@@ -81,6 +81,7 @@ export const MultiSelectField: React.FC<Props> = ({
   const onChangeValue = (value: string): void => {
     if (typeof onChange === "function") {
       const select = new Set<string>(selectedItems)
+      console.log(select)
 
       if (select.has(value)) {
         select.delete(value)
@@ -125,12 +126,14 @@ export const MultiSelectField: React.FC<Props> = ({
     }
   }
 
-  const handleEnterKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const handleEnterKey = (
+    event: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>
+  ) => {
     event.preventDefault()
     onChangeValue(items[activeIndex]?.id)
   }
 
-  const handleKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const handleKey = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (!isOpen) {
       return
     }
@@ -151,6 +154,21 @@ export const MultiSelectField: React.FC<Props> = ({
       default:
         break
     }
+  }
+
+  const handleContainerKeyDown = (
+    event: React.KeyboardEvent<HTMLDivElement>
+  ) => {
+    if (disabled) {
+      return
+    }
+
+    if (!isOpen && event.key === KeyCode.ENTER) {
+      handleOpen()
+      return
+    }
+
+    handleKey(event)
   }
 
   useEffect(() => {
@@ -199,7 +217,12 @@ export const MultiSelectField: React.FC<Props> = ({
         !disabled && " itpc-multi-select_hover",
         className
       )}
+      aria-expanded={isOpen}
+      aria-haspopup="listbox"
+      onKeyDown={handleContainerKeyDown}
       ref={ref}
+      role="combobox"
+      tabIndex={disabled ? -1 : 0}
     >
       <button
         className={cn(
@@ -208,7 +231,6 @@ export const MultiSelectField: React.FC<Props> = ({
         )}
         disabled={disabled}
         onClick={handleOpen}
-        onKeyDown={handleKey}
         ref={refButton}
         type="button"
       >
