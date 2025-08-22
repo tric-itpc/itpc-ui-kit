@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useRef } from "react"
 
 import cn from "classnames"
+import moment from "moment"
 
 import "./styles.css"
 
@@ -11,7 +12,7 @@ interface Props {
   id: string
   isActive?: boolean
   itemIndex: number
-  onChange(id: string): void
+  onChange?(id: string): void
   onMouseEnter?(index: number): void
 }
 
@@ -26,14 +27,47 @@ export const SelectItem: React.FC<Props> = ({
   onMouseEnter,
   ...rest
 }) => {
-  const onClick = (): void => {
-    if (!disabled) {
+  const isActiveIndex =
+    typeof activeIndex === "number" && activeIndex === itemIndex
+
+  const isTouchDevice = useRef(false)
+
+  const handleClick = () => {
+    if (!disabled && onChange && !isTouchDevice.current) {
       onChange(id)
     }
   }
 
-  const isActiveIndex =
-    typeof activeIndex === "number" && activeIndex === itemIndex
+  const touchStartRef = React.useRef({ time: moment(), x: 0, y: 0 })
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLLIElement>) => {
+    isTouchDevice.current = true
+    if (!disabled) {
+      touchStartRef.current = {
+        time: moment(),
+        x: event.touches[0].clientX,
+        y: event.touches[0].clientY,
+      }
+    }
+  }
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLLIElement>) => {
+    if (!disabled && onChange) {
+      const { time: startTime, x: startX, y: startY } = touchStartRef.current
+      const endX = event.changedTouches[0].clientX
+      const endY = event.changedTouches[0].clientY
+      const endTime = moment()
+
+      const distance = Math.sqrt(
+        Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)
+      )
+      const duration = endTime.diff(startTime, "milliseconds")
+
+      if (distance < 10 && duration < 300) {
+        onChange(id)
+      }
+    }
+  }
 
   return (
     <li
@@ -45,8 +79,11 @@ export const SelectItem: React.FC<Props> = ({
         !isActiveIndex && isActive && "itpc-select-item_selected",
         isActiveIndex && "itpc-select-item_active"
       )}
-      onClick={onClick}
+      data-id={id}
+      onClick={handleClick}
       onMouseEnter={() => onMouseEnter && onMouseEnter(itemIndex)}
+      onTouchEnd={handleTouchEnd}
+      onTouchStart={handleTouchStart}
       {...rest}
     >
       <span

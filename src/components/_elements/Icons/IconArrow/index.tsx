@@ -10,12 +10,14 @@ interface Props {
   disabled?: boolean
   onClick?: () => void
   orientation: Orientation
+  className?: string
 }
 
 export const IconArrow: React.FC<Props> = ({
   disabled,
   onClick,
   orientation,
+  className,
 }) => (
   <i
     className={cn(
@@ -24,7 +26,8 @@ export const IconArrow: React.FC<Props> = ({
       orientation === "top" && "itpc-icon__arrow_orientation_top",
       orientation === "bottom" && "itpc-icon__arrow_orientation_bottom",
       orientation === "left" && "itpc-icon__arrow_orientation_left",
-      orientation === "right" && "itpc-icon__arrow_orientation_right"
+      orientation === "right" && "itpc-icon__arrow_orientation_right",
+      className
     )}
     onClick={onClick}
   >
