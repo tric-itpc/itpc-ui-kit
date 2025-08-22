@@ -1,7 +1,5 @@
 import { useCallback, useRef, useState } from "react"
 
-import { type } from "node:os"
-
 import { DEFAULT_REQUIRED_MESSAGE } from "../constants"
 import { Field, FormInstance, ValidateError } from "../types"
 

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react"
+import { useCallback, useContext } from "react"
 
 import { ConfigContext } from "../../../context/ConfigContext"
 import { Theme } from "../../../enums"

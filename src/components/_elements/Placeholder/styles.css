@@ -8,7 +8,7 @@
 
   font-size: var(--itpc-font-size-xs);
   line-height: 14px;
-  color: var(--itpc-primary-text-color);
+  color: var(--itpc-secondary-text-color);
 
   background-color: inherit;
   cursor: text;
@@ -18,7 +18,6 @@
 
 .itpc-placeholder_disabled {
   color: var(--itpc-disabled-text-color);
-
 }
 
 .itpc-placeholder_focused {
