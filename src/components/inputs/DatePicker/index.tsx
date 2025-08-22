@@ -116,7 +116,7 @@ export const DatePicker: React.FC<Props> = ({
   disabledSelectYear = false,
   durationAnimation = {
     durationClose: 200,
-    durationOpen: 400,
+    durationOpen: 250,
   },
   errorMessage = "",
   errorPlacement = ErrorPlacement.INSIDE,

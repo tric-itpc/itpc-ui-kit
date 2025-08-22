@@ -12,11 +12,17 @@
   box-shadow: none;
 }
 
+.itpc-select:focus {
+  outline: none;
+}
+.itpc-select:focus-visible {
+  outline: none;
+}
+
 .itpc-select_disabled {
   color: var(--itpc-disabled-text-color);
 
   border-color: var(--itpc-disabled-input-border-color);
-  /* background-color: var(--itpc-input-bg-disabled-color); */
   cursor: not-allowed;
   pointer-events: none;
   user-select: none;
@@ -51,3 +57,8 @@
 .itpc-select__button_focused {
   border-color: var(--itpc-primary-hover-color-component);
 }
+
+.itpc-select__icon-arrow:focus {
+  outline: none;
+}
+

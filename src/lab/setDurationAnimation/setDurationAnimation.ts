@@ -2,20 +2,20 @@ import type { DurationAnimation } from "../../components/types"
 
 export const setDurationAnimation = (
   durationAnimation: DurationAnimation,
-  openClass: string,
-  closeClass: string
+  element: HTMLElement | null,
+  isOpen: boolean
 ) => {
-  if (durationAnimation.durationClose !== 0) {
-    const openedListBox = document.querySelector(openClass) as HTMLUListElement
-    if (openedListBox) {
-      openedListBox.style.transitionDuration = `${durationAnimation.durationOpen}ms`
-    }
+  if (!element) {
+    return
   }
 
-  if (durationAnimation.durationClose !== 0) {
-    const closedListBox = document.querySelector(closeClass) as HTMLUListElement
-    if (closedListBox) {
-      closedListBox.style.transitionDuration = `${durationAnimation.durationClose}ms`
+  if (isOpen) {
+    if (durationAnimation.durationOpen !== 0) {
+      element.style.transitionDuration = `${durationAnimation.durationOpen}ms`
+    }
+  } else {
+    if (durationAnimation.durationClose !== 0) {
+      element.style.transitionDuration = `${durationAnimation.durationClose}ms`
     }
   }
 }
