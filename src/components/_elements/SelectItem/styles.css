@@ -8,6 +8,7 @@
   box-sizing: border-box;
   min-height: 40px;
   padding: 0.75rem;
+
   font-size: var(--itpc-font-size-xs);
   color: var(--itpc-primary-text-color);
 
@@ -31,6 +32,7 @@
 
 .itpc-select-item_disabled {
   color: var(--itpc-disabled-text-color);
+
   cursor: not-allowed;
   pointer-events: none;
 }
