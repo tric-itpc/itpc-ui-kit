@@ -1,7 +1,8 @@
 import { Theme } from "../../../enums";
 interface UseTheme {
+    libClass: string;
+    setTheme: (theme: Theme) => void;
     theme: Theme;
-    themeClass: string;
     toggleTheme: () => void;
 }
 export declare const useTheme: () => UseTheme;

@@ -27402,7 +27402,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 748:
+/***/ 8367:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -30220,8 +30220,8 @@ var map = {
 	"./ss.js": 6000,
 	"./sv": 1011,
 	"./sv.js": 1011,
-	"./sw": 748,
-	"./sw.js": 748,
+	"./sw": 8367,
+	"./sw.js": 8367,
 	"./ta": 1025,
 	"./ta.js": 1025,
 	"./te": 1885,
@@ -40747,13 +40747,435 @@ exports.Tabs = Tabs;
 
 /***/ }),
 
+/***/ 748:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Form = void 0;
+var react_1 = __importStar(__webpack_require__(9155));
+var FormContext_1 = __webpack_require__(8943);
+var useForm_1 = __webpack_require__(6150);
+var Form = function (_a) {
+    var children = _a.children, className = _a.className, form = _a.form, initialValues = _a.initialValues, onFailure = _a.onFailure, onFinish = _a.onFinish;
+    var internalForm = (0, useForm_1.useForm)();
+    var contextValue = form || internalForm;
+    var handleSubmit = function (e) {
+        e.preventDefault();
+        var isValid = contextValue.validateFields();
+        if (isValid && onFinish) {
+            var values = contextValue.getFieldsValue();
+            onFinish(values);
+        }
+        if (!isValid && onFailure) {
+            var errors = contextValue.getFieldsError();
+            onFailure(errors);
+        }
+    };
+    (0, react_1.useEffect)(function () {
+        if (initialValues) {
+            contextValue.setFieldsValue(initialValues);
+        }
+    }, []);
+    return (react_1.default.createElement(FormContext_1.FormContext.Provider, { value: contextValue },
+        react_1.default.createElement("form", { className: className, onSubmit: handleSubmit }, children)));
+};
+exports.Form = Form;
+
+
+/***/ }),
+
+/***/ 8943:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useFormContext = exports.FormContext = void 0;
+var react_1 = __webpack_require__(9155);
+exports.FormContext = (0, react_1.createContext)(null);
+var useFormContext = function () {
+    var ctx = (0, react_1.useContext)(exports.FormContext);
+    if (!ctx) {
+        throw new Error("useFormContext должен использоваться внутри <Form>");
+    }
+    return ctx;
+};
+exports.useFormContext = useFormContext;
+
+
+/***/ }),
+
+/***/ 7282:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.FormField = void 0;
+var react_1 = __importDefault(__webpack_require__(9155));
+var constants_1 = __webpack_require__(4313);
+var FormItem_1 = __webpack_require__(2021);
+var useFieldRules_1 = __webpack_require__(7759);
+var getComponentName_1 = __webpack_require__(4176);
+var FormField = function (_a) {
+    var className = _a.className, Component = _a.component, _b = _a.componentProps, componentProps = _b === void 0 ? {} : _b, name = _a.name, placeholder = _a.placeholder, _c = _a.required, required = _c === void 0 ? false : _c, _d = _a.rules, rules = _d === void 0 ? [] : _d, style = _a.style, rest = __rest(_a, ["className", "component", "componentProps", "name", "placeholder", "required", "rules", "style"]);
+    var componentName = (0, getComponentName_1.getComponentName)(Component);
+    var config = constants_1.componentMap[componentName] || {};
+    var allRules = (0, useFieldRules_1.useFieldRules)({ required: required, rules: rules });
+    return (react_1.default.createElement(FormItem_1.FormItem, __assign({ className: className, getValueFromEvent: config.getValueFromEvent, name: name, placeholder: placeholder, required: required, rules: allRules, style: style, valuePropName: config.valuePropName || "value" }, rest),
+        react_1.default.createElement(Component, __assign({}, componentProps))));
+};
+exports.FormField = FormField;
+
+
+/***/ }),
+
+/***/ 2021:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.FormItem = void 0;
+var react_1 = __importStar(__webpack_require__(9155));
+var FormContext_1 = __webpack_require__(8943);
+var FormItem = function (_a) {
+    var _b;
+    var children = _a.children, className = _a.className, componentProps = _a.componentProps, _c = _a.getValueFromEvent, getValueFromEvent = _c === void 0 ? function () {
+        var _a, _b;
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return (_b = (_a = args[0]) === null || _a === void 0 ? void 0 : _a.target) === null || _b === void 0 ? void 0 : _b.value;
+    } : _c, name = _a.name, placeholder = _a.placeholder, _d = _a.required, required = _d === void 0 ? true : _d, _e = _a.rules, rules = _e === void 0 ? [] : _e, style = _a.style, _f = _a.valuePropName, valuePropName = _f === void 0 ? "value" : _f;
+    var form = (0, FormContext_1.useFormContext)();
+    var value = form.getFieldValue(name);
+    var errors = form.getFieldError(name);
+    var errorMessage = errors.map(function (e) { return e.message; }).join("; ");
+    var onChange = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var val = getValueFromEvent.apply(void 0, args);
+        form.setFieldValue(name, val);
+    };
+    var childNode = react_1.default.isValidElement(children)
+        ? react_1.default.cloneElement(children, __assign(__assign({}, componentProps), (_b = { errorMessage: errorMessage, onChange: onChange, placeholder: placeholder, required: required, validationState: errorMessage.length ? "invalid" : "valid" }, _b[valuePropName] = value, _b)))
+        : children;
+    (0, react_1.useEffect)(function () {
+        form.registerField({ name: name, rules: rules, value: form.getFieldValue(name) });
+        return function () {
+            form.unregisterField(name);
+        };
+    }, [name, rules]);
+    return (react_1.default.createElement("div", { className: className, style: style }, childNode));
+};
+exports.FormItem = FormItem;
+
+
+/***/ }),
+
+/***/ 4313:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.componentMap = exports.DEFAULT_REQUIRED_MESSAGE = void 0;
+exports.DEFAULT_REQUIRED_MESSAGE = "Обязательное поле";
+exports.componentMap = {
+    Checkbox: {
+        getValueFromEvent: function (e) { var _a; return (_a = e === null || e === void 0 ? void 0 : e.target) === null || _a === void 0 ? void 0 : _a.checked; },
+        valuePropName: "isChecked",
+    },
+    DatePicker: {
+        getValueFromEvent: function (v) { return v === null || v === void 0 ? void 0 : v.value; },
+        valuePropName: "value",
+    },
+    DecimalField: {
+        getValueFromEvent: function (v) { return v === null || v === void 0 ? void 0 : v.value; },
+        valuePropName: "value",
+    },
+    MultiSelectField: {
+        getValueFromEvent: function (v) { return v; },
+        valuePropName: "value",
+    },
+    NumberField: {
+        getValueFromEvent: function (v) { return v === null || v === void 0 ? void 0 : v.value; },
+        valuePropName: "value",
+    },
+    SearchField: {
+        getValueFromEvent: function (e) { var _a; return (_a = e === null || e === void 0 ? void 0 : e.target) === null || _a === void 0 ? void 0 : _a.value; },
+        valuePropName: "value",
+    },
+    SelectField: {
+        getValueFromEvent: function (v) { return v; },
+        valuePropName: "value",
+    },
+    TextAreaField: {
+        getValueFromEvent: function (e) { var _a; return (_a = e === null || e === void 0 ? void 0 : e.target) === null || _a === void 0 ? void 0 : _a.value; },
+        valuePropName: "value",
+    },
+    TextField: {
+        getValueFromEvent: function (v, e) { return v; },
+        valuePropName: "value",
+    },
+};
+
+
+/***/ }),
+
+/***/ 7759:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useFieldRules = void 0;
+var react_1 = __webpack_require__(9155);
+var constants_1 = __webpack_require__(4313);
+var useFieldRules = function (_a) {
+    var _b = _a.required, required = _b === void 0 ? false : _b, _c = _a.rules, rules = _c === void 0 ? [] : _c;
+    return (0, react_1.useMemo)(function () {
+        if (!required) {
+            return rules;
+        }
+        var hasRequired = rules.some(function (r) { return r.required; });
+        return hasRequired
+            ? rules
+            : __spreadArray([{ message: constants_1.DEFAULT_REQUIRED_MESSAGE, required: true }], rules, true);
+    }, [required, JSON.stringify(rules)]);
+};
+exports.useFieldRules = useFieldRules;
+
+
+/***/ }),
+
+/***/ 6150:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useForm = void 0;
+var react_1 = __webpack_require__(9155);
+var constants_1 = __webpack_require__(4313);
+var useForm = function () {
+    var _a = (0, react_1.useState)({}), forceUpdate = _a[1];
+    var fieldsRef = (0, react_1.useRef)({});
+    var errorsRef = (0, react_1.useRef)({});
+    var registerField = (0, react_1.useCallback)(function (field) {
+        fieldsRef.current[field.name] = field;
+    }, []);
+    var unregisterField = (0, react_1.useCallback)(function (name) {
+        delete fieldsRef.current[name];
+        delete errorsRef.current[name];
+    }, []);
+    var getFieldsValue = (0, react_1.useCallback)(function () {
+        var result = {};
+        Object.keys(fieldsRef.current).forEach(function (key) {
+            result[key] = fieldsRef.current[key].value;
+        });
+        return result;
+    }, []);
+    var getFieldValue = (0, react_1.useCallback)(function (name) { var _a; return (_a = fieldsRef.current[name]) === null || _a === void 0 ? void 0 : _a.value; }, []);
+    var setFieldsValue = (0, react_1.useCallback)(function (values) {
+        var count = 0;
+        Object.keys(fieldsRef.current).forEach(function (key) {
+            if (values[key] !== undefined) {
+                fieldsRef.current[key] = values[key];
+                count++;
+            }
+        });
+        if (count > 0) {
+            forceUpdate({});
+        }
+    }, []);
+    var setFieldValue = (0, react_1.useCallback)(function (name, value) {
+        if (fieldsRef.current[name]) {
+            fieldsRef.current[name].value = value;
+            forceUpdate({});
+        }
+    }, []);
+    var getFieldsError = (0, react_1.useCallback)(function () {
+        var errors = {};
+        Object.keys(errorsRef.current).forEach(function (key) {
+            errors[key] = errorsRef.current[key];
+        });
+        return errors;
+    }, []);
+    var getFieldError = (0, react_1.useCallback)(function (name) { return errorsRef.current[name] || []; }, []);
+    var validateField = (0, react_1.useCallback)(function (name) {
+        var field = fieldsRef.current[name];
+        var value = field === null || field === void 0 ? void 0 : field.value;
+        var errors = [];
+        if (field === null || field === void 0 ? void 0 : field.rules) {
+            for (var _i = 0, _a = field.rules; _i < _a.length; _i++) {
+                var rule = _a[_i];
+                if (rule.required &&
+                    (value === null || value === undefined || value === "")) {
+                    errors.push({ message: rule.message || constants_1.DEFAULT_REQUIRED_MESSAGE });
+                    continue;
+                }
+                if (typeof rule.validator === "function") {
+                    var error = rule.validator(value);
+                    if (error !== null && typeof error !== "boolean") {
+                        errors.push(error);
+                    }
+                }
+            }
+        }
+        errorsRef.current[name] = errors;
+        return { errors: errors, isValid: errors.length === 0 };
+    }, []);
+    var validateFields = (0, react_1.useCallback)(function () {
+        var isValid = true;
+        Object.keys(fieldsRef.current).forEach(function (name) {
+            var result = validateField(name);
+            if (!result.isValid) {
+                isValid = false;
+            }
+        });
+        forceUpdate({});
+        return isValid;
+    }, [validateField]);
+    return {
+        getFieldError: getFieldError,
+        getFieldsError: getFieldsError,
+        getFieldsValue: getFieldsValue,
+        getFieldValue: getFieldValue,
+        registerField: registerField,
+        setFieldsValue: setFieldsValue,
+        setFieldValue: setFieldValue,
+        unregisterField: unregisterField,
+        validateField: validateField,
+        validateFields: validateFields,
+    };
+};
+exports.useForm = useForm;
+
+
+/***/ }),
+
+/***/ 4176:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getComponentName = void 0;
+var getComponentName = function (Component) {
+    return typeof Component === "string"
+        ? Component
+        : Component.displayName || Component.name || "Unknown";
+};
+exports.getComponentName = getComponentName;
+
+
+/***/ }),
+
 /***/ 5785:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Typography = exports.TextField = exports.TextAreaField = exports.Tabs = exports.TableSort = exports.TableRow = exports.TableHeader = exports.TableFooter = exports.TableColumn = exports.TableBody = exports.Table = exports.TabButton = exports.SelectField = exports.SearchField = exports.Row = exports.Preloader = exports.Popup = exports.Pagination = exports.NumberField = exports.MultiSelectField = exports.ModalFooter = exports.ModalContent = exports.Modal = exports.Layout = exports.Flex = exports.DecimalField = exports.DatePicker = exports.Col = exports.Checkbox = exports.Cell = exports.Card = exports.ButtonRound = exports.Button = exports.AccordionItem = exports.AccordionHeader = exports.AccordionBody = exports.AccordionArrow = exports.Accordion = void 0;
+exports.useForm = exports.Typography = exports.TextField = exports.TextAreaField = exports.Tabs = exports.TableSort = exports.TableRow = exports.TableHeader = exports.TableFooter = exports.TableColumn = exports.TableBody = exports.Table = exports.TabButton = exports.SelectField = exports.SearchField = exports.Row = exports.Preloader = exports.Popup = exports.Pagination = exports.NumberField = exports.MultiSelectField = exports.ModalFooter = exports.ModalContent = exports.Modal = exports.Layout = exports.FormItem = exports.FormField = exports.Form = exports.Flex = exports.DecimalField = exports.DatePicker = exports.Col = exports.Checkbox = exports.Cell = exports.Card = exports.ButtonRound = exports.Button = exports.AccordionItem = exports.AccordionHeader = exports.AccordionBody = exports.AccordionArrow = exports.Accordion = void 0;
 var Button_1 = __webpack_require__(9620);
 Object.defineProperty(exports, "Button", ({ enumerable: true, get: function () { return Button_1.Button; } }));
 var ButtonRound_1 = __webpack_require__(1524);
@@ -40789,6 +41211,14 @@ Object.defineProperty(exports, "TableSort", ({ enumerable: true, get: function (
 var Tabs_1 = __webpack_require__(6384);
 Object.defineProperty(exports, "TabButton", ({ enumerable: true, get: function () { return Tabs_1.TabButton; } }));
 Object.defineProperty(exports, "Tabs", ({ enumerable: true, get: function () { return Tabs_1.Tabs; } }));
+var Form_1 = __webpack_require__(748);
+Object.defineProperty(exports, "Form", ({ enumerable: true, get: function () { return Form_1.Form; } }));
+var FormField_1 = __webpack_require__(7282);
+Object.defineProperty(exports, "FormField", ({ enumerable: true, get: function () { return FormField_1.FormField; } }));
+var FormItem_1 = __webpack_require__(2021);
+Object.defineProperty(exports, "FormItem", ({ enumerable: true, get: function () { return FormItem_1.FormItem; } }));
+var useForm_1 = __webpack_require__(6150);
+Object.defineProperty(exports, "useForm", ({ enumerable: true, get: function () { return useForm_1.useForm; } }));
 var Checkbox_1 = __webpack_require__(7327);
 Object.defineProperty(exports, "Checkbox", ({ enumerable: true, get: function () { return Checkbox_1.Checkbox; } }));
 var DatePicker_1 = __webpack_require__(9514);
@@ -42771,7 +43201,7 @@ exports.Typography = {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ConfigContext = void 0;
 var react_1 = __webpack_require__(9155);
-exports.ConfigContext = (0, react_1.createContext)({});
+exports.ConfigContext = (0, react_1.createContext)(undefined);
 
 
 /***/ }),
@@ -44375,36 +44805,37 @@ exports.useOnClickOutside = useOnClickOutside;
 /***/ }),
 
 /***/ 4600:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useTheme = void 0;
 var react_1 = __webpack_require__(9155);
 var ConfigContext_1 = __webpack_require__(3226);
 var enums_1 = __webpack_require__(9965);
 var useTheme = function () {
-    var theme = (0, react_1.useContext)(ConfigContext_1.ConfigContext).theme;
-    if (!theme) {
-        return {
-            theme: enums_1.Theme.DEFAULT,
-            themeClass: "",
-            toggleTheme: function () { },
-        };
+    var context = (0, react_1.useContext)(ConfigContext_1.ConfigContext);
+    if (!context) {
+        throw new Error("useTheme должен использоваться внутри <ConfigContext>");
     }
-    var setType = theme.setType, type = theme.type;
-    var _a = (0, react_1.useState)(type), currentTheme = _a[0], setCurrentTheme = _a[1];
-    var toggleTheme = function () {
-        var newTheme = currentTheme === enums_1.Theme.DARK ? enums_1.Theme.DEFAULT : enums_1.Theme.DARK;
-        setType === null || setType === void 0 ? void 0 : setType(newTheme);
-        setCurrentTheme(newTheme);
-    };
-    return {
-        theme: currentTheme,
-        themeClass: enums_1.Theme.DEFAULT === currentTheme ? "" : "itpc-theme-".concat(currentTheme),
-        toggleTheme: toggleTheme,
-    };
+    var setTheme = context.setTheme, theme = context.theme;
+    var toggleTheme = (0, react_1.useCallback)(function () {
+        var newTheme = theme === enums_1.Theme.DARK ? enums_1.Theme.DEFAULT : enums_1.Theme.DARK;
+        setTheme === null || setTheme === void 0 ? void 0 : setTheme(newTheme);
+    }, [theme, setTheme]);
+    return __assign(__assign({}, context), { toggleTheme: toggleTheme });
 };
 exports.useTheme = useTheme;
 
@@ -44649,28 +45080,24 @@ var react_1 = __importStar(__webpack_require__(9155));
 var ConfigContext_1 = __webpack_require__(3226);
 var enums_1 = __webpack_require__(9965);
 var ConfigProvider = function (props) {
-    var _a, _b;
-    var children = props.children;
-    var _c = (0, react_1.useState)((_b = (_a = props.theme) === null || _a === void 0 ? void 0 : _a.type) !== null && _b !== void 0 ? _b : enums_1.Theme.DEFAULT), type = _c[0], setType = _c[1];
-    var themeClass = enums_1.Theme.DEFAULT === type ? "" : "itpc-theme-".concat(type);
-    var defaultProps = (0, react_1.useMemo)(function () {
-        var _a, _b;
-        return ({
-            theme: {
-                disabled: (_b = (_a = props.theme) === null || _a === void 0 ? void 0 : _a.disabled) !== null && _b !== void 0 ? _b : false,
-                setType: setType,
-                themeClass: themeClass,
-                type: type,
-            },
-        });
-    }, [type]);
+    var children = props.children, _a = props.defaultTheme, defaultTheme = _a === void 0 ? enums_1.Theme.DEFAULT : _a;
+    var _b = (0, react_1.useState)(defaultTheme), theme = _b[0], setTheme = _b[1];
+    var libClass = theme === enums_1.Theme.DEFAULT ? "" : "$itpc-theme-".concat(theme);
     (0, react_1.useEffect)(function () {
-        var className = document.body.className
-            .replace(/itpc-theme-\w+/, "")
-            .trim();
-        document.body.className = "".concat(className, " ").concat(themeClass).trim();
-    }, [themeClass]);
-    return (react_1.default.createElement(ConfigContext_1.ConfigContext.Provider, { value: defaultProps }, children));
+        var currentThemeClasses = Array.from(document.body.classList).filter(function (className) { return className.startsWith("itpc-theme-"); });
+        currentThemeClasses.forEach(function (className) {
+            document.body.classList.remove(className);
+        });
+        if (libClass) {
+            document.body.classList.add("itpc-theme-".concat(theme));
+        }
+    }, [libClass]);
+    var value = (0, react_1.useMemo)(function () { return ({
+        libClass: libClass,
+        setTheme: setTheme,
+        theme: theme,
+    }); }, [theme, libClass]);
+    return (react_1.default.createElement(ConfigContext_1.ConfigContext.Provider, { value: value }, children));
 };
 exports.ConfigProvider = ConfigProvider;
 

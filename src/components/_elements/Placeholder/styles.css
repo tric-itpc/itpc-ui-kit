@@ -18,6 +18,7 @@
 
 .itpc-placeholder_disabled {
   color: var(--itpc-disabled-text-color);
+
 }
 
 .itpc-placeholder_focused {
