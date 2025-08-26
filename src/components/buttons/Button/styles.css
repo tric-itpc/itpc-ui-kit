@@ -30,7 +30,7 @@
 }
 
 .itpc-button:disabled {
-  color: var(--itpc-primary-text-color-component);
+  color: var(--itpc-disabled-text-color);
 
   border-color: var(--itpc-disabled-bg-color-component);
   background-color: var(--itpc-disabled-bg-color-component);
@@ -38,6 +38,8 @@
 }
 
 .itpc-button:disabled:hover {
+  color: var(--itpc-disabled-text-color);
+  
   border-color: var(--itpc-disabled-bg-color-component);
   background-color: var(--itpc-disabled-bg-color-component);
 }
