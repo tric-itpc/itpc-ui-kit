@@ -109,7 +109,11 @@ export const TextField: React.FC<Props> = ({
 
   return (
     <Field {...rest} className={cn(className)} errorPlacement={errorPlacement}>
-      <InputWrap focused={focused} validationState={validationState}>
+      <InputWrap
+        focused={focused}
+        validationState={validationState}
+        disabled={disabled}
+      >
         <Placeholder
           disabled={disabled}
           focused={focused || value.length > 0 || !!defaultItem}

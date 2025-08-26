@@ -104,7 +104,7 @@ export const TextAreaField: React.FC<Props> = ({
     return scrollHeight > fixedHeight ? scrollHeight : fixedHeight
   }
 
-  const isFocused = focused || !!value.length
+  const isFocused = focused || !!value?.length
 
   return (
     <Field {...rest} className={cn(className)}>

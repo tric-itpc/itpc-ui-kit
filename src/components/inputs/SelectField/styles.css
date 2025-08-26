@@ -15,6 +15,7 @@
 .itpc-select:focus {
   outline: none;
 }
+
 .itpc-select:focus-visible {
   outline: none;
 }
@@ -61,4 +62,3 @@
 .itpc-select__icon-arrow:focus {
   outline: none;
 }
-
