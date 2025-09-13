@@ -5,6 +5,7 @@ interface Props {
     disabled?: boolean;
     onClick?: () => void;
     orientation: Orientation;
+    className?: string;
 }
 export declare const IconArrow: React.FC<Props>;
 export {};

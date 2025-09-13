@@ -1242,14 +1242,14 @@ function createDOMElementFilter(filterNode) {
 }
 
 // We try to load node dependencies
-let chalk = null;
+let picocolors = null;
 let readFileSync = null;
 let codeFrameColumns = null;
 try {
   const nodeRequire = module && module.require;
   readFileSync = nodeRequire.call(module, 'fs').readFileSync;
   codeFrameColumns = nodeRequire.call(module, '@babel/code-frame').codeFrameColumns;
-  chalk = nodeRequire.call(module, 'chalk');
+  picocolors = nodeRequire.call(module, 'picocolors');
 } catch {
   // We're in a browser environment
 }
@@ -1276,7 +1276,7 @@ function getCodeFrame(frame) {
     highlightCode: true,
     linesBelow: 0
   });
-  return chalk.dim(frameLocation) + "\n" + codeFrame + "\n";
+  return picocolors.dim(frameLocation) + "\n" + codeFrame + "\n";
 }
 function getUserCodeFrame() {
   // If we couldn't load dependencies, we can't generate the user trace
@@ -1554,7 +1554,7 @@ function dom_esm_getLabels(container, element, _temp) {
 
 function assertNotNullOrUndefined(matcher) {
   if (matcher === null || matcher === undefined) {
-    throw new Error( // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- implicitly converting `T` to `string`
+    throw new Error(// eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- implicitly converting `T` to `string`
     "It looks like " + matcher + " was passed instead of a matcher. Did you do something like getByText(" + matcher + ")?");
   }
 }
@@ -2777,9 +2777,9 @@ const queryAllByRole = function (container, role, _temp) {
     }
   }
   if (expanded !== undefined) {
-    var _allRoles$get10;
+    var _allRoles$get0;
     // guard against unknown roles
-    if (((_allRoles$get10 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get10.props['aria-expanded']) === undefined) {
+    if (((_allRoles$get0 = lib/* roles */.Ot.get(role)) == null ? void 0 : _allRoles$get0.props['aria-expanded']) === undefined) {
       throw new Error("\"aria-expanded\" is not supported on role \"" + role + "\".");
     }
   }
@@ -22083,7 +22083,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 6208:
+/***/ 3827:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27402,7 +27402,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 8367:
+/***/ 748:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -30128,8 +30128,8 @@ var map = {
 	"./it-ch": 1827,
 	"./it-ch.js": 1827,
 	"./it.js": 8383,
-	"./ja": 6208,
-	"./ja.js": 6208,
+	"./ja": 3827,
+	"./ja.js": 3827,
 	"./jv": 9722,
 	"./jv.js": 9722,
 	"./ka": 1794,
@@ -30220,8 +30220,8 @@ var map = {
 	"./ss.js": 6000,
 	"./sv": 1011,
 	"./sv.js": 1011,
-	"./sw": 8367,
-	"./sw.js": 8367,
+	"./sw": 748,
+	"./sw.js": 748,
 	"./ta": 1025,
 	"./ta.js": 1025,
 	"./te": 1885,
@@ -38693,8 +38693,8 @@ var react_1 = __importDefault(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
 __webpack_require__(3813);
 var IconArrow = function (_a) {
-    var disabled = _a.disabled, onClick = _a.onClick, orientation = _a.orientation;
-    return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__arrow", disabled && "itpc-icon__arrow_disabled", orientation === "top" && "itpc-icon__arrow_orientation_top", orientation === "bottom" && "itpc-icon__arrow_orientation_bottom", orientation === "left" && "itpc-icon__arrow_orientation_left", orientation === "right" && "itpc-icon__arrow_orientation_right"), onClick: onClick },
+    var disabled = _a.disabled, onClick = _a.onClick, orientation = _a.orientation, className = _a.className;
+    return (react_1.default.createElement("i", { className: (0, classnames_1.default)("itpc-icon__arrow", disabled && "itpc-icon__arrow_disabled", orientation === "top" && "itpc-icon__arrow_orientation_top", orientation === "bottom" && "itpc-icon__arrow_orientation_bottom", orientation === "left" && "itpc-icon__arrow_orientation_left", orientation === "right" && "itpc-icon__arrow_orientation_right", className), onClick: onClick },
         react_1.default.createElement("svg", { height: "8", viewBox: "0 0 12 8", width: "12", xmlns: "http://www.w3.org/2000/svg" },
             react_1.default.createElement("path", { d: "M10.5134 0L6 4.82292L1.48659 0L0 1.58854L6 8L12 1.58854L10.5134 0Z" }))));
 };
@@ -39078,22 +39078,24 @@ var ListBox = function (_a) {
     var children = _a.children, durationAnimation = _a.durationAnimation, isOpen = _a.isOpen, refChildren = _a.refChildren, refParent = _a.refParent, rest = __rest(_a, ["children", "durationAnimation", "isOpen", "refChildren", "refParent"]);
     var windowWidth = (0, lab_1.useWindowSize)().windowWidth;
     var localRef = (0, react_1.useRef)(null);
-    var ref = (refChildren === null || refChildren === void 0 ? void 0 : refChildren.current) || localRef.current;
+    var ref = refChildren || localRef;
     var _b = (0, react_1.useState)({}), styleAnimation = _b[0], setStyleAnimation = _b[1];
     (0, react_1.useEffect)(function () {
-        if (ref && (refParent === null || refParent === void 0 ? void 0 : refParent.current)) {
-            (0, setDurationAnimation_1.setDurationAnimation)(durationAnimation, ".itpc-list-box_opened", ".itpc-list-box_closed");
-            ref.style.width = "".concat(refParent.current.offsetWidth, "px");
+        var element = ref.current;
+        var parentElement = refParent === null || refParent === void 0 ? void 0 : refParent.current;
+        if (element && parentElement) {
+            element.style.width = "".concat(parentElement.offsetWidth, "px");
+            (0, setDurationAnimation_1.setDurationAnimation)(durationAnimation, element, isOpen);
         }
-    }, [durationAnimation, refChildren, refParent, windowWidth]);
+    }, [durationAnimation, ref, refParent, windowWidth, isOpen]);
     (0, react_1.useEffect)(function () {
-        if (isOpen && (refParent === null || refParent === void 0 ? void 0 : refParent.current) && ref) {
-            var animationTransform = (0, getTransformOriginByAxisX_1.getTransformOriginByAxisX)(refParent, refChildren || localRef);
-            setStyleAnimation({
-                transformOrigin: animationTransform,
-            });
+        var element = ref.current;
+        var parentElement = refParent === null || refParent === void 0 ? void 0 : refParent.current;
+        if (isOpen && parentElement && element) {
+            var animationTransform = (0, getTransformOriginByAxisX_1.getTransformOriginByAxisX)(refParent, ref);
+            setStyleAnimation({ transformOrigin: animationTransform });
         }
-    }, [isOpen, refParent === null || refParent === void 0 ? void 0 : refParent.current]);
+    }, [isOpen, refParent, ref]);
     return (react_1.default.createElement("ul", __assign({ className: (0, classnames_1.default)("itpc-list-box", isOpen ? "itpc-list-box_opened" : "itpc-list-box_closed"), ref: refChildren || localRef, role: "listbox", style: styleAnimation }, rest), children));
 };
 exports.ListBox = ListBox;
@@ -39274,6 +39276,29 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -39290,18 +39315,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SelectItem = void 0;
-var react_1 = __importDefault(__webpack_require__(9155));
+var react_1 = __importStar(__webpack_require__(9155));
 var classnames_1 = __importDefault(__webpack_require__(6942));
+var moment_1 = __importDefault(__webpack_require__(5093));
 __webpack_require__(9373);
 var SelectItem = function (_a) {
     var activeIndex = _a.activeIndex, children = _a.children, disabled = _a.disabled, id = _a.id, isActive = _a.isActive, itemIndex = _a.itemIndex, onChange = _a.onChange, onMouseEnter = _a.onMouseEnter, rest = __rest(_a, ["activeIndex", "children", "disabled", "id", "isActive", "itemIndex", "onChange", "onMouseEnter"]);
-    var onClick = function () {
-        if (!disabled) {
+    var isActiveIndex = typeof activeIndex === "number" && activeIndex === itemIndex;
+    var isTouchDevice = (0, react_1.useRef)(false);
+    var handleClick = function () {
+        if (!disabled && onChange && !isTouchDevice.current) {
             onChange(id);
         }
     };
-    var isActiveIndex = typeof activeIndex === "number" && activeIndex === itemIndex;
-    return (react_1.default.createElement("li", __assign({ className: (0, classnames_1.default)("itpc-select-item", !disabled && "itpc-select-item_clickable", !disabled && isActiveIndex && "itpc-select-item_clickable_hover", disabled && "itpc-select-item_disabled", !isActiveIndex && isActive && "itpc-select-item_selected", isActiveIndex && "itpc-select-item_active"), onClick: onClick, onMouseEnter: function () { return onMouseEnter && onMouseEnter(itemIndex); } }, rest),
+    var touchStartRef = react_1.default.useRef({ time: (0, moment_1.default)(), x: 0, y: 0 });
+    var handleTouchStart = function (event) {
+        isTouchDevice.current = true;
+        if (!disabled) {
+            touchStartRef.current = {
+                time: (0, moment_1.default)(),
+                x: event.touches[0].clientX,
+                y: event.touches[0].clientY,
+            };
+        }
+    };
+    var handleTouchEnd = function (event) {
+        if (!disabled && onChange) {
+            var _a = touchStartRef.current, startTime = _a.time, startX = _a.x, startY = _a.y;
+            var endX = event.changedTouches[0].clientX;
+            var endY = event.changedTouches[0].clientY;
+            var endTime = (0, moment_1.default)();
+            var distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+            var duration = endTime.diff(startTime, "milliseconds");
+            if (distance < 10 && duration < 300) {
+                onChange(id);
+            }
+        }
+    };
+    return (react_1.default.createElement("li", __assign({ className: (0, classnames_1.default)("itpc-select-item", !disabled && "itpc-select-item_clickable", !disabled && isActiveIndex && "itpc-select-item_clickable_hover", disabled && "itpc-select-item_disabled", !isActiveIndex && isActive && "itpc-select-item_selected", isActiveIndex && "itpc-select-item_active"), "data-id": id, onClick: handleClick, onMouseEnter: function () { return onMouseEnter && onMouseEnter(itemIndex); }, onTouchEnd: handleTouchEnd, onTouchStart: handleTouchStart }, rest),
         react_1.default.createElement("span", { className: (0, classnames_1.default)("itpc-select-item__stick", isActive && "itpc-select-item__stick_showed") }),
         children));
 };
@@ -39566,7 +39617,7 @@ exports.Card = Card;
 
 /***/ }),
 
-/***/ 3827:
+/***/ 6208:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -40747,7 +40798,7 @@ exports.Tabs = Tabs;
 
 /***/ }),
 
-/***/ 748:
+/***/ 8367:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -41188,7 +41239,7 @@ Object.defineProperty(exports, "AccordionHeader", ({ enumerable: true, get: func
 Object.defineProperty(exports, "AccordionItem", ({ enumerable: true, get: function () { return Accordion_1.AccordionItem; } }));
 var Card_1 = __webpack_require__(4622);
 Object.defineProperty(exports, "Card", ({ enumerable: true, get: function () { return Card_1.Card; } }));
-var Modal_1 = __webpack_require__(3827);
+var Modal_1 = __webpack_require__(6208);
 Object.defineProperty(exports, "Modal", ({ enumerable: true, get: function () { return Modal_1.Modal; } }));
 Object.defineProperty(exports, "ModalContent", ({ enumerable: true, get: function () { return Modal_1.ModalContent; } }));
 Object.defineProperty(exports, "ModalFooter", ({ enumerable: true, get: function () { return Modal_1.ModalFooter; } }));
@@ -41211,7 +41262,7 @@ Object.defineProperty(exports, "TableSort", ({ enumerable: true, get: function (
 var Tabs_1 = __webpack_require__(6384);
 Object.defineProperty(exports, "TabButton", ({ enumerable: true, get: function () { return Tabs_1.TabButton; } }));
 Object.defineProperty(exports, "Tabs", ({ enumerable: true, get: function () { return Tabs_1.Tabs; } }));
-var Form_1 = __webpack_require__(748);
+var Form_1 = __webpack_require__(8367);
 Object.defineProperty(exports, "Form", ({ enumerable: true, get: function () { return Form_1.Form; } }));
 var FormField_1 = __webpack_require__(7282);
 Object.defineProperty(exports, "FormField", ({ enumerable: true, get: function () { return FormField_1.FormField; } }));
@@ -41402,7 +41453,7 @@ var utils_1 = __webpack_require__(75);
 var DatePicker = function (_a) {
     var activeDates = _a.activeDates, _b = _a.className, className = _b === void 0 ? "" : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, disabledAfterDate = _a.disabledAfterDate, disabledBeforeDate = _a.disabledBeforeDate, disabledDates = _a.disabledDates, disabledDaysOfWeek = _a.disabledDaysOfWeek, _d = _a.disabledSelectMonth, disabledSelectMonth = _d === void 0 ? false : _d, _e = _a.disabledSelectYear, disabledSelectYear = _e === void 0 ? false : _e, _f = _a.durationAnimation, durationAnimation = _f === void 0 ? {
         durationClose: 200,
-        durationOpen: 400,
+        durationOpen: 250,
     } : _f, _g = _a.errorMessage, errorMessage = _g === void 0 ? "" : _g, _h = _a.errorPlacement, errorPlacement = _h === void 0 ? enums_1.ErrorPlacement.INSIDE : _h, _j = _a.id, id = _j === void 0 ? "itpc-datepicker" : _j, _k = _a.isIconClickable, isIconClickable = _k === void 0 ? false : _k, _l = _a.isShowIcon, isShowIcon = _l === void 0 ? true : _l, _m = _a.isWidthMaxContent, isWidthMaxContent = _m === void 0 ? false : _m, _o = _a.name, name = _o === void 0 ? "itpc-datepicker" : _o, _p = _a.offsetYear, offsetYear = _p === void 0 ? 10 : _p, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, _q = _a.placeholder, placeholder = _q === void 0 ? "" : _q, _r = _a.position, position = _r === void 0 ? "fixed" : _r, scrollToYear = _a.scrollToYear, _s = _a.validationState, validationState = _s === void 0 ? "valid" : _s, _t = _a.value, value = _t === void 0 ? "" : _t, _u = _a.withTime, withTime = _u === void 0 ? false : _u, yearsFromTo = _a.yearsFromTo, rest = __rest(_a, ["activeDates", "className", "disabled", "disabledAfterDate", "disabledBeforeDate", "disabledDates", "disabledDaysOfWeek", "disabledSelectMonth", "disabledSelectYear", "durationAnimation", "errorMessage", "errorPlacement", "id", "isIconClickable", "isShowIcon", "isWidthMaxContent", "name", "offsetYear", "onBlur", "onChange", "onFocus", "placeholder", "position", "scrollToYear", "validationState", "value", "withTime", "yearsFromTo"]);
     var _v = (0, react_1.useState)(false), focused = _v[0], onHandleFocused = _v[1];
     var _w = (0, react_1.useState)(false), isShowCalendar = _w[0], setIsShowCalendar = _w[1];
@@ -41752,6 +41803,7 @@ var MultiSelectField = function (_a) {
     var onChangeValue = function (value) {
         if (typeof onChange === "function") {
             var select = new Set(selectedItems);
+            console.log(select);
             if (select.has(value)) {
                 select.delete(value);
             }
@@ -41811,6 +41863,16 @@ var MultiSelectField = function (_a) {
                 break;
         }
     };
+    var handleContainerKeyDown = function (event) {
+        if (disabled) {
+            return;
+        }
+        if (!isOpen && event.key === enums_1.KeyCode.ENTER) {
+            handleOpen();
+            return;
+        }
+        handleKey(event);
+    };
     (0, react_1.useEffect)(function () {
         if (refChildren && activeIndex !== -1) {
             (0, lab_1.updateScroll)(refChildren, activeIndex);
@@ -41840,8 +41902,8 @@ var MultiSelectField = function (_a) {
         }
     }, [isMouseMoved]);
     (0, lab_1.useOnClickOutside)(ref, onClose, isOpen, refChildren);
-    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-multi-select", disabled && " itpc-multi-select_disabled", !disabled && " itpc-multi-select_hover", className), ref: ref }),
-        react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-multi-select__button", isOpen && "itpc-multi-select__button_focused"), disabled: disabled, onClick: handleOpen, onKeyDown: handleKey, ref: refButton, type: "button" },
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-multi-select", disabled && " itpc-multi-select_disabled", !disabled && " itpc-multi-select_hover", className), "aria-expanded": isOpen, "aria-haspopup": "listbox", onKeyDown: handleContainerKeyDown, ref: ref, role: "combobox", tabIndex: disabled ? -1 : 0 }),
+        react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-multi-select__button", isOpen && "itpc-multi-select__button_focused"), disabled: disabled, onClick: handleOpen, ref: refButton, type: "button" },
             react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: isOpen || !!(selectedItems === null || selectedItems === void 0 ? void 0 : selectedItems.length) }, placeholder),
             selectText()),
         react_1.default.createElement(_elements_1.IconArrow, { disabled: disabled, onClick: handleOpen, orientation: isOpen ? "top" : "bottom" }),
@@ -42324,8 +42386,8 @@ __webpack_require__(2341);
 var SelectField = function (_a) {
     var _b;
     var _c = _a.className, className = _c === void 0 ? "" : _c, _d = _a.disabled, disabled = _d === void 0 ? false : _d, _e = _a.durationAnimation, durationAnimation = _e === void 0 ? {
-        durationClose: 200,
-        durationOpen: 300,
+        durationClose: 150,
+        durationOpen: 200,
     } : _e, items = _a.items, onChange = _a.onChange, placeholder = _a.placeholder, _f = _a.position, position = _f === void 0 ? types_1.ALLOWED_POSITIONS.FIXED : _f, required = _a.required, _g = _a.selectedItemId, selectedItemId = _g === void 0 ? null : _g, rest = __rest(_a, ["className", "disabled", "durationAnimation", "items", "onChange", "placeholder", "position", "required", "selectedItemId"]);
     var _h = (0, react_1.useState)(false), isOpen = _h[0], setIsOpen = _h[1];
     var isClosing = (0, lab_1.useAnimation)(isOpen, durationAnimation).isClosing;
@@ -42378,6 +42440,20 @@ var SelectField = function (_a) {
                 break;
         }
     };
+    var handleContainerKeyDown = function (event) {
+        if (disabled) {
+            return;
+        }
+        if (!isOpen && event.key === enums_1.KeyCode.ENTER) {
+            handleOpen();
+            return;
+        }
+        handleKey(event);
+    };
+    var handleItemSelect = function (value) {
+        changeValue(value);
+        onClose();
+    };
     (0, react_1.useEffect)(function () {
         if (refChildren && activeIndex !== -1) {
             (0, lab_1.updateScroll)(refChildren, activeIndex);
@@ -42407,15 +42483,15 @@ var SelectField = function (_a) {
         }
     }, [isMouseMoved]);
     (0, lab_1.useOnClickOutside)(ref, onClose, isOpen);
-    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-select", !disabled && "itpc-select_hover", disabled && " itpc-select_disabled", className), ref: ref }),
-        react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-select__button", isOpen && "itpc-select__button_focused"), disabled: disabled, onClick: handleOpen, onKeyDown: handleKey, type: "button" },
+    return (react_1.default.createElement("div", __assign({}, rest, { className: (0, classnames_1.default)("itpc-select", !disabled && "itpc-select_hover", disabled && " itpc-select_disabled", className), onKeyDown: handleContainerKeyDown, ref: ref, tabIndex: disabled ? -1 : 0 }),
+        react_1.default.createElement("button", { className: (0, classnames_1.default)("itpc-select__button", isOpen && "itpc-select__button_focused"), disabled: disabled, onClick: handleOpen, type: "button" },
             react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: isOpen || !!selectedItemId, required: required }, placeholder),
             selectedItemId &&
                 ((_b = items.find(function (item) { return item.id === selectedItemId; })) === null || _b === void 0 ? void 0 : _b.value)),
-        react_1.default.createElement(_elements_1.IconArrow, { disabled: disabled, onClick: handleOpen, orientation: isOpen ? "top" : "bottom" }),
+        react_1.default.createElement(_elements_1.IconArrow, { "aria-hidden": "true", disabled: disabled, onClick: handleOpen, orientation: isOpen ? "top" : "bottom", className: "itpc-select__icon-arrow" }),
         react_1.default.createElement(_elements_1.Portal, { element: document.body },
             react_1.default.createElement(_elements_1.PositionedWrap, { horizontalAlignment: types_1.HORIZONTAL_POSITION.LEFT, isClosing: isClosing, isOpen: isOpen, position: position, refParent: ref },
-                react_1.default.createElement(ListBox_1.ListBox, { durationAnimation: durationAnimation, isOpen: isOpen ? !isClosing : isOpen, refChildren: refChildren, refParent: ref }, items.map(function (item, itemIndex) { return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, disabled: item.disabled, id: item.id, isActive: selectedItemId === item.id, itemIndex: itemIndex, key: item.id, onChange: changeValue, onMouseEnter: onMouseEnter }, item.value)); }))))));
+                react_1.default.createElement(ListBox_1.ListBox, { durationAnimation: durationAnimation, isOpen: isOpen ? !isClosing : isOpen, refChildren: refChildren, refParent: ref }, items.map(function (item, itemIndex) { return (react_1.default.createElement(_elements_1.SelectItem, { activeIndex: activeIndex, disabled: item.disabled, id: item.id, isActive: selectedItemId === item.id, itemIndex: itemIndex, key: item.id, onChange: handleItemSelect, onMouseEnter: onMouseEnter }, item.value)); }))))));
 };
 exports.SelectField = SelectField;
 
@@ -44164,9 +44240,9 @@ var Calendar = function (_a) {
     }, [currentValue, withTime]);
     (0, react_1.useEffect)(function () {
         if (calendarRef.current) {
-            (0, setDurationAnimation_1.setDurationAnimation)(durationAnimation, ".itpc-calendar_opened", ".itpc-calendar_closed");
+            (0, setDurationAnimation_1.setDurationAnimation)(durationAnimation, calendarRef.current, show);
         }
-    }, [calendarRef.current, durationAnimation]);
+    }, [calendarRef.current, durationAnimation, show]);
     (0, react_1.useEffect)(function () {
         if (calendarRef.current && windowWidth) {
             var elementWidth = (0, getDemensions_1.getElementDimensions)(calendarRef.current).elementWidth;
@@ -44775,29 +44851,38 @@ exports.useOnClickOutside = void 0;
 var react_1 = __webpack_require__(9155);
 var useOnClickOutside = function (ref, handler, show, handlerRef) {
     if (show === void 0) { show = true; }
+    var isScrollingRef = (0, react_1.useRef)(false);
     var listener = function (event) {
+        if ("touches" in event && event.type === "touchmove") {
+            isScrollingRef.current = true;
+            return;
+        }
+        if ("touches" in event &&
+            event.type === "touchend" &&
+            isScrollingRef.current) {
+            isScrollingRef.current = false;
+            return;
+        }
         var target = ref.current;
         var handlerTarget = handlerRef === null || handlerRef === void 0 ? void 0 : handlerRef.current;
         if (target &&
             !target.contains(event.target) &&
-            !(handlerTarget === null || handlerTarget === void 0 ? void 0 : handlerTarget.contains(event.target))) {
+            (!handlerTarget || !handlerTarget.contains(event.target))) {
             handler(event);
         }
     };
     (0, react_1.useEffect)(function () {
-        if (show) {
-            document.addEventListener("mouseup", listener);
-            document.addEventListener("touchend", listener);
-        }
-        else {
-            document.removeEventListener("mouseup", listener);
-            document.removeEventListener("touchend", listener);
-        }
+        if (!show)
+            return;
+        document.addEventListener("mouseup", listener);
+        document.addEventListener("touchmove", listener);
+        document.addEventListener("touchend", listener);
         return function () {
             document.removeEventListener("mouseup", listener);
+            document.removeEventListener("touchmove", listener);
             document.removeEventListener("touchend", listener);
         };
-    }, [ref, handler, show]);
+    }, [show]);
 };
 exports.useOnClickOutside = useOnClickOutside;
 
@@ -44918,17 +45003,18 @@ Object.defineProperty(exports, "updateScroll", ({ enumerable: true, get: functio
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.setDurationAnimation = void 0;
-var setDurationAnimation = function (durationAnimation, openClass, closeClass) {
-    if (durationAnimation.durationClose !== 0) {
-        var openedListBox = document.querySelector(openClass);
-        if (openedListBox) {
-            openedListBox.style.transitionDuration = "".concat(durationAnimation.durationOpen, "ms");
+var setDurationAnimation = function (durationAnimation, element, isOpen) {
+    if (!element) {
+        return;
+    }
+    if (isOpen) {
+        if (durationAnimation.durationOpen !== 0) {
+            element.style.transitionDuration = "".concat(durationAnimation.durationOpen, "ms");
         }
     }
-    if (durationAnimation.durationClose !== 0) {
-        var closedListBox = document.querySelector(closeClass);
-        if (closedListBox) {
-            closedListBox.style.transitionDuration = "".concat(durationAnimation.durationClose, "ms");
+    else {
+        if (durationAnimation.durationClose !== 0) {
+            element.style.transitionDuration = "".concat(durationAnimation.durationClose, "ms");
         }
     }
 };

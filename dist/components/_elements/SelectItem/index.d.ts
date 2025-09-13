@@ -7,7 +7,7 @@ interface Props {
     id: string;
     isActive?: boolean;
     itemIndex: number;
-    onChange(id: string): void;
+    onChange?(id: string): void;
     onMouseEnter?(index: number): void;
 }
 export declare const SelectItem: React.FC<Props>;
