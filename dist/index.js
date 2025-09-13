@@ -42604,7 +42604,7 @@ var TextAreaField = function (_a) {
         }
         return scrollHeight > fixedHeight ? scrollHeight : fixedHeight;
     };
-    var isFocused = focused || !!value.length;
+    var isFocused = focused || !!(value === null || value === void 0 ? void 0 : value.length);
     return (react_1.default.createElement(_elements_1.Field, __assign({}, rest, { className: (0, classnames_1.default)(className) }),
         react_1.default.createElement(_elements_1.InputWrap, { disabled: disabled, fixedHeight: fixedHeight, focused: focused, height: height, maxHeight: maxHeight, validationState: validationState },
             react_1.default.createElement(_elements_1.Placeholder, { className: (0, classnames_1.default)(fixedHeight &&
@@ -42702,7 +42702,7 @@ var TextField = function (_a) {
         }
     };
     return (react_1.default.createElement(_elements_1.Field, __assign({}, rest, { className: (0, classnames_1.default)(className), errorPlacement: errorPlacement }),
-        react_1.default.createElement(_elements_1.InputWrap, { focused: focused, validationState: validationState },
+        react_1.default.createElement(_elements_1.InputWrap, { focused: focused, validationState: validationState, disabled: disabled },
             react_1.default.createElement(_elements_1.Placeholder, { disabled: disabled, focused: focused || value.length > 0 || !!defaultItem, htmlFor: id, required: required, validationState: validationState }, placeholder),
             react_1.default.createElement("input", { className: (0, classnames_1.default)("itpc-input", (focused || !!value.length) && "itpc-input_focused"), autoComplete: autoComplete, disabled: disabled, id: id, maxLength: maxLength, name: name, onBlur: onBlurInput, onChange: onChangeInput, onFocus: onFocusInput, onKeyDown: onKeyDown, type: type, value: value }),
             icon && react_1.default.createElement(_elements_1.InputIcon, null, icon)),
